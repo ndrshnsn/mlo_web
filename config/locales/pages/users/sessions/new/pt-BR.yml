@@ -1,0 +1,14 @@
+pt-BR:
+  users:
+    sessions:
+      new:
+        remember_me: "Lembrar"
+        page_subtitle: ""
+        page_footer_html: "Desenvolvido por <a href='mailto:ndrshnsn@gmail.com'>Andreas Hansen</a>"
+        email: "Email"
+        password: "Senha"
+        welcome_back: "Bem Vindo!"
+        forgot_password: "Esqueci minha senha"
+        sign_in: "Entrar"
+        or: "ou"
+        register: "Registrar nova Conta"

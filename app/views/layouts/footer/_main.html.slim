@@ -1,0 +1,7 @@
+footer.footer
+    .container-fluid
+        .row
+            .col-sm-6 
+                | #{t('.version')}: #{Rails.configuration.version}
+            .col-sm-6
+                .text-sm-end.d-none.d-sm-block = t('.brand_html')

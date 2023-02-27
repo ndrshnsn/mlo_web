@@ -1,0 +1,17 @@
+.dropdown.ms-sm-3.header-item.topbar-user
+    button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+        span.d-flex.align-items-center
+            img src='#{avatarURL(current_user)}' class="rounded-circle header-profile-user"
+            span.text-start.ms-xl-2
+                span.d-none.d-xl-inline-block.ms-1.fw-medium.user-name-text = current_user.full_name
+                span.d-none.d-xl-block.ms-1.fs-12.text-muted.user-name-sub-text ##{current_user.nickname}
+
+    .dropdown-menu.dropdown-menu-end
+        = link_to profile_path, class: "dropdown-item", data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle" } do
+            i.ri-user-line.text-muted.fs-16.align-middle.me-1
+            span.align-middle = t('.settings')
+        = button_to(destroy_user_session_path, method: :delete, form: { data: { turbo: :false } }, class: "dropdown-item") do
+            i.ri-logout-box-line.text-muted.fs-16.align-middle.me-1
+            span.align-middle = t('.logout')
+
+

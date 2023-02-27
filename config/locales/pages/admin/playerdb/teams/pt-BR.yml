@@ -1,0 +1,49 @@
+pt-BR:
+  admin:
+    playerdb:
+      playerdb_teams:
+        index:
+          teams: "Times"
+        edit:
+          teams: "Times"
+          edit: "Editar Time"
+          confirm: "Atualizar time?"
+          confirm_text: ""
+        list:
+          add_team: "Novo Time"
+          name: "Nome"
+          platforms: "Plataformas"
+          country: "País"
+          status: "Status"
+          actions: "Ações"
+        update:
+          success: "Time atualizado com sucesso!"
+          error: "Erro atualizando time!"
+        new:
+          confirm: "Confirma a Criação?"
+          confirm_text: ""
+        create:
+          success: "Time criado com sucesso!"
+          error: "Erro criando time!"
+        destroy:
+          success: "Time removido com sucesso!"
+          error: "Erro removendo time"
+        form:
+          confirm: "Confirmar"
+          cancel: "Cancelar"
+          name: "Nome"
+          name_obs: "Validar Badge com mesmo nome"
+          alias: "Alias"
+          alias_obs: "Separados por vírgula"
+          platforms: "Plataformas"
+          country: "País"
+          info_url: "URL para Informação do Clube"
+          active: "Ativo"
+          club_details: "Detalhes do Clube"
+          club_name: "Nome"
+          club_abbr: "Abreviação"
+          club_foundation: "Fundação"
+          club_city: "Cidade"
+          kits: "Uniforme"
+          stadium: "Estádio"
+          stadium_capacity: "Capacidade"

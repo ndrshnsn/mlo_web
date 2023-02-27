@@ -1,0 +1,11 @@
+pt-BR:
+  dashboard:
+    index:
+      button_with_text: "Teste de botão 1"
+      button_with_another_text: "Teste de botão 2"
+    main:
+      disabled_league: "Liga Desabilitada"
+      disabled_league_obs_html: "Esta liga está suspensa por determinação do Administrador. Por favor entre em contato para maiores detalhes.<br /><br /><span class='d-flex'><i class='ri-mail-line me-1'></i><a href='mailto:%{admin}'>%{admin}</a></span>"
+    change_league:
+      success: "Troca de liga efetuada com sucesso!"
+      error: "Erro trocando de liga!"

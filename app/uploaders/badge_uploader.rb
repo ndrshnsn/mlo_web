@@ -1,0 +1,2 @@
+class BadgeUploader < Shrine
+end

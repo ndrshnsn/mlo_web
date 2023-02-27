@@ -1,0 +1,19 @@
+pt-BR:
+  admin:
+    playerdb:
+      playerdb_players:
+        index:
+          players: "Jogadores"
+        list:
+          name: "Nome"
+          country: "País"
+          active: "Ativo"
+          inactive: "Inativo"
+          platform: "Plataforma"
+          age: "Idade"
+          height: "Altura"
+          overall: "Over"
+          actions: "Ações"
+          position: "Posição"
+        toggle:
+          success: "Status alterado com sucesso"

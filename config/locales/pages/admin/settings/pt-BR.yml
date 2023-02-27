@@ -1,0 +1,86 @@
+pt-BR:
+  admin:
+    settings:
+      index:
+        settings: "Configurações"
+      update:
+        success: "Configurações Atualizadas com Sucesso!"
+        error: "Erro atualizando configurações!"
+      form:
+        confirm_text: "Atualizar Definições Globais?"
+        mail:
+          title: "Email"
+          principal: "Email do Admin"
+          username: "Usuário"
+          password: "Senha"
+        league:
+          title: "Liga"
+          slots: "Vagas"
+          fake_account_password: "Senha :: Contas Temp"
+        vapid:
+          title: "Vapid"
+          pubkey: "Chave Pública"
+          privkey: "Chave Privada"
+        sendgrid:
+          title: "SendGrid"
+          api: "SendGrid API"
+          template:
+            reset_password: "Template: Troca de Senha"
+            request_league: "Template: Solicitar Liga"
+            confirmation: "Template: Confirmação"
+            new_league: "Template: Nova Liga"
+        playerdb:
+          title: "PlayerDB"
+          generic_player: "ID do Jogador Genérico"
+          platforms: "Plataformas"
+          user_platforms: "Plataformas de Jogo"
+        championships:
+          title: "Campeonatos"
+          minimum_players: "Mínimo de Jogadores"
+          cards_suspension_ycard: "Cartões Amarelos / Suspensão"
+          cards_suspension_rcard: "Cartões Vermelhos / Suspensão"
+        championship:
+          title: "Campeonatos"
+          minimum_players: "Mínimo de Jogadores"
+          cards_suspension_ycard: "Cartões Amarelos para Suspensão"
+          cards_suspension_rcard: "Cartões Vermelhos para Suspensão"
+        match:
+          title: "Partidas"
+          hattrick_earning: "Valor Ganho por HatTrick"
+          winning_earning: "Valor Ganho por Vitória"
+          draw_earning: "Valor Ganho por Empate"
+          lost_loss: "Valor Perdido por Derrota"
+          goal_earning: "Valor Ganho por Gol"
+          goal_loss: "Valor Perdido por Gol Sofrido"
+          yellow_card_loss: "Valor Perdido por Cartão Amarelo"
+          red_card_loss: "Valor Perdido por Cartão Vermelho"
+          winning_points: "Pontos por Vitória"
+          draw_points: "Pontos por Empate"
+          lost_points: "Pontos por Derrota"
+          winning_ranking: "Pontos por Vitória no Ranking"
+          draw_ranking: "Pontos por Empate no Ranking"
+          lost_ranking: "Pontos perdidos por Derrota no Ranking"
+        season:
+          title: "Temporadas"
+          times: "Períodos de Temporada"
+          min_players: "Mínimo de Jogadores por Clube"
+          max_players: "Máximo de Jogadores por Clube"
+          max_steals_same_player: "Máx de Roubos para o mesmo Jogador"
+          max_steals_per_user: "Máx de Roubos por Usuário"
+          max_stealed_players: "Máx de Jogadores roubados por Usuário"
+          default_steal_window_start: "Janela Inicial do Roubo"
+          default_steal_window_end: "Janela Final do Roubo"
+          default_player_earnings: "Salário Inicial dos Jogadores"
+          default_minimum_operation: "Valor mínimo de Operação"
+          tax_for_fired_players: "Taxa por Demissão de Jogador"
+          default_time_game_confirmation: "Tempo para Confirmação de Resultado"
+          player_value_earning_relation: "Relação entre Salário x Passe do Jogador"
+          player_high_over: "Maior Over para Sorteio Inicial"
+          player_low_over: "Menor Over para Sorteio Inicial"
+          player_raffle_switches: "Trocas no Sorteio Inicial"
+          player_raffle_remaining: "Over para Escolha dos jogadores Restantes"
+          player_raffle_turn_time: "Tempo de Escolha dos Jogadores (Hs)"
+          player_raffle_first_order: "Ordem de Escolha Inicial dos Jogadores"
+          club_default_earning: "Saldo Inicial do Clube"
+          club_max_total_wage: "Teto de Salário do Clube"
+        confirm: "Atualizar"

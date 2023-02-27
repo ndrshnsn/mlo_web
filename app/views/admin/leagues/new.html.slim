@@ -1,0 +1,12 @@
+= turbo_frame_tag "main_frame" do
+  = render partial: "layouts/header/pageHeader", locals: { title: t('.leagues') }
+        
+  = turbo_frame_tag "admin_leagues" do
+    .row
+      .col-12
+        .card 
+          .card-header.align-items-center.d-flex
+            h4.card-title.mb-o.flex-grow-1 = t('.new')
+          .card-body
+            = form_with model: @league, id: dom_id(@league), url: admin_league_create_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "warning"} do |f|
+              = render partial: "form", locals: { f: f }

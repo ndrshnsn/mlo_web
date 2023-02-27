@@ -1,0 +1,6 @@
+pt-BR:
+  layouts:
+    header:
+      user:
+        logout: "Sair"
+        settings: "Meu Perfil"

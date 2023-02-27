@@ -1,0 +1,11 @@
+en:
+  users:
+    sessions:
+      new:
+        remember_me: "Remember Me"
+        email: "Email"
+        welcome_back: "Welcome!"
+        forgot_password: "Forgot my Password"
+        sign_in: "Sign In"
+        or_sign_in_with: "Sign in With"
+        register: "Register New Account"

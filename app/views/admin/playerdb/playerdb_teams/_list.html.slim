@@ -1,0 +1,32 @@
+.row
+  .col-12
+    .card
+      .card-body
+        .row.g-4.mb-3 
+          .col-sm-auto
+            div
+              = link_to admin_playerdb_teams_new_path, class: "btn btn-primary add-btn", data: { "turbo-action": "advance" } do
+                i.ri-add-line.align-bottom.me-1
+                = t('.add_team')
+          .col-sm
+            .d-flex.justify-content-sm-end
+              .search-box.ms-2
+                input#searchTeams.form-control.search type="text"
+                i.ri-search-line.search-icon
+        div data-controller="dt--admin-teams"
+          #tableDom.table-responsive.table-card.mb-1.mt-3
+            table.table.table-striped.table-nowrap.dt-responsive.align-middle.mb-0 id="dt-admin-playerdb-teams" style="width: 100%;"
+              thead.table-light
+                tr
+                  th = t('.name')
+                  th = t('.platforms')
+                  th = t('.country')
+                  th = t('.status')
+                  th.text-center = t('.actions')
+              tfoot.table-light
+                tr
+                  th = t('.name')
+                  th = t('.platforms')
+                  th = t('.country')
+                  th = t('.status')
+                  th.text-center = t('.actions')

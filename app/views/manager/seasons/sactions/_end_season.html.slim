@@ -1,0 +1,129 @@
+= form_with model: @season, id: dom_id(@season), url: manager_season_end_path(season.hashid), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
+  input type="hidden" name="season_end[null]" id="season_end_null" value=""
+  .horizontal-wizard.mb-0
+    .bs-stepper data-controller="stepper"
+      .bs-stepper-header
+        .step data-target="#end_season_information"
+          button.step-trigger type="button"
+            span.bs-stepper-box 1
+            span.bs-stepper-label
+              span.bs-stepper-title Informações
+              span.bs-stepper-subtitle Sobre o Encerramento
+        .line
+          i.jam.jam-chevrons-right.font-medium-2
+        .step data-target="#end_season_options"
+          button.step-trigger type="button"
+            span.bs-stepper-box 2
+            span.bs-stepper-label
+              span.bs-stepper-title Opcionais
+              span.bs-stepper-subtitle Selecione conforme sua liga
+        .line
+          i.jam.jam-chevrons-right.font-medium-2
+        .step data-target="#end_season_confirmation"
+          button.step-trigger type="button"
+            span.bs-stepper-box 3
+            span.bs-stepper-label
+              span.bs-stepper-title Confirmação
+              span.bs-stepper-subtitle Valide o Encerramento
+
+      .bs-stepper-content.pt-1
+        #end_season_information.content
+          .content-header
+            h4.mb-0 Informações
+            small.text-muted Sobre o Encerramento
+
+            blockquote.blockquote.custom-blockquote.blockquote-danger.rounded.mt-2
+              p.text-dark Certifique-se de não haver nenhum jogo e/ou campeonato em aberto antes de encerrar a temporada. Caso exista algum você será informado e será necessário encerrá-los previamente.
+
+            p.card-text
+              h6 Ao encerrar a Temporada, algumas ações serão executadas automaticamente:
+              ul.list-style-icons
+                li
+                  i.jam.jam-arrow-right.mr-25
+                  | Devolver qualquer jogador emprestado
+                li
+                  i.jam.jam-arrow-right.mr-25
+                  | Cobrar qualquer empréstimo realizado
+
+
+          .d-flex.justify-content-between.mt-75
+            button.btn.btn-sm.btn-outline-secondary.btn-prev.disabled
+              i.align-middle.mr-sm-25.mr-0.jam.jam-arrow-left
+              span.align-middle.d-sm-inline-block.d-none anterior
+            button.btn.btn-sm.btn-primary.btn-next
+              span.align-middle.d-sm-inline-block.d-none próximo
+              i.align-middle.mr-sm-25.ml-0.jam.jam-arrow-right
+              
+        #end_season_options.content
+          .content-header
+            h4.mb-0 Opcionais
+            small.text-muted Selecione as demais ações executadas quando encerrar a Temporada
+            ul.list-group.list-group-flush
+              li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+                span.li-col
+                  | Pagar os Salários
+                  i.jam.jam-help.font-medium-4.ml-25 style="vertical-align: middle;" data-toggle="tooltip" data-placement="top" title="Os salários de todos os jogadores serão descontados do caixa dos respectivos clubes. Mesmo não permitindo o saldo negativo durante a temporada, caso o clube não possua saldo para o pagamento seu caixa ficará negativo."
+                span
+                  .form-group
+                    .form-check.form-switch
+                      = check_box_tag "season_end[pay_wages]", nil, false, class: "form-check-input"
+                      label.form-check-label[for="season_end_pay_wages"]
+              / li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+              /   span.li-col
+              /     | Prêmio dos Patrocinadores
+              /     i.jam.jam-help.font-medium-4.ml-25 style="vertical-align: middle;" data-toggle="tooltip" data-placement="top" title="O sistema irá pagar os prêmios dos patrocinadores - caso tenha sido habilitado - de acordo com os resultados de cada clube e regras estabelecidas."
+              /   span
+              /     .form-group
+              /       .custom-control.custom-control-primary.custom-switch
+              /         = check_box_tag "season_end[pay_stakeholders]", nil, false, class: "custom-control-input"
+              /         label.custom-control-label[for="season_end_pay_stakeholders"]
+              li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+                span.li-col
+                  | Zerar Caixa dos Clubes
+                  i.jam.jam-help.font-medium-4.ml-25 style="vertical-align: middle;" data-toggle="tooltip" data-placement="top" title="Finalizar a temporada e zerar o caixa dos clubes. Lembre-se de que caso selecione para pagar os salários e algum ficar negativo, zerar o caixa irá invalidar o saldo negativo e todos ficarão com seu saldo zerado."
+                span
+                  .form-group
+                    .form-check.form-switch
+                      = check_box_tag "season_end[clear_club_balance]", nil, false, class: "form-check-input"
+                      label.form-check-label[for="season_end_clear_club_balance"]
+
+
+          .d-flex.justify-content-between
+            button.btn.btn-sm.btn-primary.btn-prev
+              i.align-middle.mr-sm-25.mr-0.jam.jam-arrow-left
+              span.align-middle.d-sm-inline-block.d-none anterior
+            button.btn.btn-sm.btn-primary.btn-next
+              span.align-middle.d-sm-inline-block.d-none próximo
+              i.align-middle.mr-sm-25.ml-0.jam.jam-arrow-right
+
+        #end_season_confirmation.content
+          .content-header
+            h5.mb-0 Confirmação
+            small.text-muted Valide as ações que serão executadas
+
+            p.card-text.mb-2
+              ul.list-style-icons
+                li
+                  i.jam.jam-check.mr-25.text-success
+                  | Devolução de Jogadores Emprestados
+                li
+                  i.jam.jam-check.mr-25.text-success
+                  | Pagar Empréstimo de Jogadores Emprestados
+                li
+                  i.jam.jam-check.mr-25.text-success#send_pay_wages
+                  | Pagar os Salários
+                / li
+                /   i.jam.jam-check.mr-25.text-success#send_pay_stakeholders
+                /   | Prêmio dos Patrocinadores
+                li
+                  i.jam.jam-check.mr-25.text-success#send_clear_club_balance
+                  | Zerar Caixa dos Clubes
+
+          .d-flex.justify-content-between
+            button.btn.btn-sm.btn-primary.btn-prev
+              i.align-middle.mr-sm-25.mr-0.jam.jam-arrow-left
+              span.align-middle.d-sm-inline-block.d-none anterior
+
+            .text-right
+              = f.submit t('.confirm'), class: "btn btn-submit btn-primary btn-sm"
+              .button.btn.btn-sm.btn-outline-secondary#cancel Cancelar

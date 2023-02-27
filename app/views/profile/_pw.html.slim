@@ -1,0 +1,24 @@
+= turbo_frame_tag "tab_content" do
+  .tab-pane id="password" role="tabpanel"
+    = form_with model: current_user, id: "profile_update_password", url: profile_update_pw_path(@user.id), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "warning"} do |f|
+      .row.mb-3
+        .col-sm-12.col-md-4
+          .form-group.mb-3
+            = f.label :current_password, t('.current_password'), for: 'current_password', class: "control-label"
+            = f.password_field :current_password, class: "form-control", required: true, "data-parsley-remote": "/user/check_current_password", "data-parsley-trigger": "focusout", "data-parsley-remote-options": '{ "type": "POST", "dataType":  "json"}', "data-parsley-remote-message": t('.current_password_dont_match')
+
+        .col-sm-12.col-md-4
+          .form-group.mb-3
+            = f.label :password, t('.password'), for: 'password', class: "control-label"
+            = f.password_field :password, class: "form-control", required: true, "data-parsley-minlength": "8", "data-parsley-uppercase": "1", "data-parsley-lowercase": "1", "data-parsley-number": "1"
+
+        .col-sm-12.col-md-4
+          .form-group.mb-3
+            = f.label :password_confirmation, t('.password_confirmation'), for: 'password_confirmation', class: "control-label"
+            .position-relative.auth-pass-inputgroup
+              = f.password_field :password_confirmation, class: "form-control pe-5 password-input", required: true, "data-parsley-equalto": "#user_password"
+              button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"
+                  i.ri-eye-fill.align-middle
+      .row
+        .col-12.text-end
+          = f.submit t('.confirm'), class: "btn btn-submit btn-primary"

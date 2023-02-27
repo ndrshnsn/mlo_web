@@ -1,0 +1,1 @@
+import * as select2 from '../libs/select2/select2.full.min'

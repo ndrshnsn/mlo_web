@@ -1,0 +1,88 @@
+.row
+  .col-12
+    .card
+      .card-body
+        h5.mb-3.card-title = t('.club_management')
+        p.card-text = t('.club_management_desc')
+.row
+  .col-md-5.col-sm-12
+    .card
+      - if !@userClub
+        img.card-img-top[src=image_path('generic-club.png') style="padding: 55px;"]
+      - else
+        img.card-img-top[src=image_path("#{session[:pdbprefix]}/teams/#{(@userClub.def_team.name.upcase.delete(' '))}.png") style="padding: 55px;"]
+      .card-body
+        h4.card-title = t('.main_information')
+        table.table.table-borderless.mt-0
+          tr
+            td
+              strong = t('.name')
+            td.text-right[style="white-space: normal!important;"]
+              - if @userClub
+                = @userClub.def_team.details["teamName"]
+              - else
+                | -
+          tr
+            td
+              strong = t('.founded')
+            td.text-right
+              - if @userClub
+                = @userClub.def_team.details["teamFounded"]
+              - else
+                | -
+          tr
+            td
+              strong = t('.city')
+            td.text-right
+              - if @userClub
+                = @userClub.def_team.details["teamCity"]
+              - else
+                | -
+          tr
+            td
+              strong = t('.country')
+            td.text-right
+              - if @userClub
+                = image_tag(countryFlag(@userClub.def_team.def_country.name), class: "avatar-xs", data: { toggle: "tooltip"}, title: stringHuman(t("defaults.countries.#{@userClub.def_team.def_country.name}")))
+              - else
+                | -
+
+      - if @season
+        .card-footer.text-center
+          - if @season.preferences["saction_clubs_choosing"] == 1
+            = button_to t('.choose_club'), myclub_management_get_cteams_path, class: "button btn btn-primary waves-effect", data: { "turbo-frame": 'modal' }
+
+  .col-md-7.col-sm-12
+    .card
+      .card-body
+        h5.card-title
+          - if @userClub
+              = @userClub.def_team.details["teamStadium"]
+          - else
+            = t('.generic_stadium')
+        h6.card-subtitle.pb-2
+          | #{t('.stadium_capacity')}: 
+          - if @userClub
+            = @userClub.def_team.details["teamCapacity"]
+          - else
+            = t('.stadium_capacity_not_informed')
+        - if @userClub
+          = image_tag("#{session[:pdbprefix]}/stadiums/#{(@userClub.def_team.name.upcase.delete(' '))}.png", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{image_url("generic-stadium.png")}';")
+        - else
+          = image_tag("generic-stadium.png", class: "mt-2 card-img")
+
+    .card
+      .card-body
+        h5.card-title.pb-2
+          = t('.club_kits')
+        .row
+          .col-6
+            - if @userClub
+              = image_tag("#{session[:pdbprefix]}/kits/#{(@userClub.def_team.name.upcase.delete(' '))}-p1.png", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{image_url("generic-kit-p1.png")}';")
+            - else
+              = image_tag("generic-kit-p1.png", class: "img-fluid")
+          .col-6
+            - if @userClub
+              = image_tag("#{session[:pdbprefix]}/kits/#{(@userClub.def_team.name.upcase.delete(' '))}-p2.png", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{image_url("generic-kit-p2.png")}';")
+            - else
+              = image_tag("generic-kit-p2.png", class: "img-fluid")

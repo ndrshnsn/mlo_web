@@ -1,0 +1,25 @@
+.row
+  .col-12
+    .card
+      .card-body
+        div data-controller="dt--firststeps-leagues"
+          #tableDom.table-responsive.table-card.mb-1.mt-3
+            table.table.table-striped.table-nowrap.dt-responsive.align-middle.mb-0 id="dt-firststeps-leagues" style="width: 100%;"
+              thead.table-light
+                tr
+                  th = t('.name')
+                  th = t('.platform')
+                  th = t('.slots')
+                  th = t('.users')
+                  th.text-center
+              tfoot.table-light
+                tr
+                  th = t('.name')
+                  th = t('.platform')
+                  th = t('.slots')
+                  th = t('.users')
+                  th.text-center
+
+      .card-footer
+        .text-end
+          = link_to "Cancelar", root_path, class: "btn btn-primary mt-2 me-1", data: { "turbo-action": "advance"}

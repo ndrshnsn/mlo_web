@@ -1,0 +1,25 @@
+pt-BR:
+  users:
+    registrations:
+      new:
+        email: "Email"
+        full_name: "Nome Completo"
+        nickname: "Nickname (PSN/LIVE)"
+        platform: "Plataforma"
+        phone: "Telefone"
+        birth: "Data de Nascimento"
+        register: "Registrar"
+        have_account_html: "Já tem uma conta? <a href='%{signin_url}'> Entrar </a>"
+        or: "ou"
+        country: "País"
+        city: "Cidade"
+        password: "Senha"
+        password_confirmation: "Confirme a Senha"
+        page_footer_html: "Desenvolvido por <a href='mailto:ndrshnsn@gmail.com'>Andreas Hansen</a>"
+        password_requirements: "Requisitos | Senha"
+        password_min_chars: "Mín 8 Caracteres"
+        password_one_upchar: "Uma Letra Maiúscula"
+        password_one_downchar: "Uma Letra Minúscula"
+        password_one_number: "Um Dígito"
+        terms_link_html: "Registrando-se você está de acordo com os <a href='%{terms_url}' class='text-primary text-decoration-underline fst-normal fw-semibold'>Termos de Uso</a>"
+        confirm: "Enviar Inscrição?"

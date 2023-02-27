@@ -1,0 +1,13 @@
+- if session[:userClub]
+  - club = Club.find(session[:userClub])
+  .d-flex.align-items-center.pt-4
+    = image_tag("#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", type: "button", class: "mx-auto card-img-top", style: "width: 45%;")
+  .d-flex.align-items-center.mt-2.league-name
+    span.mx-auto.pt-2.text-center
+      h5.text-white = stringHuman(DefTeam.getTranslation(club.def_team.name)[0])
+- else
+  .d-flex.align-items-center.pt-4
+    = image_tag("generic-club.png", type: "button", class: "mx-auto card-img-top", style: "width: 45%;")
+  .d-flex.align-items-center.league-name
+      span.mx-auto.pt-2.text-center
+        h5.text-white = t('.generic_club_name')

@@ -1,0 +1,49 @@
+.auth-page-wrapper.pt-5
+	.bg-overlay
+	.auth-page-content 
+		.container
+			.row
+				.col-lg-12
+					.text-center.mt-sm-5.mb-4.text-white-50
+						div
+							= image_tag('logo/mlo-light.png', alt: "", height: "45")
+							p.mt-3.fs-15.fw-medium = t('.page_subtitle')
+					.row.justify-content-center
+						.col-md-8.col-lg-6.col-xl-5.mt-4
+							.card.mt-4
+								.card-body.p-4
+									.p-2.mt-4
+										- if notice
+												p.alert.alert-success = notice
+										- if alert
+												p.alert.alert-danger = alert 
+										= form_with(model: resource, as: resource_name, id: "session", class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, method: :post, url: user_session_path, autocomplete: "off", local: true ) do |f|
+											.mb-3
+												= f.label :email, "#{t '.email'}", for: 'login-email', class: "form-label"
+												= f.email_field :email, autofocus: '' , tabindex: 1, :"aria-describedby" => 'login-email', class: "form-control", autocomplete: "email"
+											.mb-3
+												.float-end
+													= link_to t('.forgot_password'), forgot_path, class: "text-muted" 
+												= f.label :password, t('.password'), for: 'login-password', class: "form-label"
+												.position-relative.auth-pass-inputgroup.mb-3
+													= f.password_field :password, autofocus: '' , tabindex: 1, :"aria-describedby" => 'login-password', class: "form-control pe-5 password-input", "data-parsley-equalto": "#user_password"
+													button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"
+															i.ri-eye-fill.align-middle
+												.form-check
+														= f.check_box :remember_me, { class: "form-check-input" }
+														= f.label :remember_me, "#{t '.remember_me'}", { class: "form-check-label"}
+											.mt-4
+												button type="submit" id="signin_button" class="btn btn-primary w-100" data-turbo="false" = t '.sign_in'
+											.mt-4.text-center
+												.signin-other-title
+													h5.fs-13.mb-4.title = t('.or')
+											.mt-2.text-center
+													p.mb-0 
+														= link_to t('.register'), register_path
+	footer.footer
+		.container
+			.row
+				.col-lg-12
+					.text-center
+						p.mb-0.text-muted
+							| &copy;&copy; #{t('.page_footer_html')}

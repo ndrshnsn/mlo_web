@@ -1,0 +1,19 @@
+pt-BR:
+  layouts:
+    sidebar:
+      user_club_info:
+        generic_club_name: "Sem Clube"
+      user:
+        generic_club_name: "Meu Clube"
+        trades: "Negociações"
+        salary: "Ajuste de Salários"
+        steal: "Roubo"
+        auction: "Leilão"
+        main_menu: "Menu Principal"
+        dashboard: "Painel"
+        seasons: "Temporadas"
+        championships: "Campeonatos"
+        clubs: "Clubes"
+        ranking: "Ranking"
+        club_management: "Central do Clube"
+        management: "Administrativo"

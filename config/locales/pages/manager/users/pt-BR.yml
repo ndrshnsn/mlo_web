@@ -1,0 +1,49 @@
+pt-BR:
+  manager:
+    users:
+      index:
+        users: "Usuários"
+      list:
+        name: "Nome"
+        email: "Email"
+        status: "Status"
+        actions: "Ações"
+        activeUsers: "Ativos"
+        waitingUsers: "Fila de Espera"
+      toggle:
+        user_activated: "Usuário Ativado com sucesso!"
+        user_deactivated: "Usuário Removido da Liga com sucesso!"
+        no_more_slots: "Não há mais vagas na Liga!"
+        no_more_slots_remove_some: "Não há mais vagas, desative ou remova um jogador primeiro!"
+      activeUsers:
+        name: "Nome"
+        email: "Email"
+        status: "Status"
+        actions: "Ações"
+      waitingUsers:
+        order: "Posição"
+        name: "Nome"
+        email: "Email"
+        status: "Status"
+        actions: "Ações"
+      destroy:
+        user_deactivated: "Usuário removido da liga com sucesso!"
+      show:
+        users: "Usuários"
+        fullname: "Nome Completo"
+        email: "Email"
+        nickname: "Nickname"
+        platform: "Plataforma"
+        city: "Cidade"
+        country: "País"
+        birth: "Data de Nascimento"
+        phone: "Telefone"
+        cancel: "Voltar"
+        user_details: "Detalhes do Usuário"
+      eseason_modal:
+        confirm: "Confirmar"
+        cancel: "Cancelar"
+        confirm_text: "Confirma a migração do usuário para a Liga?"
+        user_from: "Usuario: Origem"
+        user_to: "Usuário: Destino"
+        user_move_instructions: "Selecione o Usuário de destino para a migração. O usuário de origem será movido para a Liga no lugar do usuário selecionado. Caso o usuário de destino já possua um Clube definido, o usuário de origem irá herdar o Clube bem como seus jogadores, histórico, etc."

@@ -1,0 +1,15 @@
+doctype html
+html lang="en" data-layout="vertical" data-layout-style="detached" data-sidebar="dark" data-topbar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-layout-mode="dark"
+  head
+    title MLO
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = action_cable_meta_tag
+    = stylesheet_link_tag 'application'
+    = vite_client_tag
+    = vite_javascript_tag 'application'
+    script src="https://cdn.lordicon.com/xdjxvujz.js"
+  body data-locale="#{I18n.locale}" class="auth-one-bg #{@nspace} #{controller_name} #{action_name}"
+    = yield
+    = vite_javascript_tag 'plugins'

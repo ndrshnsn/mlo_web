@@ -1,0 +1,245 @@
+- fDisabled = @championship.present? ? true : false
+- sStarted = false # @championship.status > 0 ? true : false
+
+.card 
+  .card-header
+    h6.card-title.d-flex
+      i.ri-settings-line.me-1
+      span
+        - if @championship.new_record?
+          = t('.new')
+        - else
+          = t('.settings')
+    p.card-subtitle.text-muted.mb-0 #{t('.season_name')}: #{@season.name}
+  .card-body
+    .row.mb-3
+      .col-sm-12.col-md-5.mb-3
+        .text-center.pt-4
+          .profile-user.position-relative.d-inline-block.mx-auto.mb-3
+            img id="championship-badge-image" src='#{championshipBadge(@championship)}' class="rounded-circle avatar-xl img-thumbnail championship-badge-image" 
+            .avatar-xs.p-0.rounded-circle.profile-photo-edit
+              = f.label :badge, class: "profile-photo-edit avatar-xs" do
+                span class="avatar-title rounded-circle bg-light text-body"
+                  i class="ri-camera-fill"
+              = f.hidden_field :badge, id: "trophy_hid", value: @championship.cached_badge_data
+              = f.file_field :badge, hidden: "true", accept: "image/*", "data-controller": "upload", "data-upload-img-value": "championship-badge-image"
+
+      .col-sm-12.col-md-7.mb-3
+        .form-group
+          = f.label :name, t('.name'), class: "control-label"
+          - if @championship.id.present?
+            = f.text_field :name, class: "form-control", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase", readonly: true
+          - else
+            = f.text_field :name, class: "form-control", required: true, "data-parsley-remote": "/manager/championships/check_championship_name", "data-parsley-trigger": "input", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase"
+        p
+          small.text-muted = t('.name_suggestion_html')
+        .row
+          .form-group
+            = f.label :name, t('.time_course'), class: "control-label"
+            - if @championship.id.present?
+              = f.text_field :time_course, class: "text-center form-control", value: I18n.localize(@championship.time_course, format: t('date.formats.default')), readonly: sStarted
+            - else
+              = f.text_field :time_course, class: "text-center form-control", required: true, "data-controller": "flatpickr", "data-flatpickr-ctype-value": "range", "data-flatpickr-sdate-value": @season.start, "data-flatpickr-edate-value": @season.start+@season.duration.days, value: @season.start
+    .row.mb-3
+      .col-12
+        p.text-muted.fs-6
+          blockquote.blockquote.custom-blockquote.blockquote-dark.rounded.fs-6 = t('.details_html')
+        ul.list-group.list-group-flush
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.select_championship_type')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.select_championship_type_desc')}"
+            span[style="width: 130px!important;"]
+              .form-group
+                - championship_type = @championship.ctype || nil
+                span
+                  #popover_championship_ctype
+                = select_tag "championship[ctype]", options_for_select(@cTypes.collect { |type| [type[:name], type[:type], {'data-src': manager_championships_ctype_partial_path(type[:type])}] }, championship_type), { include_blank: true, required: true, class: "text-center form-control select2", "data-parsley-errors-container": "championship_ctype", "data-controller": "select select-frame", "data-select-frame-target-value": "ctype_league",  "data-select-pholder-value": "select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-select-readonly-value": sStarted }
+          - if championship_type != nil
+            = turbo_frame_tag :ctype_league, src: manager_championships_ctype_partial_path(type[:type])
+          - else
+            = turbo_frame_tag :ctype_league
+.card
+  .card-header.align-items-center.d-flex
+    h5.card-title.d-flex
+      i.ri-settings-line.me-1
+      span = t('.settings')
+  .card-body
+    .row
+      .col-12
+        h6.mt-2.d-flex
+          i.ri-subtract-fill.me-1
+          span = t('.match_options')
+        small.text-muted = t('.match_options_desc')
+        ul.list-group.list-group-flush
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.match.winning_prize')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.winning_prize_desc')}"
+            span style="width: 130px!important;"
+              - match_winning_earning = @championship.match_winning_earning || AppConfig.match_winning_earning
+              .form-group
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text = t('money_sign')
+                  = text_field_tag("championship[match_winning_earning]", match_winning_earning, class: "form-control", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.match.draw_prize')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.draw_prize_desc')}"
+            span style="width: 130px!important;"
+              - match_draw_earning = @championship.match_winning_earning || AppConfig.match_draw_earning
+              .form-group
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text = t('money_sign')
+                  = text_field_tag("championship[match_draw_earning]", match_draw_earning, class: "form-control", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.match.loss_prize')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.loss_prize_desc')}"
+            span style="width: 130px!important;"
+              - match_lost_loss = @championship.match_lost_loss || AppConfig.match_lost_loss
+              .form-group
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text = t('money_sign')
+                  = text_field_tag("championship[match_lost_loss]", match_lost_loss, class: "form-control", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.match.goal_prize')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.goal_prize_desc')}"
+            span style="width: 130px!important;"
+              - match_goal_earning = @championship.match_goal_earning || AppConfig.match_goal_earning
+              .form-group
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text = t('money_sign')
+                  = text_field_tag("championship[match_goal_earning]", match_goal_earning, class: "form-control", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.match.conceded_goal')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.conceded_goal_desc')}"
+            span style="width: 130px!important;"
+              - match_goal_lost = @championship.match_goal_lost || AppConfig.match_goal_loss
+              .form-group
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text = t('money_sign')
+                  = text_field_tag("championship[match_goal_lost]", match_goal_lost, class: "form-control", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.match.yellow_card_loss')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.yellow_card_loss_desc')}"
+            span style="width: 130px!important;"
+              - match_yellow_card_loss = @championship.match_yellow_card_loss || AppConfig.match_yellow_card_loss
+              .form-group
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text = t('money_sign')
+                  = text_field_tag("championship[match_yellow_card_loss]", match_yellow_card_loss, class: "form-control", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.match.red_card_loss')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.red_card_loss_desc')}"
+            span style="width: 130px!important;"
+              - match_red_card_loss = @championship.match_red_card_loss || AppConfig.match_red_card_loss
+              .form-group
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text = t('money_sign')
+                  = text_field_tag("championship[match_red_card_loss]", match_red_card_loss, class: "form-control", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.match.hattrick_earning')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.hattrick_earning_desc')}"
+            span style="width: 130px!important;"
+              - hattrick_earning = @championship.hattrick_earning || AppConfig.match_hattrick_earning
+              .form-group
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text = t('money_sign')
+                  = text_field_tag("championship[hattrick_earning]", hattrick_earning, class: "form-control", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+            span.li-col
+              = t('.match.best_player')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.best_player_desc')}"
+            span
+              - match_best_player = @championship.match_best_player == "on" ? "true" : nil
+              .form-group.pt-1.pb-1
+                .form-check.form-switch
+                  = check_box_tag "championship[match_best_player]", nil, match_best_player, readonly: sStarted, class: "mt-2 form-check-input"
+                  label.form-check-label for="championship_match_best_player"
+    .row
+      .col-12
+        h6.mt-2.d-flex
+          i.ri-subtract-fill.me-1
+          span = t('.ranking_options')
+        small.text-muted = t('.ranking_options_desc')
+        ul.list-group.list-group-flush
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.ranking.winning_prize')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.ranking.winning_prize_desc')}"
+            span style="width: 130px!important;"
+              - match_winning_earning = @championship.match_winning_earning || AppConfig.match_winning_earning
+              .form-group
+                .input-group
+                  = text_field_tag("championship[match_winning_earning]", match_winning_earning, class: "form-control text-center", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "numerical"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.ranking.draw_prize')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.ranking.draw_prize_desc')}"
+            span style="width: 130px!important;"
+              - match_draw_earning = @championship.match_draw_earning || AppConfig.match_draw_earning
+              .form-group
+                .input-group
+                  = text_field_tag("championship[match_draw_earning]", match_draw_earning, class: "form-control text-center", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "numerical"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.ranking.loss_prize')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.ranking.loss_prize_desc')}"
+            span style="width: 130px!important;"
+              - match_lost_ranking = @championship.match_lost_ranking || AppConfig.match_lost_ranking
+              .form-group
+                .input-group
+                  = text_field_tag("championship[match_lost_ranking]", match_lost_ranking, class: "form-control text-center", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "numerical"})
+
+
+.card 
+  .card-body
+    h5.card-title.d-flex
+      i.ri-award-line.me-1
+      span = t('.awards')
+    h6.mt-1.card-subtitle.text-muted = t('.awards_desc')
+    .col-12
+      ul.list-group.list-group-flush
+        - @award_result_type.each do |atype|
+          li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
+            span.li-col
+              = atype[1]
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{atype[2]}"
+            span style="width: 130px!important;"
+              - award_id = "championship_#{atype[0]}"
+              - aValue = @championship["award_#{atype[0]}"] || nil
+              .form-group
+                span
+                  div id="popover_#{award_id}"
+                = select_tag "championship[#{atype[0]}]", options_for_select([[t('awardTypes.none'), "none"]] + @awards.collect { |award| [ award[:name], award[:id]] }, aValue), {include_blank: false,  class: "form-control select2", id: award_id, required: true, "data-controller": "select", "data-select-icon-value": false }
+
+.card 
+  .card-body
+    h5.card-title.d-flex.mb-3
+      i.ri-draft-line.me-1
+      span = t('.rules')
+    .col-12  
+      blockquote.blockquote.pl-1.border-left-warning.border-left-3.p-2
+        p = t('.rule.notes_html')
+      .form-group.p-3
+        = f.rich_text_area :advertisement, value: @championship.advertisement, class: 'form-control', style: "min-height: 300px;", "data-controller": "trix", "data-parsley-required": "false", "data-parsley-validate": "false"
+
+.card 
+  .card-body
+    .col-12 style="text-align: right;"
+      = link_to t('.cancel'), manager_championships_path, class: "btn btn-outline-secondary me-1", data: { "turbo-action": "advance" }
+      = f.submit t('.confirm'), class: "btn btn-submit btn-primary"

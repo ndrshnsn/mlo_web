@@ -1,0 +1,39 @@
+pt-BR:
+  admin:
+    leagues:
+      index:
+        leagues: "Ligas"
+      list:
+        add_league: "Adicionar Liga"
+        name: "Nome"
+        users: "Usuários"
+        status: "Status"
+        slots: "Vagas"
+        platform: "Plataforma"
+        actions: "Ações"
+      new:
+        new: "Nova Liga"
+        leagues: "Ligas"
+        confirm: "Criar Liga?"
+        confirm_text: ""
+      form:
+        name: "Nome"
+        platform: "Plataforma"
+        status: "Status"
+        manager: "Manager"
+        slots: "Vagas"
+        cancel: "Cancelar"
+        confirm: "Confirmar"
+      create:
+        success: "Nova Liga criada com sucesso!"
+        error: "Erro criando nova liga"
+      update:
+        success: "Liga atualizada com sucesso!"
+        error: "Erro atualizando liga!"
+      edit:
+        leagues: "Ligas"
+        edit: "Editar Liga"
+        confirm: "Atualizar?"
+        confirm_text: ""
+      destroy:
+        success: "Liga removida com sucesso!"

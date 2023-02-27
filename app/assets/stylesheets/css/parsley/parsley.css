@@ -1,0 +1,24 @@
+form span.error {
+  width : 100%;
+  font-size : 0.857rem;
+}
+
+form .error:not(input) {
+  border-color: #ff7f41;
+}
+
+form input.error, form input.error:focus {
+  border-color : #ff7f41 !important;
+}
+
+form .ms-list.error, form .ms-list.error:focus {
+  border-color : #ff7f41 !important;
+}
+
+form textarea.error {
+  border-color : #ff7f41 !important;
+}
+
+form .select2.error + .select2-container--classic .select2-selection--single, form .select2.error + .select2-container--default .select2-selection--single, form .select2.error + .select2-container--classic .select2-selection--multiple, form .select2.error + .select2-container--default .select2-selection--multiple {
+  border-color : #ff7f41 !important;
+}

@@ -1,0 +1,15 @@
+pt-BR:
+  layouts:
+    sidebar:
+      admin:
+        blog:
+          main: "Blog"
+          categories: "Categorias"
+        playerdb:
+          main: "PlayerDB"
+          countries: "Países"
+          teams: "Times"
+          players: "Jogadores"
+        accounts: "Usuários"
+        leagues: "Ligas"
+        settings: "Configurações"

@@ -1,0 +1,15 @@
+pt-BR:
+  mailers:
+    confirmation:
+      mistake: "Se você recebeu essa mensagem por engano, por favor desconsidere e apague-a. Você não será inscrito caso não clique no botão de confirmação."
+      developed_by: "Desenvolvido por "
+      subscribe_button: "Sim, quero me inscrever!"
+      main_message: "Você solicitou ( ou alguém fez isso por você ! ) o ingresso na MLO. Confirme sua participação clicando no botão logo abaixo."
+      subscription_title: "Por favor confirme sua inscrição!"
+      subject: "MLO :: Confirme sua Inscrição"
+    reset_password:
+      subject: "MLO :: Mudar sua Senha"
+      reset_password_title: "Mudar a sua Senha"
+      reset_password_button: "Mudar senha"
+      developed_by: "Desenvolvido por "
+      main_message: "Você solicitou ( ou alguém fez isso por você ) a troca da sua senha. Clique no link abaixo e você será redirecionado para a página de troca de senha. Caso não tenha sido você ou não tenha pedido para outra pessoa, desconsidere esta mensagem."

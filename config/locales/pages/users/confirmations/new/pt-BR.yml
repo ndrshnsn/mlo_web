@@ -1,0 +1,8 @@
+pt-BR:
+  users:
+    confirmations:
+      new:
+        forgot_password: "Esqueci minha Senha!?!"
+        email: "Email"
+        forgot_alert: "Informe seu email e um link para a troca da senha será enviado."
+        resend: "Reenviar"

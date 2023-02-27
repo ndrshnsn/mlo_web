@@ -1,0 +1,13 @@
+.row
+  .col-xxl-9
+    .card.mt-xxl-n5
+      .card-header
+        ul.nav.nav-tabs-custom.rounded.card-header-tabs.border-bottom-0 role="tablist" id="profileTab"
+          li.nav-item
+            = link_to "#{t('.activeUsers')} (#{@active})", manager_users_path, class: "nav-link active", id: "activeUsers", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+          li.nav-item
+            = link_to "#{t('.waitingUsers')} (#{@waiting})", manager_users_waiting_path, class: "nav-link", id: "waitingUsers", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+      .card-body.p-4
+        .tab-content
+          = turbo_frame_tag "tab_content" do
+            = render "activeUsers"

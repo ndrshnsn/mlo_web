@@ -1,0 +1,107 @@
+.auth-page-wrapper.pt-5
+	.bg-overlay
+	.auth-page-content 
+		.container
+			.row
+				.col-lg-12
+					.text-center.mt-sm-5.mb-4.text-white-50
+						div
+							= image_tag('logo/mlo-light.png', alt: "", height: "45")
+
+					.row.justify-content-center
+						.col-md-9.col-lg-7.col-xl-6.mt-4
+							.card.mt-4
+								.card-body.p-4
+									.p-2.mt-4
+										- if notice
+												p.alert.alert-success = notice
+										- if alert
+												p.alert.alert-danger = alert 
+
+										= form_with model: resource, as: resource_name, id: "register", url: register_create_path,  class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-icon-value": "warning"} do |f|
+											<input type="hidden" name="user[role]" id="user_role" value="user">
+											.row
+												.col-12
+													.form-group.mb-3
+														= f.label :full_name, "#{t '.full_name'}", for: 'full_name', class: "control-label"
+														= f.text_field :full_name, class: "form-control", required: true
+											.row
+												.col-12
+													.form-group.mb-3
+														= f.label :email, t('.email'), for: 'email', class: "control-label"
+														= f.email_field :email, class: "form-control", required: true, "data-parsley-remote": "/user/check_email", "data-parsley-trigger": "focusout", "data-parsley-remote-options": '{ "type": "POST", "dataType":  "json" }'
+											
+											.row
+												.col-sm-12.col-md-7
+													.form-group.mb-3
+														= f.label :password, t('.password'), for: 'password', class: "control-label"
+														= f.password_field :password, class: "form-control", required: true, "data-parsley-minlength": "8", "data-parsley-uppercase": "1", "data-parsley-lowercase": "1", "data-parsley-number": "1"
+
+													.form-group.mb-3
+														= f.label :password_confirmation, t('.password_confirmation'), for: 'password_confirmation', class: "control-label"
+														.position-relative.auth-pass-inputgroup
+															= f.password_field :password_confirmation, class: "form-control pe-5 password-input", required: true, "data-parsley-equalto": "#user_password"
+															button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"
+																	i.ri-eye-fill.align-middle
+
+												.col-sm-12.col-md-5
+													.p-3.bg-light.mb-2.rounded.w-100
+														h5.fs-14
+															| #{t('.password_requirements')} :
+														p.fs-13.mb-2
+															span.text-danger.me-1 *
+															= t('.password_min_chars')
+														p.fs-13.mb-2
+															span.text-danger.me-1 *
+															= t('.password_one_upchar')
+														p.fs-13.mb-2
+															span.text-danger.me-1 *
+															= t('.password_one_downchar')
+														p.fs-13.mb-2
+															span.text-danger.me-1 *
+															= t('.password_one_number')
+
+												.col-sm-12.col-md-6
+													.form-group.mb-3
+														= f.label :nickname, "#{t '.nickname'}", for: 'nickname', class: "control-label"
+														= f.text_field :nickname, class: "form-control", required: true
+												.col-sm-12.col-md-6
+													.form-group.mb-3
+														= f.label :platform, "#{t '.platform'}", for: 'platform', class: "control-label"
+														#popover_user_platform
+														= select_tag "user[platform]", options_for_select(eval(AppConfig.user_platforms)), {include_blank: true, class: "form-control select2", id: 'user_platform',"data-controller": "select", "data-select-icon-value": false, required: true }
+
+												.col-sm-12.col-md-6
+													.form-group.mb-3
+														= f.label :phone, "#{t '.phone'}", for: 'phone', class: "control-label"
+														= f.text_field 'phone', placeholder: "99 99999 9999", class: "form-control", required: true, "data-parsley-minlength": "11", "data-controller": "cleave", "data-cleave-ctype-value": "phone"
+
+												.col-sm-12.col-md-6
+													.form-group.mb-3
+														= f.label :birth, "#{t '.birth'}", for: 'birth', class: "control-label"
+														= f.text_field 'birth', class: "form-control", required: true, "data-controller": "flatpickr", "data-flatpickr-ctype-value": "simple"
+
+												.mb-4
+													p.mb-0.fs-13.text-muted.fst-italic = t('.terms_link_html', terms_url: root_url)
+
+											.mt-4
+												button type="submit" id="signin_button" class="btn btn-primary w-100" data-turbo="false" = t('.register')
+
+											.mt-4.text-center
+												.signin-other-title
+													h5.fs-13.mb-4.title = t('.or')
+
+											.mt-2.text-center
+													p.mb-0 
+														= t('.have_account_html', signin_url: root_url )
+
+
+
+																	
+	footer.footer
+		.container
+			.row
+				.col-lg-12
+					.text-center
+						p.mb-0.text-muted
+							| &copy;&copy; #{t('.page_footer_html')}

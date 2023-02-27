@@ -1,0 +1,35 @@
+= render "layouts/modal/main"
+  = form_with model: @championship, id: dom_id(@championship), url: manager_championship_define_clubs_path(@championship.hashid), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.manager.championships.add_users.confirm_text'), "form-icon-value": "question"} do |f|
+    .modal-header.bg-soft-primary.pb-3
+      h5.modal-title.d-flex.align-items-center
+        i.ri-stack-line.me-1
+        = @championship.name
+      button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+    .modal-body.p-0
+      .container-fluid.pb-1
+        .row.mt-1
+          .col-12
+            p.card-text
+              blockquote.blockquote.pl-1.border-left-warning.border-left-3.p-2
+                p = t('.manager.championships.choose_clubs_desc_html', minusers: AppConfig.championship_minimum_players)
+
+          .col-12
+            .row
+              .col-6.text-center
+                input type="button" id="select_all" class="btn btn-sm btn-primary" data-controller="multi" data-multi-target-value="championship_users" data-action="click->multi#selectall" value="#{t('.select_all')}"
+              
+              .col-6.text-center
+                input type="button" id="unselect_all" class="btn btn-sm btn-primary" data-controller="multi" data-multi-target-value="championship_users"data-action="click->multi#deselectall" value="#{t('.deselect_all')}"
+
+          .col-12
+            .form-group.pt-1
+              span
+                #popover_championship_clubs
+              select multiple="multiple" id="championship_clubs" name="championship_clubs[]" data-controller="multi" data-multi-init-value="#{@uLeague.size}" data-multi-leftcolumn-value="clubs" class="form-control mb-1 multi" data-parsley-required="true" data-parsley-mincheck="#{AppConfig.championship_minimum_players}"
+                - @uLeague.each do |uSeason|
+                  // - if uSeason.clubs.first.club_players.size >= @season.preferences["min_players"].to_i
+                  option value="#{uSeason.clubs.first.id}" data-ms-image="#{defTeamBadgeURL(session[:pdbprefix], uSeason.def_teams.first)}" data-html="<div class='media'><div class='media-body' style='line-height: normal;'><span class='font-weight-bold d-block text-nowrap'>#{stringHuman(uSeason.def_teams.first.name)}</span><small class='text-muted'>##{uSeason.user.nickname}<small></div></div>"
+
+    .modal-footer
+      .col-12 style="text-align: right;"
+        = f.submit t('.confirm'), class: "btn btn-primary mt-1"

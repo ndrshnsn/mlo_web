@@ -1,0 +1,86 @@
+.tab-pane.active id="personalDetails" role="tabpanel"
+  = form_with model: @user, id: "profile_update_details", url: profile_update_path(@user.id), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "warning"} do |f|
+    .row.mb-3
+      .col-sm-12.col-md-6.mb-3
+        .text-center
+          .profile-user.position-relative.d-inline-block.mx-auto.mb-4
+            img id="user-profile-image" src='#{avatarURL(current_user)}' class="rounded-circle avatar-xl img-thumbnail user-profile-image"
+            .avatar-xs.p-0.rounded-circle.profile-photo-edit
+              = f.label :avatar, class: "profile-photo-edit avatar-xs" do
+                span class="avatar-title rounded-circle bg-light text-body"
+                  i class="ri-camera-fill"
+              = f.hidden_field :avatar, id: "avatar_hid", value: @user.cached_avatar_data
+              = f.file_field :avatar, hidden: "true", accept: "image/*", "data-controller": "upload", "data-upload-img-value": "user-profile-image"
+              
+              
+          h5.fs-16.mb-1 = current_user.full_name
+          p.text-muted.mb-0 ##{current_user.nickname}
+      .col-sm-12.col-md-6.mb-3
+        .form-group.mb-3
+          = label_tag("#{t '.fullname'}", nil, class: "control-label")
+          = f.text_field :full_name, class: "form-control", value: current_user.full_name, required: true
+        .form-group.mb-3
+          = label_tag("#{t '.email'}", nil, class: "control-label")
+          = text_field_tag('email', current_user.email, class: "form-control", readonly: true)
+
+      .col-sm-12.col-md-6.mb-3
+        .form-group
+          = label_tag("#{t '.nickname'}", nil, class: "control-label")
+          = f.text_field :nickname, value: current_user.nickname, class: "form-control", required: true
+
+      .col-sm-12.col-md-6.mb-3
+        .form-group
+          = label_tag("#{t '.platform'}", nil, class: "control-label")
+          #popover_user_platform
+          = select_tag "user[platform]", options_for_select(eval(AppConfig.user_platforms), current_user.platform), {include_blank: true, class: "form-control select2", id: 'user_platform',"data-controller": "select", "data-select-icon-value": false, required: true }
+
+      .col-sm-12.col-md-6.mb-3
+        .form-group
+          = label_tag("#{t '.country'}", nil, class: "control-label")
+          #popover_user_country
+          = select_tag "user[country]", options_for_select(@defCountries.collect { |def_country| [ def_country[:name_i18n], def_country[:id], {'data-country': countryFlag(def_country[:name])}] }, current_user.preferences['country']), {include_blank: true,  class: "form-control select2", id: 'user_country',  required: true, "data-controller": "select", "data-select-icon-value": true }
+
+      .col-sm-12.col-md-6.mb-3
+        .form-group
+          = label_tag("#{t '.city'}", nil, class: "control-label")
+          = text_field_tag "user[city]", current_user.preferences['city'], required: true, id: "user_city", class: "form-control", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase"
+          
+      .col-sm-12.col-md-6.mb-3
+        .form-group
+          = label_tag("#{t '.phone'}", nil, class: "control-label")
+          = f.text_field :phone, placeholder: "99 99999 9999", class: "form-control", required: true, "data-parsley-minlength": "11", "data-controller": "cleave", "data-cleave-ctype-value": "phone"
+
+      .col-sm-12.col-md-6.mb-3
+        .form-group
+          = label_tag("#{t '.birth'}", nil, class: "control-label")
+          = f.text_field :birth, class: "form-control", required: true, "data-controller": "flatpickr", "data-flatpickr-ctype-value": "simple"
+
+    .row.mb-3.pb-4.border-bottom.border-bottom-dashed
+      .col-lg-4.col-md-6.form-group.mb-3
+        label[for="twitter-input"]
+          = t('twitter')
+        .input-group.input-group-merge
+          .input-group-prepend
+            span#basic-addon3.input-group-text
+              i.ri-twitter-line.fm-2
+          = f.text_field :twitter, value: current_user.preferences["twitter"], class: "form-control"
+      .col-lg-4.col-md-6.form-group.mb-3
+        label[for="facebook-input"]
+          = t('facebook')
+        .input-group.input-group-merge
+          .input-group-prepend
+            span#basic-addon4.input-group-text
+              i.ri-facebook-line.fm-2
+          = f.text_field :facebook, value: current_user.preferences["facebook"], class: "form-control"
+      .col-lg-4.col-md-6.form-group.mb-3
+        label[for="instagram-input"]
+          = t('instagram')
+        .input-group.input-group-merge
+          .input-group-prepend
+            span#basic-addon5.input-group-text
+              i.ri-instagram-line.fm-2
+          = f.text_field :instagram, value: current_user.preferences["instagram"], class: "form-control"
+
+    .row
+      .col-12.text-end
+        = f.submit t('.confirm'), class: "btn btn-submit btn-primary"

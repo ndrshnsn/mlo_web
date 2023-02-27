@@ -1,0 +1,34 @@
+= turbo_frame_tag "main_frame" do
+	= render partial: "layouts/firststeps/pageHeader"
+
+	= turbo_frame_tag "firststep" do
+		- if current_user.preferences["request"] == true
+			.row
+				.col-md-12
+					.card.p-3
+						img class="card-img-top" src="#{image_path('misc/crowd-clap.png')}" alt="Card image cap" 
+							.card-body
+								h5.card-title = t('.request_completed')
+								p.card-text.fs-15
+									- if @approvedUser == false
+										|  Perfeito, o que você podia fazer até o momento é isso. Agora é só aguardar até o Administrador da Liga validar o seu acesso e aprovar sua participação. Fique atento ao seu email, quando seu acesso for liberado uma mensagem será enviada e você terá acesso a todos os recursos. 
+									- else
+										|  O Administrador já recebeu os dados da sua solicitação, agora é só esperar e verificar seu email.<br /> Assim que concluído, uma mensagem será enviada ao seu email com os detalhes. Enquanto isso, vai treinando
+		- else
+			.row.match-height
+				.col-md-6.col-lg-6
+					.card
+						img class="card-img-top" src="#{image_path('misc/coach.png')}"
+							.card-body
+								h4.card-title = t('.league_manager')
+								p.card-text = t('.league_manager_obs')
+								.text-right
+									= link_to t('.request_league'), request_league_path, class: "btn btn-primary waves-effect", data: { "turbo-action": "advance"}
+				.col-md-6.col-lg-6
+					.card
+						img class="card-img-top" src="#{image_path('misc/team_back.png')}"
+							.card-body
+								h4.card-title = t('.join_league')
+								p.card-text = t('.join_league_obs')
+								.text-right
+									= link_to t('.request_join'), join_path, class: "btn btn-primary waves-effect", data: { "turbo-action": "advance"}

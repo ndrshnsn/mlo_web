@@ -1,0 +1,27 @@
+pt-BR:
+  firststeps:
+    index:
+      request_completed: "Solicitação Concluída!"
+      league_manager: "Gerenciar uma Liga"
+      league_manager_obs: "Crie sua liga e gerencie os campeonatos"
+      request_league: "Solicitar Criação"
+      join_league: "Participar de Uma Liga"
+      join_league_obs: "Participe de uma liga já existente"
+      request_join: "Solicitar Participação"
+    requestLeague:
+      confirm: "Confirma Solicitação?"
+      confirm_text: ""
+      main_info_html: "Toda liga precisa de um <i>manager</i>. Se você quer gerir uma liga com diversos jogadores, tudo que você precisa fazer é solicitar a criação de uma liga para o Administrador informando os dados abaixo. Qualquer dúvida relacionada ao funcionamento de uma liga para o <i>manager</i> você pode buscar na nossa seção de informações"
+      parsley:
+        name:
+          exists: "Nome já em uso!"
+    list:
+      name: "Nome"
+      platform: "Plataforma"
+      slots: "Vagas"
+      users: "Usuários"
+  layouts:
+    firststeps:
+      pageHeader:
+        welcome: "Bem Vindo à MasterLeague Online"
+        first_instructions_html: "Agora que as coisas começam de verdade!<br> Você pode selecionar escolher por <strong>entrar </strong> em uma liga ou assumir o papel de manager <br/> e <strong> gerenciar</strong> uma liga para outros jogadores"

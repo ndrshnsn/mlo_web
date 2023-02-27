@@ -1,0 +1,15 @@
+.row
+  .col-md-6
+    .mb-3
+      .position-relative
+        = f.label :name, t('.name'), class: "form-label"
+        = f.text_field :name, class: "form-control", "data-parsley-required": true, "data-parsley-remote": "/admin/playerdb/countries/check_name", "data-parsley-trigger": "focusout", "data-parsley-remote-message": t('.parsley.name.exists'), "data-parsley-remote-options": '{ "type": "POST", "dataType":  "json", "data": { "id": "' + @defCountry.id.to_s + '" } }', data: { controller: "cleave", "cleave-ctype-value": "uppercase"}
+  .col-md-6
+    .mb-3
+      .position-relative
+        = f.label :alias, t('.alias'), class: "form-label"
+        = f.text_field :alias, class: "form-control", "data-parsley-required": false
+  .col-lg-12
+    .text-end
+      = link_to t('.cancel'), admin_playerdb_countries_path, class: "btn btn-sm btn-secondary me-1", data: { "turbo-action": "advance"}
+      = f.submit t('.confirm'), class: "btn btn-sm btn-submit btn-primary"

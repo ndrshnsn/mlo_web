@@ -1,0 +1,67 @@
+.row
+  .col-12
+    .card
+      .card-header
+        .row.g-4.mb-1
+          .col-sm-auto
+            h6.card-title.mb-0 = t('.seasons_management')
+          .col-sm
+            .d-flex.justify-content-sm-end
+              = link_to manager_season_new_path, class: "btn btn-primary add-btn", data: { "turbo-action": "advance" } do
+                  i.ri-add-line.align-bottom.me-1
+                  = t('.add_season')
+      .card-body
+        p.text-dark.mb-2 = t('.season_management_desc_html')
+.row
+  - if @seasons
+    .col-lg-12
+      div
+        .team-list.grid-view-filter.row
+          - @seasons.each do |season|
+            - sStatus = Season.getStatus(season.id)
+            - if sStatus[0] == "not_started"
+              - sBadge = "dark"
+            - elsif sStatus[0] == "season_running"
+              - sBadge = "success"
+            - elsif sStatus[0] == "season_finished"
+              - sBadge = "secondary"
+
+            .col-md-4.col-sm-12
+              .card.team-box
+                .team-cover
+                  img.img-fluid src="#{image_path('misc/season_corner_card.png')}"
+                .card-body
+                  .row.align-items-center.team-row
+                    .col-lg-4.col
+                      .team-profile-img style="margin-top: 75px !important;"
+                        .avatar-lg.img-thumbnail.rounded-circle.flex-shrink-0
+                          img.img-fluid.d-block.rounded-circle src="#{image_path('misc/seasons.png')}"
+                        .team-content
+                          h5.fs-16.mb-1 = season.name
+                          p.text-muted.mb-0
+                            span class="badge bg-#{sBadge}" = sStatus[1]
+                    .col-lg-4.col
+                      .row.text-muted.text-center
+                        .col-6.border-end.border-end-dashed
+                          h5.mb-1 = I18n.localize(season.start, format: t('date.formats.default'))
+                          p.text-muted.mb-0 = t('.start_date')
+                        .col-6.border-end.border-end-dashed
+                          h5.mb-1 #{season.duration} #{t('days')}
+                          p.text-muted.mb-0 = t('.duration')
+                    .col-lg-2.col
+                      .text-end
+                        = link_to t('.details'), manager_season_details_path(season.hashid), class: "btn btn-light view-btn", data: { "turbo-action": "advance" }
+
+
+  .col-12
+    - if @stealTime
+      .card
+        .card-header.border-bottom
+          h4.card-title
+            | #{@season.name} :: Janela de Roubo
+        .card-body
+          p
+          span.text-center
+          .badge.badge-pill.d-block.badge-danger.mt-1[style="white-space: normal!important;"]
+            input[type="hidden" id="stealTime" value="#{@stealTime.strftime("%Y/%m/%d %H:%M")}"]
+            span[style='font-size: larger!important;' id='stealTimeLeft']

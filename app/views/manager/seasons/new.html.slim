@@ -1,0 +1,8 @@
+= turbo_frame_tag "main_frame" do
+  = render partial: "layouts/header/pageHeader", locals: { title: t('.seasons') }
+        
+  = turbo_frame_tag "manager_seasons" do
+    .row
+      .col-12
+        = form_with model: @season, id: dom_id(@season), url: manager_season_create_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
+          = render partial: "form", locals: { f: f, faction: "new" }

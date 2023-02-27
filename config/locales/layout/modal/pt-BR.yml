@@ -1,0 +1,24 @@
+pt-BR:
+  layouts:
+    modal:
+      main:
+        select_all: "Selecionar Todos"
+        deselect_all: "Remover Todos"
+        confirm: "Confirmar"
+        manager:
+          users:
+            move_user: "Ativar/Mover Usuário"
+          seasons:
+            choose_award: "Selecione a Premiação"
+          championships:
+            choose_clubs_desc_html: "Selecione os Clubes que irão participar do Campeonato. Diferente das Temporadas onde todos os usuários fazem parte, os Campeonatos podem incluir menos usuários participantes, de acordo com as regras da sua liga. O <strong>mínimo</strong> de Clubes para iniciar um Campeonato é %{minusers}."
+            add_users:
+              confirm_text: "Os Clubes serão incluídos no Campeonato e você poderá iniciar o certame ;)"
+        myclub:
+          management:
+            select_your_season_team: "Selecione seu Time para a Temporada"
+            select_your_season_team_desc: "A escolha do time base definirá seu brasão e uniforme usados na MLO. Somente poderá ser trocado em uma nova temporada."
+            select_your_season_team_confirm: "Confirmar Seleção"
+            confirm: "Confirma sua Escolha?"
+            confirm_text: "Seu clube será definido. Você ainda poderá modificá-lo até que o Manager feche a janela de Escolha dos Clubes"
+            

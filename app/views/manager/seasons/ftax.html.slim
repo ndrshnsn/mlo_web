@@ -1,0 +1,15 @@
+= turbo_frame_tag :fire_tax_partial
+  - if @type == "fixed"
+    li.list-group-item.d-flex.justify-content-between.align-items-center style="border: 0!important; line-height: 35px!important;"
+      span.li-col
+        = t('.value.fire_tax_fixed')
+        i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.fire_tax_fixed_desc')}"
+      span style="width: 130px!important;"
+        - fire_tax_fixed = AppConfig.season_tax_for_fired_players
+        - if @season.present?
+          - fire_tax_fixed = @season.fire_tax_fixed
+        .form-group
+          .input-group
+            .input-group-prepend
+              span.input-group-text = t('money_sign')
+            = text_field_tag("season[fire_tax_fixed]", fire_tax_fixed, maxlength: 6, readonly: @sStarted, class: "form-control fire_tax_fixed-mask")

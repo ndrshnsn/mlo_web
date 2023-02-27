@@ -1,0 +1,20 @@
+pt-BR:
+  manager:
+    seasons:
+      sActions:
+        season_actions: "Ações"
+        start_season_question: "Iniciar Temporada?"
+        start_season_text: "Inicie a temporada, os usuários receberão um aviso e você poderá liberar a escolha dos Clubes"
+        start_season: "Iniciar Temporada"
+        club_start_choosing: "Escolha dos Clubes"
+        club_start_choosing_question: "Liberar escolha dos Clubes?"
+        club_start_choosing_text: "Os usuários serão informados e poderão entrar na Área de Aministração do Clube para definir o time que irão representar na Temporada"
+        club_stop_choosing: "Encerrar Escolha dos Clubes"
+        club_stop_choosing_question: "Encerrar a escolha dos Clubes?"
+        club_stop_choosing_text: "Os usuários que não tiverem escolhido o nome/escudo para seu Clube receberão um escudo escolhido de forma aleatória"
+        club_start_players_raffle: "Sorteio dos Jogadores"
+        club_start_players_raffle_question: "Realizar o Sorteio dos Jogadores?"
+        club_start_players_raffle_text: "Os jogadores dos Clubes serão sorteados de forma aleatória, de acordo com as opções definidas para esta temporada."
+        end_season: "Finalizar Temporada"
+        end_season_question: "Finalizar Temporada?"
+        end_season_text: "Caso haja algum campeonato em andamento, finalize-o primeiro para então encerrar a Temporada!"

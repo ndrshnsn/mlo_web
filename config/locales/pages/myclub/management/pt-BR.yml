@@ -1,0 +1,21 @@
+pt-BR:
+  myclub:
+    management:
+      index:
+        myclub: "Meu Clube"
+      select_club:
+        success: "Clube definido com sucesso!"
+        error: "Erro definindo seu clube!"
+      details:
+        club_management: "Gerenciamento do Clube"
+        club_management_desc: "Esta é a Central de Gerenciamento do seu Clube. Você pode trocar o time que você representa, até para usar seu brasão e nome durante os jogos. Essa definição se dá apenas uma vez por temporada, por isso escolha com sabedoria. Caso não escolha nenhum time dentro da janela possível, seu nickname será utilizado como referência ao time."
+        generic_stadium: "Estádio Genérico"
+        stadium_capacity: "Capacidade"
+        stadium_capacity_not_informed: "Não Informado"
+        main_information: "Informações Principais"
+        name: "Nome"
+        founded: "Fundação"
+        club_kits: "Uniformes"
+        city: "Cidade"
+        country: "País"
+        choose_club: "Defina seu Clube"

@@ -1,0 +1,48 @@
+.auth-page-wrapper.pt-5
+	.bg-overlay
+	.auth-page-content 
+		.container
+			.row
+				.col-lg-12
+					.text-center.mt-sm-5.mb-4.text-white-50
+						div
+							= image_tag('logo/mlo-light.png', alt: "", height: "45")
+					.row.justify-content-center
+						.col-md-8.col-lg-6.col-xl-5.mt-4
+							.card.mt-4
+								.card-body.p-4
+									.p-2.mt-4
+										- if notice
+												p.alert.alert-success = notice
+										- if alert
+												p.alert.alert-danger = alert
+										h5.pb-5.text-center = t('.change_password')
+										= form_with(model: resource, as: resource_name, id: "session",  class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, method: :put, url: password_path(resource_name), autocomplete: "off" ) do |f|
+											= f.hidden_field :reset_password_token
+											.mb-3
+												= f.label :password, t('.new_password'), for: 'login-password', class: "form-label"
+												.position-relative.auth-pass-inputgroup.mb-3
+													= f.password_field :password, autofocus: '' , tabindex: 1, :"aria-describedby" => 'login-password', class: "form-control pe-5 password-input", required: true
+													button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"
+															i.ri-eye-fill.align-middle
+											.mb-3
+												= f.label :password_confirmation, t('.new_password_confirmation'), for: 'login-password_confirmation', class: "form-label"
+												.position-relative.auth-pass-inputgroup.mb-3
+													= f.password_field :password_confirmation, autofocus: '' , tabindex: 1, :"aria-describedby" => 'login-password_confirmation', class: "form-control pe-5 password-input", "data-parsley-equalto": "#user_password", required: true
+													button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-confirmation-addon"
+															i.ri-eye-fill.align-middle
+											.mt-4
+												button type="submit" id="signin_button" class="btn btn-primary w-100" data-turbo="false" = t '.change_password'
+											.mt-4.text-center
+												.signin-other-title
+													h5.fs-13.mb-4.title = t('.or')
+											.mt-2.text-center
+													p.mb-0 
+														= link_to t('.back_to_signing'), root_path
+	footer.footer
+		.container
+			.row
+				.col-lg-12
+					.text-center
+						p.mb-0.text-muted
+							| &copy;&copy; #{t('.page_footer_html')}

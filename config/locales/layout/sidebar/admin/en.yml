@@ -1,0 +1,12 @@
+en:
+  layouts:
+    sidebar:
+      admin:
+        blog:
+          main: "Blog"
+          categories: "Categories"
+        playerdb:
+          main: "PlayerDB"
+          countries: "Countries"
+          teams: "Teams"
+          players: "Players"

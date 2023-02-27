@@ -1,0 +1,59 @@
+
+ul.navbar-nav id="navbar-nav"
+  = turbo_frame_tag "sidebar_user_club_info" do
+    = render partial: "layouts/sidebar/user_club_info"
+    
+  = turbo_frame_tag "sidebar_season_actions" do
+    - transferWindow = salaryAdjustment = playerSteal = playerAuction = "opacity-75"
+    - if @season
+      - transferWindow = @season.preferences["saction_transfer_window"] == 1  || @season.preferences["change_player_out_of_window"] == "on" ? "" : "opacity-75"
+      - salaryAdjustment = @season.preferences["saction_change_wage"] == 1 ? "" : "opacity-75"
+      - playerSteal = @season.preferences["saction_player_steal"] == 1 ? "" : "opacity-75"
+      - playerAuction = @season.preferences["saction_player_auction"] == 1 ? "" : "opacity-75"
+    li.nav-item.pt-3
+      .d-flex.justify-content-center
+        button class="btn btn-border avatar-xs btn-secondary position-relative p-0 me-1 #{transferWindow}" data-toggle="tooltip" title="#{t('.trades')}"
+          span.avatar-title.bg-transparent.text-reset
+            i.ri-shuffle-line
+        button class="btn btn-border avatar-xs btn-secondary position-relative p-0 me-1 #{salaryAdjustment}" data-toggle="tooltip" title="#{t('.salary')}"
+          span.avatar-title.bg-transparent.text-reset
+            i.ri-money-dollar-circle-line
+        button class="btn btn-border avatar-xs btn-secondary position-relative p-0 me-1 #{playerSteal}" data-toggle="tooltip" title="#{t('.steal')}"
+          span.avatar-title.bg-transparent.text-reset
+            i.ri-focus-3-line
+        button class="btn btn-border avatar-xs btn-secondary position-relative p-0 me-1 #{playerAuction}" data-toggle="tooltip" title="#{t('.auction')}"
+          span.avatar-title.bg-transparent.text-reset
+            i.ri-auction-line
+    
+    
+  li.menu-title.pt-3
+      span = t('.main_menu')
+
+  li.nav-item
+    = link_to manager_seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
+      i.ri-apps-line
+      span data-key="t-seasons" = t('.dashboard')
+  li.nav-item
+    = link_to manager_seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
+      i.ri-stack-line
+      span data-key="t-seasons" = t('.seasons')
+  li.nav-item
+    = link_to manager_seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
+      i.ri-trophy-line
+      span data-key="t-seasons" = t('.championships')
+  li.nav-item
+    = link_to manager_seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
+      i.ri-honour-line
+      span data-key="t-seasons" = t('.clubs')
+  li.nav-item
+    = link_to manager_seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
+      i.ri-line-chart-line
+      span data-key="t-seasons" = t('.ranking')
+
+  li.menu-title.pt-3
+      span = t('.club_management')
+
+  li.nav-item
+    = link_to myclub_management_path, class: "menu-link nav-link #{'active' if controller_name == 'management'}", id: "sidebar_myclub_management" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_myclub_management", "sidebar-child-value": "sidebar_myclub_management" } do
+      i.ri-building-4-line
+      span data-key="t-seasons" = t('.management')

@@ -1,0 +1,42 @@
+pt-BR:
+  admin:
+    playerdb:
+      playerdb_countries:
+        index:
+          countries: "Países"
+        list:
+          countries: "Países"
+          name: "Nome"
+          alias: "Alias"
+          actions: "Ações"
+          add_country: "Novo País"
+          confirm_remove: "Remover País?"
+          confirm_remove_text: "Caso já possua algum item com associação a este registro não será possível sua remoção"
+        form:
+          name: "Nome"
+          alias: "Alias"
+          confirm: "Confirmar"
+          cancel: "Cancelar"
+          parsley:
+            name:
+              exists: "Nome já registrado!"
+        update:
+          success: "País atualizado com sucesso!"
+          error: "Erro atualizando país!"
+        create:
+          success: "País criado com sucesso!"
+          error: "Erro criando país!"
+        destroy:
+          success: "País removido com sucesso!"
+          error: "Erro removendo país"
+        new:
+          new: "Novo País"
+          details_html: "Lembre-se de atualizar o <i>helper</i> correspondente para definir o código do país."
+          confirm: "Criar País"
+          confirm_text: "Confirma a criação deste registro?"
+        edit:
+          edit: "Editar País"
+          details_html: "Lembre-se de atualizar o <i>helper</i> correspondente para definir o código do país caso altere alguma informação."
+          confirm: "Atualizar"
+          confirm_text: "Confirma a atualização deste registro?"
+          

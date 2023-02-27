@@ -1,0 +1,90 @@
+- lDisabled = @season.present? ? "" : "disabled"
+.row
+  .col-12
+    .card
+      .card-header
+        .row.g-4.mb-1
+          .col-sm-auto
+            h6.card-title.mb-0 = t('.championships_management')
+            - if lDisabled == "disabled"
+              h7.card-subtitle.text-warning.strong.mb-0 = t('.championships_management_warning')
+          .col-sm
+            .d-flex.justify-content-sm-end
+              = link_to manager_championship_new_path, class: "btn btn-primary add-btn #{lDisabled}", data: { "turbo-action": "advance" } do
+                  i.ri-add-line.align-bottom.me-1
+                  = t('.add_championship')
+      .card-body
+        p.text-dark.mb-2 = t('.championships_management_desc_html')
+
+.team-list.grid-view-filter.row
+  - if @championships
+    - @championships.each do |championship|
+      - sStatus = Championship.getStatus(championship.id)
+      - if sStatus[0] == "not_started"
+        - sBadge = "dark"
+      - elsif sStatus[0] == "running"
+        - sBadge = "success"
+      - elsif sStatus[0] == "finished"
+        - sBadge = "secondary"
+      - cDate = championship.time_start == championship.time_end ? I18n.localize(championship.time_start, format: t('date.formats.default'))  : "#{I18n.localize(championship.time_start, format: t('date.formats.default'))} - #{I18n.localize(championship.time_end, format: t('date.formats.default'))}"
+
+      .col-md-4.col-sm-12
+        .card.team-box
+          .team-cover
+            img.img-fluid src="#{image_path('misc/championship_corner_card.png')}"
+          .card-body
+            .row.align-items-center.team-row
+              .col-lg-4.col
+                .team-profile-img style="margin-top: 75px !important;"
+                  .avatar-lg.img-thumbnail.rounded-circle.flex-shrink-0
+                    img.img-fluid.d-block.rounded-circle src="#{championshipBadge(championship)}"
+                  .team-content
+                    h5.fs-16.mb-1 = championship.name
+                    p.text-muted.mb-0
+                      span class="badge bg-#{sBadge}" = sStatus[1]
+              .col-lg-4.col
+                p.mb-1
+                  = t('.championship_date')
+                  span.float-end.text-muted.mb-0 = cDate
+                p.mb-1
+                  = t('.format')
+                  span.float-end.text-muted.mb-0 = Championship.types(championship.ctype)[0][:name]
+              .col-lg-2.col
+                .text-end
+                  = link_to t('.details'), manager_championship_details_path(championship), class: "btn btn-light view-btn", data: { "turbo-action": "advance" }
+
+    / .col-md-4.col-sm-12
+    /   .card.card-profile.card-transaction
+    /     img.img-fluid.card-img-top src="#{image_path('misc/championship_corner_card.png')}"
+    /     .card-body
+    /       .profile-image-wrapper
+    /         .profile-image
+    /           .avatar
+    /             img src="#{championshipBadge(championship)}"
+    /       h3 = championship.name
+    /       hr.mb-2
+    /       .transaction-item.mb-50
+    /         .media
+    /           .media-body
+    /             h6.transaction-title Formato
+    /         .font-weight-bolder
+    /           = Championship.types(championship.ctype)[0][:name]
+
+    /       .transaction-item.mb-50
+    /         .media
+    /           .media-body
+    /             h6.transaction-title Data
+    /         .font-weight-bolder
+    /           - cDate = championship.time_start.strftime("%d/%m") == championship.time_end.strftime("%d/%m") ? championship.time_start.strftime("%d/%m") : "#{championship.time_start.strftime("%d/%m")} - #{championship.time_end.strftime("%d/%m")}"
+    /           = cDate
+
+    /       .transaction-item
+    /         .media
+    /           .media-body
+    /             h6.transaction-title Status
+    /         .font-weight-bolder
+              
+    /           .badge class="badge badge-#{sBadge}" = sStatus[1]
+
+    /       = link_to manager_championship_details_path(championship), class: "btn btn-sm btn-block waves-effect waves-float waves-light btn-primary" do
+    /           span Detalhes

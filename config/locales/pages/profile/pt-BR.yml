@@ -1,0 +1,50 @@
+pt-BR:
+  profile:
+    index:
+      personal_details: "Informações Pessoais"
+      password: "Senha"
+      notifications: "Notificações"
+      system: "Sistema"
+      settings: "Meu Perfil"
+    update:
+      success: "Perfil atualizado com sucesso!"
+      error: "Erro atualizando Perfil!"
+    personalDetails:
+      fullname: "Nome Completo"
+      nickname: "Nickname"
+      email: "Email"
+      birth: "Data de Nascimento"
+      city: "Cidade"
+      country: "País"
+      phone: "Telefone"
+      platform: "Plataforma"
+      cancel: "Cancelar"
+      confirm: "Atualizar"
+      confirm_text: "Atualizar as informações pessoais?"
+    pw:
+      current_password_dont_match: "Senha não confere!"
+      current_password: "Senha Atual"
+      password: "Senha"
+      password_confirmation: "Confirme a nova Senha"
+      confirm: "Atualizar"
+      cancel: "Cancelar"
+      confirm_text: "Após a troca da senha você será redireciono à página de login"
+    system:
+      locale: "Idioma Padrão"
+      locale_obs: "Defina o idioma padrão do Sistema"
+      theme: "Tema"
+      theme_obs: "Escolha o Tema padrão do Sistema"
+      confirm: "Atualizar"
+      cancel: "Cancelar"
+      confirm_text: ""
+      notifications: "Notificações"
+      notifications_obs: "Ativa / Desativa as Notificações do Sistema"
+    update_appearance:
+      success: "Perfil atualizado com sucesso!"
+      error: "Erro atualizando Perfil!"
+    subscribe:
+      success: "Notificações Ativadas!"
+      error: "Erro ativando as notificações"
+    unsubscribe:
+      success: "Notificações desativadas!"
+      error: "Erro desativando a notificação"

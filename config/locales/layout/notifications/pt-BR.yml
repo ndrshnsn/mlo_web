@@ -1,0 +1,23 @@
+pt-BR:
+  notifications:
+    index:
+      title: "Notificações"
+    list:
+      view_all_notifications: "Todas Notificações"
+    season_notification:
+      message:
+        new: "Temporada %{season} Criada"
+        start: "Temporada %{season} Iniciada"
+        club_choosed: "Clube Definido para a Temporada %{season}"
+        start_clubs_choosing: "Iniciada Escolha dos Clubes para a Temporada %{season}"
+        stop_clubs_choosing: "Encerrada escolha dos Clubes para a Temporada %{season}"
+        start_clubs_choosing_user: "Iniciada Escolha dos Clubes para a Temporada %{season}, acesse o menu Administrativo e defina qual clube você irá representar"
+        
+    def_player_notification:
+      message:
+        stop_players_raffle: "Encerrado o Sorteio dos Jogadores Iniciais do seu Clube para a Temporada %{season}"
+        player_signed: "Jogador Contratado para o Clube"
+    championship_notification:
+      message:
+        start_championship:
+        

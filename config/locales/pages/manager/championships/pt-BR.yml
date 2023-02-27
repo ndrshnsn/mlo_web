@@ -1,0 +1,87 @@
+pt-BR:
+  manager:
+    championships:
+      index:
+        championships: "Campeonatos"
+      define_clubs:
+        success: "Clubes adicionados ao Campeonato com sucesso!"
+        error: "Erro adicionando os Clubes ao Campeonato, contate o Administrador!"
+      list:
+        add_championship: "Criar Campeonato"
+        championships_management: "Gerenciar Campeonatos"
+        championships_management_warning: "Não há temporadas Ativas!"
+        championships_management_desc_html: "Aqui você pode criar e gerenciar os campeonatos que irão ocorrer durante a temporada. Não há limite de tipos de Campeonatos durante uma temporada, apenas ajuste-os de forma que ocorram dentro do limite de tempo definido."
+        format: "Formato"
+        championship_date: "Data"
+        details: "Detalhes"
+      cActions:
+        championship_actions: ".: FASES :."
+        choose_club: "Defina os Clubes"
+      details:
+        info:
+          date: "Data"
+          format: "Formato"
+          participants: "Participantes"
+          status: "Status"
+      new:
+        championships: "Campeonatos"
+        confirm: "Criar Campeonato?"
+        confirm_text: "As opções de Grupos/Usuários serão definidos após a Criação do Campeonato"
+      get_ctype_partial:
+        league:
+          two_rounds: "Turno e Returno"
+          two_rounds_desc: "A liga será dividida em dois turnos, com jogos de ida e volta correspondentes"
+          finals: "Finais"
+          finals_desc: "Os 4 primeiros colocados disputarão a semi-final e final, o chaveamento é de acordo com a Classificação. Também haverá a disputa do 3o e 4o lugares"
+          league_criterion: "Critério de Desempate"
+          league_criterion_desc_html: "Critério de Desempate para os Jogos das Finais<br /><hr/><strong>Gols Fora: </strong>Será considerada a diferença entre os gols marcados fora de casa<br /><br /><strong>Saldo Final: </strong>Será considerado o Saldo Simples - soma de gols - para definir o vencedor"
+        cards_suspension: "Suspensão do Jogador por Cartão"
+        cards_suspension_desc: "Caso selecionado o jogador que receber três cartões amarelos ou um vermelho estará automaticamente suspenso da próxima partida"
+      form:
+        cancel: "Cancelar"
+        confirm: "Confirmar"
+        season_name: "Temporada"
+        details_html: "Tanto <i>LIGAS</i> como <i>COPAS</i> podem ocorrer quantas vezes for possível dentro do período da temporada. A única restrição é com relação ao tempo necessário para cada um dos tipos de campeonato, não podendo passar do prazo final da temporada"
+        new: "Novo Campeonato"
+        name: "Nome"
+        time_course: "Período"
+        name_suggestion_html: "Sugestão: <i>CHAMPIONS LEAGUE, COPA DO BRASIL, etc</i>"
+        select_championship_type: "Selecione o Tipo de Campeonato"
+        select_championship_type_desc: "O primeiro passo é escolher qual o tipo de campeonato a ser realizado"
+        settings: "Configurações"
+        match_options: "Partida"
+        match_options_desc: "Opções de Premiação por Partida"
+        match:
+          winning_prize: "Prêmio por Vitória"
+          winning_prize_desc: "Valor recebido por Vitória"
+          draw_prize: "Prêmio por Empate"
+          draw_prize_desc: "Valor recebido por Empate"
+          loss_prize: "Perda por Derrota"
+          loss_prize_desc: "Valor perdido - removido do caixa - por Derrota"
+          goal_prize: "Prêmio por Gol"
+          goal_prize_desc: "Valor recebido por Gol feito"
+          conceded_goal: "Perda por Gol sofrido"
+          conceded_goal_desc: "Valor que será removido do caixa por Gol sofrido"
+          yellow_card_loss: "Perda por Cartão Amarelo"
+          yellow_card_loss_desc: "Valor removido do Caixa por Cartão Amarelo sofrido"
+          red_card_loss: "Perda por Cartão Vermelho"
+          red_card_loss_desc: "Valor removido do Caixa por Cartão Vermelho sofrido"
+          best_player: "Melhor Jogador da Partida"
+          best_player_desc: "Caso ativo estará disponível a seleção do Melhor Jogador da Partida quando os jogadores marcarem o resultado dos seus jogos."
+          hattrick_earning: "Prêmio por Hat-trick"
+          hattrick_earning_desc: "Prêmio para o Clube caso um jogador faça três gols em uma mesma Partida"
+        ranking_options: "Ranking"
+        ranking_options_desc: "Opções de Pontuação no Ranking"
+        ranking:
+          winning_prize: "Prêmio por Vitória"
+          winning_prize_desc: "Pontos no Ranking recebidos por Vitória"
+          draw_prize: "Prêmio por Empate"
+          draw_prize_desc: "Pontos no Ranking recebidos por Empate"
+          loss_prize: "Perda por Derrota"
+          loss_prize_desc: "Pontos perdidos no ranking por Derrota"
+        awards: "Premiações"
+        awards_desc: "Selecione a Premiação para cada Posição no Campeonato"
+        rules: "Regras / Notas"
+        rule:
+          notes_html: "Aqui você pode deixar alguma mensagem/regra específica sobre o Campeonato. Esta mensagem ficará visível para os participantes na página inicial do Campeonato."
+

@@ -1,0 +1,15 @@
+= turbo_frame_tag :default_player_earnings_partial
+  - if @type == "fixed"
+    li.list-group-item.d-flex.justify-content-between.align-items-center style="border: 0!important; line-height: 35px!important;"
+      span.li-col
+        = t('.value.earnings_fixed')
+        i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.earnings_fixed_desc')}"
+      span style="width: 130px!important;"
+        - default_player_earnings_fixed = AppConfig.season_default_player_earnings_fixed
+        - if @season.present?
+          - default_player_earnings_fixed = @season.default_player_earnings_fixed
+        .form-group
+          .input-group
+            .input-group-prepend
+              span.input-group-text = t('money_sign')
+            = text_field_tag("season[default_player_earnings_fixed]", default_player_earnings_fixed, readonly: @sStarted, class: "form-control default_player_earnings-mask", data: { controller: "cleave", "cleave-ctype-value": "price"})

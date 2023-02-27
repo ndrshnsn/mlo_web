@@ -1,0 +1,22 @@
+- @modal_size = "md"
+= render "layouts/modal/main"
+  = form_with model: @userClub, id: dom_id(@userClub), url: myclub_management_select_club_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.myclub.management.confirm'), "form-text-value": t('.myclub.management.confirm_text'), "form-icon-value": "question"} do |f|
+    .modal-header
+      h5.modal-title.d-flex.align-items-center
+        i.ri-user-line.me-1
+        = t('.myclub.management.select_your_season_team')
+      button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+    .modal-body
+      .container-fluid
+        .row
+          .col-12
+            p.card-text
+              = t('.myclub.management.select_your_season_team_desc')
+            .form-group.pt-1
+              span
+                #popover_teams_selection
+              = select_tag "teams_selection", options_for_select(@teams.collect { |team| [stringHuman(DefTeam.getTranslation(team.name)[0]), team.id, {'data-img': "#{session[:pdbprefix]}/teams/#{(team.name.upcase.delete(' '))}.png"} ]}, disabled: @disabled_teams), {required: true, include_blank: true, class: "text-center form-control select2", "data-controller": "select", "data-select-icon-value": true }
+            #team_details
+    .modal-footer
+      .col-12[style="text-align: right;"]
+        = f.submit t('.myclub.management.select_your_season_team_confirm'), class: "btn btn-primary mt-1"

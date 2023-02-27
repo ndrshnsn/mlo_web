@@ -1,0 +1,86 @@
+.row.pb-4
+  .col-sm-12.col-md-4.d-flex.justify-content-center.align-items-center
+    = image_tag avatarURL(@user), class: "avatar-sm rounded-circle img-fluid", style: "width: 96px; height: 96px;"
+  .col-sm-12.col-md-8
+    .form-group.mb-3
+      span class="control-label" = t('.name')
+      p = @user.full_name
+    .form-group
+      span class="control-label" = t('.alias')
+      p = @user.email
+      
+.row.mb-3
+  h5.mb-2.mt-1 = t('.personal_information')
+  .col-sm-12.col-md-6.mb-3
+    .form-group
+      = label_tag("#{t '.nickname'}", nil, class: "control-label")
+      = text_field_tag('nickname', @user.nickname, class: "form-control", readonly: true)
+
+  .col-sm-12.col-md-6.mb-3
+    .form-group
+      = label_tag("#{t '.platform'}", nil, class: "control-label")
+      = text_field_tag('platform', @user.platform, class: "form-control", readonly: true)
+
+  .col-sm-12.col-md-6.mb-3
+    .form-group
+      = label_tag("#{t '.country'}", nil, class: "control-label")
+      = text_field_tag('country', @user.preferences[:country], class: "form-control", readonly: true)
+
+  .col-sm-12.col-md-6.mb-3
+    .form-group
+      = label_tag("#{t '.city'}", nil, class: "control-label")
+      = text_field_tag('city', @user.preferences[:city], class: "form-control", readonly: true)
+      
+  .col-sm-12.col-md-6.mb-3
+    .form-group
+      = label_tag("#{t '.phone'}", nil, class: "control-label")
+      = text_field_tag('phone', @user.phone, class: "form-control", readonly: true)
+
+  .col-sm-12.col-md-6.mb-3
+    .form-group
+      = label_tag("#{t '.birth'}", nil, class: "control-label")
+      = text_field_tag('birth', I18n.l(@user.birth, locale: I18n.locale), class: "form-control", readonly: true)
+
+.row.mb-3.pb-4.border-bottom.border-bottom-dashed
+  h5.mb-2.mt-1 = t('.social_links')
+  .col-lg-4.col-md-6.form-group.mb-3
+    label[for="twitter-input"]
+      = t('twitter')
+    .input-group.input-group-merge
+      .input-group-prepend
+        span#basic-addon3.input-group-text
+          i.ri-twitter-line.fm-2
+      = text_field_tag("twitter", @user.preferences[:twitter], class: "form-control", readonly: true)
+  .col-lg-4.col-md-6.form-group.mb-3
+    label[for="facebook-input"]
+      = t('facebook')
+    .input-group.input-group-merge
+      .input-group-prepend
+        span#basic-addon4.input-group-text
+          i.ri-facebook-line.fm-2
+      = text_field_tag("twitter", @user.preferences[:facebook], class: "form-control", readonly: true)
+  .col-lg-4.col-md-6.form-group.mb-3
+    label[for="instagram-input"]
+      = t('instagram')
+    .input-group.input-group-merge
+      .input-group-prepend
+        span#basic-addon5.input-group-text
+          i.ri-instagram-line.fm-2
+      = text_field_tag("twitter", @user.preferences[:instagram], class: "form-control", readonly: true)
+
+.row.mb-3
+  h5.mb-2.mt-1 = t('.admin_settings')
+  .col-sm-12.col-md-6.mb-3
+    .form-group
+      = label_tag 'name', t('.role'), class: "control-label"
+      = select_tag "user[role]", options_for_select(User.roles.collect{ |role| [t("role.#{role[0]}"), role[1]]}, User.roles[@user.role]), id: "user_role", include_blank: true, class: "form-control select2 dt-select", "data-controller": "select", "data-select-icon-value": false
+
+  .col-sm-12.col-md-6.mb-3
+    .form-group
+      = label_tag 'status', t('.status'), class: "control-label"
+      = select_tag "user[status]", options_for_select([["#{t('active')}", "active"], ["#{t('inactive')}", "inactive"], ["#{t('pending')}", "pending"]], @userActiveStatus), id: "user_status", include_blank: true, class: "form-control select2 dt-select", "data-controller": "select", "data-select-icon-value": false 
+
+.row
+  .col-12.text-end
+    = link_to t('.cancel'), admin_accounts_path, class: "btn btn-outline-secondary me-1", data: { "turbo-action": "advance", "turbo-stream": true }
+    = f.submit t('.confirm'), class: "btn btn-submit btn-primary"

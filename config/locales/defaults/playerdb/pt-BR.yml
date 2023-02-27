@@ -1,0 +1,366 @@
+pt-BR:
+  playerdb:
+    leagues:
+      'English2ndDivision': 'EFL Championship'
+      'EnglishLeague': 'Premier League'
+      'ClassicTeams': 'Times Clássicos'
+      'NationalTeamsAfrica': 'Seleções da África'
+      'NationalTeamsAsia': 'Seleções da Ásia'
+      'NationalTeamsEurope': 'Seleções da Europa'
+      'NationalTeamsNorth&CentralAmerica': 'Seleções da América do Norte e Central'
+      'NationalTeamsSouthAmerica': 'Seleções da América do Sul'
+      'OtherEuropeanLeagues': 'Outros times da Europa'
+      'OtherLatinAmericanTeams': 'Outros times da América Latina'
+      'SpanishLeague': 'La Liga'
+      'Spanish2ndDivision': 'La Liga SmartBank'
+      'FreeAgent': 'Jogadores Livres'
+    teams:
+      'BARRAFUNDAV': 'Palmeiras'
+      'FreeAgents': 'Sem Empresário'
+      'ASTONRB': 'Aston Villa'
+      'BOURNEMOUTHRB': 'Bornemouth'
+      'BRIGHTONWB': 'Brighton & Hove Albion'
+      'BURNLEYRB': 'Burnley'
+      'CHELSEAB': 'Chelsea'
+      'CRYSTALPALACERB': 'Crystal Palace'
+      'EVERTONB': 'Everton'
+      'LEICESTERB': 'Leicester'
+      'WYCOMBEB': 'Wycombe Wanderers'
+      'LIVERPOOLR': 'Liverpool'
+      'COVENTRYB': 'Coventry City'
+      'MANCHESTERB': 'Manchester City'
+      'NEWCASTLEWB': 'Newcastle United'
+      'NORWICHYG': 'Norwich City'
+      'SHEFFIELDRB': 'Sheffield United'
+      'SOUTHAMPTONRW': 'Southampton'
+      'TOTTENHAMWB': 'Tottenham Hotspur'
+      'WATFORDBY': 'Watford'
+      'WESTHAMRB': 'West Ham United'
+      'WOLVERHAMPTONYB': 'Wolverhampton Wanderers'
+      'BARNSLEYR': 'Barnsley'
+      'BIRMINGHAMB': 'Birmingham City'
+      'BLACKBURNBW': 'Blackburn Rovers'
+      'BRENTFORDRW': 'Brentford'
+      'BRISTOLR': 'Bristol City'
+      'ROTHERHAMRW': 'Rotherham United'
+      'CARDIFFB': 'Cardiff City'
+      'CHALRTONRW': 'Charlton Athletic'
+      'DERBYWB': 'Derby County'
+      'FULHAMW': 'Fulham'
+      'HUDDERSFIELDBW': 'Huddersfield Town'
+      'HULLOB': 'Hull City'
+      'LEEDSW': 'Leeds United'
+      'LUTONWO': 'Luton Town'
+      'MIDDLESBROUGHRW': 'Middlesbrough'
+      'MILLWALLBW': 'Millwall'
+      'NOTTINGHAMRW': 'Nottingham Forest'
+      'PRESTONWB': 'Preston North End'
+      "QUEEN'SPARKBW": 'QPR'
+      'READINGBW': 'Reading'
+      'SHEFFIELDBW': 'Sheffield Wednesday'
+      'STOKERW': 'Stoke City'
+      'SWANSEAW': 'Swansea City'
+      'WESTBROMWICHWB': 'West Bromwich Albion'
+      'WIGANBW': 'Wigan Athletic'
+      'BRUTIE': 'Brescia'
+      'BILBAOBR': 'Athletic Club Bilbao'
+      'CÚCUTARN': 'Cúcuta Deportivo'
+      'MADRIDROSASRB': 'Atlético de Madrid'
+      'VIGOAB': 'Celta de Vigo'
+      'ÁLAVAAB': 'Deportivo Alavés'
+      'LLOBREGATAB': 'Espanyol'
+      'GETAFEA': 'Getafe CF'
+      'GRANADARB': 'Granada'
+      'LEGANÉSAB': 'Leganés'
+      'LEVANTERA': 'Levante UD'
+      'MALLORCARN': 'Mallorca'
+      'PAMPLONARA': 'Osasuna'
+      'SEVILLATRIANAVB': 'Real Betis'
+      'MADRIDCHAMARTINB': 'Real Madrid'
+      'VASCOGIPUZKOAAB': 'Real Sociedad'
+      'VALLADOLIDMB': 'Real Valladolid'
+      'EIBARAR': 'SD Eibar'
+      'SEVILLANERVIÓNBR': 'Sevilla FC'
+      'VALENCIABN': 'Valencia'
+      'VILLARREALA': 'Villareal'
+      'ALBACETEBN': 'Albacete'
+      'ALCORCÓNAA': 'Alcorcón'
+      'ALMERÍARB': 'Almería'
+      'LOGROÑORB': 'UD Logroñés'
+      'CÁDIZAA': 'Cádiz'
+      'CASTELLÓNNB': 'Castellón FC'
+      'LACORUÑAAB': 'Deportivo La Coruña'
+      'ELCHEBV': 'Elche'
+      'EXTREMADURAAR': 'Extremadura'
+      'FUENLABRADAA': 'Fuenlabrada'
+      'GIRONAR': 'Girona'
+      'HUESCARA': 'Huesca'
+      'CARTAGENANB': 'Fútbol Club Cartagena'
+      'LASPALMASAA': 'Las Palmas'
+      'LUGORB': 'Lugo'
+      'SABADELLAB': "Centre d'Esports Sabadell"
+      'MÁLAGAAB': 'Málaga'
+      'MIRANDADEEBRORN': 'Mirandés'
+      'NUMANCIAR': 'Numancia'
+      'PONFERRADAAB': 'Ponferradina'
+      'SANTANDERVB': 'Racing Santander'
+      'VALLECASBR': 'Rayo Vallecano'
+      'OVIEDOA': 'Real Ovieado'
+      'ZARAGOZABA': 'Real Zaragoza'
+      'GIJÓNRB': 'Sporting Gijón'
+      'TENERIFEAB': 'Tenerife'
+      'WILRIJKPW': 'Beerschot Wilrijk'
+      'SIPINKBLACK': 'Palermo'
+      'STABIAGB': 'Juve Stabia'
+      'BRESCIABA': 'Brescia'
+    players:
+      country: "País"
+      age: "Idade"
+      foot: "Pé"
+      rightFoot: "Destro"
+      leftFoot: "Canhoto"
+      height: "Altura"
+      weight: "Peso"
+      position: "Posição"
+      overall: "Overall"
+      weeklyForm: "Condição Semanal"
+      playingStyle: "Estilo de Jogo"
+      skill: "Habilidades"
+      comStyles: "Estilo de Jogo (COM)"
+      any: "Qualquer"
+      otherPositions: "Posições Preferidas"
+      playerWorkRate: "Dedicação"
+      skillMoves: "Fintas"
+      weakFoot: "Perna Ruim"
+      high: "Alta"
+      medium: "Média"
+      low: "Baixa"
+      speciality: "Especialidades"
+      trait: "Características"
+      pos:
+        pes:
+          cf: "CA"
+          ss: "SA"
+          lwf: "PTE"
+          rwf: "PTD"
+          amf: "MAT"
+          lmf: "MLE"
+          rmf: "MLD"
+          dmf: "VOL"
+          cmf: "MLG"
+          rb: "LD"
+          lb: "LE"
+          cb: "ZC"
+          gk: "GO"
+        fifa:
+          gk: "GO"
+          cb: "ZC"
+          lb: "LE"
+          rb: "LD"
+          rwb: "ADD"
+          lwb: "ADE"
+          cdm: "VOL"
+          cm: "MC"
+          rm: "MD"
+          lm: "ME"
+          cam: "MEI"
+          rw: "PD"
+          lw: "PE"
+          cf: "SA"
+          st: "ATA"
+      stats:
+        offensiveAwareness: "Habilidade Ofensiva"
+        ballControl: "Controle de Bola"
+        dribbling: "Drible"
+        tightPossession: "Condução"
+        lowPass: "Passe Rasteiro"
+        loftedPass: "Passe Alto"
+        finishing: "Finalização"
+        heading: "Cabeceio"
+        placeKicking: "Chute Colocado"
+        curl: "Curva"
+        speed: "Velocidade"
+        acceleration: "Aceleração"
+        kickingPower: "Força do Chute"
+        jump: "Pulo"
+        physicalContact: "Contato Físico"
+        balance: "Equilíbrio"
+        stamina: "Resistência"
+        defensiveAwareness: "Habilidade Defensiva"
+        aggression: "Agressividade"
+        gkAwareness: "Talento do Goleiro"
+        gkCatching: "Firmeza do Goleiro"
+        gkClearing: "Afast. do Goleiro"
+        gkReflexes: "Reflexos do Goleiro"
+        gkReach: "Alcance do Goleiro"
+        weakFootUsage: "Pior Pé (frequência)"
+        weakFootAccuracy: "Pior Pé (precisão)"
+        form: "Condição Física"
+        injuryResistance: "Resistência a Lesão"
+        vision: "Visão"
+        fkAcc: "Cobrança de Faltas"
+        agility: "Agilidade"
+        marking: "Marcação"
+        volleys: "Voleio"
+        crossing: "Cruzamento"
+        gkDiving: "Elasticidade do Goleiro"
+        longPass: "Lançamento"
+        tackling: "Desarme"
+        strength: "Força"
+        composure: "Compostura"
+        gkKicking: "Chute do Goleiro"
+        longShots: "Chute de Longe"
+        penalties: "Pênaltis"
+        reactions: "Reação"
+        shortPass: "Passe Curto"
+        shotPower: "Força do Chute"
+        gkHandling: "Firmeza do Goleiro"
+        gkParrying: "Encaixe do Goleiro"
+        setPieceTaking: "Cobrança de Faltas"
+        defensiveEngagement: "Dedicação Defensiva"
+        attPosition: "Pos. Ataque"
+        slideTackle: "Carrinho"
+        sprintSpeed: "Pique"
+        standTackle: "Dividida em Pé"
+        gkPositioning: "Pos. do Goleiro"
+        interceptions: "Interceptação"
+        jumping: "Pulo"
+        curve: "Curva"
+        High: "Alto"
+        "Almost Never": "Quase Nunca"
+        "Very High": "Muito Alto"
+        "Very Low": "Muito Baixo"
+        Inconsistent: "Inconsistente"
+        Medium: "Médio"
+        Standard: "Normal"
+        Regularly: "Regularmente"
+        Low: "Baixo"
+        Unwavering: "Constante"
+        Occasionally: "Ocasionalmente"
+        Rarely: "Raramente"
+      specialities:
+        Acrobatic: "Acrobático"
+        Acrobat: "Acrobata"
+        AerialThreat: "Ameaça Aérea"
+        ClinicalShooter: "Matador" 
+        ClinicalFinisher: "Finalizador"
+        CompleteDefender: "Defensor Completo"
+        CompleteForward: "Atacante Completo"
+        CompleteMidfielder: "Meio Campo Completo"
+        Crosser: "Cruzador"
+        DistanceShooter: "Chuta de Longe"
+        Dribbler: "Driblador"
+        Engine: "Motorzinho"
+        FKSpecialist: "Espec. em Faltas"
+        Playmaker: "Armador"
+        Tackling: "Divididas"
+        Poacher: "Oportunista"
+        Speedster: "Velocista"
+        Strength: "Robusto"
+        Tackler: "Marcador"
+        Tactician: "Tático"
+        Traditional: "Tradicional"
+      traits:
+        TechnicalDribbler: "Driblador Técnico"
+        TeamPlayer: "Joga pelo Time"
+        PlayMaker: "Armador"
+        GiantThrow-In: "Arremesso Forte"
+        PowerHeader: "Cabeceio Forte"
+        EarlyCrosser: "Cruzamento Antecipado"
+        SpeedDribbler: "Driblador Veloz"
+        Swerve: "Efeito"
+        SetPlaySpecialist: "Esp. em Bolas Paradas"
+        Flair: "Firula"
+        TakesPowerfulDrivenFreeKicks: "Faltas com Força"
+        LongThrow: "(GO) Arremesso Longo"
+        SaveswithFeet: "(GO) Defende com os Pés"
+        CautiousWithCrosses: "(GO) Cuidado nos Cruzamentos"
+        FlatKick: "(GO) Chute Certeiro"
+        ComesForCrosses: "(GO) Sai nos Cruzamentos"
+        SolidPlayer: "Consistente"
+        OneClubPlayer: "Jogador de Um Clube Só"
+        LongPasser: "Lançador"
+        LongThrow-In: "Lançamento Longo"
+        Leadership: "Liderança"
+        DivesIntoTackles: "Mergulha para Desarmes"
+        SecondWind: "Novo Fluxo de Energia"
+        FancyPasses: "Passes com Estilo"
+        BycicleKicks: "Bicicleta"
+        InjuryProne: "Propício a Lesões"
+        LongShotTaker: "Chuta de Longe"
+        FinesseShot: "Chute em Curva"
+        ChipShot: "Cavadinha"
+        OutsideFootShot: "Chute com o lado do pé"
+        RushesOutOfGoal: "Sai da Baliza"
+      styles:
+        'GoalPoacher': 'Artilheiro'
+        'DummyRunner': 'Puxa Marcação'
+        'FoxintheBox': 'Homem de Área'
+        'ProlificWinger': 'Ala Produtivo'
+        'HolePlayer': 'Jog. de Infiltração'
+        'Box-to-Box': 'Meia Versátil'
+        'AnchorMan': 'Primeiro Volante'
+        'TheDestroyer': 'O Destruidor'
+        'ExtraFrontman': 'Atacante Surpresa'
+        'OffensiveFull-back': 'Zagueiro Ofensivo'
+        'DefensiveFull-back': 'Zagueiro Defensivo'
+        'TargetMan': 'Pivô'
+        'CreativePlaymaker': 'Armador Criativo'
+        'BuildUp': 'Provocador'
+        'OffensiveGoalkeeper': 'Goleiro Ofensivo'
+        'DefensiveGoalkeeper': 'Goleiro Defensivo'
+        'RoamingFlank': 'Lateral Móvel'
+        'CrossSpecialist': 'Esp. em Cruzamento'
+        'Orchestrator': 'Orquestrador'
+        'Full-backFinisher': 'Lateral Atacante'
+        'ClassicNo':
+          '10': 'Clássica No. 10'
+      skills:
+        'DoubleTouch': 'Toque Duplo'
+        'LongRangeDrive': 'Chute de Longe'
+        'ChipShotControl': 'Controle da Cavadinha'
+        'LongRangeShooting': 'Precisão a Distância'
+        'DippingShot': 'Folha Seca'
+        'FirstTimeShot': 'Chute de Primeira'
+        'One-touchPass': 'Passe de Primeira'
+        'ThroughPassing': 'Passe em Profundidade'
+        'PenaltySpecialist': 'Especialista em Pênalti'
+        'Captaincy': 'Liderança'
+        'GK HighPunt': 'Reposição Alta de GO'
+        'GK LongThrow': 'Arremesso longo de GO'
+        'Heading': 'Cabeçada'
+        'ManMarking': 'Marcação Individual'
+        'Interception': 'Interceptação'
+        'ScotchMove': 'Finta de Letra'
+        'HeelTrick': 'Toque de Calcanhar'
+        'CutBehind&Turn': 'Puxada de Letra'
+        'RisingShots': 'Chute com Decolagem'
+        'AcrobaticClear': 'Afastamento Acrobático'
+        'LongThrow': 'Arremesso Longo'
+        'ScissorsFeint': 'Pedalada Simples'
+        'CrossOverTurn': 'Corte de Calcanhar'
+        'Gamesmanship': 'Malícia'
+        'TrackBack': 'Volta para Marcar'
+        'StepOnSkillControl': 'Controle de Domínio'
+        'WeightedPass': 'Passe na Medida'
+        'LowLoftedPass': 'Passe aéreo Baixo'
+        'FlipFlap': 'Elástico'
+        'AcrobaticFinishing': 'Finalização Acrobática'
+        'NoLookPass': 'Passe sem Olhar'
+        'OutsideCurler': 'Curva para Fora'
+        'PinpointCrossing': 'Cruzamento Preciso'
+        'Sombrero': 'Chapéu'
+        'GKLowPunt': 'Reposição Baixa de GO'
+        'GKPenaltySaver': 'Pegador de Pênaltis'
+        'Rabona': 'de Letra'
+        'MarseilleTurn': '360 Graus'
+        'KnuckleShot': 'Chute com o peito do pé'
+        'Trickster': 'Malandro'
+        'SpeedingBullet': 'Rápido como uma bala'
+        'MazingRun': 'Drible Veloz'
+        'IncisiveRun': 'Corrida com Gás'
+        'LongBallExpert': 'Perito em Bola Longa'
+        'EarlyCross': 'Cruz. Antecipado'
+        'FightingSpirit': 'Espírito Guerreiro'
+        'LongRanger': 'Batedor Pro'
+        'Super-sub': 'Super Substituto'

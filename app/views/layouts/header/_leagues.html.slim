@@ -1,0 +1,29 @@
+- cLeague = League.find(session[:league]) if session[:league]
+.dropdown.topbar-head-dropdown.ms-1.header-item
+
+	button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+		img.rounded src="#{leagueBadge(cLeague)}" height="26"
+
+	- if session[:leagues].size > 1
+		.dropdown-menu.dropdown-menu-lg.p-0.dropdown-menu-end
+			.p-3.border-top-0.border-start-0.border-end-0.border-dashed.border
+				.row.align-items-center
+					.col
+						h6.m-0.fw-semibold.fs-15
+							span.d-flex
+								i.ri-honour-line.me-1
+								= t('.my_leagues').upcase
+
+			.p-2
+			- session[:leagues].in_groups_of(3, false) do |lgroup|
+				.row.g-0
+					- lgroup.each do |league|
+						- if league != session[:league]
+							- lRecord = League.find(league)
+							.col
+								- lStatus = lRecord.id == session[:league] ? "ri ri-checkbox-circle-fill ms-1 text-success" : ""
+								= link_to "javascript:;", class: "dropdown-icon-item", data: { action: 'click->confirm#dialog', controller: 'confirm', "turbo-action": "advance", "confirm-title-value": "#{t('.confirm_change_league', new_league: lRecord.name)}", "confirm-text-value": "#{t('.confirm_change_league_text')}", "confirm-icon-value": 'question', "confirm-link-value": "#{change_active_league_path(lRecord.id)}", "confirm-action-value": "POST", "confirm-turbo-value": "false" } do
+									img src="#{leagueBadge(lRecord)}"
+									span.d-flex.justify-content-center
+										= lRecord.name
+										i class="#{lStatus}"

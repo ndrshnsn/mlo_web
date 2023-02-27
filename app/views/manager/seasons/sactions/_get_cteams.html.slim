@@ -1,0 +1,23 @@
+.modal-dialog.modal-dialog-centered[role="document"]
+  .modal-content
+    .modal-header
+      h4#myModalLabel1.modal-title
+          i.jam.jam-building.mr-1
+          | Trocar Clube
+      button.close[type="button" data-dismiss="modal" aria-label="Close"]
+        span[aria-hidden="true"]
+          | ×
+    .modal-body
+      .row
+        = form_with model: @club, id: "select_club", local: false, url: manager_season_select_club_path, html: { "data-parsley-errors-messages-disabled": "true", method: :post } do |f|
+          input type="hidden" name="select_club_user" value="#{user}"
+          .col-12
+            p.card-text Você, como Manager, pode definir um Clube específico para O usuário, caso ele solicite a troca.
+            .form-group
+              span
+                #popover_teams_selection
+              = select_tag "teams_selection", options_for_select(@teams.collect { |team| [stringHuman(PlayerTeam.getTranslation(team.name)[0]), team.id, {'data-badge-path': team.badge_url} ]}, disabled: disabled_teams), {include_blank: true, class: "text-center form-control select2", required: true, "data-parsley-errors-container": "teams_selection" }
+            #team_details
+
+          .col-12[style="text-align: right;"]
+            button.btn.btn-sm.btn-primary.mt-1.btn-submit Confirmar Troca

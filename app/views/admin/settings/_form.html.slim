@@ -1,0 +1,307 @@
+.row
+  .col-12
+    .card
+      .card-body
+        = form_with model: AppConfig, id: "app_config", url: admin_settings_update_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "warning", "form-scroll-value": true} do |f|
+          h6.text-muted.mb-3
+            i.ri-settings-line.align-middle.me-1
+            = t('.mail.title')
+          .row
+            .col-sm-12.col-md-6
+              .mb-3
+                = f.label :mail_admin, t('.mail.principal'), class: "form-label"
+                = f.text_field :mail_admin, class: "form-control", "data-parsley-required": true, value: AppConfig.mail_admin
+            .col-sm-12.col-md-6
+              .position-relative
+                = f.label :mail_username, t('.mail.username'), class: "form-label"
+                = f.text_field :mail_username, class: "form-control", "data-parsley-required": true, value: AppConfig.mail_username
+            .col-sm-12.col-md-6
+              .position-relative
+                = f.label :mail_password, t('.mail.password'), class: "form-label"
+                = f.text_field :mail_password, class: "form-control", "data-parsley-required": true, value: AppConfig.mail_password
+          
+          h6.text-muted.mb-3.mt-4
+            i.ri-settings-line.align-middle.me-1
+            = t('.vapid.title')
+          .row
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :vapid_pubkey, t('.vapid.pubkey'), class: "form-label"
+                  = f.text_field :vapid_pubkey, class: "form-control", "data-parsley-required": true, value: AppConfig.vapid_pubkey
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :vapid_privkey, t('.vapid.privkey'), class: "form-label"
+                  = f.text_field :vapid_privkey, class: "form-control", "data-parsley-required": true, value: AppConfig.vapid_privkey
+
+          h6.text-muted.mb-3.mt-4
+            i.ri-settings-line.align-middle.me-1
+            = t('.sendgrid.title')
+          .row
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :sendgrid_api, t('.sendgrid.api'), class: "form-label"
+                  = f.text_field :sendgrid_api, class: "form-control", "data-parsley-required": true, value: AppConfig.sendgrid_api
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :template_request_league_id, t('.sendgrid.template.request_league'), class: "form-label"
+                  = f.text_field :template_request_league_id, class: "form-control", "data-parsley-required": true, value: AppConfig.template_request_league_id
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :template_confirmation_id, t('.sendgrid.template.confirmation'), class: "form-label"
+                  = f.text_field :template_confirmation_id, class: "form-control", "data-parsley-required": true, value: AppConfig.template_confirmation_id
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :template_new_league_id, t('.sendgrid.template.new_league'), class: "form-label"
+                  = f.text_field :template_new_league_id, class: "form-control", "data-parsley-required": true, value: AppConfig.template_new_league_id
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :template_reset_password_id, t('.sendgrid.template.reset_password'), class: "form-label"
+                  = f.text_field :template_reset_password_id, class: "form-control", "data-parsley-required": true, value: AppConfig.template_reset_password_id
+
+          h6.text-muted.mb-3.mt-4
+            i.ri-settings-line.align-middle.me-1
+            = t('.playerdb.title')
+          .row
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :generic_player, t('.playerdb.generic_player'), class: "form-label"
+                  = f.text_field :generic_player, class: "form-control", "data-parsley-required": true, value: AppConfig.generic_player
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :platforms, t('.playerdb.platforms'), class: "form-label"
+                  = f.text_field :platforms, class: "form-control", "data-parsley-required": true, value: AppConfig.platforms
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :user_platforms, t('.playerdb.user_platforms'), class: "form-label"
+                  = f.text_field :user_platforms, class: "form-control", "data-parsley-required": true, value: AppConfig.user_platforms
+          h6.text-muted.mb-3.mt-4
+            i.ri-settings-line.align-middle.me-1
+            = t('.league.title')
+          .row
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :league_slots, t('.league.slots'), class: "form-label"
+                  = f.text_field :league_slots, class: "form-control", "data-parsley-required": true, value: AppConfig.league_slots
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :fake_account_password, t('.league.fake_account_password'), class: "form-label"
+                  = f.text_field :fake_account_password, class: "form-control", "data-parsley-required": true, value: AppConfig.fake_account_password
+          h6.text-muted.mb-3.mt-4
+            i.ri-settings-line.align-middle.me-1
+            = t('.championship.title')
+          .row
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :championship_minimum_players, t('.championship.minimum_players'), class: "form-label"
+                  = f.text_field :championship_minimum_players, class: "form-control", "data-parsley-required": true, value: AppConfig.championship_minimum_players
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :championship_cards_suspension_ycard, t('.championship.cards_suspension_ycard'), class: "form-label"
+                  = f.text_field :championship_cards_suspension_ycard, class: "form-control", "data-parsley-required": true, value: AppConfig.championship_cards_suspension_ycard
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :championship_cards_suspension_rcard, t('.championship.cards_suspension_rcard'), class: "form-label"
+                  = f.text_field :championship_cards_suspension_rcard, class: "form-control", "data-parsley-required": true, value: AppConfig.championship_cards_suspension_rcard
+          h6.text-muted.mb-3.mt-4
+            i.ri-settings-line.align-middle.me-1
+            = t('.match.title')
+          .row
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_winning_earning, t('.match.winning_earning'), class: "form-label"
+                  = f.text_field :match_winning_earning, class: "form-control", "data-parsley-required": true, value: AppConfig.match_winning_earning
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_draw_earning, t('.match.draw_earning'), class: "form-label"
+                  = f.text_field :match_draw_earning, class: "form-control", "data-parsley-required": true, value: AppConfig.match_draw_earning
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_lost_loss, t('.match.lost_loss'), class: "form-label"
+                  = f.text_field :match_lost_loss, class: "form-control", "data-parsley-required": true, value: AppConfig.match_lost_loss
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_goal_earning, t('.match.goal_earning'), class: "form-label"
+                  = f.text_field :match_goal_earning, class: "form-control", "data-parsley-required": true, value: AppConfig.match_goal_earning
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_goal_loss, t('.match.goal_loss'), class: "form-label"
+                  = f.text_field :match_goal_loss, class: "form-control", "data-parsley-required": true, value: AppConfig.match_goal_loss
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_yellow_card_loss, t('.match.yellow_card_loss'), class: "form-label"
+                  = f.text_field :match_yellow_card_loss, class: "form-control", "data-parsley-required": true, value: AppConfig.match_yellow_card_loss
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_red_card_loss, t('.match.red_card_loss'), class: "form-label"
+                  = f.text_field :match_red_card_loss, class: "form-control", "data-parsley-required": true, value: AppConfig.match_red_card_loss
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_winning_ranking, t('.match.winning_ranking'), class: "form-label"
+                  = f.text_field :match_winning_ranking, class: "form-control", "data-parsley-required": true, value: AppConfig.match_winning_ranking
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_draw_ranking, t('.match.draw_ranking'), class: "form-label"
+                  = f.text_field :match_draw_ranking, class: "form-control", "data-parsley-required": true, value: AppConfig.match_draw_ranking
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_lost_ranking, t('.match.lost_ranking'), class: "form-label"
+                  = f.text_field :match_lost_ranking, class: "form-control", "data-parsley-required": true, value: AppConfig.match_lost_ranking
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_winning_points, t('.match.winning_points'), class: "form-label"
+                  = f.text_field :match_winning_points, class: "form-control", "data-parsley-required": true, value: AppConfig.match_winning_points
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_draw_points, t('.match.draw_points'), class: "form-label"
+                  = f.text_field :match_draw_points, class: "form-control", "data-parsley-required": true, value: AppConfig.match_draw_points
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_lost_points, t('.match.lost_points'), class: "form-label"
+                  = f.text_field :match_lost_points, class: "form-control", "data-parsley-required": true, value: AppConfig.match_lost_points
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :match_hattrick_earning, t('.match.hattrick_earning'), class: "form-label"
+                  = f.text_field :match_hattrick_earning, class: "form-control", "data-parsley-required": true, value: AppConfig.match_hattrick_earning
+          h6.text-muted.mb-3.mt-4
+            i.ri-settings-line.align-middle.me-1
+            = t('.season.title')
+          .row
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_times, t('.season.times'), class: "form-label"
+                  = f.text_field :season_times, class: "form-control", "data-parsley-required": true, value: AppConfig.season_times
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_min_players, t('.season.min_players'), class: "form-label"
+                  = f.text_field :season_min_players, class: "form-control", "data-parsley-required": true, value: AppConfig.season_min_players
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_max_players, t('.season.max_players'), class: "form-label"
+                  = f.text_field :season_max_players, class: "form-control", "data-parsley-required": true, value: AppConfig.season_max_players
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_max_steals_same_player, t('.season.max_steals_same_player'), class: "form-label"
+                  = f.text_field :season_max_steals_same_player, class: "form-control", "data-parsley-required": true, value: AppConfig.season_max_steals_same_player
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_max_steals_per_user, t('.season.max_steals_per_user'), class: "form-label"
+                  = f.text_field :season_max_steals_per_user, class: "form-control", "data-parsley-required": true, value: AppConfig.season_max_steals_per_user
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_max_stealed_players, t('.season.max_stealed_players'), class: "form-label"
+                  = f.text_field :season_max_stealed_players, class: "form-control", "data-parsley-required": true, value: AppConfig.season_max_stealed_players
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_default_steal_window_start, t('.season.default_steal_window_start'), class: "form-label"
+                  = f.text_field :season_default_steal_window_start, class: "form-control", "data-parsley-required": true, value: AppConfig.season_default_steal_window_start
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_default_steal_window_end, t('.season.default_steal_window_end'), class: "form-label"
+                  = f.text_field :season_default_steal_window_end, class: "form-control", "data-parsley-required": true, value: AppConfig.season_default_steal_window_end
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_default_player_earnings, t('.season.default_player_earnings'), class: "form-label"
+                  = f.text_field :season_default_player_earnings, class: "form-control", "data-parsley-required": true, value: AppConfig.season_default_player_earnings
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_default_mininum_operation, t('.season.default_minimum_operation'), class: "form-label"
+                  = f.text_field :season_default_mininum_operation, class: "form-control", "data-parsley-required": true, value: AppConfig.season_default_mininum_operation
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_tax_for_fired_players, t('.season.tax_for_fired_players'), class: "form-label"
+                  = f.text_field :season_tax_for_fired_players, class: "form-control", "data-parsley-required": true, value: AppConfig.season_tax_for_fired_players
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_default_time_game_confirmation, t('.season.default_time_game_confirmation'), class: "form-label"
+                  = f.text_field :season_default_time_game_confirmation, class: "form-control", "data-parsley-required": true, value: AppConfig.season_default_time_game_confirmation
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :name, t('.season.player_value_earning_relation'), class: "form-label"
+                  = f.text_field :season_player_value_earning_relation, class: "form-control", "data-parsley-required": true, value: AppConfig.season_player_value_earning_relation
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_player_high_over, t('.season.player_high_over'), class: "form-label"
+                  = f.text_field :season_player_high_over, class: "form-control", "data-parsley-required": true, value: AppConfig.season_player_high_over
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_player_low_over, t('.season.player_low_over'), class: "form-label"
+                  = f.text_field :season_player_low_over, class: "form-control", "data-parsley-required": true, value: AppConfig.season_player_low_over
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_player_raffle_switches, t('.season.player_raffle_switches'), class: "form-label"
+                  = f.text_field :season_player_raffle_switches, class: "form-control", "data-parsley-required": true, value: AppConfig.season_player_raffle_switches
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_player_raffle_remaining, t('.season.player_raffle_remaining'), class: "form-label"
+                  = f.text_field :season_player_raffle_remaining, class: "form-control", "data-parsley-required": true, value: AppConfig.season_player_raffle_remaining
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_player_raffle_turn_time, t('.season.player_raffle_turn_time'), class: "form-label"
+                  = f.text_field :season_player_raffle_turn_time, class: "form-control", "data-parsley-required": true, value: AppConfig.season_player_raffle_turn_time
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_player_raffle_first_order, t('.season.player_raffle_first_order'), class: "form-label"
+                  = f.text_field :season_player_raffle_first_order, class: "form-control", "data-parsley-required": true, value: AppConfig.season_player_raffle_first_order
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_club_default_earning, t('.season.club_default_earning'), class: "form-label"
+                  = f.text_field :season_club_default_earning, class: "form-control", "data-parsley-required": true, value: AppConfig.season_club_default_earning
+            .col-sm-12.col-md-6
+              .mb-3
+                .position-relative
+                  = f.label :season_club_max_total_wage, t('.season.club_max_total_wage'), class: "form-label"
+                  = f.text_field :season_club_max_total_wage, class: "form-control", "data-parsley-required": true, value: AppConfig.season_club_max_total_wage
+
+          .row
+            .col-lg-12
+              .text-end
+                = f.submit t('.confirm'), class: "btn btn-submit btn-primary"

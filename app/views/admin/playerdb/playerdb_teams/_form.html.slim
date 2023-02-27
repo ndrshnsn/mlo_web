@@ -1,0 +1,128 @@
+.row.mb-3
+  .col-sm-12.col-md-4.d-flex.justify-content-center
+    - if @defTeam.id
+      = image_tag("#{session[:pdbprefix]}/teams/#{(@defTeam.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';")
+    - else
+      = image_tag(image_url("/misc/generic-team.png"), class: "img-fluid")
+
+  .col-sm-12.col-md-8
+    .form-group.mb-3
+      = f.label :name, t('.name'), class: "control-label"
+      = f.text_field :name, class: "form-control", style: "text-transform: uppercase;", required: true, "data-parsley-remote": "/admin/playerdb/teams/check_lname", "data-parsley-trigger": "focusout", "data-parsley-remote-options": '{ "type": "POST", "dataType":  "json", "data": { "id": "' + @defTeam.id.to_s + '" } }'
+      small = t('.name_obs')
+    .form-group
+      = f.label :alias, t('.alias'), class: "control-label"
+      = f.text_field :alias, class: "form-control", style: "text-transform: uppercase;"
+      small = t('.alias_obs')
+
+.row
+  .col-sm-12.col-md-6.mb-3
+    .form-group
+      = f.label :plaforms, t('.platforms'), class: "control-label"
+      #popover_def_team_platforms
+      = select_tag "def_team[platforms]", options_for_select(eval(AppConfig.platforms), @defTeam.platforms), {multiple: true, include_blank: true,  class: "form-control select2", id: 'def_team_platforms', required: true, "data-parsley-errors-container": "def_team_platforms", "data-controller": "select", "data-select-icon-value": false }
+
+  .col-sm-12.col-md-6.mb-3
+    .form-group
+      = f.label :nationality, t('.country'), class: "control-label"
+      #popover_def_team_country_id
+      = select_tag "def_team[def_country_id]", options_for_select(@defCountries.collect { |def_country| [ def_country[:name_i18n], def_country[:id], {'data-img': countryFlag(def_country[:name])}] }, @defTeam.def_country_id), {include_blank: true,  class: "form-control select2", id: 'def_team_country_id',  required: true, "data-controller": "select", "data-select-icon-value": true }
+
+  .col-sm-12.col-md-9.mb-3
+    .form-group
+      = f.label :wikipediaURL, t('.info_url'), class: "control-label"
+      = f.text_field :wikipediaURL, class: "form-control", required: true
+  .col-sm-12.col-md-3.mb-3
+    .form-check style="position: absolute!important; top: 50%;"
+      = f.check_box :active, class: "form-check-input"
+      = f.label :active, t('.active'), class: "form-check-label"
+
+
+.row.mt-2.mb-2
+  .col-12
+    h5.mb-1.mt-1.d-flex.align-items-center
+      i.ri-information-line.font-medium-4.me-2
+      span = t('.club_details')
+
+    .table-responsive
+      table.table.align-middle.table-sm
+        thead
+          th colspan="2"
+        tbody
+          tr
+            td
+              strong = t('.club_name')
+            td.text-right[style="white-space: normal!important;"]
+              - if @defTeam.details["teamName"]
+                = @defTeam.details["teamName"]
+              - else
+                | -
+          tr
+            td
+              strong = t('.club_abbr')
+            td.text-right[style="white-space: normal!important;"]
+              - if @defTeam.details["teamAbbr"]
+                = @defTeam.details["teamAbbr"]
+              - else
+                | -
+          tr
+            td
+              strong = t('.club_foundation')
+            td.text-right
+              - if @defTeam.details["teamFounded"]
+                = @defTeam.details["teamFounded"]
+              - else
+                | -
+          tr
+            td
+              strong = t('.club_city')
+            td.text-right
+              - if @defTeam.details["teamCity"]
+                = @defTeam.details["teamCity"]
+              - else
+                | -
+
+.row.mb-3
+  .col-12
+    .row.row-cols-lg-2.row-cols-1
+      .col.mb-3
+        h5.mb-1.mt-1.d-flex.align-items-center
+          i.ri-information-line.font-medium-4.me-2
+          span = t('.kits')
+
+        .row.h-100.d-flex.align-items-center
+          .col-6
+            - if @defTeam.id
+              = image_tag("#{session[:pdbprefix]}/kits/#{(@defTeam.name.upcase.delete(' '))}-p1.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-kit-p1.png")}';")
+            - else
+              = image_tag(image_url("/misc/generic-kit-p1.png"), class: "img-fluid")
+          .col-6
+            - if @defTeam.id
+              = image_tag("#{session[:pdbprefix]}/kits/#{(@defTeam.name.upcase.delete(' '))}-p2.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-kit-p2.png")}';")
+            - else
+              = image_tag(image_url("/misc/generic-kit-p2.png"), class: "img-fluid")
+
+      .col.mb-3
+        h5.mb-1.mt-1.d-flex.align-items-center
+          i.ri-information-line.font-medium-4.me-2
+          - if @defTeam.details["teamStadium"]
+            span  = @defTeam.details["teamStadium"]
+          - else
+            span = t('.stadium')
+
+        small
+          | #{t('.stadium_capacity')} : 
+          - if @defTeam.details["teamCapacity"]
+            = @defTeam.details["teamCapacity"]
+          - else
+            -
+          - if @defTeam.id
+            = image_tag("#{session[:pdbprefix]}/stadiums/#{(@defTeam.name.upcase.delete(' '))}.png", class: "rounded img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-stadium.png")}';")
+          - else
+            = image_tag(image_url("/misc/generic-stadium.png"), class: "img-fluid")
+
+.row
+  .col-12.text-end
+    = link_to t('.cancel'), admin_playerdb_teams_path, class: "btn btn-outline-secondary me-1", data: { "turbo-action": "advance" }
+    = f.submit t('.confirm'), class: "btn btn-submit btn-primary"
+    

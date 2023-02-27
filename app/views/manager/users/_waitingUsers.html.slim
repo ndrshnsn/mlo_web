@@ -1,0 +1,26 @@
+= turbo_frame_tag "tab_content" do
+  .tab-pane.active id="waitingUsers" role="tabpanel"
+    .col-12
+      .row.g-4.mb-3 
+        .col-sm
+          .d-flex.justify-content-sm-end
+            .search-box.ms-2
+              input#searchUsers.form-control.search type="text"
+              i.ri-search-line.search-icon
+      div data-controller="dt--manager-waiting-users"
+        #tableDom.table-responsive.table-card.mb-1.mt-3
+          table.table.table-striped.table-nowrap.dt-responsive.align-middle.mb-0 id="dt-manager-waiting-users" style="width: 100%;"
+            thead.table-light
+              tr
+                th = t('.order')
+                th = t('.name')
+                th = t('.email')
+                th = t('.status')
+                th.text-center = t('.actions')
+            tfoot.table-light
+              tr
+                th = t('.order')
+                th = t('.name')
+                th = t('.email')
+                th = t('.status')
+                th.text-center = t('.actions')

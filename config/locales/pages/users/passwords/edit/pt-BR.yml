@@ -1,0 +1,10 @@
+pt-BR:
+  users:
+    passwords:
+      edit:
+        new_password: "Nova Senha"
+        new_password_confirmation: "Confirme a Nova Senha"
+        update_password: "Atualizar Senha"
+        back_to_signing: "Voltar ao Início"
+        change_password: "Mudar minha Senha"
+        or: "ou"

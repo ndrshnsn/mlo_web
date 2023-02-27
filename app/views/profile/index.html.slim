@@ -1,0 +1,19 @@
+= turbo_frame_tag "main_frame" do
+  = render partial: "layouts/header/pageHeader", locals: { title: t('.settings') }
+
+  = turbo_frame_tag "profile" do
+		.row
+			.col-xxl-9
+				.card.mt-xxl-n5
+					.card-header
+						ul.nav.nav-tabs-custom.rounded.card-header-tabs.border-bottom-0 role="tablist" id="profileTab"
+							li.nav-item
+								= link_to t('.personal_details'), profile_path, class: "nav-link active", id: "personalDetails", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+							li.nav-item
+								= link_to t('.password'), profile_password_path, class: "nav-link", id: "password", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+							li.nav-item
+								= link_to t('.system'), profile_system_path, class: "nav-link", id: "system", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+					.card-body.p-4
+						.tab-content
+							= turbo_frame_tag "tab_content" do
+								= render "personalDetails"

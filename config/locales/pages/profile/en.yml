@@ -1,0 +1,41 @@
+en:
+  profile:
+    index:
+      personal_details: "Personal Information"
+      password: "Password"
+      notifications: "Notifications"
+      appearance: "Appearance"
+    update:
+      success: "Profile Updated!"
+      error: "Error updating profile!"
+    personalDetails:
+      fullname: "Full Name"
+      nickname: "Nickname"
+      email: "Email"
+      birth: "Birth"
+      city: "City"
+      country: "Country"
+      phone: "Phone"
+      platform: "Platform"
+      cancel: "Cancel"
+      confirm: "Update"
+      confirm_text: ""
+    pw:
+      current_password_dont_match: "Senha não confere!"
+      current_password: "Senha Atual"
+      password: "Senha"
+      password_confirmation: "Confirme a nova Senha"
+      confirm: "Atualizar"
+      cancel: "Cancelar"
+      confirm_text: "Após a troca da senha você será redireciono à página de login"
+    appearance:
+      locale: "Language"
+      locale_obs: "Set system language"
+      theme: "Theme"
+      theme_obs: "Escolha o Tema padrão do Sistema"
+      confirm: "Atualizar"
+      cancel: "Cancelar"
+      confirm_text: ""
+    update_appearance:
+      success: "Perfil atualizado com sucesso!"
+      error: "Erro atualizando Perfil!"

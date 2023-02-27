@@ -1,0 +1,7 @@
+pt-BR:
+  layouts:
+    header:
+      leagues:
+        my_leagues: "Minhas Ligas"
+        confirm_change_league: "Mudar para a liga %{new_league}?"
+        confirm_change_league_text: ""

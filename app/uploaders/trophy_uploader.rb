@@ -1,0 +1,2 @@
+class TrophyUploader < Shrine
+end

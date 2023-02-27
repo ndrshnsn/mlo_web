@@ -1,0 +1,7 @@
+= turbo_frame_tag "main_frame" do
+
+  = turbo_frame_tag "flash_local" do
+    = render partial: 'layouts/flash/main'
+
+  = turbo_frame_tag "dashboard" do
+    = render "main"

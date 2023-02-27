@@ -1,0 +1,28 @@
+.app-menu.navbar-menu
+    .navbar-brand-box
+        a href="index.html" class="logo logo-dark"
+            span.logo-sm
+                = image_tag('logo/mlo.png', alt: "", height: "22")
+            span.logo-lg
+                = image_tag('logo/mlo-light.png', alt: "", height: "32")
+
+        a href="index.html" class="logo logo-light"
+            span.logo-sm
+                = image_tag('logo/mlo.png', alt: "", height: "22")
+            span.logo-lg
+                = image_tag('logo/mlo-light.png', alt: "", height: "32")
+        button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover"
+            i.ri-record-circle-line
+
+    #scrollbar
+        .container-fluid
+            #two-column-menu
+            - case current_user.role
+            - when "admin"
+                = render partial: "layouts/sidebar/admin"
+            - when "manager"
+                = render partial: "layouts/sidebar/manager"
+            - when "user"
+                = render partial: "layouts/sidebar/user"
+
+    .sidebar-background

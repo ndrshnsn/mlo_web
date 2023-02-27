@@ -1,0 +1,175 @@
+.row.mb-2
+  .col-lg-4.col-sm-12
+      .span.text-center.mb-2
+        = image_tag("#{session[:pdbprefix]}/players/#{@defPlayer.platform}/#{@defPlayer.details['platformid']}.png", class: "avatar-lg img-thumbnail rounded-circle", style: "width: 96px; height: 96px;", onerror: "this.error=null;this.src='#{image_url("/misc/generic-player.png")}';")
+      ul.list-group.list-group-flush
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.country')
+              span = image_tag(countryFlag(@defPlayer.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{@defPlayer.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.age')
+              span = @defPlayer.age
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.foot')
+              span = translate_pkeys(@defPlayer.foot, @defPlayer.platform)
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.height')
+              span = @defPlayer.height
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.weight')
+              span = @defPlayer.weight
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              - rpPOS = translate_pkeys(@defPlayer.def_player_position.name, @defPlayer.platform)
+              span = t('playerdb.players.position')
+              span[class="badge badge-#{rpPOS[1]}"] = rpPOS[0]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.overall')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['overallRating'])}"] = @defPlayer.details["attrs"]["overallRating"]
+          
+          li.list-group-item.d-flex.justify-content-center
+              span = t('playerdb.players.otherPositions')
+          li.list-group-item.d-flex.justify-content-center
+              span
+                - @positions.each do |pos|
+                  .badge.badge-outline-secondary.me-1
+                    = translate_pkeys(pos[0], @defPlayer.platform)[0]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.playerWorkRate')
+              span
+                - wRate = @defPlayer.details["attrs"]["playerWorkRate"].delete(' ').split('/')
+                | #{t("playerdb.players.#{wRate[0].downcase}")}/#{t("playerdb.players.#{wRate[1].downcase}")}
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.weakFoot')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['weakFoot'])}"] = @defPlayer.details["attrs"]["weakFoot"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.skillMoves')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['skillMoves'])}"]
+                = @defPlayer.details["attrs"]["skillMoves"]
+                
+  .col-lg-4.col-sm-12
+      ul.list-group.list-group-flush
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.ballControl')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['ballControl'])}"] = @defPlayer.details["attrs"]["ballControl"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.dribbling')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['dribbling'])}"] = @defPlayer.details["attrs"]["dribbling"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.marking')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['marking'])}"] = @defPlayer.details["attrs"]["marking"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.slideTackle')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['slideTackle'])}"] = @defPlayer.details["attrs"]["slideTackle"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.standTackle')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['standTackle'])}"] = @defPlayer.details["attrs"]["standTackle"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.aggression')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['aggression'])}"] = @defPlayer.details["attrs"]["aggression"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.reactions')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['reactions'])}"] = @defPlayer.details["attrs"]["reactions"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.attPosition')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['attPosition'])}"] = @defPlayer.details["attrs"]["attPosition"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.interceptions')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['interceptions'])}"] = @defPlayer.details["attrs"]["interceptions"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.vision')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['vision'])}"] = @defPlayer.details["attrs"]["vision"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.composure')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['composure'])}"] = @defPlayer.details["attrs"]["composure"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.crossing')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['crossing'])}"] = @defPlayer.details["attrs"]["crossing"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.shortPass')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['shortPass'])}"] = @defPlayer.details["attrs"]["shortPass"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.longPass')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['longPass'])}"] = @defPlayer.details["attrs"]["longPass"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.acceleration')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['acceleration'])}"] = @defPlayer.details["attrs"]["acceleration"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.stamina')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['stamina'])}"] = @defPlayer.details["attrs"]["stamina"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.strength')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['strength'])}"] = @defPlayer.details["attrs"]["strength"]
+  .col-lg-4.col-sm-12
+      ul.list-group.list-group-flush
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.balance')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['balance'])}"] = @defPlayer.details["attrs"]["balance"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.sprintSpeed')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['sprintSpeed'])}"] = @defPlayer.details["attrs"]["sprintSpeed"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.agility')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['agility'])}"] = @defPlayer.details["attrs"]["agility"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.jumping')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['jumping'])}"] = @defPlayer.details["attrs"]["jumping"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.heading')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['heading'])}"] = @defPlayer.details["attrs"]["heading"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.shotPower')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['shotPower'])}"] = @defPlayer.details["attrs"]["shotPower"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.finishing')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['finishing'])}"] = @defPlayer.details["attrs"]["finishing"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.longShots')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['longShots'])}"] = @defPlayer.details["attrs"]["longShots"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.curve')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['curve'])}"] = @defPlayer.details["attrs"]["curve"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.fkAcc')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['fkAcc'])}"] = @defPlayer.details["attrs"]["fkAcc"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.penalties')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['penalties'])}"] = @defPlayer.details["attrs"]["penalties"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.volleys')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['volleys'])}"] = @defPlayer.details["attrs"]["volleys"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.gkPositioning')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['gkPositioning'])}"] = @defPlayer.details["attrs"]["gkPositioning"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.gkDiving')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['gkDiving'])}"] = @defPlayer.details["attrs"]["gkDiving"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.gkHandling')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['gkHandling'])}"] = @defPlayer.details["attrs"]["gkHandling"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.gkKicking')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['gkKicking'])}"] = @defPlayer.details["attrs"]["gkKicking"]
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+              span = t('playerdb.players.stats.gkReflexes')
+              span[class="stat #{translate_pscore(@defPlayer.details['attrs']['gkReflexes'])}"] = @defPlayer.details["attrs"]["gkReflexes"]
+.row.border-dashed.border.border-secondary style="padding: 1.5rem; margin: 1.5rem;"
+  .col-lg-6.col-sm-12
+    h6.d-flex.align-items-center
+      i.ri-star-s-line.me-2.text-danger
+      = t('playerdb.players.speciality')
+    p
+      - if @defPlayer.details["specialities"]
+        - @defPlayer.details["specialities"].each do |speciality|
+          - if speciality != "-"
+            .badge.badge-soft-light.badge-border.me-1
+              = t("playerdb.players.specialities.#{speciality.delete(' ')}")
+  .col-lg-6.col-sm-12
+    h6.d-flex.align-items-center
+      i.ri-star-s-line.me-2.text-danger
+      = t('playerdb.players.trait')
+    p
+        - if @defPlayer.details["traits"]
+            - @defPlayer.details["traits"].each do |trait|
+                - if trait != "-"
+                    .badge.badge-soft-light.badge-border.me-1
+                        = t("playerdb.players.traits.#{trait.delete(' ')}")

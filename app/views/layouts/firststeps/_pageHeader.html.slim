@@ -1,0 +1,7 @@
+.row.pt-3
+  .col-12
+    .card.text-center style='background-image: url(#{image_path("misc/corner.png")})'
+      .card-body
+        h2.text-primary #{t('.welcome')} 👋👋
+        - if !current_user.preferences["request"]
+          p.card-text.mb-2.mt-1.fs-15 = t('.first_instructions_html')

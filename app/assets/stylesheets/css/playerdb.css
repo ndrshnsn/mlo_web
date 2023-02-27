@@ -1,0 +1,128 @@
+  
+.badge-Goalkeeper, .badge-Defender, .badge-Midfielder, .badge-Forward {
+  color: #000;
+  border-radius: 5px;
+}
+
+.badge-Forward {
+  background: #dd4b39;
+}
+.badge-Goalkeeper {
+  background-color: #f39c12;
+}
+.badge-Midfielder {
+  background: #00a65a;
+}
+.badge-Defender {
+  background: #367fa9;
+}
+
+.condition-A {
+  color: #ef1e1e;
+}
+.condition-B {
+  color: #feb907;
+}
+.condition-C {
+  color: #ffff00;
+}
+.condition-D {
+  color: #367fa9;
+}
+.condition-E {
+  color: #211e3e;
+}
+
+.player-avatar-team {
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: -4px;
+  bottom: 1px;
+  border: 1px solid #FFF;
+}
+
+.dark-layout .player-avatar-team {
+  border-color: #283046;
+}
+
+
+.stat {
+  text-align: center;
+  padding: 2px 5px;
+  width: 28px;
+  border-radius: 5px;
+  display: inline-block;
+  color: #000;
+  white-space: nowrap;
+}
+
+.player-positions-new {
+  display: flex;
+  flex-flow: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.player-positions-row {
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  align-items: center;
+}
+.player-positions-item {
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  width: 40px;
+  font-size: 11px;
+  color: #211e3e;
+}
+.player-positions-item span.pos {
+  margin: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  font-weight: bold;
+  text-align: center;
+}
+span.pos {
+  border-radius: 5px;
+  padding: 3px 6px;
+  margin: 4px;
+}
+.badge.position.main {
+  border: 2px solid #000;
+  background: #367fa9;;
+}
+.badge.position.Forward.pos2 {
+  background: #bd2020;
+}
+
+.badge.position.Forward.pos1 {
+  background: #b86868;
+}
+
+.badge.position.Midfielder.pos1 {
+  background: #b6c98d;
+}
+
+.badge.position.Midfielder.pos2 {
+  background: #88c900;
+}
+
+.badge.position.Defender.pos2 {
+  background: #3489ba;
+}
+
+.badge.position.Defender.pos1 {
+  background: #92c6d1;
+}
+
+.badge.position.Goalkeeper.pos2 {
+  background: #feb907;
+}

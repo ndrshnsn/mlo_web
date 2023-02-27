@@ -1,0 +1,50 @@
+.row
+  .col-12
+    .card
+      .card-body
+        .row.g-4.mb-3 
+          .col-sm-12.col-md-6
+            .form-group
+              = label_tag 'name', t('.name'), class: "control-label"
+              = text_field_tag('name', nil, class: "form-control dt-input", style: "text-transform: uppercase;")
+
+          .col-sm-12.col-md-6
+            .form-group
+              = label_tag 'country', t('.country'), class: "control-label"
+              = select_tag "player_nationality", options_for_select(@defCountries.collect { |def_country| [t("defaults.countries.#{def_country.name}"), def_country.name, {'data-country': countryFlag(def_country.name)}] }), {include_blank: true, class: "form-control select2 dt-select", id: 'player_nationality_select', 'data-column': "3", 'data-column-index': "1", "data-controller": "select", "data-select-icon-value": true }
+
+          .col-sm-12.col-md-6
+            .form-group
+              = label_tag 'name', t('.active'), class: "control-label"
+              = select_tag "player_active", options_for_select([[t('.active'), "true"], [t('.inactive'), "false"]]), {include_blank: true, class: "form-control select2 dt-select", id: 'player_active_select', 'data-column': "7", 'data-column-index': "1", "data-controller": "select", "data-select-icon-value": false }
+
+          .col-sm-12.col-md-6
+            .form-group
+              = label_tag 'platform', t('.platform'), class: "control-label"
+              = select_tag "player_platform", options_for_select(@platforms), {include_blank: true, class: "form-control select2 dt-select", id: 'player_platform_select', 'data-column': "6", 'data-column-index': "1", "data-controller": "select", "data-select-icon-value": false }
+
+        div data-controller="dt--admin-players"
+          #tableDom.table-responsive.table-card.mb-1.mt-3
+            table.table.table-striped.table-nowrap.dt-responsive.align-middle.mb-0 id="dt-admin-playerdb-players" style="width: 100%;"
+              thead.table-light
+                tr
+                  th = t('.name')
+                  th = t('.age')
+                  th = t('.height')
+                  th = t('.country')
+                  th = t('.position')
+                  th = t('.overall')
+                  th = t('.platform')
+                  th = t('.status')
+                  th.text-center = t('.actions')
+              tfoot.table-light
+                tr
+                  th = t('.name')
+                  th = t('.age')
+                  th = t('.height')
+                  th = t('.country')
+                  th = t('.position')
+                  th = t('.overall')
+                  th = t('.platform')
+                  th = t('.status')
+                  th.text-center = t('.actions')

@@ -1,0 +1,5 @@
+= turbo_frame_tag "main_frame" do
+  = render partial: "layouts/header/pageHeader", locals: { title: t('.myclub') }
+
+  = turbo_frame_tag "myclub_management" do
+    = render "details"

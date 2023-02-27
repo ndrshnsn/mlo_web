@@ -1,0 +1,20 @@
+pt-BR:
+  defaults:
+    datatables:
+      edit: "Editar"
+      delete: "Remover"
+      show: "Detalhes"
+      enable: "Ativar"
+      players: "Jogadores"
+      confirm_enable: "Ativar?"
+      confirm_enable_text: "Confirma que quer ativar este ítem?"
+      disable: "Desativar"
+      confirm_disable: "Desativar?"
+      confirm_disable_text: "Confirma que quer desativar este ítem?"
+      confirm_remove: "Confirma a Remoção?"
+      confirm_remove_text: "Caso este ítem já esteja associado com outro registro não será possível sua remoção"
+      confirm_join_league: "Solicitar Ingresso na liga %{league}?"
+      manager:
+        users_confirm_activate: "Caso haja uma vaga disponível esta será definida para este usuário e o mesmo definido como ativo"
+        users_confirm_removal: "O usuário será removido da liga."
+        users_confirm_deactivate: "Este usuário será desativado e voltará para a fila de espera. Uma conta temporária será criada para ocupar o seu lugar"

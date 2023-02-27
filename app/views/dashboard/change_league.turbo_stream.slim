@@ -1,0 +1,6 @@
+= turbo_stream.update "header_leagues", partial: "layouts/header/leagues"
+= turbo_stream.update "notifications_count", partial: "notifications/notify_counter", locals: { unread: @unreadNotifications }
+= turbo_stream.update "notification_list", partial: "notifications/notification", locals: { notifications: @notifications }
+= turbo_stream.update "sidebar", partial: "layouts/sidebar/main"
+= turbo_stream.replace "dashboard", partial: "dashboard/main"
+= render_turbo_stream_flash_messages

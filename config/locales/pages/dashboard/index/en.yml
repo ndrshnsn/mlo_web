@@ -1,0 +1,5 @@
+pt-BR:
+  dashboard:
+    index:
+      button_with_text: "button 1"
+      button_with_another_text: "button 2"

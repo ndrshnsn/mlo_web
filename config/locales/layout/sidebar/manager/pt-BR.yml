@@ -1,0 +1,9 @@
+pt-BR:
+  layouts:
+    sidebar:
+      manager:
+        seasons: "Temporadas"
+        championships: "Campeonatos"
+        users: "Usuários"
+        settings: "Configurações"
+        awards: "Premiações"

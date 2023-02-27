@@ -1,0 +1,127 @@
+/*
+Template Name: Velzon - Admin & Dashboard Template
+Author: Themesbrand
+Website: https://themesbrand.com/
+Contact: support@themesbrand.com
+File: Custom Css File
+*/
+
+@media (max-width: 575.98px) {
+  div.dataTables_wrapper {
+      overflow: scroll;
+  }
+}
+
+div.dataTables_paginate {
+  margin: 0;
+  white-space: nowrap;
+  text-align: right;
+  position: static;
+  float: right;
+}
+
+.table td, .table th {
+white-space: nowrap;
+}
+
+div.dataTables_paginate ul {
+  margin-top: inherit!important;
+}
+
+/* table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
+  right: 0!important;
+  content: ""!important;
+}
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+  right: 0!important;
+  content: ""!important;
+} */
+
+/* .dataTables_wrapper .dataTables_processing {
+position: absolute;
+top: 30%;
+left: 50%;
+width: 30%;
+height: 50px;
+margin-left: -20%;
+margin-top: -25px;
+padding-top: 20px;
+text-align: center;
+z-index: 3000;
+background:#283046;
+border:1px solid #7367F0 !important;
+} */
+
+/* .turbo-progress-bar {
+  background-color: red !important;
+  height: 5px !important;
+} */
+
+.popover {
+  z-index: 1056!important;
+}
+
+.popover-body {
+  padding: 0.5rem 0.7rem !important;
+  font-size: small;
+  box-shadow: 0 1px 2px rgba(56,65,74,.15)!important;
+}
+
+/* Force Padding of Avatar Thumbnail */
+.img-thumbnail {
+  padding: 0!important;
+}
+
+/* Force color of Select2 arrow */
+/* .select2-container .select2-selection--single .select2-selection__arrow b {
+  border-color: #51555a transparent transparent transparent!important;
+} */
+
+.disabled-select {
+  background-color: var(--vz-input-disabled-bg);
+  opacity: 0.5;
+  border-radius: 3px;
+  cursor: not-allowed;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+select[readonly].select2-hidden-accessible + .select2-container {
+  pointer-events: none;
+  touch-action: none;
+}
+
+select[readonly].select2-hidden-accessible + .select2-container .select2-selection {
+  background: var(--vz-input-disabled-bg);
+  box-shadow: none;
+}
+
+select[readonly].select2-hidden-accessible + .select2-container .select2-selection__arrow,
+select[readonly].select2-hidden-accessible + .select2-container .select2-selection__clear {
+  display: none;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  z-index:1!important;
+}
+
+tr.strikeout td:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-bottom: 1px solid #111;
+  width: 100%;
+}
+
+.multiselect-image {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+  float: left;
+  margin-top: 2px;
+  border-radius: 50%!important;
+}

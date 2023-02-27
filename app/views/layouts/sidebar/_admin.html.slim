@@ -1,0 +1,33 @@
+- playerdb = ["playerdb_countries", "playerdb_leagues", "playerdb_teams", "playerdb_players"].include? controller_name
+- blog = ["blog_posts", "blog_categories"]
+
+
+ul.navbar-nav id="navbar-nav"
+  li.menu-title  
+      span data-key="t-menu" ADMIN
+
+  li.nav-item
+      a.nav-link.menu-link id="sidebar_playerdb" href="#sidebar_playerdb_collapse" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar_playerdb_collapse"
+          i.ri-database-line
+          span data-key="t-playerdb" = t('.playerdb.main')
+      #sidebar_playerdb_collapse class=="collapse menu-dropdown #{'show' if playerdb == true}"
+          ul.nav.nav-sm.flex-column
+              li.nav-item
+                = link_to t('.playerdb.countries'), admin_playerdb_countries_path, class: "nav-link #{'active' if controller_name == 'playerdb_countries'}", id: "sidebar_playerdb_countries" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-target": "_top", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_playerdb", "sidebar-child-value": "sidebar_playerdb_countries" }
+              li.nav-item
+                = link_to t('.playerdb.teams'), admin_playerdb_teams_path, class: "nav-link #{'active' if controller_name == 'playerdb_teams'}", id: "sidebar_playerdb_teams" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-target": "_top", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_playerdb", "sidebar-child-value": "sidebar_playerdb_teams" }
+              li.nav-item
+                = link_to t('.playerdb.players'), admin_playerdb_players_path, class: "nav-link #{'active' if controller_name == 'playerdb_players'}", id: "sidebar_playerdb_players" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-target": "_top", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_playerdb", "sidebar-child-value": "sidebar_playerdb_players" }
+
+  li.nav-item
+    = link_to admin_accounts_path, class: "menu-link nav-link #{'active' if controller_name == 'accounts'}", id: "sidebar_accounts" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_accounts", "sidebar-child-value": "sidebar_accounts" } do
+      i.ri-group-line
+      span data-key="t-accounts" = t('.accounts')
+  li.nav-item
+    = link_to admin_leagues_path, class: "menu-link nav-link #{'active' if controller_name == 'leagues'}", id: "sidebar_leagues" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_leagues", "sidebar-child-value": "sidebar_leagues" } do
+      i.ri-honour-line
+      span data-key="t-leagues" = t('.leagues')
+  li.nav-item
+    = link_to admin_settings_path, class: "menu-link nav-link #{'active' if controller_name == 'settings'}", id: "sidebar_settings" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_settings", "sidebar-child-value": "sidebar_settings" } do
+      i.ri-settings-line
+      span data-key="t-playerdb" = t('.settings')

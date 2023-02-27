@@ -1,0 +1,7 @@
+.row
+  .col-xl-9.col-lg-8
+    = render partial: 'manager/championships/details/info'
+
+  .col-xl-3.col-lg-4
+    = turbo_frame_tag "cactions_menu"
+      = render partial: 'manager/championships/cActions'

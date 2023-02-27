@@ -1,0 +1,33 @@
+pt-BR:
+  admin:
+    accounts:
+      index:
+        accounts: "Contas de Usuário"
+      list:
+        email: "Email"
+        role: "Perfil"
+        status: "Status"
+        name: "Nome"
+      edit:
+        edit: "Editar"
+        confirm: "Atualizar?"
+        confirm_text: ""
+      update:
+        success: "Usuário atualizado com sucesso!"
+        error: "Erro atualizando usuário!"
+      destroy:
+        success: "Usuário removido com sucesso!"
+        error: "Erro removendo usuário"
+      form:
+        personal_information: "Informações Pessoais"
+        nickname: "Nickname"
+        platform: "Plataforma"
+        phone: "Telefone"
+        birth: "Data de Nascimento"
+        social_links: "Redes Sociais"
+        confirm: "Atualizar"
+        cancel: "Cancelar"
+        country: "País"
+        city: "Cidade"
+        admin_settings: "Opções de Admin"
+        role: "Perfil"

@@ -1,0 +1,39 @@
+= turbo_frame_tag "tab_content" do
+  .tab-pane id="system" role="tabpanel"
+    = form_with model: current_user, id: "profile_update_system", url: profile_update_system_path(@user.id), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "warning"} do |f|
+      .row
+        .mb-3
+          ul.list-unstyled.mb-0
+            li.d-flex
+              .flex-grow-1
+                label for="user_locale" class="form-check-label fs-14" = t('.locale')
+                p.text-muted = t('.locale_obs')
+              .flex-shrink-0
+                - curLocale = current_user.preferences["locale"] || I18n.locale
+                = select_tag "user[locale]", options_for_select(I18n.available_locales.collect{ |locale| [t("locale_#{locale}"), locale]}, curLocale), id: "user_locale", include_blank: true, class: "form-control select2 dt-select", "data-controller": "select", "data-select-icon-value": false
+
+            li.d-flex
+              .flex-grow-1
+                label for="user_theme" class="form-check-label fs-14" = t('.theme')
+                p.text-muted = t('.theme_obs')
+              .flex-shrink-0
+                - curTheme = current_user.preferences["theme"] || "dark"
+                = select_tag "user[theme]", options_for_select([["#{t('theme.dark')}", "dark"], ["#{t('theme.light')}", "light"]], curTheme), id: "user_theme", include_blank: true, class: "form-control select2 dt-select", "data-controller": "theme select", "data-select-icon-value": false
+
+            li.d-flex
+              .flex-grow-1
+                label for="user_notifications" class="form-check-label fs-14" = t('.notifications')
+                p.text-muted = t('.notifications_obs')
+              .flex-shrink-0
+                span
+                  .form-group
+                    .form-check.form-switch
+                      - sEnabled = ""
+                      - if current_user.preferences["sendpoint"]
+                        - sEnabled = current_user.preferences["sendpoint"].empty? ? "" : "checked"
+                      = check_box_tag "user[notifications]", nil, sEnabled, class: "mt-2 form-check-input", data: { controller: "notifications"}
+                      label.form-check-label for="user_notifications"
+
+      .row
+        .col-12.text-end
+          = f.submit t('.confirm'), class: "btn btn-submit btn-primary"

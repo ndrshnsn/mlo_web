@@ -1,0 +1,5 @@
+- if breadcrumb_trail
+  ol.breadcrumb.m-0
+    - breadcrumb_trail do |crumb|
+      li class="breadcrumb-item #{"active" if crumb.current?}"
+        = crumb.name

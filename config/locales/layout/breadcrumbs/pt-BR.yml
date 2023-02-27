@@ -1,0 +1,35 @@
+pt-BR:
+  loaf:
+    breadcrumbs:
+      dashboard: "Painel"
+      myclub:
+        main: "Meu Clube"
+        management:
+          main: "Administrativo"
+      admin:
+        playerdb:
+          main: "PlayerDB"
+          countries:
+            main: "Países"
+            new: "Novo"
+          teams:
+            main: "Times"
+          players:
+            main: "Jogadores"
+        accounts:
+          main: "Usuários"
+        settings:
+          main: "Configurações"
+        leagues:
+          main: "Ligas"
+      manager:
+        settings:
+          main: "Configurações"
+        users:
+          main: "Usuários"
+        awards:
+          main: "Premiações"
+        seasons:
+          main: "Temporadas"
+        championships:
+          main: "Campeonatos"

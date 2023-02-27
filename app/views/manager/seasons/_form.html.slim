@@ -1,0 +1,445 @@
+- fDisabled = @season.present? ? true : false
+- sStarted = @season.status > 0 ? true : false
+
+.card 
+  .card-header.align-items-center.d-flex
+    h4.card-title.mb-o.flex-grow-1
+      - if fDisabled
+        = t('.settings')
+      - else
+        = t('.new')
+  .card-body
+    p.text-muted.fs-6
+      blockquote.blockquote.custom-blockquote.blockquote-dark.rounded.fs-6 = t('.details_html')
+    .row
+      .col-12
+        h5.mt-2.d-flex
+          i.ri-information-line.me-1
+          span = t('.main_information')
+      .col-sm-12.col-md-6
+        .form-group
+          = f.label :name, t('.name'), class: "control-label"
+          - if @season.id.present?
+            = f.text_field :name, class: "form-control", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase", readonly: true
+          - else
+            = f.text_field :name, class: "form-control", required: true, "data-parsley-remote": "/manager/seasons/check_season_name", "data-parsley-trigger": "input", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase"
+        p
+          small.text-muted = t('.name_suggestion_html')
+      .col-sm-6.col-md-3
+        .form-group
+          = f.label :name, t('.start_date'), class: "control-label"
+          - if @season.id.present?
+            = f.text_field :start_date, class: "text-center form-control", value: I18n.localize(@season.start, format: t('date.formats.default')), readonly: sStarted
+          - else
+            = f.text_field :start_date, class: "text-center form-control", required: true, "data-controller": "flatpickr", "data-flatpickr-ctype-value": "simple", value: @season.start
+      .col-sm-6.col-md-3
+        .form-group
+          = f.label :season_time, t('.duration'), class: "control-label"
+          span
+            #popover_season_time
+          = select_tag "season[time]", options_for_select(AppConfig.season_times.split(' ').collect { |time| [time, time] }, @season.duration), {include_blank: true,  class: "readonly text-center form-control select2", required: true, "data-parsley-errors-container": "season_time", "data-controller": "select", "data-select-icon-value": false, "data-select-readonly-value": sStarted, "data-minimum-results-for-search": "Infinity" }
+          
+.card 
+  .card-header.align-items-center.d-flex
+    h5.card-title.d-flex
+      i.ri-settings-line.me-1
+      span = t('.settings')
+  .card-body
+    .row
+      .col-12
+        h6.mt-2.d-flex
+          i.ri-subtract-fill.me-1
+          span = t('.teams')
+        small.text-muted = t('.teams_desc')
+        ul.list-group.list-group-flush
+          li.list-group-item.d-flex.justify-content-between.align-items-center 
+            span.li-col
+              = t('.team.minimum_players')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.team.minimum_players_desc')}"
+            span[style="width: 130px!important;"]
+              .form-group
+                - minPlayers = @season.min_players || AppConfig.season_min_players.split(' ')[0]
+                span
+                  #popover_season_min_players
+                = select_tag "season[min_players]", options_for_select(AppConfig.season_min_players.split(' ').collect { |players| [players, players] }, minPlayers), { class: "text-center form-control select2", "data-parsley-lt": "#season_max_players", "data-parsley-error-message": "O mínimo precisa ser menor que o máximo!", "data-parsley-errors-container": "season_min_players", "data-controller": "select manager--seasons", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
+
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+            span.li-col
+              = t('.team.maximum_players')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.team.maximum_players_desc')}"
+            span[style="width: 130px!important;"]
+              .form-group
+                - maxPlayers = @season.max_players || AppConfig.season_max_players.split(' ')[0]
+                span
+                  #popover_season_max_players
+                = select_tag "season[max_players]", options_for_select(AppConfig.season_max_players.split(' ').collect { |players| [players, players] },maxPlayers), {class: "text-center form-control select2", "data-controller": "select manager--seasons", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
+
+        h6.mt-2.d-flex
+          i.ri-subtract-fill.me-1
+          span = t('.trades')
+        small.text-muted = t('.trades_desc')
+        ul.list-group.list-group-flush
+          li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+            span.li-col
+              = t('.trade.out_of_window')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.trade.out_of_window_desc')}"
+            span
+              .form-group
+                - change_player_out_of_window = @season.change_player_out_of_window == "on" ? "true" : nil
+                .form-check.form-switch
+                  = check_box_tag "season[change_player_out_of_window]", nil, change_player_out_of_window, class: "mt-2 form-check-input"
+                  label.form-check-label for="season_change_player_out_of_window"
+          li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+            span.li-col
+              = t('.trade.player_loan')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.trade.player_loan_desc')}"
+            span
+              - enable_players_loan = @season.enable_players_loan == "on" ? "true" : nil
+              .form-group.pt-1.pb-1
+                .form-check.form-switch
+                  - if sStarted
+                    - iClass = enable_players_loan == "true" ? "check" : "close"
+                    i class="fs-18 ri-#{iClass}-line"
+                  - else
+                    = check_box_tag"season[enable_players_loan]", nil, enable_players_loan, class: "mt-2 form-check-input"
+                  label.form-check-label for="season_enable_players_loan"
+          li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+            span.li-col
+              = t('.trade.player_exchange')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.trade.player_exchange_desc')}"
+            span
+              - enable_players_exchange = @season.enable_players_exchange == "on" ? "true" : nil
+              .form-group.pt-1.pb-1
+                .form-check.form-switch
+                  = check_box_tag "season[enable_players_exchange]", nil, enable_players_exchange, class: "mt-2 form-check-input"
+                  label.form-check-label for="season_enable_players_exchange"
+
+        h6.mt-2.d-flex
+          i.ri-subtract-fill.me-1
+          span = t('.steals')
+        small.text-muted.mb-1 = t('.steals_desc')
+        ul.list-group.list-group-flush
+          li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+            span.li-col
+              = t('.steal.player_steal')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.steal.player_steal_desc')}"
+            span
+              - enable_player_steal = @season.enable_player_steal == "on" ? "true" : nil
+              .form-group.pt-1.pb-1
+                .form-check.form-switch
+                  = check_box_tag "season[enable_player_steal]", nil, enable_player_steal, class: "mt-2 form-check-input"
+                  label.form-check-label for="season_enable_player_steal"
+          li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+            span.li-col
+              = t('.steal.max_steal')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.steal.max_steal_desc')}"
+            span style="min-width: 130px!important;"
+              - max_steals_same_player = @season.max_steals_same_player || AppConfig.season_max_steals_same_player
+              .form-group
+                = select_tag "season[max_steals_same_player]", options_for_select(0...21, max_steals_same_player), {include_blank: true,  class: "text-center form-control select2", "data-controller": "select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity" }
+          li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+            span.li-col
+              = t('.steal.max_steal_per_user')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.steal.max_steal_per_user_desc')}"
+            span style="width: 130px!important;"
+              - max_steals_per_user = @season.max_steals_per_user || AppConfig.season_max_steals_per_user
+              .form-group
+                = select_tag "season[max_steals_per_user]", options_for_select(0...21, max_steals_per_user), {include_blank: true,  class: "text-center form-control select2", "data-controller": "select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity" }
+
+          li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+            span.li-col
+              = t('.steal.max_stolen_users')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.steal.max_stolen_users_desc')}"
+            span[style="width: 130px!important;"]
+              - max_stealed_players = @season.max_stealed_players || AppConfig.season_max_stealed_players
+              .form-group
+                = select_tag "season[max_stealed_players]", options_for_select(0...21, max_stealed_players), {include_blank: true,  class: "text-center form-control select2", "data-controller": "select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity"}
+          li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
+            span.li-col
+              = t('.steal.add_value_after_steal')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.steal.add_value_after_steal_desc')}"
+            span[style="width: 130px!important;"]
+              .form-group
+                .input-group
+                  = number_field_tag("season[add_value_after_steal]", @season.add_value_after_steal, min: 0, max: 100, step: 5, class: "text-center form-control")
+                  .input-group-append
+                    span.input-group-text
+                      | %
+          li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
+            span.li-col
+              = t('.steal.window')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.steal.window_desc')}"
+              p
+                small.text-muted.ml-25 = t('.steal.window_obs')
+            span[style="width: 130px!important;"]
+              .form-group
+                - steal_window_start = @season.steal_window_start || AppConfig.season_default_steal_window_start
+                .input-group.mb-50
+                  = number_field_tag("season[steal_window_start]", steal_window_start, class: "text-center form-control", "data-parsley-lt": "#season_steal_window_end", "data-parsley-lt-message": t('parsley.minimum_bigger'))
+                  .input-group-append
+                      span.input-group-text
+                        | hs
+                - steal_window_end = @season.steal_window_end || AppConfig.season_default_steal_window_end
+                .input-group
+                  = number_field_tag("season[steal_window_end]", steal_window_end, class: "text-center form-control")
+                  .input-group-append
+                      span.input-group-text
+                        | hs
+
+.card 
+  .card-body
+    h5.card-title.d-flex
+      i.ri-money-dollar-circle-line.me-1
+      span = t('.values')
+    h6.mt-1.card-subtitle.text-muted = t('.values_desc')
+    .col-12
+      ul.list-group.list-group-flush
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 30px!important;"
+          span.li-col
+            = t('.value.club_default_earning')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.club_default_earning_desc')}"
+          span style="width: 130px!important;"
+            - club_default_earning = @season.club_default_earning || AppConfig.season_club_default_earning
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text = t('money_sign')
+                = text_field_tag("season[club_default_earning]", club_default_earning, class: "form-control default_club_default_earning", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 30px!important;"
+          span.li-col
+            = t('.value.club_max_total_wage')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.club_max_total_wage_desc')}"
+          span style="width: 130px!important;"
+            - club_max_total_wage = @season.club_max_total_wage || AppConfig.season_club_max_total_wage
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text = t('money_sign')
+                = text_field_tag("season[club_max_total_wage]", club_max_total_wage, class: "form-control club_max_total_wage-mask", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+          span.li-col
+            = t('.value.allow_negative_funds')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.allow_negative_funds_desc')}"
+          span
+            - allow_negative_funds = @season.allow_negative_funds == "on" ? "true" : nil
+            .form-group.pt-1.pb-1
+              .form-check.form-switch
+                = check_box_tag "season[allow_negative_funds]", nil, allow_negative_funds, readonly: sStarted, class: "mt-2 form-check-input"
+                label.form-check-label for="season_allow_negative_funds"
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+          span.li-col
+            = t('.value.allow_money_transfer')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.allow_money_transfer_desc')}"
+          span
+            - allow_money_transfer = @season.allow_money_transfer == "on" ? "true" : nil
+            .form-group.pt-1.pb-1
+              .form-check.form-switch
+                = check_box_tag "season[allow_money_transfer]", nil, allow_money_transfer, class: "mt-2 form-check-input"
+                label.form-check-label for="season_allow_money_transfer"
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 30px!important;"
+          span.li-col
+            = t('.value.default_player_earnings')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.default_player_earnings_desc_html')}"
+          span style="width: 130px!important;"
+            - default_player_earnings = @season.default_player_earnings || "none"
+            .form-group
+              = select_tag "season[default_player_earnings]", options_for_select([[t('.proportional'), "proportional", {'data-src': manager_seasons_ftax_path('wage')}],[t('.fixed_value'), "fixed", {'data-src': manager_seasons_pearnings_path('fixed')}]],default_player_earnings), {class: "text-center form-control select2", "data-controller": "select select-frame", "data-select-frame-target-value": "default_player_earnings_partial", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-select-readonly-value": sStarted }
+        - if default_player_earnings == "fixed"
+          = turbo_frame_tag :default_player_earnings_partial, src: manager_seasons_pearnings_path('fixed')
+        - else
+          = turbo_frame_tag :default_player_earnings_partial
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+          span.li-col
+            = t('.value.player_value_earning_relation')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.player_value_earning_relation_desc')}"
+          span[style="width: 130px!important;"]
+            - player_value_earning_relation = @season.player_value_earning_relation || AppConfig.season_player_value_earning_relation
+            .form-group
+              .input-group
+                = number_field_tag("season[player_value_earning_relation]", player_value_earning_relation, min: AppConfig.season_player_value_earning_relation, max: 100, step: 5, readonly: sStarted, class: "text-center form-control")
+                .input-group-append
+                  span.input-group-text
+                    | X
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+          span.li-col
+            = t('.value.allow_increase_earnings')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.allow_increase_earnings_desc')}"
+          span
+            - allow_increase_earnings = @season.allow_increase_earnings == "on" ? "true" : nil
+            .form-group
+              .form-check.form-switch
+                = check_box_tag "season[allow_increase_earnings]", nil, allow_increase_earnings, class: "mt-2 form-check-input"
+                label.form-check-label for="season_allow_increase_earnings"
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+          span.li-col
+            = t('.value.allow_decrease_earnings')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.allow_decrease_earnings_desc')}"
+          span
+            - allow_decrease_earnings = @season.allow_decrease_earnings == "on" ? "true" : nil
+            .form-group
+              .form-check.form-switch
+                = check_box_tag "season[allow_decrease_earnings]", nil, allow_decrease_earnings, class: "mt-2 form-check-input"
+                label.form-check-label[for="season_allow_decrease_earnings"]
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+          span.li-col
+            = t('.value.operation_tax')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.operation_tax_desc')}"
+          span style="width: 130px!important;"
+            - operation_tax = @season.operation_tax || 0
+            .form-group
+              .input-group
+                = text_field_tag("season[operation_tax]", operation_tax, maxlength: 2, class: "text-center form-control operation_tax-mask", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "numerical"})
+                .input-group-append
+                  span.input-group-text
+                    | %
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+          span.li-col
+            = t('.value.default_mininum_operation')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.default_mininum_operation_desc')}"
+          span style="width: 130px!important;"
+            - default_mininum_operation = @season.default_mininum_operation || AppConfig.season_default_mininum_operation
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text = t('money_sign')
+                = text_field_tag("season[default_mininum_operation]", default_mininum_operation, maxlength: 6, class: "form-control", readonly: sStarted,  data: { controller: "cleave", "cleave-ctype-value": "price"})
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+          span.li-col
+            = t('.value.allow_fire_player')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.allow_fire_player_desc')}"
+          span
+            - allow_fire_player = @season.allow_fire_player == "on" ? "true" : nil
+            .form-group
+              .form-check.form-switch
+                = check_box_tag "season[allow_fire_player]", nil, allow_fire_player, class: "mt-2 form-check-input"
+                label.form-check-label for="season_allow_fire_player"
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+          span.li-col
+            = t('.value.fire_tax')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.fire_tax_desc')}"
+          span style="width: 130px!important;"
+            - fire_tax = @season.fire_tax || "none"
+            .form-group
+              = select_tag "season[fire_tax]", options_for_select([[t('.none'), "none", {'data-src': manager_seasons_ftax_path('none')}],[t('.collect_salary'), "wage", {'data-src': manager_seasons_ftax_path('wage')}],[t('.fixed_value'), "fixed", {'data-src': manager_seasons_ftax_path('fixed')}]],fire_tax), {class: "text-center form-control select2", "data-controller": "select select-frame", "data-select-frame-target-value": "fire_tax_partial", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-select-readonly-value": sStarted }
+        - if fire_tax == "fixed"
+          = turbo_frame_tag :fire_tax_partial, src: manager_seasons_ftax_path('fixed')
+        - else
+          = turbo_frame_tag :fire_tax_partial
+
+
+.card 
+  .card-body
+    h5.card-title.d-flex
+      i.ri-calendar-line.me-1
+      span = t('.dates')
+    h6.mt-1.card-subtitle.text-muted = t('.dates_desc')
+    .col-12
+      ul.list-group.list-group-flush
+        li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
+          span.li-col
+            = t('.date.time_game_confirmation')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.date.time_game_confirmation_desc')}"
+          span style="width: 130px!important;"
+            .form-group
+              .input-group
+                = number_field_tag("season[time_game_confirmation]", AppConfig.season_default_time_game_confirmation, class: "text-center form-control")
+                .input-group-append
+                  span.input-group-text
+                    | hs
+
+.card 
+  .card-body
+    h5.card-title.d-flex
+      i.ri-award-line.me-1
+      span = t('.awards')
+    h6.mt-1.card-subtitle.text-muted = t('.awards_desc')
+    .col-12
+      ul.list-group.list-group-flush
+        - @award_result_type.each do |atype|
+          li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
+            span.li-col
+              = atype[1]
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{atype[2]}"
+            span style="width: 130px!important;"
+              - award_id = "season_#{atype[0]}"
+              - aValue = @season["award_#{atype[0]}"] || nil
+              .form-group
+                span
+                  div id="popover_#{award_id}"
+                = select_tag "season[#{atype[0]}]", options_for_select([[t('awardTypes.none'), "none"]] + @awards.collect { |award| [ award[:name], award[:id]] }, aValue), {include_blank: false,  class: "form-control select2", id: award_id, required: true, "data-controller": "select", "data-select-icon-value": false }
+
+.card 
+  .card-body
+    h5.card-title.d-flex
+      i.ri-draft-line.me-1
+      span = t('.clubs')
+    h6.mt-1.card-subtitle.text-muted = t('.clubs_desc')
+    .col-12         
+      blockquote.blockquote.custom-blockquote.blockquote-warning.rounded.mt-4.fs-6.text-white
+        p = t('.club.raffle_desc_html', choosing_order: t("player_choosing_order.#{@league.platform}"))
+      ul.list-group.list-group-flush
+        li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
+          span.li-col
+            = t('.club.raffle_low_over')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.club.raffle_low_over_desc')}"
+          span.text-center style="width: 130px!important;"
+            - raffle_low_over = @season.raffle_low_over || AppConfig.season_player_low_over
+            .form-group
+              span
+                #popover_season_raffle_low_over
+              = select_tag "season[raffle_low_over]", options_for_select(40..99, raffle_low_over), {class: "text-center form-control select2" , "data-parsley-lt": "#season_raffle_high_over", "data-parsley-error-message": t('parsley.minimum_bigger'), "data-parsley-errors-container": "season_raffle_low_over", "data-controller": "select manager--seasons", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
+        li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
+          span.li-col
+            = t('.club.raffle_high_over')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.club.raffle_high_over_desc')}"
+          span.text-center style="width: 130px!important;"
+            - raffle_high_over = @season.raffle_high_over || AppConfig.season_player_high_over
+            .form-group
+              span
+                #popover_season_raffle_high_over
+              = select_tag "season[raffle_high_over]", options_for_select(40..99, raffle_high_over), {include_blank: true,  class: "text-center form-control select2", "data-controller": "select manager--seasons", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
+
+        li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
+          span.li-col
+            = t('.club.raffle_remaining')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.club.raffle_remaining_desc')}"
+          span.text-center style="width: 130px!important;"
+            - raffle_remaining = @season.raffle_remaining || AppConfig.season_player_raffle_remaining[0].split(' ')[3]
+            .form-group
+              span
+                #popover_season_raffle_remaining
+              = select_tag "season[raffle_remaining]", options_for_select(AppConfig.season_player_raffle_remaining[0].split(' ').collect { |players| [players, players] },raffle_remaining), {include_blank: true,  class: "text-center form-control select2", "data-controller": "manager--seasons select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
+
+        - if !sStarted
+          li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
+            span.li-col
+              = t('.club.available_players')
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.club.available_players_desc')}"
+            span[style="width: 130px!important; text-align: center;"]
+              .form-group
+                span
+                  .badge.bg-secondary id="tAvailablePlayers"
+                    = @tAvailablePlayers
+
+      .col-12.text-center.mb-2
+        = turbo_frame_tag "tAvailablePlayersPP"
+          - if faction == "new"
+            = render partial: 'manager/seasons/available_players', locals: { tAvailablePlayersPP: @tAvailablePlayersPP }
+
+.card 
+  .card-body
+    h5.card-title.d-flex.mb-3
+      i.ri-draft-line.me-1
+      span = t('.rules')
+    .col-12  
+      blockquote.blockquote.pl-1.border-left-warning.border-left-3.p-2
+        p = t('.rule.notes_html')
+      .form-group.p-3
+        = f.rich_text_area :advertisement, value: @season.advertisement, class: 'form-control', style: "min-height: 300px;", "data-controller": "trix", "data-parsley-required": "false", "data-parsley-validate": "false"
+
+.card 
+  .card-body
+    .col-12[style="text-align: right;"]
+      = link_to t('.cancel'), manager_seasons_path, class: "btn btn-outline-secondary me-1", data: { "turbo-action": "advance" }
+      = f.submit t('.confirm'), class: "btn btn-submit btn-primary"

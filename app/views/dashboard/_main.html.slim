@@ -1,0 +1,9 @@
+- if !current_user.admin?
+  - if session[:league] && @league.status == false
+    .row
+      .col-12
+        .card
+          = image_tag("misc/disabled_league.png", class: "card-img-top img-fluid")
+          .card-body
+            h6.cart-title.text-warning.fs-18 = t('.disabled_league')
+            p.cart-text = t('.disabled_league_obs_html', admin: AppConfig.mail_admin)

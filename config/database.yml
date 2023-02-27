@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= Rails.application.credentials.dig(:postgres, :username) %>
+  password: <%= Rails.application.credentials.dig(:postgres, :password) %>
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: mlo_db_development
+
+test:
+  <<: *default
+  database: mlo_db_test
+
+production:
+  <<: *default
+  database: mlo_db_production

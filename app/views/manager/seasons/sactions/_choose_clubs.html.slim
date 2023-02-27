@@ -1,0 +1,206 @@
+.modal-dialog.modal-dialog-centered.modal-lg[role="document"]
+  .modal-content
+    .modal-header
+      h4.modal-title
+        i.jam.jam-building.mr-50
+        | Escolha dos Clubes
+      button.close[type="button" onclick="$('#seasonActions').modal('toggle');" aria-label="Close"]
+        span[aria-hidden="true"]
+          i.jam.jam-close
+    .modal-body.p-0
+
+      .horizontal-wizard.mb-0
+        .bs-stepper
+          .bs-stepper-header
+            .step data-target="#end_season_information"
+              button.step-trigger type="button"
+                span.bs-stepper-box 1
+                span.bs-stepper-label
+                  span.bs-stepper-title Informações
+                  span.bs-stepper-subtitle Sobre a Escolha
+            .line
+              i.jam.jam-chevrons-right.font-medium-2
+            .step data-target="#end_season_options"
+              button.step-trigger type="button"
+                span.bs-stepper-box 2
+                span.bs-stepper-label
+                  span.bs-stepper-title Opcionais
+                  span.bs-stepper-subtitle Selecione conforme sua liga
+            .line
+              i.jam.jam-chevrons-right.font-medium-2
+            .step data-target="#end_season_confirmation"
+              button.step-trigger type="button"
+                span.bs-stepper-box 3
+                span.bs-stepper-label
+                  span.bs-stepper-title Confirmação
+                  span.bs-stepper-subtitle Valide o Encerramento
+
+          .bs-stepper-content.pt-1
+            #end_season_information.content
+              .content-header
+                h4.mb-0 Informações
+                small.text-muted Sobre a Escolha
+
+                blockquote.blockquote.pl-1.border-left-warning.border-left-3.font-weight-normal.mt-50
+                  p.mb-0 A definição dos Clubes pelos usuários é a primeira parte no início de uma nova temporada. Assim que você liberar essa opção eles receberão um aviso e poderão selecionar seu Clube. Caso exista uma temporada anterior e você deseja manter os mesmos clubes, selecione a opção na próxima página para importar os clubes para os mesmos usuários.
+
+              .d-flex.justify-content-between.mt-75
+                button.btn.btn-sm.btn-outline-secondary.btn-prev.disabled
+                  i.align-middle.mr-sm-25.mr-0.jam.jam-arrow-left
+                  span.align-middle.d-sm-inline-block.d-none anterior
+                button.btn.btn-sm.btn-primary.btn-next
+                  span.align-middle.d-sm-inline-block.d-none próximo
+                  i.align-middle.mr-sm-25.ml-0.jam.jam-arrow-right
+                  
+            #end_season_options.content
+              = form_with model: @season, id: "choose_clubs", local: false, url: manager_season_start_clubs_choosing_path(season.hashid), html: { method: :post, novalidate: :novalidate} do |f|
+                input type="hidden" name="season_end[null]" id="season_end_null" value=""
+
+                .content-header
+                  h4.mb-0 Opcionais
+                  small.text-muted Selecione as demais ações executadas
+                  ul.list-group.list-group-flush
+                    li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+                      span.li-col
+                        | Importar Clubes
+                        i.jam.jam-help.font-medium-4.ml-25 style="vertical-align: middle;" data-toggle="tooltip" data-placement="top" title="O sistema irá comparar os usuários desta temporada com a Temporada Selecionada e definir os mesmos clubes. Usuários que não participaram da última temporada não terão um clube definido automaticamente e poderão escolhê-los normalmente."
+                      span[style="width: 130px!important;"]
+                        .form-group
+                          = select_tag "choose_clubs[import_clubs]", options_for_select(seasons.collect { |season| [season.name.titleize, season.id] }), include_blank: true, class: "form-control select2", id: 'choose_clubs_import_clubs'
+
+              .d-flex.justify-content-between
+                button.btn.btn-sm.btn-primary.btn-prev
+                  i.align-middle.mr-sm-25.mr-0.jam.jam-arrow-left
+                  span.align-middle.d-sm-inline-block.d-none anterior
+                button.btn.btn-sm.btn-primary.btn-next
+                  span.align-middle.d-sm-inline-block.d-none próximo
+                  i.align-middle.mr-sm-25.ml-0.jam.jam-arrow-right
+
+            #end_season_confirmation.content
+              .content-header
+                h5.mb-0 Confirmação
+                small.text-muted Valide as ações que serão executadas
+
+                p.card-text
+                  ul.list-style-icons
+                    li
+                      i.jam.jam-check.mr-25.text-success
+                      | Liberar Escolha dos Clubes pelos Usuários
+                    li
+                      i.jam.jam-check.mr-25.text-success#cclubs_import_clubs
+                      | Importar Clubes de outra Temporada
+
+              .d-flex.justify-content-between
+                button.btn.btn-sm.btn-primary.btn-prev
+                  i.align-middle.mr-sm-25.mr-0.jam.jam-arrow-left
+                  span.align-middle.d-sm-inline-block.d-none anterior
+
+                .text-right
+                  .button.btn-submit.btn.btn-sm.btn-primary.mr-25 Confirmar
+                  .button.btn.btn-sm.btn-outline-secondary#cancel Cancelar
+
+
+
+javascript:
+  var bsStepper = document.querySelectorAll('.bs-stepper'),
+    horizontalWizard = document.querySelector('.horizontal-wizard');
+  var numberedStepper = new Stepper(horizontalWizard);
+  var form = document.querySelector('form');
+
+  $('#cancel').on('click', function (e) {
+    e.preventDefault();
+    $('#seasonActions').modal('toggle');
+  });
+
+  // Activate Select2 form inputs
+  var select = $('.select2');
+  select.each(function () {
+      var $this = $(this);
+      $this.wrap('<div class="position-relative"></div>');
+      $this.select2({
+          placeholder: "",
+          dropdownAutoWidth: true,
+          width: '100%',
+          allowClear: true,
+          minimumResultsForSearch: Infinity,
+          dropdownParent: $this.parent()
+      });
+      $this.on('change', function() {
+          $(this).trigger('blur');
+          $(this).parsley().isValid();
+      });
+  });
+
+  // Adds crossed class
+  if (typeof bsStepper !== undefined && bsStepper !== null) {
+    for (var el = 0; el < bsStepper.length; ++el) {
+      bsStepper[el].addEventListener('show.bs-stepper', function (event) {
+        var index = event.detail.indexStep;
+        var numberOfSteps = $(event.target).find('.step').length - 1;
+        var line = $(event.target).find('.step');
+
+        for (var i = 0; i < index; i++) {
+          line[i].classList.add('crossed');
+
+          for (var j = index; j < numberOfSteps; j++) {
+            line[j].classList.remove('crossed');
+          }
+        }
+        if (event.detail.to == 0) {
+          for (var k = index; k < numberOfSteps; k++) {
+            line[k].classList.remove('crossed');
+          }
+          line[0].classList.remove('crossed');
+        }
+      });
+    }
+  }
+
+
+  $('.btn-next').on('click', function (e) {
+    e.preventDefault();
+    numberedStepper.next();
+    updateSticks();
+  });
+
+  $('.btn-prev').on('click', function (e) {
+    e.preventDefault();
+    numberedStepper.previous();
+    updateSticks();    
+  });
+
+  $('.btn-submit').on('click', function (e) {
+    e.preventDefault();
+    swal({
+      title: 'Liberar Escolha dos Times?',
+      text: 'Informe os usuários sobre o tempo que esta opção ficará disponível! Quando quiser encerrar, apenas selecione para encerrar a escolha de clubes.',
+      type: 'warning',
+      showCancelButton: true,
+      reverseButtons: true,
+      confirmButtonText: I18n["javascript"]["sweetalert"]["yes_im_sure"],
+      cancelButtonText: I18n["javascript"]["sweetalert"]["cancel"]
+    }).then((result) => {
+      if (result.value) {
+        $('#seasonActions').modal('toggle');
+        $.LoadingOverlay("show");
+        Rails.fire(form, 'submit');
+      } else {
+        return false;
+      }
+    });
+  });
+
+  function updateSticks(direction) {
+    var fields = ['import_clubs']
+
+
+    $.each(fields, function(index, val) {
+      if ( $('#choose_clubs_'+ val).val() == "" ) {
+        $('#cclubs_'+ val).removeClass('jam-check text-success').addClass('jam-close text-danger');
+      } else {
+        $('#cclubs_'+ val).removeClass('jam-close text-danger').addClass('jam-check text-success');
+      }
+    });
+  }
+
+

@@ -1,0 +1,6 @@
+pt-BR:
+  layouts:
+    footer:
+      main:
+        version: "Versão"
+        brand_html: "Desenvolvido por <a href='mailto:ndrshnsn@gmail.com'>Andreas Hansen</a>"

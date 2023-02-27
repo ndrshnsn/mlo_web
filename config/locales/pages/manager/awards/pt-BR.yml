@@ -1,0 +1,39 @@
+pt-BR:
+  manager:
+    awards:
+      new:
+        awards: "Premiações"
+        new: "Nova Premiação"
+        details_html: "<blockquote class='blockquote custom-blockquote blockquote-info rounded text-dark mb-2'>Aqui você cria/define as Premiações. Elas poderão ser utilizadas em diversos campeonatos diferentes, então é possível criar uma Premiação Específica ou trabalhar com Premiações Genéricas. Depois elas serão selecionadas quando você for criar um novo campeonato. Os prêmios serão aplicados ao término de cada Campeonato.</blockquote>"
+        confirm: "Criar Premiação?"
+        confirm_text: "A Premiação será criada e você será redirecionado à lista de Premiações"
+      edit:
+        edit: "Editar Premiação"
+        confirm: "Atualizar Premiação?"
+        confirm_text: "A Premiação será atualizada e você será redirecionado à lista de Premiações. A atualização não se aplica à campeonatos anteriores"
+      index:
+        awards: "Premiações"
+      list:
+        name: "Nome"
+        status: "Status"
+        actions: "Ações"
+        prize: "Prêmio"
+        ranking: "Ranking"
+        add_award: "Adicionar Premiação"
+      form:
+        name: "Nome"
+        prize: "Premiação"
+        ranking: "Ranking"
+        confirm: "Confirmar"
+        status: "Ativo"
+        cancel: "Cancelar"
+      create:
+        success: "Premiação Criada com Sucesso"
+        error: "Erro criando Premiação"
+      update:
+        success: "Premiação Atualizada com Sucesso"
+        error: "Erro atualizando Premiação"
+      destroy:
+        success: "Premiação Removida com Sucesso"
+        error: "Erro removendo Premiação"
+        error_have_dependencies: "Esta premiação já foi definida em uma Temporada ou Campeonato"

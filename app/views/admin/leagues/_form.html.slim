@@ -1,0 +1,31 @@
+- lPlatform = @league.seasons.size > 0 ? "disabled" : ""
+
+.row
+  .col-sm-12.col-md-6
+    .form-group.mb-3
+      = f.label :name, t('.name'), class: "form-label"
+      = text_field_tag "league[name]", nil,"data-parsley-required": true, "data-parsley-remote": "/firststeps/check_lname", "data-parsley-trigger": "focusout", "data-parsley-remote-message": t('.parsley.name.exists'), "data-parsley-remote-options": '{ "type": "POST", "dataType":  "json" }', "data-controller": "cleave", "data-cleave-ctype-value": "uppercase", class: "form-control", value: @league.name
+  .col-sm-12.col-md-6
+    .form-group.mb-3
+      = f.label :alias, t('.platform'), class: "form-label"
+      #popover_league_platform
+      = select_tag "league[platform]", options_for_select(eval(AppConfig.platforms), @league.platform), class: "form-control select2 dt-select", include_blank: true, "data-controller": "select", "data-select-icon-value": false, required: true
+  .col-sm-12.col-md-6
+    .form-group.mb-3
+      = f.label :alias, t('.manager'), class: "form-label"
+      #popover_league_user_id
+      = select_tag "league[user_id]", options_for_select(@managers.collect { |manager| [ "#{manager[:full_name]} - #{manager[:email]}", manager[:id], {'data-img': "#{avatarURL(manager)}"}] }, @league.user_id), {include_blank: true,  class: "form-control select2", id: 'league_user_id',  required: true, "data-controller": "select", "data-select-icon-value": true }
+  .col-sm-12.col-md-6
+    .form-group.mb-3
+      = label_tag 'status', t('.status'), class: "control-label"
+      #popover_league_status
+      = select_tag "league[status]", options_for_select([["#{t('active')}", true], ["#{t('inactive')}", false]], @league.status), {id: "league_status", include_blank: true, class: "form-control select2 dt-select", "data-controller": "select", "data-select-icon-value": false, required: true}
+  .col-sm-12.col-md-6
+    .form-group.mb-3
+      = label_tag 'slots', t('.slots'), class: "control-label"
+      #popover_league_slots
+      = select_tag "league[slots]", options_for_select(eval(AppConfig.league_slots), @league.slots), class: "form-control select2 dt-select", include_blank: true, "data-controller": "select", "data-select-icon-value": false, required: true
+  .col-lg-12
+    .text-end
+      = link_to t('.cancel'), admin_leagues_path, class: "btn btn-sm btn-secondary me-1", data: { "turbo-action": "advance"}
+      = f.submit t('.confirm'), class: "btn btn-sm btn-submit btn-primary"

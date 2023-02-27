@@ -1,0 +1,13 @@
+pt-BR:
+  manager:
+    settings:
+      index:
+        settings: "Configurações"
+      settings:
+        name: "Nome"
+        confirm: "Atualizar"
+        confirm_text: "A página será recarregada para refletir as modificações"
+        main_settings: "Liga"
+      update:
+        success: "Liga atualizada com sucesso"
+        error: "Erro atualizando liga"

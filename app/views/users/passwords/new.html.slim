@@ -1,0 +1,37 @@
+.auth-page-wrapper.pt-5
+	.bg-overlay
+	.auth-page-content 
+		.container
+			.row
+				.col-lg-12
+					.text-center.mt-sm-5.mb-4.text-white-50
+						div
+							= image_tag('logo/mlo-light.png', alt: "", height: "45")
+					.row.justify-content-center
+						.col-md-8.col-lg-6.col-xl-5.mt-4
+							.card.mt-4
+								.card-body.p-4
+									.text-center.mt-2
+										h5.text-primary = t('.forgot_password')
+										lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop" colors="primary:#0ab39c" class="avatar-xl"
+									.alert.alert-borderless.alert-warning.text-center.mb-2.mx-2 role="alert"
+										= t('.forgot_alert')
+									.p-2.mt-4
+										- if notice
+												p.alert.alert-success = notice
+										- if alert
+												p.alert.alert-danger = alert 
+										= form_with(model: resource, as: resource_name, id: "session", method: :post, url: password_path(resource_name), autocomplete: "off", local: true ) do |f|
+											= f.hidden_field :reset_password_token
+											.mb-3
+												= f.label :email, "#{t '.email'}", for: 'login-email', class: "form-label"
+												= f.email_field :email, autofocus: '' , tabindex: 1, :"aria-describedby" => 'login-email', class: "form-control", autocomplete: "email"
+											.mt-4
+												button type="submit" id="signin_button" class="btn btn-primary w-100" data-turbo="false" = t ('.forgot_send_link')
+	footer.footer
+		.container
+			.row
+				.col-lg-12
+					.text-center
+						p.mb-0.text-muted
+							| &copy;&copy; #{t('.page_footer_html')}

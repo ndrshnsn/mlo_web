@@ -1,0 +1,26 @@
+= turbo_frame_tag "main_frame" do
+	= render partial: "layouts/firststeps/pageHeader"
+
+	= turbo_frame_tag "firststep" do
+		.row
+			.col-12
+				.card
+					.card-header
+						h5.card-title.mb-0 Gerenciar Uma LIga
+					.card-body
+						= form_with url: request_league_path, id: "request_league", class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
+							.row
+								.col-sm-12.col-md-6
+									img.card-img-top.rounded.img-fluid src=("#{image_path('misc/masterleague.png')}")
+								.col-sm-12.col-md-6
+									blockquote.blockquote.custom-blockquote.blockquote-primary.rounded
+										p.text-dark = t('.main_info_html')
+									.form-group.mb-3
+										= f.label :name, "Nome da Liga", class: "control-label"
+										= text_field_tag "league[name]", nil,"data-parsley-required": true, "data-parsley-remote": "/firststeps/check_lname", "data-parsley-trigger": "focusout", "data-parsley-remote-message": t('.parsley.name.exists'), "data-parsley-remote-options": '{ "type": "POST", "dataType":  "json" }', "data-controller": "cleave", "data-cleave-ctype-value": "uppercase", class: "form-control"
+									.form-group.mb-3
+										= f.label :league, "Plataforma", class: "control-label"
+										= select_tag "league[platform]", options_for_select(eval(AppConfig.platforms)), class: "form-control select2 dt-select", include_blank: true, "data-controller": "select", "data-select-icon-value": false
+							.col-12.text-end
+								= link_to "Cancelar", root_path, class: "btn btn-outline-secondary mt-2 me-1", data: { "turbo-action": "advance"}
+								= submit_tag "Solicitar Criação", class: "btn btn-primary mt-2"

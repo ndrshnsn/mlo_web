@@ -1,0 +1,7 @@
+= turbo_stream.update "pStatus_#{@defPlayer.id}" do
+  i class='ri-#{@defPlayer.active == true ? "check" : "close"}-line'
+
+= turbo_stream.update "pActions_#{@defPlayer.id}" do
+  = @dtMenu
+
+= render_turbo_stream_flash_messages

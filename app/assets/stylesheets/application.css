@@ -1,0 +1,19 @@
+/* Sweetalert */
+@import url('css/sweetalert2/sweetalert2.min.css');
+@import url('css/sweetalert2/custom.css');
+@import url('css/bootstrap.min.css');
+@import url('css/select2/select2.min.css');
+@import url('css/multi-select.scss');
+@import url('css/icons.css');
+@import url('css/app.css');
+@import url('css/custom.css'); 
+@import url('css/playerdb.css');
+
+/* DataTables */
+@import url('css/datatables/dataTables.bootstrap5.min.css');
+@import url('css/datatables/responsive.bootstrap.min.css');
+@import url('css/datatables/buttons.dataTables.min.css');
+@import url('css/parsley/parsley.css');
+@import url('css/wizard/bs-stepper.min.css');
+@import url('css/trix.css');
+@import url('css/actiontext.css');
