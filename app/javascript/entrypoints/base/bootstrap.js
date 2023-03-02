@@ -1,0 +1,1 @@
+import * as bootstrap from "../libs/bootstrap/js/bootstrap.bundle.min"

@@ -1,5 +1,4 @@
 import dataTable from "datatables.net-bs5"
-window.dataTable = dataTable();
 $.extend( $.fn.dataTable.defaults, {
   searching: true,
   paging: true,

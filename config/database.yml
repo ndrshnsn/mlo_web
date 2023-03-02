@@ -11,12 +11,12 @@ default: &default
 
 development:
   <<: *default
-  database: mlo_db_development
+  database: mlo_development
 
 test:
   <<: *default
-  database: mlo_db_test
+  database: mlo_test
 
 production:
   <<: *default
-  database: mlo_db_production
+  database: mlo_production

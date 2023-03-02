@@ -76,7 +76,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   # config.action_controller.action_on_unpermitted_parameters = :log
 
-  config.playerdb_prefix = "http://192.168.25.54/playerdb"
+  config.playerdb_prefix = "http://127.0.0.1/playerdb"
   config.root_url = "http://127.0.0.1:3000"
   config.hosts << "app.mlo-dev.test"
 

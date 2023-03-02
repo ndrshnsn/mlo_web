@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.0"
+ruby "3.2.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.3", ">= 7.0.3.1"
+gem "rails", "~> 7.0.4.2"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -64,13 +64,11 @@ gem "vite_rails", "~> 3.0"
 
 gem "rack-cors", "~> 1.1"
 
-
 gem "friendly_id", "~> 5.4"
 
 gem "devise", "~> 4.8"
 
 gem "kaminari", "~> 1.2"
-
 
 gem "loaf", "~> 0.10.0"
 
@@ -103,7 +101,6 @@ gem "nokogiri", "~> 1.13"
 gem "sendgrid-ruby", "~> 6.6"
 
 gem "hashid-rails", "~> 1.4"
-
 
 gem "httparty", "~> 0.20.0"
 

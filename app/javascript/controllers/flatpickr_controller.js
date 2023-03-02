@@ -2,7 +2,16 @@ import { Controller } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
 
 let clocale = $('body').attr('data-locale').substring(0,2)
-import * as locale from 'flatpickr/dist/l10n/'+ clocale +'.js'
+import { Portuguese } from 'flatpickr/dist/l10n/pt'
+import { Spanish } from 'flatpickr/dist/l10n/es'
+
+const langMap = {
+  pt: Portuguese,
+  es: Spanish,
+  en: '',
+}
+
+if (locale !== 'en') flatpickr.localize(langMap[locale]);
 
 export default class FlatpickrController extends Controller {
   static values = { ctype: String, sdate: { type: String, default: "false" }, edate: { type: String, default: "false" } }
@@ -18,7 +27,6 @@ export default class FlatpickrController extends Controller {
         flatpickr(this.element, {
           allowInput: true,
           altInput: true,
-          locale: clocale,
           altFormat: 'j M y',
           dateFormat: 'Y-m-d',
           onReady: function (selectedDates, dateStr, instance) {
@@ -42,7 +50,6 @@ export default class FlatpickrController extends Controller {
           allowInput: true,
           altInput: true,
           mode: "range",
-          locale: clocale,
           altFormat: 'j M y',
           dateFormat: 'Y-m-d',
           minDate: sdate,
@@ -64,7 +71,6 @@ export default class FlatpickrController extends Controller {
     }
   }
 }
-
 
 
 
