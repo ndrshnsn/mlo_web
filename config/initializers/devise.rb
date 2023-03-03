@@ -336,4 +336,14 @@ Devise.setup do |config|
     jwt.request_formats = { api_user: [:json] }
   end
   
+  ## Omniauth
+  config.omniauth_path_prefix = "/auth"
+  OmniAuth.config.logger = Rails.logger
+  OmniAuth.config.allowed_request_methods = %i[post]
+  OmniAuth.config.full_host = Rails.env.production? ? 'https://app.masterleagueonline.com.br' : 'http://127.0.0.1:3000'
+
+  config.omniauth :google_oauth2, Rails.application.credentials.dig(:omniauth, :google_client_id), Rails.application.credentials.dig(:omniauth, :google_secret), skip_jwt: true
+  config.omniauth :twitter2, Rails.application.credentials.dig(:omniauth, :twitter_client_id), Rails.application.credentials.dig(:omniauth, :twitter_secret), scope: 'tweet.read users.read bookmark.read space.read offline.access'
+
+
 end

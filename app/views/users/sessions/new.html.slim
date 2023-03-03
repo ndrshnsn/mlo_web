@@ -28,7 +28,7 @@
 												.position-relative.auth-pass-inputgroup.mb-3
 													= f.password_field :password, autofocus: '' , tabindex: 1, :"aria-describedby" => 'login-password', class: "form-control pe-5 password-input", "data-parsley-equalto": "#user_password"
 													button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"
-															i.ri-eye-fill.align-middle
+														i.ri-eye-fill.align-middle
 												.form-check
 														= f.check_box :remember_me, { class: "form-check-input" }
 														= f.label :remember_me, "#{t '.remember_me'}", { class: "form-check-label"}
@@ -37,9 +37,17 @@
 											.mt-4.text-center
 												.signin-other-title
 													h5.fs-13.mb-4.title = t('.or')
-											.mt-2.text-center
-													p.mb-0 
-														= link_to t('.register'), register_path
+										.mt-2.text-center
+											div
+												= button_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-danger btn-icon waves-effect waves-light me-2", data: {turbo: "false"} do
+													i.ri-google-fill.fs-16
+													
+												= button_to user_twitter2_omniauth_authorize_path, class: "btn btn-info btn-icon waves-effect waves-light", data: {turbo: "false"} do
+													i.ri-twitter-fill.fs-16
+
+										.mt-2.text-center
+												p.mb-0 
+													= link_to t('.register'), register_path
 	footer.footer
 		.container
 			.row

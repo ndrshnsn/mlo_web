@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
+  include ActiveModel::SecurePassword
   extend FriendlyId
   friendly_id :full_name, use: :slugged
   before_create :add_jti
@@ -25,6 +26,7 @@ class User < ApplicationRecord
     sendpoint: [:string, default: ""]
 
   ## Associations
+  has_many :identities, dependent: :destroy
   has_many :user_leagues, dependent: :destroy
   has_many :leagues, through: :user_leagues
   has_many :notifications, as: :recipient, dependent: :destroy
@@ -33,10 +35,26 @@ class User < ApplicationRecord
   has_many :clubs, through: :user_seasons
   has_many :club_players, through: :clubs
   #has_many :club_championships, through: :clubs
-  
+
   ## Devise
   devise :database_authenticatable, :registerable, :confirmable, :trackable,
-        :recoverable, :rememberable, :validatable, :timeoutable
+        :recoverable, :rememberable, :validatable, :timeoutable,
+        :omniauthable, omniauth_providers: %i[google_oauth2 twitter2]
+
+  ## Omniauth
+  def self.from_omniauth(auth)
+    user = find_or_initialize_by(email: auth.info.email)
+    user.email = auth.info.email
+    user.full_name = auth.info.name
+    user.gravatar_url = auth.info.image
+
+    if user.avatar_data.blank?
+      user.avatar_data = nil
+    end
+
+    user.save
+    user
+  end
 
   def add_jti
       self.jti ||= SecureRandom.uuid

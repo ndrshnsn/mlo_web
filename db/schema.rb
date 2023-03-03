@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_30_191403) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_02_211156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -213,7 +213,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_191403) do
     t.boolean "vsaccepted", default: false
     t.boolean "hfaccepted", default: false
     t.boolean "vfaccepted", default: false
-    t.bigint "eresults_id", null: false
+    t.bigint "eresults_id"
     t.boolean "wo", default: false
     t.boolean "mresult", default: false
     t.text "mdescription"
@@ -223,6 +223,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_191403) do
     t.index ["eresults_id"], name: "index_games_on_eresults_id"
     t.index ["home_id"], name: "index_games_on_home_id"
     t.index ["visitor_id"], name: "index_games_on_visitor_id"
+  end
+
+  create_table "identities", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.string "gravatar_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
   create_table "leagues", force: :cascade do |t|
@@ -375,6 +385,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_191403) do
   add_foreign_key "games", "clubs", column: "eresults_id"
   add_foreign_key "games", "clubs", column: "home_id"
   add_foreign_key "games", "clubs", column: "visitor_id"
+  add_foreign_key "identities", "users"
   add_foreign_key "leagues", "users"
   add_foreign_key "player_season_finances", "player_seasons"
   add_foreign_key "player_seasons", "def_players"
