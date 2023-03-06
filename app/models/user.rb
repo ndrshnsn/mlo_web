@@ -46,7 +46,6 @@ class User < ApplicationRecord
     user = find_or_initialize_by(email: auth.info.email)
     user.email = auth.info.email
     user.full_name = auth.info.name
-    user.gravatar_url = auth.info.image
 
     if user.avatar_data.blank?
       user.avatar_data = nil

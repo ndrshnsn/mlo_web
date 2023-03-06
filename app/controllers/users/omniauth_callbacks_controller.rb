@@ -37,19 +37,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           provider: data['provider']
         }
   
-        @identity = Identity.find_with_omniauth(session[:omniauth])
-      
-        if @identity.nil?
-          @identity = Identity.create_with_omniauth(session[:omniauth])
-        end
-      
         @user = User.from_omniauth(auth)
-  
         if @user.persisted?
           if @user.active == false
             flash[:error] = "Sua conta está desativada! Em caso de dúvidas entre em contato com o suporte."
             redirect_to root_url
           else
+            @identity = Identity.find_with_omniauth(session[:omniauth])
+            if @identity.nil?
+              @identity = Identity.create_with_omniauth(session[:omniauth], @user.id)
+            end
+
             flash[:success] = "Conectado, #agoravai"
             sign_in_and_redirect @user, event: :authentication
           end
