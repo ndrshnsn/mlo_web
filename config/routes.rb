@@ -69,6 +69,7 @@ Rails.application.routes.draw do
 		patch 'profile/update_system/:id', to: 'profile#update_system', as: :profile_update_system
 		post 'profile/notifications/subscribe', to: 'profile#subscribe', as: :profile_subscribe
     post 'profile/notifications/unsubscribe', to: 'profile#unsubscribe', as: :profile_unsubscribe
+    get 'profile/social', to: 'profile#social', as: :profile_social
 
 		## Change App Language
 		post "locale", to: "profile#setLocale", as: :profile_set_locale

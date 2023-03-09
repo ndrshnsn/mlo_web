@@ -1,0 +1,9 @@
+= turbo_frame_tag "tab_content" do
+  .tab-pane id="system" role="tabpanel"
+    .row
+        - socialProviders.each do |sProvider|
+            .col-2.g-2
+                .card.card-body
+                    .d-flex.justify-content-center.mb-3
+                        = image_tag("logo/social/#{sProvider[0]}.png", class: "avatar-sm")
+                    = link_to sProvider[1], "#", class: "btn btn-sm btn-primary waves-effect waves-light mt-1"

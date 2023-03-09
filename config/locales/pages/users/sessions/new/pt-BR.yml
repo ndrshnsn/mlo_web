@@ -11,4 +11,9 @@ pt-BR:
         forgot_password: "Esqueci minha senha"
         sign_in: "Entrar"
         or: "ou"
-        register: "Registrar nova Conta"
+        sign_in_with: "Usar outra Conta"
+        register_html: "Não possui uma Conta? %{register_url}"
+        register_html_link: "Criar Conta"
+        locked_account: "Sua Conta está bloqueada! Entre em contato com o Administrador da Liga."
+        sign_in_error: 'Ocorreu um erro durante o processo de login. Por favor tente novamente mais tarde.'
+        signed_in: 'Conectado, #agoravai'

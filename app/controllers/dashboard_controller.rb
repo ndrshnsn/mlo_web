@@ -13,7 +13,6 @@ class DashboardController < ApplicationController
     if session[:league]
       if League.exists?(id: session[:league])
         @league = League.find(session[:league])
-        logger.info "---------------"
       else
         ## Set league session to nil and request to true
         uLeague = UserLeague.where(user_id: current_user.id)

@@ -39,18 +39,14 @@ class User < ApplicationRecord
   ## Devise
   devise :database_authenticatable, :registerable, :confirmable, :trackable,
         :recoverable, :rememberable, :validatable, :timeoutable,
-        :omniauthable, omniauth_providers: %i[google_oauth2 twitter2]
+        :omniauthable, omniauth_providers: %i[google_oauth2 twitter github]
 
   ## Omniauth
   def self.from_omniauth(auth)
     user = find_or_initialize_by(email: auth.info.email)
     user.email = auth.info.email
     user.full_name = auth.info.name
-
-    if user.avatar_data.blank?
-      user.avatar_data = nil
-    end
-
+    user.avatar_data = nil if user.avatar_data.blank?
     user.save
     user
   end
@@ -67,9 +63,7 @@ class User < ApplicationRecord
 
   ## Default Role
   after_initialize do
-    if self.new_record?
-      self.role ||= :user
-    end
+    self.role ||= :user if self.new_record?
   end
 
   def self.getClub(user_id, season_id)

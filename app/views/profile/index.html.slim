@@ -13,6 +13,8 @@
 								= link_to t('.password'), profile_password_path, class: "nav-link", id: "password", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
 							li.nav-item
 								= link_to t('.system'), profile_system_path, class: "nav-link", id: "system", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+							li.nav-item
+								= link_to t('.social'), profile_social_path, class: "nav-link", id: "social", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
 					.card-body.p-4
 						.tab-content
 							= turbo_frame_tag "tab_content" do

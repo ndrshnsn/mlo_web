@@ -2,8 +2,27 @@ module ApplicationHelper
 	include DatatablesHelper
 
 	def render_turbo_stream_flash_messages
-    turbo_stream.prepend "flash", partial: "layouts/flash/main"
-  end
+		turbo_stream.prepend "flash", partial: "layouts/flash/main"
+	end
+
+	def flashClass(level)
+		case level
+		when 'info' then "primary"
+		when 'success' then "success"
+		when 'error' then "danger"
+		when 'warning' then "warning"
+		end
+	end
+
+	def socialProviders()
+		sProviders = [
+			[ "google_oauth2", t('social_providers.google_oauth2')],
+			[ "twitter", t('social_providers.twitter')],
+			[ "github", t('social_providers.github')],
+			[ "facebook", t('social_providers.facebook')]
+		]
+		return sProviders
+	end
 
 	def i18n_set? key
 	  I18n.t key, :raise => true rescue false
@@ -30,9 +49,7 @@ module ApplicationHelper
 			return asset_path("generic-trophy.png")
 		else
 			award = award.reload
-			if award.trophy_data.blank?
-				return asset_path("generic-trophy.png")
-			end
+			return asset_path("generic-trophy.png") if award.trophy_data.blank?
 			return award.trophy_url
 		end
 	end

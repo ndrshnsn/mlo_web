@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   include SetTheme
   include PublicActivity::StoreController
 
-  ## Custom Flash Types
-  add_flash_types :warning, :danger
-
   ## HTML
   before_action :authenticate_user!, except: [:raise_not_found, :not_found, :error]
+
+  ## Custom Flash Types
+  add_flash_types :success, :info, :error, :warning
 
   # Disable CSRF protection for json calls
   protect_from_forgery with: :exception, prepend: true, unless: :json_request?
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   layout -> { turbo_frame_request? ? false : layout_by_resource }
   before_timedout_action
   auto_session_timeout 20.minutes
-  
+
   ## API 
   protect_from_forgery with: :null_session, if: :json_request?
   skip_before_action :verify_authenticity_token, if: :json_request?

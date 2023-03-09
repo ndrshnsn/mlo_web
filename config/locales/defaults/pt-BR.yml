@@ -14,6 +14,11 @@ pt-BR:
     user: "Usuário"
     manager: "Gerenciador"
     admin: "Administrador"
+  social_providers:
+    google_oauth2: "Google"
+    twitter: "Twitter"
+    github: "github"
+    facebook: "Facebook"
   active: "Ativa"
   pending: "Pendente"
   request_join: "Solicitar"

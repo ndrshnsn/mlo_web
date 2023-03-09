@@ -15,6 +15,12 @@ class ProfileController < ApplicationController
     render "_system"
   end
 
+  def social
+    @user = User.find(current_user.id)
+    @identities = Identity.where(user_id: @user.id)
+    render "_social"
+  end
+
   def subscribe
     sparams = params
     user = User.find(current_user.id)
