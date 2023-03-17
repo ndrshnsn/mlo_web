@@ -1,2 +1,2 @@
-import countdown from "jquery-countdown"
+import countdown from 'countdown.js'
 window.countdown = countdown
