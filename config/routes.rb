@@ -70,6 +70,7 @@ Rails.application.routes.draw do
 		post 'profile/notifications/subscribe', to: 'profile#subscribe', as: :profile_subscribe
     post 'profile/notifications/unsubscribe', to: 'profile#unsubscribe', as: :profile_unsubscribe
     get 'profile/social', to: 'profile#social', as: :profile_social
+    patch 'profile/social/disconnect/:provider', to: 'profile#social_disconnect', as: :profile_social_disconnect
 
 		## Change App Language
 		post "locale", to: "profile#setLocale", as: :profile_set_locale

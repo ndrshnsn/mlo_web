@@ -39,6 +39,10 @@ pt-BR:
       confirm_text: ""
       notifications: "Notificações"
       notifications_obs: "Ativa / Desativa as Notificações do Sistema"
+    social:
+      disconnect: "Desconectar"
+      remove_social_connection: "Remover Conexão com Rede Social?"
+      remove_social_connection_text: "Será necessária uma nova autorização para autenticar no sistema utilizando essa rede social"
     update_appearance:
       success: "Perfil atualizado com sucesso!"
       error: "Erro atualizando Perfil!"

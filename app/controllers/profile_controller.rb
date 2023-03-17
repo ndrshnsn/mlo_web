@@ -21,6 +21,19 @@ class ProfileController < ApplicationController
     render "_social"
   end
 
+  def social_disconnect
+    sIdentity = Identity.find_by(user_id: current_user.id, provider: params[:provider])
+    if sIdentity.destroy!
+      flash.now["success"] = t('.success')
+    else
+      flash.now["error"] = t('.error')
+    end
+    @identities = Identity.where(user_id: @user.id).to_a
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   def subscribe
     sparams = params
     user = User.find(current_user.id)

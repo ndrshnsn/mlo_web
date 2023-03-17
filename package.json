@@ -17,7 +17,7 @@
     "flatpickr": "^4.6.13",
     "gasparesganga-jquery-loading-overlay": "^2.1.7",
     "jquery": "^3.6.3",
-    "jquery-countdown": "^2.2.0",
+    "jquery.countdown": "^1.2.8",
     "node-waves": "^0.7.6",
     "parsleyjs": "^2.9.2",
     "sass": "^1.58.3",

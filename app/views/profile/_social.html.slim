@@ -2,8 +2,16 @@
   .tab-pane id="system" role="tabpanel"
     .row
         - socialProviders.each do |sProvider|
-            .col-2.g-2
-                .card.card-body
-                    .d-flex.justify-content-center.mb-3
-                        = image_tag("logo/social/#{sProvider[0]}.png", class: "avatar-sm")
-                    = link_to sProvider[1], "#", class: "btn btn-sm btn-primary waves-effect waves-light mt-1"
+            - active = @identities.select {|identity| identity['provider'] == sProvider[0]}.size > 0 ? '' : 'disabled'
+            .col-sm-6.col-md-3.g-3
+                .card.ribbon-box.border.shadow-none.ml-lg-0
+                    .card-body
+                        .ribbon.ribbon-primary.ribbon-shape = sProvider[1]
+                        .ribbon-content.text-center.mt-4
+                            .d-flex.justify-content-center.mb-3
+                                = image_tag("logo/social/#{sProvider[0]}.png", class: "avatar-sm mt-3")
+
+                            = link_to "javascript:void(0)", class: "btn btn-sm btn-primary #{active}", data: { controller: "confirm", "confirm-title-value": t('.remove_social_connection'), "confirm-text-value": t('.remove_social_connection_text'), "confirm-link-value": profile_social_disconnect_path(sProvider[0]), "confirm-icon-value": "question", "confirm-action-value": "PATCH", action: "click->confirm#dialog" } do
+                                span = t('.disconnect')
+
+

@@ -18,8 +18,7 @@ module ApplicationHelper
 		sProviders = [
 			[ "google_oauth2", t('social_providers.google_oauth2')],
 			[ "twitter", t('social_providers.twitter')],
-			[ "github", t('social_providers.github')],
-			[ "facebook", t('social_providers.facebook')]
+			[ "github", t('social_providers.github')]
 		]
 		return sProviders
 	end

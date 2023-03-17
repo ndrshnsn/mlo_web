@@ -11,7 +11,7 @@ const langMap = {
   en: '',
 }
 
-if (locale !== 'en') flatpickr.localize(langMap[locale]);
+if (clocale !== 'en') flatpickr.localize(langMap[clocale]);
 
 export default class FlatpickrController extends Controller {
   static values = { ctype: String, sdate: { type: String, default: "false" }, edate: { type: String, default: "false" } }
@@ -45,7 +45,6 @@ export default class FlatpickrController extends Controller {
         break
 
       case 'range':
-        console.log(clocale)
         flatpickr(this.element, {
           allowInput: true,
           altInput: true,
