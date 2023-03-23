@@ -13,42 +13,20 @@ class Admin::LeaguesController < ApplicationController
   end
 
   def edit
-    @league = League.friendly.find(params[:id])
+    @league = League.friendly.find(params[:id]) 
   end
 
   def update
-    @league = League.friendly.find(params[:id])
-    padm = User.find(@league.user_id)
-    if @league.update!(
-        name: league_params[:name],
-        user_id: league_params[:user_id],
-        platform: league_params[:platform],
-        slots: league_params[:slots],
-        status: league_params[:status]
-      )
-      adm = User.find(league_params[:user_id])
-      if padm.id != adm.id
-        padm.update(
-          active_league: nil,
-          active: false,
-          role: "user",
-        )
-        adm.update(
-          request: false,
-          active_league: league.id,
-          role: "manager",
-        )
-        League.sendAdminLeagueWelcome(
-          adm.email,
-          league_params[:name],
-          adm.full_name
-        )
+    league = League.friendly.find(params[:id])
+    result = AdminServices::UpdateLeague.call(league, league_params)
+    respond_to do |format|
+      if result.success?
+        flash['success'] = t('.success')
+        format.html { redirect_to admin_leagues_path }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
       end
-      flash["success"] = t('.success')
-    else
-      flash["error"] = t('.error')
     end
-    redirect_to admin_leagues_path
   end
 
   def destroy

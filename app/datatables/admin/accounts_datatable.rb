@@ -74,8 +74,6 @@ class Admin::AccountsDatatable < ApplicationDatatable
 
   def total_entries
     accounts.total_count
-    # will_paginate
-    # players.total_entries
   end
 
   def accounts

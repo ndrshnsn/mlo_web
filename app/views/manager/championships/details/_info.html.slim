@@ -12,6 +12,10 @@
             i.ri-information-line.me-2.align-bottom.text-muted
             = t('.general')
 
+          = link_to "javascript:void(0)", class: "dropdown-item", data: { action: 'click->confirm#dialog', controller: 'confirm', "confirm-title-value": t('.remove'), "confirm-text-value": t('.remove_text'), "confirm-icon-value": 'warning', "confirm-origin-value": "/manager/championships", "confirm-link-value": manager_championship_destroy_path(@championship.hashid) } do
+            i.ri-close-line.me-2.align-bottom.text-muted
+            = t('.remove_button')
+
         /   .dropdown-divider
         /   = link_to manager_season_settings_path(@season.hashid), class: "dropdown-item", data: { "turbo-action": "advance"} do
         /     i.ri-settings-line.me-2.align-bottom.text-muted
@@ -21,11 +25,6 @@
         /     i.ri-group-line.me-2.align-bottom.text-muted
         /     = t('.users')
 
-        /   = link_to "javascript:void(0)", class: "dropdown-item", data: { action: 'click->confirm#dialog', controller: 'confirm', "confirm-title-value": t('defaults.datatables.confirm_remove'), "confirm-text-value": t('defaults.datatables.confirm_remove_text'), "confirm-icon-value": 'warning', "confirm-origin-value": "/manager/seasons", "confirm-link-value": manager_season_destroy_path(@season.hashid) } do
-        /     i.ri-close-line.me-2.align-bottom.text-muted
-        /     = t('.remove')
-            
-          
           //= link_to season_goalers_path(@season), class: "dropdown-item", method: :post, remote: :true do
             i.mr-50.jam.jam-chevrons-right
             span Artilheiros

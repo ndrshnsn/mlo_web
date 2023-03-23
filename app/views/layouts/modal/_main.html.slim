@@ -1,8 +1,9 @@
 - mSize = @modal_size.present? ? @modal_size : "lg"
+- mScrollable = modal_scrollable.present? ? 'modal-dialog-scrollable' : ''
 
 = turbo_frame_tag "modal" do
-  div class="modal zoomIn" data-controller="modal" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" data-action="turbo:before-render@document->modal#hideBeforeRender"
-    div class="modal-dialog modal-dialog-centered modal-#{mSize}"
+  div class="modal fade show" data-controller="modal" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" data-action="turbo:before-render@document->modal#hideBeforeRender"
+    div class="modal-dialog modal-dialog-centered modal-#{mSize} #{mScrollable}"
       .modal-content
         = yield
             

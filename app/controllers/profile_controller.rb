@@ -6,13 +6,13 @@ class ProfileController < ApplicationController
 
   def pw
     @user = User.find(current_user.id)
-    render "_pw"
+    render '_pw'
   end
 
   def system
     @user = User.find(current_user.id)
     @defCountries = DefCountry.getSorted
-    render "_system"
+    render '_system'
   end
 
   def social

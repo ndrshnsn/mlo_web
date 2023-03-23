@@ -38,7 +38,7 @@
         .form-group
           = label_tag("#{t '.country'}", nil, class: "control-label")
           #popover_user_country
-          = select_tag "user[country]", options_for_select(@defCountries.collect { |def_country| [ def_country[:name_i18n], def_country[:id], {'data-country': countryFlag(def_country[:name])}] }, current_user.preferences['country']), {include_blank: true,  class: "form-control select2", id: 'user_country',  required: true, "data-controller": "select", "data-select-icon-value": true }
+          = select_tag "user[country]", options_for_select(@defCountries.collect { |def_country| [ def_country[:name_i18n], def_country[:id], {'data-img': countryFlag(def_country[:name])}] }, current_user.preferences['country']), {include_blank: true,  class: "form-control select2", id: 'user_country',  required: true, "data-controller": "select", "data-select-icon-value": true }
 
       .col-sm-12.col-md-6.mb-3
         .form-group

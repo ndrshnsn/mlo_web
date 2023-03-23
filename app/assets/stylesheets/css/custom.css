@@ -125,3 +125,7 @@ tr.strikeout td:before {
   margin-top: 2px;
   border-radius: 50%!important;
 }
+
+.modal {
+  z-index: 1058 !important;
+}

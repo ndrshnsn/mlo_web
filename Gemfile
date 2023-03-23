@@ -84,7 +84,7 @@ gem "stimulus-rails", "~> 1.1"
 
 gem "redis-session-store", "~> 0.11.4"
 
-gem "sidekiq", "~> 6.5"
+gem "sidekiq", "< 8"
 
 gem "requestjs-rails", "~> 0.0.9"
 

@@ -26,7 +26,7 @@ export default class extends Controller {
           },
           {
               orderable: false,
-              targets: [-1]
+              targets: [0,-1]
           },
           {
               searchable: false,

@@ -23,6 +23,9 @@ pt-BR:
           format: "Formato"
           participants: "Participantes"
           status: "Status"
+          remove: "Excluir?"
+          remove_button: "Excluir"
+          remove_text: "Fique atento, pois caso o Campeonato já tenha sido finalizado, os valores recebidos pelos usuários serão devolvidos."
       new:
         championships: "Campeonatos"
         confirm: "Criar Campeonato?"
