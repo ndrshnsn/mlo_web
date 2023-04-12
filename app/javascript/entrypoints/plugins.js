@@ -1,12 +1,16 @@
-//import "./base/toastify"
-
 $('#timeoutWarningModal').on('shown.bs.modal', function (e) {
-  let dt = new Date();
-  dt.setSeconds(dt.getSeconds() + 60);
-  let sTime = ''+ dt.getFullYear() + '/'+ (dt.getMonth() + 1) + '/' + dt.getDate() + ' '+ dt.getHours() + ':'+ dt.getMinutes()  +':'+ dt.getSeconds() + '';
-  $('#stimeleft').countdown(sTime, function(event) {
-      $(this).html(event.strftime('%S'));
+  //var timer = new easytimer.Timer();
+  timer.start({countdown: true, startValues: {seconds: 30}});
+  $('#stimeleft').html(timer.getTimeValues().toString(['minutes', 'seconds']));
+
+  timer.addEventListener('secondsUpdated', function (e) {
+    $('#stimeleft').html(timer.getTimeValues().toString(['minutes', 'seconds']));
   });
+
+  timer.addEventListener('targetAchieved', function (e) {
+    window.location.reload();
+  });
+
 })
 
 document.querySelectorAll("form .auth-pass-inputgroup").forEach(function(s) {

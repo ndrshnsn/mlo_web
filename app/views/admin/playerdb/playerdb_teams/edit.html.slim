@@ -12,5 +12,5 @@
                   = image_tag("flags/#{@cLogoName}.png", class: "me-75", style: "margin-top: -0.2rem;")
                 = t('.edit')
           .card-body
-            = form_with model: @defTeam, id: dom_id(@defTeam), url: admin_playerdb_teams_update_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "warning"} do |f|
+            = form_with model: @defTeam, id: dom_id(@defTeam), url: admin_playerdb_teams_update_path, class: "needs-validation", data: { controller: "form","form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "warning"} do |f|
               = render partial: "form", locals: { f: f }

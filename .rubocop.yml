@@ -1,0 +1,21 @@
+# .rubocop.yml
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  - rubocop-performance
+  - standard
+
+inherit_gem:
+  standard: config/base.yml
+
+inherit_from:
+  - .rubocop/rails.yml
+  - .rubocop/custom.yml
+  # - .rubocop/strict.yml
+
+AllCops:
+  SuggestExtensions: false
+  TargetRubyVersion: 3.2
+  EnabledByDefault: true

@@ -1,31 +1,31 @@
-# frozen_string_literal: true
-
 class Admin::AccountsController < ApplicationController
   authorize_resource class: false
   breadcrumb "dashboard", :admin_accounts_path, match: :exact
   breadcrumb "admin.accounts.main", :admin_accounts_path, match: :exact
 
-  def index; end
+  def index
+  end
 
   def edit
     @user = User.friendly.find(params[:id])
-    if @user.active
-      @userActiveStatus = 'active'
-    else
-      if @user.confirmed_at.nil?
-        @userActiveStatus = 'pending'
+    @user_active_status =
+      if @user.active
+        "active"
       else
-        @userActiveStatus = 'inactive'
+        @user.confirmed_at.nil? ? "pending" : "inactive"
       end
-    end
   end
 
   def update
     user = User.friendly.find(params[:id])
-    result = AdminServices::UpdateAccount.call(user, user_params)
+    active_value = true unless user_params[:status] == "inactive"
     respond_to do |format|
-      if result.success?
-        flash["success"] = t('.success')
+      if user.update!(
+        role: Integer(user_params[:role], 10),
+        active: active_value
+      )
+
+        flash["success"] = t(".success")
         format.html { redirect_to admin_accounts_path }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -37,7 +37,7 @@ class Admin::AccountsController < ApplicationController
     user = User.friendly.find(params[:id])
     respond_to do |format|
       if user.destroy!
-        flash.now["success"] = t('.success')
+        flash.now["success"] = t(".success")
         format.html { redirect_to admin_accounts_path }
         format.turbo_stream
       else

@@ -1,17 +1,17 @@
 class Season < ApplicationRecord
-  include Hashid::Rails 
+  include Hashid::Rails
   has_noticed_notifications
 
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
-  
+  tracked owner: proc { |controller, model| controller.current_user }
+
   belongs_to :league
   has_many :user_seasons, dependent: :destroy
   has_many :users, through: :user_seasons
-  #has_many :notifications, foreign_key: :notifiable_id
-  #has_many :notifications, dependent: :destroy
+  # has_many :notifications, foreign_key: :notifiable_id
+  # has_many :notifications, dependent: :destroy
   has_many :player_seasons, dependent: :destroy
-  #has_many :rankings, dependent: :destroy
+  # has_many :rankings, dependent: :destroy
   has_many :clubs, through: :user_seasons
   has_rich_text :advertisement
 
@@ -60,26 +60,24 @@ class Season < ApplicationRecord
     award_assister: :string,
     award_fairplay: :string
 
-    
   def self.getActive(user)
     getUser = User.find(user)
-    if !getUser.preferences['active_league'].blank?
-      season = Season.where("league_id = #{getUser.preferences['active_league']} and (status = 0 OR status = 1)")
+    if getUser.preferences["active_league"].present?
+      season = Season.where("league_id = #{getUser.preferences["active_league"]} and (status = 0 OR status = 1)")
       if season.count > 0
         return season.first.id
-      end 
+      end
     end
-    return nil
+    nil
   end
 
   def self.getStatus(season_id)
-		status = {
-			"0": ["not_started", "Não Iniciado", "warning"],
-			"1": ["season_running", "Em Andamento", "success"],
-			"2": ["season_finished", "Encerrada", "secondary"]
-		}
-		season = Season.find(season_id)
-		return status[:"#{season.status}"]
-	end
-
+    status = {
+      "0": ["not_started", "Não Iniciado", "warning"],
+      "1": ["season_running", "Em Andamento", "success"],
+      "2": ["season_finished", "Encerrada", "secondary"]
+    }
+    season = Season.find(season_id)
+    status[:"#{season.status}"]
+  end
 end

@@ -11,7 +11,7 @@ class Notification < ApplicationRecord
     end
 
     html = ApplicationController.render partial: "notifications/notification", locals: {notifications: Notification.where(recipient: recipient).order(created_at: :desc).limit(10)}, formats: [:html]
-    
+
     broadcast_replace_to(
       recipient,
       :notifications,
@@ -28,6 +28,5 @@ class Notification < ApplicationRecord
       target: "notification_list",
       html: html
     )
-
   end
 end

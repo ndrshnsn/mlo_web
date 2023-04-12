@@ -1,7 +1,7 @@
 class Manager::ChampionshipsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-  
+
   breadcrumb "dashboard", :root_path, match: :exact
   breadcrumb "manager.championships.main", :manager_championships_path, match: :exact
 
@@ -14,13 +14,13 @@ class Manager::ChampionshipsController < ApplicationController
 
   def new
     @championship = Championship.new
-    @cTypes = Championship.types()
-    @awards = Award.where(league_id: current_user.preferences['active_league']).order('id ASC')
+    @cTypes = Championship.types
+    @awards = Award.where(league_id: current_user.preferences["active_league"]).order("id ASC")
     @award_result_type = helpers.award_result_types
   end
 
   def check_championship_name
-    season = Championship.exists?(name: params[:championship][:name], season_id: @season.id) ?  :unauthorized : :ok
+    season = Championship.exists?(name: params[:championship][:name], season_id: @season.id) ? :unauthorized : :ok
     render body: nil, status: season
   end
 
@@ -57,82 +57,82 @@ class Manager::ChampionshipsController < ApplicationController
     case championship_params[:ctype]
     when "league"
       @championship.preferences = {
-          time_start: time_start,
-          time_end: time_end,
-          ctype: championship_params[:ctype],
-          league_two_rounds: championship_params[:league_two_rounds],
-          league_finals: championship_params[:league_finals],
-          league_criterion: championship_params[:league_criterion],
-          hattrick_earning: championship_params[:hattrick_earning],
-          cards_suspension: championship_params[:cards_suspension],
-          match_best_player: championship_params[:match_best_player],
-          match_winning_earning: championship_params[:match_winning_earning],
-          match_draw_earning: championship_params[:match_draw_earning],
-          match_lost_earning: championship_params[:match_lost_earning],
-          match_goal_earning: championship_params[:match_goal_earning],
-          match_goal_lost: championship_params[:match_goal_lost],
-          match_yellow_card_loss: championship_params[:match_yellow_card_loss],
-          match_red_card_loss: championship_params[:match_red_card_loss],
-          match_winning_ranking: championship_params[:match_winning_ranking],
-          match_draw_ranking: championship_params[:match_draw_ranking],
-          match_lost_ranking: championship_params[:match_lost_ranking],
-          award_firstplace: championship_params[:firstplace],
-          award_secondplace: championship_params[:secondplace],
-          award_thirdplace: championship_params[:thirdplace],
-          award_fourthtplace: championship_params[:fourthplace],
-          award_goaler: championship_params[:goaler],
-          award_assister: championship_params[:assister],
-          award_fairplay: championship_params[:fairplay]
-        }
+        time_start: time_start,
+        time_end: time_end,
+        ctype: championship_params[:ctype],
+        league_two_rounds: championship_params[:league_two_rounds],
+        league_finals: championship_params[:league_finals],
+        league_criterion: championship_params[:league_criterion],
+        hattrick_earning: championship_params[:hattrick_earning],
+        cards_suspension: championship_params[:cards_suspension],
+        match_best_player: championship_params[:match_best_player],
+        match_winning_earning: championship_params[:match_winning_earning],
+        match_draw_earning: championship_params[:match_draw_earning],
+        match_lost_earning: championship_params[:match_lost_earning],
+        match_goal_earning: championship_params[:match_goal_earning],
+        match_goal_lost: championship_params[:match_goal_lost],
+        match_yellow_card_loss: championship_params[:match_yellow_card_loss],
+        match_red_card_loss: championship_params[:match_red_card_loss],
+        match_winning_ranking: championship_params[:match_winning_ranking],
+        match_draw_ranking: championship_params[:match_draw_ranking],
+        match_lost_ranking: championship_params[:match_lost_ranking],
+        award_firstplace: championship_params[:firstplace],
+        award_secondplace: championship_params[:secondplace],
+        award_thirdplace: championship_params[:thirdplace],
+        award_fourthtplace: championship_params[:fourthplace],
+        award_goaler: championship_params[:goaler],
+        award_assister: championship_params[:assister],
+        award_fairplay: championship_params[:fairplay]
+      }
     when "cup"
       @championship.preferences = {
-          time_start: time_start,
-          time_end: time_end,
-          ctype: championship_params[:ctype],
-          cup_number_of_groups: championship_params[:cup_number_of_groups],
-          cup_teams_that_classify: championship_params[:cup_teams_that_classify],
-          cup_group_two_rounds: championship_params[:cup_group_two_rounds],
-          cup_switching: championship_params[:cup_switching],
-          cup_criterion: championship_params[:cup_criterion],
-          hattrick_earning: championship_params[:hattrick_earning],
-          cards_suspension: championship_params[:cards_suspension],
-          match_best_player: championship_params[:match_best_player],
-          match_winning_earning: championship_params[:match_winning_earning],
-          match_draw_earning: championship_params[:match_draw_earning],
-          match_lost_earning: championship_params[:match_lost_earning],
-          match_goal_earning: championship_params[:match_goal_earning],
-          match_goal_lost: championship_params[:match_goal_lost],
-          match_yellow_card_loss: championship_params[:match_yellow_card_loss],
-          match_red_card_loss: championship_params[:match_red_card_loss],
-          match_winning_ranking: championship_params[:match_winning_ranking],
-          match_draw_ranking: championship_params[:match_draw_ranking],
-          match_lost_ranking: championship_params[:match_lost_ranking],
-          award: championship_params[:award]
-        }
+        time_start: time_start,
+        time_end: time_end,
+        ctype: championship_params[:ctype],
+        cup_number_of_groups: championship_params[:cup_number_of_groups],
+        cup_teams_that_classify: championship_params[:cup_teams_that_classify],
+        cup_group_two_rounds: championship_params[:cup_group_two_rounds],
+        cup_switching: championship_params[:cup_switching],
+        cup_criterion: championship_params[:cup_criterion],
+        hattrick_earning: championship_params[:hattrick_earning],
+        cards_suspension: championship_params[:cards_suspension],
+        match_best_player: championship_params[:match_best_player],
+        match_winning_earning: championship_params[:match_winning_earning],
+        match_draw_earning: championship_params[:match_draw_earning],
+        match_lost_earning: championship_params[:match_lost_earning],
+        match_goal_earning: championship_params[:match_goal_earning],
+        match_goal_lost: championship_params[:match_goal_lost],
+        match_yellow_card_loss: championship_params[:match_yellow_card_loss],
+        match_red_card_loss: championship_params[:match_red_card_loss],
+        match_winning_ranking: championship_params[:match_winning_ranking],
+        match_draw_ranking: championship_params[:match_draw_ranking],
+        match_lost_ranking: championship_params[:match_lost_ranking],
+        award: championship_params[:award]
+      }
     when "brackets"
       @championship.preferences = {
-          time_start: time_start,
-          time_end: time_end,
-          ctype: championship_params[:ctype],
-          bracket_two_rounds: championship_params[:bracket_two_rounds],
-          bracket_criterion: championship_params[:bracket_criterion],
-          hattrick_earning: championship_params[:hattrick_earning],
-          cards_suspension: championship_params[:cards_suspension],
-          match_best_player: championship_params[:match_best_player],
-          match_winning_earning: championship_params[:match_winning_earning],
-          match_draw_earning: championship_params[:match_draw_earning],
-          match_lost_earning: championship_params[:match_lost_earning],
-          match_goal_earning: championship_params[:match_goal_earning],
-          match_goal_lost: championship_params[:match_goal_lost],
-          match_yellow_card_loss: championship_params[:match_yellow_card_loss],
-          match_red_card_loss: championship_params[:match_red_card_loss],
-          match_winning_ranking: championship_params[:match_winning_ranking],
-          match_draw_ranking: championship_params[:match_draw_ranking],
-          match_lost_ranking: championship_params[:match_lost_ranking],
-          award: championship_params[:award]
-        }
+        time_start: time_start,
+        time_end: time_end,
+        ctype: championship_params[:ctype],
+        bracket_two_rounds: championship_params[:bracket_two_rounds],
+        bracket_criterion: championship_params[:bracket_criterion],
+        hattrick_earning: championship_params[:hattrick_earning],
+        cards_suspension: championship_params[:cards_suspension],
+        match_best_player: championship_params[:match_best_player],
+        match_winning_earning: championship_params[:match_winning_earning],
+        match_draw_earning: championship_params[:match_draw_earning],
+        match_lost_earning: championship_params[:match_lost_earning],
+        match_goal_earning: championship_params[:match_goal_earning],
+        match_goal_lost: championship_params[:match_goal_lost],
+        match_yellow_card_loss: championship_params[:match_yellow_card_loss],
+        match_red_card_loss: championship_params[:match_red_card_loss],
+        match_winning_ranking: championship_params[:match_winning_ranking],
+        match_draw_ranking: championship_params[:match_draw_ranking],
+        match_lost_ranking: championship_params[:match_lost_ranking],
+        award: championship_params[:award]
+      }
     end
-    
+
     respond_to do |format|
       if @championship.save!
         # User.joins(:user_leagues).where('league_id = ? AND status = ?', @league.id, true).each do |user|
@@ -148,8 +148,8 @@ class Manager::ChampionshipsController < ApplicationController
         #   push_message: "#{t('.wnotify_subject', season: @season.name)}||#{t('.wnotify_text')}",
         #   type: "new").deliver_later(current_user)
 
-        flash.now["success"] = t('.success')
-        format.html { redirect_to manager_championships_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to manager_championships_path, notice: t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -164,11 +164,11 @@ class Manager::ChampionshipsController < ApplicationController
       @cPositions = ChampionshipPosition.where(championship_id: @championship.id).order(position: :asc)
     end
 
-    #@goalers = Championship.getGoalers(@championship).limit(5)
-    #@assists = Championship.getAssisters(@championship).limit(5)
-    #@fairplay = Championship.getFairPlay(@championship).limit(5)
-    #@bestplayer = Championship.getBestPlayer(@championship).limit(5)
-    #@lGames = Game.where(championship_id: @championship.id, status: 4).order(updated_at: :desc).limit(5)
+    # @goalers = Championship.getGoalers(@championship).limit(5)
+    # @assists = Championship.getAssisters(@championship).limit(5)
+    # @fairplay = Championship.getFairPlay(@championship).limit(5)
+    # @bestplayer = Championship.getBestPlayer(@championship).limit(5)
+    # @lGames = Game.where(championship_id: @championship.id, status: 4).order(updated_at: :desc).limit(5)
     @user_season = UserSeason.where(season_id: @season.id).includes(:user)
   end
 
@@ -182,8 +182,8 @@ class Manager::ChampionshipsController < ApplicationController
       ).save!
     end
     respond_to do |format|
-      flash.now["success"] = t('.success')
-      format.html { redirect_to manager_championship_details_path(@championship.hashid), notice: t('.success') }
+      flash.now["success"] = t(".success")
+      format.html { redirect_to manager_championship_details_path(@championship.hashid), notice: t(".success") }
       format.turbo_stream
     end
   end
@@ -193,7 +193,7 @@ class Manager::ChampionshipsController < ApplicationController
     case params[:caction]
     when "choose_clubs"
       @uLeague = UserSeason.includes(:user, [clubs: :def_team]).where(season_id: @season.id)
-      render 'choose_clubs'
+      render "choose_clubs"
     when "start_championship"
       case @championship.preferences["ctype"]
       when "league"
@@ -204,13 +204,13 @@ class Manager::ChampionshipsController < ApplicationController
 
         listOfClubs = listOfClubs.permutation(2).to_a
         listOfClubs = listOfClubs.shuffle
-        listOfClubsHalfs = listOfClubs.count/2
+        listOfClubsHalfs = listOfClubs.count / 2
         while i < listOfClubsHalfs
           firstHalf << [listOfClubs[0][0], listOfClubs[0][1]]
           secondHalf << [listOfClubs[0][1], listOfClubs[0][0]]
           listOfClubs.delete_at(listOfClubs.find_index([listOfClubs[0][1], listOfClubs[0][0]]))
           listOfClubs.delete_at(0)
-          i = i+1
+          i += 1
         end
 
         # firstHalf.each do |game|
@@ -243,8 +243,9 @@ class Manager::ChampionshipsController < ApplicationController
             icon: "trophy",
             push: true,
             push_type: "user",
-            push_message: "#{t('.wnotify_subject', championship: @championship.name)}||#{t('.wnotify_text')}",
-            type: "start_championship").deliver_later(user)
+            push_message: "#{t(".wnotify_subject", championship: @championship.name)}||#{t(".wnotify_text")}",
+            type: "start_championship"
+          ).deliver_later(user)
         end
 
         # ChampionshipNotification.with(
@@ -256,17 +257,13 @@ class Manager::ChampionshipsController < ApplicationController
         #   push_message: "#{t('.wnotify_subject', championship: @championship.name)}||#{t('.wnotify_text')}",
         #   type: "start_championship").deliver_later(user)
 
-
-        
-        
-
       when "cup"
       when "brackets"
       end
-      
+
       respond_to do |format|
         # if @championship.update(status: 1)
-           flash.now["success"] = t('.success')
+        flash.now["success"] = t(".success")
         # else
         #   flash.now["danger"] = t('.error')
         # end
@@ -287,7 +284,7 @@ class Manager::ChampionshipsController < ApplicationController
         "Turno do Camepenato #{@championship.name} Iniciado! Você já pode realizar seus jogos do turno.",
         true,
         @season.id
-        )
+      )
 
       flash[:success] = "Turno do Campeonato #{@championship.name} Iniciado com sucesso!"
     when "start_league_secondround"
@@ -309,7 +306,7 @@ class Manager::ChampionshipsController < ApplicationController
           "Returno do Campeonato #{@championship.name} Iniciado! Você já pode realizar seus jogos do returno.",
           true,
           @season.id
-          )
+        )
 
         flash[:success] = "Returno do Campeonato #{@championship.name} Iniciado com sucesso!"
       else
@@ -319,7 +316,7 @@ class Manager::ChampionshipsController < ApplicationController
         else
           cGames = Game.where(championship_id: @championship.id, phase: "firstRound", status: 0).order(created_at: :asc)
           cGames.each_with_index do |cGame, i|
-            iteration = i+1
+            iteration = i + 1
 
             cGame.hscore = 0
             cGame.vscore = 0
@@ -341,47 +338,47 @@ class Manager::ChampionshipsController < ApplicationController
             ## Status
             @gameStatus = Game.getStatus(cGame.id)
 
-            ## Render   
-            gameCard = render_to_string partial: 'championships/games/card', locals: { game: cGame, iteration: iteration, current_user_id: cGame.home.user_season.user.id }
+            ## Render
+            gameCard = render_to_string partial: "championships/games/card", locals: {game: cGame, iteration: iteration, current_user_id: cGame.home.user_season.user.id}
 
             # Update Visitor/Home and Others Game Card
             ActionCable.server.broadcast "gameCard:#{@season.id}_#{cGame.home.user_season.user.id}", {
-                sender: current_user.id,
-                audience: "match",
-                championship_id: cGame.championship.hashid,
-                game_id: cGame.hashid,
-                gameCard: gameCard,
-                home_id: cGame.home.user_season.user.id,
-                visitor_id: cGame.visitor.user_season.user.id,
-                phase: "reload_card"
+              sender: current_user.id,
+              audience: "match",
+              championship_id: cGame.championship.hashid,
+              game_id: cGame.hashid,
+              gameCard: gameCard,
+              home_id: cGame.home.user_season.user.id,
+              visitor_id: cGame.visitor.user_season.user.id,
+              phase: "reload_card"
             }
 
-            ## Render   
-            gameCard = render_to_string partial: 'championships/games/card', locals: { game: cGame, iteration: iteration, current_user_id: cGame.visitor.user_season.user.id }
+            ## Render
+            gameCard = render_to_string partial: "championships/games/card", locals: {game: cGame, iteration: iteration, current_user_id: cGame.visitor.user_season.user.id}
 
             ActionCable.server.broadcast "gameCard:#{@season.id}_#{cGame.visitor.user_season.user.id}", {
-                sender: current_user.id,
-                audience: "match",
-                championship_id: cGame.championship.hashid,
-                game_id: cGame.hashid,
-                gameCard: gameCard,
-                home_id: cGame.home.user_season.user.id,
-                visitor_id: cGame.visitor.user_season.user.id,
-                phase: "reload_card"
+              sender: current_user.id,
+              audience: "match",
+              championship_id: cGame.championship.hashid,
+              game_id: cGame.hashid,
+              gameCard: gameCard,
+              home_id: cGame.home.user_season.user.id,
+              visitor_id: cGame.visitor.user_season.user.id,
+              phase: "reload_card"
             }
 
-            ## Render   
-            gameCard = render_to_string partial: 'championships/games/card', locals: { game: cGame, iteration: iteration }
+            ## Render
+            gameCard = render_to_string partial: "championships/games/card", locals: {game: cGame, iteration: iteration}
 
             ActionCable.server.broadcast "gameCard:#{@season.id}", {
-                sender: current_user.id,
-                audience: "others",
-                championship_id: cGame.championship.hashid,
-                game_id: cGame.hashid,
-                gameCard: gameCard,
-                home_id: cGame.home.user_season.user.id,
-                visitor_id: cGame.visitor.user_season.user.id,
-                phase: "reload_card"
+              sender: current_user.id,
+              audience: "others",
+              championship_id: cGame.championship.hashid,
+              game_id: cGame.hashid,
+              gameCard: gameCard,
+              home_id: cGame.home.user_season.user.id,
+              visitor_id: cGame.visitor.user_season.user.id,
+              phase: "reload_card"
             }
           end
 
@@ -397,7 +394,7 @@ class Manager::ChampionshipsController < ApplicationController
             "Returno do Campeonato #{@championship.name} Iniciado! Você já pode realizar seus jogos do returno.",
             true,
             @season.id
-            )
+          )
 
           flash[:success] = "Returno do Campeonato #{@championship.name} Iniciado com sucesso!"
         end
@@ -418,7 +415,7 @@ class Manager::ChampionshipsController < ApplicationController
         "Returno do Campeonato #{@championship.name} Iniciado! Você já pode realizar seus jogos do returno.",
         true,
         @season.id
-        )
+      )
 
       flash[:success] = "Returno do Campeonato #{@championship.name} Iniciado com sucesso!"
 
@@ -426,23 +423,23 @@ class Manager::ChampionshipsController < ApplicationController
     when "start_league_semifinals"
 
       # Check Championship Rounds
-      if @championship.preferences["league_two_rounds"] == "on"
-        nfGames = Game.where(championship_id: @championship.id, phase: "secondRound").where("status > ? AND status < ?", 1, 4).order(created_at: :asc)
+      nfGames = if @championship.preferences["league_two_rounds"] == "on"
+        Game.where(championship_id: @championship.id, phase: "secondRound").where("status > ? AND status < ?", 1, 4).order(created_at: :asc)
       else
-        nfGames = Game.where(championship_id: @championship.id, phase: "firstRound").where("status > ? AND status < ?", 1, 4).order(created_at: :asc)
+        Game.where(championship_id: @championship.id, phase: "firstRound").where("status > ? AND status < ?", 1, 4).order(created_at: :asc)
       end
 
       if nfGames.size > 0
         flash[:error] = "Existem jogos em Andamento! Cancele/Comunique os jogadores para finalizar os jogos antes de encerrar o turno!"
       else
-        if @championship.preferences["league_two_rounds"] == "on"
-          cGames = Game.where(championship_id: @championship.id, phase: "secondRound", status: 0).order(created_at: :asc)
+        cGames = if @championship.preferences["league_two_rounds"] == "on"
+          Game.where(championship_id: @championship.id, phase: "secondRound", status: 0).order(created_at: :asc)
         else
-          cGames = Game.where(championship_id: @championship.id, phase: "firstRound", status: 0).order(created_at: :asc)
+          Game.where(championship_id: @championship.id, phase: "firstRound", status: 0).order(created_at: :asc)
         end
 
         cGames.each_with_index do |cGame, i|
-          iteration = i+1
+          iteration = i + 1
 
           cGame.hscore = 0
           cGame.vscore = 0
@@ -464,47 +461,47 @@ class Manager::ChampionshipsController < ApplicationController
           ## Status
           @gameStatus = Game.getStatus(cGame.id)
 
-          ## Render   
-          gameCard = render_to_string partial: 'championships/games/card', locals: { game: cGame, iteration: iteration, current_user_id: cGame.home.user_season.user.id }
+          ## Render
+          gameCard = render_to_string partial: "championships/games/card", locals: {game: cGame, iteration: iteration, current_user_id: cGame.home.user_season.user.id}
 
           # Update Visitor/Home and Others Game Card
           ActionCable.server.broadcast "gameCard:#{@season.id}_#{cGame.home.user_season.user.id}", {
-              sender: current_user.id,
-              audience: "match",
-              championship_id: cGame.championship.hashid,
-              game_id: cGame.hashid,
-              gameCard: gameCard,
-              home_id: cGame.home.user_season.user.id,
-              visitor_id: cGame.visitor.user_season.user.id,
-              phase: "reload_card"
+            sender: current_user.id,
+            audience: "match",
+            championship_id: cGame.championship.hashid,
+            game_id: cGame.hashid,
+            gameCard: gameCard,
+            home_id: cGame.home.user_season.user.id,
+            visitor_id: cGame.visitor.user_season.user.id,
+            phase: "reload_card"
           }
 
-          ## Render   
-          gameCard = render_to_string partial: 'championships/games/card', locals: { game: cGame, iteration: iteration, current_user_id: cGame.visitor.user_season.user.id }
+          ## Render
+          gameCard = render_to_string partial: "championships/games/card", locals: {game: cGame, iteration: iteration, current_user_id: cGame.visitor.user_season.user.id}
 
           ActionCable.server.broadcast "gameCard:#{@season.id}_#{cGame.visitor.user_season.user.id}", {
-              sender: current_user.id,
-              audience: "match",
-              championship_id: cGame.championship.hashid,
-              game_id: cGame.hashid,
-              gameCard: gameCard,
-              home_id: cGame.home.user_season.user.id,
-              visitor_id: cGame.visitor.user_season.user.id,
-              phase: "reload_card"
+            sender: current_user.id,
+            audience: "match",
+            championship_id: cGame.championship.hashid,
+            game_id: cGame.hashid,
+            gameCard: gameCard,
+            home_id: cGame.home.user_season.user.id,
+            visitor_id: cGame.visitor.user_season.user.id,
+            phase: "reload_card"
           }
 
-          ## Render   
-          gameCard = render_to_string partial: 'championships/games/card', locals: { game: cGame, iteration: iteration }
+          ## Render
+          gameCard = render_to_string partial: "championships/games/card", locals: {game: cGame, iteration: iteration}
 
           ActionCable.server.broadcast "gameCard:#{@season.id}", {
-              sender: current_user.id,
-              audience: "others",
-              championship_id: cGame.championship.hashid,
-              game_id: cGame.hashid,
-              gameCard: gameCard,
-              home_id: cGame.home.user_season.user.id,
-              visitor_id: cGame.visitor.user_season.user.id,
-              phase: "reload_card"
+            sender: current_user.id,
+            audience: "others",
+            championship_id: cGame.championship.hashid,
+            game_id: cGame.hashid,
+            gameCard: gameCard,
+            home_id: cGame.home.user_season.user.id,
+            visitor_id: cGame.visitor.user_season.user.id,
+            phase: "reload_card"
           }
         end
 
@@ -520,42 +517,42 @@ class Manager::ChampionshipsController < ApplicationController
         @visitor = Club.find(standing[3][0])
 
         firstSemi = Game.create(
-            championship_id: @championship.id,
-            home_id: @visitor.id,
-            visitor_id: @home.id,
-            phase: "semifinals",
-            status: 0,
-            wo: false
-          )
+          championship_id: @championship.id,
+          home_id: @visitor.id,
+          visitor_id: @home.id,
+          phase: "semifinals",
+          status: 0,
+          wo: false
+        )
         secondSemi = Game.create(
-            championship_id: @championship.id,
-            home_id: @home.id,
-            visitor_id: @visitor.id,
-            phase: "semifinals",
-            status: 0,
-            wo: false
-          )
+          championship_id: @championship.id,
+          home_id: @home.id,
+          visitor_id: @visitor.id,
+          phase: "semifinals",
+          status: 0,
+          wo: false
+        )
 
         ## Create 3rd/4th Semi
         @home = Club.find(standing[1][0])
         @visitor = Club.find(standing[2][0])
 
         thirdSemi = Game.create(
-            championship_id: @championship.id,
-            home_id: @visitor.id,
-            visitor_id: @home.id,
-            phase: "semifinals",
-            status: 0,
-            wo: false
-          )
+          championship_id: @championship.id,
+          home_id: @visitor.id,
+          visitor_id: @home.id,
+          phase: "semifinals",
+          status: 0,
+          wo: false
+        )
         fourthSemi = Game.create(
-            championship_id: @championship.id,
-            home_id: @home.id,
-            visitor_id: @visitor.id,
-            phase: "semifinals",
-            status: 0,
-            wo: false
-          )
+          championship_id: @championship.id,
+          home_id: @home.id,
+          visitor_id: @visitor.id,
+          phase: "semifinals",
+          status: 0,
+          wo: false
+        )
 
         ## WebPush Notify User about new Hire
         Push::Notify.group_notify(
@@ -566,7 +563,7 @@ class Manager::ChampionshipsController < ApplicationController
           "Semifinais do Campeonato #{@championship.name} Iniciadas! Você já pode realizar seus jogos.",
           true,
           @season.id
-          )
+        )
 
         ## Change Championship Status
         @championship.update(status: 5)
@@ -574,7 +571,7 @@ class Manager::ChampionshipsController < ApplicationController
         flash[:success] = "Jogos das Semifinais liberados para os usuários!"
       end
 
-    ## League Finals 
+    ## League Finals
     when "start_league_finals"
       nfGames = Game.where(championship_id: params[:id], phase: "semifinals").where("status < ?", 4).order(created_at: :asc)
       if nfGames.size > 0
@@ -586,7 +583,6 @@ class Manager::ChampionshipsController < ApplicationController
         finals = []
         prevSemi = Game.where(championship_id: @championship.id, phase: "semifinals", status: 4).order(created_at: :asc)
         prevSemi.each do |game|
-
           if game.home_id == thome || game.visitor_id == thome
             ## Opponent Game
             opGame = Game.where(championship_id: @championship.id, phase: "semifinals", status: 4, home_id: game.visitor_id, visitor_id: game.home_id).first
@@ -595,52 +591,51 @@ class Manager::ChampionshipsController < ApplicationController
           end
           thome = game.home_id
           tvisitor = game.visitor_id
-
         end
 
         standing = Standing.getStanding(@championship.id)
 
-        thirdFourthHome = standing.index { |el| el[0] == finals[0][:lost] } + 1 < standing.index { |el| el[0] == finals[1][:lost] } + 1 ? finals[0][:lost] : finals[1][:lost]
-        thirdFourthVisitor = thirdFourthHome == finals[0][:lost] ? finals[1][:lost] : finals[0][:lost]
+        thirdFourthHome = (standing.index { |el| el[0] == finals[0][:lost] } + 1 < standing.index { |el| el[0] == finals[1][:lost] } + 1) ? finals[0][:lost] : finals[1][:lost]
+        thirdFourthVisitor = (thirdFourthHome == finals[0][:lost]) ? finals[1][:lost] : finals[0][:lost]
 
         ## Create 3rd4th
         first3rd4th = Game.create(
-            championship_id: @championship.id,
-            home_id: Club.find(thirdFourthVisitor).id,
-            visitor_id: Club.find(thirdFourthHome).id,
-            phase: "3rd4th",
-            status: 0,
-            wo: false
-          )
+          championship_id: @championship.id,
+          home_id: Club.find(thirdFourthVisitor).id,
+          visitor_id: Club.find(thirdFourthHome).id,
+          phase: "3rd4th",
+          status: 0,
+          wo: false
+        )
         second3rd4th = Game.create(
-            championship_id: @championship.id,
-            home_id: Club.find(thirdFourthHome).id,
-            visitor_id: Club.find(thirdFourthVisitor).id,
-            phase: "3rd4th",
-            status: 0,
-            wo: false
-          )
+          championship_id: @championship.id,
+          home_id: Club.find(thirdFourthHome).id,
+          visitor_id: Club.find(thirdFourthVisitor).id,
+          phase: "3rd4th",
+          status: 0,
+          wo: false
+        )
 
-        finalHome = standing.index { |el| el[0] == finals[0][:win] } + 1 < standing.index { |el| el[0] == finals[1][:win] } + 1 ? finals[0][:win] : finals[1][:win]
-        finalVisitor = finalHome == finals[0][:win] ? finals[1][:win] : finals[0][:win]
+        finalHome = (standing.index { |el| el[0] == finals[0][:win] } + 1 < standing.index { |el| el[0] == finals[1][:win] } + 1) ? finals[0][:win] : finals[1][:win]
+        finalVisitor = (finalHome == finals[0][:win]) ? finals[1][:win] : finals[0][:win]
 
         ## Create Final Game
         firstFinal = Game.create(
-            championship_id: @championship.id,
-            home_id: Club.find(finalVisitor).id,
-            visitor_id: Club.find(finalHome).id,
-            phase: "finals",
-            status: 0,
-            wo: false
-          )
+          championship_id: @championship.id,
+          home_id: Club.find(finalVisitor).id,
+          visitor_id: Club.find(finalHome).id,
+          phase: "finals",
+          status: 0,
+          wo: false
+        )
         secondFinal = Game.create(
-            championship_id: @championship.id,
-            home_id: Club.find(finalHome).id,
-            visitor_id: Club.find(finalVisitor).id,
-            phase: "finals",
-            status: 0,
-            wo: false
-          )
+          championship_id: @championship.id,
+          home_id: Club.find(finalHome).id,
+          visitor_id: Club.find(finalVisitor).id,
+          phase: "finals",
+          status: 0,
+          wo: false
+        )
 
         ## WebPush Notify User about new Hire
         Push::Notify.group_notify(
@@ -651,7 +646,7 @@ class Manager::ChampionshipsController < ApplicationController
           "Finais do Campeonato #{@championship.name} Iniciadas! Você já pode realizar seus jogos.",
           true,
           @season.id
-          )
+        )
 
         ## Change Championship Status
         @championship.update(status: 6)
@@ -710,28 +705,28 @@ class Manager::ChampionshipsController < ApplicationController
           # require any additional calcs
 
           ChampionshipPosition.where(
-              championship_id: @championship.id,
-              club_id: first,
-              position: 1
-            ).first_or_create!
+            championship_id: @championship.id,
+            club_id: first,
+            position: 1
+          ).first_or_create!
 
           ChampionshipPosition.where(
-              championship_id: @championship.id,
-              club_id: second,
-              position: 2
-            ).first_or_create!
+            championship_id: @championship.id,
+            club_id: second,
+            position: 2
+          ).first_or_create!
 
           ChampionshipPosition.where(
-              championship_id: @championship.id,
-              club_id: third,
-              position: 3
-            ).first_or_create!
+            championship_id: @championship.id,
+            club_id: third,
+            position: 3
+          ).first_or_create!
 
           ChampionshipPosition.where(
-              championship_id: @championship.id,
-              club_id: fourth,
-              position: 4
-            ).first_or_create!
+            championship_id: @championship.id,
+            club_id: fourth,
+            position: 4
+          ).first_or_create!
 
         end
 
@@ -746,7 +741,7 @@ class Manager::ChampionshipsController < ApplicationController
       end
     end
 
-    #redirect_to manager_championship_details_path(@championship.hashid)
+    # redirect_to manager_championship_details_path(@championship.hashid)
   end
 
   private
@@ -795,5 +790,4 @@ class Manager::ChampionshipsController < ApplicationController
       :fairplay
     )
   end
-
 end

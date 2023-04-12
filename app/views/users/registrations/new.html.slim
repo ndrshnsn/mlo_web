@@ -1,3 +1,7 @@
+- email_value = full_name_value = ""
+- if session[:omniauth]
+  - email_value = session[:omniauth]['email']
+  - full_name_value = session[:omniauth]['name']
 .auth-page-wrapper.pt-5
 	.bg-overlay
 	.auth-page-content 
@@ -24,12 +28,12 @@
 												.col-12
 													.form-group.mb-3
 														= f.label :full_name, "#{t '.full_name'}", for: 'full_name', class: "control-label"
-														= f.text_field :full_name, class: "form-control", required: true
+														= f.text_field :full_name, value: full_name_value, class: "form-control", required: true
 											.row
 												.col-12
 													.form-group.mb-3
 														= f.label :email, t('.email'), for: 'email', class: "control-label"
-														= f.email_field :email, class: "form-control", required: true, "data-parsley-remote": "/user/check_email", "data-parsley-trigger": "focusout", "data-parsley-remote-options": '{ "type": "POST", "dataType":  "json" }'
+														= f.email_field :email, class: "form-control", required: true, value: email_value, "data-parsley-remote": "/user/check_email", "data-parsley-trigger": "focusout", "data-parsley-remote-options": '{ "type": "POST", "dataType":  "json" }'
 											
 											.row
 												.col-sm-12.col-md-7

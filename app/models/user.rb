@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   include AvatarUploader::Attachment(:avatar)
 
-  enum role: [:user, :manager, :admin]
+  enum role: {user: 0, manager: 1, admin: 2}
 
   ## Settings
   jsonb_accessor :preferences,
@@ -34,25 +34,27 @@ class User < ApplicationRecord
   has_many :seasons, through: :user_seasons
   has_many :clubs, through: :user_seasons
   has_many :club_players, through: :clubs
-  #has_many :club_championships, through: :clubs
+  # has_many :club_championships, through: :clubs
 
   ## Devise
   devise :database_authenticatable, :registerable, :confirmable, :trackable,
-        :recoverable, :rememberable, :validatable, :timeoutable,
-        :omniauthable, omniauth_providers: %i[google_oauth2 twitter github]
+    :recoverable, :rememberable, :validatable, :timeoutable,
+    :omniauthable, omniauth_providers: %i[google_oauth2 twitter github]
 
   ## Omniauth
   def self.from_omniauth(auth)
-    user = find_or_initialize_by(email: auth.info.email)
-    user.email = auth.info.email
-    user.full_name = auth.info.name
-    user.avatar_data = nil if user.avatar_data.blank?
-    user.save
+    user = User.find_by(email: auth.info.email)
+
+    return nil if user.blank?
+    # user.email = auth.info.email
+    # user.full_name = auth.info.name
+    # user.avatar_data = nil if user.avatar_data.blank?
+    # user.save!
     user
   end
 
   def add_jti
-      self.jti ||= SecureRandom.uuid
+    self.jti ||= SecureRandom.uuid
   end
 
   # Devise _ Doorkeeper
@@ -63,14 +65,14 @@ class User < ApplicationRecord
 
   ## Default Role
   after_initialize do
-    self.role ||= :user if self.new_record?
+    self.role ||= :user if new_record?
   end
 
   def self.getClub(user_id, season_id)
-    return User.find(user_id).clubs.where(user_seasons: { season_id: season_id } ).first
+    User.find(user_id).clubs.where(user_seasons: {season_id: season_id}).first
   end
 
   def self.getTeamPlayers(user_id, season_id)
-    return User.find(user_id).club_players.where(user_seasons:{season_id: season_id}).order_by_position
+    User.find(user_id).club_players.where(user_seasons: {season_id: season_id}).order_by_position
   end
 end

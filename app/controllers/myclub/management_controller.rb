@@ -8,12 +8,12 @@ class Myclub::ManagementController < ApplicationController
   end
 
   def get_cteams
-    if ( !@userClub )
+    if !@userClub
       @userClub = Club.new
     end
 
-    @teams = DefTeam.where(active: true).where('platforms LIKE ?', "%#{@league.platform}%").order(name: :asc)
-    @disabled_teams = Club.joins(:user_season).where(user_season: { season_id: @season.id } ).pluck(:def_team_id)
+    @teams = DefTeam.where(active: true).where("platforms LIKE ?", "%#{@league.platform}%").order(name: :asc)
+    @disabled_teams = Club.joins(:user_season).where(user_season: {season_id: @season.id}).pluck(:def_team_id)
   end
 
   def show_team_details
@@ -28,7 +28,7 @@ class Myclub::ManagementController < ApplicationController
       tFormations = helpers.team_formations
       formation_pos = []
       tFormations[0][:pos].each do |tF|
-        formation_pos << { pos: tF, player: ''}
+        formation_pos << {pos: tF, player: ""}
       end
 
       @club = Club.new
@@ -50,7 +50,7 @@ class Myclub::ManagementController < ApplicationController
       if @club.save!
         session[:userClub] = @club.id
         if request.post?
-          ClubFinance.create(club_id: @club.id, operation: "initial_funds", value: @season.preferences["club_default_earning"].gsub(/[^\d\.]/, '').to_i, balance: @season.preferences["club_default_earning"].gsub(/[^\d\.]/, '').to_i, source: @season)
+          ClubFinance.create(club_id: @club.id, operation: "initial_funds", value: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, balance: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, source: @season)
         end
 
         SeasonNotification.with(
@@ -59,11 +59,12 @@ class Myclub::ManagementController < ApplicationController
           icon: "stack",
           push: true,
           push_type: "user",
-          push_message: "#{t('.wnotify_subject', season: @season.name)}||#{t('.wnotify_text')}",
-          type: "club_choosed").deliver_later(current_user)
+          push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}",
+          type: "club_choosed"
+        ).deliver_later(current_user)
 
-        flash.now["success"] = t('.success')
-        format.html { redirect_to myclub_management_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to myclub_management_path, notice: t(".success") }
         format.turbo_stream
       else
         format.html { render :index, status: :unprocessable_entity }
@@ -73,12 +74,12 @@ class Myclub::ManagementController < ApplicationController
 
   private
 
-    def set_local_vars
-      if session[:userClub]
-        @userClub = Club.find(session[:userClub])
-      end
-
-      @league = League.find(session[:league])
-      @season = Season.find(session[:season])
+  def set_local_vars
+    if session[:userClub]
+      @userClub = Club.find(session[:userClub])
     end
+
+    @league = League.find(session[:league])
+    @season = Season.find(session[:season])
+  end
 end

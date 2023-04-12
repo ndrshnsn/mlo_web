@@ -29,3 +29,4 @@ document.addEventListener("turbo:submit-start", function(event) {
 document.addEventListener("turbo:submit-end", function(event) { 
   $.LoadingOverlay("hide", "force")
 });
+

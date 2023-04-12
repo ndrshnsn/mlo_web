@@ -23,16 +23,16 @@ class Users::PasswordsController < Devise::PasswordsController
         @user = User.find_by(reset_password_token: params[:user][:reset_password_token])
         @user.reset_password(params[:user][:password], params[:user][:password_confirmation])
       rescue NoMethodError
-        flash[:alert] = 'An error occurred, please try again.'
+        flash[:alert] = "An error occurred, please try again."
         redirect_to new_user_password_path
       else
-        flash[:notice] = 'Password reset successfully, please sign in with your new password'
+        flash[:notice] = "Password reset successfully, please sign in with your new password"
         redirect_to new_user_session_path
       end
     else
       @user = User.find_by(email: params[:user][:email])
       @user.send_reset_password_instructions
-      flash[:notice] = 'Emailed instructions on how to reset password'
+      flash[:notice] = "Emailed instructions on how to reset password"
       redirect_to new_user_session_path
     end
   end

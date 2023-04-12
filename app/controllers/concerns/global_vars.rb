@@ -12,19 +12,19 @@ module GlobalVars
     if user_signed_in? && current_user.user?
       if !session[:user_id]
         session[:user_id] = current_user.id
-        session[:league] = !current_user.preferences["active_league"].blank? ? current_user.preferences["active_league"] : nil
-        session[:leagues] = League.joins(:users).where(users: { id: current_user.id } ).pluck('leagues.id')
+        session[:league] = current_user.preferences["active_league"].presence
+        session[:leagues] = League.joins(:users).where(users: {id: current_user.id}).pluck("leagues.id")
         session[:season] = Season.getActive(current_user.id)
         if !session[:season].nil?
           session[:userClub] = User.getClub(current_user.id, session[:season]).nil? ? nil : User.getClub(current_user.id, session[:season]).id
         end
       end
     elsif user_signed_in? && current_user.manager?
-      session[:league] = !current_user.preferences["active_league"].blank? ? current_user.preferences["active_league"] : nil
-      session[:leagues] = League.where(user_id: current_user.id).pluck('leagues.id')
+      session[:league] = current_user.preferences["active_league"].presence
+      session[:leagues] = League.where(user_id: current_user.id).pluck("leagues.id")
       session[:season] = Season.getActive(current_user.id)
     end
 
-    @decodedVapidPublicKey = Base64.urlsafe_decode64(AppConfig.vapid_pubkey).bytes
+    @decoded_vapid_publickey = Base64.urlsafe_decode64(AppConfig.vapid_pubkey).bytes
   end
 end

@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4.2"
+gem "rails", "~> 7.0"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -34,7 +34,7 @@ gem "redis", "~> 4.0"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -44,7 +44,7 @@ gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
@@ -53,14 +53,19 @@ group :development do
 
   gem "better_errors"
 
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
+  gem "rack-mini-profiler"
 
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem "rubocop", require: false
+
+  gem "rubocop-rails", require: false
+
+  gem "rubocop-performance", require: false
+
+  gem "standard", "~> 1.0", require: false
+
+  gem "binding_of_caller" 
 end
 
-gem 'auto-session-timeout-warning', github: 'ndrshnsn/auto-session-timeout-warning'
 
 gem "vite_rails", "~> 3.0"
 
@@ -68,7 +73,7 @@ gem "rack-cors", "~> 1.1"
 
 gem "friendly_id", "~> 5.4"
 
-gem "devise", "~> 4.8"
+gem "devise", "~> 4.9"
 
 gem "kaminari", "~> 1.2"
 
@@ -121,8 +126,6 @@ gem "devise-i18n", "~> 1.11"
 gem "omniauth-google-oauth2", "~> 1.1"
 
 gem "omniauth-rails_csrf_protection", "~> 1.0"
-
-gem "rubocop", "~> 1.48"
 
 gem "omniauth-twitter", "~> 1.4"
 

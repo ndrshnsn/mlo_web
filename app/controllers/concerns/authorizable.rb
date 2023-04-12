@@ -2,8 +2,8 @@ module Authorizable
   extend ActiveSupport::Concern
 
   included do
-    rescue_from CanCan::AccessDenied do | exception |
-      flash.now[:danger] = t('unauthorized')
+    rescue_from CanCan::AccessDenied do |exception|
+      flash.now[:danger] = t("unauthorized")
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream:
@@ -12,7 +12,7 @@ module Authorizable
               turbo_stream.update("flash", partial: "layouts/flash/main")
             ]
         end
-        format.html { redirect_to root_path, danger: t('unauthorized') }
+        format.html { redirect_to root_path, danger: t("unauthorized") }
       end
     end
   end
@@ -20,10 +20,9 @@ module Authorizable
   private
 
   def current_ability
-    controller_name_segments = params[:controller].split('/')
+    controller_name_segments = params[:controller].split("/")
     controller_name_segments.pop
-    controller_namespace = controller_name_segments.join('/').camelize
+    controller_namespace = controller_name_segments.join("/").camelize
     Ability.new(current_user, controller_namespace)
   end
-  
 end

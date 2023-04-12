@@ -16,26 +16,26 @@ class Manager::AwardsDatatable < ApplicationDatatable
       aName += "</div>"
       aName += "</div>"
 
-      if award.status
-        aStatus = content_tag(:span, t('active').upcase, class: 'badge badge-soft-success')
+      aStatus = if award.status
+        content_tag(:span, t("active").upcase, class: "badge badge-soft-success")
       else
-        aStatus = content_tag(:span, t('inactive').upcase, class: 'badge badge-soft-light')
+        content_tag(:span, t("inactive").upcase, class: "badge badge-soft-light")
       end
 
       dtActions = [
         {
           link: manager_award_edit_path(award.hashid),
           icon: "ri-edit-line",
-          text: t('defaults.datatables.edit'),
+          text: t("defaults.datatables.edit"),
           disabled: "",
           turbo: "data-turbo-action='advance'"
         },
         {
           link: "javascript:;",
           icon: "ri-delete-bin-fill",
-          text: t('defaults.datatables.delete'),
+          text: t("defaults.datatables.delete"),
           disabled: "",
-          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{t('defaults.datatables.confirm_remove')}' data-confirm-text-value='#{t('defaults.datatables.confirm_remove_text')}' data-confirm-icon-value='warning' data-confirm-link-value='#{manager_award_destroy_path(award.hashid)}'"
+          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{t("defaults.datatables.confirm_remove")}' data-confirm-text-value='#{t("defaults.datatables.confirm_remove_text")}' data-confirm-icon-value='warning' data-confirm-link-value='#{manager_award_destroy_path(award.hashid)}'"
         }
       ]
 
@@ -67,21 +67,21 @@ class Manager::AwardsDatatable < ApplicationDatatable
   def fetch_awards
     search_string = []
     columns.each_with_index do |term, i|
-      if params[:columns]["#{i}"][:searchable] == "true" && !params[:search][:value].blank?
-          search_string << "\"#{term}\" ilike '%#{params[:search][:value]}%'"
+      if params[:columns]["#{i}"][:searchable] == "true" && params[:search][:value].present?
+        search_string << "\"#{term}\" ilike '%#{params[:search][:value]}%'"
       end
     end
-    awards = Award.order("\"#{sort_column}\" #{sort_direction}").where(awards: { league_id: session[:league] })
+    awards = Award.order("\"#{sort_column}\" #{sort_direction}").where(awards: {league_id: session[:league]})
     awards = awards.page(page).per(per_page)
-    awards = awards.where(search_string.join(' OR '))
+    awards = awards.where(search_string.join(" OR "))
   end
 
   def columns
     [
-      'name',
-      'prize',
-      'ranking',
-      'status'
+      "name",
+      "prize",
+      "ranking",
+      "status"
     ]
   end
 end

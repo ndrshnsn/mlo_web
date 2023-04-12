@@ -3,7 +3,7 @@ class DefTeam < ApplicationRecord
   friendly_id :name, use: :slugged
 
   serialize :platforms, JSON
-  
+
   has_many :clubs
   belongs_to :def_country
 
@@ -19,11 +19,11 @@ class DefTeam < ApplicationRecord
 
   def self.getTranslation(team)
     translation = []
-    if ApplicationController.helpers.i18n_set? "playerdb.teams.#{team.delete(' ')}"
-      translation.push(I18n.t("playerdb.teams.#{team.delete(' ')}"), team)
+    if ApplicationController.helpers.i18n_set? "playerdb.teams.#{team.delete(" ")}"
+      translation.push(I18n.t("playerdb.teams.#{team.delete(" ")}"), team)
     else
       translation.push(team)
     end
-    return translation
+    translation
   end
 end

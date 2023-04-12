@@ -17,14 +17,12 @@ class Admin::Playerdb::PlayerdbCountriesController < ApplicationController
   end
 
   def check_name
-    if params[:id].blank?
-      team = DefCountry.exists?(name: params[:def_country][:name].upcase) ?  :unauthorized : :ok
+    team = if params[:id].blank?
+      DefCountry.exists?(name: params[:def_country][:name].upcase) ? :unauthorized : :ok
+    elsif params[:def_country][:name].upcase == DefCountry.find(params[:id]).name
+      :ok
     else
-      if params[:def_country][:name].upcase == DefCountry.find(params[:id]).name
-        team = :ok
-      else
-        team = DefCountry.exists?(name: params[:def_country][:name].upcase) ?  :unauthorized : :ok
-      end
+      DefCountry.exists?(name: params[:def_country][:name].upcase) ? :unauthorized : :ok
     end
     render body: nil, status: team
   end
@@ -33,8 +31,8 @@ class Admin::Playerdb::PlayerdbCountriesController < ApplicationController
     country = DefCountry.new(country_params)
     respond_to do |format|
       if country.save!
-        flash.now["success"] = t('.success')
-        format.html { redirect_to admin_playerdb_countries_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to admin_playerdb_countries_path, notice: t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -45,8 +43,8 @@ class Admin::Playerdb::PlayerdbCountriesController < ApplicationController
     country = DefCountry.find(params[:id])
     respond_to do |format|
       if country.destroy!
-        flash.now["success"] = t('.success')
-        format.html { redirect_to admin_playerdb_countries_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to admin_playerdb_countries_path, notice: t(".success") }
         format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,9 +55,9 @@ class Admin::Playerdb::PlayerdbCountriesController < ApplicationController
   def update
     country = DefCountry.find(params[:id])
     if country.update(country_params)
-      flash["success"] = t('.success')
+      flash["success"] = t(".success")
     else
-      flash["error"] = t('.error')
+      flash["error"] = t(".error")
     end
     redirect_to admin_playerdb_countries_path
   end

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Authenticable
   include Authorizable
+  include Timeoutable
   include GlobalVars
   include SetLocale
   include SetTheme
@@ -17,10 +18,9 @@ class ApplicationController < ActionController::Base
   before_action :set_locale, unless: :json_request?
   before_action :set_theme, unless: :json_request?
   layout -> { turbo_frame_request? ? false : layout_by_resource }
-  before_timedout_action
   auto_session_timeout 20.minutes
 
-  ## API 
+  ## API
   protect_from_forgery with: :null_session, if: :json_request?
   skip_before_action :verify_authenticity_token, if: :json_request?
   rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_auth_token

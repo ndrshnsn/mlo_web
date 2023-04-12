@@ -5,7 +5,7 @@ class FirststepsController < ApplicationController
   end
 
   def get_proc_dt
-      render json: JoinLeagueDatatable.new(view_context)
+    render json: JoinLeagueDatatable.new(view_context)
   end
 
   def check_lname
@@ -14,39 +14,47 @@ class FirststepsController < ApplicationController
   end
 
   def join_league
-    @selectAccountType = true
+    @select_account_type = true
     user = User.find(current_user.id)
     league = League.friendly.find(params[:league_id])
     UserLeague.where(
       user_id: user.id,
       league_id: league.id,
       status: false
-    ).first_or_create
-    user.update(request: true)
-    redirect_to root_path
+    ).first_or_create!
+
+    respond_to do |format|
+      if user.update!(request: true)
+        flash.now["success"] = t(".success")
+        format.turbo_stream
+        format.html { redirect_to root_path, notice: t(".success") }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+      end
+    end
   end
 
   def join
     if current_user.preferences["request"] == true
       redirect_to root_path
     end
-    @selectAccountType = true
+    @select_account_type = true
   end
 
   def requestLeague
-    @selectAccountType = true
+    @select_account_type = true
     if request.post?
       user = User.find(current_user.id)
-      lData = league_params
+      league_data = league_params
       League.sendRequest(
         user.email,
-        lData[:name],
-        lData[:platform],
+        league_data[:name],
+        league_data[:platform],
         user.full_name,
         user.email,
         user.phone
       )
-      user.update( request: true )
+      user.update!(request: true)
       redirect_to root_path
     end
   end

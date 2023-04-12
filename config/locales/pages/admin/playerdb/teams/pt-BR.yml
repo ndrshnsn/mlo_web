@@ -20,6 +20,8 @@ pt-BR:
           success: "Time atualizado com sucesso!"
           error: "Erro atualizando time!"
         new:
+          teams: "Times"
+          new: "Novo Time"
           confirm: "Confirma a Criação?"
           confirm_text: ""
         create:
@@ -30,6 +32,8 @@ pt-BR:
           error: "Erro removendo time"
         form:
           confirm: "Confirmar"
+          confirm_question: "Confirmar Alteração?"
+          confirm_text: ""
           cancel: "Cancelar"
           name: "Nome"
           name_obs: "Validar Badge com mesmo nome"

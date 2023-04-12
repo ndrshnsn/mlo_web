@@ -13,7 +13,7 @@ class Admin::Playerdb::PlayerdbPlayersController < ApplicationController
     @defPlayer = DefPlayer.includes(:def_player_position).friendly.find(params[:id])
 
     ## Player Positions
-    @positions = helpers.getVisualPlayerPositions(@defPlayer)    
+    @positions = helpers.getVisualPlayerPositions(@defPlayer)
   end
 
   def toggle
@@ -22,14 +22,14 @@ class Admin::Playerdb::PlayerdbPlayersController < ApplicationController
       if @defPlayer.toggle!(:active)
 
         # Actions
-        pStatus = @defPlayer.active == true ? t('defaults.datatables.disable') : t('defaults.datatables.enable')
-        pStatusIcon = @defPlayer.active == true ? "close" : "check"
-        pStatusConfirm = @defPlayer.active == true ? t('defaults.datatables.confirm_disable') : t('defaults.datatables.confirm_enable')
+        pStatus = (@defPlayer.active == true) ? t("defaults.datatables.disable") : t("defaults.datatables.enable")
+        pStatusIcon = (@defPlayer.active == true) ? "close" : "check"
+        pStatusConfirm = (@defPlayer.active == true) ? t("defaults.datatables.confirm_disable") : t("defaults.datatables.confirm_enable")
         dtActions = [
           {
             link: admin_playerdb_player_details_path(@defPlayer.friendly_id),
             icon: "ri-information-line",
-            text: t('defaults.datatables.show'),
+            text: t("defaults.datatables.show"),
             disabled: "",
             turbo: "data-turbo-frame='modal'"
           },
@@ -43,14 +43,13 @@ class Admin::Playerdb::PlayerdbPlayersController < ApplicationController
         ]
         @dtMenu = helpers.dt_actionsMenu(dtActions)
 
-        flash.now["success"] = t('.success')
-        format.html { redirect_to admin_playerdb_countries_new_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to admin_playerdb_countries_new_path, notice: t(".success") }
         format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
-
   end
 
   def get_proc_dt
@@ -58,5 +57,4 @@ class Admin::Playerdb::PlayerdbPlayersController < ApplicationController
   end
 
   private
-
 end

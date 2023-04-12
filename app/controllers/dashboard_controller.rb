@@ -4,10 +4,10 @@ class DashboardController < ApplicationController
 
   def set_controller_vars
     if session[:season]
-        if session[:userClub]
-          @userClub = Club.find(session[:userClub])
-        end
-        @season = Season.find(session[:season])
+      if session[:userClub]
+        @userClub = Club.find(session[:userClub])
+      end
+      @season = Season.find(session[:season])
     end
 
     if session[:league]
@@ -15,15 +15,15 @@ class DashboardController < ApplicationController
         @league = League.find(session[:league])
       else
         ## Set league session to nil and request to true
-        uLeague = UserLeague.where(user_id: current_user.id)
-        if uLeague.size > 0
+        user_league = UserLeague.where(user_id: current_user.id)
+        if user_league.size > 0
           current_user.preferences = {
-            active_league: uLeague.first.league_id
+            active_league: user_league.first.league_id
           }
           current_user.save!
-          session[:league] = uLeague.first.league_id
+          session[:league] = user_league.first.league_id
           @league = League.find(session[:league])
-        else 
+        else
           current_user.preferences = {
             active_league: "",
             request: false
@@ -47,38 +47,36 @@ class DashboardController < ApplicationController
         if user.save!
           current_user = user.reload
           if current_user.role == "user"
-            session[:league] = !current_user.preferences["active_league"].blank? ? current_user.preferences["active_league"] : nil
-            session[:leagues] = League.joins(:users).where(users: { id: current_user.id } ).pluck('leagues.id')
+            session[:league] = current_user.preferences["active_league"].presence
+            session[:leagues] = League.joins(:users).where(users: {id: current_user.id}).pluck("leagues.id")
           elsif current_user.role == "manager"
-            session[:league] = !current_user.preferences["active_league"].blank? ? current_user.preferences["active_league"] : nil
-            session[:leagues] = League.where(user_id: current_user.id).pluck('leagues.id')
+            session[:league] = current_user.preferences["active_league"].presence
+            session[:leagues] = League.where(user_id: current_user.id).pluck("leagues.id")
           end
-          flash.now["success"] = t('.success')
+          flash.now["success"] = t(".success")
         else
-          flash.now["error"] = t('.error')
+          flash.now["error"] = t(".error")
         end
 
         @notifications = Notification.where("recipient_id = ? AND notifications.params -> 'league' = ?", current_user, "#{session[:league]}").order(created_at: :desc).limit(10)
-        @unreadNotifications = @notifications.unread.size
-        if @unreadNotifications >= 99
-          @unreadNotifications = "99+"
+        @unread_notifications = @notifications.unread.size
+        if @unread_notifications >= 99
+          @unread_notifications = "99+"
         end
 
         format.turbo_stream
-        format.html { redirect_to root_path, status: 303, notice: t('.success') }
+        format.html { redirect_to root_path, status: :see_other, notice: t(".success") }
       else
-        format.html { redirect_to root_path, error: t('.error') }
+        format.html { redirect_to root_path, error: t(".error") }
       end
     end
   end
 
   def firstSteps
-    firstSteps = current_user.role == "user" && current_user.leagues.size == 0 ? true : false
-    #@approvedUser = UserLeague.where(user_id: current_user.id).pluck(:status)[0]
+    ## Check for User Role + no leagues
+    redirect_to firststeps_path if current_user.role == "user" && current_user.leagues.size == 0
 
-    if firstSteps
-      redirect_to firststeps_path
-    end
+    ## Check for Leagues but no Approved yet
+    redirect_to firststeps_path if current_user.role == "user" && UserLeague.where(user_id: current_user.id).pluck(:status)[0] == false
   end
-
 end

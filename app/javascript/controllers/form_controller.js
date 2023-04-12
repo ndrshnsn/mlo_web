@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import { navigator } from "@hotwired/turbo"
+//import { navigator } from "@hotwired/turbo"
 import "@/base/parsley"
 import "@/base/sweetalert2"
 import i18n from "@/base/i18n"
@@ -41,7 +41,8 @@ export default class FormController extends Controller {
             scrollVar = true
             $('.modal').modal('hide')
             $('.modal-backdrop').remove()
-            navigator.submitForm(form)
+            $(form).parsley().destroy()
+            form.requestSubmit()
           } else {
             scrollVar = false
             return false;

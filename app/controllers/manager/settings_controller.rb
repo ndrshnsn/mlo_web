@@ -11,9 +11,9 @@ class Manager::SettingsController < ApplicationController
     league = League.friendly.find(params[:id])
     respond_to do |format|
       if league.update(league_params)
-        flash.now["success"] = t('.success')
+        flash.now["success"] = t(".success")
         format.turbo_stream
-        format.html { redirect_to manager_settings_path, notice: t('.success') }
+        format.html { redirect_to manager_settings_path, notice: t(".success") }
       else
         format.html { render :index, status: :unprocessable_entity }
       end

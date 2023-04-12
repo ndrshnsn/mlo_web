@@ -25,31 +25,29 @@ class Manager::UsersController < ApplicationController
       if @uLeague.status == false
         if fakeSlots(@league) > 0
           if removeFakeAddUser(@user, @league)
-              ## SEND EMAIL NOTIFICATION TO USER
-              updateTabNumbers
-              flash.now["success"] = t('.user_activated')
-              format.html { redirect_to manager_users_path, notice: t('.user_activated') }
-              format.turbo_stream
+            ## SEND EMAIL NOTIFICATION TO USER
+            update_tab_numbers
+            flash.now["success"] = t(".user_activated")
+            format.html { redirect_to manager_users_path, notice: t(".user_activated") }
+            format.turbo_stream
           else
-            flash.now["danger"] = t('.no_more_slots')
+            flash.now["danger"] = t(".no_more_slots")
             format.turbo_stream
             format.html { render :index, status: :unprocessable_entity }
           end
         else
-          flash.now["warning"] = t('.no_more_slots_remove_some')
+          flash.now["warning"] = t(".no_more_slots_remove_some")
           format.turbo_stream
           format.html { render :index, status: :unprocessable_entity }
         end
+      elsif disableUserCreateFake(@user, @league)
+        update_tab_numbers
+        flash.now["success"] = t(".user_deactivated")
+        format.html { redirect_to manager_users_waiting_path, notice: t(".user_deactivated") }
+        format.turbo_stream
       else
-        if disableUserCreateFake(@user, @league)
-          updateTabNumbers
-          flash.now["success"] = t('.user_deactivated')
-          format.html { redirect_to manager_users_waiting_path, notice: t('.user_deactivated') }
-          format.turbo_stream
-        else
-          flash.now["warning"] = t('.user_deactivated')
-          format.html { redirect_to manager_users_waiting_path, notice: t('.user_deactivated') }
-        end
+        flash.now["warning"] = t(".user_deactivated")
+        format.html { redirect_to manager_users_waiting_path, notice: t(".user_deactivated") }
       end
     end
   end
@@ -63,48 +61,52 @@ class Manager::UsersController < ApplicationController
         if removeFakeAddUser(destiny, origin, @league)
           ## SEND EMAIL NOTIFICATION TO USER
           updateTabNumbers
-          flash.now["success"] = t('.user_activated')
-          format.html { redirect_to manager_users_path, notice: t('.user_activated') }
+          flash.now["success"] = t(".user_activated")
+          format.html { redirect_to manager_users_path, notice: t(".user_activated") }
           format.turbo_stream
         else
-          flash.now["danger"] = t('.error_moving')
+          flash.now["danger"] = t(".error_moving")
           format.turbo_stream
           format.html { render :index, status: :unprocessable_entity }
         end
+      elsif move_users_between(origin, destiny, @league)
+        updateTabNumbers
+        flash.now["success"] = t(".user_activated")
+        format.html { redirect_to manager_users_path, notice: t(".user_activated") }
+        format.turbo_stream
+      ## SEND EMAIL NOTIFICATION TO USER
       else
-        if moveUsersBetween(origin, destiny, @league)
-          ## SEND EMAIL NOTIFICATION TO USER
-          updateTabNumbers
-          flash.now["success"] = t('.user_activated')
-          format.html { redirect_to manager_users_path, notice: t('.user_activated') }
-          format.turbo_stream
-        else
-          flash.now["danger"] = t('.error_moving')
-          format.turbo_stream
-          format.html { render :index, status: :unprocessable_entity }
-        end
+        flash.now["danger"] = t(".error_moving")
+        format.turbo_stream
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
   end
 
   def eseason
     @user = User.friendly.find(params[:id])
-    @users = User.joins(:user_leagues).where(user_leagues: { league_id: session[:league], status: true } )
+    @users = User.joins(:user_leagues).where(user_leagues: {league_id: session[:league], status: true})
   end
 
   def destroy
     user = User.friendly.find(params[:id])
-    uLeague = UserLeague.find_by(league_id: @league.id, user_id: user.id)
-    leagueCount = UserLeague.where(user_id: user.id).size
+    user_leagues = user.user_leagues
+    user_league_size = user_leagues.size
+
     respond_to do |format|
-      if removeUserCreateFake(user, @league)
-        if leagueCount == 1
-          user.preferences["request"] = false
-          user.save!
-        end
-        updateTabNumbers
-        flash.now["success"] = t('.user_deactivated')
-        format.html { redirect_to manager_users_waiting_path, notice: t('.user_deactivated') }
+      removeUserCreateFake(user, @league) if user_leagues.exists?(league_id: @league.id, status: true)
+
+      if user_league_size == 1
+        user.preferences["request"] = false
+      else
+        random_league = user_leagues.where.not(league_id: @league.id).order(Arel.sql("RANDOM()")).limit(1).first
+        user.preferences["active_league"] = random_league&.id
+      end
+
+      if user.save
+        update_tab_numbers
+        flash.now["success"] = t(".user_deactivated")
+        format.html { redirect_to manager_users_waiting_path, notice: t(".user_deactivated") }
         format.turbo_stream
       else
         format.html { render :index, status: :unprocessable_entity }
@@ -112,7 +114,7 @@ class Manager::UsersController < ApplicationController
     end
   end
 
-  def updateTabNumbers
+  def update_tab_numbers
     @active = UserLeague.where(league_id: @league.id, status: true).size
     @waiting = UserLeague.where(league_id: @league.id, status: false).size
   end
@@ -130,7 +132,7 @@ class Manager::UsersController < ApplicationController
   def set_local_vars
     if current_user.role == "manager"
       @league = League.find(session[:league])
-      updateTabNumbers
+      update_tab_numbers
     end
   end
 end

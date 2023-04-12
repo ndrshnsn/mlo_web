@@ -15,6 +15,6 @@ module DatatablesHelper
     end
     dtActions += "</div>"
 
-    return dtActions.html_safe
+    dtActions.html_safe
   end
 end

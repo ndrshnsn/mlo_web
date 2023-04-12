@@ -1,17 +1,18 @@
 # frozen_string_literal: true
-class TurboFailureApp < Devise::FailureApp
-  def respond
-    if request_format == :turbo_stream
-      redirect
-    else
-      super
-    end
-  end
 
-  def skip_format?
-    %w(html turbo_stream */*).include? request_format.to_s
-  end
-end
+# class TurboFailureApp < Devise::FailureApp
+#   def respond
+#     if request_format == :turbo_stream
+#       redirect
+#     else
+#       super
+#     end
+#   end
+
+#   def skip_format?
+#     %w[html turbo_stream */*].include? request_format.to_s
+#   end
+# end
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -30,26 +31,26 @@ Devise.setup do |config|
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
-  config.parent_controller = 'TurboController'
+  #config.parent_controller = "TurboController"
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'masterleagueonline.manager@gmail.com'
+  config.mailer_sender = "masterleagueonline.manager@gmail.com"
 
   # Configure the class responsible to send e-mails.
-  #config.mailer = 'Devise::Mailer'
-  config.mailer = 'CustomDeviseMailer'
+  # config.mailer = 'Devise::Mailer'
+  config.mailer = "CustomDeviseMailer"
 
   # Configure the parent class responsible to send e-mails.
-  config.parent_mailer = 'ApplicationMailer'
+  config.parent_mailer = "ApplicationMailer"
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -110,7 +111,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  #config.http_authenticatable_on_xhr = false
+  # config.http_authenticatable_on_xhr = false
   config.skip_session_storage = [:http_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
@@ -277,7 +278,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  config.navigational_formats = ['*/*', :html, :turbo_stream, :json]
+  config.navigational_formats = ["*/*", :html, :turbo_stream, :json]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -290,11 +291,11 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  config.warden do |manager|
-    manager.failure_app = TurboFailureApp
-  #   # manager.intercept_401 = false
-  #   # manager.default_strategies(scope: :user).unshift :some_external_strategy
-  end
+  # config.warden do |manager|
+  #   manager.failure_app = TurboFailureApp
+  #   manager.intercept_401 = false
+  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
+  # end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
@@ -326,24 +327,23 @@ Devise.setup do |config|
     jwt.secret = Rails.application.credentials.dig(:api, :jwt)
     jwt.dispatch_requests = [
       ["POST", %r{^/api/login$}],
-      ["POST", %r{^/api/login.json$}],
+      ["POST", %r{^/api/login.json$}]
     ]
     jwt.revocation_requests = [
       ["DELETE", %r{^/api/logout$}],
-      ["DELETE", %r{^/api/logout.json$}],
+      ["DELETE", %r{^/api/logout.json$}]
     ]
     jwt.expiration_time = 1.day.to_i
-    jwt.request_formats = { api_user: [:json] }
+    jwt.request_formats = {api_user: [:json]}
   end
-  
+
   ## Omniauth
   config.omniauth_path_prefix = "/auth"
   OmniAuth.config.logger = Rails.logger
   OmniAuth.config.allowed_request_methods = %i[post]
-  OmniAuth.config.full_host = Rails.env.production? ? 'https://app.masterleagueonline.com.br' : 'http://127.0.0.1:3000'
+  OmniAuth.config.full_host = Rails.env.production? ? "https://app.masterleagueonline.com.br" : "http://127.0.0.1:3000"
 
   config.omniauth :google_oauth2, Rails.application.credentials.dig(:omniauth, :google_client_id), Rails.application.credentials.dig(:omniauth, :google_secret), skip_jwt: true
   config.omniauth :twitter, Rails.application.credentials.dig(:omniauth, :twitter_client_id), Rails.application.credentials.dig(:omniauth, :twitter_secret)
   config.omniauth :github, Rails.application.credentials.dig(:omniauth, :github_client_id), Rails.application.credentials.dig(:omniauth, :github_secret)
-
 end

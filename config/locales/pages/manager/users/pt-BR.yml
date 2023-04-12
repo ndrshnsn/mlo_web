@@ -47,3 +47,5 @@ pt-BR:
         user_from: "Usuario: Origem"
         user_to: "Usuário: Destino"
         user_move_instructions: "Selecione o Usuário de destino para a migração. O usuário de origem será movido para a Liga no lugar do usuário selecionado. Caso o usuário de destino já possua um Clube definido, o usuário de origem irá herdar o Clube bem como seus jogadores, histórico, etc."
+      eseason_enable:
+        user_activated: "Usuário migrado para a Liga com sucesso!"

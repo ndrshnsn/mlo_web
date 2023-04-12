@@ -30,7 +30,7 @@ module MloWeb
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.eager_load_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join("lib")
 
     # Dont include all helpers
     config.action_controller.include_all_helpers = false
@@ -39,13 +39,13 @@ module MloWeb
     config.generators.system_tests = nil
 
     ## Load nested Locales
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
 
-    #I18n.enforce_available_locales = true
+    # I18n.enforce_available_locales = true
     I18n.available_locales = %i[en pt-BR es]
-    I18n.default_locale = 'pt-BR'
+    I18n.default_locale = "pt-BR"
     config.i18n.fallbacks = true
-    config.i18n.fallbacks = [:en, :'pt-BR', :es]
+    config.i18n.fallbacks = [:en, :"pt-BR", :es]
 
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
@@ -55,12 +55,9 @@ module MloWeb
     # Only attempt update on local machine
     if Rails.env.development?
       # Update version file from latest git tag
-      File.open('config/version', 'w') do |file|
-        file.write `git describe --tags --always` # or equivalent
-      end
+      File.write("config/version", `git describe --tags --always`)
     end
-    config.version = File.read('config/version')
-    config.web_console.permissions = '192.168.0.0/255.255.255.0'
-    
+    config.version = File.read("config/version")
+    config.web_console.permissions = "192.168.0.0/255.255.255.0"
   end
 end

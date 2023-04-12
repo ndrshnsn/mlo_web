@@ -5,31 +5,34 @@ class JoinLeagueDatatable < ApplicationDatatable
 
   def data
     leagues.map do |league|
-
       lName = image_tag(leagueBadge(league), class: "rounded mr-50", height: "32", width: "32")
       lName += league.name
 
-      if league.status
-        lStatus = content_tag(:span, t('active'), class: 'badge badge-soft-success')
+      lStatus = if league.status
+        content_tag(:span, t("active"), class: "badge badge-soft-success")
       else
-        lStatus = content_tag(:span, t('inactive'), class: 'badge badge-soft-light')
+        content_tag(:span, t("inactive"), class: "badge badge-soft-light")
       end
 
       platform = league.platform
 
-      lUsers = League.joins(:user_leagues, :users).where("users.preferences -> 'request' = ?", "false").where(leagues: { id: league.id }).size
+      league_users = League.includes(:user_leagues, :users).where(leagues: { id: league.id }, user_leagues: { status: true }).where("(users.preferences -> 'fake')::Boolean = ?", false).count
+
+      slots = (league.slots - league_users)
+
+      join_text = slots > 0 ? t("defaults.datatables.confirm_join_league_text") : t("defaults.datatables.confirm_join_league_text_noslots")
 
       dtActions = '<div class="d-inline-flex">'
-      dtActions += link_to t('request_join'), "javascript:;", method: :post, class: "btn btn-primary", data: { controller: "confirm", "turbo-frame": "navigation", "turbo-action": "replace", action: "click->confirm#dialog", "confirm-title-value": t('defaults.datatables.confirm_join_league', league: league.name), "confirm-action-value": "post", "confirm-responsekind-value": "html", "confirm-icon-value": "question", "confirm-link-value": join_league_path(league_id: league.friendly_id)}
-      dtActions += '</div>'
+      dtActions += link_to t("request_join"), "javascript:;", method: :post, class: "btn btn-primary", data: {controller: "confirm", "turbo-frame": "navigation", "turbo-action": "replace", action: "click->confirm#dialog", "confirm-title-value": t("defaults.datatables.confirm_join_league", league: league.name), "confirm-text-value": join_text, "confirm-action-value": "post", "confirm-turbo-value": "false", "confirm-icon-value": "question", "confirm-link-value": join_league_path(league_id: league.friendly_id)}
+      dtActions += "</div>"
 
       {
         id: league.id,
         name: lName,
-        slots: (league.slots - lUsers),
+        slots: slots,
         status: lStatus,
         platform: platform,
-        users: lUsers,
+        users: league_users,
         DT_Actions: dtActions,
         DT_RowId: league.id
       }
@@ -50,26 +53,26 @@ class JoinLeagueDatatable < ApplicationDatatable
 
   def fetch_leagues
     search_string = []
-      columns.each_with_index do |term, i|
-        if params[:columns]["#{i}"][:searchable] == "true" && !params[:columns]["#{i}"][:search][:value].blank?
-          if term == "status"
-            if params[:columns]["#{i}"][:search][:value] == "active"
-              search_string << "status = true"
-            elsif params[:columns]["#{i}"][:search][:value] == "inactive"
-              search_string << "status = false"
-            end
-          else
-            search_string << "\"#{term}\" ilike '%#{params[:columns]["#{i}"][:search][:value]}%'"
+    columns.each_with_index do |term, i|
+      if params[:columns]["#{i}"][:searchable] == "true" && params[:columns]["#{i}"][:search][:value].present?
+        if term == "status"
+          if params[:columns]["#{i}"][:search][:value] == "active"
+            search_string << "status = true"
+          elsif params[:columns]["#{i}"][:search][:value] == "inactive"
+            search_string << "status = false"
           end
+        else
+          search_string << "\"#{term}\" ilike '%#{params[:columns]["#{i}"][:search][:value]}%'"
         end
       end
+    end
 
-    leagues = League.eager_load(:user_leagues).where(leagues: { status: true })
+    leagues = League.eager_load(:user_leagues).where(leagues: {status: true})
     leagues = leagues.page(page).per(per_page)
-    leagues = leagues.where(search_string.join(' AND '))
+    leagues = leagues.where(search_string.join(" AND "))
     if sort_column == "users"
       leagues = leagues.order(Arel.sql("count(user_leagues.league_id) #{sort_direction}"))
-      leagues = leagues.group('leagues.id, user_leagues.id')
+      leagues = leagues.group("leagues.id, user_leagues.id")
     else
       leagues = leagues.order(Arel.sql("\"#{sort_column}\" #{sort_direction}"))
     end
@@ -77,9 +80,9 @@ class JoinLeagueDatatable < ApplicationDatatable
 
   def columns
     [
-      'name',
-      'slots',
-      'users'
+      "name",
+      "slots",
+      "users"
     ]
   end
 end

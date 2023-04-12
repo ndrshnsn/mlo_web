@@ -26,8 +26,8 @@ class Manager::AwardsController < ApplicationController
     )
     respond_to do |format|
       if award.save!
-        flash.now["success"] = t('.success')
-        format.html { redirect_to manager_awards_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to manager_awards_path, notice: t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -45,14 +45,14 @@ class Manager::AwardsController < ApplicationController
     respond_to do |format|
       if aCount == 0
         if award.destroy!
-          flash.now["success"] = t('.success')
-          format.html { redirect_to manager_awards_path, notice: t('.success') }
+          flash.now["success"] = t(".success")
+          format.html { redirect_to manager_awards_path, notice: t(".success") }
           format.turbo_stream
         else
           format.html { render :index, status: :unprocessable_entity }
         end
       else
-        flash.now["danger"] = t('.error_have_dependencies')
+        flash.now["danger"] = t(".error_have_dependencies")
         format.html { render :index, status: :unprocessable_entity }
       end
     end
@@ -62,8 +62,8 @@ class Manager::AwardsController < ApplicationController
     award = Award.find_by_hashid(params[:id])
     respond_to do |format|
       if award.update!(award_params)
-        flash.now["success"] = t('.success')
-        format.html { redirect_to manager_awards_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to manager_awards_path, notice: t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

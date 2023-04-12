@@ -1,6 +1,6 @@
 class Identity < ApplicationRecord
   belongs_to :user, optional: true
-  
+
   def self.find_with_omniauth(auth)
     find_by(uid: auth[:uid], provider: auth[:provider])
   end

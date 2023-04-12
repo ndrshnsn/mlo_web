@@ -6,13 +6,13 @@ class ProfileController < ApplicationController
 
   def pw
     @user = User.find(current_user.id)
-    render '_pw'
+    render "_pw"
   end
 
   def system
     @user = User.find(current_user.id)
     @defCountries = DefCountry.getSorted
-    render '_system'
+    render "_system"
   end
 
   def social
@@ -24,9 +24,9 @@ class ProfileController < ApplicationController
   def social_disconnect
     sIdentity = Identity.find_by(user_id: current_user.id, provider: params[:provider])
     if sIdentity.destroy!
-      flash.now["success"] = t('.success')
+      flash.now["success"] = t(".success")
     else
-      flash.now["error"] = t('.error')
+      flash.now["error"] = t(".error")
     end
     @identities = Identity.where(user_id: @user.id).to_a
     respond_to do |format|
@@ -41,9 +41,9 @@ class ProfileController < ApplicationController
     user.preferences[:sauth] = sparams[:subscription][:keys][:auth]
     user.preferences[:sendpoint] = sparams[:subscription][:endpoint]
     if user.save!
-      flash.now["success"] = t('.success')
+      flash.now["success"] = t(".success")
     else
-      flash.now["error"] = t('.error')
+      flash.now["error"] = t(".error")
     end
     respond_to do |format|
       format.turbo_stream
@@ -57,9 +57,9 @@ class ProfileController < ApplicationController
     user.preferences[:sauth] = ""
     user.preferences[:sendpoint] = ""
     if user.save!
-      flash.now["success"] = t('.success')
+      flash.now["success"] = t(".success")
     else
-      flash.now["error"] = t('.error')
+      flash.now["error"] = t(".error")
     end
     respond_to do |format|
       format.turbo_stream
@@ -71,19 +71,19 @@ class ProfileController < ApplicationController
     @user = User.friendly.find(params[:id])
     respond_to do |format|
       @user.avatar = user_params[:avatar]
-      @user.full_name =  user_params[:full_name]
-      @user.platform =  user_params[:platform]
-      @user.nickname =  user_params[:nickname]
+      @user.full_name = user_params[:full_name]
+      @user.platform = user_params[:platform]
+      @user.nickname = user_params[:nickname]
       @user.phone = user_params[:phone]
       @user.birth = user_params[:birth]
-      @user.preferences["country"] =  user_params[:country]
+      @user.preferences["country"] = user_params[:country]
       @user.preferences["city"] = user_params[:city]
       @user.preferences["twitter"] = user_params[:twitter]
       @user.preferences["facebook"] = user_params[:facebook]
       @user.preferences["instagram"] = user_params[:instagram]
       if @user.save!
-        flash.now["success"] = t('.success')
-        format.html { redirect_to profile_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to profile_path, notice: t(".success") }
         format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -97,8 +97,8 @@ class ProfileController < ApplicationController
     @user.preferences["theme"] = system_params[:theme]
     session[:theme] = system_params[:theme]
     if @user.save!
-      flash.now["success"] = t('.success')
-      redirect_to profile_path, notice: t('.success')
+      flash.now["success"] = t(".success")
+      redirect_to profile_path, notice: t(".success")
     else
       format.html { render :edit, status: :unprocessable_entity }
     end
@@ -107,7 +107,7 @@ class ProfileController < ApplicationController
   def update_pw
     @user = User.friendly.find(params[:id])
     if @user.update(pwd_params)
-      flash.now["success"] = t('.success')
+      flash.now["success"] = t(".success")
       redirect_to root_path
     else
       format.html { render :edit, status: :unprocessable_entity }
@@ -129,5 +129,4 @@ class ProfileController < ApplicationController
   def system_params
     params.require(:user).permit(:locale, :theme)
   end
-
 end

@@ -21,4 +21,6 @@ pt-BR:
             select_your_season_team_confirm: "Confirmar Seleção"
             confirm: "Confirma sua Escolha?"
             confirm_text: "Seu clube será definido. Você ainda poderá modificá-lo até que o Manager feche a janela de Escolha dos Clubes"
-            
+        timeout_warning_text: "Você será desconectado em:"
+        timeout_warning: "Alerta de Inatividade"
+        timeout_warning_button: "Reativar"

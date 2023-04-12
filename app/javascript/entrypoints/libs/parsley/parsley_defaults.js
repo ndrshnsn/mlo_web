@@ -26,8 +26,7 @@ window.Parsley.on('field:error', function (fieldInstance) {
             return messages[0];
         }
     }).popover('toggle');
-    // console.log('Validation failed for: ', 
-    //       this.$element.attr('name'));
+    //console.log('Validation failed for: ' + this.$element.attr('name'));
 });
 
 window.Parsley.on('field:success', function (fieldInstance) {

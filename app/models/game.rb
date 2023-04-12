@@ -2,9 +2,9 @@ class Game < ApplicationRecord
   include Hashid::Rails
 
   belongs_to :championship
-  belongs_to :visitor, :class_name => 'Club'
-  belongs_to :home, :class_name => 'Club'
-  belongs_to :eresults, :class_name => 'Club', optional: true
+  belongs_to :visitor, class_name: "Club"
+  belongs_to :home, class_name: "Club"
+  belongs_to :eresults, class_name: "Club", optional: true
   belongs_to :player_season, optional: true
   # has_one :club_bestplayer, dependent: :destroy
   # has_many :game_contests, dependent: :destroy
@@ -37,25 +37,21 @@ class Game < ApplicationRecord
             winlost[:win] = game1.home_id
             winlost[:lost] = game1.visitor_id
           end
-        else
+        elsif game2.pvscore.to_i > game2.phscore.to_i
           ## Sum Penalties
-          if game2.pvscore.to_i > game2.phscore.to_i
-            winlost[:win] = game1.home_id
-            winlost[:lost] = game1.visitor_id
-          else
-            winlost[:win] = game1.visitor_id
-            winlost[:lost] = game1.home_id
-          end
-        end
-      else
-        ## Just compare Goals
-        if hGoals > vGoals
           winlost[:win] = game1.home_id
           winlost[:lost] = game1.visitor_id
         else
           winlost[:win] = game1.visitor_id
           winlost[:lost] = game1.home_id
         end
+      elsif hGoals > vGoals
+        ## Just compare Goals
+        winlost[:win] = game1.home_id
+        winlost[:lost] = game1.visitor_id
+      else
+        winlost[:win] = game1.visitor_id
+        winlost[:lost] = game1.home_id
       end
 
     elsif resultCrit == "totalGoals"
@@ -68,34 +64,31 @@ class Game < ApplicationRecord
           winlost[:win] = game1.visitor_id
           winlost[:lost] = game1.home_id
         end
-      else
+      elsif hGoals > vGoals
         ## Just compare Goals
-        if hGoals > vGoals
-          winlost[:win] = game1.home_id
-          winlost[:lost] = game1.visitor_id
-        else
-          winlost[:win] = game1.visitor_id
-          winlost[:lost] = game1.home_id
-        end
+        winlost[:win] = game1.home_id
+        winlost[:lost] = game1.visitor_id
+      else
+        winlost[:win] = game1.visitor_id
+        winlost[:lost] = game1.home_id
       end
     end
 
-    return winlost
+    winlost
   end
-
 
   ##
   # Return Translated Game Phase
   def self.translatePhase(game)
     # Phase list
     phase = {
-      "firstRound": ["Turno", "secondary"],
-      "secondRound": ["Returno", "secondary"],
-      "semifinals": ["Semifinal", "warning"],
-      "finals": ["Final", "success"],
+      firstRound: ["Turno", "secondary"],
+      secondRound: ["Returno", "secondary"],
+      semifinals: ["Semifinal", "warning"],
+      finals: ["Final", "success"],
       "3rd4th": ["3o/4o Lugar", "info"]
     }
-    return phase[:"#{game.phase}"]
+    phase[:"#{game.phase}"]
   end
 
   ## Game Status
@@ -109,7 +102,6 @@ class Game < ApplicationRecord
       "4": ["finished", "Encerrado", "primary"]
     }
     game = Game.find(game_id)
-    return status[:"#{game.status}"]
+    status[:"#{game.status}"]
   end
-
 end

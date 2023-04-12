@@ -5,7 +5,7 @@ class Ability
     user ||= User.new
 
     case controller_namespace
-    when 'Manager'
+    when "Manager"
       if user.manager?
         cLeague = League.find(user.preferences["active_league"])
         if cLeague.status == true
@@ -16,11 +16,11 @@ class Ability
           can :manage, :award
         end
       end
-    when 'Admin'
+    when "Admin"
       if user.admin?
         can :manage, :all
       end
-    when 'Admin::Playerdb'
+    when "Admin::Playerdb"
       if user.admin?
         can :manage, :all
       end

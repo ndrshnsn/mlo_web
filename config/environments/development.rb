@@ -23,7 +23,7 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :redis_cache_store, { url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } }
+    config.cache_store = :redis_cache_store, {url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }}
     config.session_store :cache_store, key: "_sessions_development", compress: true, pool_size: 5, expire_after: 1.year
 
   else
@@ -31,7 +31,6 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
-
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
@@ -56,7 +55,6 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
@@ -68,7 +66,7 @@ Rails.application.configure do
 
   config.action_view.preload_links_header = false
 
-    # Uncomment if you wish to allow Action Cable access from any origin.
+  # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   # config.action_cable.url = 'ws://app.mlo-dev.test/cable'
   # config.web_socket_server_url = 'ws://app.mlo-dev.test/cable'
@@ -79,5 +77,4 @@ Rails.application.configure do
   config.playerdb_prefix = "http://127.0.0.1/playerdb"
   config.root_url = "http://127.0.0.1:3000"
   config.hosts << "app.mlo-dev.test"
-
 end

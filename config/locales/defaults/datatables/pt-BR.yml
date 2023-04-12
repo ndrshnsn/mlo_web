@@ -14,6 +14,8 @@ pt-BR:
       confirm_remove: "Confirma a Remoção?"
       confirm_remove_text: "Caso este ítem já esteja associado com outro registro não será possível sua remoção"
       confirm_join_league: "Solicitar Ingresso na liga %{league}?"
+      confirm_join_league_text: "O Manager da Liga vai receber uma notificação e deve autorizar seu ingresso na liga"
+      confirm_join_league_text_noslots: "Não há vagas disponíveis, você será colocado em uma Fila de Espera. O Manager pode autorizar seu ingresso ou outra pessoa pode sair da Liga, caso isso ocorra você será informado."
       manager:
         users_confirm_activate: "Caso haja uma vaga disponível esta será definida para este usuário e o mesmo definido como ativo"
         users_confirm_removal: "O usuário será removido da liga."

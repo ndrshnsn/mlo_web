@@ -8,7 +8,7 @@ class SeasonNotification < Noticed::Base
   param :type
 
   def action_cable_data
-    { user_id: recipient.id }
+    {user_id: recipient.id}
   end
 
   def message
@@ -24,5 +24,4 @@ class SeasonNotification < Noticed::Base
       Push::Notify.send_push(recipient, params[:push_message])
     end
   end
-
 end

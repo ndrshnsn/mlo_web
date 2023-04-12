@@ -1,0 +1,20 @@
+- @modal_size = "sm"
+- @modal_id = "timeoutWarningModal"
+- @modal_autoshow = false
+
+= render "layouts/modal/main"
+  .modal-header
+    h5.modal-title.d-flex.align-items-center
+      i.ri-information-line.me-1
+      = t('.timeout_warning')
+  .modal-body
+    .container-fluid
+      .row
+        .col-12
+          p.card-text
+            span style='float: left;' = t('.timeout_warning_text')
+            span class="ms-1" style='float: left; font-weight: bold;' id="stimeleft"
+  .modal-footer
+    .col-12[style="text-align: right;"]
+      button type="button" class="btn btn-sm btn-primary" onclick='window.location.reload()'
+        = t('.timeout_warning_button')

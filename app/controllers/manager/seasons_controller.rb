@@ -7,35 +7,35 @@ class Manager::SeasonsController < ApplicationController
   def index
     @seasons = Season.where(league_id: @league.id).order(updated_at: :desc)
     if @season
-      @users = User.joins(:user_leagues).where('league_id = ?', @league.id)
+      @users = User.joins(:user_leagues).where("league_id = ?", @league.id)
     end
   end
 
   def check_season_name
-    season = Season.exists?(name: params[:season][:name], league_id: @league.id) ?  :unauthorized : :ok
+    season = Season.exists?(name: params[:season][:name], league_id: @league.id) ? :unauthorized : :ok
     render body: nil, status: season
   end
 
   def new
-    #running_seasons = Season.where("league_id = ? and start_date > ? AND (status = ?  OR status = ?)", session[:league], Date.today.to_time.utc, 0, 1).count > 0 ? false : true
+    # running_seasons = Season.where("league_id = ? and start_date > ? AND (status = ?  OR status = ?)", session[:league], Date.today.to_time.utc, 0, 1).count > 0 ? false : true
 
-    #if running_seasons == false
+    # if running_seasons == false
     #  flash[:warning] = "Não pode criar outra temporada enquanto uma está em andamento ou agendada."
     #  redirect_to manager_seasons_path
-    #else
-      season_times = AppConfig.season_times
-      @season = Season.new
+    # else
+    season_times = AppConfig.season_times
+    @season = Season.new
 
-      # Go through each available raffle position to count availability
-      @pAvailablePlayers = get_base_players
-      @tAvailablePlayers = 0
-      @pAvailablePlayers.uniq.each do |pPosition|
-        @tAvailablePlayers = @tAvailablePlayers + pPosition[1]
-      end
-      @tAvailablePlayersPP = @pAvailablePlayers.uniq
-      @awards = Award.where(league_id: @league.id, status: true)
-      @award_result_type = helpers.award_result_types
-    #end
+    # Go through each available raffle position to count availability
+    @pAvailablePlayers = get_base_players
+    @tAvailablePlayers = 0
+    @pAvailablePlayers.uniq.each do |pPosition|
+      @tAvailablePlayers += pPosition[1]
+    end
+    @tAvailablePlayersPP = @pAvailablePlayers.uniq
+    @awards = Award.where(league_id: @league.id, status: true)
+    @award_result_type = helpers.award_result_types
+    # end
   end
 
   def get_susers_dt
@@ -50,7 +50,7 @@ class Manager::SeasonsController < ApplicationController
       availablePlayers << [position, getPlayers.size]
     end
 
-    return availablePlayers
+    availablePlayers
   end
 
   def get_available_players
@@ -58,13 +58,13 @@ class Manager::SeasonsController < ApplicationController
     @pAvailablePlayers = get_base_players(params[:season][:raffle_low_over], params[:season][:raffle_high_over])
     @tAvailablePlayers = 0
     @pAvailablePlayers.uniq.each do |pPosition|
-      @tAvailablePlayers = @tAvailablePlayers + pPosition[1]
+      @tAvailablePlayers += pPosition[1]
     end
-    @tAvailablePlayersPP = @pAvailablePlayers.each{|val| val[1] = val[1]-(@league.user_leagues.size.to_i * 2)}.uniq
+    @tAvailablePlayersPP = @pAvailablePlayers.each { |val| val[1] = val[1] - (@league.user_leagues.size.to_i * 2) }.uniq
     @tAvailablePlayersPP.each do |pSpaces|
       if pSpaces[1] <= 5
         @noSpaces = true
-        flash.now[:danger] = t('.no_spaces_check')
+        flash.now[:danger] = t(".no_spaces_check")
       end
     end
     respond_to do |format|
@@ -77,7 +77,7 @@ class Manager::SeasonsController < ApplicationController
     @sStarted = false
     if session[:season]
       @season = Season.find(session[:season])
-      @sStarted = @season.status > 0 ? true : false
+      @sStarted = @season.status > 0
     end
   end
 
@@ -86,7 +86,7 @@ class Manager::SeasonsController < ApplicationController
     @sStarted = false
     if session[:season]
       @season = Season.find(session[:season])
-      @sStarted = @season.status > 0 ? true : false
+      @sStarted = @season.status > 0
     end
   end
 
@@ -106,9 +106,9 @@ class Manager::SeasonsController < ApplicationController
     @orderOfSelection = []
     for i in 1..@season.preferences["max_players"].to_i
       if oSelection.count < i
-        @orderOfSelection << { position: "any"}
+        @orderOfSelection << {position: "any"}
       elsif oSelection.count >= i
-        @orderOfSelection << { position: oSelection[i-1]}
+        @orderOfSelection << {position: oSelection[i - 1]}
       end
     end
 
@@ -126,19 +126,19 @@ class Manager::SeasonsController < ApplicationController
         @orderOfSelection.each do |oSelection|
           if oSelection[:position] == "any"
             # Get Available players to be injected into Raffle
-            @availablePlayers = DefPlayer.left_outer_joins(:def_player_position).where(platform: @platform).where.not(def_players: { id: ClubPlayer.joins(:player_season, :def_players).where(player_seasons: { season_id: @season.id } ).pluck('def_players.id') })
+            @availablePlayers = DefPlayer.left_outer_joins(:def_player_position).where(platform: @platform).where.not(def_players: {id: ClubPlayer.joins(:player_season, :def_players).where(player_seasons: {season_id: @season.id}).pluck("def_players.id")})
 
             remaining = @season.preferences["raffle_remaining"]
             remainingOverall = remaining.first(2)
             remainingSymbol = remaining.last(1)
 
-            if remainingSymbol == "-"
-              @availablePlayers = @availablePlayers.where("def_players.active = ? AND def_players.details -> 'attrs' ->> 'overallRating' >= ? AND def_players.details -> 'attrs' ->> 'overallRating' <= ?", true, @season.preferences['raffle_low_over'], remainingOverall).order(Arel.sql('RANDOM()')).first
+            @availablePlayers = if remainingSymbol == "-"
+              @availablePlayers.where("def_players.active = ? AND def_players.details -> 'attrs' ->> 'overallRating' >= ? AND def_players.details -> 'attrs' ->> 'overallRating' <= ?", true, @season.preferences["raffle_low_over"], remainingOverall).order(Arel.sql("RANDOM()")).first
             else
-              @availablePlayers = @availablePlayers.where("def_players.active = ? AND def_players.details -> 'attrs' ->> 'overallRating' >= ?", true, remainingOverall).order(Arel.sql('RANDOM()')).first
+              @availablePlayers.where("def_players.active = ? AND def_players.details -> 'attrs' ->> 'overallRating' >= ?", true, remainingOverall).order(Arel.sql("RANDOM()")).first
             end
           else
-            @availablePlayers = DefPlayer.left_outer_joins(:def_player_position).where("def_players.platform = ? AND def_players.active = ? AND def_player_positions.name = ? AND def_players.details -> 'attrs' ->> 'overallRating' >= ? AND def_players.details -> 'attrs' ->> 'overallRating' <= ?", @platform, true, oSelection[:position], @season.preferences['raffle_low_over'], @season.preferences['raffle_high_over']).where.not(def_players: { id: ClubPlayer.joins(:player_season, :def_players).where(player_seasons: { season_id: @season.id } ).pluck('def_players.id') }).order(Arel.sql('RANDOM()')).first
+            @availablePlayers = DefPlayer.left_outer_joins(:def_player_position).where("def_players.platform = ? AND def_players.active = ? AND def_player_positions.name = ? AND def_players.details -> 'attrs' ->> 'overallRating' >= ? AND def_players.details -> 'attrs' ->> 'overallRating' <= ?", @platform, true, oSelection[:position], @season.preferences["raffle_low_over"], @season.preferences["raffle_high_over"]).where.not(def_players: {id: ClubPlayer.joins(:player_season, :def_players).where(player_seasons: {season_id: @season.id}).pluck("def_players.id")}).order(Arel.sql("RANDOM()")).first
           end
           userClub = User.getClub(user.id, @season.id)
           @newHirePlayer = @availablePlayers
@@ -167,10 +167,10 @@ class Manager::SeasonsController < ApplicationController
 
     respond_to do |format|
       if @season.update(
-          preferences = {
-            saction_players_choosing: 2
-          }
-        )
+        preferences = {
+          saction_players_choosing: 2
+        }
+      )
 
         DefPlayerNotification.with(
           season: @season,
@@ -178,10 +178,11 @@ class Manager::SeasonsController < ApplicationController
           icon: "user-add",
           type: "stop_players_raffle",
           push: true,
-          push_message: "#{t('.wnotify_subject', season: @season.name)}||#{t('.wnotify_text')}").deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", @season.id))
+          push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}"
+        ).deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", @season.id))
 
-        flash.now["success"] = t('.success')
-        format.html { redirect_to manager_seasons_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to manager_seasons_path, notice: t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -257,7 +258,7 @@ class Manager::SeasonsController < ApplicationController
 
     respond_to do |format|
       if @season.save!
-        User.joins(:user_leagues).where('league_id = ? AND status = ?', @league.id, true).each do |user|
+        User.joins(:user_leagues).where("league_id = ? AND status = ?", @league.id, true).each do |user|
           uSeason = UserSeason.create(user_id: user.id, season_id: @season.id)
         end
 
@@ -267,11 +268,12 @@ class Manager::SeasonsController < ApplicationController
           icon: "stack",
           push: true,
           push_type: "user",
-          push_message: "#{t('.wnotify_subject', season: @season.name)}||#{t('.wnotify_text')}",
-          type: "new").deliver_later(current_user)
+          push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}",
+          type: "new"
+        ).deliver_later(current_user)
 
-        flash.now["success"] = t('.success')
-        format.html { redirect_to manager_seasons_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to manager_seasons_path, notice: t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -333,8 +335,8 @@ class Manager::SeasonsController < ApplicationController
 
     respond_to do |format|
       if @season.save!
-        flash.now["success"] = t('.success')
-        format.html { redirect_to manager_seasons_path, notice: t('.success') }
+        flash.now["success"] = t(".success")
+        format.html { redirect_to manager_seasons_path, notice: t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -346,19 +348,19 @@ class Manager::SeasonsController < ApplicationController
     @season = Season.find_by_hashid(params[:id])
 
     ## Season Champs
-    #@sChampionships = Championship.where(season_id: @season.id)
+    # @sChampionships = Championship.where(season_id: @season.id)
 
     ## Season Games
-    #@sGames = @sChampionships.joins(:games).where(games: { status: 4 }).size
+    # @sGames = @sChampionships.joins(:games).where(games: { status: 4 }).size
 
     ## Season Goals
-    #@sGoals = @sChampionships.joins(games: :club_games).size
+    # @sGoals = @sChampionships.joins(games: :club_games).size
 
     ## Season Balance
-    #@sBalance = Season.getBalance(@season)
+    # @sBalance = Season.getBalance(@season)
 
     ## Biggest Transfers
-    #@lTransfers = PlayerTransaction.includes(player_season: [player: :player_position]).where(player_seasons: { season_id: @season.id } ).order(transfer_rate: :desc).limit(5)
+    # @lTransfers = PlayerTransaction.includes(player_season: [player: :player_position]).where(player_seasons: { season_id: @season.id } ).order(transfer_rate: :desc).limit(5)
 
     ## Seasons
     @seasons = Season.where(league_id: @league.id).where.not(id: @season.id).order(updated_at: :desc)
@@ -370,9 +372,9 @@ class Manager::SeasonsController < ApplicationController
 
   def end_season_
     @season = Season.find_by_hashid(params[:id])
-    oActions = Championship.where(season_id: @season.id).where('status < 100').size
+    oActions = Championship.where(season_id: @season.id).where("status < 100").size
     if oActions > 0
-      flash.now[:error] = "Existem Campeonatos em aberto!! Encerre-os antes de tentar Finalizar uma Temporada!" 
+      flash.now[:error] = "Existem Campeonatos em aberto!! Encerre-os antes de tentar Finalizar uma Temporada!"
       respond_to do |format|
         format.turbo_stream
       end
@@ -435,7 +437,7 @@ class Manager::SeasonsController < ApplicationController
           "Temporada :: #{@season.name} :: Encerrada!",
           true,
           @season.id
-          )
+        )
 
         flash[:success] = "Temporada encerrada com sucesso!"
       else
@@ -445,7 +447,6 @@ class Manager::SeasonsController < ApplicationController
         format.js
       end
     end
-
   end
 
   def start_season
@@ -462,7 +463,8 @@ class Manager::SeasonsController < ApplicationController
             icon: "stack",
             type: "start",
             push: true,
-            push_message: "#{t('.wnotify_subject', season: @season.name)}||#{t('.wnotify_text')}").deliver_later(current_user)
+            push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}"
+          ).deliver_later(current_user)
 
           SeasonNotification.with(
             season: @season,
@@ -470,12 +472,13 @@ class Manager::SeasonsController < ApplicationController
             icon: "stack",
             type: "start",
             push: true,
-            push_message: "#{t('.wnotify_subject', season: @season.name)}||#{t('.wnotify_text')}").deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", @season.id))
+            push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}"
+          ).deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", @season.id))
 
-          format.turbo_stream { render 'sactions_update' }
-          format.html { redirect_to manager_seasons_details_path(@season.hashid), notice: t('.success') }
+          format.turbo_stream { render "sactions_update" }
+          format.html { redirect_to manager_seasons_details_path(@season.hashid), notice: t(".success") }
         else
-          flash.now["error"] = t('.error')
+          flash.now["error"] = t(".error")
           format.html { render :edit, status: :unprocessable_entity }
         end
       end
@@ -492,7 +495,8 @@ class Manager::SeasonsController < ApplicationController
           icon: "stack",
           type: "start_clubs_choosing",
           push: false,
-          push_message: t('.wnotify_subject', season: @season.name)).deliver_later(current_user)
+          push_message: t(".wnotify_subject", season: @season.name)
+        ).deliver_later(current_user)
 
         SeasonNotification.with(
           season: @season,
@@ -500,13 +504,14 @@ class Manager::SeasonsController < ApplicationController
           icon: "stack",
           type: "start_clubs_choosing_user",
           push: true,
-          push_message: "#{t('.wnotify_subject', season: @season.name)}||#{t('.wnotify_text')}").deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", @season.id))
+          push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}"
+        ).deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", @season.id))
 
-        flash.now[:success] = t('.success')
-        format.turbo_stream { render 'sactions_update' }
-        format.html { redirect_to manager_seasons_details_path(@season.hashid), notice: t('.success') }
+        flash.now[:success] = t(".success")
+        format.turbo_stream { render "sactions_update" }
+        format.html { redirect_to manager_seasons_details_path(@season.hashid), notice: t(".success") }
       else
-        flash.now["error"] = t('.error')
+        flash.now["error"] = t(".error")
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
@@ -521,12 +526,12 @@ class Manager::SeasonsController < ApplicationController
       user = User.find(cQueue)
       userSeason = UserSeason.where(user_id: user.id, season_id: @season.id).first
       if userClub.nil?
-        newClub = DefTeam.where(nation: false, active: true).where("platforms ILIKE '%#{platform}%'").where.not(def_teams: { id: Club.joins(:user_season).where(user_seasons: { season_id: @season.id } ) }).order(Arel.sql('RANDOM()')).first
-        
+        newClub = DefTeam.where(nation: false, active: true).where("platforms ILIKE '%#{platform}%'").where.not(def_teams: {id: Club.joins(:user_season).where(user_seasons: {season_id: @season.id})}).order(Arel.sql("RANDOM()")).first
+
         tFormations = helpers.team_formations
         formation_pos = []
         tFormations[0][:pos].each do |tF|
-          formation_pos << { pos: tF, player: ''}
+          formation_pos << {pos: tF, player: ""}
         end
         club = Club.new
         club.def_team_id = newClub.id
@@ -537,7 +542,7 @@ class Manager::SeasonsController < ApplicationController
         }
         club.save!
 
-        ClubFinance.create(club_id: club.id, operation: "initial_funds", value: @season.preferences["club_default_earning"].gsub(/[^\d\.]/, '').to_i, balance: @season.preferences["club_default_earning"].gsub(/[^\d\.]/, '').to_i, source: @season)
+        ClubFinance.create(club_id: club.id, operation: "initial_funds", value: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, balance: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, source: @season)
 
         SeasonNotification.with(
           season: @season,
@@ -545,8 +550,9 @@ class Manager::SeasonsController < ApplicationController
           icon: "stack",
           push: true,
           push_type: "user",
-          push_message: "#{t('.wnotify_subject', season: @season.name)}||#{t('.wnotify_text')}",
-          type: "club_choosed").deliver_later(user)
+          push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}",
+          type: "club_choosed"
+        ).deliver_later(user)
       end
     end
 
@@ -556,15 +562,16 @@ class Manager::SeasonsController < ApplicationController
       icon: "stack",
       type: "stop_clubs_choosing",
       push: false,
-      push_message: t('.wnotify_subject', season: @season.name)).deliver_later(current_user)
+      push_message: t(".wnotify_subject", season: @season.name)
+    ).deliver_later(current_user)
 
     respond_to do |format|
       if @season.update(preferences = {saction_clubs_choosing: 2})
         flash.now[:success] = "Clubes Definidos para esta Temporada! Prossiga agora com a Definição do Plantel"
-        format.turbo_stream { render 'sactions_update' }
-        format.html { redirect_to manager_seasons_details_path(@season.hashid), notice: t('.success') }
+        format.turbo_stream { render "sactions_update" }
+        format.html { redirect_to manager_seasons_details_path(@season.hashid), notice: t(".success") }
       else
-        flash.now["error"] = t('.error')
+        flash.now["error"] = t(".error")
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
@@ -577,16 +584,16 @@ class Manager::SeasonsController < ApplicationController
   def destroy
     season = Season.find_by_hashid(params[:id])
     if season.status == 1
-      flash["danger"] = t('.in_progress')
+      flash["danger"] = t(".in_progress")
     else
       uSeasons = UserSeason.where(season_id: season.id).destroy_all
       if season.destroy!
-        flash["success"] = t('.success')
+        flash["success"] = t(".success")
       else
-        flash["error"] = t('.error')
+        flash["error"] = t(".error")
       end
     end
-    redirect_to manager_seasons_path, status: 303
+    redirect_to manager_seasons_path, status: :see_other
   end
 
   private
@@ -645,7 +652,6 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def user_params
-    params.permit(:users => [])
+    params.permit(users: [])
   end
-
 end

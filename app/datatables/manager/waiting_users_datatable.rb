@@ -17,15 +17,15 @@ class Manager::WaitingUsersDatatable < ApplicationDatatable
       stColumn += "</div>"
       stColumn += "</div>"
 
-      if uLeague.status
-        aStatus = content_tag(:span, t('active').upcase, class: 'badge badge-soft-success')
+      aStatus = if uLeague.status
+        content_tag(:span, t("active").upcase, class: "badge badge-soft-success")
       else
-        aStatus = content_tag(:span, t('inactive').upcase, class: 'badge badge-soft-light')
+        content_tag(:span, t("inactive").upcase, class: "badge badge-soft-light")
       end
 
-      pStatus = uLeague.status == true ? t('defaults.datatables.disable') : t('defaults.datatables.enable')
-      pStatusIcon = uLeague.status == true ? "close" : "check"
-      pStatusConfirm = uLeague.status == true ? t('defaults.datatables.confirm_disable') : t('defaults.datatables.confirm_enable')
+      pStatus = (uLeague.status == true) ? t("defaults.datatables.disable") : t("defaults.datatables.enable")
+      pStatusIcon = (uLeague.status == true) ? "close" : "check"
+      pStatusConfirm = (uLeague.status == true) ? t("defaults.datatables.confirm_disable") : t("defaults.datatables.confirm_enable")
 
       dtActions = [
         {
@@ -45,22 +45,22 @@ class Manager::WaitingUsersDatatable < ApplicationDatatable
         {
           link: manager_user_show_path(uLeague.user.friendly_id),
           icon: "ri-user-line",
-          text: t('defaults.datatables.show'),
+          text: t("defaults.datatables.show"),
           disabled: "",
           turbo: "data-turbo-action='advance'"
         },
         {
           link: "javascript:;",
           icon: "ri-delete-bin-fill",
-          text: t('defaults.datatables.delete'),
+          text: t("defaults.datatables.delete"),
           disabled: "",
-          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{t('defaults.datatables.confirm_remove')}' data-confirm-text-value='#{t('defaults.datatables.manager.users_confirm_removal')}' data-confirm-icon-value='warning' data-confirm-link-value='#{manager_user_remove_path(uLeague.user.friendly_id)}'"
+          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{t("defaults.datatables.confirm_remove")}' data-confirm-text-value='#{t("defaults.datatables.manager.users_confirm_removal")}' data-confirm-icon-value='warning' data-confirm-link-value='#{manager_user_remove_path(uLeague.user.friendly_id)}'"
         }
       ]
 
       {
         id: uLeague.user.id,
-        order: i+1,
+        order: i + 1,
         avatar: stColumn,
         email: uLeague.user.email,
         status: aStatus,
@@ -85,22 +85,22 @@ class Manager::WaitingUsersDatatable < ApplicationDatatable
   def fetch_users
     search_string = []
     columns.each_with_index do |term, i|
-      if params[:columns]["#{i}"][:searchable] == "true" && !params[:search][:value].blank?
-          search_string << "\"#{term}\" ilike '%#{params[:search][:value]}%'"
+      if params[:columns]["#{i}"][:searchable] == "true" && params[:search][:value].present?
+        search_string << "\"#{term}\" ilike '%#{params[:search][:value]}%'"
       end
     end
 
-    users = UserLeague.joins(:user).where(user_leagues: { league_id: session[:league], status: false })
+    users = UserLeague.joins(:user).where(user_leagues: {league_id: session[:league], status: false})
     users = users.order(updated_at: :desc)
     users = users.page(page).per(per_page)
-    users = users.where(search_string.join(' AND '))
+    users = users.where(search_string.join(" AND "))
   end
 
   def columns
     [
-      'full_name',
-      'email',
-      'active'
+      "full_name",
+      "email",
+      "active"
     ]
   end
 end

@@ -12,8 +12,7 @@ module SetTheme
   end
 
   def set_theme
-    session[:theme] = (current_user.preferences["theme"] if user_signed_in? && !current_user.preferences["theme"].blank?) ||
+    session[:theme] = (current_user.preferences["theme"] if user_signed_in? && current_user.preferences["theme"].present?) ||
       "dark"
   end
-  
 end

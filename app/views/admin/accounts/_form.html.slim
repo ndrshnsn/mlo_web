@@ -78,7 +78,7 @@
   .col-sm-12.col-md-6.mb-3
     .form-group
       = label_tag 'status', t('.status'), class: "control-label"
-      = select_tag "user[status]", options_for_select([["#{t('active')}", "active"], ["#{t('inactive')}", "inactive"], ["#{t('pending')}", "pending"]], @userActiveStatus), id: "user_status", include_blank: true, class: "form-control select2 dt-select", "data-controller": "select", "data-select-icon-value": false 
+      = select_tag "user[status]", options_for_select([["#{t('active')}", "active"], ["#{t('inactive')}", "inactive"], ["#{t('pending')}", "pending"]], @user_active_status), id: "user_status", include_blank: true, class: "form-control select2 dt-select", "data-controller": "select", "data-select-icon-value": false 
 
 .row
   .col-12.text-end

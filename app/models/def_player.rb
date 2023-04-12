@@ -25,12 +25,12 @@ class DefPlayer < ApplicationRecord
 
   def self.getSeasonInitialSalary(season, player)
     if season.preferences["default_player_earnings"] == "fixed"
-      return season.preferences["default_player_earnings"].gsub(/[^\d\.]/, '').to_i
+      return season.preferences["default_player_earnings"].gsub(/[^\d.]/, "").to_i
     end
 
     if season.preferences["default_player_earnings"] == "proportional"
       sMultiplier = "1.0#{player.details["attrs"]["overallRating"].to_i}".to_f
-      return ((player.details["attrs"]["overallRating"].to_i * sMultiplier)*100).round(0)
+      ((player.details["attrs"]["overallRating"].to_i * sMultiplier) * 100).round(0)
     end
   end
 end
