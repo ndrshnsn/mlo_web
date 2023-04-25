@@ -44,8 +44,6 @@ class User < ApplicationRecord
   ## Omniauth
   def self.from_omniauth(auth)
     user = User.find_by(email: auth.info.email)
-
-    return nil if user.blank?
     # user.email = auth.info.email
     # user.full_name = auth.info.name
     # user.avatar_data = nil if user.avatar_data.blank?

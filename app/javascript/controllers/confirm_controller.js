@@ -44,7 +44,7 @@ export default class ConfirmController extends Controller {
             history.pushState({}, null, newURL)
             Turbo.navigator.history.replace(url.toString())
           }
-          navigator.submitForm(turboform)
+          turboform.requestSubmit()
         } else {
           return false;
         }

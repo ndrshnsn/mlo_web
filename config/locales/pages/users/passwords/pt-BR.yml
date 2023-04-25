@@ -1,6 +1,11 @@
 pt-BR:
   users:
     passwords:
+      new:
+        forgot_password: "Esqueceu sua senha!?!"
+        email: "Email"
+        forgot_alert: "Informe seu email e um link para a troca da senha será enviado."
+        forgot_send_link: "Enviar"
       edit:
         new_password: "Nova Senha"
         new_password_confirmation: "Confirme a Nova Senha"

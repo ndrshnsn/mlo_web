@@ -1,0 +1,15 @@
+en:
+  users:
+    passwords:
+      new:
+        forgot_password: "Forgot your Password!?!"
+        email: "Email"
+        forgot_alert: "Inform your registered mail. A message with the reset link will be sent."
+        forgot_send_link: "Send"
+      edit:
+        new_password: "Nova Senha"
+        new_password_confirmation: "Confirme a Nova Senha"
+        update_password: "Atualizar Senha"
+        back_to_signing: "Voltar ao Início"
+        change_password: "Mudar minha Senha"
+        or: "ou"

@@ -18,28 +18,16 @@ class Admin::LeaguesController < ApplicationController
 
   def create
     @league = League.new(league_params)
-    if @league.save!
-      adm = User.find(league_params[:user_id])
-      adm.update!(
-        request: false,
-        active_league: @league.id,
-        role: "manager"
-      )
-
-      ## Create fake accounts
-      createFakeAccounts(@league)
-
-      League.sendAdminLeagueWelcome(
-        adm.email,
-        league_params[:name],
-        adm.full_name
-      )
-
-      flash["success"] = t(".success")
-    else
-      flash["error"] = t(".error")
+    result = AdminServices::CreateLeague.call(@league, league_params)
+    respond_to do |format|
+      if result.success?
+        format.html { redirect_to admin_leagues_path, success: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
+      else
+        logger.info "--------------------------------"
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
-    redirect_to admin_leagues_path
   end
 
   def update
@@ -47,8 +35,8 @@ class Admin::LeaguesController < ApplicationController
     result = AdminServices::UpdateLeague.call(league, league_params)
     respond_to do |format|
       if result.success?
-        flash["success"] = t(".success")
-        format.html { redirect_to admin_leagues_path }
+        format.html { redirect_to admin_leagues_path, success: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

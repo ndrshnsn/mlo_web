@@ -1,41 +1,41 @@
 module FakeAccounts
   extend ActiveSupport::Concern
 
-  def createFakeAccounts(league)
-    for i in 1..league.slots do
-      user = createFake
-      if user
-        uLeague = UserLeague.new(
-          league_id: league.id,
-          user_id: user.id,
-          status: true
-        ).save!
-      end
-    end
-  end
+  # def createFakeAccounts(league)
+  #   for i in 1..league.slots do
+  #     user = createFake
+  #     if user
+  #       uLeague = UserLeague.new(
+  #         league_id: league.id,
+  #         user_id: user.id,
+  #         status: true
+  #       ).save!
+  #     end
+  #   end
+  # end
 
-  def createFake
-    require "securerandom"
-    fakeId = SecureRandom.hex(8)
-    user = User.new(
-      email: "mlo_user_#{fakeId}@local",
-      role: "user",
-      full_name: "mlo_user #{fakeId.first(4)}",
-      password: AppConfig.fake_account_password,
-      password_confirmation: AppConfig.fake_account_password,
-      active: true,
-      nickname: "mlo_#{fakeId.first(4)}",
-      preferences: {
-        fake: true
-      }
-    )
+  # def createFake
+  #   require "securerandom"
+  #   fakeId = SecureRandom.hex(8)
+  #   user = User.new(
+  #     email: "mlo_user_#{fakeId}@local",
+  #     role: "user",
+  #     full_name: "mlo_user #{fakeId.first(4)}",
+  #     password: AppConfig.fake_account_password,
+  #     password_confirmation: AppConfig.fake_account_password,
+  #     active: true,
+  #     nickname: "mlo_#{fakeId.first(4)}",
+  #     preferences: {
+  #       fake: true
+  #     }
+  #   )
 
-    if user.save!
-      user
-    else
-      false
-    end
-  end
+  #   if user.save!
+  #     user
+  #   else
+  #     false
+  #   end
+  # end
 
   def removeFakeAddUser(fake, user, league)
     prevUleague = UserLeague.find_by(league_id: league.id, user_id: user.id)

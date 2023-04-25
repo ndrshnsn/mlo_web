@@ -744,6 +744,27 @@ class Manager::ChampionshipsController < ApplicationController
     # redirect_to manager_championship_details_path(@championship.hashid)
   end
 
+  def destroy
+    @championship = Championship.find_by_hashid(params[:id])
+    return flash[:warning] = t('.championship_in_progress') if @championship.status == 1
+
+    games = Game.where(championship_id: @championship.id, status: 4)
+    games.each do |game|
+      ClubFinance.updateEarnings(game, "cancel")
+      Ranking.updateRanking(game, "cancel")
+    end
+
+    Award.updatePrizes(@championship, "cancel") if @championship.status == 20
+
+    if @championship.destroy
+      flash[:success] = t(".championship_removed")
+    else
+      flash[:error] = t(".error_removing_championship")
+    end
+
+    redirect_to manager_championships_path
+  end
+
   private
 
   def set_local_vars

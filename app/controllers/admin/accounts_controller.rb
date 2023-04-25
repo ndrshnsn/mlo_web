@@ -21,12 +21,11 @@ class Admin::AccountsController < ApplicationController
     active_value = true unless user_params[:status] == "inactive"
     respond_to do |format|
       if user.update!(
-        role: Integer(user_params[:role], 10),
-        active: active_value
-      )
-
-        flash["success"] = t(".success")
-        format.html { redirect_to admin_accounts_path }
+          role: Integer(user_params[:role], 10),
+          active: active_value
+        )
+        format.html { redirect_to admin_accounts_path, success: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

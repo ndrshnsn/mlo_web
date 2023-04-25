@@ -1,0 +1,12 @@
+pt-BR:
+  mailer:
+    reset_password:
+      title: "Redefinição de Senha"
+      instructions_html: "Olá <strong>%{email}</strong>, tudo bem? <br />Alguém solicitou o link para a redefinição de sua senha. Você pode fazê-lo utilizando o link abaixo. Caso você não saiba ou não tenha solicitado essa troca, por favor desconsidere esta mensagem."
+      change_my_password: "Redefinir Senha"
+    confirmation:
+      title: "Confirme sua Conta"
+      instructions_html: "Olá <strong>%{email}</strong>!<p>Você precisa confirmar sua conta de email para poder começar a utilizar o sistema. Por favor clique no link abaixo e tá tudo certo!"
+      confirm_my_account: "Confirmar meu Email"
+    need_help: "Precisa de Ajuda?"
+    contact_us_html: "Envie sua sugestão/crítica/dificuldade para <a link='mailto:%{support}' style='font-weight: 500px;'>%{support}</a>"

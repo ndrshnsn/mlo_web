@@ -5,7 +5,7 @@ import "@/base/sweetalert2"
 import i18n from "@/base/i18n"
 
 export default class FormController extends Controller {
-  static values = { title: String, text: String, icon: String, scroll: Boolean }
+  static values = { title: String, text: String, icon: String, scroll: Boolean, redirect: { type: String, default: "" } }
 
   connect() {
     const form = document.getElementById(this.element.id);
@@ -13,6 +13,7 @@ export default class FormController extends Controller {
     const text = this.textValue
     const icon = this.iconValue
     const scrollTop = this.scrollValue
+    const redirect = this.redirectValue
     let scrollVar = scrollTop
 
     $(form).parsley();
@@ -42,6 +43,11 @@ export default class FormController extends Controller {
             $('.modal').modal('hide')
             $('.modal-backdrop').remove()
             $(form).parsley().destroy()
+            if ( redirect !== "" ) {
+              const url = new URL(window.location.href.split("?")[0])
+              history.pushState({}, null, redirect)
+              Turbo.navigator.history.replace(url.toString())
+            }
             form.requestSubmit()
           } else {
             scrollVar = false

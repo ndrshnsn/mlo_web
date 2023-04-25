@@ -1,0 +1,8 @@
+en:
+  mailer:
+    reset_password:
+      title: "Reset your Password"
+      instructions_html: "Hey <strong>%{email}</strong>, how's going? <br />Someone asked a link to reset your password, and you can do it using the link below. If you dont recognize this request you can ignore this message."
+      change_my_password: "Reset my Password"
+    need_help: "Need Help?"
+    contact_us_html: "Send your suggestion to <a link='mailto:%{support}' style='font-weight: 500px;'>%{support}</a>"

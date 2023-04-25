@@ -17,12 +17,13 @@ class Admin::Playerdb::PlayerdbCountriesController < ApplicationController
   end
 
   def check_name
+    country_name = params[:def_country][:name].upcase
     team = if params[:id].blank?
-      DefCountry.exists?(name: params[:def_country][:name].upcase) ? :unauthorized : :ok
-    elsif params[:def_country][:name].upcase == DefCountry.find(params[:id]).name
+      DefCountry.exists?(name: country_name) ? :unauthorized : :ok
+    elsif country_name == DefCountry.find(params[:id]).name
       :ok
     else
-      DefCountry.exists?(name: params[:def_country][:name].upcase) ? :unauthorized : :ok
+      DefCountry.exists?(name: country_name) ? :unauthorized : :ok
     end
     render body: nil, status: team
   end
@@ -31,8 +32,20 @@ class Admin::Playerdb::PlayerdbCountriesController < ApplicationController
     country = DefCountry.new(country_params)
     respond_to do |format|
       if country.save!
-        flash.now["success"] = t(".success")
-        format.html { redirect_to admin_playerdb_countries_path, notice: t(".success") }
+        format.html { redirect_to admin_playerdb_countries_path, success: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    country = DefCountry.find(params[:id])
+    respond_to do |format|
+      if country.update(country_params)
+        format.html { redirect_to admin_playerdb_countries_path, success: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -50,16 +63,6 @@ class Admin::Playerdb::PlayerdbCountriesController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
-  end
-
-  def update
-    country = DefCountry.find(params[:id])
-    if country.update(country_params)
-      flash["success"] = t(".success")
-    else
-      flash["error"] = t(".error")
-    end
-    redirect_to admin_playerdb_countries_path
   end
 
   def get_proc_dt

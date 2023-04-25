@@ -17,12 +17,13 @@ class Admin::Playerdb::PlayerdbTeamsController < ApplicationController
   end
 
   def check_lname
+    team_name = params[:def_team][:name].upcase
     team = if params[:id].blank?
-      DefTeam.exists?(name: params[:def_team][:name].upcase) ? :unauthorized : :ok
-    elsif params[:def_team][:name].upcase == DefTeam.find(params[:id]).name
+      DefTeam.exists?(name: team_name) ? :unauthorized : :ok
+    elsif team_name == DefTeam.find(params[:id]).name
       :ok
     else
-      DefTeam.exists?(name: params[:def_team][:name].upcase) ? :unauthorized : :ok
+      DefTeam.exists?(name: team_name) ? :unauthorized : :ok
     end
     render body: nil, status: team
   end
@@ -48,8 +49,8 @@ class Admin::Playerdb::PlayerdbTeamsController < ApplicationController
     respond_to do |format|
       if @defTeam.save!
         @defTeam.reload
-        flash["success"] = t(".success")
-        format.html { redirect_to admin_playerdb_teams_path }
+        format.html { redirect_to admin_playerdb_teams_path, success: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -59,26 +60,28 @@ class Admin::Playerdb::PlayerdbTeamsController < ApplicationController
   def update
     @defTeam = DefTeam.friendly.find(params[:id])
     document = scrape_team_data(def_team_params[:wikipediaURL])
-    if @defTeam.update(
-      name: def_team_params[:name],
-      def_country_id: def_team_params[:def_country_id],
-      alias: def_team_params[:alias],
-      platforms: def_team_params[:platforms],
-      active: def_team_params[:active],
-      details: {
-        wikipediaURL: def_team_params[:wikipediaURL],
-        teamName: document[:teamName],
-        teamAbbr: document[:teamAbbr],
-        teamFounded: document[:teamFounded],
-        teamStadium: document[:teamStadium],
-        teamCapacity: document[:teamCapacity],
-        teamCity: document[:teamCity]
-      })
+    respond_to do |format|
+      if @defTeam.update(
+        name: def_team_params[:name],
+        def_country_id: def_team_params[:def_country_id],
+        alias: def_team_params[:alias],
+        platforms: def_team_params[:platforms],
+        active: def_team_params[:active],
+        details: {
+          wikipediaURL: def_team_params[:wikipediaURL],
+          teamName: document[:teamName],
+          teamAbbr: document[:teamAbbr],
+          teamFounded: document[:teamFounded],
+          teamStadium: document[:teamStadium],
+          teamCapacity: document[:teamCapacity],
+          teamCity: document[:teamCity]
+        })
 
-      flash["success"] = t(".success")
-      redirect_to admin_playerdb_teams_path, status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
+        format.html { redirect_to admin_playerdb_teams_path, success: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
@@ -86,9 +89,8 @@ class Admin::Playerdb::PlayerdbTeamsController < ApplicationController
     team = DefTeam.friendly.find(params[:id])
     respond_to do |format|
       if team.destroy!
-        flash.now["success"] = t(".success")
-        format.html { redirect_to admin_playerdb_teams_path, notice: t(".success") }
-        format.turbo_stream
+        format.html { redirect_to admin_playerdb_teams_path, success: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

@@ -63,9 +63,10 @@ group :development do
 
   gem "standard", "~> 1.0", require: false
 
-  gem "binding_of_caller" 
-end
+  gem "binding_of_caller"
 
+  gem "letter_opener"
+end
 
 gem "vite_rails", "~> 3.0"
 
@@ -105,8 +106,6 @@ gem "mini_magick", "~> 4.11"
 
 gem "nokogiri", "~> 1.13"
 
-gem "sendgrid-ruby", "~> 6.6"
-
 gem "hashid-rails", "~> 1.4"
 
 gem "httparty", "~> 0.20.0"
@@ -130,3 +129,5 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "omniauth-twitter", "~> 1.4"
 
 gem "omniauth-github", "~> 2.0"
+
+gem "sendgrid-ruby", "~> 6.6"

@@ -2,21 +2,21 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="526.14276"
    height="108.31393"
    viewBox="0 0 139.2086 28.658061"
    version="1.1"
    id="svg1128"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="mlo-light.svg">
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="mlo-light.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs1122">
     <linearGradient
@@ -70,13 +70,13 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="247.91613"
-     inkscape:cy="164.2586"
+     inkscape:cx="247.48737"
+     inkscape:cy="164.14979"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="2560"
-     inkscape:window-height="1383"
+     inkscape:window-height="1376"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -84,7 +84,8 @@
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0" />
+     fit-margin-bottom="0"
+     inkscape:pagecheckerboard="0" />
   <metadata
      id="metadata1125">
     <rdf:RDF>
@@ -93,7 +94,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -137,8 +138,8 @@
        d="m 9.3203774,294.07004 c 0.15695,-0.46427 -0.0946,-0.97289 -0.55954,-1.12984 -0.46462,-0.15729 -0.97289,0.0946 -1.13018,0.5592 l -2.29778,6.80014 0.94135,2.78595 3.04615,-9.01545" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Outfit;-inkscape-font-specification:'Outfit Thin';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="18.926535"
+       style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:Outfit;-inkscape-font-specification:'Outfit Thin';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="17.8682"
        y="292.40231"
        id="text1518-2"
        inkscape:export-filename="/home/andreash/Desenv/mlo_web/app/assets/images/logo/mlo-light.svg.png"
@@ -146,13 +147,13 @@
        inkscape:export-ydpi="32"><tspan
          sodipodi:role="line"
          id="tspan1516-6"
-         x="18.926535"
+         x="17.8682"
          y="292.40231"
-         style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:16.93333244px;font-family:Outfit;-inkscape-font-specification:'Outfit Thin';fill:#ffffff;stroke-width:0.26458332">masterleague</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:Outfit;-inkscape-font-specification:'Outfit, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;fill:#000000;stroke-width:0.264583">masterleague</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Outfit;-inkscape-font-specification:'Outfit Light';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="22.952871"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:Outfit;-inkscape-font-specification:'Outfit Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="21.894537"
        y="305.76282"
        id="text1518-6-6"
        inkscape:export-filename="/home/andreash/Desenv/mlo_web/app/assets/images/logo/mlo-light.svg.png"
@@ -160,18 +161,19 @@
        inkscape:export-ydpi="32"><tspan
          sodipodi:role="line"
          id="tspan1516-2-9"
-         x="22.952871"
+         x="21.894537"
          y="305.76282"
-         style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:16.93333244px;font-family:Outfit;-inkscape-font-specification:'Outfit Thin';fill:#ffffff;stroke-width:0.26458332">online</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:Outfit;-inkscape-font-specification:'Outfit, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;fill:#000000;stroke-width:0.264583">online</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot1774"
-       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
          id="flowRegion1776"><rect
            id="rect1778"
            width="568.71588"
            height="291.93408"
            x="137.38075"
            y="-58.361244" /></flowRegion><flowPara
-         id="flowPara1780"></flowPara></flowRoot>  </g>
+         id="flowPara1780" /></flowRoot>
+  </g>
 </svg>
