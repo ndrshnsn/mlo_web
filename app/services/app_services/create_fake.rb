@@ -23,6 +23,7 @@ class AppServices::CreateFake < ApplicationService
         fake: true
       }
     )
+    user.skip_confirmation!
 
     return OpenStruct.new(success?: false, user: nil, errors: user.errors) unless user.save!
     OpenStruct.new(success?: true, user: user, errors: nil)

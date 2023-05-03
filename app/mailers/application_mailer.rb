@@ -1,4 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  helper MailerHelper
+  default from: AppConfig.mail_admin
+  default reply_to: AppConfig.mail_admin
   layout "mailer"
 end

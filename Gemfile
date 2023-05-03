@@ -126,8 +126,11 @@ gem "omniauth-google-oauth2", "~> 1.1"
 
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
-gem "omniauth-twitter", "~> 1.4"
 
 gem "omniauth-github", "~> 2.0"
 
 gem "sendgrid-ruby", "~> 6.6"
+
+gem "foreman", "~> 0.87.2"
+
+gem "sassc", "~> 2.4"

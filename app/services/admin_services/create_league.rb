@@ -23,7 +23,7 @@ class AdminServices::CreateLeague < ApplicationService
       )
 
       @league.slots.times do |i|
-        create_fake = AppServices::CreateFake.call()
+        create_fake = AppServices::CreateFake.call
         if create_fake.user
           UserLeague.new(
             league_id: @league.id,
@@ -32,11 +32,8 @@ class AdminServices::CreateLeague < ApplicationService
           ).save!
         end
       end
-
-      AppServices::Sendmail.call("new_league", @league, {to: adm.email, league_name: @params[:name], full_name: adm.full_name})
     end
+    AdminMailer.with(league: @league).create_league.deliver_later
     OpenStruct.new(success?: true, league: @league, errors: nil)
   end
 end
-
-

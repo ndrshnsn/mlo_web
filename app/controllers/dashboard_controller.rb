@@ -64,9 +64,10 @@ class DashboardController < ApplicationController
           @unread_notifications = "99+"
         end
 
-        format.turbo_stream
-        format.html { redirect_to root_path, status: :see_other, notice: t(".success") }
+        flash["success"] = t(".success")
+        format.html { redirect_to root_path, status: :see_other }
       else
+        flash["error"] = t(".error")
         format.html { redirect_to root_path, error: t(".error") }
       end
     end

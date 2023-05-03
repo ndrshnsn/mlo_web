@@ -24,7 +24,6 @@ class Admin::LeaguesController < ApplicationController
         format.html { redirect_to admin_leagues_path, success: t(".success") }
         format.turbo_stream { flash.now["success"] = t(".success") }
       else
-        logger.info "--------------------------------"
         format.html { render :edit, status: :unprocessable_entity }
       end
     end

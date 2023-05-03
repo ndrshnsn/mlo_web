@@ -2,13 +2,13 @@ class DeviseCustomMailer < Devise::Mailer
   include Devise::Controllers::UrlHelpers
   helper MailerHelper
 
-  default from: 'MLO <admin@mlo.app>'
-  default reply_to: 'MLO <admin@mlo.app>'
+  default from: AppConfig.mail_admin
+  default reply_to: AppConfig.mail_admin
 
   layout "mailer"
 
   def headers_for(action, opts)
-    super.merge!({template_path: 'mailer'}) # app/views/users/mailer
+    super.merge!({template_path: 'mailer/devise'})
   end
 
   def confirmation_instructions(record, token, options = {})

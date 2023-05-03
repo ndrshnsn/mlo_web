@@ -14,8 +14,17 @@ document.addEventListener("hide.bs.modal", function (event) {
   $.LoadingOverlay("show")
 });
 
-document.addEventListener("turbo:click", function(event) { 
-  $('.popover').remove();
+document.addEventListener("turbo:click", function(event) {
+  $.LoadingOverlay("show")
+  $('.popover').remove()
+});
+
+document.addEventListener("turbo:visit", function(event) { 
+  $.LoadingOverlay("hide", "force")
+});
+
+document.addEventListener("turbo:frame-render", function(event) { 
+  $.LoadingOverlay("hide", "force")
 });
 
 document.addEventListener("turbo:load", function(event) { 

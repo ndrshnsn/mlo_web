@@ -10,3 +10,19 @@ pt-BR:
       confirm_my_account: "Confirmar meu Email"
     need_help: "Precisa de Ajuda?"
     contact_us_html: "Envie sua sugestão/crítica/dificuldade para <a link='mailto:%{support}' style='font-weight: 500px;'>%{support}</a>"
+    go_to_site: "Ir ao Site"
+    admin:
+      create_league:
+        subject: "MLO :: Nova Liga Criada"
+        title: "Sua nova liga foi Criada!"
+        instructions_html: "Agora você pode voltar ao site da MLO, entrar com seu usuário e começar a convidar os demais usuários para completar a liga e iniciar os campeonatos.<p>Dúvidas podem surgir, não tem problema, somente pesquisar na nossa área de informações ou mesmo chamar o Administrador pelo chat."
+    user:
+      request_league:
+        subject: "MLO :: Solicitação de Nova Liga Enviada"
+        title: "Você solicitou a criação de uma nova Liga"
+        instructions_html: "Foi enviada uma notificação ao Administrador da MLO sobre sua requisição, incluindo os seus dados para contato. Aguarde o contato de uma pessoa representando a MLO para obter maiores informações e confirmar a criação da nova liga."
+        email_html: "<strong>Email:</strong> %{email}"
+        league_name_html: "<strong>Nome da Liga:</strong> %{league_name}"
+        league_platform_html: "<strong>Plataforma:</strong> %{league_platform}"
+        full_name_html: "<strong>Nome Completo:</strong> %{full_name}"
+        phone_html: "<strong>Telefone: </strong> %{phone}"

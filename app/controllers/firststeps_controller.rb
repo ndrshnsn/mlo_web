@@ -44,20 +44,21 @@ class FirststepsController < ApplicationController
   def requestLeague
     @select_account_type = true
     if request.post?
-      user = User.find(current_user.id)
-      league_data = league_params
-      League.sendRequest(
-        user.email,
-        league_data[:name],
-        league_data[:platform],
-        user.full_name,
-        user.email,
-        user.phone
-      )
-      user.update!(request: true)
-      redirect_to root_path
+      respond_to do |format|
+        user = User.find(current_user.id)
+        if user.update!(request: true)
+          UserMailer.with(user: user, params: league_params).request_league.deliver_later
+          flash.now["success"] = t(".success")
+          format.turbo_stream
+          format.html { redirect_to root_path, notice: t(".success") }
+        else
+          format.html { render :index, status: :unprocessable_entity }
+        end
+      end
     end
   end
+
+  
 
   private
 

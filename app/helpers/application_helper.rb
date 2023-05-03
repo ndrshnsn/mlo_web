@@ -36,9 +36,8 @@ module ApplicationHelper
   end
 
   def leagueBadge(league)
-    return asset_path("generic-league.png") if league.nil?
     league = league.reload
-    return asset_path("generic-league.png") if league.nil? if league.badge_data.blank?
+    return asset_path("generic-league.png") if league.badge_data.blank?
     league.badge_url
   end
 

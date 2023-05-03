@@ -6,3 +6,4 @@ en:
       change_my_password: "Reset my Password"
     need_help: "Need Help?"
     contact_us_html: "Send your suggestion to <a link='mailto:%{support}' style='font-weight: 500px;'>%{support}</a>"
+    
