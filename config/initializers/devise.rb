@@ -344,6 +344,5 @@ Devise.setup do |config|
   OmniAuth.config.full_host = Rails.env.production? ? "https://app.masterleagueonline.com.br" : "http://127.0.0.1:3000"
 
   config.omniauth :google_oauth2, Rails.application.credentials.dig(:omniauth, :google_client_id), Rails.application.credentials.dig(:omniauth, :google_secret), skip_jwt: true
-  config.omniauth :twitter, Rails.application.credentials.dig(:omniauth, :twitter_client_id), Rails.application.credentials.dig(:omniauth, :twitter_secret)
   config.omniauth :github, Rails.application.credentials.dig(:omniauth, :github_client_id), Rails.application.credentials.dig(:omniauth, :github_secret)
 end
