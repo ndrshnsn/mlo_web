@@ -8,7 +8,7 @@ pt-BR:
       join_league: "Participar de Uma Liga"
       join_league_obs: "Participe de uma liga já existente"
       request_join: "Solicitar Participação"
-    requestLeague:
+    request_league:
       confirm: "Confirma Solicitação?"
       confirm_text: ""
       main_info_html: "Toda liga precisa de um <i>manager</i>. Se você quer gerir uma liga com diversos jogadores, tudo que você precisa fazer é solicitar a criação de uma liga para o Administrador informando os dados abaixo. Qualquer dúvida relacionada ao funcionamento de uma liga para o <i>manager</i> você pode buscar na nossa seção de informações"

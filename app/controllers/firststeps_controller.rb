@@ -41,15 +41,14 @@ class FirststepsController < ApplicationController
     @select_account_type = true
   end
 
-  def requestLeague
+  def request_league
     @select_account_type = true
     if request.post?
       respond_to do |format|
         user = User.find(current_user.id)
         if user.update!(request: true)
           UserMailer.with(user: user, params: league_params).request_league.deliver_later
-          flash.now["success"] = t(".success")
-          format.turbo_stream
+          flash["success"] = t(".success")
           format.html { redirect_to root_path, notice: t(".success") }
         else
           format.html { render :index, status: :unprocessable_entity }
@@ -57,7 +56,6 @@ class FirststepsController < ApplicationController
       end
     end
   end
-
 
   private
 

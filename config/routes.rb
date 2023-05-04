@@ -87,7 +87,7 @@ Rails.application.routes.draw do
 
     ## FirstSteps
     get "firststeps", to: "firststeps#index"
-    match "firststeps/request", controller: "firststeps", action: "requestLeague", via: [:get, :post], as: :request_league
+    match "firststeps/request", controller: "firststeps", action: "request_league", via: [:get, :post], as: :request_league
     get "firststeps/join", controller: "firststeps#join", as: :join
     post "firststeps/join_league", controller: "firsteps#join_league", as: :join_league
     post "firststeps/get_proc_dt", to: "firststeps#get_proc_dt"
