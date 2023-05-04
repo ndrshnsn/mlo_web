@@ -58,7 +58,6 @@ class FirststepsController < ApplicationController
     end
   end
 
-  
 
   private
 

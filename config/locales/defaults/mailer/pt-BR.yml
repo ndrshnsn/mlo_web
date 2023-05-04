@@ -18,9 +18,9 @@ pt-BR:
         instructions_html: "Agora você pode voltar ao site da MLO, entrar com seu usuário e começar a convidar os demais usuários para completar a liga e iniciar os campeonatos.<p>Dúvidas podem surgir, não tem problema, somente pesquisar na nossa área de informações ou mesmo chamar o Administrador pelo chat."
     user:
       request_league:
-        subject: "MLO :: Solicitação de Nova Liga Enviada"
-        title: "Você solicitou a criação de uma nova Liga"
-        instructions_html: "Foi enviada uma notificação ao Administrador da MLO sobre sua requisição, incluindo os seus dados para contato. Aguarde o contato de uma pessoa representando a MLO para obter maiores informações e confirmar a criação da nova liga."
+        subject: "MLO :: Solicitação de Nova Liga"
+        title: "Foi Solicitada a Criação de uma nova Liga"
+        instructions_html: "Foi solicitada a criação de uma nova liga pelo painel da MLO. Abaixo seguem os dados do solicitante para que o ADM entre em contato e valide as informações antes de efetivar a Criação da Liga."
         email_html: "<strong>Email:</strong> %{email}"
         league_name_html: "<strong>Nome da Liga:</strong> %{league_name}"
         league_platform_html: "<strong>Plataforma:</strong> %{league_platform}"

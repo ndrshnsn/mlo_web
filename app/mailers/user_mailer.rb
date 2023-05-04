@@ -4,6 +4,6 @@ class UserMailer < ApplicationMailer
   def request_league
     @user = params[:user]
     @league_params = params[:params]
-    mail(to: @user.email, subject: t('mailer.user.request_league.subject'))
+    mail(to: AppConfig.mail_admin, subject: t('mailer.user.request_league.subject'))
   end
 end
