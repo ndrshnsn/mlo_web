@@ -21,6 +21,14 @@ export default class FormController extends Controller {
     const redirect = this.redirectValue
     let scrollVar = scrollTop
 
+    if ( redirect !== "" ) {
+      this.element.addEventListener("turbo:submit-end", (event) => {
+        const url = new URL(window.location.href.split("?")[0])
+        history.pushState({}, null, redirect)
+        Turbo.navigator.history.replace(url.toString())
+      })
+    }
+
     $(form).parsley();
     $(form).parsley().on('form:submit', function (formInstance) {
       Swal.fire({
@@ -48,11 +56,6 @@ export default class FormController extends Controller {
             $('.modal').modal('hide')
             $('.modal-backdrop').remove()
             $(form).parsley().destroy()
-            if ( redirect !== "" ) {
-              const url = new URL(window.location.href.split("?")[0])
-              history.pushState({}, null, redirect)
-              Turbo.navigator.history.replace(url.toString())
-            }
             form.requestSubmit()
           } else {
             scrollVar = false

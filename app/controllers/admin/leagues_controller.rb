@@ -21,8 +21,8 @@ class Admin::LeaguesController < ApplicationController
     result = AdminServices::CreateLeague.call(@league, league_params)
     respond_to do |format|
       if result.success?
-        flash.now[:success] = t(".success")
-        format.html { redirect_to admin_leagues_path }
+        format.html { redirect_to admin_leagues_path, success: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -34,8 +34,7 @@ class Admin::LeaguesController < ApplicationController
     result = AdminServices::UpdateLeague.call(league, league_params)
     respond_to do |format|
       if result.success?
-        
-        format.html { redirect_to admin_leagues_path }
+        format.html { redirect_to admin_leagues_path, success: t(".success") }
         format.turbo_stream { flash.now["success"] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
