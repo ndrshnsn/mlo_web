@@ -6,7 +6,7 @@
 			.col-12
 				.card
 					.card-header
-						h5.card-title.mb-0 Gerenciar Uma LIga
+						h5.card-title.mb-0 = t('.manage_a_league')
 					.card-body
 						= form_with url: request_league_path, id: "request_league", class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
 							.row
@@ -22,5 +22,5 @@
 										= f.label :league, "Plataforma", class: "control-label"
 										= select_tag "league[platform]", options_for_select(eval(AppConfig.platforms)), class: "form-control select2 dt-select", include_blank: true, "data-controller": "select", "data-select-icon-value": false
 							.col-12.text-end
-								= link_to "Cancelar", root_path, class: "btn btn-outline-secondary mt-2 me-1", data: { "turbo-action": "advance"}
-								= submit_tag "Solicitar Criação", class: "btn btn-primary mt-2"
+								= link_to t('.cancel'), firststeps_path, class: "btn btn-outline-secondary mt-2 me-1", data: { "turbo-action": "advance"}
+								= submit_tag t('.request'), class: "btn btn-primary mt-2"

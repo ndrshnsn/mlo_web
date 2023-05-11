@@ -1,11 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
-//import { navigator } from "@hotwired/turbo"
 import "@/base/parsley"
 import "@/base/sweetalert2"
 import i18n from "@/base/i18n"
 
 export default class FormController extends Controller {
-  static values = { title: String, text: String, icon: String, scroll: Boolean, redirect: { type: String, default: "" } }
+  static values = {
+    title: String,
+    text: String,
+    icon: String,
+    scroll: Boolean,
+    redirect: { type: String, default: "" }
+  }
 
   connect() {
     const form = document.getElementById(this.element.id);

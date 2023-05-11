@@ -8,5 +8,5 @@
           .card-header.align-items-center.d-flex
             h4.card-title.mb-o.flex-grow-1 = t('.new')
           .card-body
-            = form_with model: @league, id: dom_id(@league), url: admin_league_create_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "warning"} do |f|
+            = form_with model: @league, id: dom_id(@league), url: admin_league_create_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "turbo-action": "advance", "form-icon-value": "warning"} do |f|
               = render partial: "form", locals: { f: f }

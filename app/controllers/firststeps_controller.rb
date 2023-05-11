@@ -22,12 +22,11 @@ class FirststepsController < ApplicationController
       league_id: league.id,
       status: false
     ).first_or_create!
-
     respond_to do |format|
       if user.update!(request: true)
-        flash.now["success"] = t(".success")
-        format.turbo_stream
-        format.html { redirect_to root_path, notice: t(".success") }
+        UserMailer.with(user: user, league: league).join_league.deliver_later
+        flash["success"] = t(".success")
+        format.html { redirect_to root_path }
       else
         format.html { render :index, status: :unprocessable_entity }
       end
@@ -49,7 +48,7 @@ class FirststepsController < ApplicationController
         if user.update!(request: true)
           UserMailer.with(user: user, params: league_params).request_league.deliver_later
           flash["success"] = t(".success")
-          format.html { redirect_to root_path, notice: t(".success") }
+          format.html { redirect_to root_path }
         else
           format.html { render :index, status: :unprocessable_entity }
         end

@@ -8,13 +8,20 @@ pt-BR:
       join_league: "Participar de Uma Liga"
       join_league_obs: "Participe de uma liga já existente"
       request_join: "Solicitar Participação"
+      manager_request_html: "O Administrador já recebeu os dados da sua solicitação, agora é só esperar e verificar seu email.<br /> Assim que concluído, uma mensagem será enviada ao seu email com os detalhes. Enquanto isso, vai treinando"
+      user_request_html: "Perfeito, o que você podia fazer até o momento é isso. Agora é só aguardar até o Administrador da Liga validar o seu acesso e aprovar sua participação. Fique atento ao seu email, quando seu acesso for liberado uma mensagem será enviada e você terá acesso a todos os recursos. "
     request_league:
+      manage_a_league: "Gerenciar uma Liga"
       confirm: "Confirma Solicitação?"
       confirm_text: ""
       main_info_html: "Toda liga precisa de um <i>manager</i>. Se você quer gerir uma liga com diversos jogadores, tudo que você precisa fazer é solicitar a criação de uma liga para o Administrador informando os dados abaixo. Qualquer dúvida relacionada ao funcionamento de uma liga para o <i>manager</i> você pode buscar na nossa seção de informações"
+      cancel: "Cancelar"
+      request: "Solicitar Criação"
       parsley:
         name:
           exists: "Nome já em uso!"
+    join_league:
+      success: "Solicitação enviada com sucesso!"
     list:
       name: "Nome"
       platform: "Plataforma"

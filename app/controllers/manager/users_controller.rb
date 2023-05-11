@@ -94,7 +94,26 @@ class Manager::UsersController < ApplicationController
     user_league_size = user_leagues.size
 
     respond_to do |format|
-      removeUserCreateFake(user, @league) if user_leagues.exists?(league_id: @league.id, status: true)
+      ///////////////////////////
+
+      newFake = createFake
+      uLeague = UserLeague.find_by(league_id: league.id, user_id: user.id)
+      if uLeague.update(user_id: newFake.id)
+        user.preferences["active_league"] = nil
+        user.save!
+
+        uSeason = UserSeason.where(user_id: user.id)
+        uSeason.update_all(user_id: newFake.id)
+
+        uNotifications = Notification.where(recipient_id: user.id)
+        uNotifications.update_all(recipient_id: newFake.id)
+
+        true
+      else
+        false
+      end
+
+      ///////////////////////////
 
       if user_league_size == 1
         user.preferences["request"] = false

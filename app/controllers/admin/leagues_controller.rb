@@ -21,8 +21,8 @@ class Admin::LeaguesController < ApplicationController
     result = AdminServices::CreateLeague.call(@league, league_params)
     respond_to do |format|
       if result.success?
-        format.html { redirect_to admin_leagues_path, success: t(".success") }
-        format.turbo_stream { flash.now["success"] = t(".success") }
+        flash.now[:success] = t(".success")
+        format.html { redirect_to admin_leagues_path }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -34,7 +34,8 @@ class Admin::LeaguesController < ApplicationController
     result = AdminServices::UpdateLeague.call(league, league_params)
     respond_to do |format|
       if result.success?
-        format.html { redirect_to admin_leagues_path, success: t(".success") }
+        
+        format.html { redirect_to admin_leagues_path }
         format.turbo_stream { flash.now["success"] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -45,7 +46,6 @@ class Admin::LeaguesController < ApplicationController
   def destroy
     league = League.friendly.find(params[:id])
 
-    ## Remove Fake Accounts
     fake_accounts = UserLeague.joins(:user).where("user_leagues.league_id = ? AND users.preferences -> 'fake' = ?", league.id, "true").pluck("users.id")
     User.where(id: fake_accounts).destroy_all
 

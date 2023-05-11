@@ -1,4 +1,4 @@
-class AppServices::CreateFake < ApplicationService
+class AppServices::Users::CreateFake < ApplicationService
   def call
     ActiveRecord::Base.transaction do
       create_fake

@@ -23,7 +23,7 @@ class AdminServices::CreateLeague < ApplicationService
       )
 
       @league.slots.times do |i|
-        create_fake = AppServices::CreateFake.call
+        create_fake = AppServices::Users::CreateFake.call
         if create_fake.user
           UserLeague.new(
             league_id: @league.id,

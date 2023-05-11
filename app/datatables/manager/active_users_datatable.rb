@@ -17,11 +17,7 @@ class Manager::ActiveUsersDatatable < ApplicationDatatable
       stColumn += "</div>"
       stColumn += "</div>"
 
-      aStatus = if uLeague.status
-        content_tag(:span, t("active").upcase, class: "badge badge-soft-success")
-      else
-        content_tag(:span, t("inactive").upcase, class: "badge badge-soft-light")
-      end
+      aStatus = uLeague.status ? content_tag(:span, t("active").upcase, class: "badge badge-soft-success") : content_tag(:span, t("inactive").upcase, class: "badge badge-soft-light")
 
       pStatus = (uLeague.status == true) ? t("defaults.datatables.disable") : t("defaults.datatables.enable")
       pStatusIcon = (uLeague.status == true) ? "close" : "check"
@@ -41,13 +37,6 @@ class Manager::ActiveUsersDatatable < ApplicationDatatable
           text: t("defaults.datatables.show"),
           disabled: mDisabled,
           turbo: "data-turbo-action='advance' data-turbo-frame='manager_users'"
-        },
-        {
-          link: "javascript:;",
-          icon: "ri-delete-bin-fill",
-          text: t("defaults.datatables.delete"),
-          disabled: mDisabled,
-          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{t("defaults.datatables.confirm_remove")}' data-confirm-text-value='#{t("defaults.datatables.manager.users_confirm_removal")}' data-confirm-icon-value='warning' data-confirm-link-value='#{manager_user_remove_path(uLeague.user.friendly_id)}'"
         }
       ]
 

@@ -5,9 +5,10 @@ module DatatablesHelper
     if mOptions
       dtActions += "<ul class='dropdown-menu dropdown-menu-end'>"
       mOptions.each do |mOption|
+        disabled_text = mOption[:disabled] == "" ? mOption[:disabled] : "text-decoration-line-through"
         dtActions += "<li>"
         dtActions += "<a href='#{mOption[:link]}' class='dropdown-item #{mOption[:disabled]}' #{mOption[:turbo]}>"
-        dtActions += "<i class='#{mOption[:icon]} align-bottom me-2 text-muted'></i>#{mOption[:text]}"
+        dtActions += "<i class='#{mOption[:icon]} align-bottom me-2 text-muted'></i><span class='#{disabled_text}'>#{mOption[:text]}</span>"
         dtActions += "</a>"
         dtActions += "</li>"
       end

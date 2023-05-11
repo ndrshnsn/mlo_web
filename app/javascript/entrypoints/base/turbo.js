@@ -39,3 +39,6 @@ document.addEventListener("turbo:submit-end", function(event) {
   $.LoadingOverlay("hide", "force")
 });
 
+if (window.history.state && window.history.state.turbo) {
+  window.addEventListener("popstate", function () { location.reload(true); });
+}

@@ -11,9 +11,9 @@
 								h5.card-title = t('.request_completed')
 								p.card-text.fs-15
 									- if @approvedUser == false
-										|  Perfeito, o que você podia fazer até o momento é isso. Agora é só aguardar até o Administrador da Liga validar o seu acesso e aprovar sua participação. Fique atento ao seu email, quando seu acesso for liberado uma mensagem será enviada e você terá acesso a todos os recursos. 
+										= t('.user_request_html')
 									- else
-										|  O Administrador já recebeu os dados da sua solicitação, agora é só esperar e verificar seu email.<br /> Assim que concluído, uma mensagem será enviada ao seu email com os detalhes. Enquanto isso, vai treinando
+										= t('.manager_request_html')
 		- else
 			.row.match-height
 				.col-md-6.col-lg-6
