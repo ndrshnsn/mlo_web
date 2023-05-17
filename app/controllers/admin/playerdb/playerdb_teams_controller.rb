@@ -106,7 +106,7 @@ class Admin::Playerdb::PlayerdbTeamsController < ApplicationController
       teamAbbr: doc.xpath("//span[contains(text(), 'Short Name')]/../text()")&.text&.strip,
       teamFounded: doc.xpath("//span[contains(text(), 'Year Founded')]/../text()")&.text&.strip,
       teamStadium: doc.xpath("//span[contains(text(), 'Stadium')]/../a/text()")&.text&.strip,
-      teamCapacity: doc.xpath("//span[contains(text(), 'Stadium')]/../a/../text()")&.text&.strip.split("(")[1].split(")")[0].gsub(/[^\d.]/, "").to_i,
+      teamCapacity: doc.xpath("//span[contains(text(), 'Stadium')]/../a/../text()")&.text&.strip&.split("(")[1]&.split(")")[0]&.gsub(/[^\d.]/, "")&.to_i,
       teamCity: doc.xpath("//span[contains(text(), 'Location')]/../text()")&.text&.strip
     }
   end

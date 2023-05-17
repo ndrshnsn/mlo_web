@@ -1,10 +1,19 @@
 import dataTable from "datatables.net-bs5"
 $.extend( $.fn.dataTable.defaults, {
   searching: true,
+  stateSave: true,
   paging: true,
   processing: true,
   serverSide: true,
   iDisplayLength: 15,
+  drawCallback: function (settings) {
+    if (sessionStorage.getItem('clearDTState') === 'true') {
+      let api = this.api()
+      api.state.clear()
+      api.draw()
+      sessionStorage.setItem('clearDTState', false)
+    }
+  },
   ajax: {
       type: 'POST'
   },

@@ -63,6 +63,8 @@ group :development do
   gem "binding_of_caller"
 
   gem "letter_opener"
+
+  gem "pry"
 end
 
 gem "vite_rails", "~> 3.0"

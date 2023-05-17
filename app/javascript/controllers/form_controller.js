@@ -13,7 +13,7 @@ export default class FormController extends Controller {
   }
 
   connect() {
-    const form = document.getElementById(this.element.id);
+    const form = document.getElementById(this.element.id)
     const title = this.titleValue
     const text = this.textValue
     const icon = this.iconValue
@@ -21,7 +21,7 @@ export default class FormController extends Controller {
     const redirect = this.redirectValue
     let scrollVar = scrollTop
 
-    if ( redirect !== "" ) {
+    if (redirect) {
       this.element.addEventListener("turbo:submit-end", (event) => {
         const url = new URL(window.location.href.split("?")[0])
         history.pushState({}, null, redirect)

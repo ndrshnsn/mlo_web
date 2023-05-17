@@ -2,5 +2,4 @@
   = render partial: "layouts/header/pageHeader", locals: { title: t('.leagues') }
 
   = turbo_frame_tag "admin_leagues" do
-    = render_turbo_stream_flash_messages
     = render "list"
