@@ -17,29 +17,10 @@ class Admin::LeaguesController < ApplicationController
   end
 
   def create
-    @league = League.new(league_params)
+    new_league = AdminServices::CreateLeague.call(league_params: league_params)
     respond_to do |format|
-      if @league.save!
-        adm = User.find(league_params[:user_id])
-        if adm.update!(
-          request: false,
-          active_league: @league.id,
-          role: "manager"
-          )
-
-          @league.slots.times do |i|
-            create_fake = AppServices::Users::CreateFake.call
-            if create_fake.user
-              UserLeague.new(
-                league_id: @league.id,
-                user_id: create_fake.user.id,
-                status: true
-              ).save!
-            end
-          end
-        end
-        AdminMailer.with(league: @league).create_league.deliver_later
-
+      if new_league.success?
+        AdminMailer.with(league: new_league[:league]).create_league.deliver_later
         format.html { redirect_to admin_leagues_path, success: t(".success") }
         format.turbo_stream { flash.now["success"] = t(".success") }
       else
