@@ -3,13 +3,7 @@
 
 = form_with model: league, id: dom_id(league), url: url, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-redirect-value": redirect, "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "warning"} do |f|
 
-  - if defined?(error_list)
-    .row.pt-2.pb-2
-      .col-12
-        blockquote.blockquote.custom-blockquote.blockquote-danger.rounded.mb-1
-          - error_list.each do |error|
-            p.text-dark.mb-1 "#{error[:code]}: #{error[:message]}"
-
+  = render partial: "layouts/error_list"
   .row
     .col-sm-12.col-md-6
       .form-group.mb-3

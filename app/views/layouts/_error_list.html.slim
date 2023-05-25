@@ -1,0 +1,8 @@
+- if defined?(session[:error_list]) && !session[:error_list].blank?
+    .row.pt-2.pb-2
+      .col-12
+        blockquote.blockquote.custom-blockquote.blockquote-danger.rounded.mb-1
+          - session[:error_list].each do |error|
+            p.text-dark.mb-1 = error[:code]
+            ul
+              li = "#{error[:title]}: #{error[:desc]}"

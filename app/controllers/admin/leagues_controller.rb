@@ -31,49 +31,13 @@ class Admin::LeaguesController < ApplicationController
 
   def update
     @league = League.friendly.find(params[:id])
-    padm = User.find(@league.user_id)
-    pslots = @league.slots
-    errors = []
-
+    update_league = AdminServices::UpdateLeague.call(@league, league_params)
     respond_to do |format|
-      #if pslots > league_params[:slots].to_i
-      if @league.update(league_params)
-
-        adm = User.find(league_params[:user_id])
-        if padm.id != adm.id
-          if UserLeague.where(user_id: padm.id).count > 1
-            padm.preferences["active_league"] = UserLeague.where(user_id: padm.id).where.not(league_id: @league.id).first.id
-          else
-            padm.update(
-              active_league: nil,
-              active: false,
-              role: "user"
-            )
-          end
-
-          adm.update!(
-            request: false,
-            active_league: @league.id,
-            role: "manager"
-          )
-        end
-
-        ## Update Slots
-        if pslots != @league.slots
-
-        end
-
+      if update_league.success?
         format.html { redirect_to admin_leagues_path, success: t(".success") }
         format.turbo_stream { flash.now["success"] = t(".success") }
       else
-        errors.push(
-          {
-            code: "error code",
-            message: "error test message"
-          }
-        )
-
-        format.turbo_stream { render turbo_stream: turbo_stream.update("edit_league_form", partial: "form", locals: { league: @league, error_list: errors, url: admin_league_update_path }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("edit_league_form", partial: "form", locals: { league: @league, url: admin_league_update_path }) }
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
@@ -81,17 +45,15 @@ class Admin::LeaguesController < ApplicationController
 
   def destroy
     league = League.friendly.find(params[:id])
-
-    fake_accounts = UserLeague.joins(:user).where("user_leagues.league_id = ? AND users.preferences -> 'fake' = ?", league.id, "true").pluck("users.id")
-    User.where(id: fake_accounts).destroy_all
-
+    fake_accounts = UserLeague.get_fake_accounts(league.id)
+    User.where(id: fake_accounts.pluck("users.id")).destroy_all
     respond_to do |format|
       if league.destroy!
         flash.now["success"] = t(".success")
         format.turbo_stream
         format.html { redirect_to admin_leagues_path, notice: t(".success") }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
   end
