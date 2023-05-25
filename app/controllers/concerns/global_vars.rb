@@ -8,6 +8,7 @@ module GlobalVars
   private
 
   def set_global_vars
+    session[:error_list] = []
     session[:pdbprefix] = Rails.configuration.playerdb_prefix
     if user_signed_in? && current_user.user?
       if !session[:user_id]
@@ -24,7 +25,17 @@ module GlobalVars
       session[:leagues] = League.where(user_id: current_user.id).pluck("leagues.id")
       session[:season] = Season.getActive(current_user.id)
     end
-
     @decoded_vapid_publickey = Base64.urlsafe_decode64(AppConfig.vapid_pubkey).bytes
+  end
+
+  def general_error(code, clear = nil)
+    session[:error_list] = [] if clear == true
+    code.each do |i|
+      session[:error_list].push(
+        code: i,
+        title: I18n.t("error_list.#{i}.title"),
+        desc: I18n.t("error_list.#{i}.desc")
+      )
+    end
   end
 end
