@@ -1,0 +1,5 @@
+= turbo_frame_tag "main_frame" do
+  = render partial: "layouts/header/pageHeader", locals: { title: t('.activities') }
+
+  = turbo_frame_tag "admin_activities" do
+    = render "list"

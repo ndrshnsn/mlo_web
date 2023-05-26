@@ -1,4 +1,5 @@
 - playerdb = ["playerdb_countries", "playerdb_leagues", "playerdb_teams", "playerdb_players"].include? controller_name
+- insights = ["insights_activities"].include? controller_name
 - blog = ["blog_posts", "blog_categories"]
 
 
@@ -30,4 +31,12 @@ ul.navbar-nav id="navbar-nav"
   li.nav-item
     = link_to admin_settings_path, class: "menu-link nav-link #{'active' if controller_name == 'settings'}", id: "sidebar_settings" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_settings", "sidebar-child-value": "sidebar_settings" } do
       i.ri-settings-line
-      span data-key="t-playerdb" = t('.settings')
+      span data-key="t-settings" = t('.settings')
+  li.nav-item
+      a.nav-link.menu-link id="sidebar_insights" href="#sidebar_insights_collapse" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar_insights_collapse"
+          i.ri-eye-2-line
+          span data-key="t-insights" = t('.insights.main')
+      #sidebar_insights_collapse class=="collapse menu-dropdown #{'show' if insights == true}"
+          ul.nav.nav-sm.flex-column
+              li.nav-item
+                = link_to t('.insights.activities'), admin_insights_activities_path, class: "nav-link #{'active' if controller_name == 'insights_activities'}", id: "sidebar_insights_activities" , data: { controller: "sidebar managedt", "turbo-frame": "main_frame", "turbo-target": "_top", "turbo-action": "advance", action: "click->sidebar#toggle click->managedt#clear_state", "sidebar-father-value": "sidebar_insights", "sidebar-child-value": "sidebar_insights_activities" }
