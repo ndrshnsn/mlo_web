@@ -14,7 +14,7 @@ pt-BR:
       new:
         new: "Nova Liga"
         leagues: "Ligas"
-        confirm: "Criar Liga?"
+        confirm_question: "Criar Liga?"
         confirm_text: ""
       form:
         name: "Nome"
@@ -24,6 +24,7 @@ pt-BR:
         slots: "Vagas"
         cancel: "Cancelar"
         confirm: "Confirmar"
+        back: "Voltar"
       create:
         success: "Nova Liga criada com sucesso!"
         error: "Erro criando nova liga"
@@ -33,7 +34,7 @@ pt-BR:
       edit:
         leagues: "Ligas"
         edit: "Editar Liga"
-        confirm: "Atualizar?"
+        confirm_question: "Atualizar Liga?"
         confirm_text: ""
       destroy:
         success: "Liga removida com sucesso!"

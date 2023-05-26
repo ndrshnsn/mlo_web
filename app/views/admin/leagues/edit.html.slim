@@ -8,4 +8,4 @@
           .card-header.align-items-center.d-flex
             h4.card-title.mb-o.flex-grow-1 = t('.edit')
           #edit_league_form.card-body
-            = render partial: "form", locals: { league: @league, url: admin_league_update_path }
+            = render partial: "form", locals: { league: @league, url: admin_league_update_path, form_title: t('.confirm_question'), form_text: t('.confirm_text') }

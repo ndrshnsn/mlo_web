@@ -14,7 +14,7 @@ class AdminServices::UpdateLeague < ApplicationService
 
   def update_league
     padm = User.find(@league.user_id)
-    pslots = @league.slots
+    #pslots = @league.slots
 
     return handle_error(nil, @league&.error) unless @league.update!(@params)
 
@@ -38,9 +38,23 @@ class AdminServices::UpdateLeague < ApplicationService
     end
 
     ## Update Slots
-    if pslots != @league.slots
-
-    end
+    ### --- THIS NEEDS TO BE VERIFIED AGAIN
+    # if @league.seasons.where(status: 1).size == 0 && pslots != @league.slots
+    #   league_fake_users = UserLeague.get_fake_accounts(@league.id)
+    #   if pslots < @league.slots
+    #     new_fake_accounts = @league.slots - pslots
+    #     new_fake_accounts.times do |i|
+    #       create_fake = AppServices::Users::CreateFake.call
+    #       if create_fake.success? && create_fake.user
+    #         UserLeague.new(
+    #           league_id: league.id,
+    #           user_id: create_fake.user.id,
+    #           status: true
+    #         ).save!
+    #       end
+    #     end
+    #   end
+    # end
     OpenStruct.new(success?: true, league: @league, error: nil)
   end
 

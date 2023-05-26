@@ -32,6 +32,7 @@ class AdminServices::CreateLeague < ApplicationService
           ).save!
         end
       end
+      AdminMailer.with(league: league).create_league.deliver_later
       OpenStruct.new(success?: true, league: league, error: nil)
     else
       handle_error(league, league&.error)
