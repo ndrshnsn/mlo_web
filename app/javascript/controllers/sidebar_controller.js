@@ -4,7 +4,7 @@ export default class extends Controller {
   static values = { father: String, child: String }
 
   toggle() {
-    let prevFather = sessionStorage.getItem('sidebarFather') ? sessionStorage.getItem('sidebarFather') : null
+    let prevFather = sessionStorage.getItem('sidebarFather') ? sessionStorage.getItem('sidebarFather') : this.childValue
     let prevChild = sessionStorage.getItem('sidebarChild') ? sessionStorage.getItem('sidebarChild') : null
 
     // Disable Previous sidebar Items
@@ -14,6 +14,7 @@ export default class extends Controller {
 
     // Add Open Class to Father dropdown
     if ( this.fatherValue !== null && document.getElementById(prevFather)) {
+      console.log('im here!')
       if ( ( this.fatherValue !== prevFather ) && ( prevFather !== null ) ) {
         document.getElementById(prevFather).setAttribute("aria-expanded", false);
         document.getElementById(prevFather).classList.remove("active");

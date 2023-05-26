@@ -11,6 +11,7 @@ class League < ApplicationRecord
   has_many :users, through: :user_leagues
   has_many :seasons, dependent: :destroy
   has_many :awards, dependent: :destroy
+  #has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   before_destroy :pre_destroy_task, prepend: true
 

@@ -187,31 +187,34 @@ Rails.application.routes.draw do
   ##
   # ADMIN NAMESPACE
   namespace :admin do
+    get "insights/activities", to: "insights/insights_activities#index"
+    post "insights/activities/get_proc_dt", to: "insights/insights_activities#get_proc_dt"
+
     get "playerdb/countries", to: "playerdb/playerdb_countries#index"
     get "playerdb/countries/new", to: "playerdb/playerdb_countries#new"
-    match "playerdb/countries/edit/:id", controller: "playerdb/playerdb_countries", action: "edit", via: :get, as: :playerdb_countries_edit
-    match "playerdb/countries/check_name", controller: "playerdb/playerdb_countries", action: "check_name", via: :post, as: :playerdb_countries_check_name
+    get "playerdb/countries/edit/:id", to: "playerdb/playerdb_countries#edit", as: :playerdb_countries_edit
+    post "playerdb/countries/check_name", to: "playerdb/playerdb_countries#check_name", as: :playerdb_countries_check_name
     post "playerdb/countries/create", to: "playerdb/playerdb_countries#create"
-    match "playerdb/countries/update/:id", to: "playerdb/playerdb_countries#update", via: :patch, as: :playerdb_countries_update
+    patch "playerdb/countries/update/:id", to: "playerdb/playerdb_countries#update", as: :playerdb_countries_update
     delete "playerdb/countries/destroy/:id", to: "playerdb/playerdb_countries#destroy", as: :playerdb_countries_destroy
     post "playerdb/countries/get_proc_dt", to: "playerdb/playerdb_countries#get_proc_dt"
 
     get "playerdb/teams", to: "playerdb/playerdb_teams#index"
     post "playerdb/teams/get_proc_dt", to: "playerdb/playerdb_teams#get_proc_dt"
-    match "playerdb/teams/check_lname", controller: "playerdb/playerdb_teams", action: "check_lname", via: :post, as: :playerdb_team_check_lname
+    post "playerdb/teams/check_lname", to: "playerdb/playerdb_teams#check_lname", as: :playerdb_team_check_lname
     get "playerdb/teams/new", to: "playerdb/playerdb_teams#new"
-    match "playerdb/teams/edit/:id", controller: "playerdb/playerdb_teams", action: "edit", via: "get", as: :playerdb_team_edit
-    match "playerdb/teams/create", controller: "playerdb/playerdb_teams", action: "create", via: "post", as: :playerdb_teams_create
-    match "playerdb/teams/update/:id", controller: "playerdb/playerdb_teams", action: "update", via: "patch", as: :playerdb_teams_update
+    get "playerdb/teams/edit/:id", to: "playerdb/playerdb_teams#edit", as: :playerdb_team_edit
+    post "playerdb/teams/create", to: "playerdb/playerdb_teams#create", as: :playerdb_teams_create
+    patch "playerdb/teams/update/:id", to: "playerdb/playerdb_teams#update", as: :playerdb_teams_update
     delete "playerdb/teams/destroy/:id", to: "playerdb/playerdb_teams#destroy", as: :playerdb_team_destroy
-    match "playerdb/teams/details/:id", controller: "playerdb/playerdb_teams", action: "details", via: "get", as: :playerdb_team_details
+    get "playerdb/teams/details/:id", to: "playerdb/playerdb_teams#details", as: :playerdb_team_details
 
     get "playerdb/players", to: "playerdb/playerdb_players#index"
     post "playerdb/players/get_proc_dt", to: "playerdb/playerdb_players#get_proc_dt"
-    match "playerdb/players/:id", controller: "playerdb/playerdb_players", action: "details", via: "get", as: :playerdb_player_details
-    match "playerdb/players/toggle/:id", controller: "playerdb/playerdb_players", action: "toggle", via: "post", as: :playerdb_player_toggle
+    get "playerdb/players/:id", to: "playerdb/playerdb_players#details", as: :playerdb_player_details
+    post "playerdb/players/toggle/:id", to: "playerdb/playerdb_players#toggle", as: :playerdb_player_toggle
 
-    match "settings", controller: "settings", action: "index", via: :get, as: :settings
+    get "settings", to: "settings#index", as: :settings
     post "settings/update", to: "settings#update"
 
     get "leagues", to: "leagues#index"
@@ -219,7 +222,7 @@ Rails.application.routes.draw do
     get "leagues/get_proc_ldt", to: "leagues#get_proc_ldt"
     get "leagues/new", to: "leagues#new", as: :league_new
     post "leagues/create", to: "leagues#create", as: :league_create
-    match "leagues/check_lname", controller: "leagues#check_lname", via: :get, as: :league_check_lname
+    get "leagues/check_lname", to: "leagues#check_lname", as: :league_check_lname
     delete "leagues/destroy/:id", to: "leagues#destroy", as: :league_destroy
     get "leagues/edit/:id", to: "leagues#edit", as: :league_edit
     patch "leagues/update/:id", to: "leagues#update", as: :league_update
