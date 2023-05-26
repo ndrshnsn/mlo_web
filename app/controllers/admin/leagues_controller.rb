@@ -14,13 +14,13 @@ class Admin::LeaguesController < ApplicationController
 
   def edit
     @league = League.friendly.find(params[:id])
+    @running_season = @league.seasons.where(status: 1).size == 1 ? true : false
   end
 
   def create
     new_league = AdminServices::CreateLeague.call(league_params: league_params)
     respond_to do |format|
       if new_league.success?
-        AdminMailer.with(league: new_league[:league]).create_league.deliver_later
         format.html { redirect_to admin_leagues_path, success: t(".success") }
         format.turbo_stream { flash.now["success"] = t(".success") }
       else

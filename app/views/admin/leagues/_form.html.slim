@@ -1,7 +1,7 @@
 - lPlatform = league.seasons.size > 0 ? "disabled" : ""
 - redirect = redirect.nil? ? "" : redirect
 
-= form_with model: league, id: dom_id(league), url: url, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-redirect-value": redirect, "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "warning"} do |f|
+= form_with model: league, id: dom_id(league), url: url, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-redirect-value": redirect, "form-title-value": form_title, "form-text-value": form_text, "form-icon-value": "warning"} do |f|
 
   = render partial: "layouts/error_list"
   .row
@@ -13,7 +13,7 @@
       .form-group.mb-3
         = f.label :alias, t('.platform'), class: "form-label"
         #popover_league_platform
-        = select_tag "league[platform]", options_for_select(eval(AppConfig.platforms), league.platform), class: "form-control select2 dt-select", include_blank: true, "data-controller": "select", "data-select-icon-value": false, required: true
+        = select_tag "league[platform]", options_for_select(eval(AppConfig.platforms), league.platform), class: "form-control select2 dt-select", disabled: @league.id?, include_blank: true, "data-controller": "select", "data-select-icon-value": false, required: true
     .col-sm-12.col-md-6
       .form-group.mb-3
         = f.label :alias, t('.manager'), class: "form-label"
@@ -23,12 +23,12 @@
       .form-group.mb-3
         = label_tag 'status', t('.status'), class: "control-label"
         #popover_league_status
-        = select_tag "league[status]", options_for_select([["#{t('active')}", true], ["#{t('inactive')}", false]], league.status), {id: "league_status", include_blank: true, class: "form-control select2 dt-select", "data-controller": "select", "data-select-icon-value": false, required: true}
+        = select_tag "league[status]", options_for_select([["#{t('active')}", true], ["#{t('inactive')}", false]], league.status), {id: "league_status", disabled: @running_season, include_blank: true, class: "form-control select2 dt-select", "data-controller": "select", "data-select-icon-value": false, required: true}
     .col-sm-12.col-md-6
       .form-group.mb-3
         = label_tag 'slots', t('.slots'), class: "control-label"
         #popover_league_slots
-        = select_tag "league[slots]", options_for_select(eval(AppConfig.league_slots), league.slots), class: "form-control select2 dt-select", include_blank: true, "data-controller": "select", "data-select-icon-value": false, required: true
+        = select_tag "league[slots]", options_for_select(eval(AppConfig.league_slots), league.slots), class: "form-control select2 dt-select", disabled: @league.id?, include_blank: true, "data-controller": "select", "data-select-icon-value": false, required: true
     .col-lg-12
       .text-end
         = link_to t('.back'), admin_leagues_path, class: "btn btn-outline-secondary me-1", data: { "turbo-action": "advance"}
