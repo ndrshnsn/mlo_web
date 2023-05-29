@@ -2,9 +2,7 @@ class League < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
   include BadgeUploader::Attachment(:badge)
-
-  include PublicActivity::Model
-  tracked owner: proc { |controller, model| controller.current_user }
+  audited
 
   belongs_to :user
   has_many :user_leagues, dependent: :destroy

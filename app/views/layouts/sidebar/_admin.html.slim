@@ -1,5 +1,5 @@
 - playerdb = ["playerdb_countries", "playerdb_leagues", "playerdb_teams", "playerdb_players"].include? controller_name
-- insights = ["insights_activities"].include? controller_name
+- insights = ["insights_audits"].include? controller_name
 - blog = ["blog_posts", "blog_categories"]
 
 
@@ -39,4 +39,4 @@ ul.navbar-nav id="navbar-nav"
       #sidebar_insights_collapse class=="collapse menu-dropdown #{'show' if insights == true}"
           ul.nav.nav-sm.flex-column
               li.nav-item
-                = link_to t('.insights.activities'), admin_insights_activities_path, class: "nav-link #{'active' if controller_name == 'insights_activities'}", id: "sidebar_insights_activities" , data: { controller: "sidebar managedt", "turbo-frame": "main_frame", "turbo-target": "_top", "turbo-action": "advance", action: "click->sidebar#toggle click->managedt#clear_state", "sidebar-father-value": "sidebar_insights", "sidebar-child-value": "sidebar_insights_activities" }
+                = link_to t('.insights.audits'), admin_insights_audits_path, class: "nav-link #{'active' if controller_name == 'insights_audits'}", id: "sidebar_insights_audits" , data: { controller: "sidebar managedt", "turbo-frame": "main_frame", "turbo-target": "_top", "turbo-action": "advance", action: "click->sidebar#toggle click->managedt#clear_state", "sidebar-father-value": "sidebar_insights", "sidebar-child-value": "sidebar_insights_audits" }

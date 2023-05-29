@@ -14,7 +14,6 @@ export default class extends Controller {
 
     // Add Open Class to Father dropdown
     if ( this.fatherValue !== null && document.getElementById(prevFather)) {
-      console.log('im here!')
       if ( ( this.fatherValue !== prevFather ) && ( prevFather !== null ) ) {
         document.getElementById(prevFather).setAttribute("aria-expanded", false);
         document.getElementById(prevFather).classList.remove("active");

@@ -2,9 +2,6 @@ class Season < ApplicationRecord
   include Hashid::Rails
   has_noticed_notifications
 
-  include PublicActivity::Model
-  tracked owner: proc { |controller, model| controller.current_user }
-
   belongs_to :league
   has_many :user_seasons, dependent: :destroy
   has_many :users, through: :user_seasons

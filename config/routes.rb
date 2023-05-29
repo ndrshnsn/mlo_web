@@ -187,8 +187,9 @@ Rails.application.routes.draw do
   ##
   # ADMIN NAMESPACE
   namespace :admin do
-    get "insights/activities", to: "insights/insights_activities#index"
-    post "insights/activities/get_proc_dt", to: "insights/insights_activities#get_proc_dt"
+    get "insights/audits", to: "insights/insights_audits#index"
+    post "insights/audits/get_proc_dt", to: "insights/insights_audits#get_proc_dt"
+    get "insights/audits/details/:id", to: "insights/insights_audits#details", as: :insights_audit_detail
 
     get "playerdb/countries", to: "playerdb/playerdb_countries#index"
     get "playerdb/countries/new", to: "playerdb/playerdb_countries#new"

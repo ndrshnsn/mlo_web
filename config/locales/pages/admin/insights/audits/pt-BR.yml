@@ -1,0 +1,11 @@
+pt-BR:
+  admin:
+    insights:
+      insights_audits:
+        index:
+          audits: "Auditoria"
+        list:
+          created_at: "Data / Hora"
+          type: "Tipo"
+          owner: "Proprietário"
+          action: "Método"
