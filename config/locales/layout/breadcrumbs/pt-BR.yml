@@ -22,6 +22,10 @@ pt-BR:
           main: "Configurações"
         leagues:
           main: "Ligas"
+        insights:
+          main: "Monitoramento"
+          audits:
+            main: "Auditoria"
       manager:
         settings:
           main: "Configurações"

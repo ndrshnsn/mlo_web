@@ -24,3 +24,4 @@ pt-BR:
         timeout_warning_text: "Você será desconectado em:"
         timeout_warning: "Alerta de Inatividade"
         timeout_warning_button: "Reativar"
+        audit_detail: "Detalhes do Ítem"

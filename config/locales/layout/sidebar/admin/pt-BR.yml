@@ -13,3 +13,6 @@ pt-BR:
         accounts: "Usuários"
         leagues: "Ligas"
         settings: "Configurações"
+        insights:
+          main: "Monitoramento"
+          audits: "Auditoria"

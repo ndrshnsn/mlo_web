@@ -1,0 +1,25 @@
+= render "layouts/modal/main", modal_scrollable: true
+  .modal-header
+    h5.modal-title.d-flex.align-items-center
+      i.ri-search-line.me-1
+      = t('.audit_detail')
+    button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+  .modal-body.pb-0
+    .container-fluid
+      .row.mb-2
+        .table.table-responsive
+          table.table.align-middle.mb-0
+            tbody
+              tr.table-light
+                th scope="col" = t('admin.insights.insights_audits.list.created_at')
+                td.text-muted = I18n.localize(@audit.created_at, format: t('date.formats.datetime'))
+                th scope="row" = t('admin.insights.insights_audits.list.type')
+                td.text-muted = @audit.auditable_type
+              tr.table-light
+                th scope="row" = t('admin.insights.insights_audits.list.owner')
+                td.text-muted = @audit.user.full_name if !@audit.user.nil?
+                th scope="row" = t('admin.insights.insights_audits.list.action')
+                td.text-muted = @audit.action
+              tr
+                th scope="row" colspan="4"
+                  pre = JSON.pretty_generate(@audit.audited_changes)

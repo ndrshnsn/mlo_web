@@ -1,0 +1,21 @@
+.row
+  .col-12
+    .card
+      .card-body
+        div data-controller="dt--admin-audits"
+          #tableDom.table-responsive.table-card.mb-1.mt-3
+            table.table.table-striped.table-nowrap.dt-responsive.align-middle.mb-0 id="dt-admin-insights-audits" style="width: 100%;"
+              thead.table-light
+                tr
+                  th.text-center = t('.created_at')
+                  th = t('.type')
+                  th = t('.owner')
+                  th.text-center = t('.action')
+                  th.text-center
+              tfoot.table-light
+                tr
+                  th.text-center = t('.created_at')
+                  th = t('.type')
+                  th = t('.owner')
+                  th.text-center = t('.action')
+                  th.text-center
