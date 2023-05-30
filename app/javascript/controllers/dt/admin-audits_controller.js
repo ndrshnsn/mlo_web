@@ -13,6 +13,7 @@ export default class extends Controller {
       ],
       columns: [
         {data: 'created'},
+        {data: 'version'},
         {data: 
           {
             _: 'type',
@@ -25,7 +26,7 @@ export default class extends Controller {
       ],
       columnDefs: [
         {
-          targets: [0,2,3,-1],
+          targets: [0,1,3,4,-1],
           className: 'text-center'
         },
         {

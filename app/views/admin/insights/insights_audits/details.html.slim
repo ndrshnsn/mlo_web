@@ -2,7 +2,7 @@
   .modal-header
     h5.modal-title.d-flex.align-items-center
       i.ri-search-line.me-1
-      = t('.audit_detail')
+      | #{t('.audit_detail')} - #{t('admin.insights.insights_audits.list.version')}: #{@audit.version}
     button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
   .modal-body.pb-0
     .container-fluid
@@ -17,7 +17,7 @@
                 td.text-muted = @audit.auditable_type
               tr.table-light
                 th scope="row" = t('admin.insights.insights_audits.list.owner')
-                td.text-muted = @audit.user.full_name if !@audit.user.nil?
+                td.text-muted = @audit.user.email if !@audit.user.nil?
                 th scope="row" = t('admin.insights.insights_audits.list.action')
                 td.text-muted = @audit.action
               tr
