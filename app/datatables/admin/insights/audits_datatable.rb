@@ -12,9 +12,11 @@ class Admin::Insights::AuditsDatatable < ApplicationDatatable
           </button>
         </a>
       "
-      audit_owner = audit.user.full_name if !audit.user.nil?
+      audit_owner = audit.user.email if !audit.user.nil?
+
       {
         created: I18n.localize(audit.created_at, format: t('date.formats.datetime')),
+        version: audit.version,
         type: audit.auditable_type,
         type_id: audit.auditable_id,
         owner: audit_owner,
@@ -26,12 +28,11 @@ class Admin::Insights::AuditsDatatable < ApplicationDatatable
   end
 
   def count
-    audits.count
+    audits.size
   end
 
   def total_entries
-    #audits.total_count
-    audits.count
+    audits.total_count
   end
 
   def audits
@@ -45,14 +46,16 @@ class Admin::Insights::AuditsDatatable < ApplicationDatatable
         search_string << "\"#{term}\" ilike '%#{params[:search][:value]}%'"
       end
     end
-    audits = Audited::Audit.all.order("\"#{sort_column}\" #{sort_direction}")
+    audits = Audited::Audit.all
     audits = audits.page(page).per(per_page)
     audits = audits.where(search_string.join(" OR "))
+    audits = audits.order("\"#{sort_column}\" #{sort_direction}")
   end
 
   def columns
     [
       "created_at",
+      "version",
       "auditable_type",
       "user_id",
       "action"
