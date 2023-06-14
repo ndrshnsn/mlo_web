@@ -7,7 +7,7 @@ class CreateDefTeams < ActiveRecord::Migration[7.0]
       t.references :def_country, null: false, foreign_key: true
       t.boolean :active, default: true
       t.jsonb :details, default: {}, null: false
-      t.text :platforms, default: [], array: true, null: false
+      t.text :platforms, array: true, default: []
       t.text :alias
 
       t.timestamps

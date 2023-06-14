@@ -24,12 +24,12 @@ teams_file = File.read(Rails.root.join('lib', 'seeds', 'teams.csv'))
 teams = CSV.parse(teams_file, headers: true)
 teams.each do |row|
     t = DefTeam.new
-    t.name = row["name"]
+    t.name = row["name"].upcase
     t.nation = row["nation"]
     t.details = JSON.parse(row["details"])
     t.alias = row["alias"]
     t.def_country_id = row["def_country_id"]
-    t.platforms = row["platforms"]
+    t.platforms = row["platforms"].split(",")
     t.active = row["active"]
     t.save
     puts "Team #{t.name} added"
