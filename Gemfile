@@ -67,6 +67,8 @@ group :development do
   gem "pry"
 end
 
+gem "dotenv-rails"
+
 gem "vite_rails", "~> 3.0"
 
 gem "rack-cors", "~> 1.1"
@@ -115,7 +117,7 @@ gem "noticed", "~> 1.6"
 
 gem "public_activity", "~> 2.0"
 
-gem "webpush", "~> 1.1"
+gem "web-push", "~> 3"
 
 gem "serviceworker-rails", "~> 0.6.0"
 

@@ -7,17 +7,10 @@ class AppConfig < RailsSettings::Base
   field :mail_username, default: nil, type: :string, readonly: false
   field :mail_password, default: nil, type: :string, readonly: false
 
-  ## SendGrid
-  field :sendgrid_api, default: nil, type: :string, readonly: false
-  field :template_request_league_id, default: nil, type: :string, readonly: false
-  field :template_confirmation_id, default: nil, type: :string, readonly: false
-  field :template_new_league_id, default: nil, type: :string, readonly: false
-  field :template_reset_password_id, default: nil, type: :string, readonly: false
-
   ## Generic Player
   field :generic_player, type: :integer
   field :platforms, type: :string
-  field :user_platforms, type: :string
+  #field :user_platforms, type: :string
   field :fake_account_password, type: :string
 
   ## Championship Defaults
@@ -42,7 +35,7 @@ class AppConfig < RailsSettings::Base
   field :game_wo_loser, type: :integer
 
   ## League Settings
-  field :league_slots, type: :string
+  #field :league_slots, type: :string
 
   ## Season Settings
   field :season_times, type: :string
@@ -61,16 +54,10 @@ class AppConfig < RailsSettings::Base
   field :season_player_value_earning_relation, type: :integer
   field :season_player_high_over, type: :integer
   field :season_player_low_over, type: :integer
-  field :season_player_raffle_switches, type: :integer
   field :season_player_raffle_remaining, type: :array
-  field :season_player_raffle_turn_time, type: :integer
   field :season_player_raffle_first_order, type: :string
   field :season_club_default_earning, type: :integer
   field :season_club_max_total_wage, type: :integer
-
-  # ## Notifications
-  field :vapid_pubkey, default: nil, type: :string, readonly: false
-  field :vapid_privkey, default: nil, type: :string, readonly: false
 
   # ## Default Trophies
   # field :trophies, type: :string

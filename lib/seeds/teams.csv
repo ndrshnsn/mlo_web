@@ -1,0 +1,797 @@
+name,nation,details,alias,def_country_id,active,platforms
+derry city,false,"{""teamAbbr"": ""DER""}",DERRY CITY,70,true,FIFA22
+AL DUHAIL SC,false,"{""teamAbbr"": ""DSC""}",AL DUHAIL,64,true,PES21
+NOTTINGHAM FOREST,false,"{""teamAbbr"": ""NTF""}","NOTTINGHAM FOREST, NOTTINGHAM RW",4,true,"PES21,FIFA22"
+JAHN REGENSBURG,false,"{""teamAbbr"": ""JAH""}",JAHN REGENSBURG,5,true,FIFA22
+Stade Rennais,false,"{""teamAbbr"": ""REN""}",RENNES,19,true,"PES21,FIFA22"
+fc nantes,false,"{""teamAbbr"": ""FCN""}",NANTES,19,true,"PES21,FIFA22"
+CHAPECOENSE,false,"{""teamAbbr"": ""ACF""}",CHAPECOENSE,10,true,PES21
+Urawa Red Diamonds,false,"{""teamAbbr"": ""URD""}",URAWA REDS,7,true,"PES21,FIFA22"
+AS Saint-Étienne,false,"{""teamAbbr"": ""STE""}",SAINT-ÉTIENNE,19,true,"PES21,FIFA22"
+POHANG STEELERS,false,"{""teamAbbr"": ""POH""}",POHANG STEELERS,27,true,FIFA22
+Olympique Marseille,false,"{""teamAbbr"": ""OM""}",OLYMPIQUE MARSEILLE,19,true,"PES21,FIFA22"
+Girondins Bordeaux,false,"{""teamAbbr"": ""BOR""}",BORDEAUX,19,true,"PES21,FIFA22"
+angers,false,"{""teamAbbr"": ""ANG""}",angers,19,true,"PES21,FIFA22"
+OLYMPIQUE LYONNAIS,false,"{""teamAbbr"": ""OL""}",OLYMPIQUE LYONNAIS,19,true,"PES21,FIFA22"
+LILLE,false,"{""teamAbbr"": ""LIL""}",LILLE,19,true,"PES21,FIFA22"
+GRÊMIO,false,"{""teamAbbr"": ""GRÊ""}",GRÊMIO,10,true,"PES21,FIFA22"
+FC Lorient,false,"{""teamAbbr"": ""FCL""}",LORIENT,19,true,"PES21,FIFA22"
+RATCHABURI MITRPHOL,false,"{""teamAbbr"": ""RAT"", ""teamCity"": ""Ratchaburi"", ""teamName"": ""Ratchaburi"", ""teamFounded"": ""2004"", ""teamStadium"": ""Ratchaburi Stadium"", ""teamCapacity"": 10000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2863""}",RATCHABURI MITRPHOL,2,true,PES21
+TRAT FC,false,"{""teamAbbr"": ""TFC"", ""teamCity"": ""Trat"", ""teamName"": ""Trat"", ""teamFounded"": ""2012"", ""teamStadium"": ""Trat Province Stadium"", ""teamCapacity"": 6000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=5090""}","TRAT FC, TRAT",2,true,PES21
+RC Strasbourg Alsace,false,"{""teamAbbr"": ""RCS""}",STRASBOURG,19,true,"PES21,FIFA22"
+AD CONFIANÇA,false,"{""teamAbbr"": ""ADC"", ""teamCity"": ""Aracaju"", ""teamName"": ""Aracaju"", ""teamFounded"": ""1936"", ""teamStadium"": ""Estádio Lourival Baptista"", ""teamCapacity"": 14000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=3506""}","AD CONFIANÇA, CONFIANÇA",10,true,PES21
+AS MONACO,false,"{""teamAbbr"": ""ASM""}",MONACO,19,true,"PES21,FIFA22"
+FC METZ,false,"{""teamAbbr"": ""FCM""}",METZ,19,true,"PES21,FIFA22"
+Nîmes Olympique,false,"{""teamAbbr"": ""NIM""}",NÎMES,19,true,"PES21,FIFA22"
+OGC NICE,false,"{""teamAbbr"": ""NIC""}",NICE,19,true,"PES21,FIFA22"
+STADE DE REIMS,false,"{""teamAbbr"": ""SDR""}",STADE DE REIMS,19,true,"PES21,FIFA22"
+PARIS SAINT-GERMAIN,false,"{""teamAbbr"": ""PSG""}",PSG,19,true,"PES21,FIFA22"
+RB BRAGANTINO,false,"{""teamAbbr"": ""RBB""}",RED BULL BRAGANTINO,10,true,"PES21,FIFA22"
+Stade Brestois 29,false,"{""teamAbbr"": ""SB""}",BREST,19,true,"PES21,FIFA22"
+CORINTHIANS,false,"{""teamAbbr"": ""COR""}",CORINTHIANS,10,true,"PES21,FIFA22"
+Dijon FCO,false,"{""teamAbbr"": ""DIJ""}",DIJON,19,true,"PES21,FIFA22"
+RC LENS,false,"{""teamAbbr"": ""RCL""}",RC LENS,19,true,"PES21,FIFA22"
+FORTALEZA EC,false,"{""teamAbbr"": ""FOR""}",FORTALEZA,10,true,"PES21,FIFA22"
+AMÉRICA MINEIRO,false,"{""teamAbbr"": ""AMG""}",AMÉRICA MINEIRO,10,true,PES21
+EC BAHIA,false,"{""teamAbbr"": ""ECB""}",BAHIA,10,true,"PES21,FIFA22"
+SUKHOTHAI FC,false,"{""teamAbbr"": ""SKT"", ""teamCity"": ""Sukhothai"", ""teamName"": ""Sukhothai"", ""teamFounded"": ""2009"", ""teamStadium"": ""Thung Thalay Luang Stadium"", ""teamCapacity"": 8000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=4443""}","SUKHOTHAI FC, SUKHOTHAI",2,true,PES21
+STANDARD LIÈGE,false,"{""teamAbbr"": ""STA""}",STANDARD LIÈGE,36,true,"PES21,FIFA22"
+CA RENTISTAS,false,"{""teamAbbr"": ""CAR""}","CA RENTISTAS, RENTISTAS",11,true,FIFA22
+UNIVERSIDAD TÉCNICA DE CAJAMARCA,false,"{""teamAbbr"": ""UTC""}",UNIVERSIDAD TÉCNICA DE CAJAMARCA,49,true,FIFA22
+CEARÁ SC,false,"{""teamAbbr"": ""CEA""}",CEARÁ,10,true,"PES21,FIFA22"
+TIGRES UANL,false,"{""teamAbbr"": ""TIG""}",TIGRES UANL,118,true,FIFA22
+ATHLETICO PARANAENSE,false,"{""teamAbbr"": ""CAP""}",ATHLETICO PARANAENSE,10,true,"PES21,FIFA22"
+GORNIK ZABRZE,false,"{""teamAbbr"": ""GZ""}",GORNIK ZABRZE,53,true,FIFA22
+SÃO PAULO FC,false,"{""teamAbbr"": ""SPO""}",SÃO PAULO,10,true,"PES21,FIFA22"
+PALMEIRAS,false,"{""teamAbbr"": ""PAL""}","BARRA FUNDA V, SE PALMEIRAS",10,true,"PES21,FIFA22"
+SC INTERNACIONAL,false,"{""teamAbbr"": ""INT""}",INTERNACIONAL,10,true,"PES21,FIFA22"
+CUIABÁ EC,false,"{""teamAbbr"": ""CEC""}",CUIABÁ,10,true,PES21
+FLUMINENSE,false,"{""teamAbbr"": ""FLU""}",FLUMINENSE,10,true,"PES21,FIFA22"
+Atlético Goianiense,false,"{""teamAbbr"": ""ACG""}",ATLÉTICO GO,10,true,"PES21,FIFA22"
+SHAMROCK ROVERS,false,"{""teamAbbr"": ""SHA""}",SHAMROCK ROVERS,70,true,FIFA22
+SPORT RECIFE,false,"{""teamAbbr"": ""SPO""}",SPORT RECIFE,10,true,PES21
+FLAMENGO,false,"{""teamAbbr"": ""FLA""}",FLAMENGO,10,true,"PES21,FIFA22"
+SANTOS FC,false,"{""teamAbbr"": ""SFC""}",SANTOS,10,true,"PES21,FIFA22"
+ATLÉTICO MINEIRO,false,"{""teamAbbr"": ""CAM""}",ATLÉTICO MINEIRO,10,true,"PES21,FIFA22"
+JUVENTUDE,false,"{""teamAbbr"": ""JUV""}",JUVENTUDE,10,true,PES21
+POLICE TERO FC,false,"{""teamAbbr"": ""TER"", ""teamCity"": ""Bangkok"", ""teamName"": ""Tero"", ""teamFounded"": ""1992"", ""teamStadium"": ""72nd Anniversary Stadium"", ""teamCapacity"": 12500, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1571""}","POLICE TERO FC, POLICE TERO",2,true,PES21
+GUARANI FC,false,"{""teamAbbr"": ""GUA"", ""teamCity"": ""Campinas"", ""teamName"": ""G Campinas"", ""teamFounded"": ""1911"", ""teamStadium"": ""Brinco de Ouro da Princesa"", ""teamCapacity"": 30988, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1515""}",GUARANI FC,10,true,PES21
+VÉLEZ SARSFIELD,false,"{""teamAbbr"": ""VÉL""}",VÉLEZ SARSFIELD,14,true,"PES21,FIFA22"
+CRUZEIRO,false,"{""teamAbbr"": ""CRU"", ""teamCity"": ""Belo Horizonte"", ""teamName"": ""Barro Preto"", ""teamFounded"": ""1921"", ""teamStadium"": ""Mineirão"", ""teamCapacity"": 62162, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=292""}",CRUZEIRO,10,true,PES21
+ESTUDIANTES DE LP,false,"{""teamAbbr"": ""ELP""}","ESTUDIANTES, ESTUDIANTES DE LA PLATA",14,true,"PES21,FIFA22"
+CA PATRONATO,false,"{""teamAbbr"": ""CAP""}",PATRONATO,14,true,"PES21,FIFA22"
+SAN LORENZO,false,"{""teamAbbr"": ""SAN""}","SAN LORENZO, SAN LORENZO DE ALMAGRO",14,true,"PES21,FIFA22"
+HURACÁN,false,"{""teamAbbr"": ""HUR""}",HURACÁN,14,true,"PES21,FIFA22"
+INDEPENDIENTE,false,"{""teamAbbr"": ""CAI""}",INDEPENDIENTE,14,true,"PES21,FIFA22"
+ARGENTINOS JUNIORS,false,"{""teamAbbr"": ""ARG""}",ARGENTINOS JUNIORS,14,true,"PES21,FIFA22"
+Unión de Santa Fe,false,"{""teamAbbr"": ""UNI""}","UNIÓN SANTA FE, unión",14,true,"PES21,FIFA22"
+ARSENAL DE SARANDÍ,false,"{""teamAbbr"": ""ARS""}",ARSENAL,14,true,"PES21,FIFA22"
+DEFENSA Y JUSTICIA,false,"{""teamAbbr"": ""DyJ""}",DEFENSA Y JUSTICIA,14,true,"PES21,FIFA22"
+BANFIELD,false,"{""teamAbbr"": ""BAN""}",BANFIELD,14,true,"PES21,FIFA22"
+ROSARIO CENTRAL,false,"{""teamAbbr"": ""ROS""}",ROSARIO CENTRAL,14,true,"PES21,FIFA22"
+CA PLATENSE,false,"{""teamAbbr"": ""PLA""}",PLATENSE,14,true,PES21
+BOCA JUNIORS,false,"{""teamAbbr"": ""BOC""}","BOCA JUNIORS, BUENOS AIRES",14,true,"PES21,FIFA22"
+WESTERN SYDNEY WANDERERS,false,"{""teamAbbr"": ""WSW"", ""teamCity"": ""Sydney"", ""teamName"": ""W Sydney"", ""teamFounded"": ""2012"", ""teamStadium"": ""Western Sydney Stadium"", ""teamCapacity"": 30000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2058""}",WESTERN SYDNEY WANDERERS,9,true,FIFA22
+COLÓN,false,"{""teamAbbr"": ""COL""}","COLÓN, C.A. COLÓN",14,true,"PES21,FIFA22"
+bohemian fc,false,"{""teamAbbr"": ""BOH""}",BOHEMIAN FC,70,true,FIFA22
+GODOY CRUZ,false,"{""teamAbbr"": ""GOD""}",GODOY CRUZ,14,true,"PES21,FIFA22"
+CA TALLERES,false,"{""teamAbbr"": ""CAT""}",TALLERES DE CÓRDOBA,14,true,"PES21,FIFA22"
+LANÚS,false,"{""teamAbbr"": ""LAN""}",LANÚS,14,true,"PES21,FIFA22"
+ATLÉTICO TUCUMÁN,false,"{""teamAbbr"": ""CAT""}","ATLÉTICO TUCUMÁN, C.A. TUCUMÁN",14,true,"PES21,FIFA22"
+Al Ahli SAUDI,false,"{""teamAbbr"": ""ALJ""}",AL AHLI SAUDI,32,true,"PES21,FIFA22"
+CA SARMIENTO,false,"{""teamAbbr"": ""CAS""}",SARMIENTO,14,true,PES21
+RIVER PLATE,false,"{""teamAbbr"": ""RIV""}","RIVER PLATE, NÚÑEZ",14,true,"PES21,FIFA22"
+NEWELL'S OLD BOYS,false,"{""teamAbbr"": ""NOB""}",NEWELL'S OLD BOYS,14,true,"PES21,FIFA22"
+GIMNASIA Y ESGRIMA LA PLATA,false,"{""teamAbbr"": ""GLP""}","GIMNASIA LA PLATA, GIMNASIA Y ESGRIMA LA PLATA",14,true,"PES21,FIFA22"
+CENTRAL CÓRDOBA,false,"{""teamAbbr"": ""CC""}",CENTRAL CÓRDOBA SDE,14,true,"PES21,FIFA22"
+Rionegro Águilas,false,"{""teamAbbr"": ""RIO""}",RIONEGRO,18,true,PES21
+Al Wahda,false,"{""teamAbbr"": ""WAH""}",Al Wahda,32,true,PES21
+WOLFSBERGER AC,false,"{""teamAbbr"": ""WAC"", ""teamCity"": ""Wolfsberg"", ""teamName"": ""Wolfsberg"", ""teamFounded"": ""2007"", ""teamStadium"": ""Lavanttal-Arena"", ""teamCapacity"": 8000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1835""}",WOLFSBERGER AC,37,true,FIFA22
+ULSAN HYUNDAI,false,"{""teamAbbr"": ""ULS""}",ULSAN HYUNDAI,27,true,"PES21,FIFA22"
+Beijing Guoan,false,"{""teamAbbr"": ""BJG""}",BEIJING FC,3,true,"PES21,FIFA22"
+AL SHORTA,false,"{""teamAbbr"": ""AL ""}",AL SHORTA,30,true,PES21
+SHANGHAI SHENHUA,false,"{""teamAbbr"": ""SHS""}",SHANGHAI SHENHUA,3,true,"PES21,FIFA22"
+Al Sadd SC,false,"{""teamAbbr"": ""SAD""}",AL SADD,32,true,PES21
+SYDNEY FC,false,"{""teamAbbr"": ""SYD""}",SYDNEY,9,true,"PES21,FIFA22"
+PAKHTAKOR,false,"{""teamAbbr"": ""PAK""}",PAKHTAKOR,39,true,PES21
+AL AIN,false,"{""teamAbbr"": ""ALA""}","AL AIN, AL AIN FC (UAE)",32,true,"PES21,FIFA22"
+SEPAHAN,false,"{""teamAbbr"": ""SEP""}",SEPAHAN,22,true,PES21
+MELBOURNE VICTORY,false,"{""teamAbbr"": ""MVC""}",MELBOURNE VICTORY,9,true,"PES21,FIFA22"
+FC SEOUL,false,"{""teamAbbr"": ""FCS""}",SEOUL,27,true,"PES21,FIFA22"
+F.C. TOKYO,false,"{""teamAbbr"": ""FCT""}",F.C. TOKYO,7,true,FIFA22
+Shanghai Port,false,"{""teamAbbr"": ""SHP""}",SHANGHAI SIPG,3,true,"PES21,FIFA22"
+GUANGZHOU fc,false,"{""teamAbbr"": ""GZ""}",GUANGZHOU EVERGRANDE,3,true,"PES21,FIFA22"
+FC ADMIRA WACKER,false,"{""teamAbbr"": ""ADM"", ""teamCity"": ""Mödling"", ""teamName"": ""A Mödling"", ""teamFounded"": ""1905"", ""teamStadium"": ""Südstadt Stadion"", ""teamCapacity"": 12000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=636""}",FC ADMIRA WACKER,37,true,FIFA22
+SUWON BLUEWINGS,false,"{""teamAbbr"": ""BLU""}",SUWON SAMSUNG BLUEWINGS,27,true,"PES21,FIFA22"
+SHARJAH,false,"{""teamAbbr"": ""SHA""}",SHARJAH,46,true,PES21
+Padideh Khorasan,false,"{""teamAbbr"": ""PFC""}",SHAHR KHODROU,22,true,PES21
+YOKOHAMA F. MARINOS,false,"{""teamAbbr"": ""YFM""}",YOKOHAMA F. MARINOS,7,true,"PES21,FIFA22"
+ESTEGHLAL,false,"{""teamAbbr"": ""EST""}",ESTEGHLAL,22,true,PES21
+VISSEL KOBE,false,"{""teamAbbr"": ""VIS""}",VISSEL KOBE,7,true,"PES21,FIFA22"
+Jeonbuk Motors,false,"{""teamAbbr"": ""JEO""}",JEONBUK HYUNDAI MOTORS,27,true,"PES21,FIFA22"
+dundalk,false,"{""teamAbbr"": ""DUN""}",DUNDALK,70,true,FIFA22
+PERSEPOLIS,false,"{""teamAbbr"": ""PER""}",PERSEPOLIS,22,true,PES21
+ATLÉTICO BUCARAMANGA,false,"{""teamAbbr"": ""BUC""}",ATLÉTICO BUCARAMANGA,18,true,PES21
+JOHOR DARUL TA'ZIM,false,"{""teamAbbr"": ""JDT""}","JOHOR DARUL TA'ZIM, JOHOR DARUL TAZIM",41,true,PES21
+AL TAAWON,false,"{""teamAbbr"": ""TAA""}","AL TAAWOUN, AL TAAWON",32,true,"PES21,FIFA22"
+AL HILAL SC,false,"{""teamAbbr"": ""HIL""}",AL HILAL,32,true,"PES21,FIFA22"
+PERTH GLORY,false,"{""teamAbbr"": ""PER""}",PERTH GLORY,9,true,"PES21,FIFA22"
+CÚCUTA DEPORTIVO,false,"{""teamAbbr"": ""CÚC""}","CÚCUTA RN, CÚCUTA DEPORTIVO",18,true,PES21
+JIANGSU SUNING,false,"{""teamAbbr"": ""JIA""}",JIANGSU SUNING,3,true,"PES21,FIFA22"
+Cangzhou Mighty Lions,false,"{""teamAbbr"": ""CML""}","SHIJIAZHUANG EVERBRIGHT, Cangzhou Mighty Lions",3,true,"PES21,FIFA22"
+WUHAN fc,false,"{""teamAbbr"": ""WUH""}",WUHAN ZALL,3,true,"PES21,FIFA22"
+cork city,false,"{""teamAbbr"": ""COR""}",cork city,70,true,FIFA22
+SHENZHEN KAISA,false,"{""teamAbbr"": ""SFC""}",SHENZHEN KAISA,3,true,"PES21,FIFA22"
+Dalian Professional,false,"{""teamAbbr"": ""DLP""}",DALIAN PRO,3,true,"PES21,FIFA22"
+Tianjin Jinmen Tiger,false,"{""teamAbbr"": ""TJT""}",TIANJIN TEDA,3,true,"PES21,FIFA22"
+ALIANZA PETROLERA,false,"{""teamAbbr"": ""AP""}",ALIANZA PETROLERA,18,true,PES21
+GUANGZHOU CITY,false,"{""teamAbbr"": ""GZC""}",GUANGZHOU R&F,3,true,"PES21,FIFA22"
+CD LA EQUIDAD,false,"{""teamAbbr"": ""EQU""}","CD LA EQUIDAD, LA EQUIDAD",18,true,"PES21,FIFA22"
+HEBEI CHINA FORTUNE,false,"{""teamAbbr"": ""HB""}",HEBEI CHINA FORTUNE,3,true,"PES21,FIFA22"
+QINGDAO HUANGHAI,false,"{""teamAbbr"": ""QD""}",QINGDAO HUANGHAI,3,true,"PES21,FIFA22"
+Henan Songshan Longmen,false,"{""teamAbbr"": ""HSL""}",HENAN JIANYE,3,true,"PES21,FIFA22"
+JAGUARES DE CÓRDOBA,false,"{""teamAbbr"": ""JAG""}",JAGUARES DE CÓRDOBA,18,true,PES21
+ENVIGADO,false,"{""teamAbbr"": ""ENV""}",ENVIGADO,18,true,PES21
+BOYACÁ CHICÓ,false,"{""teamAbbr"": ""CHI""}",BOYACÁ CHICÓ,18,true,PES21
+DEPORTIVO CALI,false,"{""teamAbbr"": ""ADC""}",DEPORTIVO CALI,18,true,"PES21,FIFA22"
+ONCE CALDAS,false,"{""teamAbbr"": ""OC""}",ONCE CALDAS,18,true,PES21
+Independiente Santa Fé,false,"{""teamAbbr"": ""SFE""}",SANTA FE,18,true,"PES21,FIFA22"
+INDEPENDIENTE MEDELLÍN,false,"{""teamAbbr"": ""DIM""}",INDEPENDIENTE MEDELLÍN,18,true,PES21
+DEPORTES TOLIMA,false,"{""teamAbbr"": ""TOL""}",DEPORTES TOLIMA,18,true,"PES21,FIFA22"
+CEREZO OSAKA,false,"{""teamAbbr"": ""CER""}",CEREZO OSAKA,7,true,FIFA22
+OITA TRINITA,false,"{""teamAbbr"": ""OIT""}",OITA TRINITA,7,true,FIFA22
+SHONAN BELLMARE,false,"{""teamAbbr"": ""SHO""}",SHONAN BELLMARE,7,true,FIFA22
+KASHIWA REYSOL,false,"{""teamAbbr"": ""KAS""}",KASHIWA REYSOL,7,true,FIFA22
+Hokkaido Consadole Sapporo,false,"{""teamAbbr"": ""HCS""}",CONSADOLE SAPPORO,7,true,FIFA22
+DEPORTIVO PASTO,false,"{""teamAbbr"": ""PAS""}",DEPORTIVO PASTO,18,true,"PES21,FIFA22"
+RAYO VALLECANO,false,"{""teamAbbr"": ""RVM""}","VALLECAS BR, RAYO VALLECANO",20,true,"PES21,FIFA22"
+YOKOHAMA FC,false,"{""teamAbbr"": ""YOK""}",YOKOHAMA FC,7,true,FIFA22
+REAL OVIEDO,false,"{""teamAbbr"": ""RO""}","REAL OVIEDO, OVIEDO A",20,true,"PES21,FIFA22"
+GAMBA OSAKA,false,"{""teamAbbr"": ""GAM""}",GAMBA OSAKA,7,true,FIFA22
+CD Castellón,false,"{""teamAbbr"": ""CDC""}","CASTELLÓN NB, CASTELLÓN, CD CASTELLÓN",20,true,"PES21,FIFA22"
+VEGALTA SENDAI,false,"{""teamAbbr"": ""VEG""}",VEGALTA SENDAI,7,true,FIFA22
+AD ALCORCÓN,false,"{""teamAbbr"": ""ADA""}","AD ALCORCÓN, ALCORCÓN AA",20,true,"PES21,FIFA22"
+SAGAN TOSU,false,"{""teamAbbr"": ""SAG""}",SAGAN TOSU,7,true,FIFA22
+CD LEGANÉS,false,"{""teamAbbr"": ""LEG""}","CD LEGANÉS, LEGANÉS AB",20,true,"PES21,FIFA22"
+SHIMIZU S-PULSE,false,"{""teamAbbr"": ""SHI""}",SHIMIZU S-PULSE,7,true,FIFA22
+CD LUGO,false,"{""teamAbbr"": ""CDL""}",CD LUGO,20,true,"PES21,FIFA22"
+NAGOYA GRAMPUS,false,"{""teamAbbr"": ""NAG""}",NAGOYA GRAMPUS,7,true,FIFA22
+CF Fuenlabrada,false,"{""teamAbbr"": ""CFF""}","FUENLABRADA A, CF Fuenlabrada",20,true,"PES21,FIFA22"
+SANFRECCE HIROSHIMA,false,"{""teamAbbr"": ""SAN""}",SANFRECCE HIROSHIMA,7,true,FIFA22
+TOTTENHAM HOTSPUR,false,"{""teamAbbr"": ""TOT""}","TOTTENHAM HOTSPUR, TOTTENHAM wb",4,true,"PES21,FIFA22"
+CHELSEA,false,"{""teamAbbr"": ""CFC""}","CHELSEA, CHELSEA b",4,true,"PES21,FIFA22"
+ARSENAL,false,"{""teamAbbr"": ""ARS""}",ARSENAL,4,true,"PES21,FIFA22"
+GIRONA FC,false,"{""teamAbbr"": ""GIR""}","GIRONA FC, GIRONA R",20,true,"PES21,FIFA22"
+UD Logroñés,false,"{""teamAbbr"": ""LOG""}","LOGROÑO RB, UD Logroñés",20,true,"PES21,FIFA22"
+CE SABADELL,false,"{""teamAbbr"": ""SAB""}","SABADELL AB, CE SABADELL",20,true,"PES21,FIFA22"
+CD MIRANDÉS,false,"{""teamAbbr"": ""MIR""}","CD MIRANDÉS, MIRANDA DE EBRO RN",20,true,"PES21,FIFA22"
+RCD MALLORCA,false,"{""teamAbbr"": ""MAL""}","MALLORCA, MALLORCA RN",20,true,"PES21,FIFA22"
+REAL ZARAGOZA,false,"{""teamAbbr"": ""ZAR""}","REAL ZARAGOZA, ZARAGOZA BA",20,true,"PES21,FIFA22"
+CD TENERIFE,false,"{""teamAbbr"": ""TEN""}","CD TENERIFE, TENERIFE AB",20,true,"PES21,FIFA22"
+RCD ESPANYOL,false,"{""teamAbbr"": ""ESP""}","RCD ESPANYOL, LLOBREGAT AB",20,true,"PES21,FIFA22"
+UD ALMERÍA,false,"{""teamAbbr"": ""ALM""}","UD ALMERÍA, ALMERÍA RB",20,true,"PES21,FIFA22"
+REAL SPORTING,false,"{""teamAbbr"": ""RSG""}","REAL SPORTING, GIJÓN RB",20,true,"PES21,FIFA22"
+LEEDS UNITED,false,"{""teamAbbr"": ""LEE""}","LEEDS UNITED, LEEDS W",4,true,"PES21,FIFA22"
+BURNLEY,false,"{""teamAbbr"": ""BUR""}","BURNLEY, BURNLEY rb",4,true,"PES21,FIFA22"
+BRIGHTON & HOVE ALBION,false,"{""teamAbbr"": ""BHA""}","BRIGHTON & HOVE ALBION, BRIGHTON wb",4,true,"PES21,FIFA22"
+LEICESTER CITY,false,"{""teamAbbr"": ""LEI""}","LEICESTER CITy, LEICESTER b",4,true,"PES21,FIFA22"
+WOLVERHAMPTON WANDERERS,false,"{""teamAbbr"": ""WOL""}","WOLVERHAMPTON WANDERERS, WOLVERHAMPTON yb",4,true,"PES21,FIFA22"
+WEST BROMWICH ALBION,false,"{""teamAbbr"": ""WBA""}","WEST BROMWICH ALBION, WEST BROMWICH wb",4,true,"PES21,FIFA22"
+WEST HAM UNITED,false,"{""teamAbbr"": ""WHU""}","WEST HAM UNITED, WEST HAM rb",4,true,"PES21,FIFA22"
+EVERTON,false,"{""teamAbbr"": ""EVE""}","EVERTON, EVERTOn b",4,true,"PES21,FIFA22"
+FULHAM,false,"{""teamAbbr"": ""FUL""}","FULHAM, FULHAM w",4,true,"PES21,FIFA22"
+ASTON VILLA,false,"{""teamAbbr"": ""VIL""}","ASTON VILLA, ASTON rb",4,true,"PES21,FIFA22"
+FEYENOORD,false,"{""teamAbbr"": ""FEY""}",FEYENOORD,6,true,"PES21,FIFA22"
+CRYSTAL PALACE,false,"{""teamAbbr"": ""PAL""}","CRYSTAL PALACE, CRYSTAL PALACE rb",4,true,"PES21,FIFA22"
+LIVERPOOL,false,"{""teamAbbr"": ""LFC""}","LIVERPOOL, LIVERPOOL r",4,true,"PES21,FIFA22"
+SHEFFIELD UNITED,false,"{""teamAbbr"": ""SHU""}","SHEFFIELD UNITED, SHEFFIELD rb",4,true,"PES21,FIFA22"
+HERACLES ALMELO,false,"{""teamAbbr"": ""HER""}",HERACLES,6,true,"PES21,FIFA22"
+BELENENSES SAD,false,"{""teamAbbr"": ""BEL""}","BELENENSES SAD, BELENENSES",26,true,"PES21,FIFA22"
+SC FARENSE,false,"{""teamAbbr"": ""SCF""}","FARENSE, SC FARENSE",26,true,"PES21,FIFA22"
+RIO AVE,false,"{""teamAbbr"": ""AVE""}",RIO AVE,26,true,"PES21,FIFA22"
+PSV,false,"{""teamAbbr"": ""PSV""}",PSV,6,true,"PES21,FIFA22"
+RKC WAALWIJK,false,"{""teamAbbr"": ""RKC""}",RKC WAALWIJK,6,true,"PES21,FIFA22"
+FC EMMEN,false,"{""teamAbbr"": ""EMM""}","EMMEN, FC EMMEN",6,true,"PES21,FIFA22"
+AZ ALKMAAR,false,"{""teamAbbr"": ""AZ""}","AZ, AZ ALKMAAR",6,true,"PES21,FIFA22"
+FORTUNA SITTARD,false,"{""teamAbbr"": ""FOR""}",FORTUNA SITTARD,6,true,"PES21,FIFA22"
+VITESSE,false,"{""teamAbbr"": ""VIT""}",VITESSE,6,true,"PES21,FIFA22"
+SPARTA ROTTERDAM,false,"{""teamAbbr"": ""SPA""}",SPARTA ROTTERDAM,6,true,"PES21,FIFA22"
+FC TWENTE,false,"{""teamAbbr"": ""TWE""}","FC TWENTE, TWENTE",6,true,"PES21,FIFA22"
+FC GRONINGEN,false,"{""teamAbbr"": ""GRO""}","GRONINGEN, FC GRONINGEN",6,true,"PES21,FIFA22"
+VVV-VENLO,false,"{""teamAbbr"": ""VVV""}",VVV,6,true,"PES21,FIFA22"
+FC UTRECHT,false,"{""teamAbbr"": ""UTR""}","UTRECHT, FC UTRECHT",6,true,"PES21,FIFA22"
+WILLEM II,false,"{""teamAbbr"": ""WIL""}",WILLEM II,6,true,"PES21,FIFA22"
+PORTIMONENSE SC,false,"{""teamAbbr"": ""PSC""}","PORTIMONENSE SC, PORTIMONENSE",26,true,"PES21,FIFA22"
+SPORTING,false,"{""teamAbbr"": ""SCP""}","SPORTING, SPORTING CP",26,true,"PES21,FIFA22"
+CD TONDELA,false,"{""teamAbbr"": ""CDT""}","CD TONDELA, TONDELA",26,true,"PES21,FIFA22"
+CD SANTA CLARA,false,"{""teamAbbr"": ""SAN""}","CD SANTA CLARA, SANTA CLARA",26,true,"PES21,FIFA22"
+CD NACIONAL,false,"{""teamAbbr"": ""NAC""}","CD NACIONAL, MADEIRA BB",26,true,"PES21,FIFA22"
+GIL VICENTE FC,false,"{""teamAbbr"": ""GIL""}","GIL VICENTE FC, GIL VICENTE",26,true,"PES21,FIFA22"
+CS MARITIMO,false,"{""teamAbbr"": ""CSM""}","CS MARITIMO, MARÍTIMO",26,true,"PES21,FIFA22"
+CELTIC,false,"{""teamAbbr"": ""CEL""}",CELTIC,35,true,"PES21,FIFA22"
+RANGERS,false,"{""teamAbbr"": ""RFC""}",RANGERS,35,true,"PES21,FIFA22"
+ABERDEEN,false,"{""teamAbbr"": ""ABE""}",ABERDEEN,35,true,"PES21,FIFA22"
+BOAVISTA FC,false,"{""teamAbbr"": ""BFC""}","BOAVISTA FC, BOAVISTA",26,true,"PES21,FIFA22"
+VITÓRIA DE GUIMARÃES,false,"{""teamAbbr"": ""VIT""}","VITÓRIA DE GUIMARÃES, VITÓRIA GUIMARÃES",26,true,"PES21,FIFA22"
+SPORTING DE BRAGA,false,"{""teamAbbr"": ""SCB""}","SPORTING DE BRAGA, S.C. BRAGA, SPORTING BRAGA",26,true,"PES21,FIFA22"
+FC PORTO,false,"{""teamAbbr"": ""FCP""}","FC PORTO, PORTO",26,true,"PES21,FIFA22"
+HAMILTON ACADEMICAL,false,"{""teamAbbr"": ""HAM""}",HAMILTON ACADEMICAL,35,true,"PES21,FIFA22"
+MOTHERWELL,false,"{""teamAbbr"": ""MOT""}",MOTHERWELL,35,true,"PES21,FIFA22"
+ROSS COUNTY,false,"{""teamAbbr"": ""ROS""}",ROSS COUNTY,35,true,"PES21,FIFA22"
+LIVINGSTON,false,"{""teamAbbr"": ""LIV""}",LIVINGSTON,35,true,"PES21,FIFA22"
+ST. JOHNSTONE,false,"{""teamAbbr"": ""SJO""}",ST. JOHNSTONE,35,true,"PES21,FIFA22"
+ST PATRICK'S ATHLETIC FC,false,"{""teamAbbr"": ""PAT""}",ST PATRICK'S ATHLETIC FC,70,true,FIFA22
+DUNDEE UNITED,false,"{""teamAbbr"": ""DUN""}",DUNDEE UNITED,35,true,"PES21,FIFA22"
+FC MIDTJYLLAND,false,"{""teamAbbr"": ""FCM""}","FC MIDTJYLLAND, MIDTJYLLAND",16,true,"PES21,FIFA22"
+SONDERJYSKE,false,"{""teamAbbr"": ""SON""}",SØNDERJYSKE,16,true,"PES21,FIFA22"
+ODENSE BK,false,"{""teamAbbr"": ""OB""}","ODENSE BK, OB",16,true,"PES21,FIFA22"
+RANDERS FC,false,"{""teamAbbr"": ""RAN""}","RANDERS FC, RANDERS",16,true,"PES21,FIFA22"
+AARHUS GF,false,"{""teamAbbr"": ""AGF""}","AARHUS GF, AGF",16,true,"PES21,FIFA22"
+LYNGBY BK,false,"{""teamAbbr"": ""LYN""}","LYNGBY BK, LYNGBY",16,true,"PES21,FIFA22"
+FC KOBENHAVEN,false,"{""teamAbbr"": ""FCK""}","FC KOBENHAVEN, KØBENHAVN",16,true,"PES21,FIFA22"
+AC PISA,false,"{""teamAbbr"": ""PIS""}","AC PISA, PISA",23,true,PES21
+US SALERNITANA,false,"{""teamAbbr"": ""SAL""}","US SALERNITANA, SALERNITANA",23,true,PES21
+SPORTING CRISTAL,false,"{""teamAbbr"": ""SPO""}",SPORTING CRISTAL,49,true,"PES21,FIFA22"
+US LECCE,false,"{""teamAbbr"": ""LEC""}","US LECCE, LECCE",23,true,"PES21,FIFA22"
+COSENZA CALCIO,false,"{""teamAbbr"": ""COS""}","COSENZA CALCIO, COSENZA",23,true,PES21
+SPORT BOYS,false,"{""teamAbbr"": ""SBA""}",SPORT BOYS,49,true,PES21
+OESTE FC,false,"{""teamAbbr"": ""OFC""}","OESTE FC, OESTE",10,true,PES21
+FIGUEIRENSE,false,"{""teamAbbr"": ""FIG""}",FIGUEIRENSE,10,true,PES21
+ASCOLI CALCIO,false,"{""teamAbbr"": ""ASC""}","ASCOLI CALCIO, ASCOLI",23,true,PES21
+PARANÁ CLUBE,false,"{""teamAbbr"": ""PAR""}","PARANÁ CLUBE, PARANÁ",10,true,PES21
+BOTAFOGO SP,false,"{""teamAbbr"": ""BSP""}",BOTAFOGO SP,10,true,PES21
+UNIVERSITARIO DE DEPORTES,false,"{""teamAbbr"": ""UNI""}","UNIVERSITATIO, UNIVERSITARIO DE DEPORTES",49,true,"PES21,FIFA22"
+FC NORDSJÆLLAND,false,"{""teamAbbr"": ""FCN""}",NORDSJÆLLAND,16,true,"PES21,FIFA22"
+VEJLE BK,false,"{""teamAbbr"": ""VB""}",VEJLE BK. VEJLE,16,true,"PES21,FIFA22"
+LR VICENZA,false,"{""teamAbbr"": ""VIC""}","LR VICENZA, VICENZA",23,true,PES21
+AC MONZA,false,"{""teamAbbr"": ""MON""}","AZ MONZA, MONZA",23,true,"PES21,FIFA22"
+CHIEVO VERONA,false,"{""teamAbbr"": ""CHI""}","CHIEVO VERONA, CHIEVO",23,true,"PES21,FIFA22"
+pescara calcio,false,"{""teamAbbr"": ""PES""}","pescara calcio, pescara",23,true,PES21
+PORDENONE CALCIO,false,"{""teamAbbr"": ""POR""}","PORDENONE CALCIO, PORDENONE",23,true,PES21
+as cittadella,false,"{""teamAbbr"": ""CIT""}",as cittadella,23,true,PES21
+US CREMONESE,false,"{""teamAbbr"": ""USC""}","US CREMONESE, CREMONESE",23,true,PES21
+venezia fc,false,"{""teamAbbr"": ""VEN""}",venezia fc,23,true,PES21
+EMPOLI,false,"{""teamAbbr"": ""EMP""}",EMPOLI,23,true,"PES21,FIFA22"
+reggina 1914,false,"{""teamAbbr"": ""REG""}","reggina 1914, reggina",23,true,PES21
+SHELBORNE,false,"{""teamAbbr"": ""SHE""}",SHELBORNE,70,true,FIFA22
+SPAL,false,"{""teamAbbr"": ""SPA""}",SPAL,23,true,"PES21,FIFA22"
+virtus entella,false,"{""teamAbbr"": ""ENT""}","virtus entella, virtus",23,true,PES21
+frosinone calcio,false,"{""teamAbbr"": ""FRO""}",frosinone calcio,23,true,PES21
+WATERFORD FC,false,"{""teamAbbr"": ""WAT""}",WATERFORD FC,70,true,FIFA22
+fc crotone,false,"{""teamAbbr"": ""CRO""}","fc crotone, crotone",23,true,"PES21,FIFA22"
+CAGLIARI CALCIO,false,"{""teamAbbr"": ""CAG""}","CAGLIARI CALCIO, CAGLIARI",23,true,"PES21,FIFA22"
+TORINO,false,"{""teamAbbr"": ""TOR""}",TORINO,23,true,"PES21,FIFA22"
+genoa cfc,false,"{""teamAbbr"": ""GEN""}","genoa cfc, genoa",23,true,"PES21,FIFA22"
+bologna fc,false,"{""teamAbbr"": ""BFC""}","bologna fc, bologna",23,true,"PES21,FIFA22"
+parma calcio 1913,false,"{""teamAbbr"": ""PAR""}","parma calcio 1913, parma",23,true,"PES21,FIFA22"
+INTERNAZIONALE,false,"{""teamAbbr"": ""INT""}","INTERNAZIONALE, LOMBARDIA NA",23,true,"PES21,FIFA22"
+juventus,false,"{""teamAbbr"": ""JUV""}","juventus, PIEMONTE CALCIO",23,true,"PES21,FIFA22"
+AS ROMA,false,"{""teamAbbr"": ""ROM""}","AS ROMA, ROMA, GENERIC CAPITALE",23,true,"PES21,FIFA22"
+acf fiorentina,false,"{""teamAbbr"": ""FIO""}","acf fiorentina, fiorentina",23,true,"PES21,FIFA22"
+ss lazio,false,"{""teamAbbr"": ""LAZ""}","ss lazio, lazio",23,true,"PES21,FIFA22"
+benevento calcio,false,"{""teamAbbr"": ""BEN""}",benevento calcio,23,true,"PES21,FIFA22"
+us sassuolo,false,"{""teamAbbr"": ""SAS""}","us sassuolo, sassuolo",23,true,"PES21,FIFA22"
+spezia calcio,false,"{""teamAbbr"": ""SPE""}","spezia calcio, spezia",23,true,"PES21,FIFA22"
+HELLAS VERONA,false,"{""teamAbbr"": ""VER""}",HELLAS VERONA,23,true,"PES21,FIFA22"
+DENIZLISPOR,false,"{""teamAbbr"": ""DEN""}",DENIZLISPOR,1,true,"PES21,FIFA22"
+SAMPDORIA,false,"{""teamAbbr"": ""SAM""}",SAMPDORIA,23,true,"PES21,FIFA22"
+ISTANBUL BASAKSEHIR,false,"{""teamAbbr"": ""BAS""}",ISTANBUL BAŞAKŞEHIR,1,true,"PES21,FIFA22"
+GAZIANTEP FK,false,"{""teamAbbr"": ""GFK""}",GAZIANTEP FK,1,true,"PES21,FIFA22"
+ALANYASPOR,false,"{""teamAbbr"": ""ALA""}",ALANYASPOR,1,true,"PES21,FIFA22"
+KONYASPOR,false,"{""teamAbbr"": ""KON""}",KONYASPOR,1,true,"PES21,FIFA22"
+YENI MALATYASPOR,false,"{""teamAbbr"": ""MLT""}",YENI MALATYASPOR,1,true,"PES21,FIFA22"
+AC MILAN,false,"{""teamAbbr"": ""ACM""}","MILANO RN, AC MILAN",23,true,"PES21,FIFA22"
+UDINESE CALCIO,false,"{""teamAbbr"": ""UDI""}","UDINESE CALCIO, UDINESE",23,true,"PES21,FIFA22"
+GALATASARAY SK,false,"{""teamAbbr"": ""GSK""}","GALATASARAY SK, GALATASARAY",1,true,"PES21,FIFA22"
+HATAYSPOR,false,"{""teamAbbr"": ""HAT""}",HATAYSPOR,1,true,"PES21,FIFA22"
+MKE ANKARAGÜCÜ,false,"{""teamAbbr"": ""ANK""}","MKE ANKARAGÜCÜ, ANKARAGÜCÜ",1,true,"PES21,FIFA22"
+BESIKTAS JK,false,"{""teamAbbr"": ""BJK""}","BEŞIKTAŞ JK, BEŞIKTAŞ",1,true,"PES21,FIFA22"
+CAYKUR RIZESPOR,false,"{""teamAbbr"": ""RIZ""}","CAYKUR RIZESPOR, RIZESPOR",1,true,"PES21,FIFA22"
+KASIMPASA SK,false,"{""teamAbbr"": ""KAS""}","KASIMPAŞA SK, KASIMPAŞA",1,true,"PES21,FIFA22"
+GENCLERBIRLIGI,false,"{""teamAbbr"": ""GEN""}",GENÇLERBIRLIĞI,1,true,"PES21,FIFA22"
+FATIH KARAGUMRUK,false,"{""teamAbbr"": ""KAR""}",FATIH KARAGÜMRÜK,1,true,"PES21,FIFA22"
+SIVASSPOR,false,"{""teamAbbr"": ""SIV""}",SIVASSPOR,1,true,"PES21,FIFA22"
+GOZTEPE,false,"{""teamAbbr"": ""GÖZ""}",GÖZTEPE,1,true,"PES21,FIFA22"
+DINAMO ZAGREB,false,"{""teamAbbr"": ""DIN""}",DINAMO ZAGREB,40,true,"PES21,FIFA22"
+KAYSERISPOR,false,"{""teamAbbr"": ""KAY""}",KAYSERISPOR,1,true,"PES21,FIFA22"
+ERZURUMSPOR BB,false,"{""teamAbbr"": ""EBB""}","ERZURUMSPOR BB, BB ERZURUMSPOR",1,true,"PES21,FIFA22"
+FC BAYERN MÜNCHEN,false,"{""teamAbbr"": ""FCB""}","FC BAYERN MÜNCHEN, BAYERN MÜNCHEN",5,true,"PES21,FIFA22"
+ANTALYASPOR,false,"{""teamAbbr"": ""ANT""}",ANTALYASPOR,1,true,"PES21,FIFA22"
+TRABZONSPOR,false,"{""teamAbbr"": ""TS""}",TRABZONSPOR,1,true,"PES21,FIFA22"
+FENERBAHÇE SK,false,"{""teamAbbr"": ""FB""}","FENERBAHÇE SK, FENERBAHÇE",1,true,"PES21,FIFA22"
+SLIGO ROVERS,false,"{""teamAbbr"": ""SLI""}",SLIGO ROVERS,70,true,FIFA22
+cd numancia,false,"{""teamAbbr"": ""NUM""}","CD NUMANCIA, NUMANCIA R",20,true,PES21
+ss juve stabia,false,"{""teamAbbr"": ""STA""}","JUVE STABIA, stabia gb",23,true,PES21
+PAOK,false,"{""teamAbbr"": ""PAK""}",PAOK,51,true,"PES21,FIFA22"
+ESBJERG fb,false,"{""teamAbbr"": ""EfB""}","ESBJERG BH, ESBJERG fb",16,true,PES21
+BAYER LEVERKUSEN,false,"{""teamAbbr"": ""B04""}",BAYER LEVERKUSEN,5,true,"PES21,FIFA22"
+DYNAMO KYIV,false,"{""teamAbbr"": ""DYN""}",DYNAMO KYIV,45,true,"PES21,FIFA22"
+SK SLAVIA PRAHA,false,"{""teamAbbr"": ""SLA""}","SLAVIA PRAHA, SK SLAVIA PRAHA",73,true,"PES21,FIFA22"
+AS LIVORNO,false,"{""teamAbbr"": ""LIV""}","LIVORNO G, as livorno, livorno",23,true,PES21
+SCHALKE 04,false,"{""teamAbbr"": ""S04""}",SCHALKE 04,5,true,"PES21,FIFA22"
+desportivo das aves,false,"{""teamAbbr"": ""AVE""}","desportivo das aves, cd aves, aves v",26,true,PES21
+PANATHINAIKOS,false,"{""teamAbbr"": ""PAO""}",PANATHINAIKOS,51,true,"PES21,FIFA22"
+EXTREMADURA UD,false,"{""teamAbbr"": ""EXT""}","EXTREMADURA AR, EXTREMADURA UD",20,true,PES21
+HULL CITY,false,"{""teamAbbr"": ""HUL""}","HULL CITY, HULL ob",4,true,"PES21,FIFA22"
+SHAKHTAR DONETSK,false,"{""teamAbbr"": ""SHA""}",SHAKHTAR DONETSK,45,true,"PES21,FIFA22"
+SPARTA PRAHA,false,"{""teamAbbr"": ""SPA""}",SPARTA PRAHA,73,true,"PES21,FIFA22"
+FINN HARPS,false,"{""teamAbbr"": ""FIN""}",FINN HARPS,70,true,FIFA22
+FC KRASNODAR,false,"{""teamAbbr"": ""KRA""}","FC KRASNODAR, KRASNODAR",38,true,PES21
+AKHMAT GROZNY,false,"{""teamAbbr"": ""AKH""}",AKHMAT GROZNY,38,true,PES21
+KHIMKI,false,"{""teamAbbr"": ""KHI""}",KHIMKI,38,true,PES21
+RUBIN KAZAN,false,"{""teamAbbr"": ""RUB""}",RUBIN KAZAN,38,true,PES21
+FC TAMBOV,false,"{""teamAbbr"": ""FCT""}","TAMBOV, FC TAMBOV",38,true,PES21
+ARSENAL TULA,false,"{""teamAbbr"": ""ARS""}",ARSENAL TULA,38,true,PES21
+NAKHONRATCHASIMA MAZDA,false,"{""teamAbbr"": ""NR"", ""teamCity"": ""Nakhon Ratchasima"", ""teamName"": ""Nakhon Ratch"", ""teamFounded"": ""1999"", ""teamStadium"": ""80th Birthday Stadium"", ""teamCapacity"": 20141, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=3432""}",NAKHONRATCHASIMA MAZDA,2,true,PES21
+RC DEPORTIVO,false,"{""teamAbbr"": ""DEP""}","RC DEPORTIVO, LA CORUÑA AB",20,true,"PES21,FIFA22"
+WIGAN ATHLETIC,false,"{""teamAbbr"": ""WIG""}","WIGAN ATHLETIC, WIGAN BW",4,true,"PES21,FIFA22"
+VITÓRIA DE SETÚBAL,false,"{""teamAbbr"": ""VIT""}","SETÚBAL V, VITÓRIA DE SETÚBAL",26,true,PES21
+AC PERUGIA,false,"{""teamAbbr"": ""PER""}","AC PERUGIA, PERUGIA, PERUGIA BR",23,true,PES21
+ROTOR VOLGOGRAD,false,"{""teamAbbr"": ""ROT""}",ROTOR VOLGOGRAD,38,true,PES21
+FC UFA,false,"{""teamAbbr"": ""UFA""}","FC UFA, UFA",38,true,PES21
+Ural Yekaterinburg,false,"{""teamAbbr"": ""URA""}","URAL, URAL YEKATERINBURG",38,true,PES21
+CSKA MOSKVA,false,"{""teamAbbr"": ""CSK""}",CSKA MOSKVA,38,true,"PES21,FIFA22"
+CFR CLUJ,false,"{""teamAbbr"": ""CFR""}",CFR CLUJ,13,true,FIFA22
+ORLANDO PIRATES,false,"{""teamAbbr"": ""ORL""}",ORLANDO PIRATES,29,true,FIFA22
+VIKTORIA PLZEN,false,"{""teamAbbr"": ""VIK""}",VIKTORIA PLZEN,73,true,FIFA22
+FCSB,false,"{""teamAbbr"": ""STE""}",FCSB,13,true,FIFA22
+ASTRA GIURGIU,false,"{""teamAbbr"": ""AST""}",ASTRA GIURGIU,13,true,FIFA22
+FC SOCHI,false,"{""teamAbbr"": ""SOC""}","FC SOCHI, SOCHI",38,true,PES21
+OLYMPIAKOS VOLOU,false,"{""teamAbbr"": ""OLY""}","OLYMPIAKOS PIRAEUS, OLYMPIAKOS VOLOU",51,true,"PES21,FIFA22"
+AEK ATHENS,false,"{""teamAbbr"": ""AEK""}",AEK ATHENS,51,true,"PES21,FIFA22"
+LOKOMOTIV MOSKVA,false,"{""teamAbbr"": ""LOK""}",LOKOMOTIV MOSKVA,38,true,"PES21,FIFA22"
+DINAMO BUCURESTI,false,"{""teamAbbr"": ""DIN""}",DINAMO BUCURESTI,13,true,FIFA22
+CS UNIVERSITATEA CRAIOVA,false,"{""teamAbbr"": ""CSU""}",CS UNIVERSITATEA CRAIOVA,13,true,FIFA22
+VIITORUL CONSTANTA,false,"{""teamAbbr"": ""FCV""}",VIITORUL CONSTANTA,13,true,FIFA22
+OPERÁRIO PR,false,"{""teamAbbr"": ""OPR"", ""teamCity"": ""Ponte Grossa"", ""teamName"": ""Ponte Grossa"", ""teamFounded"": ""1912"", ""teamStadium"": ""Germano Kruger"", ""teamCapacity"": 8640, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2848""}","OPERÁRIO, OPERÁRIO PR",10,true,PES21
+FC ROSTOV,false,"{""teamAbbr"": ""ROS""}","FC ROSTOV, ROSTOV",38,true,PES21
+DYNAMO MOSKVA,false,"{""teamAbbr"": ""DYN""}","DINAMO MOSKVA, DYNAMO MOSKVA",38,true,PES21
+SPARTAK MOSKVA,false,"{""teamAbbr"": ""SPA""}",SPARTAK MOSKVA,38,true,"PES21,FIFA22"
+LB CHATEAUROUX,false,"{""teamAbbr"": ""LBC""}","LB CHÂTEAUROUX, CHÂTEAUROUX",19,true,"PES21,FIFA22"
+CHAMOIS NIORTAIS,false,"{""teamAbbr"": ""NIO""}","NIORT, CHAMOIS NIORTAIS",19,true,"PES21,FIFA22"
+Zenit Saint Petersburg,false,"{""teamAbbr"": ""ZEN""}","ZENIT, ZENIT SAINT PETERSBURG",38,true,PES21
+EA GUINGAMP,false,"{""teamAbbr"": ""EAG""}","EA GUINGAMP, GUINGAMP",19,true,"PES21,FIFA22"
+AC AJACCIO,false,"{""teamAbbr"": ""ACA""}",AC AJACCIO,19,true,"PES21,FIFA22"
+GRENOBLE FOOT 38,false,"{""teamAbbr"": ""GRE""}",GRENOBLE FOOT 38,19,true,"PES21,FIFA22"
+GUADALAJARA,false,"{""teamAbbr"": ""CHI""}",GUADALAJARA,118,true,FIFA22
+FC CHAMBLY OISE,false,"{""teamAbbr"": ""FCC""}","FC CHAMBLY OISE, CHAMBLY",19,true,"PES21,FIFA22"
+AMIENS SC,false,"{""teamAbbr"": ""AMI""}","AMIENS SC, AMIENS",19,true,"PES21,FIFA22"
+PARIS FC,false,"{""teamAbbr"": ""PAR""}","PARIS FC, PARIS",19,true,"PES21,FIFA22"
+VALENCIENNES,false,"{""teamAbbr"": ""VAL""}",VALENCIENNES,19,true,"PES21,FIFA22"
+RODEZ AF,false,"{""teamAbbr"": ""RAF""}","RODEZ AF, RODEZ",19,true,"PES21,FIFA22"
+PAU FC,false,"{""teamAbbr"": ""PAU""}","PAU FC, PAU",19,true,"PES21,FIFA22"
+CLERMONT FOOT 63,false,"{""teamAbbr"": ""CFA""}","CLERMONT FOOT 63, CLERMONT",19,true,"PES21,FIFA22"
+LE HAVRE AC,false,"{""teamAbbr"": ""HAC""}","LE HAVRE AC, LE HAVRE",19,true,"PES21,FIFA22"
+KAIZER CHIEFS,false,"{""teamAbbr"": ""KAI""}",KAIZER CHIEFS,85,true,FIFA22
+BSC YOUNG BOYS,false,"{""teamAbbr"": ""YB""}","BSC YOUNG BOYS, YOUNG BOYS",42,true,"PES21,FIFA22"
+SERVETTE FC,false,"{""teamAbbr"": ""SER""}","SERVETTE FC, SERVETTE",42,true,"PES21,FIFA22"
+TOULOUSE FC,false,"{""teamAbbr"": ""TFC""}","TOULOUSE FC, TOULOUSE",19,true,"PES21,FIFA22"
+AJ AUXERRE,false,"{""teamAbbr"": ""AJA""}","AJ AUXERRE, AUXERRE",19,true,"PES21,FIFA22"
+SM CAEN,false,"{""teamAbbr"": ""SMC""}","SM CAEN, CAEN",19,true,"PES21,FIFA22"
+USL DUNKERQUE,false,"{""teamAbbr"": ""DUN""}","USL DUNKERQUE, DUNKERQUE",19,true,"PES21,FIFA22"
+ES TROYES AC,false,"{""teamAbbr"": ""EST""}","ES TROYES AC, TROYES",19,true,"PES21,FIFA22"
+AS NANCY LORRAINE,false,"{""teamAbbr"": ""ASN""}","AS NANCY LORRAINE, NANCY",19,true,"PES21,FIFA22"
+FC VADUZ,false,"{""teamAbbr"": ""FCV""}","FC VADUZ, VADUZ",42,true,"PES21,FIFA22"
+ELCHE CF,false,"{""teamAbbr"": ""ELC""}","ELCHE CF, ELCHE BV, ELCHE",20,true,"PES21,FIFA22"
+FC LUZERN,false,"{""teamAbbr"": ""FCL""}","FC LUZERN, LUZERN",42,true,"PES21,FIFA22"
+SD HUESCA,false,"{""teamAbbr"": ""SDH""}","SD HUESCA, HUESCA RA, HUESCA",20,true,"PES21,FIFA22"
+FC SION,false,"{""teamAbbr"": ""SIO""}","FC SION, SION",42,true,"PES21,FIFA22"
+CA OSASUNA,false,"{""teamAbbr"": ""OSA""}","CA OSASUNA, OSASUNA, PAMPLONA RA",20,true,"PES21,FIFA22"
+FC ZURICH,false,"{""teamAbbr"": ""FCZ""}","FC ZÜRICH, ZÜRICH, ZURICH",42,true,"PES21,FIFA22"
+FC LUGANO,false,"{""teamAbbr"": ""LUG""}","FC LUGANO, LUGANO",42,true,"PES21,FIFA22"
+REAL VALLADOLID,false,"{""teamAbbr"": ""VLL""}","VALLADOLID MB, REAL VALLADOLID",20,true,"PES21,FIFA22"
+ATHLETIC CLUB,false,"{""teamAbbr"": ""ATH""}","BILBAO BR, ATHLETIC CLUB",20,true,"PES21,FIFA22"
+FC BARCELONA,false,"{""teamAbbr"": ""FCB""}","FC BARCELONA, BARCELONA",20,true,"PES21,FIFA22"
+BRESCIA CALCIO,false,"{""teamAbbr"": ""BRE""}","BRESCIA CALCIO, BRESCIA",23,true,"PES21,FIFA22"
+FC ST. GALLEN,false,"{""teamAbbr"": ""STG""}","FC ST.GALLEN, ST. GALLEN",42,true,"PES21,FIFA22"
+DEPORTIVO ALAVÉS,false,"{""teamAbbr"": ""ALA""}","ÁLAVA AB, DEPORTIVO ALAVÉS, ALAVÉS",20,true,"PES21,FIFA22"
+REAL SOCIEDAD,false,"{""teamAbbr"": ""RSO""}","REAL SOCIEDADE, VASCO GIPUZKOA AB",20,true,"PES21,FIFA22"
+CÁDIZ CF,false,"{""teamAbbr"": ""CÁD""}","CÁDIZ CF, CÁDIZ AA, CÁDIZ",20,true,"PES21,FIFA22"
+REAL MADRID,false,"{""teamAbbr"": ""RMA""}","REAL MADRID, MADRID CHAMARTIN B",20,true,"PES21,FIFA22"
+REAL BETIS,false,"{""teamAbbr"": ""RBB""}","SEVILLA TRIANA VB, REAL BETIS",20,true,"PES21,FIFA22"
+SD EIBAR,false,"{""teamAbbr"": ""EIB""}","SD EIBAR, EIBAR AR, EIBAR",20,true,"PES21,FIFA22"
+GRANADA CF,false,"{""teamAbbr"": ""GCF""}","GRANADA CF, GRANADA RB, GRANADA",20,true,"PES21,FIFA22"
+ATLÉTICO DE MADRID,false,"{""teamAbbr"": ""ATM""}","ATLÉTICO DE MADRID, MADRID ROSAS RB",20,true,"PES21,FIFA22"
+BARNSLEY,false,"{""teamAbbr"": ""BAR""}","BARNSLEY, BARNSLEY R",4,true,"PES21,FIFA22"
+LEVANTE UD,false,"{""teamAbbr"": ""LEV""}","LEVANTE UD, LEVANTE RA",20,true,"PES21,FIFA22"
+SEVILLA,false,"{""teamAbbr"": ""SEV""}","SEVILLA, SEVILLA FC, SEVILLA NERVIÓN BR",20,true,"PES21,FIFA22"
+GETAFE CF,false,"{""teamAbbr"": ""GET""}","GETAFE A, GETAFE CF, GETAFE",20,true,"PES21,FIFA22"
+CELTA DE VIGO,false,"{""teamAbbr"": ""RCC""}","CELTA VIGO, VIGO AB, CELTA DE VIGO",20,true,"PES21,FIFA22"
+VALENCIA CF,false,"{""teamAbbr"": ""VCF""}","VALENCIA CF, VALENCIA BN",20,true,"PES21,FIFA22"
+VILLARREAL CF,false,"{""teamAbbr"": ""VIL""}","VILLARREAL CF, VILLARREAL, VILLARREAL A",20,true,"PES21,FIFA22"
+MILLWALL,false,"{""teamAbbr"": ""MIL""}","MILLWALL, MILLWALL BW",4,true,"PES21,FIFA22"
+QUEENS PARK RANGERS,false,"{""teamAbbr"": ""QPR""}","QUEENS PARK RANGERS, QPR",4,true,"PES21,FIFA22"
+STOKE CITY,false,"{""teamAbbr"": ""STO""}","STOKE RW, STOKE CITY",4,true,"PES21,FIFA22"
+BIRMINGHAM CITY,false,"{""teamAbbr"": ""BIR""}","BIRMINGHAM CITY, BIRMINGHAM B",4,true,"PES21,FIFA22"
+HUDDERSFIELD TOWN,false,"{""teamAbbr"": ""HUD""}","HUDDERSFIELD TOWN, HUDDERSFIELD BW, HUDDERSFIELD",4,true,"PES21,FIFA22"
+NORWICH CITY,false,"{""teamAbbr"": ""NOR""}","NORWICH CITY, NORWICH YG",4,true,"PES21,FIFA22"
+SWANSEA CITY,false,"{""teamAbbr"": ""SWA""}","SWANSEA CITY, SWANSEA W",4,true,"PES21,FIFA22"
+BLACKBURN ROVERS,false,"{""teamAbbr"": ""BLA""}","BLACKBURN ROVERS, BLACKBURN BW",4,true,"PES21,FIFA22"
+CARDIFF CITY,false,"{""teamAbbr"": ""CAR""}","CARDIFF CITY, CARDIFF B",4,true,"PES21,FIFA22"
+BRENTFORD,false,"{""teamAbbr"": ""BRE""}","BRENTFORD RW, BRENTFORD",4,true,"PES21,FIFA22"
+DERBY COUNTY,false,"{""teamAbbr"": ""DER""}","DERBY WB, DERBY COUNTY",4,true,"PES21,FIFA22"
+BRISTOL CITY,false,"{""teamAbbr"": ""BRC""}","BRISTOL CITY, BRISTOL R",20,true,"PES21,FIFA22"
+READING,false,"{""teamAbbr"": ""REA""}","READING, READING BW",4,true,"PES21,FIFA22"
+LUTON TOWN,false,"{""teamAbbr"": ""LUT""}","LUTON TOWN, LUTON WO",4,true,"PES21,FIFA22"
+HJK HELSINKI,false,"{""teamAbbr"": ""HJK""}",HJK HELSINKI,78,true,FIFA22
+WATFORD,false,"{""teamAbbr"": ""WAT""}","WATFORD BY, WATFORD",4,true,"PES21,FIFA22"
+AFC BOURNEMOUTH,false,"{""teamAbbr"": ""BRN""}","afc bournemouth, bournemouth",4,true,"PES21,FIFA22"
+coventry city,false,"{""teamAbbr"": ""COV""}","coventry city, coventry, coventry b",4,true,"PES21,FIFA22"
+preston north end,false,"{""teamAbbr"": ""PNE""}","preston north end, preston wb",4,true,"PES21,FIFA22"
+sheffield wednesday,false,"{""teamAbbr"": ""WED""}","sheffield wednesday, sheffield bw",4,true,"PES21,FIFA22"
+CLUB BRUGGE KV,false,"{""teamAbbr"": ""CB""}","CLUB BRUGGE KV, BRUGGE",36,true,"PES21,FIFA22"
+KV KORTRIJK,false,"{""teamAbbr"": ""KVK""}","KV KORTRIJK, KORTRIJK",36,true,"PES21,FIFA22"
+WAASLAND-BEVEREN,false,"{""teamAbbr"": ""WB""}","WAASLAND-BEVEREN, BEVEREN",36,true,"PES21,FIFA22"
+ANDERLECHT,false,"{""teamAbbr"": ""AND""}",ANDERLECHT,36,true,"PES21,FIFA22"
+ROTHERHAM UNITED,false,"{""teamAbbr"": ""ROT""}","ROTHERHAM UNITED, ROTHERHAM RW",4,true,"PES21,FIFA22"
+middlesbrough,false,"{""teamAbbr"": ""MID""}","middlesbrough rw, MIDDLESBROUGH",4,true,"PES21,FIFA22"
+WYCOMBE WANDERERS,false,"{""teamAbbr"": ""WYC""}","WYCOMBE WANDERERS, WYCOMBE, WYCOMBE B",4,true,"PES21,FIFA22"
+SEPSI OSK,false,"{""teamAbbr"": ""SSG""}",SEPSI OSK,13,true,FIFA22
+ROYAL EXCEL MOUSCRON,false,"{""teamAbbr"": ""REM""}","ROYAL EXCEL MOUSCRON, MOUSCRON",36,true,"PES21,FIFA22"
+KAS EUPEN,false,"{""teamAbbr"": ""EUP""}","KAS EUPEN, EUPEN",36,true,"PES21,FIFA22"
+OH LEUVEN,false,"{""teamAbbr"": ""OHL""}","OH LEUVEN, LEUVEN",36,true,"PES21,FIFA22"
+CERCLE BRUGGE,false,"{""teamAbbr"": ""CER""}",CERCLE BRUGGE,36,true,"PES21,FIFA22"
+ROYAL ANTWERP,false,"{""teamAbbr"": ""ROY""}","ROYAL ANTWERP, ANTWERP",36,true,"PES21,FIFA22"
+ZULTE WAREGEM,false,"{""teamAbbr"": ""ZW""}","ZULTE WAREGEM, WAREGEM",36,true,"PES21,FIFA22"
+SINT-TRUIDENSE VV,false,"{""teamAbbr"": ""STV""}",SINT-TRUIDENSE VV,36,true,"PES21,FIFA22"
+KV OOSTENDE,false,"{""teamAbbr"": ""KVO""}","KV OOSTENDE, OOSTENDE",36,true,"PES21,FIFA22"
+KRC GENK,false,"{""teamAbbr"": ""GNK""}","KRC GENK, GENK",36,true,"PES21,FIFA22"
+BURIRAM UNITED,false,"{""teamAbbr"": ""BUR"", ""teamCity"": ""Buriram"", ""teamName"": ""Buriram Utd"", ""teamFounded"": ""1970"", ""teamStadium"": ""Chang Arena"", ""teamCapacity"": 32600, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1943""}",BURIRAM UNITED,2,true,PES21
+SPORTING CHARLEROI,false,"{""teamAbbr"": ""CHA""}","SPORTING CHARLEROI, CHARLEROI",36,true,"PES21,FIFA22"
+K BEERSCHOT VA,false,"{""teamAbbr"": ""BEE""}","K BEERSCHOT VA, BEERSCHOT",36,true,"PES21,FIFA22"
+KAA GENT,false,"{""teamAbbr"": ""GEN""}","KAA GENT, GENT",36,true,"PES21,FIFA22"
+KV MECHELEN,false,"{""teamAbbr"": ""KVM""}","KV MECHELEN, MECHELEN",36,true,"PES21,FIFA22"
+BG PATHUM UNITED,false,"{""teamAbbr"": ""BGP""}",BG PATHUM UNITED,2,true,PES21
+PORT,false,"{""teamAbbr"": ""PFC"", ""teamCity"": ""Bangkok"", ""teamName"": ""Port FC"", ""teamFounded"": ""1967"", ""teamStadium"": ""PAT Stadium"", ""teamCapacity"": 12308, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2934""}",PORT,2,true,PES21
+SAMUT PRAKAN CITY,false,"{""teamAbbr"": ""SPC"", ""teamCity"": ""Samut Prakan"", ""teamName"": ""Samut Prakan"", ""teamFounded"": ""2019"", ""teamStadium"": ""Samut Prakarn SAT Stadium"", ""teamCapacity"": 5100, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=5291""}",SAMUT PRAKAN CITY,2,true,PES21
+SUPHANBURI FC,false,"{""teamAbbr"": ""SUP"", ""teamCity"": ""Suphanburi"", ""teamName"": ""Suphanburi"", ""teamFounded"": ""1998"", ""teamStadium"": ""Suphanburi Municipality Stadium"", ""teamCapacity"": 18000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2630""}",SUPHANBURI,2,true,PES21
+CHONBURI,false,"{""teamAbbr"": ""CHO"", ""teamCity"": ""Chonburi"", ""teamName"": ""Chonburi"", ""teamFounded"": ""2002"", ""teamStadium"": ""Chonburi Stadium"", ""teamCapacity"": 8500, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1576""}",CHONBURI,2,true,PES21
+CHIANGRAI UNITED,false,"{""teamAbbr"": ""CHI""}",CHIANGRAI UNITED,2,true,PES21
+cd cobresal,false,"{""teamAbbr"": ""COB""}","cd cobresal, cobresal",8,true,"PES21,FIFA22"
+deportes antofagasta,false,"{""teamAbbr"": ""ANT""}",deportes antofagasta,8,true,"PES21,FIFA22"
+cd huachipato,false,"{""teamAbbr"": ""HUA""}",cd huachipato,8,true,"PES21,FIFA22"
+PRACHUAP FC,false,"{""teamAbbr"": ""PFC"", ""teamCity"": ""Prachuap Khiri Khan"", ""teamName"": ""Prachuap"", ""teamFounded"": ""2009"", ""teamStadium"": ""Sam Ao Stadium"", ""teamCapacity"": 7000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=4282""}","PRACHUAP FC, PT PRACHUAP",2,true,PES21
+SCG MUANGTHONG UNITED,false,"{""teamAbbr"": ""MUA"", ""teamCity"": ""Muang Thong Thani"", ""teamName"": ""Muangthong"", ""teamFounded"": ""1989"", ""teamStadium"": ""SCG Stadium"", ""teamCapacity"": 15000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1574""}",SCG MUANGTHONG UNITED,2,true,PES21
+TRUE BANGKOK UNITED,false,"{""teamAbbr"": ""BKU"", ""teamCity"": ""Bangkok"", ""teamName"": ""Bangkok Utd"", ""teamFounded"": ""1988"", ""teamStadium"": ""Thai-Japanese Stadium"", ""teamCapacity"": 10000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2467""}",TRUE BANGKOK UNITED,2,true,PES21
+audax italiano,false,"{""teamAbbr"": ""AUD"", ""teamCity"": ""Santiago"", ""teamName"": ""La Florida"", ""teamFounded"": ""1910"", ""teamStadium"": ""Municipal de La Florida"", ""teamCapacity"": 12000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=969""}",audax italiano,8,true,PES21
+santiago wanderers,false,"{""teamAbbr"": ""SW"", ""teamCity"": ""Valparaíso"", ""teamName"": ""S. Wanderers"", ""teamFounded"": ""1892"", ""teamStadium"": ""Elías Figueroa Brander"", ""teamCapacity"": 23000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=971""}",SANTIAGO WANDERERS,8,true,PES21
+RAYONG FC,false,"{""teamAbbr"": ""RAY"", ""teamCity"": ""Rayong Province"", ""teamName"": ""Rayong"", ""teamFounded"": ""1998"", ""teamStadium"": ""PTT Stadium"", ""teamCapacity"": 17000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2933""}",RAYONG FC,2,true,PES21
+universidad de chile,false,"{""teamAbbr"": ""UCH"", ""teamCity"": ""Santiago"", ""teamName"": ""UC Ñuñoa"", ""teamFounded"": ""1927"", ""teamStadium"": ""Nacional de Chile"", ""teamCapacity"": 48665, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=364""}",universidad de chile,8,true,PES21
+CHINDIA TARGOVISTE,false,"{""teamAbbr"": ""CHI""}",CHINDIA TARGOVISTE,13,true,FIFA22
+FC VOLUNTARI,false,"{""teamAbbr"": ""FCV""}",FC VOLUNTARI,13,true,FIFA22
+FC HERMANNSTADT,false,"{""teamAbbr"": ""FCH""}",FC HERMANNSTADT,13,true,FIFA22
+FC ARGES PITESTI,false,"{""teamAbbr"": ""FCA""}",FC ARGES PITESTI,13,true,FIFA22
+ACADEMICA CLINCENI,false,"{""teamAbbr"": ""CLI""}",ACADEMICA CLINCENI,13,true,FIFA22
+AL NASSR,false,"{""teamAbbr"": ""ALN""}",AL NASSR,32,true,"PES21,FIFA22"
+TORONTO FC,false,"{""teamAbbr"": ""TOR""}",TORONTO FC,29,true,FIFA22
+deportes la serena,false,"{""teamAbbr"": ""DLS"", ""teamCity"": ""La Serena"", ""teamName"": ""La Serena"", ""teamFounded"": ""1955"", ""teamStadium"": ""La Portada"", ""teamCapacity"": 18500, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=929""}",deportes la serena,8,true,PES21
+POLITEHNICA IASI,false,"{""teamAbbr"": ""POL""}",POLITEHNICA IASI,13,true,FIFA22
+FC BOTOSANI,false,"{""teamAbbr"": ""FCB""}",FC BOTOSANI,13,true,FIFA22
+GAZ METAN MEDIAS,false,"{""teamAbbr"": ""GAZ""}",GAZ METAN MEDIAS,13,true,FIFA22
+UTA ARAD,false,"{""teamAbbr"": ""UTA""}",UTA ARAD,13,true,FIFA22
+ATLANTA UNITED,false,"{""teamAbbr"": ""ATL""}",ATLANTA UNITED,29,true,FIFA22
+LOS ANGELES GALAXY,false,"{""teamAbbr"": ""LAG""}",LOS ANGELES GALAXY,29,true,FIFA22
+deportes melipilla,false,"{""teamAbbr"": ""DEP"", ""teamCity"": ""Melipilla"", ""teamName"": ""Melipilla"", ""teamFounded"": ""1992"", ""teamStadium"": ""Roberto Bravo Santibáñez"", ""teamCapacity"": 6500, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1092""}",deportes melipilla,8,true,PES21
+o'higgins fc,false,"{""teamAbbr"": ""OHF"", ""teamCity"": ""Rancagua"", ""teamName"": ""Rancagua"", ""teamFounded"": ""1955"", ""teamStadium"": ""El Teniente"", ""teamCapacity"": 18000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=967""}",o'higgins fc,8,true,PES21
+curicó unido,false,"{""teamAbbr"": ""CUR"", ""teamCity"": ""Curicó"", ""teamName"": ""Curicó"", ""teamFounded"": ""1973"", ""teamStadium"": ""La Granja"", ""teamCapacity"": 7000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1428""}",curicó unido,8,true,PES21
+cd everton,false,"{""teamAbbr"": ""EVT"", ""teamCity"": ""Viña del Mar"", ""teamName"": ""Viña del Mar"", ""teamFounded"": ""1909"", ""teamStadium"": ""Sausalito"", ""teamCapacity"": 22000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=974""}",cd everton,8,true,PES21
+AVAÍ FC,false,"{""teamAbbr"": ""AFC"", ""teamCity"": ""Florianópolis"", ""teamName"": ""A Florianópolis"", ""teamFounded"": ""1923"", ""teamStadium"": ""Ressacada"", ""teamCapacity"": 19000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1414""}","AVAÍ FC, AVAÍ",10,true,PES21
+CSA,false,"{""teamAbbr"": ""CSA"", ""teamCity"": ""Maceió"", ""teamName"": ""Alagoas"", ""teamFounded"": ""1913"", ""teamStadium"": ""Estádio Rei Pelé"", ""teamCapacity"": 19105, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2814""}",CSA,10,true,PES21
+NÁUTICO,false,"{""teamAbbr"": ""NÁU"", ""teamCity"": ""Recife"", ""teamName"": ""N Recife"", ""teamFounded"": ""1901"", ""teamStadium"": ""Estádio Eládio de Barros Carvalho"", ""teamCapacity"": 19800, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=922""}",NÁUTICO,10,true,PES21
+unión la calera,false,"{""teamAbbr"": ""ULC""}",unión la calera,8,true,"PES21,FIFA22"
+GOIÁS,false,"{""teamAbbr"": ""GOI""}",GOIÁS,10,true,"PES21,FIFA22"
+SAMPAIO CORRÊA,false,"{""teamAbbr"": ""SCO"", ""teamCity"": ""São Luís"", ""teamName"": ""SC São Luís"", ""teamFounded"": ""1923"", ""teamStadium"": ""Arena Castelão"", ""teamCapacity"": 67000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2395""}",SAMPAIO CORRÊA,10,true,PES21
+UNIVERSIDAD CATÓLICA,false,"{""teamAbbr"": ""UC""}",UNIVERSIDAD CATÓLICA,8,true,"PES21,FIFA22"
+CD PALESTINO,false,"{""teamAbbr"": ""PAL""}",CD PALESTINO,8,true,"PES21,FIFA22"
+BOTAFOGO,false,"{""teamAbbr"": ""BOT""}",BOTAFOGO,10,true,"PES21,FIFA22"
+deportivo ñublense,false,"{""teamAbbr"": ""ÑUB"", ""teamCity"": ""Chillán"", ""teamName"": ""Ñublense"", ""teamFounded"": ""1916"", ""teamStadium"": ""Nelson Oyarzún Arenas"", ""teamCapacity"": 12000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1089""}",deportivo ñublense,8,true,PES21
+unión española,false,"{""teamAbbr"": ""ESP"", ""teamCity"": ""Santiago"", ""teamName"": ""E Santiago"", ""teamFounded"": ""1897"", ""teamStadium"": ""Estadio Santa Laura Universidad SEK"", ""teamCapacity"": 22000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=978""}",UNIÓN ESPAÑOLA,8,true,PES21
+colo-colo,false,"{""teamAbbr"": ""CC"", ""teamCity"": ""Santiago"", ""teamName"": ""CC Macul"", ""teamFounded"": ""1925"", ""teamStadium"": ""Monumental David Arellano"", ""teamCapacity"": 47347, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=362""}",colo-colo,8,true,PES21
+CRB,false,"{""teamAbbr"": ""CRB"", ""teamCity"": ""Maceió"", ""teamName"": ""Maceió"", ""teamFounded"": ""1912"", ""teamStadium"": ""Estádio Rei Pelé"", ""teamCapacity"": 19105, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2015""}",CRB,10,true,PES21
+PONTE PRETA,false,"{""teamAbbr"": ""PP"", ""teamCity"": ""Campinas"", ""teamName"": ""P Campinas"", ""teamFounded"": ""1900"", ""teamStadium"": ""Moisés Lucarelli"", ""teamCapacity"": 20970, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=303""}",PONTE PRETA,10,true,PES21
+VILA NOVA,false,"{""teamAbbr"": ""VN"", ""teamCity"": ""Goiás"", ""teamName"": ""VN Goiás"", ""teamFounded"": ""1943"", ""teamStadium"": ""Serra Dourada"", ""teamCapacity"": 50049, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1457""}",VILA NOVA,10,true,PES21
+BRUSQUE FC,false,"{""teamAbbr"": ""BFC"", ""teamCity"": ""Brusque"", ""teamName"": ""Brusque"", ""teamFounded"": ""1987"", ""teamStadium"": ""Estádio Augusto Bauer"", ""teamCapacity"": 5000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=4483""}","BRUSQUE FC, BRUSQUE",10,true,PES21
+LONDRINA EC,false,"{""teamAbbr"": ""LEC"", ""teamCity"": ""Londrina"", ""teamName"": ""Londrina"", ""teamFounded"": ""1956"", ""teamStadium"": ""Estádio do Café"", ""teamCapacity"": 36000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2881""}",LONDRINA EC,10,true,PES21
+CLUBE DO REMO,false,"{""teamAbbr"": ""CRB"", ""teamCity"": ""Belém"", ""teamName"": ""Remo"", ""teamFounded"": ""1905"", ""teamStadium"": ""Baenão"", ""teamCapacity"": 17518, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2476""}","CLUBE DO REMO, REMO",10,true,PES21
+EC VITÓRIA,false,"{""teamAbbr"": ""VIT"", ""teamCity"": ""Salvador"", ""teamName"": ""V Salvador"", ""teamFounded"": ""1899"", ""teamStadium"": ""Barradão"", ""teamCapacity"": 35000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1237""}",EC VITÓRIA,10,true,PES21
+BRISBANE ROAR,false,"{""teamAbbr"": ""BRI"", ""teamCity"": ""Brisbane"", ""teamName"": ""Brisbane"", ""teamFounded"": ""2005"", ""teamStadium"": ""Dolphin Stadium"", ""teamCapacity"": 11500, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=566""}",BRISBANE ROAR,9,true,FIFA22
+MELBOURNE CITY FC,false,"{""teamAbbr"": ""MCY"", ""teamCity"": ""Melbourne"", ""teamName"": ""Melbourne C."", ""teamFounded"": ""2009"", ""teamStadium"": ""AAMI Park"", ""teamCapacity"": 30050, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1589""}",MELBOURNE CITY FC,9,true,FIFA22
+WELLINGTON PHOENIX,false,"{""teamAbbr"": ""WEL"", ""teamCity"": ""Wellington"", ""teamName"": ""Wellington"", ""teamFounded"": ""2004"", ""teamStadium"": ""Wellington Regional Stadium"", ""teamCapacity"": 34500, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=563""}",WELLINGTON PHOENIX,9,true,FIFA22
+VASCO DA GAMA,false,"{""teamAbbr"": ""VAS"", ""teamCity"": ""Rio de Janeiro"", ""teamName"": ""Vasco da Gama"", ""teamFounded"": ""1898"", ""teamStadium"": ""Estádio São Januário"", ""teamCapacity"": 25000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=307""}",VASCO DA GAMA,10,true,PES21
+BRASIL DE PELOTAS,false,"{""teamAbbr"": ""GEB"", ""teamCity"": ""Pelotas"", ""teamName"": ""B Pelotas"", ""teamFounded"": ""1911"", ""teamStadium"": ""Bento Freitas"", ""teamCapacity"": 18000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2478""}",BRASIL DE PELOTAS,10,true,PES21
+ADELAIDE UNITED,false,"{""teamAbbr"": ""ADE"", ""teamCity"": ""Adelaide"", ""teamName"": ""Adelaide"", ""teamFounded"": ""2003"", ""teamStadium"": ""Hindmarsh Stadium"", ""teamCapacity"": 17000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=558""}",ADELAIDE UNITED,9,true,FIFA22
+RACING CLUB,false,"{""teamAbbr"": ""RAC""}","RACING CLUB, RACING CLUB DE AVELLANEDA",14,true,"PES21,FIFA22"
+CA ALDOSIVI,false,"{""teamAbbr"": ""CAA""}",ALDOSIVI,14,true,"PES21,FIFA22"
+NEWCASTLE JETS,false,"{""teamAbbr"": ""NEW"", ""teamCity"": ""Newcastle"", ""teamName"": ""Newcastle"", ""teamFounded"": ""2005"", ""teamStadium"": ""McDonald Jones Stadium"", ""teamCapacity"": 33000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=562""}",NEWCASTLE JETS,9,true,FIFA22
+AL FATEH,false,"{""teamAbbr"": ""FAT""}",AL FATEH,32,true,FIFA22
+AL WEHDA,false,"{""teamAbbr"": ""WEH""}",AL WEHDA,32,true,FIFA22
+ABHA CLUB,false,"{""teamAbbr"": ""N/A""}",ABHA CLUB,32,true,FIFA22
+AL QADISYAH,false,"{""teamAbbr"": ""QAD""}",AL QADISYAH,32,true,FIFA22
+MÁLAGA CF,false,"{""teamAbbr"": ""MÁL""}","MÁLAGA CF, MÁLAGA AB",20,true,"PES21,FIFA22"
+LOS ANGELES FC,false,"{""teamAbbr"": ""LA""}",LOS ANGELES FC,29,true,FIFA22
+NEW YORK RED BULLS,false,"{""teamAbbr"": ""NYR""}",NEW YORK RED BULLS,29,true,FIFA22
+AL ITTIHAD,false,"{""teamAbbr"": ""ITT""}",AL ITTIHAD,32,true,FIFA22
+AL SHABAB,false,"{""teamAbbr"": ""SHA""}",AL SHABAB,32,true,FIFA22
+AL ETTIFAQ,false,"{""teamAbbr"": ""ETT""}",AL ETTIFAQ,32,true,FIFA22
+AL RAED,false,"{""teamAbbr"": ""RAE""}",AL RAED,32,true,FIFA22
+SEATTLE SOUNDERS,false,"{""teamAbbr"": ""SEA""}",SEATTLE SOUNDERS,29,true,FIFA22
+ORLANDO CITY SC,false,"{""teamAbbr"": ""ORL""}",ORLANDO CITY SC,29,true,FIFA22
+CENTRAL COAST MARINERS,false,"{""teamAbbr"": ""CCM"", ""teamCity"": ""Gosford"", ""teamName"": ""Gosford"", ""teamFounded"": ""2004"", ""teamStadium"": ""Central Coast Stadium"", ""teamCapacity"": 20059, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=561""}",CENTRAL COAST MARINERS,9,true,FIFA22
+MACARTHUR FC,false,"{""teamAbbr"": ""MFC"", ""teamCity"": ""Sydney"", ""teamName"": ""Macarthur"", ""teamFounded"": ""2017"", ""teamStadium"": ""Campbelltown Stadium "", ""teamCapacity"": 20000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=5432""}",MACARTHUR FC,9,true,FIFA22
+SK STURM GRAZ,false,"{""teamAbbr"": ""STU"", ""teamCity"": ""Graz"", ""teamName"": ""S Graz"", ""teamFounded"": ""1909"", ""teamStadium"": ""Liebenauer Stadium"", ""teamCapacity"": 16364, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=358""}",SK STURM GRAZ,37,true,FIFA22
+SK RAPID WIEN,false,"{""teamAbbr"": ""SCR"", ""teamCity"": ""Vienna"", ""teamName"": ""R Vienna"", ""teamFounded"": ""1898"", ""teamStadium"": ""Allianz Stadion"", ""teamCapacity"": 28000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=357""}",SK RAPID WIEN,37,true,FIFA22
+FK AUSTRIA WIEN,false,"{""teamAbbr"": ""FAK"", ""teamCity"": ""Vienna"", ""teamName"": ""A Vienna"", ""teamFounded"": ""1911"", ""teamStadium"": ""Generali Arena"", ""teamCapacity"": 17500, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=539""}",FK AUSTRIA WIEN,37,true,FIFA22
+SV RIED,false,"{""teamAbbr"": ""SVR"", ""teamCity"": ""Ried im Innkreis"", ""teamName"": ""Ried"", ""teamFounded"": ""1912"", ""teamStadium"": ""Fill Metallbau Stadion"", ""teamCapacity"": 7680, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=541""}",SV RIED,37,true,FIFA22
+FC RB SALZBURG,false,"{""teamAbbr"": ""RBS"", ""teamCity"": ""Salzburg"", ""teamName"": ""Salzburg"", ""teamFounded"": ""1933"", ""teamStadium"": ""Wals-Siezenheim"", ""teamCapacity"": 31100, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=359""}",FB RB SALZBURG,37,true,FIFA22
+LASK LINZ,false,"{""teamAbbr"": ""ASK"", ""teamCity"": ""Linz"", ""teamName"": ""L Linz"", ""teamFounded"": ""1908"", ""teamStadium"": ""Linzer Stadion"", ""teamCapacity"": 21328, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1156""}",LASK LINZ,37,true,FIFA22
+TSV HARTBERG,false,"{""teamAbbr"": ""HTB"", ""teamCity"": ""Hartberg"", ""teamName"": ""Hartberg"", ""teamFounded"": ""1946"", ""teamStadium"": ""Hartberg Stadion"", ""teamCapacity"": 4500, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=2094""}",TSV HARTBERG,37,true,FIFA22
+SCR ALTACH,false,"{""teamAbbr"": ""ALT"", ""teamCity"": ""Altach"", ""teamName"": ""Altach"", ""teamFounded"": ""1929"", ""teamStadium"": ""Stadion Schnabelholz"", ""teamCapacity"": 8900, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=805""}","SCR ALTACH, ALTACH",37,true,FIFA22
+WSG TIROL,false,"{""teamAbbr"": ""WSG"", ""teamCity"": ""Wattens"", ""teamName"": ""Tirol"", ""teamFounded"": ""1930"", ""teamStadium"": ""Tivoli-Neu"", ""teamCapacity"": 17400, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=3161""}",WSG TIROL,37,true,FIFA22
+SKN ST. PÖLTEN,false,"{""teamAbbr"": ""SKN"", ""teamCity"": ""St.Pölten"", ""teamName"": ""St. Polten"", ""teamFounded"": ""2000"", ""teamStadium"": ""NV Arena"", ""teamCapacity"": 8000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1771""}",SKN ST. PÖLTEN,37,true,FIFA22
+WESTERN UNITED FC,false,"{""teamAbbr"": ""WES"", ""teamCity"": ""Melbourne"", ""teamName"": ""W Melbourne"", ""teamFounded"": ""2017"", ""teamStadium"": ""Kardinia Park"", ""teamCapacity"": 36000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=5327""}",WESTERN UNITED FC,9,true,FIFA22
+CORITIBA,false,"{""teamAbbr"": ""CFC""}",CORITIBA,10,true,"PES21,FIFA22"
+SHANDONG TAISHAN,false,"{""teamAbbr"": ""SDT""}",SHANDONG LUNENG TAISHAN,3,true,"PES21,FIFA22"
+NACIONAL,false,"{""teamAbbr"": ""CNF""}","NACIONAL, NACIONAL DE MONTEVIDEO",11,true,FIFA22
+THE STRONGEST,false,"{""teamAbbr"": ""CTS""}",THE STRONGEST,25,true,FIFA22
+ATLÉTICO NACIONAL,false,"{""teamAbbr"": ""CAN""}",ATLÉTICO NACIONAL,18,true,"PES21,FIFA22"
+AMÉRICA DE CALI,false,"{""teamAbbr"": ""AMÉ""}",AMÉRICA DE CALI,18,true,FIFA22
+CLUB LIBERTAD,false,"{""teamAbbr"": ""LIB""}","CLUB LIBERTAD, LIBERTAD",67,true,FIFA22
+BARCELONA SC,false,"{""teamAbbr"": ""BSC""}","BARCELONA SC, BARCELONA DE GUAYAQUIL",99,true,FIFA22
+DEPORTIVO TÁCHIRA,false,"{""teamAbbr"": ""DEP""}",DEPORTIVO TÁCHIRA,57,true,FIFA22
+DEPORTIVO LA GUAIRA,false,"{""teamAbbr"": ""DLG""}",DEPORTIVO LA GUAIRA,57,true,FIFA22
+Chongqing Liangjiang Athletic,false,"{""teamAbbr"": ""CLA""}",CHONGQING DANGDAI LIFAN,3,true,"PES21,FIFA22"
+BOLÍVAR,false,"{""teamAbbr"": ""BOL""}",BOLÍVAR,25,true,FIFA22
+LIGA DE QUITO,false,"{""teamAbbr"": ""LDU""}","LIGA DE QUITO, LDU",99,true,FIFA22
+OLÍMPIA ASUNCIÓN,false,"{""teamAbbr"": ""OLI""}","OLÍMPIA, OLÍMPIA ASUNCIÓN",67,true,FIFA22
+CERRO PORTEÑO,false,"{""teamAbbr"": ""CER""}",CERRO PORTEÑO,67,true,FIFA22
+JUNIOR DE BARRANQUILLA,false,"{""teamAbbr"": ""JUN""}","JUNIOR, JUNIOR DE BARRANQUILLA",18,true,FIFA22
+cj wilstermann,false,"{""teamAbbr"": ""WIL""}",cj wilstermann,25,true,FIFA22
+nacional asunción,false,"{""teamAbbr"": ""CN""}",nacional asunción,67,true,FIFA22
+CARLOS A MANNUCCI,false,"{""teamAbbr"": ""CAM""}",CARLOS A MANNUCCI,49,true,FIFA22
+MINEROS E GUAYANA,false,"{""teamAbbr"": ""MIN""}",MINEROS DE GUAYANA,57,true,FIFA22
+MONTEVIDEO CITY TORQUE,false,"{""teamAbbr"": ""MCT""}",MONTEVIDEO CITY TORQUE,11,true,FIFA22
+METROPOLITANOS FC,false,"{""teamAbbr"": ""MFC""}",METROPOLITANOS FC,57,true,FIFA22
+ACADEMIA PUERTO CABELLO,false,"{""teamAbbr"": ""APC""}",ACADEMIA PUERTO CABELLO,57,true,FIFA22
+FBC MELGAR,false,"{""teamAbbr"": ""FBC""}",FBC MELGAR,49,true,FIFA22
+AL FAISALY,false,"{""teamAbbr"": ""ALF""}",AL FAISALY,32,true,FIFA22
+INDEPENDIENTE DEL VALLE,false,"{""teamAbbr"": ""IND""}",INDEPENDIENTE DEL VALLE,99,true,FIFA22
+GUAYAQUIL CITY,false,"{""teamAbbr"": ""GUA""}",GUAYAQUIL CITY,99,true,FIFA22
+CS MACARÁ,false,"{""teamAbbr"": ""MAC""}",CS MACARÁ,99,true,FIFA22
+ARAGUA FC,false,"{""teamAbbr"": ""ARA""}",ARAGUA FC,57,true,FIFA22
+CLUB RIVER PLATE,false,"{""teamAbbr"": ""CRP""}",CLUB RIVER PLATE,67,true,FIFA22
+cs emelec,false,"{""teamAbbr"": ""CSE""}","emelec, cs emelec",99,true,FIFA22
+CERRO LARGO,false,"{""teamAbbr"": ""CLA""}",CERRO LARGO,11,true,FIFA22
+CD GUABIRÁ,false,"{""teamAbbr"": ""CDG""}",CD GUABIRÁ,25,true,FIFA22
+GUAIREÑA FC,false,"{""teamAbbr"": ""GUA""}",GUAIREÑA FC,67,true,FIFA22
+CA FÉNIX,false,"{""teamAbbr"": ""FÉN""}",CA FÉNIX,11,true,FIFA22
+CLUB ALWAYS READY,false,"{""teamAbbr"": ""CAR""}",CLUB ALWAYS READY,25,true,FIFA22
+PEÑAROL,false,"{""teamAbbr"": ""PEÑ""}",PEÑAROL,11,true,FIFA22
+DAMAC FC,false,"{""teamAbbr"": ""DAM""}",DAMAC FC,32,true,FIFA22
+ST. MIRREN,false,"{""teamAbbr"": ""STM""}",ST. MIRREN,35,true,"PES21,FIFA22"
+new york city fc,false,"{""teamAbbr"": ""NYC""}",NEW YORK CITY FC,29,true,FIFA22
+SPORT HUANCAYO,false,"{""teamAbbr"": ""SPO""}",SPORT HUANCAYO,49,true,FIFA22
+NACIONAL POTOSÍ,false,"{""teamAbbr"": ""NAC""}",NACIONAL POTOSÍ,25,true,FIFA22
+AL BATIN,false,"{""teamAbbr"": ""BAT""}",AL BATIN,32,true,FIFA22
+KILMARNOCK,false,"{""teamAbbr"": ""KIL""}",KILMARNOCK,35,true,"PES21,FIFA22"
+SD AUCAS,false,"{""teamAbbr"": ""SDA""}",SD AUCAS,99,true,FIFA22
+BRONDY IF,false,"{""teamAbbr"": ""BRO""}","BRONDY IF, BRØNDBY",16,true,"PES21,FIFA22"
+CHARLTON ATHLETIC,false,"{""teamAbbr"": ""CHA""}","CHARLTON ATHLETIC, CHARLTON RW",4,true,"PES21,FIFA22"
+BLACKPOOL,false,"{""teamAbbr"": ""BLA""}",BLACKPOOL,4,true,FIFA22
+PETERBOROUGH UNITED,false,"{""teamAbbr"": ""PET""}",PETERBOROUGH UNITED,4,true,FIFA22
+MILTON KEYNES DONS,false,"{""teamAbbr"": ""MKD""}",MILTON KEYNES DONS,4,true,FIFA22
+HIBERNIAN,false,"{""teamAbbr"": ""HIB""}",HIBERNIAN,35,true,"PES21,FIFA22"
+ATLÉTICO PALMAFLOR,false,"{""teamAbbr"": ""CAP""}",ATLÉTICO PALMAFLOR,25,true,FIFA22
+AC HORSENS,false,"{""teamAbbr"": ""ACH""}","AC HORSENS, HORSENS",16,true,"PES21,FIFA22"
+PORTSMOUTH,false,"{""teamAbbr"": ""POR""}",PORTSMOUTH,4,true,FIFA22
+SUNDERLAND,false,"{""teamAbbr"": ""SUN""}",SUNDERLAND,4,true,FIFA22
+IPSWICH TOWN,false,"{""teamAbbr"": ""IPS""}",IPSWICH TOWN,4,true,FIFA22
+BRISTOL ROVERS,false,"{""teamAbbr"": ""BRV""}",BRISTOL ROVERS,4,true,FIFA22
+DONCASTER ROVERS,false,"{""teamAbbr"": ""DON""}",DONCASTER ROVERS,4,true,FIFA22
+LINCOLN CITY,false,"{""teamAbbr"": ""LIN""}",LINCOLN CITY,4,true,FIFA22
+FC CARTAGENA,false,"{""teamAbbr"": ""CAR""}","CARTAGENA NB, FC CARTAGENA, CARTAGENA",20,true,"PES21,FIFA22"
+real salt lake,false,"{""teamAbbr"": ""RSL""}",REAL SALT LAKE,29,true,FIFA22
+fc dallas,false,"{""teamAbbr"": ""DAL""}",fc dallas,29,true,FIFA22
+houston dynamo,false,"{""teamAbbr"": ""HOU""}",HOUSTON DYNAMO,29,true,FIFA22
+cf montreal,false,"{""teamAbbr"": ""MTL""}",cf montreal,29,true,FIFA22
+PLYMOUTH ARGYLE,false,"{""teamAbbr"": ""PLY""}",PLYMOUTH ARGYLE,4,true,FIFA22
+OXFORD UNITED,false,"{""teamAbbr"": ""OXF""}",OXFORD UNITED,4,true,FIFA22
+UD LAS PALMAS,false,"{""teamAbbr"": ""LP""}","UD LAS PALMAS, LAS PALMAS AA",20,true,"PES21,FIFA22"
+inter miami fc,false,"{""teamAbbr"": ""MIA""}",INTER MIAMI FC,29,true,FIFA22
+san jose earthquakers,false,"{""teamAbbr"": ""SJE""}",SAN JOSE EARTHQUAKERS,29,true,FIFA22
+dc united,false,"{""teamAbbr"": ""DCU""}",DC UNITED,29,true,FIFA22
+vancouver whitecaps,false,"{""teamAbbr"": ""VW""}",VANCOUVER WHITECAPS,29,true,FIFA22
+portland timbers,false,"{""teamAbbr"": ""POR""}",PORTLAND TIMBERS,29,true,FIFA22
+SHREWSBURY TOWN,false,"{""teamAbbr"": ""SHR""}",SHREWSBURY TOWN,4,true,FIFA22
+NORTHAMPTON TOWN,false,"{""teamAbbr"": ""NOR""}",NORTHAMPTON TOWN,4,true,FIFA22
+AFC WIMBLEDON,false,"{""teamAbbr"": ""WIM""}",AFC WIMBLEDON,4,true,FIFA22
+CREWE ALEXANDRA,false,"{""teamAbbr"": ""CRE""}",CREWE ALEXANDRA,4,true,FIFA22
+ROCHDALE,false,"{""teamAbbr"": ""ROC""}",ROCHDALE,4,true,FIFA22
+ACCRINGTON STANLEY,false,"{""teamAbbr"": ""ACC""}",ACCRINGTON STANLEY,4,true,FIFA22
+BOLTON WANDERERS,false,"{""teamAbbr"": ""BOL""}",BOLTON WANDERERS,4,true,FIFA22
+BRADFORD CITY,false,"{""teamAbbr"": ""BRA""}",BRADFORD CITY,4,true,FIFA22
+CARLISLE UNITED,false,"{""teamAbbr"": ""CAR""}",CARLISLE UNITED,4,true,FIFA22
+SWINDON TOWN,false,"{""teamAbbr"": ""SWI""}",SWINDON TOWN,4,true,FIFA22
+GILLINGHAM,false,"{""teamAbbr"": ""GIL""}",GILLINGHAM,4,true,FIFA22
+FLEETWOOD TOWN,false,"{""teamAbbr"": ""FWD""}",FLEETWOOD TOWN,4,true,FIFA22
+BURTON ALBION,false,"{""teamAbbr"": ""BUR""}",BURTON ALBION,4,true,FIFA22
+SCUNTHORPE UNITED,false,"{""teamAbbr"": ""SCU""}",SCUNTHORPE UNITED,4,true,FIFA22
+SD Ponferradina,false,"{""teamAbbr"": ""PON""}","PONFERRADA AB, SD Ponferradina",20,true,"PES21,FIFA22"
+CAMBRIDGE UNITED,false,"{""teamAbbr"": ""CAM""}",CAMBRIDGE UNITED,4,true,FIFA22
+GRIMSBY TOWN,false,"{""teamAbbr"": ""GRI""}",GRIMSBY TOWN,4,true,FIFA22
+OLDHAM ATHLETIC,false,"{""teamAbbr"": ""OLD""}",OLDHAM ATHLETIC,4,true,FIFA22
+TRANMERE ROVERS,false,"{""teamAbbr"": ""TRA""}",TRANMERE ROVERS,4,true,FIFA22
+LEYTON ORIENT,false,"{""teamAbbr"": ""ORI""}",LEYTON ORIENT,4,true,FIFA22
+WALSALL FC,false,"{""teamAbbr"": ""WAL""}",WALSALL FC,4,true,FIFA22
+CRAWLEY TOWN,false,"{""teamAbbr"": ""CRA""}",CRAWLEY TOWN,4,true,FIFA22
+FOREST GREEN ROVERS,false,"{""teamAbbr"": ""FGR""}",FOREST GREEN ROVERS,4,true,FIFA22
+BARROW AFC,false,"{""teamAbbr"": ""BAR""}",BARROW AFC,4,true,FIFA22
+EXETER CITY,false,"{""teamAbbr"": ""EXE""}",EXETER CITY,4,true,FIFA22
+PORT VALE FC,false,"{""teamAbbr"": ""PVA""}",PORT VALE FC,4,true,FIFA22
+MANSFIELD TOWN,false,"{""teamAbbr"": ""MAN""}",MANSFIELD TOWN,4,true,FIFA22
+SOUTHEND UNITED,false,"{""teamAbbr"": ""SOU""}",SOUTHEND UNITED,4,true,FIFA22
+SALFORD CITY,false,"{""teamAbbr"": ""SAL""}",SALFORD CITY,4,true,FIFA22
+ALBACETE BALOMPIÉ,false,"{""teamAbbr"": ""ALB""}","ALBACETE BN, ALBACETE BALOMPIÉ",20,true,"PES21,FIFA22"
+NEWPORT COUNTY,false,"{""teamAbbr"": ""NEW""}",NEWPORT COUNTY,4,true,FIFA22
+COLCHESTER UNITED,false,"{""teamAbbr"": ""COL""}",COLCHESTER UNITED,4,true,FIFA22
+HARROGATE TOWN,false,"{""teamAbbr"": ""HAR""}",HARROGATE TOWN,4,true,FIFA22
+MANCHESTER CITY,false,"{""teamAbbr"": ""MNC""}","MANCHESTER CITY, MANCHESTER b",4,true,"PES21,FIFA22"
+NEWCASTLE UNITED,false,"{""teamAbbr"": ""NEW""}","NEWCASTLE UNITED, NEWCASTLE wb",4,true,"PES21,FIFA22"
+STEVENAGE,false,"{""teamAbbr"": ""STE""}",STEVENAGE,4,true,FIFA22
+CHELTENHAM TOWN,false,"{""teamAbbr"": ""CHE""}",CHELTENHAM TOWN,4,true,FIFA22
+MORECAMBE,false,"{""teamAbbr"": ""MOR""}",MORECAMBE,4,true,FIFA22
+MANCHESTER UNITED,false,"{""teamAbbr"": ""MNU""}",MANCHESTER UNITED,4,true,"PES21,FIFA22"
+SOUTHAMPTON,false,"{""teamAbbr"": ""SOT""}","SOUTHAMPTON, SOUTHAMPTON rw",4,true,"PES21,FIFA22"
+MONTPELLIER,false,"{""teamAbbr"": ""MHS""}",MONTPELLIER,19,true,"PES21,FIFA22"
+FC Sochaux-Montbéliard,false,"{""teamAbbr"": ""FCS""}","FC Sochaux-Montbéliard, SOCHAUX",19,true,"PES21,FIFA22"
+BORUSSIA DORTMUND,false,"{""teamAbbr"": ""BVB""}",BORUSSIA DORTMUND,5,true,FIFA22
+WERDER BREMEN,false,"{""teamAbbr"": ""SVW""}",WERDER BREMEN,5,true,FIFA22
+VFB STUTTGART,false,"{""teamAbbr"": ""VfB""}",VFB STUTTGART,5,true,FIFA22
+BORUSSIA M'GLADBACH,false,"{""teamAbbr"": ""BMG""}",BORUSSIA M'GLADBACH,5,true,FIFA22
+FC UNION BERLIN,false,"{""teamAbbr"": ""UNI""}",FC UNION BERLIN,5,true,FIFA22
+HERTHA BSC,false,"{""teamAbbr"": ""BSC""}",HERTHA BSC,5,true,FIFA22
+ARMINIA BIELEFELD,false,"{""teamAbbr"": ""ARM""}",ARMINIA BIELEFELD,5,true,FIFA22
+SC FREIBURG,false,"{""teamAbbr"": ""SCF""}",SC FREIBURG,5,true,FIFA22
+FC AUGSBURG,false,"{""teamAbbr"": ""FCA""}",FC AUGSBURG,5,true,FIFA22
+FSV MAINZ 05,false,"{""teamAbbr"": ""M05""}",FSV MAINZ 05,5,true,FIFA22
+FC KÖLN,false,"{""teamAbbr"": ""KOE""}",FC KÖLN,5,true,FIFA22
+EINTRACHT FRANKFURT,false,"{""teamAbbr"": ""SGE""}",EINTRACHT FRANKFURT,5,true,FIFA22
+RB LEIPZIG,false,"{""teamAbbr"": ""RBL""}",RB LEIPZIG,5,true,FIFA22
+VFL WOLFSBURG,false,"{""teamAbbr"": ""WOB""}",VFL WOLFSBURG,5,true,FIFA22
+TSG 1899 HOFFENHEIM,false,"{""teamAbbr"": ""TSG""}",TSG 1899 HOFFENHEIM,5,true,FIFA22
+MALMO FF,false,"{""teamAbbr"": ""MFF""}",MALMO FF,65,true,FIFA22
+SV DARMSTADT 98,false,"{""teamAbbr"": ""D98""}",SV DARMSTADT 98,5,true,FIFA22
+VFL BOCHUM,false,"{""teamAbbr"": ""VfL""}",VFL BOCHUM,5,true,FIFA22
+KARLSRUHER SC,false,"{""teamAbbr"": ""KSC""}",KARLSRUHER SC,5,true,FIFA22
+HANNOVER 96,false,"{""teamAbbr"": ""H96""}",HANNOVER 96,5,true,FIFA22
+FORTUNA DUSSELDORF,false,"{""teamAbbr"": ""F95""}","FORTUNA DUSSELDORF, FORTUNA DüSSELDORF",5,true,FIFA22
+SC PADERBORN 07,false,"{""teamAbbr"": ""PAD""}",SC PADERBORN 07,5,true,FIFA22
+VFL OSNABRUCK,false,"{""teamAbbr"": ""OSN""}","VFL OSNABRUCK, VFL OSNABRÜCK",5,true,FIFA22
+WURZBURGER KICKERS,false,"{""teamAbbr"": ""FWK""}","WURZBURGER KICKERS, WÜRZBURGER KICKERS",5,true,FIFA22
+HAMBURGER SV,false,"{""teamAbbr"": ""HSV""}",HAMBURGER SV,5,true,FIFA22
+FC ST. PAULI,false,"{""teamAbbr"": ""STP""}",FC ST. PAULI,5,true,FIFA22
+EINTRACHT BRAUNSCHWEIG,false,"{""teamAbbr"": ""EBS""}",EINTRACHT BRAUNSCHWEIG,5,true,FIFA22
+FC NURNBERG,false,"{""teamAbbr"": ""FCN""}","FC NURNBERG, FC NüRNBERG",5,true,FIFA22
+HOLSTEIN KIEL,false,"{""teamAbbr"": ""HOL""}",HOLSTEIN KIEL,5,true,FIFA22
+FC HEIDENHEIM 1846,false,"{""teamAbbr"": ""FCH""}",FC HEIDENHEIM 1846,5,true,FIFA22
+ERZEBIRGE AUE,false,"{""teamAbbr"": ""ERZ""}",ERZEBIRGE AUE,5,true,FIFA22
+SV SANDHAUSEN,false,"{""teamAbbr"": ""SVS""}",SV SANDHAUSEN,5,true,FIFA22
+FC MAGDEBURG,false,"{""teamAbbr"": ""MAG""}",FC MAGDEBURG,5,true,FIFA22
+FC KAISERSLAUTERN,false,"{""teamAbbr"": ""FCK""}",FC KAISERSLAUTERN,5,true,FIFA22
+TSV 1860 MUNCHEN,false,"{""teamAbbr"": ""M60""}","TSV 1860 MUNCHEN, TSV 1860 MÜNCHEN",5,true,FIFA22
+MSV DUISBURG,false,"{""teamAbbr"": ""DUI""}",MSV DUISBURG,5,true,FIFA22
+SV WALDHOF MANNHEIM,false,"{""teamAbbr"": ""SVW""}",SV WALDHOF MANNHEIM,5,true,FIFA22
+FC SAARBRUCKEN,false,"{""teamAbbr"": ""FCS""}","FC SAARBRUCKEN, FC SAARBRÜCKEN",5,true,FIFA22
+IFK GOTEBORG,false,"{""teamAbbr"": ""IFK""}",IFK GOTEBORG,65,true,FIFA22
+SPVGG GREUTHER FURTH,false,"{""teamAbbr"": ""SGF""}","SPVGG GREUTHER FURTH, SPVGG GREUTHER FÜRTH",5,true,FIFA22
+DYNAMO DRESDEN,false,"{""teamAbbr"": ""SGD""}",DYNAMO DRESDEN,5,true,FIFA22
+HANSA ROSTOCK,false,"{""teamAbbr"": ""HAN""}",HANSA ROSTOCK,5,true,FIFA22
+KFC UERDINGEN 05,false,"{""teamAbbr"": ""U05""}",KFC UERDINGEN 05,5,true,FIFA22
+HALLESCHER FC,false,"{""teamAbbr"": ""HFC""}",HALLESCHER FC,5,true,FIFA22
+VIKTORIA KOLN,false,"{""teamAbbr"": ""VIK""}","VIKTORIA KOLN, VIKTORIA KÖLN",5,true,FIFA22
+SV MEPPEN,false,"{""teamAbbr"": ""SVM""}",SV MEPPEN,5,true,FIFA22
+FSV ZWICKAU,false,"{""teamAbbr"": ""ZWI""}",FSV ZWICKAU,5,true,FIFA22
+SPVGG UNTERHACHING,false,"{""teamAbbr"": ""UNT""}",SPVGG UNTERHACHING,5,true,FIFA22
+TURKGUCU MUNCHEN,false,"{""teamAbbr"": ""TUR""}","TURKGUCU MUNCHEN, TÜRKGÜCÜ MÜNCHEN",5,true,FIFA22
+SV WEHEN WIESBADEN,false,"{""teamAbbr"": ""SV ""}",SV WEHEN WIESBADEN,5,true,FIFA22
+SC HEERENVEEN,false,"{""teamAbbr"": ""HEE""}","HEERENVEEN, SC HEERENVEEN",6,true,"PES21,FIFA22"
+ADO DEN HAAG,false,"{""teamAbbr"": ""ADO""}",ADO DEN HAAG,6,true,"PES21,FIFA22"
+VFB LUBECK,false,"{""teamAbbr"": ""VBL""}","VFB LUBECK, VFB LÜBECK",5,true,FIFA22
+FC INGOLSTADT 04,false,"{""teamAbbr"": ""FCI""}",FC INGOLSTADT 04,5,true,FIFA22
+SC VERL,false,"{""teamAbbr"": ""SCV""}",SC VERL,5,true,FIFA22
+AJAX,false,"{""teamAbbr"": ""AJA""}",AJAX,6,true,"PES21,FIFA22"
+PEC ZWOLLE,false,"{""teamAbbr"": ""PEC""}",PEC ZWOLLE,6,true,"PES21,FIFA22"
+ssc napoli,false,"{""teamAbbr"": ""NAP""}","ssc napoli, napoli",23,true,"PES21,FIFA22"
+atalanta bc,false,"{""teamAbbr"": ""ATA""}","atalanta bc, atalanta",23,true,"PES21,FIFA22"
+AIK,false,"{""teamAbbr"": ""AIK""}",AIK,65,true,FIFA22
+HAMMARBY IF,false,"{""teamAbbr"": ""HIF""}",HAMMARBY IF,65,true,FIFA22
+IFK NORRKOPING,false,"{""teamAbbr"": ""NOR""}",IFK NORRKOPING,65,true,FIFA22
+OSTERSUNDS FK,false,"{""teamAbbr"": ""ÖFK""}",OSTERSUNDS FK,65,true,FIFA22
+OREBRO SK,false,"{""teamAbbr"": ""OSK""}",OREBRO SK,65,true,FIFA22
+KALMAR FF,false,"{""teamAbbr"": ""KFF""}",KALMAR FF,65,true,FIFA22
+BK HACKEN,false,"{""teamAbbr"": ""BKH""}",BK HACKEN,65,true,FIFA22
+IF ELFSBORG,false,"{""teamAbbr"": ""IFE""}",IF ELFSBORG,65,true,FIFA22
+MJALLBY IF,false,"{""teamAbbr"": ""MJA""}",MJALLBY IF,65,true,FIFA22
+REGGIANA 1919,false,"{""teamAbbr"": ""REG""}","REGGIANA 1919, REGGIANA",23,true,PES21
+DJURGARDENS IF,false,"{""teamAbbr"": ""DIF""}",DJURGARDENS IF,65,true,FIFA22
+HELSINGBORGS IF,false,"{""teamAbbr"": ""HIF""}",HELSINGBORGS IF,65,true,FIFA22
+IK SIRIUS,false,"{""teamAbbr"": ""IKS""}",IK SIRIUS,65,true,FIFA22
+FALKENBERGS FF,false,"{""teamAbbr"": ""FFF""}",FALKENBERGS FF,65,true,FIFA22
+VARBERGS BOIS,false,"{""teamAbbr"": ""VAR""}",VARBERGS BOIS,65,true,FIFA22
+COLORADO RAPIDS,false,"{""teamAbbr"": ""COL""}",COLORADO RAPIDS,29,true,FIFA22
+PHILADELPHIA UNION,false,"{""teamAbbr"": ""PHI""}",PHILADELPHIA UNION,29,true,FIFA22
+CHICAGO FIRE FC,false,"{""teamAbbr"": ""CHI""}",CHICAGO FIRE FC,29,true,FIFA22
+KASHIMA ANTLERS,false,"{""teamAbbr"": ""KAS""}",KASHIMA ANTLERS,7,true,FIFA22
+KAWASAKI FRONTALE,false,"{""teamAbbr"": ""KAW""}",KAWASAKI FRONTALE,7,true,FIFA22
+FC BASEL,false,"{""teamAbbr"": ""FCB""}","FC BASEL, BASEL",42,true,"PES21,FIFA22"
+LAUSANNE-SPORT,false,"{""teamAbbr"": ""LAU""}","LAUSANNE-SPORT, LAUSANNE",42,true,"PES21,FIFA22"
+new england revolution,false,"{""teamAbbr"": ""NER""}",NEW ENGLAND REVOLUTION,29,true,FIFA22
+SPORTING KC,false,"{""teamAbbr"": ""SKC""}",SPORTING KC,29,true,FIFA22
+NASHVILLE SC,false,"{""teamAbbr"": ""NSC""}",NASHVILLE SC,29,true,FIFA22
+FC CINCINNATI,false,"{""teamAbbr"": ""FCC""}",FC CINCINNATI,29,true,FIFA22
+COLUMBUS CREW,false,"{""teamAbbr"": ""CLB""}",COLUMBUS CREW,29,true,FIFA22
+MINNESOTA UNITED,false,"{""teamAbbr"": ""MNU""}",MINNESOTA UNITED,29,true,FIFA22
+12 DE OCTUBRE,false,"{""teamAbbr"": ""12O"", ""teamCity"": ""Itauguá"", ""teamName"": ""12 de Oct"", ""teamFounded"": ""1914"", ""teamStadium"": ""Juan Canuto Pettengill"", ""teamCapacity"": 5000, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=1125""}",12 DE OCTUBRE,67,true,FIFA22
+DAEGU FC,false,"{""teamAbbr"": ""DAE""}",DAEGU FC,27,true,FIFA22
+PATRIOTAS BOYACÁ,false,"{""teamAbbr"": ""PAT""}",PATRIOTAS BOYACÁ,18,true,PES21
+AALBORG BK,false,"{""teamAbbr"": ""AaB"", ""teamCity"": ""Aalborg"", ""teamName"": ""Aalborg BK"", ""teamFounded"": ""1885"", ""teamStadium"": ""Aalborg Stadium"", ""teamCapacity"": 13800, ""wikipediaURL"": ""https://en.soccerwiki.org/squad.php?clubid=531""}","AALBORG BK, AAB",16,true,"PES21,FIFA22"
+BUSAN IPARK,false,"{""teamAbbr"": ""BUS""}",BUSAN IPARK,27,true,FIFA22
+SEONGNAM FC,false,"{""teamAbbr"": ""SEO""}",SEONGNAM FC,27,true,FIFA22
+GANGWON FC,false,"{""teamAbbr"": ""GAN""}",GANGWON FC,27,true,FIFA22
+INCHEON UNITED,false,"{""teamAbbr"": ""INC""}",INCHEON UNITED,27,true,FIFA22
+GWANGJU FC,false,"{""teamAbbr"": ""GWA""}",GWANGJU FC,27,true,FIFA22
+CLUB AMÉRICA,false,"{""teamAbbr"": ""CA""}",CLUB AMÉRICA,118,true,FIFA22
+CRUZ AZUL,false,"{""teamAbbr"": ""CAZ""}",CRUZ AZUL,118,true,FIFA22
+UNAM PUMAS,false,"{""teamAbbr"": ""PUM""}",UNAM PUMAS,118,true,FIFA22
+ATLAS,false,"{""teamAbbr"": ""ATL""}",ATLAS,118,true,FIFA22
+CLUB TIJUANA,false,"{""teamAbbr"": ""TIJ""}",CLUB TIJUANA,118,true,FIFA22
+MJONDALEN IF,false,"{""teamAbbr"": ""MIF""}",MJONDALEN IF,97,true,FIFA22
+GIMCHEON SANGMU,false,"{""teamAbbr"": ""GIM""}",GIMCHEON SANGMU,27,true,FIFA22
+MONTERREY,false,"{""teamAbbr"": ""MON""}",MONTERREY,118,true,FIFA22
+CLUB LEÓN,false,"{""teamAbbr"": ""LEO""}",CLUB LEÓN,118,true,FIFA22
+ALIANZA LIMA,false,"{""teamAbbr"": ""ALI""}",ALIANZA LIMA,49,true,PES21
+CLUB PUEBLA,false,"{""teamAbbr"": ""PUE""}",CLUB PUEBLA,118,true,FIFA22
+ATLÉTICO SAN LUÍS,false,"{""teamAbbr"": ""ASL""}",ATLÉTICO SAN LUÍS,118,true,FIFA22
+PACHUCA,false,"{""teamAbbr"": ""PAC""}",PACHUCA,118,true,FIFA22
+NECAXA,false,"{""teamAbbr"": ""NEC""}",NECAXA,118,true,FIFA22
+FC JUÁREZ,false,"{""teamAbbr"": ""JUA""}",FC JUÁREZ,118,true,FIFA22
+MAZATLÁN FC,false,"{""teamAbbr"": ""MAT""}",MAZATLÁN FC,118,true,FIFA22
+SK BRANN,false,"{""teamAbbr"": ""SKB""}",SK BRANN,97,true,FIFA22
+VALERENGA IF,false,"{""teamAbbr"": ""VIF""}",VALERENGA IF,97,true,FIFA22
+SHABAB AL AHLI DUBAI,false,"{""teamAbbr"": ""SAA""}",SHABAB AL AHLI DUBAI,46,true,PES21
+FC FAMALICÃO,false,"{""teamAbbr"": ""FCF""}","FC FAMALICÃO, FAMALICÃO",26,true,"PES21,FIFA22"
+DEPORTIVO TOLUCA,false,"{""teamAbbr"": ""TOL""}",DEPORTIVO TOLUCA,118,true,FIFA22
+SANTOS LAGUNA,false,"{""teamAbbr"": ""SAN""}",SANTOS LAGUNA,118,true,FIFA22
+CLUB QUERÉTARO,false,"{""teamAbbr"": ""QUE""}",CLUB QUERÉTARO,118,true,FIFA22
+ROSENBORG BK,false,"{""teamAbbr"": ""RBK""}",ROSENBORG BK,97,true,FIFA22
+MOLDE FK,false,"{""teamAbbr"": ""MFK""}",MOLDE FK,97,true,FIFA22
+VIKING FK,false,"{""teamAbbr"": ""VIK""}",VIKING FK,97,true,FIFA22
+IK START,false,"{""teamAbbr"": ""IKS""}",IK START,97,true,FIFA22
+BODO/GLIMT,false,"{""teamAbbr"": ""B/G""}",BODO/GLIMT,97,true,FIFA22
+AALESUNDS FK,false,"{""teamAbbr"": ""AFK""}",AALESUNDS FK,97,true,FIFA22
+FK HAUGESUND,false,"{""teamAbbr"": ""FKH""}",FK HAUGESUND,97,true,FIFA22
+STABAEK IF,false,"{""teamAbbr"": ""STA""}",STABAEK IF,97,true,FIFA22
+SANDEFJORD FOTBALL,false,"{""teamAbbr"": ""SAN""}",SANDEFJORD FOTBALL,97,true,FIFA22
+LEGIA WARSZAWA,false,"{""teamAbbr"": ""LEG""}",LEGIA WARSZAWA,53,true,FIFA22
+MILLONARIOS,false,"{""teamAbbr"": ""MIL""}",MILLONARIOS,18,true,PES21
+ODDS BK,false,"{""teamAbbr"": ""ODD""}",ODDS BK,97,true,FIFA22
+KRISTIANSUND BK,false,"{""teamAbbr"": ""KBK""}",KRISTIANSUND BK,97,true,FIFA22
+STROMSGODSET IF,false,"{""teamAbbr"": ""SIF""}",STROMSGODSET IF,97,true,FIFA22
+SARPSBORG 08,false,"{""teamAbbr"": ""SFF""}",SARPSBORG 08,97,true,FIFA22
+LECH POZNAN,false,"{""teamAbbr"": ""LPO""}",LECH POZNAN,53,true,FIFA22
+WISLA KRAKOW,false,"{""teamAbbr"": ""WIS""}",WISLA KRAKOW,53,true,FIFA22
+POGON SZCZECIN,false,"{""teamAbbr"": ""PSZ""}",POGON SZCZECIN,53,true,FIFA22
+JAGIELLONIA BIALYSTOK,false,"{""teamAbbr"": ""JAG""}",JAGIELLONIA BIALYSTOK,53,true,FIFA22
+PIAST GLIWICE,false,"{""teamAbbr"": ""PGL""}",PIAST GLIWICE,53,true,FIFA22
+SLASK WROCLAW,false,"{""teamAbbr"": ""SLA""}",SLASK WROCLAW,53,true,FIFA22
+LECHIA GDANSK,false,"{""teamAbbr"": ""LGD""}",LECHIA GDANSK,53,true,FIFA22
+WARTA POZNAN,false,"{""teamAbbr"": ""WAR""}",WARTA POZNAN,53,true,FIFA22
+WISLA PLOCK,false,"{""teamAbbr"": ""WPL""}",WISLA PLOCK,53,true,FIFA22
+Podbeskidzie Bielsko-Biała,false,"{""teamAbbr"": ""POD""}",Podbeskidzie Bielsko-Biała,53,true,FIFA22
+PAÇOS DE FERREIRA,false,"{""teamAbbr"": ""PFE""}",PAÇOS DE FERREIRA,26,true,"PES21,FIFA22"
+KS CRACOVIA,false,"{""teamAbbr"": ""CRA""}",KS CRACOVIA,53,true,FIFA22
+ZAGLEBIE LUBIN,false,"{""teamAbbr"": ""ZAG""}",ZAGLEBIE LUBIN,53,true,FIFA22
+RAKOW CZESTOCHOWA,false,"{""teamAbbr"": ""RAK""}",RAKOW CZESTOCHOWA,53,true,FIFA22
+STAL MIELEC,false,"{""teamAbbr"": ""STM""}",STAL MIELEC,53,true,FIFA22
+SL BENFICA,false,"{""teamAbbr"": ""SLB""}","SL BENFICA, BENFICA",26,true,"PES21,FIFA22"
+MOREIRENSE FC,false,"{""teamAbbr"": ""MOR""}","MOREIRENSE FC, MOREIRENSE",26,true,"PES21,FIFA22"
+DEPORTIVO PEREIRA,false,"{""teamAbbr"": ""PER""}",DEPORTIVO PEREIRA,18,true,PES21

@@ -324,7 +324,7 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.dig(:api, :jwt)
+    jwt.secret = ENV["API_JWT"]
     jwt.dispatch_requests = [
       ["POST", %r{^/api/login$}],
       ["POST", %r{^/api/login.json$}]
@@ -343,6 +343,6 @@ Devise.setup do |config|
   OmniAuth.config.allowed_request_methods = %i[post]
   OmniAuth.config.full_host = Rails.env.production? ? "https://app.masterleagueonline.com.br" : "http://127.0.0.1:3000"
 
-  config.omniauth :google_oauth2, Rails.application.credentials.dig(:omniauth, :google_client_id), Rails.application.credentials.dig(:omniauth, :google_secret), skip_jwt: true
-  config.omniauth :github, Rails.application.credentials.dig(:omniauth, :github_client_id), Rails.application.credentials.dig(:omniauth, :github_secret)
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_SECRET'], skip_jwt: true
+  config.omniauth :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_SECRET']
 end
