@@ -109,7 +109,7 @@ gem "nokogiri", "~> 1.13"
 
 gem "hashid-rails", "~> 1.4"
 
-gem "httparty", "~> 0.20.0"
+gem "httparty", "~> 0.21"
 
 gem "cancancan", "~> 3.4"
 
