@@ -25,7 +25,7 @@ module GlobalVars
       session[:leagues] = League.where(user_id: current_user.id).pluck("leagues.id")
       session[:season] = Season.getActive(current_user.id)
     end
-    @decoded_vapid_publickey = Base64.urlsafe_decode64(AppConfig.vapid_pubkey).bytes
+    @decoded_vapid_publickey = Base64.urlsafe_decode64(ENV['VAPID_PUBLIC_KEY']).bytes
   end
 
   def general_error(code, clear = nil)

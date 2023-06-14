@@ -1,7 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'csv'
+
+puts "Starting to seed..."
+puts "--------------------"
+
+puts "Initial Tasks"
+DbSeederJob.perform_now
+puts "--------------------"
+
+puts "Seeding Countries"
+countries_file = File.read(Rails.root.join('lib', 'seeds', 'nationalities.csv'))
+countries = CSV.parse(countries_file, headers: true)
+countries.each do |row|
+    t = DefCountry.new
+    t.name = row["name"]
+    t.alias = row["alias"]
+    t.save
+    puts "Country #{t.name} added"
+end
+puts "--------------------"
+
+puts "Seeding Teams"
+teams_file = File.read(Rails.root.join('lib', 'seeds', 'teams.csv'))
+teams = CSV.parse(teams_file, headers: true)
+teams.each do |row|
+    t = DefTeam.new
+    t.name = row["name"]
+    t.nation = row["nation"]
+    t.details = JSON.parse(row["details"])
+    t.alias = row["alias"]
+    t.def_country_id = row["def_country_id"]
+    t.platforms = row["platforms"]
+    t.active = row["active"]
+    t.save
+    puts "Team #{t.name} added"
+end
+puts "Creating Team Slugs"
+DefTeam.find_each(&:save)
+puts "--------------------"
+
+puts "seeing done!"
