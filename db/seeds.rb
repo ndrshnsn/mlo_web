@@ -27,7 +27,7 @@ teams.each do |row|
     t.name = row["name"].upcase
     t.nation = row["nation"]
     t.details = JSON.parse(row["details"])
-    t.alias = row["alias"]
+    t.alias = row["alias"].upcase
     t.def_country_id = row["def_country_id"]
     t.platforms = row["platforms"].split(",")
     t.active = row["active"]
@@ -38,4 +38,4 @@ puts "Creating Team Slugs"
 DefTeam.find_each(&:save)
 puts "--------------------"
 
-puts "seeing done!"
+puts "seeding done!"

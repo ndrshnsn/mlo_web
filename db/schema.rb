@@ -184,6 +184,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_115336) do
     t.index ["def_player_position_id"], name: "index_def_players_on_def_player_position_id"
     t.index ["details"], name: "index_def_players_on_details", using: :gin
     t.index ["slug"], name: "index_def_players_on_slug", unique: true
+    t.index ["platform"], name: "index_def_players_on_platform"
   end
 
   create_table "def_teams", force: :cascade do |t|
@@ -193,7 +194,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_115336) do
     t.bigint "def_country_id", null: false
     t.boolean "active", default: true
     t.jsonb "details", default: {}, null: false
-    t.string "platforms"
+    t.text "platforms", default: [], array: true, null: true
     t.text "alias"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
