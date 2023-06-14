@@ -18,7 +18,7 @@ class DbSeederJob < ApplicationJob
         AppConfig.mail_username = ENV['GMAIL_USERNAME']
         AppConfig.mail_password = ENV['GMAIL_PASSWORD']
         AppConfig.generic_player = 999999
-        AppConfig.platforms = '["PES21", "EFOOTBALL23", "FIFA22", "FIFA23"]'
+        AppConfig.platforms = '["PES21", "EFOOT23", "FIFA23"]'
         #AppConfig.user_platforms = ""
         AppConfig.fake_account_password = "asdasdasdasdas" 
         AppConfig.championship_minimum_players = 4
@@ -67,7 +67,8 @@ class DbSeederJob < ApplicationJob
         user = User.create!(
             email: ADMIN_EMAIL,
             password: ADMIN_PASSWORD,
-            password_confirmation: ADMIN_PASSWORD
+            password_confirmation: ADMIN_PASSWORD,
+            role: 2
         )
         user.skip_confirmation!
         user.save!
