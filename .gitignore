@@ -9,6 +9,7 @@
 
 # Ignore lock file
 /*.lock
+/*.~lock
 
 # Ignore all logfiles and tempfiles.
 /log/*
