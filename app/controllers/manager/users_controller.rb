@@ -60,7 +60,7 @@ class Manager::UsersController < ApplicationController
       if destiny.preferences["fake"] == true
         if removeFakeAddUser(destiny, origin, @league)
           ## SEND EMAIL NOTIFICATION TO USER
-          updateTabNumbers
+          update_tab_numbers
           flash.now["success"] = t(".user_activated")
           format.html { redirect_to manager_users_path, notice: t(".user_activated") }
           format.turbo_stream
@@ -70,7 +70,7 @@ class Manager::UsersController < ApplicationController
           format.html { render :index, status: :unprocessable_entity }
         end
       elsif move_users_between(origin, destiny, @league)
-        updateTabNumbers
+        update_tab_numbers
         flash.now["success"] = t(".user_activated")
         format.html { redirect_to manager_users_path, notice: t(".user_activated") }
         format.turbo_stream

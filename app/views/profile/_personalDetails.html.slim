@@ -32,7 +32,7 @@
         .form-group
           = label_tag("#{t '.platform'}", nil, class: "control-label")
           #popover_user_platform
-          = select_tag "user[platform]", options_for_select(eval(AppConfig.user_platforms), current_user.platform), {include_blank: true, class: "form-control select2", id: 'user_platform',"data-controller": "select", "data-select-icon-value": false, required: true }
+          = select_tag "user[platform]", options_for_select(get_platforms(level: 0), current_user.platform), {include_blank: true, class: "form-control select2", id: 'user_platform',"data-controller": "select", "data-select-icon-value": false, required: true }
 
       .col-sm-12.col-md-6.mb-3
         .form-group

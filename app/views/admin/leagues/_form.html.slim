@@ -13,7 +13,7 @@
       .form-group.mb-3
         = f.label :alias, t('.platform'), class: "form-label"
         #popover_league_platform
-        = select_tag "league[platform]", options_for_select(eval(AppConfig.platforms), league.platform), class: "form-control select2 dt-select", disabled: @league.id?, include_blank: true, "data-controller": "select", "data-select-icon-value": false, required: true
+        = select_tag "league[platform]", options_for_select(get_platforms(level: 0), league.platform), class: "form-control select2 dt-select", disabled: @league.id?, include_blank: true, "data-controller": "select", "data-select-icon-value": false, required: true
     .col-sm-12.col-md-6
       .form-group.mb-3
         = f.label :alias, t('.manager'), class: "form-label"
@@ -28,7 +28,7 @@
       .form-group.mb-3
         = label_tag 'slots', t('.slots'), class: "control-label"
         #popover_league_slots
-        = select_tag "league[slots]", options_for_select(eval(AppConfig.league_slots), league.slots), class: "form-control select2 dt-select", disabled: @league.id?, include_blank: true, "data-controller": "select", "data-select-icon-value": false, required: true
+        = select_tag "league[slots]", options_for_select(AppConfig.league_slots, league.slots), class: "form-control select2 dt-select", disabled: @league.id?, include_blank: true, "data-controller": "select", "data-select-icon-value": false, required: true
     .col-lg-12
       .text-end
         = link_to t('.back'), admin_leagues_path, class: "btn btn-outline-secondary me-1", data: { "turbo-action": "advance"}

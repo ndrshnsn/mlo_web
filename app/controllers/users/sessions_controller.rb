@@ -12,15 +12,16 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     self.resource = warden.authenticate!(auth_options)
-    if resource.active
+    if resource.active == true
       set_flash_message!(:success, :signed_in)
       sign_in(resource_name, resource)
       yield resource if block_given?
       respond_with resource, location: after_sign_in_path_for(resource)
     else
-      set_flash_message!(:notice, :signed_out)
       sign_out(resource)
-      respond_with resource, location: after_sign_out_path_for(resource)
+      respond_with(resource) do |format|
+        format.html { redirect_to new_user_session_url, notice: t("users.sessions.new.locked_account") }
+      end
     end
   end
 

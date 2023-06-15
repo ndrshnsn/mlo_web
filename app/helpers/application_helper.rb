@@ -170,6 +170,13 @@ module ApplicationHelper
     tvalues[data]
   end
 
+  def get_platforms(level: nil, platform: nil)
+    global_platforms = AppConfig.platforms
+    return global_platforms.collect {|i| i[level]} if level != nil
+    return global_platforms.find {|i| i=platform}[1] if platform != nil
+    global_platforms
+  end
+
   ##
   # Translate Overall Ratings to Show it in accordingly colour.
   def translate_pscore(data)

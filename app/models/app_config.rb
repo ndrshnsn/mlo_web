@@ -9,8 +9,7 @@ class AppConfig < RailsSettings::Base
 
   ## Generic Player
   field :generic_player, type: :integer
-  field :platforms, type: :string
-  #field :user_platforms, type: :string
+  field :platforms, type: :array
   field :fake_account_password, type: :string
 
   ## Championship Defaults
@@ -35,12 +34,12 @@ class AppConfig < RailsSettings::Base
   field :game_wo_loser, type: :integer
 
   ## League Settings
-  #field :league_slots, type: :string
+  field :league_slots, type: :array
 
   ## Season Settings
-  field :season_times, type: :string
-  field :season_min_players, type: :string
-  field :season_max_players, type: :string
+  field :season_times, type: :array
+  field :season_min_players, type: :array
+  field :season_max_players, type: :array
   field :season_max_steals_same_player, type: :integer
   field :season_max_steals_per_user, type: :integer
   field :season_max_stealed_players, type: :integer
@@ -55,7 +54,7 @@ class AppConfig < RailsSettings::Base
   field :season_player_high_over, type: :integer
   field :season_player_low_over, type: :integer
   field :season_player_raffle_remaining, type: :array
-  field :season_player_raffle_first_order, type: :string
+  field :season_player_raffle_first_order, type: :array
   field :season_club_default_earning, type: :integer
   field :season_club_max_total_wage, type: :integer
 
