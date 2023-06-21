@@ -26,6 +26,7 @@ class User < ApplicationRecord
     sendpoint: [:string, default: ""]
 
   ## Associations
+  has_many :user_acls, dependent: :destroy
   has_many :identities, dependent: :destroy
   has_many :user_leagues, dependent: :destroy
   has_many :leagues, through: :user_leagues

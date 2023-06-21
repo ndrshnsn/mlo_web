@@ -1,0 +1,24 @@
+  li.menu-title.pt-3
+      span data-key="t-menu" MANAGER
+
+
+  li.nav-item
+    = link_to manager_seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
+      i.ri-stack-line
+      span data-key="t-seasons" = t('.seasons')
+  li.nav-item
+    = link_to manager_championships_path, class: "menu-link nav-link #{'active' if controller_name == 'championships'}", id: "sidebar_championships" , data: { controller: "sidebar", "turbo-frame": "main_frame","turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_championships", "sidebar-child-value": "sidebar_championships" } do
+      i.ri-trophy-line
+      span data-key="t-seasons" = t('.championships')
+  li.nav-item
+    = link_to manager_users_path, class: "menu-link nav-link #{'active' if controller_name == 'users'}", id: "sidebar_users" , data: { controller: "sidebar", "turbo-frame": "main_frame","turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_users", "sidebar-child-value": "sidebar_users" } do
+      i.ri-group-line
+      span data-key="t-users" = t('.users')
+  li.nav-item
+    = link_to manager_awards_path, class: "menu-link nav-link #{'active' if controller_name == 'awards'}", id: "sidebar_awards" , data: { controller: "sidebar", "turbo-frame": "main_frame","turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_awards", "sidebar-child-value": "sidebar_awards" } do
+      i.ri-award-line
+      span data-key="t-awards" = t('.awards')
+  li.nav-item
+    = link_to manager_settings_path, class: "menu-link nav-link #{'active' if controller_name == 'settings'}", id: "sidebar_settings" , data: { controller: "sidebar", "turbo-frame": "main_frame","turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_settings", "sidebar-child-value": "sidebar_settings" } do
+      i.ri-settings-2-line
+      span data-key="t-settings" = t('.settings')

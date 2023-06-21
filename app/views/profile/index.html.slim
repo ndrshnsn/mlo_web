@@ -5,8 +5,8 @@
 		.row
 			.col-xxl-9
 				.card.mt-xxl-n5
-					.card-header
-						ul.nav.nav-tabs-custom.rounded.card-header-tabs.border-bottom-0 role="tablist" id="profileTab"
+					.card-body
+						ul.nav.nav-tabs.mb-3 role="tablist" id="profileTab"
 							li.nav-item
 								= link_to t('.personal_details'), profile_path, class: "nav-link active", id: "personalDetails", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
 							li.nav-item
@@ -15,7 +15,6 @@
 								= link_to t('.system'), profile_system_path, class: "nav-link", id: "system", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
 							li.nav-item
 								= link_to t('.social'), profile_social_path, class: "nav-link", id: "social", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
-					.card-body.p-4
-						.tab-content
+						.tab-content.p-2
 							= turbo_frame_tag "tab_content" do
 								= render "personalDetails"

@@ -5,95 +5,91 @@
     .row
       .col-xxl-9
         .card.mt-xxl-n5
-          .card-header.align-items-center.d-flex
-            .flex-grow-1.overflow-hidden
-              p.text-muted.text-truncates.mb-0 = t('.user_details')
-            .flex-shrink-0.ms-2
-              ul.nav.justify-content-end.nav-tabs-custom.rounded.card-header-tabs.border-bottom-0 role="tablist" id="profileTab"
-                li.nav-item
-                  = link_to t('.personal_details'), profile_path, class: "nav-link active", id: "personalDetails", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
-                li.nav-item
-                  = link_to t('.password'), profile_password_path, class: "nav-link", id: "password", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
-          .card-body.p-4
-            .tab-content
+          .card-body
+            ul.nav.nav-tabs.mb-3 role="tablist" id="userTab"
+              li.nav-item
+                = link_to t('.details'), manager_user_show_path(@user.friendly_id), class: "nav-link active", id: "details", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+              li.nav-item
+							  = link_to t('.permissions'), manager_user_acl_path(@user.friendly_id), class: "nav-link", id: "acl", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+            .tab-content.p-4
               = turbo_frame_tag "tab_content" do
-                = render "user_details"
+                = render "details"
 
-/ .row
-/ 	.col-xxl-9
-/ 		.card.mt-xxl-n5
-/ 			.card-header
-/ 				h5.card-title = t('.user_details')
-/ 			.card-body.p-4
-/ 				.row.mb-3
-/ 					.col-sm-12.col-md-6.mb-3
-/ 						.text-center
-/ 							.profile-user.position-relative.d-inline-block.mx-auto.mb-4
-/ 								img id="user-profile-image" src='#{avatarURL(@user)}' class="rounded-circle avatar-xl img-thumbnail user-profile-image"
-/ 							h5.fs-16.mb-1 = @user.full_name
-/ 							p.text-muted.mb-0 ##{@user.nickname}
-/ 					.col-sm-12.col-md-6.mb-3
-/ 						.form-group.mb-3
-/ 							= label_tag("#{t '.fullname'}", nil, class: "control-label")
-/ 							= text_field_tag('full_name', @user.full_name, class: "form-control", readonly: true)
-/ 						.form-group.mb-3
-/ 							= label_tag("#{t '.email'}", nil, class: "control-label")
-/ 							= text_field_tag('email', @user.email, class: "form-control", readonly: true)
+		/ .row
+		/ 	.col-xxl-9
+		/ 		.card.mt-xxl-n5
+		/ 			.card-header
+		/ 				h5.card-title = t('.user_details')
+		/ 			.card-body.p-4
+		/ 				.row.mb-3
+		/ 					.col-sm-12.col-md-6.mb-3
+		/ 						.text-center
+		/ 							.profile-user.position-relative.d-inline-block.mx-auto.mb-4
+		/ 								img id="user-profile-image" src='#{avatarURL(@user)}' class="rounded-circle avatar-xl img-thumbnail user-profile-image"
+		/ 							h5.fs-16.mb-1 = @user.full_name
+		/ 							p.text-muted.mb-0 ##{@user.nickname}
+		/ 					.col-sm-12.col-md-6.mb-3
+		/ 						.form-group.mb-3
+		/ 							= label_tag("#{t '.fullname'}", nil, class: "control-label")
+		/ 							= text_field_tag('full_name', @user.full_name, class: "form-control", readonly: true)
+		/ 						.form-group.mb-3
+		/ 							= label_tag("#{t '.email'}", nil, class: "control-label")
+		/ 							= text_field_tag('email', @user.email, class: "form-control", readonly: true)
 
-/ 					.col-sm-12.col-md-6.mb-3
-/ 						.form-group
-/ 							= label_tag("#{t '.nickname'}", nil, class: "control-label")
-/ 							= text_field_tag(:nickname, @user.nickname, class: "form-control", readonly: true)
+		/ 					.col-sm-12.col-md-6.mb-3
+		/ 						.form-group
+		/ 							= label_tag("#{t '.nickname'}", nil, class: "control-label")
+		/ 							= text_field_tag(:nickname, @user.nickname, class: "form-control", readonly: true)
 
-/ 					.col-sm-12.col-md-6.mb-3
-/ 						.form-group
-/ 							= label_tag("#{t '.platform'}", nil, class: "control-label")
-/ 							= text_field_tag(:platform, @user.platform, class: "form-control", readonly: true)
+		/ 					.col-sm-12.col-md-6.mb-3
+		/ 						.form-group
+		/ 							= label_tag("#{t '.platform'}", nil, class: "control-label")
+		/ 							= text_field_tag(:platform, @user.platform, class: "form-control", readonly: true)
 
-/ 					.col-sm-12.col-md-6.mb-3
-/ 						.form-group
-/ 							- userCountry = @user.country.present? ? DefCountry.find(@user.country).name : ""
-/ 							= label_tag("#{t '.country'}", nil, class: "control-label")
-/ 							= text_field_tag(:country, userCountry, class: "form-control", readonly: true)
+		/ 					.col-sm-12.col-md-6.mb-3
+		/ 						.form-group
+		/ 							- userCountry = @user.country.present? ? DefCountry.find(@user.country).name : ""
+		/ 							= label_tag("#{t '.country'}", nil, class: "control-label")
+		/ 							= text_field_tag(:country, userCountry, class: "form-control", readonly: true)
 
-/ 					.col-sm-12.col-md-6.mb-3
-/ 						.form-group
-/ 							= label_tag("#{t '.city'}", nil, class: "control-label")
-/ 							= text_field_tag("user[city]", @user.preferences['city'], class: "form-control", readonly: true, id: "user_city", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase")
-              
-/ 					.col-sm-12.col-md-6.mb-3
-/ 						.form-group
-/ 							= label_tag("#{t '.phone'}", nil, class: "control-label")
-/ 							= text_field_tag(:phone, @user.phone, class: "form-control", readonly: true, "data-parsley-minlength": "11", "data-controller": "cleave", "data-cleave-ctype-value": "phone")
+		/ 					.col-sm-12.col-md-6.mb-3
+		/ 						.form-group
+		/ 							= label_tag("#{t '.city'}", nil, class: "control-label")
+		/ 							= text_field_tag("user[city]", @user.preferences['city'], class: "form-control", readonly: true, id: "user_city", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase")
+                  
+		/ 					.col-sm-12.col-md-6.mb-3
+		/ 						.form-group
+		/ 							= label_tag("#{t '.phone'}", nil, class: "control-label")
+		/ 							= text_field_tag(:phone, @user.phone, class: "form-control", readonly: true, "data-parsley-minlength": "11", "data-controller": "cleave", "data-cleave-ctype-value": "phone")
 
-/ 					.col-sm-12.col-md-6.mb-3
-/ 						.form-group
-/ 							= label_tag("#{t '.birth'}", nil, class: "control-label")
-/ 							= text_field_tag(:birth, I18n.l(@user.birth), class: "form-control", readonly: true)
+		/ 					.col-sm-12.col-md-6.mb-3
+		/ 						.form-group
+		/ 							= label_tag("#{t '.birth'}", nil, class: "control-label")
+		/ 							= text_field_tag(:birth, I18n.l(@user.birth), class: "form-control", readonly: true)
 
-/ 				.row.mb-3.pb-4.border-bottom.border-bottom-dashed
-/ 					.col-lg-4.col-md-6.form-group.mb-3
-/ 						label[for="twitter-input"] = t('twitter')
-/ 						.input-group.input-group-merge
-/ 							.input-group-prepend
-/ 								span#basic-addon3.input-group-text
-/ 									i.ri-twitter-line.fm-2
-/ 							= text_field_tag(:twitter, @user.preferences["twitter"], class: "form-control")
-/ 					.col-lg-4.col-md-6.form-group.mb-3
-/ 						label[for="facebook-input"] = t('facebook')
-/ 						.input-group.input-group-merge
-/ 							.input-group-prepend
-/ 								span#basic-addon4.input-group-text
-/ 									i.ri-facebook-line.fm-2
-/ 							= text_field_tag(:facebook, @user.preferences["facebook"], class: "form-control")
-/ 					.col-lg-4.col-md-6.form-group.mb-3
-/ 						label[for="instagram-input"] = t('instagram')
-/ 						.input-group.input-group-merge
-/ 							.input-group-prepend
-/ 								span#basic-addon5.input-group-text
-/ 									i.ri-instagram-line.fm-2
-/ 							= text_field_tag(:instagram, @user.preferences["instagram"], class: "form-control")
+		/ 				.row.mb-3.pb-4.border-bottom.border-bottom-dashed
+		/ 					.col-lg-4.col-md-6.form-group.mb-3
+		/ 						label[for="twitter-input"] = t('twitter')
+		/ 						.input-group.input-group-merge
+		/ 							.input-group-prepend
+		/ 								span#basic-addon3.input-group-text
+		/ 									i.ri-twitter-line.fm-2
+		/ 							= text_field_tag(:twitter, @user.preferences["twitter"], class: "form-control")
+		/ 					.col-lg-4.col-md-6.form-group.mb-3
+		/ 						label[for="facebook-input"] = t('facebook')
+		/ 						.input-group.input-group-merge
+		/ 							.input-group-prepend
+		/ 								span#basic-addon4.input-group-text
+		/ 									i.ri-facebook-line.fm-2
+		/ 							= text_field_tag(:facebook, @user.preferences["facebook"], class: "form-control")
+		/ 					.col-lg-4.col-md-6.form-group.mb-3
+		/ 						label[for="instagram-input"] = t('instagram')
+		/ 						.input-group.input-group-merge
+		/ 							.input-group-prepend
+		/ 								span#basic-addon5.input-group-text
+		/ 									i.ri-instagram-line.fm-2
+		/ 							= text_field_tag(:instagram, @user.preferences["instagram"], class: "form-control")
 
-/ 				.row
-/ 					.col-12.text-end
-/ 						= link_to t('.cancel'), manager_users_path, class: "btn btn-outline-secondary me-1", data: { "turbo-action": "advance" }
+		/ 				.row
+		/ 					.col-12.text-end
+		/ 						= link_to t('.cancel'), manager_users_path, class: "btn btn-outline-secondary me-1", data: { "turbo-action": "advance" }

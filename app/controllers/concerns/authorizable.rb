@@ -12,7 +12,7 @@ module Authorizable
               turbo_stream.update("flash", partial: "layouts/flash/main")
             ]
         end
-        format.html { redirect_to root_path, danger: t("unauthorized") }
+        format.html { redirect_to root_path, error: t("unauthorized") }
       end
     end
   end

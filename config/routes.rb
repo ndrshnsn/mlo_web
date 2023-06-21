@@ -107,6 +107,8 @@ Rails.application.routes.draw do
     get "users", to: "users#index", as: :users
     get "users/waiting", to: "users#waiting", as: :users_waiting
     get "users/:id", to: "users#show", as: :user_show
+    get "users/:id/acl", to: "users#acl", as: :user_acl
+    match "users/:id/acl", to: "users#acl_save", via: [:post, :patch], as: :user_acl_save
     get "users/enable/:id", to: "users#enable", as: :enable_user
     get "users/disable/:id", to: "users#disable", as: :disable_user
     post "users/get_aproc_dt", to: "users#get_aproc_dt"

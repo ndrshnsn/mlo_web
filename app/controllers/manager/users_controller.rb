@@ -3,6 +3,7 @@ class Manager::UsersController < ApplicationController
 
   authorize_resource class: false
   before_action :set_local_vars
+  before_action :set_user, only: [:show, :acl, :acl_save, :toggle, :eseason]
   breadcrumb "dashboard", :root_path, match: :exact
   breadcrumb "manager.users.main", :manager_users_path, match: :exact
 
@@ -13,13 +14,33 @@ class Manager::UsersController < ApplicationController
     render "_waitingUsers"
   end
 
-  def show
+  def set_user
     @user = User.friendly.find(params[:id])
+  end
+
+  def show
     @defCountries = DefCountry.getSorted
   end
 
+  def acl
+    @user_acl = @user.user_acls.size == 0 ? UserAcl.new : UserAcl.where(user_id: @user.id)
+    @acls = AppServices::Users::Acl.new().list_acls
+    render "_acl"
+  end
+
+  def acl_save
+    save_acl = AppServices::Users::Acl.new(params: acl_params, user: @user.id).save_acls
+    respond_to do |format|
+      if save_acl.success?
+        format.html { redirect_to manager_user_show_path(@user), success: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def toggle
-    @user = User.friendly.find(params[:id])
     @uLeague = UserLeague.find_by(league_id: @league.id, user_id: @user.id)
     respond_to do |format|
       if @uLeague.status == false
@@ -84,7 +105,6 @@ class Manager::UsersController < ApplicationController
   end
 
   def eseason
-    @user = User.friendly.find(params[:id])
     @users = User.joins(:user_leagues).where(user_leagues: {league_id: session[:league], status: true})
   end
 
@@ -148,10 +168,12 @@ class Manager::UsersController < ApplicationController
 
   private
 
+  def acl_params
+    params.require(:acl_rule).permit!
+  end
+
   def set_local_vars
-    if current_user.role == "manager"
-      @league = League.find(session[:league])
-      update_tab_numbers
-    end
+    @league = League.find(session[:league])
+    update_tab_numbers
   end
 end

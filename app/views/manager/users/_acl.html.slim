@@ -1,0 +1,21 @@
+= turbo_frame_tag "tab_content" do
+  - form_with model: UserAcl, id: "user_acl_form", url: manager_user_acl_save_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm_question'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
+    .row
+      .col-12
+        - @acls.each do |acl|
+          table.table.table-bordered
+            tbody
+              - acl[:data].each_with_index do |acl_rule,i|
+                tr
+                  - if i == 0
+                    td.text-center.align-middle.bg-primary style="width: 10%;" rowspan="#{acl[:data].size}"
+                      span style="writing-mode: vertical-rl; align-items: center;" = t(".#{acl[:type]}")
+                  td.align-middle = t(".rule.#{acl_rule[:i18n]}")
+                  td.align-middle style="width: 10%;"
+                    - checked = @user_acl.where(role: acl_rule[:role]).pluck(:permitted).first if !@user_acl.empty? || "false"
+                    .form-check.mb-2.text-center
+                      = hidden_field_tag "acl_rule[#{acl_rule[:role]}]", "false"
+                      = check_box_tag("acl_rule[#{acl_rule[:role]}]", "true", checked, { class: "form-check-input" })
+    .row
+      .col-12.text-end
+        = f.submit t('.confirm'), class: "btn btn-submit btn-primary"

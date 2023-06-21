@@ -16,6 +16,11 @@ class Ability
           can :manage, :award
         end
       end
+      user_acls = AppServices::Users::Acl.new(params: nil, user: user.id).get_acls
+      user_acls.each do |permission|
+        can permission[:role].split("::").last.to_sym, permission[:role].split("::").first.to_sym
+      end
+
     when "Admin"
       if user.admin?
         can :manage, :all

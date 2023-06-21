@@ -1,7 +1,7 @@
 pt-BR:
   layouts:
     sidebar:
-      manager:
+      manager_items:
         seasons: "Temporadas"
         championships: "Campeonatos"
         users: "Usuários"
