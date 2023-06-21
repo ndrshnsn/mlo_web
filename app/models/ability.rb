@@ -22,17 +22,11 @@ class Ability
       end
 
     when "Admin"
-      if user.admin?
-        can :manage, :all
-      end
+      can :manage, :all if user.admin?
     when "Admin::Playerdb"
-      if user.admin?
-        can :manage, :all
-      end
+      can :manage, :all if user.admin?
     when "Admin::Insights"
-      if user.admin?
-        can :manage, :all
-      end
+      can :manage, :all if user.admin?
     end
   end
 end

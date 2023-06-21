@@ -170,6 +170,10 @@ module ApplicationHelper
     tvalues[data]
   end
 
+  def check_ability(user, namespace, action, method)
+    return Ability.new(current_user, namespace).can? action.to_sym, method.to_sym
+  end
+
   def get_platforms(level: nil, platform: nil)
     global_platforms = AppConfig.platforms
     return global_platforms.collect {|i| i[level]} if level != nil

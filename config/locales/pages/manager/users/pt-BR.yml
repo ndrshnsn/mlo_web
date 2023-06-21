@@ -38,6 +38,7 @@ pt-BR:
         confirm_text: ""
         season: "Temporada"
         championship: "Campeonato"
+        back: "Voltar"
         rule:
           season_read: "Visualizar Temporadas"
           season_update: "Alterar Temporadas"
@@ -56,7 +57,7 @@ pt-BR:
         country: "País"
         birth: "Data de Nascimento"
         phone: "Telefone"
-        cancel: "Voltar"
+        back: "Voltar"
         user_details: "Detalhes do Usuário"
       eseason_modal:
         confirm: "Confirmar"

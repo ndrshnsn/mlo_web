@@ -1,12 +1,6 @@
 .tab-pane.active id="details" role="tabpanel"
   .row.mb-3
     .col-sm-12.col-md-6.mb-3
-      .text-center
-        .profile-user.position-relative.d-inline-block.mx-auto.mb-4
-          img id="user-profile-image" src='#{avatarURL(@user)}' class="rounded-circle avatar-xl img-thumbnail user-profile-image"
-        h5.fs-16.mb-1 = @user.full_name
-        p.text-muted.mb-0 ##{@user.nickname}
-    .col-sm-12.col-md-6.mb-3
       .form-group.mb-3
         = label_tag("#{t '.fullname'}", nil, class: "control-label")
         = text_field_tag('full_name', @user.full_name, class: "form-control", readonly: true)
@@ -45,7 +39,7 @@
         = label_tag("#{t '.birth'}", nil, class: "control-label")
         = text_field_tag(:birth, I18n.l(@user.birth), class: "form-control", readonly: true)
 
-  .row.mb-3.pb-4.border-bottom.border-bottom-dashed
+  .row.mb-3
     .col-lg-4.col-md-6.form-group.mb-3
       label[for="twitter-input"] = t('twitter')
       .input-group.input-group-merge
@@ -67,3 +61,7 @@
           span#basic-addon5.input-group-text
             i.ri-instagram-line.fm-2
         = text_field_tag(:instagram, @user.preferences["instagram"], class: "form-control", readonly: true)
+
+  .row
+    .col-12.text-end
+      = link_to t('.back'), manager_users_path, data: {"turbo_frame": "manager_users", "turbo-action": "advance"}, class: "btn btn-outline-secondary"

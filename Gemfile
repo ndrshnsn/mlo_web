@@ -111,7 +111,7 @@ gem "hashid-rails", "~> 1.4"
 
 gem "httparty", "~> 0.21"
 
-gem "cancancan", "~> 3.4"
+gem "cancancan", "~> 3.5"
 
 gem "noticed", "~> 1.6"
 

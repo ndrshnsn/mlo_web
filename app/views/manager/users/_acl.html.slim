@@ -18,4 +18,5 @@
                       = check_box_tag("acl_rule[#{acl_rule[:role]}]", "true", checked, { class: "form-check-input" })
     .row
       .col-12.text-end
+        = link_to t('.back'), manager_users_path, data: {"turbo_frame": "manager_users", "turbo-action": "advance"}, class: "btn btn-outline-secondary me-1"
         = f.submit t('.confirm'), class: "btn btn-submit btn-primary"
