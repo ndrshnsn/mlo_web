@@ -45,7 +45,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.nil?
       redirect_to register_url
     else
-      if @user.active == false
+      if @user.active == false || @user.active == nil
         redirect_to new_user_session_url, notice: t("users.sessions.new.locked_account")
       else
         @identity = Identity.find_with_omniauth(session[:omniauth])

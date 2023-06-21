@@ -73,7 +73,7 @@
 													.form-group.mb-3
 														= f.label :platform, "#{t '.platform'}", for: 'platform', class: "control-label"
 														#popover_user_platform
-														= select_tag "user[platform]", options_for_select(eval(AppConfig.user_platforms)), {include_blank: true, class: "form-control select2", id: 'user_platform',"data-controller": "select", "data-select-icon-value": false, required: true }
+														= select_tag "user[platform]", options_for_select(get_platforms(level: 0)), {include_blank: true, class: "form-control select2", id: 'user_platform',"data-controller": "select", "data-select-icon-value": false, required: true }
 
 												.col-sm-12.col-md-6
 													.form-group.mb-3

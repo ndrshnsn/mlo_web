@@ -3,6 +3,7 @@ class DbSeederJob < ApplicationJob
 
     ADMIN_EMAIL = ENV['ADMIN_USERNAME']
     ADMIN_PASSWORD = ENV['ADMIN_PASSWORD']
+    ADMIN_FULLNAME = ENV['ADMIN_FULLNAME']
 
     def perform
         ActiveRecord::Base.transaction do
@@ -18,8 +19,7 @@ class DbSeederJob < ApplicationJob
         AppConfig.mail_username = ENV['GMAIL_USERNAME']
         AppConfig.mail_password = ENV['GMAIL_PASSWORD']
         AppConfig.generic_player = 999999
-        AppConfig.platforms = '["PES21", "EFOOT23", "FIFA23"]'
-        #AppConfig.user_platforms = ""
+        AppConfig.platforms = [["PES", ["PES21", "EFOOT23"]], ["FIFA", ["FIFA23"]]]
         AppConfig.fake_account_password = "asdasdasdasdas" 
         AppConfig.championship_minimum_players = 4
         AppConfig.championship_cards_suspension_ycard = 3
@@ -40,10 +40,10 @@ class DbSeederJob < ApplicationJob
         AppConfig.match_hattrick_earning = 100
         AppConfig.game_wo_winner = 3
         AppConfig.game_wo_loser = 0
-        #AppConfig.league_slots = 
-        AppConfig.season_times = '[45, 60, 90, 120, 180]'
-        AppConfig.season_min_players = '[16, 18, 20]'
-        AppConfig.season_max_players = '[18, 20, 22, 24]'
+        AppConfig.league_slots = [10, 20, 40, 60]
+        AppConfig.season_times = [45, 60, 90, 120, 180]
+        AppConfig.season_min_players = [16, 18, 20]
+        AppConfig.season_max_players = [18, 20, 22, 24]
         AppConfig.season_max_steals_same_player = 3
         AppConfig.season_max_steals_per_user = 3
         AppConfig.season_max_stealed_players = 3
@@ -57,8 +57,8 @@ class DbSeederJob < ApplicationJob
         AppConfig.season_player_value_earning_relation = 10
         AppConfig.season_player_high_over = 80
         AppConfig.season_player_low_over = 70
-        AppConfig.season_player_raffle_remaining = '["70-", "70+", "75-", "75+", "80-", "80+", "82-", "82+", "85-", "85+", "90-", "99-"]'
-        AppConfig.season_player_raffle_first_order = '[["PES", ["GK", "GK", "RB", "LB", "CB", "CB", "CB", "DMF", "DMF", "CMF", "CMF", "AMF", "RWF", "LWF", "CF", "CF"]], ["FIFA", ["GK", "GK", "RB", "LB", "CB", "CB", "CB", "CDM", "CDM", "CM", "CM", "CAM", "RW", "LW", "ST", "ST"]]]'
+        AppConfig.season_player_raffle_remaining = ["70-", "70+", "75-", "75+", "80-", "80+", "82-", "82+", "85-", "85+", "90-", "99-"]
+        AppConfig.season_player_raffle_first_order = [["PES", ["GK", "GK", "RB", "LB", "CB", "CB", "CB", "DMF", "DMF", "CMF", "CMF", "AMF", "RWF", "LWF", "CF", "CF"]], ["FIFA", ["GK", "GK", "RB", "LB", "CB", "CB", "CB", "CDM", "CDM", "CM", "CM", "CAM", "RW", "LW", "ST", "ST"]]]
         AppConfig.season_club_default_earning = 10000
         AppConfig.season_club_max_total_wage = 100000
     end
@@ -68,7 +68,9 @@ class DbSeederJob < ApplicationJob
             email: ADMIN_EMAIL,
             password: ADMIN_PASSWORD,
             password_confirmation: ADMIN_PASSWORD,
-            role: 2
+            role: 2,
+            active: true,
+            slug: ADMIN_FULLNAME
         )
         user.skip_confirmation!
         user.save!

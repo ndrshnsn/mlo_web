@@ -5,7 +5,7 @@ class JoinLeagueDatatable < ApplicationDatatable
 
   def data
     leagues.map do |league|
-      lName = image_tag(leagueBadge(league), class: "rounded mr-50", height: "32", width: "32")
+      lName = image_tag(leagueBadge(league), class: "rounded me-1", height: "28", width: "28")
       lName += league.name
 
       lStatus = if league.status

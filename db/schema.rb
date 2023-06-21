@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_29_115336) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_190044) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -183,8 +183,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_115336) do
     t.index ["def_country_id"], name: "index_def_players_on_def_country_id"
     t.index ["def_player_position_id"], name: "index_def_players_on_def_player_position_id"
     t.index ["details"], name: "index_def_players_on_details", using: :gin
-    t.index ["slug"], name: "index_def_players_on_slug", unique: true
     t.index ["platform"], name: "index_def_players_on_platform"
+    t.index ["slug"], name: "index_def_players_on_slug", unique: true
   end
 
   create_table "def_teams", force: :cascade do |t|
@@ -194,7 +194,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_115336) do
     t.bigint "def_country_id", null: false
     t.boolean "active", default: true
     t.jsonb "details", default: {}, null: false
-    t.text "platforms", default: [], array: true, null: true
+    t.text "platforms", default: [], array: true
     t.text "alias"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -308,6 +308,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_115336) do
     t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
+  create_table "user_acls", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "role"
+    t.boolean "permitted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role"], name: "index_user_acls_on_role"
+    t.index ["user_id"], name: "index_user_acls_on_user_id"
+  end
+
   create_table "user_leagues", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "league_id", null: false
@@ -350,7 +360,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_115336) do
     t.integer "role"
     t.string "slug"
     t.string "full_name"
-    t.boolean "active"
+    t.boolean "active", default: false
     t.string "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -395,6 +405,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_115336) do
   add_foreign_key "player_seasons", "def_players"
   add_foreign_key "player_seasons", "seasons"
   add_foreign_key "seasons", "leagues"
+  add_foreign_key "user_acls", "users"
   add_foreign_key "user_leagues", "leagues"
   add_foreign_key "user_leagues", "users"
   add_foreign_key "user_seasons", "seasons"

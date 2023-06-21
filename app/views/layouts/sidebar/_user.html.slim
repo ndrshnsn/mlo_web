@@ -57,3 +57,5 @@ ul.navbar-nav id="navbar-nav"
     = link_to myclub_management_path, class: "menu-link nav-link #{'active' if controller_name == 'management'}", id: "sidebar_myclub_management" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_myclub_management", "sidebar-child-value": "sidebar_myclub_management" } do
       i.ri-building-4-line
       span data-key="t-seasons" = t('.management')
+
+  = render partial: "layouts/sidebar/manager_items"

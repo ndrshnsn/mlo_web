@@ -29,6 +29,25 @@ pt-BR:
       destroy:
         user_deactivated: "Usuário removido da liga com sucesso!"
       show:
+        details: "Informações"
+        users: "Usuários"
+        permissions: "Permissões"
+      acl:
+        confirm: "Atualizar"
+        confirm_question: "Redefinir permissões para o usuário?"
+        confirm_text: ""
+        season: "Temporada"
+        championship: "Campeonato"
+        back: "Voltar"
+        rule:
+          season_read: "Visualizar Temporadas"
+          season_update: "Alterar Temporadas"
+          championship_read: "Visualizar Campeonatos"
+          championship_create: "Criar Campeonatos"
+          championship_update: "Alterar Campeonatos"
+      acl_save:
+        success: "Permissões Definidas com Sucesso"
+      details:
         users: "Usuários"
         fullname: "Nome Completo"
         email: "Email"
@@ -38,7 +57,7 @@ pt-BR:
         country: "País"
         birth: "Data de Nascimento"
         phone: "Telefone"
-        cancel: "Voltar"
+        back: "Voltar"
         user_details: "Detalhes do Usuário"
       eseason_modal:
         confirm: "Confirmar"
