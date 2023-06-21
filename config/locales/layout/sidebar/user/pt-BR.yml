@@ -9,6 +9,7 @@ pt-BR:
         salary: "Ajuste de Salários"
         steal: "Roubo"
         auction: "Leilão"
+      user_items:
         main_menu: "Menu Principal"
         dashboard: "Painel"
         seasons: "Temporadas"

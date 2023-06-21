@@ -1,7 +1,10 @@
 = turbo_frame_tag "tab_content" do
   - form_with model: UserAcl, id: "user_acl_form", url: manager_user_acl_save_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm_question'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
+    blockquote.blockquote.custom-blockquote.blockquote-secondary.rounded.mb-4
+      p.text-dark.mb-2 = t('.info_html')
+
     .row
-      .col-12
+      .col-12.mb-2
         - @acls.each do |acl|
           table.table.table-bordered
             tbody

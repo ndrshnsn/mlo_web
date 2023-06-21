@@ -2,7 +2,7 @@
   blockquote.blockquote.custom-blockquote.blockquote-warning.blockquote-outline.text-white.fs-6
     p = t('.no_players_to_raffle_html')
 
-- eval(AppConfig.season_player_raffle_first_order).find { |key| key.include?(@league.platform) }[1].uniq.each do |pos|
+- AppConfig.season_player_raffle_first_order.find { |key| key.include?(@league.platform) }[1].uniq.each do |pos|
   - players = @tAvailablePlayersPP.select{ |e| e[0] == pos}[0][1] > 0 ? @tAvailablePlayersPP.select{ |e| e[0] == pos}[0][1] : 0
   span class="badge badge-#{translate_pkeys(pos, @league.platform)[1]} me-1"
     = translate_pkeys(pos, @league.platform)[0]

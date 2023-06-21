@@ -126,7 +126,7 @@ module ApplicationHelper
 
   def translate_pkeys(data, platform)
     case platform
-    when "PES21"
+    when "PES"
       tvalues = {
         "Right foot" => t("playerdb.players.rightFoot"),
         "Left foot" => t("playerdb.players.leftFoot"),
