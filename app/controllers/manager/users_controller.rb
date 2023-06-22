@@ -41,34 +41,11 @@ class Manager::UsersController < ApplicationController
   def toggle
     user_league = UserLeague.find_by(league_id: @league.id, user_id: @user.id)
     respond_to do |format|
-
-      ## add user to league, delete fake
-      if user_league.status == false
-        if UserLeague.get_fake_accounts(@league).size > 0
-          if replace_fake_with_user(@user, @league)
-
-            ## SEND EMAIL NOTIFICATION TO USER
-            update_tab_numbers
-            flash.now["success"] = t(".user_activated")
-            format.html { redirect_to manager_users_path, notice: t(".user_activated") }
-            format.turbo_stream
-          else
-            flash.now["danger"] = t(".no_more_slots")
-            render_index_with_unprocessable_entity
-          end
-        else
-          flash.now["warning"] = t(".no_more_slots_remove_some")
-          render_index_with_unprocessable_entity
-        end
-
-      ## remove from league, add to waiting list and replace with fake      
-      else
-        if replace_user_with_fake(@user, @league)
-          update_tab_numbers
-          flash.now["success"] = t(".user_deactivated")
-          format.html { redirect_to manager_users_waiting_path, notice: t(".user_deactivated") }
-          format.turbo_stream
-        end
+      if replace_user_with_fake(@user, @league)
+        update_tab_numbers
+        flash.now["success"] = t(".user_deactivated")
+        format.html { redirect_to manager_users_waiting_path, notice: t(".user_deactivated") }
+        format.turbo_stream
       end
     end
   end
@@ -102,6 +79,7 @@ class Manager::UsersController < ApplicationController
       ).save!
       UserSeason.where(user_id: user.id).update_all(user_id: new_fake_account.user.id)
       Notification.where(recipient_id: user.id).update_all(recipient_id: new_fake_account.user.id)
+      UserAcl.where(user_id: user.id, league_id: league.id).delete_all
       if user_league.update(user_id: new_fake_account.user.id)
         # Check for any other league that user is member
         if UserLeague.where(user_id: user.id).count > 1
@@ -119,14 +97,27 @@ class Manager::UsersController < ApplicationController
   end
 
   def move_users_between(origin, destiny, league)
-    prev_user_league = UserLeague.find_by(league_id: league.id, user_id: destiny.id)
-    UserLeague.where(league_id: league.id, user_id: destiny.id).update_all(user_id: origin.id, status: true)
-    UserSeason.where(user_id: destiny.id).update_all(user_id: origin.id)
-    Notification.where(recipient_id: destiny.id).update_all(recipient_id: origin.id)
+    destiny_user_league = UserLeague.find_by(league_id: league.id, user_id: destiny.id)
+    origin_user_league = UserLeague.find_by(league_id: league.id, user_id: origin.id)
 
-    destiny.preferences["request"] = false
-    prev_user_league.update(status: false)
-    if destiny.save
+    destiny_user_league.update(
+      user_id: origin.id,
+      status: true
+      )
+
+    origin_user_league.update(
+      user_id: destiny.id,
+      status: false
+      )
+
+    #UserSeason.where(user_id: destiny.id).update_all(user_id: origin.id)
+
+    #Notification.where(recipient_id: destiny.id).update_all(recipient_id: origin.id)
+
+    UserAcl.where(user_id: destiny.id, league_id: league.id).update_all(user_id: origin.id)
+
+    origin.preferences["request"] = false
+    if origin.save
       return true
     else
       return false
@@ -140,28 +131,27 @@ class Manager::UsersController < ApplicationController
     respond_to do |format|
       if destiny.preferences["fake"] == true
         if replace_fake_with_user(destiny, origin, @league)
-          ## SEND EMAIL NOTIFICATION TO USER
+          UserMailer.with(user: origin, league: @league).added_to_league.deliver_later
           update_tab_numbers
-          redirect_to_manager_users_activated
+          flash.now["success"] = t(".user_activated")
+          format.html { redirect_to manager_users_path, notice: t(".user_activated") }
+          format.turbo_stream
         else
           flash.now["danger"] = t(".error_moving")
           render_index_with_unprocessable_entity
         end
       elsif move_users_between(origin, destiny, @league)
+        UserMailer.with(user: origin, league: @league).added_to_league.deliver_later
+        UserMailer.with(user: destiny, league: @league).removed_from_league.deliver_later
         update_tab_numbers
-        redirect_to_manager_users_activated
-      ## SEND EMAIL NOTIFICATION TO USER
+        flash.now["success"] = t(".user_activated")
+        format.html { redirect_to manager_users_path, notice: t(".user_activated") }
+        format.turbo_stream
       else
         flash.now["danger"] = t(".error_moving")
         render_index_with_unprocessable_entity
       end
     end
-  end
-
-  def redirect_to_manager_users_activated
-    flash.now["success"] = t(".user_activated")
-    format.html { redirect_to manager_users_path, notice: t(".user_activated") }
-    format.turbo_stream
   end
 
   def eseason
