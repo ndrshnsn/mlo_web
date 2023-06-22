@@ -2,11 +2,11 @@ li.menu-title.pt-3
       span = t('.main_menu')
 
 li.nav-item
-  = link_to manager_seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
+  = link_to root_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_dashboard", "sidebar-child-value": "sidebar_dashboard" } do
     i.ri-apps-line
     span data-key="t-seasons" = t('.dashboard')
 li.nav-item
-  = link_to manager_seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
+  = link_to seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
     i.ri-stack-line
     span data-key="t-seasons" = t('.seasons')
 li.nav-item
