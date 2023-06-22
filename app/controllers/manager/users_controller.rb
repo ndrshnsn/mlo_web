@@ -1,6 +1,4 @@
 class Manager::UsersController < ApplicationController
-  include FakeAccounts
-
   authorize_resource class: false
   before_action :set_local_vars
   before_action :set_user, only: [:show, :acl, :acl_save, :toggle, :eseason]
@@ -41,11 +39,14 @@ class Manager::UsersController < ApplicationController
   end
 
   def toggle
-    @uLeague = UserLeague.find_by(league_id: @league.id, user_id: @user.id)
+    user_league = UserLeague.find_by(league_id: @league.id, user_id: @user.id)
     respond_to do |format|
-      if @uLeague.status == false
-        if fakeSlots(@league) > 0
-          if removeFakeAddUser(@user, @league)
+
+      ## add user to league, delete fake
+      if user_league.status == false
+        if UserLeague.get_fake_accounts(@league).size > 0
+          if replace_fake_with_user(@user, @league)
+
             ## SEND EMAIL NOTIFICATION TO USER
             update_tab_numbers
             flash.now["success"] = t(".user_activated")
@@ -53,23 +54,82 @@ class Manager::UsersController < ApplicationController
             format.turbo_stream
           else
             flash.now["danger"] = t(".no_more_slots")
-            format.turbo_stream
-            format.html { render :index, status: :unprocessable_entity }
+            render_index_with_unprocessable_entity
           end
         else
           flash.now["warning"] = t(".no_more_slots_remove_some")
-          format.turbo_stream
-          format.html { render :index, status: :unprocessable_entity }
+          render_index_with_unprocessable_entity
         end
-      elsif disableUserCreateFake(@user, @league)
-        update_tab_numbers
-        flash.now["success"] = t(".user_deactivated")
-        format.html { redirect_to manager_users_waiting_path, notice: t(".user_deactivated") }
-        format.turbo_stream
+
+      ## remove from league, add to waiting list and replace with fake      
       else
-        flash.now["warning"] = t(".user_deactivated")
-        format.html { redirect_to manager_users_waiting_path, notice: t(".user_deactivated") }
+        if replace_user_with_fake(@user, @league)
+          update_tab_numbers
+          flash.now["success"] = t(".user_deactivated")
+          format.html { redirect_to manager_users_waiting_path, notice: t(".user_deactivated") }
+          format.turbo_stream
+        end
       end
+    end
+  end
+
+  def render_index_with_unprocessable_entity
+    format.turbo_stream
+    format.html { render :index, status: :unprocessable_entity }
+  end
+
+  def replace_fake_with_user(fake, user, league)
+    previous_user_league = UserLeague.find_by(league_id: league.id, user_id: user.id)
+    UserLeague.where(league_id: league.id, user_id: fake.id).update_all(user_id: user.id, status: true)
+    UserSeason.where(user_id: fake.id).update_all(user_id: user.id)
+    Notification.where(recipient_id: fake.id).update_all(recipient_id: user.id)
+    user.preferences["request"] = false
+    user.preferences["active_league"] = league.id
+    if user.save! && fake.destroy! && previous_user_league.destroy!
+      return true
+    end
+    false
+  end
+
+  def replace_user_with_fake(user, league)
+    user_league = UserLeague.find_by(league_id: league.id, user_id: user.id)
+    new_fake_account = AppServices::Users::CreateFake.call()
+    if new_fake_account.success?
+      UserLeague.new(
+        league_id: league.id,
+        user_id: user.id,
+        status: false
+      ).save!
+      UserSeason.where(user_id: user.id).update_all(user_id: new_fake_account.user.id)
+      Notification.where(recipient_id: user.id).update_all(recipient_id: new_fake_account.user.id)
+      if user_league.update(user_id: new_fake_account.user.id)
+        # Check for any other league that user is member
+        if UserLeague.where(user_id: user.id).count > 1
+          user.preferences["active_league"] = UserLeague.where(user_id: user.id).where.not(league_id: league.id).first.id
+        else
+          user.preferences["active_league"] = nil
+        end
+        user.save!
+        return true
+      else
+        return false
+      end
+    end
+    return false
+  end
+
+  def move_users_between(origin, destiny, league)
+    prev_user_league = UserLeague.find_by(league_id: league.id, user_id: destiny.id)
+    UserLeague.where(league_id: league.id, user_id: destiny.id).update_all(user_id: origin.id, status: true)
+    UserSeason.where(user_id: destiny.id).update_all(user_id: origin.id)
+    Notification.where(recipient_id: destiny.id).update_all(recipient_id: origin.id)
+
+    destiny.preferences["request"] = false
+    prev_user_league.update(status: false)
+    if destiny.save
+      return true
+    else
+      return false
     end
   end
 
@@ -79,29 +139,29 @@ class Manager::UsersController < ApplicationController
 
     respond_to do |format|
       if destiny.preferences["fake"] == true
-        if removeFakeAddUser(destiny, origin, @league)
+        if replace_fake_with_user(destiny, origin, @league)
           ## SEND EMAIL NOTIFICATION TO USER
           update_tab_numbers
-          flash.now["success"] = t(".user_activated")
-          format.html { redirect_to manager_users_path, notice: t(".user_activated") }
-          format.turbo_stream
+          redirect_to_manager_users_activated
         else
           flash.now["danger"] = t(".error_moving")
-          format.turbo_stream
-          format.html { render :index, status: :unprocessable_entity }
+          render_index_with_unprocessable_entity
         end
       elsif move_users_between(origin, destiny, @league)
         update_tab_numbers
-        flash.now["success"] = t(".user_activated")
-        format.html { redirect_to manager_users_path, notice: t(".user_activated") }
-        format.turbo_stream
+        redirect_to_manager_users_activated
       ## SEND EMAIL NOTIFICATION TO USER
       else
         flash.now["danger"] = t(".error_moving")
-        format.turbo_stream
-        format.html { render :index, status: :unprocessable_entity }
+        render_index_with_unprocessable_entity
       end
     end
+  end
+
+  def redirect_to_manager_users_activated
+    flash.now["success"] = t(".user_activated")
+    format.html { redirect_to manager_users_path, notice: t(".user_activated") }
+    format.turbo_stream
   end
 
   def eseason
