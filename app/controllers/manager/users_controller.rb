@@ -23,13 +23,13 @@ class Manager::UsersController < ApplicationController
   end
 
   def acl
-    @user_acl = @user.user_acls.size == 0 ? UserAcl.new : UserAcl.where(user_id: @user.id)
+    @user_acl = UserAcl.where(user_id: @user.id)
     @acls = AppServices::Users::Acl.new().list_acls
     render "_acl"
   end
 
   def acl_save
-    save_acl = AppServices::Users::Acl.new(params: acl_params, user: @user.id).save_acls
+    save_acl = AppServices::Users::Acl.new(params: acl_params, user: @user.id, league: params[:league]).save_acls
     respond_to do |format|
       if save_acl.success?
         format.html { redirect_to manager_user_show_path(@user), success: t(".success") }

@@ -16,7 +16,7 @@ class Ability
           can :manage, :award
         end
       end
-      user_acls = AppServices::Users::Acl.new(params: nil, user: user.id).get_acls
+      user_acls = AppServices::Users::Acl.new(params: nil, user: user.id, league: user.preferences["active_league"]).get_acls
       user_acls.each do |permission|
         can permission[:role].split("::").last.to_sym, permission[:role].split("::").first.to_sym
       end

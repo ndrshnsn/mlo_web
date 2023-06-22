@@ -1,5 +1,6 @@
 = turbo_frame_tag "tab_content" do
   - form_with model: UserAcl, id: "user_acl_form", url: manager_user_acl_save_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm_question'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
+    = hidden_field_tag "league", session[:league]
     blockquote.blockquote.custom-blockquote.blockquote-secondary.rounded.mb-4
       p.text-dark.mb-2 = t('.info_html')
 
@@ -15,7 +16,7 @@
                       span style="writing-mode: vertical-rl; align-items: center;" = t(".#{acl[:type]}")
                   td.align-middle = t(".rule.#{acl_rule[:i18n]}")
                   td.align-middle style="width: 10%;"
-                    - checked = @user_acl.where(role: acl_rule[:role]).pluck(:permitted).first if !@user_acl.empty? || "false"
+                    - checked = @user_acl.size > 0 ? @user_acl.where(role: acl_rule[:role]).pluck(:permitted).first : false
                     .form-check.mb-2.text-center
                       = hidden_field_tag "acl_rule[#{acl_rule[:role]}]", "false"
                       = check_box_tag("acl_rule[#{acl_rule[:role]}]", "true", checked, { class: "form-check-input" })

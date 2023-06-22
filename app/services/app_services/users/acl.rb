@@ -1,7 +1,8 @@
 class AppServices::Users::Acl < ApplicationService
   def initialize(params=nil)
     @params = params
-    @user = User.find(@params[:user]) if @params
+    @user = @params[:user] if @params
+    @league = @params[:league] if @params
   end
 
   def save_acls
@@ -11,7 +12,7 @@ class AppServices::Users::Acl < ApplicationService
   end
 
   def get_acls
-    return UserAcl.where(user_id: @user, permitted: true)
+    return UserAcl.where(user_id: @user, league_id: @league, permitted: true)
   end
 
   def list_acls
@@ -22,8 +23,9 @@ class AppServices::Users::Acl < ApplicationService
 
   def update_acl
     @params[:params].each do |acl_rule|
-      acl = UserAcl.where(user_id: @user.id, role: acl_rule.first).first_or_initialize
+      acl = UserAcl.where(user_id: @user, role: acl_rule.first).first_or_initialize
       acl.permitted = acl_rule.last
+      acl.league_id = @league
 
       return handle_error(nil, acl&.error) unless acl.save!
     end
