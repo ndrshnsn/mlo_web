@@ -13,7 +13,7 @@ gem "propshaft"
 gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma", "~> 6"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
@@ -25,10 +25,10 @@ gem "cssbundling-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
+gem "redis", "~> 5"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
@@ -83,7 +83,7 @@ gem "loaf", "~> 0.10.0"
 
 gem "slim-rails", "~> 3.5"
 
-gem "jsonb_accessor", "1.3.5"
+gem "jsonb_accessor", "~> 1.3"
 
 gem "turbo-rails", "~> 1.1"
 
@@ -95,7 +95,7 @@ gem "sidekiq", "< 8"
 
 gem "requestjs-rails", "~> 0.0.9"
 
-gem "devise-jwt", "~> 0.9.0"
+gem "devise-jwt", "~> 0.11.0"
 
 gem "fast_jsonapi", "~> 1.5"
 
