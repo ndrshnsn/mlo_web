@@ -35,13 +35,6 @@ class Manager::WaitingUsersDatatable < ApplicationDatatable
           disabled: "",
           turbo: "data-turbo-frame='modal'"
         },
-        # {
-        #   link: "javascript:;",
-        #   icon: "ri-#{pStatusIcon}-line",
-        #   text: pStatus,
-        #   disabled: "",
-        #   turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{pStatusConfirm}' data-confirm-text-value='#{t('defaults.datatables.manager.users_confirm_activate')}' data-confirm-icon-value='warning' data-confirm-link-value='#{manager_user_toggle_path(uLeague.user.friendly_id)}' data-confirm-action-value='post'"
-        # },
         {
           link: manager_user_show_path(uLeague.user.friendly_id),
           icon: "ri-user-line",

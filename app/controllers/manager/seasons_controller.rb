@@ -45,7 +45,7 @@ class Manager::SeasonsController < ApplicationController
 
   def get_base_players(lowOver = AppConfig.season_player_low_over.to_i, highOver = AppConfig.season_player_high_over.to_i)
     availablePlayers = []
-    eval(AppConfig.season_player_raffle_first_order).find { |key| key.include?(@league.platform) }[1].each do |position|
+    AppConfig.season_player_raffle_first_order.find { |key| key.include?(@league.platform) }[1].each do |position|
       getPlayers = DefPlayer.left_outer_joins(:def_player_position).where("def_players.platform = ? AND def_players.active = ? AND def_player_positions.name = ? AND (def_players.details -> 'attrs' ->> 'overallRating')::Integer >= ? AND (def_players.details -> 'attrs' ->> 'overallRating')::Integer <= ?", @league.platform, true, position, lowOver, highOver)
       availablePlayers << [position, getPlayers.size]
     end

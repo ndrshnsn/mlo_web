@@ -39,6 +39,7 @@ pt-BR:
         season: "Temporada"
         championship: "Campeonato"
         back: "Voltar"
+        info_html: "Você pode definir abaixo as permissões que outro usuário terá no painel. Ex: Você pode dar a permissão para outro usuário criar campeonatos, ou mesmo validar os jogos, funcionando como um moderador. Lembre-se sempre de selecionar a opção de Visualizar primeiramente, caso contrário o usuário não terá acesso ao módulo selecionado."
         rule:
           season_read: "Visualizar Temporadas"
           season_update: "Alterar Temporadas"

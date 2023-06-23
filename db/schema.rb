@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_190044) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_22_130646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -314,6 +314,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_190044) do
     t.boolean "permitted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "league_id", null: false
+    t.index ["league_id"], name: "index_user_acls_on_league_id"
     t.index ["role"], name: "index_user_acls_on_role"
     t.index ["user_id"], name: "index_user_acls_on_user_id"
   end
@@ -360,7 +362,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_190044) do
     t.integer "role"
     t.string "slug"
     t.string "full_name"
-    t.boolean "active", default: false
+    t.boolean "active", default: true
     t.string "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -405,6 +407,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_190044) do
   add_foreign_key "player_seasons", "def_players"
   add_foreign_key "player_seasons", "seasons"
   add_foreign_key "seasons", "leagues"
+  add_foreign_key "user_acls", "leagues"
   add_foreign_key "user_acls", "users"
   add_foreign_key "user_leagues", "leagues"
   add_foreign_key "user_leagues", "users"

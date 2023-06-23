@@ -30,3 +30,15 @@ pt-BR:
         requested_html: "Recebemos sua intenção de participar da Liga <strong>%{league_name}</strong>! <p>O Administrador da Liga já foi informado da sua intenção e irá avaliar, dentro dos critérios de cada liga, se aceita sua participação.<p>Fique atento, você receberá um aviso assim que o Administrador validar sua participação!"
         title: "Solicitação para Participar de uma Liga"
         subject: "MLO :: Participação na Liga %{league_name}"
+      added_to_league:
+        subject: "MLO :: Participação na Liga %{league_name}"
+        title: "Você foi aceito na Liga!"
+        info_html: "O administrador da Liga aprovou sua participação! Agora você já pode entrar no site da MLO e verificar os detalhes para a próxima Temporada / Campeonato"
+      removed_from_league:
+        subject: "MLO :: Participação na Liga %{league_name}"
+        title: "Você foi removido da Liga!"
+        info_html: "O administrador da Liga removeu com sucesso seu usuário. Caso ainda participe de outra liga, entre no site/app e continue com seus jogos. Caso contrário, você precisará solicitar uma nova participação."
+      made_inactive_in_league:
+        subject: "MLO :: Participação na Liga %{league_name}"
+        title: "Sua Conta foi Desativada desta Liga!"
+        info_html: "O Administrador da liga desativou sua conta nesta liga. Caso você participe de outras ligas, entre normalmente no site/app. Caso tenha sido um erro e deseje retornar a esta liga, solicite a ativação diretamente para o Administrador da Liga."

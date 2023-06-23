@@ -6,6 +6,7 @@ class League < ApplicationRecord
 
   belongs_to :user
   has_many :user_leagues, dependent: :destroy
+  has_many :user_acls, dependent: :destroy
   has_many :users, through: :user_leagues
   has_many :seasons, dependent: :destroy
   has_many :awards, dependent: :destroy
