@@ -6,7 +6,7 @@ class Admin::Playerdb::PlayerdbPlayersController < ApplicationController
 
   def index
     @defCountries = DefCountry.all.order(name: :asc)
-    @platforms = eval(AppConfig.platforms)
+    @platforms = AppConfig.platforms
   end
 
   def details

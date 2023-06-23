@@ -22,51 +22,6 @@
           
           h6.text-muted.mb-3.mt-4
             i.ri-settings-line.align-middle.me-1
-            = t('.vapid.title')
-          .row
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
-                  = f.label :vapid_pubkey, t('.vapid.pubkey'), class: "form-label"
-                  = f.text_field :vapid_pubkey, class: "form-control", "data-parsley-required": true, value: AppConfig.vapid_pubkey
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
-                  = f.label :vapid_privkey, t('.vapid.privkey'), class: "form-label"
-                  = f.text_field :vapid_privkey, class: "form-control", "data-parsley-required": true, value: AppConfig.vapid_privkey
-
-          h6.text-muted.mb-3.mt-4
-            i.ri-settings-line.align-middle.me-1
-            = t('.sendgrid.title')
-          .row
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
-                  = f.label :sendgrid_api, t('.sendgrid.api'), class: "form-label"
-                  = f.text_field :sendgrid_api, class: "form-control", "data-parsley-required": true, value: AppConfig.sendgrid_api
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
-                  = f.label :template_request_league_id, t('.sendgrid.template.request_league'), class: "form-label"
-                  = f.text_field :template_request_league_id, class: "form-control", "data-parsley-required": true, value: AppConfig.template_request_league_id
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
-                  = f.label :template_confirmation_id, t('.sendgrid.template.confirmation'), class: "form-label"
-                  = f.text_field :template_confirmation_id, class: "form-control", "data-parsley-required": true, value: AppConfig.template_confirmation_id
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
-                  = f.label :template_new_league_id, t('.sendgrid.template.new_league'), class: "form-label"
-                  = f.text_field :template_new_league_id, class: "form-control", "data-parsley-required": true, value: AppConfig.template_new_league_id
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
-                  = f.label :template_reset_password_id, t('.sendgrid.template.reset_password'), class: "form-label"
-                  = f.text_field :template_reset_password_id, class: "form-control", "data-parsley-required": true, value: AppConfig.template_reset_password_id
-
-          h6.text-muted.mb-3.mt-4
-            i.ri-settings-line.align-middle.me-1
             = t('.playerdb.title')
           .row
             .col-sm-12.col-md-6
@@ -79,11 +34,6 @@
                 .position-relative
                   = f.label :platforms, t('.playerdb.platforms'), class: "form-label"
                   = f.text_field :platforms, class: "form-control", "data-parsley-required": true, value: AppConfig.platforms
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
-                  = f.label :user_platforms, t('.playerdb.user_platforms'), class: "form-label"
-                  = f.text_field :user_platforms, class: "form-control", "data-parsley-required": true, value: AppConfig.user_platforms
           h6.text-muted.mb-3.mt-4
             i.ri-settings-line.align-middle.me-1
             = t('.league.title')
@@ -273,18 +223,8 @@
             .col-sm-12.col-md-6
               .mb-3
                 .position-relative
-                  = f.label :season_player_raffle_switches, t('.season.player_raffle_switches'), class: "form-label"
-                  = f.text_field :season_player_raffle_switches, class: "form-control", "data-parsley-required": true, value: AppConfig.season_player_raffle_switches
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
                   = f.label :season_player_raffle_remaining, t('.season.player_raffle_remaining'), class: "form-label"
                   = f.text_field :season_player_raffle_remaining, class: "form-control", "data-parsley-required": true, value: AppConfig.season_player_raffle_remaining
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
-                  = f.label :season_player_raffle_turn_time, t('.season.player_raffle_turn_time'), class: "form-label"
-                  = f.text_field :season_player_raffle_turn_time, class: "form-control", "data-parsley-required": true, value: AppConfig.season_player_raffle_turn_time
             .col-sm-12.col-md-6
               .mb-3
                 .position-relative
