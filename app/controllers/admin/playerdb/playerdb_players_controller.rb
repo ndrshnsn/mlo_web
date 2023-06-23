@@ -11,8 +11,6 @@ class Admin::Playerdb::PlayerdbPlayersController < ApplicationController
 
   def details
     @defPlayer = DefPlayer.includes(:def_player_position).friendly.find(params[:id])
-
-    ## Player Positions
     @positions = helpers.getVisualPlayerPositions(@defPlayer)
   end
 
