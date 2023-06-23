@@ -19,6 +19,12 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: t('mailer.user.added_to_league.subject', league_name: @league.name))
   end
 
+  def made_inactive_in_league
+    @user = params[:user]
+    @league = params[:league]
+    mail(to: @user.email, subject: t('mailer.user.made_inactive_in_league.subject', league_name: @league.name))
+  end
+  
   def removed_from_league
     @user = params[:user]
     @league = params[:league]
