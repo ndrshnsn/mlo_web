@@ -1,5 +1,4 @@
 class Admin::LeaguesController < ApplicationController
-  include FakeAccounts
   authorize_resource class: false
   before_action :set_local_vars
   breadcrumb "dashboard", :admin_accounts_path, match: :exact

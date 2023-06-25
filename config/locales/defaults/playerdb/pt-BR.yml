@@ -171,6 +171,7 @@ pt-BR:
       stats:
         offensiveAwareness: "Habilidade Ofensiva"
         ballControl: "Controle de Bola"
+        ballWinning: "Ganho de Bola"
         dribbling: "Drible"
         tightPossession: "Condução"
         lowPass: "Passe Rasteiro"

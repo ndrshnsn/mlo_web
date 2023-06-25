@@ -6,13 +6,11 @@ class Admin::Playerdb::PlayerdbPlayersController < ApplicationController
 
   def index
     @defCountries = DefCountry.all.order(name: :asc)
-    @platforms = eval(AppConfig.platforms)
+    @platforms = AppConfig.platforms
   end
 
   def details
     @defPlayer = DefPlayer.includes(:def_player_position).friendly.find(params[:id])
-
-    ## Player Positions
     @positions = helpers.getVisualPlayerPositions(@defPlayer)
   end
 

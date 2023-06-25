@@ -44,15 +44,12 @@ class Admin::SettingsController < ApplicationController
       :season_player_value_earning_relation,
       :season_player_high_over,
       :season_player_low_over,
-      :season_player_raffle_turn_time,
-      :season_player_raffle_switches,
       :season_player_raffle_remaining,
       :season_player_raffle_first_order,
       :season_club_default_earning,
       :season_club_max_total_wage,
       :league_slots,
       :platforms,
-      :user_platforms,
       :generic_player,
       :fake_account_password,
       :championship_minimum_players,
@@ -74,14 +71,7 @@ class Admin::SettingsController < ApplicationController
       :match_hattrick_earning,
       :mail_username,
       :mail_password,
-      :mail_admin,
-      :sendgrid_api,
-      :template_request_league_id,
-      :template_confirmation_id,
-      :template_new_league_id,
-      :template_reset_password_id,
-      :vapid_pubkey,
-      :vapid_privkey
+      :mail_admin
     )
   end
 end
