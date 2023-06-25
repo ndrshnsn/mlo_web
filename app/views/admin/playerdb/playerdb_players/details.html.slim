@@ -6,5 +6,5 @@
     button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
   .modal-body.pb-0
     .container-fluid
-      = render partial: "admin/playerdb/playerdb_players/platforms/#{@defPlayer.platform}", locals: { defPlayer: @defPlayer }
+      = render partial: "layouts/platforms/#{@defPlayer.platform}", locals: { defPlayer: @defPlayer }
       

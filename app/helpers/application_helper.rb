@@ -177,6 +177,7 @@ module ApplicationHelper
 
   def get_platforms(level: nil, platform: nil, dna: nil)
     global_platforms = AppConfig.platforms
+    return global_platforms.each.detect { |i| i[1].include?(platform) }[0]
     return global_platforms.find {|i| i=platform}[0] if dna != nil
     return global_platforms.collect {|i| i[level]} if level != nil
     return global_platforms.find {|i| i=platform}[1] if platform != nil
