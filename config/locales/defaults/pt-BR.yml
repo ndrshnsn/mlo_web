@@ -63,6 +63,8 @@ pt-BR:
     assister_desc: "Premiação para o maior Passador"
     fairplay: "FairPlay"
     fairplay_desc: "Premiação para quem sofrer menos cartões"
+    lessown: "Defesa menos Vazada"
+    lessown_desc: "Time que tomou menos gols em todos os jogos"
   parsley:
     minimum_bigger: "O mínimo precisa ser menor que o máximo!"
   theme:

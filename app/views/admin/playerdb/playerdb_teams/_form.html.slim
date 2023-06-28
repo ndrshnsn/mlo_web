@@ -20,7 +20,7 @@
     .form-group
       = f.label :plaforms, t('.platforms'), class: "control-label"
       #popover_def_team_platforms
-      = select_tag "def_team[platforms]", options_for_select(eval(AppConfig.platforms), @defTeam.platforms), {multiple: true, include_blank: true,  class: "form-control select2", id: 'def_team_platforms', required: true, "data-parsley-errors-container": "def_team_platforms", "data-controller": "select", "data-select-icon-value": false }
+      = select_tag "def_team[platforms]", grouped_options_for_select(AppConfig.platforms, @defTeam.platforms), {multiple: true, include_blank: true,  class: "form-control select2", id: 'def_team_platforms', required: true, "data-parsley-errors-container": "def_team_platforms", "data-controller": "select", "data-select-icon-value": false }
 
   .col-sm-12.col-md-6.mb-3
     .form-group

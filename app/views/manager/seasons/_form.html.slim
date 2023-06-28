@@ -37,7 +37,7 @@
           = f.label :season_time, t('.duration'), class: "control-label"
           span
             #popover_season_time
-          = select_tag "season[time]", options_for_select(AppConfig.season_times.split(' ').collect { |time| [time, time] }, @season.duration), {include_blank: true,  class: "readonly text-center form-control select2", required: true, "data-parsley-errors-container": "season_time", "data-controller": "select", "data-select-icon-value": false, "data-select-readonly-value": sStarted, "data-minimum-results-for-search": "Infinity" }
+          = select_tag "season[time]", options_for_select(AppConfig.season_times.collect { |time| [time, time] }, @season.duration), {include_blank: true,  class: "readonly text-center form-control select2", required: true, "data-parsley-errors-container": "season_time", "data-controller": "select", "data-select-icon-value": false, "data-select-readonly-value": sStarted, "data-minimum-results-for-search": "Infinity" }
           
 .card 
   .card-header.align-items-center.d-flex
@@ -61,7 +61,7 @@
                 - minPlayers = @season.min_players || AppConfig.season_min_players.split(' ')[0]
                 span
                   #popover_season_min_players
-                = select_tag "season[min_players]", options_for_select(AppConfig.season_min_players.split(' ').collect { |players| [players, players] }, minPlayers), { class: "text-center form-control select2", "data-parsley-lt": "#season_max_players", "data-parsley-error-message": "O mínimo precisa ser menor que o máximo!", "data-parsley-errors-container": "season_min_players", "data-controller": "select manager--seasons", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
+                = select_tag "season[min_players]", options_for_select(AppConfig.season_min_players.collect { |players| [players, players] }, minPlayers), { class: "text-center form-control select2", "data-parsley-lt": "#season_max_players", "data-parsley-error-message": "O mínimo precisa ser menor que o máximo!", "data-parsley-errors-container": "season_min_players", "data-controller": "select manager--seasons", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
 
           li.list-group-item.d-flex.justify-content-between.align-items-center
             span.li-col
@@ -72,7 +72,7 @@
                 - maxPlayers = @season.max_players || AppConfig.season_max_players.split(' ')[0]
                 span
                   #popover_season_max_players
-                = select_tag "season[max_players]", options_for_select(AppConfig.season_max_players.split(' ').collect { |players| [players, players] },maxPlayers), {class: "text-center form-control select2", "data-controller": "select manager--seasons", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
+                = select_tag "season[max_players]", options_for_select(AppConfig.season_max_players.collect { |players| [players, players] },maxPlayers), {class: "text-center form-control select2", "data-controller": "select manager--seasons", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
 
         h6.mt-2.d-flex
           i.ri-subtract-fill.me-1
@@ -159,12 +159,12 @@
               = t('.steal.add_value_after_steal')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.steal.add_value_after_steal_desc')}"
             span[style="width: 130px!important;"]
+              - add_value_after_steal = @season.add_value_after_steal || 0
               .form-group
-                .input-group
-                  = number_field_tag("season[add_value_after_steal]", @season.add_value_after_steal, min: 0, max: 100, step: 5, class: "text-center form-control")
-                  .input-group-append
-                    span.input-group-text
-                      | %
+                .input-step
+                  button.minus#minus_add_value_after_steal type="button" -
+                  = number_field_tag("season[add_value_after_steal]", add_value_after_steal, min: 0, max: 100, step: 5, class: "text-center form-control", onkeydown: "return false", data: { controller: "input-number", "input-number-plusbutton-value": "plus_add_value_after_steal", "input-number-minusbutton-value": "minus_add_value_after_steal"})
+                  button.plus#plus_add_value_after_steal type="button" +
           li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
             span.li-col
               = t('.steal.window')
@@ -174,17 +174,16 @@
             span[style="width: 130px!important;"]
               .form-group
                 - steal_window_start = @season.steal_window_start || AppConfig.season_default_steal_window_start
-                .input-group.mb-50
-                  = number_field_tag("season[steal_window_start]", steal_window_start, class: "text-center form-control", "data-parsley-lt": "#season_steal_window_end", "data-parsley-lt-message": t('parsley.minimum_bigger'))
-                  .input-group-append
-                      span.input-group-text
-                        | hs
+                .input-step.mb-50
+                  button.minus#minus_steal_window_start type="button" -
+                  = number_field_tag("season[steal_window_start]", steal_window_start, min: 0, max: 2, step: 1, class: "text-center form-control", onkeydown: "return false", data: { controller: "input-number", "input-number-plusbutton-value": "plus_steal_window_start", "input-number-minusbutton-value": "minus_steal_window_start", "parsley-lt": "#season_steal_window_end", "parsley-lt-message": t('parsley.minimum_bigger')})
+                  button.plus#plus_steal_window_start type="button" +
+
                 - steal_window_end = @season.steal_window_end || AppConfig.season_default_steal_window_end
-                .input-group
-                  = number_field_tag("season[steal_window_end]", steal_window_end, class: "text-center form-control")
-                  .input-group-append
-                      span.input-group-text
-                        | hs
+                .input-step
+                  button.minus#minus_steal_window_end type="button" -
+                  = number_field_tag("season[steal_window_end]", steal_window_end, min: 1, max: 3, step: 1, class: "text-center form-control", onkeydown: "return false", data: { controller: "input-number", "input-number-plusbutton-value": "plus_steal_window_end", "input-number-minusbutton-value": "minus_steal_window_end"})
+                  button.minus#plus_steal_window_end type="button" +
 
 .card 
   .card-body
@@ -244,7 +243,7 @@
           span style="width: 130px!important;"
             - default_player_earnings = @season.default_player_earnings || "none"
             .form-group
-              = select_tag "season[default_player_earnings]", options_for_select([[t('.proportional'), "proportional", {'data-src': manager_seasons_ftax_path('wage')}],[t('.fixed_value'), "fixed", {'data-src': manager_seasons_pearnings_path('fixed')}]],default_player_earnings), {class: "text-center form-control select2", "data-controller": "select select-frame", "data-select-frame-target-value": "default_player_earnings_partial", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-select-readonly-value": sStarted }
+              = select_tag "season[default_player_earnings]", options_for_select([[t('.proportional'), "proportional", {'data-src': manager_seasons_pearnings_path('wage')}],[t('.fixed_value'), "fixed", {'data-src': manager_seasons_pearnings_path('fixed')}]],default_player_earnings), {class: "text-center form-control select2", "data-controller": "select select-frame", "data-select-frame-target-value": "default_player_earnings_partial", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-select-readonly-value": sStarted }
         - if default_player_earnings == "fixed"
           = turbo_frame_tag :default_player_earnings_partial, src: manager_seasons_pearnings_path('fixed')
         - else
@@ -256,11 +255,10 @@
           span[style="width: 130px!important;"]
             - player_value_earning_relation = @season.player_value_earning_relation || AppConfig.season_player_value_earning_relation
             .form-group
-              .input-group
-                = number_field_tag("season[player_value_earning_relation]", player_value_earning_relation, min: AppConfig.season_player_value_earning_relation, max: 100, step: 5, readonly: sStarted, class: "text-center form-control")
-                .input-group-append
-                  span.input-group-text
-                    | X
+              .input-step
+                button.minus#minus_player_value_earning_relation type="button" -
+                = number_field_tag("season[player_value_earning_relation]", player_value_earning_relation, min: AppConfig.season_player_value_earning_relation, max: 100, step: 5, readonly: sStarted, class: "text-center form-control", onkeydown: "return false", data: { controller: "input-number", "input-number-plusbutton-value": "plus_player_value_earning_relation", "input-number-minusbutton-value": "minus_player_value_earning_relation"})
+                button.minus#plus_player_value_earning_relation type="button" +
         li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
           span.li-col
             = t('.value.allow_increase_earnings')
@@ -342,11 +340,11 @@
             i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.date.time_game_confirmation_desc')}"
           span style="width: 130px!important;"
             .form-group
-              .input-group
-                = number_field_tag("season[time_game_confirmation]", AppConfig.season_default_time_game_confirmation, class: "text-center form-control")
-                .input-group-append
-                  span.input-group-text
-                    | hs
+              .input-step
+                - time_game_confirmation = @season.time_game_confirmation || AppConfig.season_default_time_game_confirmation
+                button.minus#minus_time_game_confirmation type="button" -
+                = number_field_tag("season[time_game_confirmation]", time_game_confirmation, min: AppConfig.season_default_time_game_confirmation, max: 12, step: 1, readonly: sStarted, class: "text-center form-control", onkeydown: "return false", data: { controller: "input-number", "input-number-plusbutton-value": "plus_time_game_confirmation", "input-number-minusbutton-value": "minus_time_game_confirmation"})
+                button.minus#plus_time_game_confirmation type="button" +
 
 .card 
   .card-body
@@ -362,12 +360,12 @@
               = atype[1]
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{atype[2]}"
             span style="width: 130px!important;"
-              - award_id = "season_#{atype[0]}"
+              - award_id = "award_#{atype[0]}"
               - aValue = @season["award_#{atype[0]}"] || nil
               .form-group
                 span
                   div id="popover_#{award_id}"
-                = select_tag "season[#{atype[0]}]", options_for_select([[t('awardTypes.none'), "none"]] + @awards.collect { |award| [ award[:name], award[:id]] }, aValue), {include_blank: false,  class: "form-control select2", id: award_id, required: true, "data-controller": "select", "data-select-icon-value": false }
+                = select_tag "award[#{atype[0]}]", options_for_select([[t('awardTypes.none'), "none"]] + @awards.collect { |award| [ award[:name], award[:id]] }, aValue), {include_blank: false,  class: "form-control select2", id: award_id, required: true, "data-controller": "select", "data-select-icon-value": false }
 
 .card 
   .card-body
@@ -379,6 +377,17 @@
       blockquote.blockquote.custom-blockquote.blockquote-warning.rounded.mt-4.fs-6.text-white
         p = t('.club.raffle_desc_html', choosing_order: t("player_choosing_order.#{@league.platform}"))
       ul.list-group.list-group-flush
+        li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+          span.li-col
+            = t('.club.raffle_select_platform')
+            i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.club.raffle_select_platform_desc')}"
+          span style="width: 130px!important;"
+            - raffle_low_over = @season.raffle_low_over || AppConfig.season_player_low_over
+            .form-group
+              span
+                #popover_season_raffle_platform
+              = select_tag "season[raffle_platform]", options_for_select(get_platforms(platform: @league.platform)), {class: "form-control select2", include_blank: true, required: true, data: {controller: "select manager--seasons", "select-pholder-value": "select", "parsley-errors-container": "season_raffle_select_platform", "select-icon-value": false, "minimum-results-for-search": "Infinity", "manager--seasons-url-value": manager_season_get_available_players_path, "select-readonly-value": sStarted } }
+              
         li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
           span.li-col
             = t('.club.raffle_low_over')
@@ -389,6 +398,7 @@
               span
                 #popover_season_raffle_low_over
               = select_tag "season[raffle_low_over]", options_for_select(40..99, raffle_low_over), {class: "text-center form-control select2" , "data-parsley-lt": "#season_raffle_high_over", "data-parsley-error-message": t('parsley.minimum_bigger'), "data-parsley-errors-container": "season_raffle_low_over", "data-controller": "select manager--seasons", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
+
         li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
           span.li-col
             = t('.club.raffle_high_over')
@@ -409,7 +419,7 @@
             .form-group
               span
                 #popover_season_raffle_remaining
-              = select_tag "season[raffle_remaining]", options_for_select(AppConfig.season_player_raffle_remaining[0].split(' ').collect { |players| [players, players] },raffle_remaining), {include_blank: true,  class: "text-center form-control select2", "data-controller": "manager--seasons select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
+              = select_tag "season[raffle_remaining]", options_for_select(AppConfig.season_player_raffle_remaining.collect { |players| [players, players] },raffle_remaining), {include_blank: true,  class: "text-center form-control select2", "data-controller": "manager--seasons select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
 
         - if !sStarted
           li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]

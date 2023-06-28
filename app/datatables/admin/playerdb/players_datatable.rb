@@ -73,6 +73,7 @@ class Admin::Playerdb::PlayersDatatable < ApplicationDatatable
   def fetch_players
     search_string = []
     columns.each_with_index do |term, i|
+      Rails.logger.info "-------------------- #{search_string}"
       if params[:columns]["#{i}"][:searchable] == "true" && params[:columns]["#{i}"][:search][:value].present?
         search_string << if term == 'def_players"."active'
           "\"#{term}\" = '#{params[:columns]["#{i}"][:search][:value]}'"

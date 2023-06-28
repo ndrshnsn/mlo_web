@@ -43,10 +43,12 @@ class Manager::SeasonsController < ApplicationController
     render json: Manager::SeasonUsersDatatable.new(view_context, season: season.id)
   end
 
-  def get_base_players(lowOver = AppConfig.season_player_low_over.to_i, highOver = AppConfig.season_player_high_over.to_i)
+  def get_base_players(lowOver = AppConfig.season_player_low_over.to_i, highOver = AppConfig.season_player_high_over.to_i, platform = nil)
+    platform_dna = platform.nil? ? @league.platform : helpers.get_platforms(platform: platform, dna: true)
+    platform ||= @league.platform
     availablePlayers = []
-    AppConfig.season_player_raffle_first_order.find { |key| key.include?(@league.platform) }[1].each do |position|
-      getPlayers = DefPlayer.left_outer_joins(:def_player_position).where("def_players.platform = ? AND def_players.active = ? AND def_player_positions.name = ? AND (def_players.details -> 'attrs' ->> 'overallRating')::Integer >= ? AND (def_players.details -> 'attrs' ->> 'overallRating')::Integer <= ?", @league.platform, true, position, lowOver, highOver)
+    AppConfig.season_player_raffle_first_order.find { |key| key.include?(platform_dna) }[1].each do |position|
+      getPlayers = DefPlayer.left_outer_joins(:def_player_position).where("def_players.platform = ? AND def_players.active = ? AND def_player_positions.name = ? AND (def_players.details -> 'attrs' ->> 'overallRating')::Integer >= ? AND (def_players.details -> 'attrs' ->> 'overallRating')::Integer <= ?", platform, true, position, lowOver, highOver)
       availablePlayers << [position, getPlayers.size]
     end
 
@@ -55,7 +57,7 @@ class Manager::SeasonsController < ApplicationController
 
   def get_available_players
     @noSpaces = false
-    @pAvailablePlayers = get_base_players(params[:season][:raffle_low_over], params[:season][:raffle_high_over])
+    @pAvailablePlayers = get_base_players(params[:season][:raffle_low_over], params[:season][:raffle_high_over], params[:platform])
     @tAvailablePlayers = 0
     @pAvailablePlayers.uniq.each do |pPosition|
       @tAvailablePlayers += pPosition[1]
@@ -64,7 +66,7 @@ class Manager::SeasonsController < ApplicationController
     @tAvailablePlayersPP.each do |pSpaces|
       if pSpaces[1] <= 5
         @noSpaces = true
-        flash.now[:danger] = t(".no_spaces_check")
+        flash.now[:error] = t(".no_spaces_check")
       end
     end
     respond_to do |format|
@@ -582,18 +584,19 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def destroy
-    season = Season.find_by_hashid(params[:id])
-    if season.status == 1
-      flash["danger"] = t(".in_progress")
-    else
-      uSeasons = UserSeason.where(season_id: season.id).destroy_all
-      if season.destroy!
-        flash["success"] = t(".success")
+    @season = Season.find_by_hashid(params[:id])
+    respond_to do |format|
+      if @season.status == 1
+        format.turbo_stream { flash["error"] = t(".in_progress") }
+        format.html { render :index, status: :unprocessable_entity, notice: t(".in_progress") }
       else
-        flash["error"] = t(".error")
+        if @season.destroy!
+          format.html { redirect_to manager_seasons_path, notice: t(".success") }
+        else
+          format.html { render :index, status: :unprocessable_entity }
+        end
       end
     end
-    redirect_to manager_seasons_path, status: :see_other
   end
 
   private
@@ -636,19 +639,17 @@ class Manager::SeasonsController < ApplicationController
       :fire_tax,
       :fire_tax_fixed,
       :time_game_confirmation,
+      :raffle_platform,
       :raffle_low_over,
       :raffle_high_over,
       :raffle_switches,
       :raffle_remaining,
-      :advertisement,
-      :firstplace,
-      :secondplace,
-      :thirdplace,
-      :fourthplace,
-      :goaler,
-      :assister,
-      :fairplay
+      :advertisement
     )
+  end
+
+  def award_params
+    params.require(:awards).permit(award: {})
   end
 
   def user_params

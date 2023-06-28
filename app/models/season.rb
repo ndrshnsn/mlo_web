@@ -1,6 +1,7 @@
 class Season < ApplicationRecord
   include Hashid::Rails
   has_noticed_notifications
+  audited
 
   belongs_to :league
   has_many :user_seasons, dependent: :destroy
@@ -39,7 +40,8 @@ class Season < ApplicationRecord
     fire_tax: :string,
     fire_tax_fixed: :integer,
     default_mininum_operation: :integer,
-    time_game_confirmation: :datetime,
+    time_game_confirmation: :integer,
+    raffle_platform: :string,
     raffle_low_over: :integer,
     raffle_high_over: :integer,
     raffle_switches: :integer,
