@@ -44,20 +44,12 @@ class Season < ApplicationRecord
     raffle_platform: :string,
     raffle_low_over: :integer,
     raffle_high_over: :integer,
-    raffle_switches: :integer,
     raffle_remaining: :string,
     saction_clubs_choosing: :integer,
     saction_players_choosing: :integer,
     saction_transfer_window: :integer,
     saction_player_steal: :integer,
-    saction_change_wage: :integer,
-    award_firstplace: :string,
-    award_secondplace: :string,
-    award_thirdplace: :string,
-    award_fourthplace: :string,
-    award_goaler: :string,
-    award_assister: :string,
-    award_fairplay: :string
+    saction_change_wage: :integer
 
   def self.getActive(user)
     getUser = User.find(user)
