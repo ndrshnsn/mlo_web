@@ -36,6 +36,7 @@ pt-BR:
       new:
         confirm_text: "Confirme a criação da Temporada. Ela não será iniciada, você terá acesso às funções na opção de Detalhes desta temporada"
         confirm: "Criar Temporada?"
+        seasons: "Temporadas"
       create:
         success: "Temporada criada com sucesso!"
         error: "Erro criando nova Temporada"

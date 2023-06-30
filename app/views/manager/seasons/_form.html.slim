@@ -4,10 +4,10 @@
 .card 
   .card-header.align-items-center.d-flex
     h4.card-title.mb-o.flex-grow-1
-      - if fDisabled
-        = t('.settings')
-      - else
+      - if faction == "new"
         = t('.new')
+      - else
+        = t('.settings')
   .card-body
     p.text-muted.fs-6
       blockquote.blockquote.custom-blockquote.blockquote-dark.rounded.fs-6 = t('.details_html')
@@ -361,7 +361,7 @@
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t(atype[:i18n_desc])}"
             span style="width: 130px!important;"
               - award_id = "award_#{atype[:position]}"
-              - aValue = @season["award_#{atype[:position]}"] || nil
+              - aValue = @season.preferences["award_#{atype[:position]}"] || nil
               .form-group
                 span
                   div id="popover_#{award_id}"

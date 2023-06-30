@@ -16,6 +16,14 @@ class League < ApplicationRecord
 
   private
 
+  def self.get_awards(league_id)
+    return Award.where(league_id: league_id, status: true).order(name: :asc)
+  end
+
+  def self.get_seasons(league_id)
+    return Season.where(league_id: league_id).order(updated_at: :desc)
+  end
+
   def pre_destroy_task
     ## check if admin manages other leagues
     other_leagues = League.where(user_id: user.id)

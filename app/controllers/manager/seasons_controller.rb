@@ -5,7 +5,7 @@ class Manager::SeasonsController < ApplicationController
   breadcrumb "manager.seasons.main", :manager_seasons_path, match: :exact
 
   def index
-    @seasons = Season.where(league_id: @league.id).order(updated_at: :desc)
+    get_current_seasons
     if @season
       @users = User.joins(:user_leagues).where("league_id = ?", @league.id)
     end
@@ -14,6 +14,10 @@ class Manager::SeasonsController < ApplicationController
   def check_season_name
     season = Season.exists?(name: params[:season][:name], league_id: @league.id) ? :unauthorized : :ok
     render body: nil, status: season
+  end
+
+  def get_current_seasons
+    @seasons = League.get_seasons(@league.id)
   end
 
   def new
@@ -35,7 +39,7 @@ class Manager::SeasonsController < ApplicationController
     @tAvailablePlayersPP = @pAvailablePlayers.uniq
 
 
-    @awards = Award.where(league_id: @league.id, status: true)
+    @awards = League.get_awards(@league.id)
     @award_result_type = AppServices::Award.new().list_awards
     # end
   end
@@ -201,8 +205,8 @@ class Manager::SeasonsController < ApplicationController
 
   def settings
     @season = Season.find_by_hashid(params[:id])
-    @awards = Award.where(league_id: @league.id, status: true)
-    @award_result_type = helpers.award_result_types
+    @awards = League.get_awards(@league.id)
+    @award_result_type = AppServices::Award.new().list_awards
   end
 
   def create
@@ -212,6 +216,7 @@ class Manager::SeasonsController < ApplicationController
     @season.duration = season_params[:time].to_i
     @season.league_id = current_user.preferences["active_league"]
     @season.advertisement = season_params[:advertisement]
+    @season.status = 0
     @season.preferences = {
       min_players: season_params[:min_players].to_i,
       max_players: season_params[:max_players].to_i,
@@ -250,15 +255,14 @@ class Manager::SeasonsController < ApplicationController
       saction_clubs_choosing: 0
     }
 
-    helpers.award_result_types.each do |a|
-      @season.preferences["award_#{a[0]}"] = award_params[a.to_sym]
+    AppServices::Award.new().list_awards.each do |award|
+      @season.preferences["award_#{award[:position]}"] = award_params[:award][award[:position].to_sym].to_i
     end
-    @season.status = 0
 
     respond_to do |format|
       if @season.save!
         User.joins(:user_leagues).where("league_id = ? AND status = ?", @league.id, true).each do |user|
-          uSeason = UserSeason.create(user_id: user.id, season_id: @season.id)
+          user_season = UserSeason.create(user_id: user.id, season_id: @season.id)
         end
 
         SeasonNotification.with(
@@ -271,8 +275,9 @@ class Manager::SeasonsController < ApplicationController
           type: "new"
         ).deliver_later(current_user)
 
-        flash.now["success"] = t(".success")
+        get_current_seasons
         format.html { redirect_to manager_seasons_path, notice: t(".success") }
+        format.turbo_stream { flash.now["success"] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -581,6 +586,7 @@ class Manager::SeasonsController < ApplicationController
         format.html { render :index, status: :unprocessable_entity, notice: t(".in_progress") }
       else
         if @season.destroy!
+          format.turbo_stream { flash["success"] = t(".success") }
           format.html { redirect_to manager_seasons_path, notice: t(".success") }
         else
           format.html { render :index, status: :unprocessable_entity }
@@ -639,12 +645,12 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def award_params
-    params.require(:awards).permit(award: {})
+    params.permit(award: {})
   end
 
-  def user_params
-    params.permit(users: [])
-  end
+  # def user_params
+  #   params.permit(users: [])
+  # end
 end
 
 
