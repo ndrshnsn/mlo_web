@@ -17,7 +17,6 @@ class AppServices::Award < ApplicationService
       { position: "fairplay", i18n: "awardTypes.fairplay", i18n_desc: "awardTypes.fairplay_desc"},
       { position: "lessown", i18n: "awardTypes.lessown", i18n_desc: "awardTypes.lessown_desc"}
     )
-
     awards
   end
 end

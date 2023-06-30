@@ -16,29 +16,35 @@ namespace :manager do
 
   match "players", controller: "players", action: "index", via: :get, as: :players
 
-  match "settings", controller: "settings", action: "index", via: :get, as: :settings
+  get "settings", to: "settings#index", as: :settings
   patch "settings/update/:id", to: "settings#update", as: :settings_update
 
   ## Seasons
   get "seasons", to: "seasons#index", as: :seasons
-  match "seasons/:id/details", controller: "seasons", action: "details", via: :get, as: :season_details
+  match "seasons/details/:id", controller: "seasons", action: "details", via: :get, as: :season_details
   get "seasons/new", to: "seasons#new", as: :season_new
   get "seasons/check_season_name", to: "seasons#check_season_name", as: :check_season_name
   post "seasons/create", to: "seasons#create", as: :season_create
-  patch "seasons/:id/update", to: "seasons#update", as: :season_update
-  get "seasons/:id/settings", to: "seasons#settings", as: :season_settings
+  patch "seasons/update/:id", to: "seasons#update", as: :season_update
+  get "seasons/settings/:id", to: "seasons#settings", as: :season_settings
   delete "seasons/destroy/:id", to: "seasons#destroy", as: :season_destroy
   get "seasons/new/ftax/:type", to: "seasons#ftax", as: :seasons_ftax
   get "seasons/new/pearnings/:type", to: "seasons#pearnings", as: :seasons_pearnings
-  get "seasons/:id/users", to: "seasons#users", as: :season_users
-  get "seasons/:id/:user/players", to: "seasons#user_players", as: :season_user_players
+  get "seasons/users/:id", to: "seasons#users", as: :season_users
   post "seasons/users/get_susers_dt", to: "seasons#get_susers_dt", as: :get_susers_dt
   post "seasons/users/players/get_splayers_dt", to: "seasons#get_splayers_dt", as: :get_splayers_dt
+  get "seasons/players/:id/:user", to: "seasons#user_players", as: :season_user_players
+  post "seasons/get_available_players", to: "seasons#get_available_players", as: :season_get_available_players
+
+  get "seasons/actions/:id/:step", to: "seasons#season_steps", as: :season_steps
 
   # match 'seasons/users/:id/:user/:player/dismiss', controller: 'seasons', action: 'user_player_dismiss', via: :post, as: :season_user_dismiss_player
   # match 'seasons/enqueue/:id', controller: 'seasons', action: 'enqueue', via: :get, as: :season_enqueue
   # match 'seasons/get_fire_tax', controller: 'seasons', action: 'get_fire_tax', via: :get, as: :season_get_fire_tax
-  post "seasons/get_available_players", to: "seasons#get_available_players", as: :season_get_available_players
+
+
+
+
   match "seasons/get_cteams/:id/:user", controller: "seasons", action: "get_cteams", via: :post, as: :season_get_cteams
   match "seasons/select_club", controller: "seasons", action: "select_club", via: :post, as: :season_select_club
   match "seasons/start/:id", controller: "seasons", action: "start_season", via: :post, as: :season_start

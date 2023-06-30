@@ -382,11 +382,11 @@
             = t('.club.raffle_select_platform')
             i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.club.raffle_select_platform_desc')}"
           span style="width: 130px!important;"
-            - raffle_low_over = @season.raffle_low_over || AppConfig.season_player_low_over
+            - raffle_platform = @season.raffle_platform || nil
             .form-group
               span
                 #popover_season_raffle_platform
-              = select_tag "season[raffle_platform]", options_for_select(get_platforms(platform: @league.platform)), {class: "form-control select2", include_blank: true, required: true, data: {controller: "select manager--seasons", "select-pholder-value": "select", "parsley-errors-container": "season_raffle_select_platform", "select-icon-value": false, "minimum-results-for-search": "Infinity", "manager--seasons-url-value": manager_season_get_available_players_path, "select-readonly-value": sStarted } }
+              = select_tag "season[raffle_platform]", options_for_select(get_platforms(platform: @league.platform), raffle_platform), {class: "form-control select2", include_blank: true, required: true, data: {controller: "select manager--seasons", "select-pholder-value": "select", "parsley-errors-container": "season_raffle_select_platform", "select-icon-value": false, "minimum-results-for-search": "Infinity", "manager--seasons-url-value": manager_season_get_available_players_path, "select-readonly-value": sStarted } }
               
         li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
           span.li-col
@@ -419,7 +419,7 @@
             .form-group
               span
                 #popover_season_raffle_remaining
-              = select_tag "season[raffle_remaining]", options_for_select(AppConfig.season_player_raffle_remaining.collect { |players| [players, players] },raffle_remaining), {include_blank: true,  class: "text-center form-control select2", "data-controller": "manager--seasons select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
+              = select_tag "season[raffle_remaining]", options_for_select(AppConfig.season_player_raffle_remaining.collect { |players| [players, players] }, raffle_remaining), {include_blank: true,  class: "text-center form-control select2", "data-controller": "manager--seasons select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-manager--seasons-url-value": manager_season_get_available_players_path, "data-select-readonly-value": sStarted }
 
         - if !sStarted
           li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]

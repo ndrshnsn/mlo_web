@@ -4,7 +4,7 @@
     .row.g-0.bg-light
       .d-grid.gap-2
         - start_season_disabled = @season.status == 0 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-        = link_to "javascript:void(0)", class: "btn btn-primary btn-sm btn-border #{start_season_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_season_question'), "confirm-text-value": t('.start_season_text'), "confirm-link-value": manager_season_start_path(@season.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+        = link_to "javascript:void(0)", class: "btn btn-primary btn-sm btn-border #{start_season_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_season_question'), "confirm-text-value": t('.start_season_text'), "confirm-link-value": manager_season_steps_path(@season.hashid, "start"), "confirm-icon-value": "question", "confirm-action-value": "GET", action: "click->confirm#dialog" } do
           span = t('.start_season')
 
         - saction_clubs_choosing_disabled = (@season.status == 1 && @season.clubs.size < @season.user_seasons.size) ? "btn-primary" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
