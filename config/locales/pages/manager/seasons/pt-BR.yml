@@ -42,23 +42,31 @@ pt-BR:
         error: "Erro criando nova Temporada"
         wnotify_subject: "Temporada %{season} Criada!"
         wnotify_text: "Verifique as informaçoes da nova Temporada Criada"
-      players_raffle:
-        wnotify_subject: "Jogadores Iniciais sorteados para a Temporada %{season}"
-        wnotify_text: "Verifique o plantel do seu time no menu do Clube"
-        success: "Sorteio dos Jogadores Encerrado com Sucesso"
-        error: "Erro durante o Sorteio dos jogadores"
       destroy:
         success: "Temporada removida com sucesso!"
         error: "Erro removendo temporada"
         in_progress: "Temporada em andamento ou com Campeonatos Pendentes! Primeiramente encerre/exclua os campeonatos para então remover a temporada ou se for necessário entre em contato com o Administrador"
-      start_season:
-        wnotify_subject: "Temporada %{season} Iniciada!"
-        wnotify_text: "Verifique as informaçoes da nova Temporada Criada"
-      start_clubs_choosing:
-        success: "Escolha dos Clubes Iniciada!"
-        error: "Erro iniciando escolha dos Clubes"
-        wnotify_subject: "Escolha dos Clubes da Temporada %{season} Iniciada!"
-        wnotify_text: "Definição dos Clubes para a temporada %{season} Iniciada! Entre no Painel e Defina seu Clube para a temporada."
+      steps:
+        start:
+          success: "Temporada Iniciada com Sucesso!"
+          wnotify_subject: "Temporada %{season} Iniciada!"
+          wnotify_text: "Verifique as informaçoes da nova Temporada Criada"
+        start_club_choosing:
+          success: "Escolha dos Clubes Iniciada!"
+          error: "Erro iniciando escolha dos Clubes"
+          wnotify_subject: "Escolha dos Clubes da Temporada %{season} Iniciada!"
+          wnotify_text: "Definição dos Clubes para a temporada %{season} Iniciada! Entre no Painel e Defina seu Clube para a temporada."
+        stop_club_choosing:
+          success: "Encerrada a Escolha dos Clubes!"
+          error: "Erro encerrando escolha dos Clubes"
+          wnotify_subject: "Escolha dos Clubes da Temporada %{season} Encerrada!"
+          wnotify_text: "Definição dos Clubes para a temporada %{season} Encerrada! Caso não tenha escolhido seu clube o mesmo foi definido de forma aleatória."
+        players_raffle:
+          wnotify_subject: "Jogadores Iniciais sorteados para a Temporada %{season}"
+          wnotify_text: "Verifique o plantel do seu time no menu do Clube"
+          success: "Sorteio dos Jogadores Encerrado com Sucesso"
+          error: "Erro durante o Sorteio dos jogadores"
+
       details:
         seasons: "Temporadas"
         info:

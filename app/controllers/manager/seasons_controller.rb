@@ -354,21 +354,29 @@ class Manager::SeasonsController < ApplicationController
     @seasons = Season.where(league_id: @league.id).where.not(id: @season.id).order(updated_at: :desc)
   end
 
-  def season_steps
+  def steps
+    @season = Season.find_by_hashid(params[:id])
     case params[:step]
     when "start"
-      # if ManagerServices::Season::Start.call(params[:id])
-
-      # end
-
-      logger.info "----- started"
+      resolution = ManagerServices::Season::Start.call(@season, current_user)
+      success_message = t(".start.success")
+    when "start_club_choosing"
+      resolution = ManagerServices::Season::ClubChoosing.new(@season, current_user).call_start()
+      success_message = t(".start.start_club_choosing.success")
+    when "stop_club_choosing"
+      resolution = ManagerServices::Season::ClubChoosing.new(@season, current_user).call_stop()
+      success_message = t(".start.stop_club_choosing.success")
     end
 
-
+    respond_to do |format|
+      if resolution.success?
+        format.turbo_stream {flash.now["success"] = success_message}
+        format.html { redirect_to manager_seasons_path, notice: success_message }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
   end
-
-
-
 
   #################
 
@@ -451,98 +459,6 @@ class Manager::SeasonsController < ApplicationController
       end
       respond_to do |format|
         format.js
-      end
-    end
-  end
-
-  def start_clubs_choosing
-    @season = Season.find_by_hashid(params[:id])
-    respond_to do |format|
-      if @season.update(preferences = {saction_clubs_choosing: 1})
-        SeasonNotification.with(
-          season: @season,
-          league: @season.league_id,
-          icon: "stack",
-          type: "start_clubs_choosing",
-          push: false,
-          push_message: t(".wnotify_subject", season: @season.name)
-        ).deliver_later(current_user)
-
-        SeasonNotification.with(
-          season: @season,
-          league: @season.league_id,
-          icon: "stack",
-          type: "start_clubs_choosing_user",
-          push: true,
-          push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}"
-        ).deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", @season.id))
-
-        flash.now[:success] = t(".success")
-        format.turbo_stream { render "sactions_update" }
-        format.html { redirect_to manager_seasons_details_path(@season.hashid), notice: t(".success") }
-      else
-        flash.now["error"] = t(".error")
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def stop_clubs_choosing
-    @season = Season.find_by_hashid(params[:id])
-    platform = @season.league.platform
-    orderedChoosingQueue = UserSeason.where(season_id: @season.id).pluck(:user_id)
-    orderedChoosingQueue.each do |cQueue|
-      userClub = User.getClub(cQueue, @season.id)
-      user = User.find(cQueue)
-      userSeason = UserSeason.where(user_id: user.id, season_id: @season.id).first
-      if userClub.nil?
-        newClub = DefTeam.where(nation: false, active: true).where("platforms ILIKE '%#{platform}%'").where.not(def_teams: {id: Club.joins(:user_season).where(user_seasons: {season_id: @season.id})}).order(Arel.sql("RANDOM()")).first
-
-        tFormations = helpers.team_formations
-        formation_pos = []
-        tFormations[0][:pos].each do |tF|
-          formation_pos << {pos: tF, player: ""}
-        end
-        club = Club.new
-        club.def_team_id = newClub.id
-        club.user_season_id = userSeason.id
-        club.details = {
-          team_formation: 0,
-          formation_pos: formation_pos
-        }
-        club.save!
-
-        ClubFinance.create(club_id: club.id, operation: "initial_funds", value: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, balance: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, source: @season)
-
-        SeasonNotification.with(
-          season: @season,
-          league: @season.league_id,
-          icon: "stack",
-          push: true,
-          push_type: "user",
-          push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}",
-          type: "club_choosed"
-        ).deliver_later(user)
-      end
-    end
-
-    SeasonNotification.with(
-      season: @season,
-      league: @season.league_id,
-      icon: "stack",
-      type: "stop_clubs_choosing",
-      push: false,
-      push_message: t(".wnotify_subject", season: @season.name)
-    ).deliver_later(current_user)
-
-    respond_to do |format|
-      if @season.update(preferences = {saction_clubs_choosing: 2})
-        flash.now[:success] = "Clubes Definidos para esta Temporada! Prossiga agora com a Definição do Plantel"
-        format.turbo_stream { render "sactions_update" }
-        format.html { redirect_to manager_seasons_details_path(@season.hashid), notice: t(".success") }
-      else
-        flash.now["error"] = t(".error")
-        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end

@@ -1,6 +1,7 @@
 class ManagerServices::Season::Start < ApplicationService
-  def initialize(params)
-    @params = params
+  def initialize(season, user)
+    @season = season
+    @user = user
   end
 
   def call
@@ -12,7 +13,7 @@ class ManagerServices::Season::Start < ApplicationService
   private
 
   def start_season
-    season = Season.find_by_hashid(@params[:id])
+    season = @season
     return handle_error(season, season&.error) unless season.update!(status: 1)
 
     SeasonNotification.with(
@@ -21,8 +22,8 @@ class ManagerServices::Season::Start < ApplicationService
       icon: "stack",
       type: "start",
       push: true,
-      push_message: "#{t(".wnotify_subject", season: season.name)}||#{t(".wnotify_text")}"
-    ).deliver_later(current_user)
+      push_message: "#{I18n.t("manager.seasons.steps.start.wnotify_subject", season: season.name)}||#{I18n.t("manager.seasons.steps.start.wnotify_text")}"
+    ).deliver_later(@user)
 
     SeasonNotification.with(
       season: season,
@@ -30,7 +31,7 @@ class ManagerServices::Season::Start < ApplicationService
       icon: "stack",
       type: "start",
       push: true,
-      push_message: "#{t(".wnotify_subject", season: season.name)}||#{t(".wnotify_text")}"
+      push_message: "#{I18n.t("manager.seasons.steps.start.wnotify_subject", season: season.name)}||#{I18n.t("manager.seasons.steps.start.wnotify_text")}"
     ).deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", season.id))
 
     OpenStruct.new(success?: true, season: season, error: nil)
