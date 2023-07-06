@@ -117,7 +117,7 @@
           - else
             -
           - if @defTeam.id
-            = image_tag("#{session[:pdbprefix]}/stadiums/#{(@defTeam.name.upcase.delete(' '))}.png", class: "rounded img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-stadium.png")}';")
+            = image_tag("#{session[:pdbprefix]}/stadiums/#{(@defTeam.name.upcase.delete(' '))}.jpg", class: "rounded img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-stadium.png")}';")
           - else
             = image_tag(image_url("/misc/generic-stadium.png"), class: "img-fluid")
 
