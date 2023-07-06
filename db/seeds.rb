@@ -29,7 +29,7 @@ teams.each do |row|
     t.details = JSON.parse(row["details"])
     t.alias = row["alias"].upcase
     t.def_country_id = DefCountry.find_by(name: row["def_country"]).id
-    t.platforms = row["platforms"]
+    t.platforms = row["platforms"].split()
     t.active = row["active"]
     t.save
     puts "Team #{t.name} added"
