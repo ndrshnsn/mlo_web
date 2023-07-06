@@ -111,21 +111,10 @@ module ApplicationHelper
      ]
   end
 
-  def award_result_types
-    [
-      ["firstplace", t("awardTypes.firstPlace"), t("awardTypes.firstPlace_desc")],
-      ["secondplace", t("awardTypes.secondPlace"), t("awardTypes.secondPlace_desc")],
-      ["thirdplace", t("awardTypes.thirdPlace"), t("awardTypes.thirdPlace_desc")],
-      ["fourthplace", t("awardTypes.fourthPlace"), t("awardTypes.fourthPlace_desc")],
-      ["goaler", t("awardTypes.goaler"), t("awardTypes.goaler_desc")],
-      ["assister", t("awardTypes.assister"), t("awardTypes.assister_desc")],
-      ["fairplay", t("awardTypes.fairplay"), t("awardTypes.fairplay_desc")],
-      ["lessown", t("awardTypes.lessown"), t("awardTypes.lessown_desc")]
-    ]
-  end
-
   def translate_pkeys(data, platform)
-    platform = get_platforms(platform: platform, dna: true)
+    list_of = ["PES", "FIFA"]
+    platform = list_of.include?(platform) ? platform : get_platforms(platform: platform, dna: true)
+
     case platform
     when "PES"
       tvalues = {
@@ -175,10 +164,9 @@ module ApplicationHelper
     return Ability.new(current_user, namespace).can? action.to_sym, method.to_sym
   end
 
-  def get_platforms(level: nil, platform: nil, dna: nil)
+  def get_platforms(level: nil, platform: nil, dna: false)
     global_platforms = AppConfig.platforms
-    return global_platforms.each.detect { |i| i[1].include?(platform) }[0]
-    return global_platforms.find {|i| i=platform}[0] if dna != nil
+    return global_platforms.each.detect { |i| i[1].include?(platform) }[0] if dna == true
     return global_platforms.collect {|i| i[level]} if level != nil
     return global_platforms.find {|i| i=platform}[1] if platform != nil
     global_platforms

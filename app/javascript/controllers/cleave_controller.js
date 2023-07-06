@@ -31,8 +31,7 @@ export default class CleaveController extends Controller {
         new Cleave(this.element, {
           numericOnly: true,
           blocks: [99999]
-        })
+        });
     }
-    
   }
 }

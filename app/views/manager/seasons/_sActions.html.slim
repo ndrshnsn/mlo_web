@@ -1,18 +1,18 @@
 .card
   .card-body
-    .card-title.mb-3.text-center = t('.season_actions')
+    .card-title.mb-3.text-center.pb-2.border-bottom = t('.season_actions').upcase
     .row.g-0.bg-light
       .d-grid.gap-2
         - start_season_disabled = @season.status == 0 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-        = link_to "javascript:void(0)", class: "btn btn-primary btn-sm btn-border #{start_season_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_season_question'), "confirm-text-value": t('.start_season_text'), "confirm-link-value": manager_season_start_path(@season.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+        = link_to "javascript:void(0)", class: "btn btn-primary btn-sm btn-border #{start_season_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_season_question'), "confirm-text-value": t('.start_season_text'), "confirm-link-value": manager_season_steps_path(@season.hashid, "start"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
           span = t('.start_season')
 
         - saction_clubs_choosing_disabled = (@season.status == 1 && @season.clubs.size < @season.user_seasons.size) ? "btn-primary" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
         - if @season.preferences["saction_clubs_choosing"] == 0
-          = link_to "javascript:void(0)", id: "choose_clubs", class: "btn btn-primary btn-sm btn-border #{saction_clubs_choosing_disabled}", data: { controller: "confirm", "confirm-title-value": t('.club_start_choosing_question'), "confirm-text-value": t('.club_start_choosing_text'), "confirm-link-value": manager_season_start_clubs_choosing_path(@season.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+          = link_to "javascript:void(0)", id: "choose_clubs", class: "btn btn-primary btn-sm btn-border #{saction_clubs_choosing_disabled}", data: { controller: "confirm", "confirm-title-value": t('.club_start_choosing_question'), "confirm-text-value": t('.club_start_choosing_text'), "confirm-link-value": manager_season_steps_path(@season.hashid, "start_club_choosing"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
             span = t('.club_start_choosing')
         - elsif @season.preferences["saction_clubs_choosing"] == 1
-          = link_to "javascript:void(0)", class: "btn btn-block btn-sm saction_button btn-primary text-left", data: { controller: "confirm", "confirm-title-value": t('.club_stop_choosing_question'), "confirm-text-value": t('.club_stop_choosing_text'), "confirm-link-value": manager_season_stop_clubs_choosing_path(@season.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+          = link_to "javascript:void(0)", class: "btn btn-block btn-sm saction_button btn-primary text-left", data: { controller: "confirm", "confirm-title-value": t('.club_stop_choosing_question'), "confirm-text-value": t('.club_stop_choosing_text'), "confirm-link-value": manager_season_steps_path(@season.hashid, "stop_club_choosing"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
             span = t('.club_stop_choosing')
 
         - saction_players_choosing_disabled = (@season.status == 1 && @season.clubs.size == @season.user_seasons.size && @season.preferences["saction_players_choosing"] == 0) ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"

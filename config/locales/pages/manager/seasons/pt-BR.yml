@@ -36,28 +36,37 @@ pt-BR:
       new:
         confirm_text: "Confirme a criação da Temporada. Ela não será iniciada, você terá acesso às funções na opção de Detalhes desta temporada"
         confirm: "Criar Temporada?"
+        seasons: "Temporadas"
       create:
         success: "Temporada criada com sucesso!"
         error: "Erro criando nova Temporada"
         wnotify_subject: "Temporada %{season} Criada!"
         wnotify_text: "Verifique as informaçoes da nova Temporada Criada"
-      players_raffle:
-        wnotify_subject: "Jogadores Iniciais sorteados para a Temporada %{season}"
-        wnotify_text: "Verifique o plantel do seu time no menu do Clube"
-        success: "Sorteio dos Jogadores Encerrado com Sucesso"
-        error: "Erro durante o Sorteio dos jogadores"
       destroy:
         success: "Temporada removida com sucesso!"
         error: "Erro removendo temporada"
         in_progress: "Temporada em andamento ou com Campeonatos Pendentes! Primeiramente encerre/exclua os campeonatos para então remover a temporada ou se for necessário entre em contato com o Administrador"
-      start_season:
-        wnotify_subject: "Temporada %{season} Iniciada!"
-        wnotify_text: "Verifique as informaçoes da nova Temporada Criada"
-      start_clubs_choosing:
-        success: "Escolha dos Clubes Iniciada!"
-        error: "Erro iniciando escolha dos Clubes"
-        wnotify_subject: "Escolha dos Clubes da Temporada %{season} Iniciada!"
-        wnotify_text: "Definição dos Clubes para a temporada %{season} Iniciada! Entre no Painel e Defina seu Clube para a temporada."
+      steps:
+        start:
+          success: "Temporada Iniciada com Sucesso!"
+          wnotify_subject: "Temporada %{season} Iniciada!"
+          wnotify_text: "Verifique as informaçoes da nova Temporada Criada"
+        start_club_choosing:
+          success: "Escolha dos Clubes Iniciada!"
+          error: "Erro iniciando escolha dos Clubes"
+          wnotify_subject: "Escolha dos Clubes da Temporada %{season} Iniciada!"
+          wnotify_text: "Definição dos Clubes para a temporada %{season} Iniciada! Entre no Painel e Defina seu Clube para a temporada."
+        stop_club_choosing:
+          success: "Encerrada a Escolha dos Clubes!"
+          error: "Erro encerrando escolha dos Clubes"
+          wnotify_subject: "Escolha dos Clubes da Temporada %{season} Encerrada!"
+          wnotify_text: "Definição dos Clubes para a temporada %{season} Encerrada! Caso não tenha escolhido seu clube o mesmo foi definido de forma aleatória."
+        players_raffle:
+          wnotify_subject: "Jogadores Iniciais sorteados para a Temporada %{season}"
+          wnotify_text: "Verifique o plantel do seu time no menu do Clube"
+          success: "Sorteio dos Jogadores Encerrado com Sucesso"
+          error: "Erro durante o Sorteio dos jogadores"
+
       details:
         seasons: "Temporadas"
         info:
@@ -97,7 +106,7 @@ pt-BR:
         main_information: "Informações Principais"
         name: "Nome"
         start_date: "Data de Início"
-        duration: "Período"
+        duration: "Período (dias)"
         settings: "Configurações"
         name_suggestion_html: "Sugestão: <i>TEMPORADA2021, TEMPORADA#1</i>"
         teams: "Times"
@@ -160,10 +169,10 @@ pt-BR:
           max_steal_per_user_desc: "Máximo de vezes que um usuário pode roubar um jogador de outro usuário"
           max_stolen_users: "Máximo de Jogadores Roubados"
           max_stolen_users_desc: "Máximo de jogadores roubados por usuário"
-          add_value_after_steal: "Adicionar valor ao Passe do Jogador após roubo"
+          add_value_after_steal: "Adicionar valor ao Passe do Jogador após roubo (%)"
           add_value_after_steal_desc: "Porcentagem sobre o passe adicionada após o roubo. Caso você defina algum valor a ser adicionado, não será possível a redução de salário após o roubo"
           window: "Janela de Roubo"
-          window_obs: "Inicial / Final"
+          window_obs: "Tempo Mínimo (hs) / Tempo Máximo (hs)"
           window_desc: "Defina um tempo mínimo e máximo de duração do tempo de roubo. A hora exata de seu término será definida de forma aleatória e sem o repasse dessa informação aos usuários"
         dates: "Datas"
         dates_desc: "Definições sobre os tempos e datas dos eventos"
@@ -173,6 +182,8 @@ pt-BR:
         clubs: "Clubes / Sorteio"
         clubs_desc: "Definições sobre escolha dos times/jogadores"
         club:
+          raffle_select_platform: "Plataforma / Versão do Jogo"
+          raffle_select_platform_desc: "Você precisa selecionar a versão utilizada na Temporada. Esta opção somente poderá ser modificada em uma nova temporada."
           available_players: "Total de Jogadores Disponíveis"
           available_players_desc: "Quantidade total de jogadores disponíveis para o sorteio inicial de acordo com a seleção de mínimo de máximo de overall selecionado e Jogadores por Time"
           raffle_desc_html: "As escolhas iniciais dos jogadores se dão através de um sorteio realizado de forma de forma aleatória e dentro dos parâmetros estabelecidos abaixo. A sequência do sorteio de cada usuário é definida pela ordem de inscrição na liga. Vocẽ pode abaixo delimitar a quantidade de jogadores disponíveis para que o sistema realize o sorteio.<p>O sorteio se dará para TODOS os jogadores ativos na liga. Depois você poderá remover algum jogador de um time específico ou mesmo movê-lo para outro caso necessário.</p><p>Os 16 jogadores iniciais - mínimo para um time - serão sorteados respeitando um critério fixo de posições, ou seja, todos terão uma quantidade de jogadores com estas posições:</p><p>%{choosing_order}</p><p>Os jogadores restantes serão aleatórios em termos de posição e respeitando a opção selecionada <i>Força dos Jogadores Restantes</i></p>"

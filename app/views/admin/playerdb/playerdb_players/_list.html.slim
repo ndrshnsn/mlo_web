@@ -11,7 +11,7 @@
           .col-sm-12.col-md-6
             .form-group
               = label_tag 'country', t('.country'), class: "control-label"
-              = select_tag "player_nationality", options_for_select(@defCountries.collect { |def_country| [t("defaults.countries.#{def_country.name}"), def_country.name, {'data-country': countryFlag(def_country.name)}] }), {include_blank: true, class: "form-control select2 dt-select", id: 'player_nationality_select', 'data-column': "3", 'data-column-index': "1", "data-controller": "select", "data-select-icon-value": true }
+              = select_tag "player_nationality", options_for_select(@defCountries.collect { |def_country| [t("defaults.countries.#{def_country.name}"), def_country.name, {'data-img': countryFlag(def_country.name)}] }), {include_blank: true, class: "form-control select2 dt-select", id: 'player_nationality_select', 'data-column': "3", 'data-column-index': "1", "data-controller": "select", "data-select-icon-value": true }
 
           .col-sm-12.col-md-6
             .form-group
@@ -21,7 +21,7 @@
           .col-sm-12.col-md-6
             .form-group
               = label_tag 'platform', t('.platform'), class: "control-label"
-              = select_tag "player_platform", options_for_select(@platforms), {include_blank: true, class: "form-control select2 dt-select", id: 'player_platform_select', 'data-column': "6", 'data-column-index': "1", "data-controller": "select", "data-select-icon-value": false }
+              = select_tag "player_platform", grouped_options_for_select(@platforms), {include_blank: true, class: "form-control select2 dt-select", id: 'player_platform_select', 'data-column': "6", 'data-column-index': "1", "data-controller": "select", "data-select-icon-value": false }
 
         div data-controller="dt--admin-players"
           #tableDom.table-responsive.table-card.mb-1.mt-3

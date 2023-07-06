@@ -60,6 +60,7 @@ class Admin::Playerdb::PlayerdbTeamsController < ApplicationController
   def update
     @defTeam = DefTeam.friendly.find(params[:id])
     document = scrape_team_data(def_team_params[:wikipediaURL])
+
     respond_to do |format|
       if @defTeam.update(
         name: def_team_params[:name],

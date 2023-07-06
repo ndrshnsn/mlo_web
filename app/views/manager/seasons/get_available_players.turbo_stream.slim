@@ -5,6 +5,3 @@
   = render "manager/seasons/available_players", locals: { tAvailablePlayersPP: @tAvailablePlayersPP }
 
 = render_turbo_stream_flash_messages
-
-/ <% tPP = (@tAvailablePlayersPP.min)[1] < 0 ? 0 : @tAvailablePlayers %>
-/ $('#season_praffle_availability').val('<%= tPP %>');

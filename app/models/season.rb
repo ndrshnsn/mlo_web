@@ -1,6 +1,7 @@
 class Season < ApplicationRecord
   include Hashid::Rails
   has_noticed_notifications
+  audited
 
   belongs_to :league
   has_many :user_seasons, dependent: :destroy
@@ -39,23 +40,16 @@ class Season < ApplicationRecord
     fire_tax: :string,
     fire_tax_fixed: :integer,
     default_mininum_operation: :integer,
-    time_game_confirmation: :datetime,
+    time_game_confirmation: :integer,
+    raffle_platform: :string,
     raffle_low_over: :integer,
     raffle_high_over: :integer,
-    raffle_switches: :integer,
     raffle_remaining: :string,
     saction_clubs_choosing: :integer,
     saction_players_choosing: :integer,
     saction_transfer_window: :integer,
     saction_player_steal: :integer,
-    saction_change_wage: :integer,
-    award_firstplace: :string,
-    award_secondplace: :string,
-    award_thirdplace: :string,
-    award_fourthplace: :string,
-    award_goaler: :string,
-    award_assister: :string,
-    award_fairplay: :string
+    saction_change_wage: :integer
 
   def self.getActive(user)
     getUser = User.find(user)

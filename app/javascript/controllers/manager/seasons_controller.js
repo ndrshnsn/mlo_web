@@ -16,6 +16,7 @@ export default class extends Controller {
         {
           body: JSON.stringify(
             {
+              platform: document.getElementById('season_raffle_platform').value,
               min_players: document.getElementById('season_min_players').value,
               max_players: document.getElementById('season_max_players').value,
               raffle_low_over: document.getElementById('season_raffle_low_over').value,

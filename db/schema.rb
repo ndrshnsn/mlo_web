@@ -194,7 +194,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_130646) do
     t.bigint "def_country_id", null: false
     t.boolean "active", default: true
     t.jsonb "details", default: {}, null: false
-    t.text "platforms", default: [], array: true
+    t.text "platforms"
     t.text "alias"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
