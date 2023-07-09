@@ -61,7 +61,7 @@ pt-BR:
           error: "Erro encerrando escolha dos Clubes"
           wnotify_subject: "Escolha dos Clubes da Temporada %{season} Encerrada!"
           wnotify_text: "Definição dos Clubes para a temporada %{season} Encerrada! Caso não tenha escolhido seu clube o mesmo foi definido de forma aleatória."
-        players_raffle:
+        start_players_raffle:
           wnotify_subject: "Jogadores Iniciais sorteados para a Temporada %{season}"
           wnotify_text: "Verifique o plantel do seu time no menu do Clube"
           success: "Sorteio dos Jogadores Encerrado com Sucesso"

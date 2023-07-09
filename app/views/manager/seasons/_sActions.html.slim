@@ -16,7 +16,7 @@
             span = t('.club_stop_choosing')
 
         - saction_players_choosing_disabled = (@season.status == 1 && @season.clubs.size == @season.user_seasons.size && @season.preferences["saction_players_choosing"] == 0) ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-        = link_to "javascript:void(0)", id: "choose_players", class: "btn btn-primary btn-sm btn-border #{saction_players_choosing_disabled}", data: { controller: "confirm", "confirm-title-value": t('.club_start_players_raffle_question'), "confirm-text-value": t('.club_start_players_raffle_text'), "confirm-link-value": manager_season_start_players_raffle_path(@season.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+        = link_to "javascript:void(0)", id: "choose_players", class: "btn btn-primary btn-sm btn-border #{saction_players_choosing_disabled}", data: { controller: "confirm", "confirm-title-value": t('.club_start_players_raffle_question'), "confirm-text-value": t('.club_start_players_raffle_text'), "confirm-link-value": manager_season_steps_path(@season.hashid, "start_players_raffle"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
           span = t('.club_start_players_raffle')
 
         - if @season.preferences["saction_change_wage"] == 0

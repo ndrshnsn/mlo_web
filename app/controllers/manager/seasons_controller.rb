@@ -85,105 +85,6 @@ class Manager::SeasonsController < ApplicationController
     end
   end
 
-  def players_raffle
-    @season = Season.find_by_hashid(params[:id])
-    @seasons = Season.where(league_id: @league.id).where.not(id: @season.id).order(updated_at: :desc)
-
-    ## Go through each season user and check if theres
-    # enough players, otw choose them randomly using
-    # season defined parameters
-    @platform = @season.league.platform
-    @uList = UserLeague.where(league_id: current_user.preferences["active_league"], status: true).order(updated_at: :asc).pluck(:user_id)
-    @uList2 = UserSeason.where(season_id: @season.id).pluck(:user_id)
-    orderedChoosingQueue = @uList - (@uList - @uList2)
-    oSelection = eval(AppConfig.season_player_raffle_first_order).find { |key| key.include?(@platform) }[1]
-
-    @orderOfSelection = []
-    for i in 1..@season.preferences["max_players"].to_i
-      if oSelection.count < i
-        @orderOfSelection << {position: "any"}
-      elsif oSelection.count >= i
-        @orderOfSelection << {position: oSelection[i - 1]}
-      end
-    end
-
-    orderedChoosingQueue.each do |cQueue|
-      userClub = User.getClub(cQueue, @season.id)
-      user = User.find(cQueue)
-      userSeason = UserSeason.where(user_id: user.id, season_id: @season.id).first
-      userPlayers = User.getTeamPlayers(user.id, @season.id)
-      ## If user selected just a few players, remove them all and randomize a new list
-      if userPlayers.size < @season.preferences["max_players"].to_i
-        userPlayers.each do |uPlayer|
-          uPlayer.destroy
-        end
-
-        @orderOfSelection.each do |oSelection|
-          if oSelection[:position] == "any"
-            # Get Available players to be injected into Raffle
-            @availablePlayers = DefPlayer.left_outer_joins(:def_player_position).where(platform: @platform).where.not(def_players: {id: ClubPlayer.joins(:player_season, :def_players).where(player_seasons: {season_id: @season.id}).pluck("def_players.id")})
-
-            remaining = @season.preferences["raffle_remaining"]
-            remainingOverall = remaining.first(2)
-            remainingSymbol = remaining.last(1)
-
-            @availablePlayers = if remainingSymbol == "-"
-              @availablePlayers.where("def_players.active = ? AND def_players.details -> 'attrs' ->> 'overallRating' >= ? AND def_players.details -> 'attrs' ->> 'overallRating' <= ?", true, @season.preferences["raffle_low_over"], remainingOverall).order(Arel.sql("RANDOM()")).first
-            else
-              @availablePlayers.where("def_players.active = ? AND def_players.details -> 'attrs' ->> 'overallRating' >= ?", true, remainingOverall).order(Arel.sql("RANDOM()")).first
-            end
-          else
-            @availablePlayers = DefPlayer.left_outer_joins(:def_player_position).where("def_players.platform = ? AND def_players.active = ? AND def_player_positions.name = ? AND def_players.details -> 'attrs' ->> 'overallRating' >= ? AND def_players.details -> 'attrs' ->> 'overallRating' <= ?", @platform, true, oSelection[:position], @season.preferences["raffle_low_over"], @season.preferences["raffle_high_over"]).where.not(def_players: {id: ClubPlayer.joins(:player_season, :def_players).where(player_seasons: {season_id: @season.id}).pluck("def_players.id")}).order(Arel.sql("RANDOM()")).first
-          end
-          userClub = User.getClub(user.id, @season.id)
-          @newHirePlayer = @availablePlayers
-
-          ## Define PLayer Salary based on Season Selection
-          pSalary = DefPlayer.getSeasonInitialSalary(@season, @newHirePlayer)
-
-          ## Find / Create new SeasonPlayer
-          sPlayer = PlayerSeason.where(def_player_id: @newHirePlayer.id, season_id: @season.id).first_or_create do |sP|
-            sP.details = {
-              salary: pSalary
-            }
-          end
-
-          ## Insert new Player into Club Player table
-          newHire = ClubPlayer.new
-          newHire.club_id = userClub.id
-          newHire.player_season_id = sPlayer.id
-          newHire.save!
-
-          ## Create new entry into Club Player Salary logs
-          PlayerSeasonFinance.create(player_season_id: sPlayer.id, operation: "initial_salary", value: pSalary, source: Club.find(userClub.id))
-        end
-      end
-    end
-
-    respond_to do |format|
-      if @season.update(
-        preferences = {
-          saction_players_choosing: 2
-        }
-      )
-
-        DefPlayerNotification.with(
-          season: @season,
-          league: @season.league_id,
-          icon: "user-add",
-          type: "stop_players_raffle",
-          push: true,
-          push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}"
-        ).deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", @season.id))
-
-        flash.now["success"] = t(".success")
-        format.html { redirect_to manager_seasons_path, notice: t(".success") }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def user_players
     @season = Season.find_by_hashid(params[:id])
     @user = User.friendly.find(params[:user])
@@ -219,7 +120,7 @@ class Manager::SeasonsController < ApplicationController
       steal_window_end: season_params[:steal_window_end],
       add_value_after_steal: season_params[:add_value_after_steal].to_i,
       allow_money_transfer: season_params[:allow_money_transfer],
-      default_player_earnings: season_params[:default_player_earnings].to_i,
+      default_player_earnings: season_params[:default_player_earnings],
       default_player_earnings_fixed: season_params[:default_player_earnings_fixed].to_i,
       allow_increase_earnings: season_params[:allow_increase_earnings],
       allow_decrease_earnings: season_params[:allow_decrease_earnings],
@@ -294,7 +195,7 @@ class Manager::SeasonsController < ApplicationController
       steal_window_end: season_params[:steal_window_end],
       add_value_after_steal: season_params[:add_value_after_steal].to_i,
       allow_money_transfer: season_params[:allow_money_transfer],
-      default_player_earnings: season_params[:default_player_earnings].to_i,
+      default_player_earnings: season_params[:default_player_earnings],
       default_player_earnings_fixed: season_params[:default_player_earnings_fixed].to_i,
       allow_increase_earnings: season_params[:allow_increase_earnings],
       allow_decrease_earnings: season_params[:allow_decrease_earnings],
@@ -362,10 +263,13 @@ class Manager::SeasonsController < ApplicationController
       success_message = t(".start.success")
     when "start_club_choosing"
       resolution = ManagerServices::Season::ClubChoosing.new(@season, current_user).call_start()
-      success_message = t(".start.start_club_choosing.success")
+      success_message = t(".start_club_choosing.success")
     when "stop_club_choosing"
       resolution = ManagerServices::Season::ClubChoosing.new(@season, current_user).call_stop()
-      success_message = t(".start.stop_club_choosing.success")
+      success_message = t(".stop_club_choosing.success")
+    when "start_players_raffle"
+      resolution = ManagerServices::Season::PlayerRaffle.call(@season, current_user)
+      success_message = t(".start_players_raffle.success")
     end
 
     respond_to do |format|

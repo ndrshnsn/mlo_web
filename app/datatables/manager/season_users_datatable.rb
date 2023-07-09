@@ -74,7 +74,7 @@ class Manager::SeasonUsersDatatable < ApplicationDatatable
         search_string << "\"#{term}\" ilike '%#{params[:search][:value]}%'"
       end
     end
-    users = UserSeason.joins(:user, :season, :clubs).where(seasons: {id: @params[:season]})
+    users = UserSeason.includes(:user, :season, :clubs).where(seasons: {id: @params[:season]})
     users = users.order(Arel.sql("\"#{sort_column}\" #{sort_direction}"))
     users = users.page(page).per(per_page)
     users = users.where(search_string.join(" AND "))

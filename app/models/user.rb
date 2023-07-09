@@ -72,6 +72,6 @@ class User < ApplicationRecord
   end
 
   def self.getTeamPlayers(user_id, season_id)
-    User.find(user_id).club_players.where(user_seasons: {season_id: season_id}).order_by_position
+    User.find(user_id).club_players.includes(:player_season).where(user_seasons: {season_id: season_id}).order_by_position
   end
 end
