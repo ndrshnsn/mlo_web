@@ -33,10 +33,10 @@ namespace :manager do
   get "seasons/users/:id", to: "seasons#users", as: :season_users
   post "seasons/users/get_susers_dt", to: "seasons#get_susers_dt", as: :get_susers_dt
   post "seasons/users/players/get_splayers_dt", to: "seasons#get_splayers_dt", as: :get_splayers_dt
-  get "seasons/players/:id/:user", to: "seasons#user_players", as: :season_user_players
+  get "seasons/players/:user/:id", to: "seasons#user_players", as: :season_user_players
   post "seasons/get_available_players", to: "seasons#get_available_players", as: :season_get_available_players
 
-  post "seasons/actions/:id/:step", to: "seasons#steps", as: :season_steps
+  post "seasons/actions/:step/:id", to: "seasons#steps", as: :season_steps
 
   # match 'seasons/users/:id/:user/:player/dismiss', controller: 'seasons', action: 'user_player_dismiss', via: :post, as: :season_user_dismiss_player
   # match 'seasons/enqueue/:id', controller: 'seasons', action: 'enqueue', via: :get, as: :season_enqueue

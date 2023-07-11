@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  require 'sidekiq/cron/web'
+  require 'sidekiq/web'
+  Rails.application.routes.draw do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   # Devise Authentication
   # namespace :api, defaults: { format: :json } do
   #   devise_for :users,

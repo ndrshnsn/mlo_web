@@ -42,7 +42,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def timeout
-    flash[:danger] = "Sua sessão expirou, faça login novamente."
+    flash[:danger] = "Session expired"
     redirect_to new_user_session_path
   end
 

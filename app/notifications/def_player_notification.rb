@@ -20,8 +20,12 @@ class DefPlayerNotification < Noticed::Base
   # end
 
   def push
-    if params[:push]
-      Push::Notify.send_push(recipient, params[:push_message])
-    end
+    data = {
+        title: params[:push_message].split("||").first,
+        body: params[:push_message].split("||").last,
+        tag: 'player-notification',
+        url: params[:season]
+      }
+    WebPushSubscription.notify(recipient, data) if params[:push]
   end
 end

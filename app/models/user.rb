@@ -20,10 +20,7 @@ class User < ApplicationRecord
     instagram: [:string, default: ""],
     request: [:boolean, default: false],
     active_league: [:integer, default: nil],
-    fake: [:boolean, default: false],
-    sp256dh: [:string, default: ""],
-    sauth: [:string, default: ""],
-    sendpoint: [:string, default: ""]
+    fake: [:boolean, default: false]
 
   ## Associations
   has_many :user_acls, dependent: :destroy
@@ -31,6 +28,7 @@ class User < ApplicationRecord
   has_many :user_leagues, dependent: :destroy
   has_many :leagues, through: :user_leagues
   has_many :notifications, as: :recipient, dependent: :destroy
+  has_many :web_push_subscriptions
   has_many :user_seasons
   has_many :seasons, through: :user_seasons
   has_many :clubs, through: :user_seasons

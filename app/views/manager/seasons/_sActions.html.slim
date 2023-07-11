@@ -4,44 +4,50 @@
     .row.g-0.bg-light
       .d-grid.gap-2
         - start_season_disabled = @season.status == 0 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-        = link_to "javascript:void(0)", class: "btn btn-primary btn-sm btn-border #{start_season_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_season_question'), "confirm-text-value": t('.start_season_text'), "confirm-link-value": manager_season_steps_path(@season.hashid, "start"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+        = link_to "javascript:void(0)", class: "btn btn-primary btn-sm btn-border #{start_season_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_season_question'), "confirm-text-value": t('.start_season_text'), "confirm-link-value": manager_season_steps_path(id: @season.hashid, step: "start"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
           span = t('.start_season')
 
         - saction_clubs_choosing_disabled = (@season.status == 1 && @season.clubs.size < @season.user_seasons.size) ? "btn-primary" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
         - if @season.preferences["saction_clubs_choosing"] == 0
-          = link_to "javascript:void(0)", id: "choose_clubs", class: "btn btn-primary btn-sm btn-border #{saction_clubs_choosing_disabled}", data: { controller: "confirm", "confirm-title-value": t('.club_start_choosing_question'), "confirm-text-value": t('.club_start_choosing_text'), "confirm-link-value": manager_season_steps_path(@season.hashid, "start_club_choosing"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+          = link_to "javascript:void(0)", id: "choose_clubs", class: "btn btn-primary btn-sm btn-border #{saction_clubs_choosing_disabled}", data: { controller: "confirm", "confirm-title-value": t('.club_start_choosing_question'), "confirm-text-value": t('.club_start_choosing_text'), "confirm-link-value": manager_season_steps_path(id: @season.hashid, step: "start_club_choosing"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
             span = t('.club_start_choosing')
         - elsif @season.preferences["saction_clubs_choosing"] == 1
-          = link_to "javascript:void(0)", class: "btn btn-block btn-sm saction_button btn-primary text-left", data: { controller: "confirm", "confirm-title-value": t('.club_stop_choosing_question'), "confirm-text-value": t('.club_stop_choosing_text'), "confirm-link-value": manager_season_steps_path(@season.hashid, "stop_club_choosing"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+          = link_to "javascript:void(0)", class: "btn btn-block btn-sm saction_button btn-primary text-left", data: { controller: "confirm", "confirm-title-value": t('.club_stop_choosing_question'), "confirm-text-value": t('.club_stop_choosing_text'), "confirm-link-value": manager_season_steps_path(id: @season.hashid, step: "stop_club_choosing"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
             span = t('.club_stop_choosing')
 
         - saction_players_choosing_disabled = (@season.status == 1 && @season.clubs.size == @season.user_seasons.size && @season.preferences["saction_players_choosing"] == 0) ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-        = link_to "javascript:void(0)", id: "choose_players", class: "btn btn-primary btn-sm btn-border #{saction_players_choosing_disabled}", data: { controller: "confirm", "confirm-title-value": t('.club_start_players_raffle_question'), "confirm-text-value": t('.club_start_players_raffle_text'), "confirm-link-value": manager_season_steps_path(@season.hashid, "start_players_raffle"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+        = link_to "javascript:void(0)", id: "choose_players", class: "btn btn-primary btn-sm btn-border #{saction_players_choosing_disabled}", data: { controller: "confirm", "confirm-title-value": t('.club_start_players_raffle_question'), "confirm-text-value": t('.club_start_players_raffle_text'), "confirm-link-value": manager_season_steps_path(id: @season.hashid, step: "start_players_raffle"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
           span = t('.club_start_players_raffle')
 
         - if @season.preferences["saction_change_wage"] == 0
-          - saction_change_wage_disabled = (@season.preferences["saction_players_choosing"] == 2 && @season.preferences["saction_player_steal"] == 0 && @season.status == 1) ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-          = link_to "javascript:void(0)", class: "btn btn-block btn-sm saction_button #{saction_change_wage_disabled} text-left", data: { link: manager_season_start_change_wage_path(@season.hashid), text: "Ajustes dos salários apenas são permitidos enquanto estiver liberada esta opção", question: "Permitir ajuste dos Salários?" } do
-            span Ajuste de Salários
+          - saction_change_wage_disabled = (@season.preferences["saction_player_steal"] == 0 && @season.preferences["saction_change_wage"] == 0 && @season.status == 1) ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
+          = link_to "javascript:void(0)", id: "change_wage", class: "btn btn-primary btn-sm btn-border #{saction_change_wage_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_change_wage_question'), "confirm-text-value": t('.start_change_wage_text'), "confirm-link-value": manager_season_steps_path(id: @season.hashid, step: "start_change_wage"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+            span = t('.start_change_wage')
         - elsif @season.preferences["saction_change_wage"] == 1
           - saction_change_wage_disabled = @season.preferences["saction_change_wage"] == 1 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-          = link_to "javascript:void(0)", class: "btn btn-block saction_button btn-sm #{saction_change_wage_disabled} text-left", data: { link: manager_season_stop_change_wage_path(@season.hashid), text: "Finalizada essa opção não será mais possível o ajuste dos salários", question: "Encerrar ajuste dos Salários?" } do
-            span Encerrar Ajuste de Salários
+          = link_to "javascript:void(0)", id: "change_wage", class: "btn btn-primary btn-sm btn-border #{saction_change_wage_disabled}", data: { controller: "confirm", "confirm-title-value": t('.stop_change_wage_question'), "confirm-text-value": t('.stop_change_wage_text'), "confirm-link-value": manager_season_steps_path(id: @season.hashid, step: "stop_change_wage"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+            span = t('.stop_change_wage')
 
         - if @season.preferences["change_player_out_of_window"] == nil
           - if @season.preferences["saction_transfer_window"] == 0
             - saction_transfer_window_disabled = ( @season.preferences["saction_players_choosing"] == 2 && @season.preferences["saction_player_steal"] == 0 && @season.status == 1) ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-            = link_to "javascript:void(0)", class: "btn btn-block btn-sm saction_button text-left #{saction_transfer_window_disabled}", data: { link: manager_season_start_transfer_window_path(@season.hashid), text: "Operações com os jogadores serão permitidas durante o período em que a Janela de transferências estiver aberta", question: "Abrir Janela de Transferências?" } do
-              span Janela de Transferências
-
+            = link_to "javascript:void(0)", id: "transfer_window", class: "btn btn-primary btn-sm btn-border #{saction_transfer_window_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_transfer_window_question'), "confirm-text-value": t('.start_transfer_window_text'), "confirm-link-value": manager_season_steps_path(id: @season.hashid, step: "start_transfer_window"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+              span = t('.start_transfer_window')
           - elsif @season.preferences["saction_transfer_window"] == 1
-            = link_to "javascript:void(0)", class: "btn btn-block btn-primary btn-sm saction_button text-left", method: :post, remote: true, data: { link: manager_season_stop_transfer_window_path(@season.hashid), question: "Encerrar a Janela de Transferências?" } do
-              span Encerrar a Janela de Transferências
+           = link_to "javascript:void(0)", id: "transfer_window", class: "btn btn-primary btn-sm btn-border #{saction_transfer_window_disabled}", data: { controller: "confirm", "confirm-title-value": t('.stop_transfer_window_question'), "confirm-text-value": t('.stop_transfer_window_text'), "confirm-link-value": manager_season_steps_path(id: @season.hashid, step: "stop_transfer_window"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+              span = t('.stop_transfer_window')
+
+
+
+
+
+
+
 
         - if @season.preferences["enable_player_steal"] == "on"
           - saction_player_steal_disabled = (@season.status == 1 && @season.preferences["saction_player_steal"] == 0 && @season.preferences["saction_transfer_window"] != 1 && @season.preferences["saction_change_wage"] != 1 ) ? "btn-primary" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
-          = link_to "javascript:void(0)", class: "btn btn-block btn-sm saction_button text-left #{saction_player_steal_disabled}", data: { link: manager_season_start_players_steal_path(@season.hashid), text: "O Roubo ficará ativo entre #{(Time.now + @season.preferences['steal_window_start'].to_i.hour).strftime("%H:%M")} e #{(Time.now + @season.preferences['steal_window_end'].to_i.hour).strftime("%H:%M")} , encerrado automaticamente de forma aleatória entre os dois limites definidos", question: "Liberar Roubo de Jogadores?" } do
-            span Roubo
+          = link_to "javascript:void(0)", id: "steal_window", class: "btn btn-primary btn-sm btn-border #{saction_player_steal_disabled}", data: { controller: "confirm", "confirm-title-value": t('.steal_window_question'), "confirm-text-value": t('.steal_window_text', start: (Time.now + @season.preferences['steal_window_start'].to_i.hour).strftime("%H:%M"), stop: (Time.now + @season.preferences['steal_window_end'].to_i.hour).strftime("%H:%M")), "confirm-link-value": manager_season_steps_path(id: @season.hashid, step: "steal_window"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+            span = t('.steal_window')
 
         - end_season_disabled = @season.status == 1 ? "btn btn-primary btn-sm btn-border" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
         = link_to manager_season_end_path(@season), id: "end_season", class: "btn btn-block btn-sm #{end_season_disabled} text-left", "data-turbo-frame": "modal" do

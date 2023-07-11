@@ -12,6 +12,7 @@ class ProfileController < ApplicationController
   def system
     @user = User.find(current_user.id)
     @defCountries = DefCountry.getSorted
+    @system_notified = @user.web_push_subscriptions.where(user_id: current_user, user_agent: request.user_agent)
     render "_system"
   end
 
@@ -36,11 +37,14 @@ class ProfileController < ApplicationController
 
   def subscribe
     sparams = params
-    user = User.find(current_user.id)
-    user.preferences[:sp256dh] = sparams[:subscription][:keys][:p256dh]
-    user.preferences[:sauth] = sparams[:subscription][:keys][:auth]
-    user.preferences[:sendpoint] = sparams[:subscription][:endpoint]
-    if user.save!
+    web_push_sub = WebPushSubscription.new(
+      user: current_user,
+      endpoint: sparams[:subscription][:endpoint],
+      auth_key: sparams[:subscription][:keys][:auth],
+      p256dh_key: sparams[:subscription][:keys][:p256dh],
+      user_agent: request.user_agent
+    )
+    if web_push_sub.save!
       flash.now["success"] = t(".success")
     else
       flash.now["error"] = t(".error")
@@ -51,12 +55,7 @@ class ProfileController < ApplicationController
   end
 
   def unsubscribe
-    sparams = params
-    user = User.find(current_user.id)
-    user.preferences[:sp256dh] = ""
-    user.preferences[:sauth] = ""
-    user.preferences[:sendpoint] = ""
-    if user.save!
+    if WebPushSubscription.where(user: current_user, user_agent: request.user_agent).delete_all
       flash.now["success"] = t(".success")
     else
       flash.now["error"] = t(".error")

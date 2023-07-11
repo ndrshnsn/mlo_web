@@ -78,7 +78,7 @@ class ManagerServices::Season::PlayerRaffle < ApplicationService
       season: season,
       league: season.league_id,
       icon: "user-add",
-      type: "start_players_raffle",
+      type: "players_raffle",
       push: true,
       push_message: "#{I18n.t("manager.seasons.steps.start_players_raffle.wnotify_subject", season: season.name)}||#{I18n.t("manager.seasons.steps.start_players_raffle.wnotify_text")}"
     ).deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", season.id))

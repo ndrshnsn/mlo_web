@@ -270,6 +270,21 @@ class Manager::SeasonsController < ApplicationController
     when "start_players_raffle"
       resolution = ManagerServices::Season::PlayerRaffle.call(@season, current_user)
       success_message = t(".start_players_raffle.success")
+    when "start_change_wage"
+      resolution = ManagerServices::Season::Wage.call(@season, current_user, "start")
+      success_message = t(".start_change_wage.success")
+    when "stop_change_wage"
+      resolution = ManagerServices::Season::Wage.call(@season, current_user, "stop")
+      success_message = t(".stop_change_wage.success")
+    when "start_transfer_window"
+      resolution = ManagerServices::Season::Transfer.call(@season, current_user, "start")
+      success_message = t(".start_transfer_window.success")
+    when "stop_transfer_window"
+      resolution = ManagerServices::Season::Transfer.call(@season, current_user, "stop")
+      success_message = t(".stop_transfer_window.success")
+    when "steal_window"
+      resolution = ManagerServices::Season::Steal.call(@season, current_user)
+      success_message = t(".stop_transfer_window.success")
     end
 
     respond_to do |format|
@@ -391,9 +406,7 @@ class Manager::SeasonsController < ApplicationController
   private
 
   def set_local_vars
-    if current_user.role == "manager"
-      @league = League.find(session[:league])
-    end
+    @league = League.find(session[:league])
   end
 
   def season_params

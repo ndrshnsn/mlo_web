@@ -13,15 +13,27 @@ export default class NotificationsController extends Controller {
       checked ? subscribe() : unsubscribe()
     }
 
+    function promptForNotifications() {
+      Notification.requestPermission()
+      .then((permission) => {
+        if (permission === "granted") {
+          setupSubscription()
+        } else {
+          alert("Notifications declined")
+        }
+      })
+      .catch(error => console.log("Notifications error", error))
+    }
+
     function subscribe() {
-      navigator.serviceWorker.register('/serviceworker.js', {scope: './'})          //5
+      navigator.serviceWorker.register('/serviceworker.js')
       .then(function(registration) {
           return registration.pushManager.getSubscription()
         .then(function(subscription) {
           if (subscription) {
             return subscription;
           }
-          return registration.pushManager.subscribe({                           //6
+          return registration.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: window.vapidPublicKey
           });

@@ -28,9 +28,7 @@
                 span
                   .form-group
                     .form-check.form-switch
-                      - sEnabled = ""
-                      - if current_user.preferences["sendpoint"]
-                        - sEnabled = current_user.preferences["sendpoint"].empty? ? "" : "checked"
+                      - sEnabled = @system_notified.size == 0 ? nil : "checked"
                       = check_box_tag "user[notifications]", nil, sEnabled, class: "mt-2 form-check-input", data: { controller: "notifications"}
                       label.form-check-label for="user_notifications"
 

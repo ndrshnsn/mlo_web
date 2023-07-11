@@ -66,7 +66,31 @@ pt-BR:
           wnotify_text: "Verifique o plantel do seu time no menu do Clube"
           success: "Sorteio dos Jogadores Encerrado com Sucesso"
           error: "Erro durante o Sorteio dos jogadores"
-
+        start_change_wage:
+          wnotify_subject: "Liberado o Ajuste de Salários para a Temporada %{season}"
+          wnotify_text: "Agora você pode modificar o salários de seus jogadores"
+          success: "Liberado o ajuste de Salários"
+          error: "Erro liberando o ajuste de salários!"
+        stop_change_wage:
+          wnotify_subject: "Encerrado o Ajuste de Salários para a Temporada %{season}"
+          wnotify_text: "Para qualquer modificação você deve aguardar a próxima janela de modificação salarial"
+          success: "Encerrado o Ajuste de Salários"
+          error: "Erro encerrando o ajuste de salários!"
+        start_transfer_window:
+          wnotify_subject: "Abertura da Janela de Transferências na Temporada %{season}"
+          wnotify_text: "Transações de jogadores estão liberadas durante a abertura da janela."
+          success: "Aberta Janela de Transferências"
+          error: "Erro iniciando a Janela de Transferências!"
+        stop_transfer_window:
+          wnotify_subject: "Fechada a Janela de Transferências na Temporada %{season}"
+          wnotify_text: "Transações só poderão ser concluídas nas próxima Janela de Transferências"
+          success: "Fechada Janela de Transferências"
+          error: "Erro fechando a Janela de Transferências!"
+        steal_window:
+          wnotify_subject: "Fechada a Janela de Transferências na Temporada %{season}"
+          wnotify_text: "Verifique os roubos na atualização do Painel e roube o quanto puder :)"
+          success: "Aberta a Janela de Roubo!"
+          error: "Erro Liberando o Roubo!"
       details:
         seasons: "Temporadas"
         info:

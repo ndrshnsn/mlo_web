@@ -1,14 +1,21 @@
-self.addEventListener("push", function(event) {
-  var title = (event.data && event.data.text().split("||")[0]) || "Message from Commercial view";
-  var body; body = event.data.text().split("||")[1];
-  var tag = "mlo-notification-tag";
-  var icon = '/mlo.png';
+self.addEventListener('push', event => {
+  const { image, tag, url, title, text } = event.data.json();
+  const options = {
+    data: url,
+    body: text,
+    icon: "/mlo.png",
+    vibrate: [200, 100, 200],
+    tag: tag,
+    // REQUIRES HTTPS image: "/stadium.jpg",
+    badge: "/favicon.ico",
+    actions: [{ action: "Detail", title: "URL", icon: "/favicon.ico" }]
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+})
 
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
   event.waitUntil(
-      self.registration.showNotification(title, {
-          body: body,
-          icon: icon,
-          tag: tag
-      })
+    clients.openWindow(event.notification.data.url)
   );
 });
