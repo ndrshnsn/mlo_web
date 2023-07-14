@@ -62,6 +62,10 @@ class Season < ApplicationRecord
     nil
   end
 
+  def self.valid_users(season_id)
+    return User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", season_id)
+  end
+
   def self.getStatus(season_id)
     status = {
       "0": ["not_started", "Não Iniciado", "warning"],
@@ -71,4 +75,8 @@ class Season < ApplicationRecord
     season = Season.find(season_id)
     status[:"#{season.status}"]
   end
+
+  def self.getClubs(season_id)
+		return Club.joins(:user_season).where(user_seasons: { season_id: season_id })
+	end
 end

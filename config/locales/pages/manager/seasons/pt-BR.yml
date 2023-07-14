@@ -86,11 +86,14 @@ pt-BR:
           wnotify_text: "Transações só poderão ser concluídas nas próxima Janela de Transferências"
           success: "Fechada Janela de Transferências"
           error: "Erro fechando a Janela de Transferências!"
-        steal_window:
-          wnotify_subject: "Fechada a Janela de Transferências na Temporada %{season}"
+        steal_window_start:
+          wnotify_subject: "Aberta a Janela de Roubo na Temporada %{season}"
           wnotify_text: "Verifique os roubos na atualização do Painel e roube o quanto puder :)"
           success: "Aberta a Janela de Roubo!"
           error: "Erro Liberando o Roubo!"
+        steal_window_end:
+          wnotify_subject: "Encerrada a Janela de Roubo na Temporada %{season}"
+          wnotify_text: "Verifique no painel o resultado da janela de roubo"
       details:
         seasons: "Temporadas"
         info:
