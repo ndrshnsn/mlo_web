@@ -83,6 +83,8 @@ Rails.application.configure do
   # config.action_controller.action_on_unpermitted_parameters = :log
 
   config.playerdb_prefix = "http://127.0.0.1/playerdb"
-  config.root_url = "http://127.0.0.1:3000"
-  config.force_ssl = false
+  config.root_url = "https://127.0.0.1:3000"
+  config.hosts << "dev.bifrost.com"
+  config.force_ssl = true
+  config.ssl_options = {hsts: false}
 end

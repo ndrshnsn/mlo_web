@@ -12,7 +12,7 @@ class ProfileController < ApplicationController
   def system
     @user = User.find(current_user.id)
     @defCountries = DefCountry.getSorted
-    @system_notified = @user.web_push_subscriptions.where(user_id: current_user, user_agent: request.user_agent)
+    @system_notified = @user.web_push_devices.where(user_id: current_user, user_agent: request.user_agent, user_ip: request.ip)
     render "_system"
   end
 
@@ -37,14 +37,25 @@ class ProfileController < ApplicationController
 
   def subscribe
     sparams = params
-    web_push_sub = WebPushSubscription.new(
-      user: current_user,
-      endpoint: sparams[:subscription][:endpoint],
-      auth_key: sparams[:subscription][:keys][:auth],
-      p256dh_key: sparams[:subscription][:keys][:p256dh],
-      user_agent: request.user_agent
-    )
-    if web_push_sub.save!
+    sub = current_user.web_push_devices.where(user_agent: request.user_agent, user_ip: request.ip)
+    if sub.empty?
+      WebPushDevice.new(
+        user: current_user,
+        endpoint: sparams[:subscription][:endpoint],
+        auth_key: sparams[:subscription][:keys][:auth],
+        p256dh_key: sparams[:subscription][:keys][:p256dh],
+        user_agent: request.user_agent,
+        user_ip: request.ip
+      ).save!
+    else
+      sub.update(
+        endpoint: sparams[:subscription][:endpoint],
+        auth_key: sparams[:subscription][:keys][:auth],
+        p256dh_key: sparams[:subscription][:keys][:p256dh]
+      )
+    end
+    
+    if sub
       flash.now["success"] = t(".success")
     else
       flash.now["error"] = t(".error")
@@ -55,7 +66,7 @@ class ProfileController < ApplicationController
   end
 
   def unsubscribe
-    if WebPushSubscription.where(user: current_user, user_agent: request.user_agent).delete_all
+    if WebPushDevice.where(user: current_user, user_agent: request.user_agent, user_ip: request.ip).delete_all
       flash.now["success"] = t(".success")
     else
       flash.now["error"] = t(".error")

@@ -28,7 +28,7 @@ class User < ApplicationRecord
   has_many :user_leagues, dependent: :destroy
   has_many :leagues, through: :user_leagues
   has_many :notifications, as: :recipient, dependent: :destroy
-  has_many :web_push_subscriptions
+  has_many :web_push_devices, dependent: :destroy
   has_many :user_seasons
   has_many :seasons, through: :user_seasons
   has_many :clubs, through: :user_seasons

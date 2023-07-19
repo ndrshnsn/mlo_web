@@ -1,9 +1,9 @@
-class WebPushSubscription < ApplicationRecord
+class WebPushDevice < ApplicationRecord
   belongs_to :user
 
   def self.notify(recipient, msg)
-    if recipient && recipient.web_push_subscriptions.any?
-      recipient.web_push_subscriptions.each do |sub|
+    if recipient && recipient.web_push_devices.any?
+      recipient.web_push_devices.each do |sub|
         WebPush.payload_send(
           message: {
             title: "MLO :: " + msg[:title],
@@ -18,6 +18,9 @@ class WebPushSubscription < ApplicationRecord
             private_key: ENV['VAPID_PRIVATE_KEY']
           }
         )
+        rescue => error
+          Rails.logger.warn("Error sending browser notification: #{error.inspect}")
+          false
       end
     end
   end

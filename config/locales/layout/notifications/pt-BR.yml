@@ -21,6 +21,8 @@ pt-BR:
         start_transfer_window_user: "Aberta Janela de Transferências :: %{season}"
         stop_transfer_window: "Encerrada a Janela de Transferências :: %{season}"
         stop_transfer_window_user: "Encerrada a Janela de Transferências :: %{season}"
+        steal_window: "Iniciada a Janela de Roubo :: %{season}"
+        steal_window_end: "Encerrada a Janela de Roubo :: %{season}"
 
     def_player_notification:
       message:

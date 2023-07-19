@@ -26,6 +26,6 @@ class SeasonNotification < Noticed::Base
         tag: 'season-notification',
         url: params[:season]
       }
-    WebPushSubscription.notify(recipient, data) if params[:push]
+      WebPushDevice.notify(recipient, data) if params[:push]
   end
 end

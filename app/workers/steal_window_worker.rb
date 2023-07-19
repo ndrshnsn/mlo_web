@@ -34,7 +34,7 @@ class StealWindowWorker
       season: season,
       league: season.league_id,
       icon: "stack",
-      type: "steal_window",
+      type: "steal_window_end",
       push: true,
       push_message: "#{I18n.t("manager.seasons.steps.steal_window_end.wnotify_subject", season: season.name)}||#{I18n.t("manager.seasons.steps.steal_window_end.wnotify_text")}"
     ).deliver_later(user)
@@ -43,7 +43,7 @@ class StealWindowWorker
       season: season,
       league: season.league_id,
       icon: "stack",
-      type: "steal_window",
+      type: "steal_window_end",
       push: true,
       push_message: "#{I18n.t("manager.seasons.steps.steal_window_end.wnotify_subject", season: season.name)}||#{I18n.t("manager.seasons.steps.steal_window_end.wnotify_text")}"
     ).deliver_later(Season.valid_users(season.id))

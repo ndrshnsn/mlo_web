@@ -341,7 +341,7 @@ Devise.setup do |config|
   config.omniauth_path_prefix = "/auth"
   OmniAuth.config.logger = Rails.logger
   OmniAuth.config.allowed_request_methods = %i[post]
-  OmniAuth.config.full_host = Rails.env.production? ? "https://app.masterleagueonline.com.br" : "http://127.0.0.1:3000"
+  OmniAuth.config.full_host = Rails.env.production? ? ENV['PROD_URL'] : ENV['DEV_URL']
 
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_SECRET'], skip_jwt: true
   config.omniauth :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_SECRET']

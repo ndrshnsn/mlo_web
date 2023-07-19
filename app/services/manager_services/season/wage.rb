@@ -44,7 +44,7 @@ class ManagerServices::Season::Wage < ApplicationService
       type: not_type_user,
       push: false,
       push_message: "#{I18n.t("manager.seasons.steps.stop_change_wage.wnotify_subject", season: season.name)}||#{msg_text}"
-    ).deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", season.id))
+    ).deliver_later(Season.valid_users(season.id))
 
     OpenStruct.new(success?: true, season: season, error: nil)
   end

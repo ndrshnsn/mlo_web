@@ -63,7 +63,7 @@ class Season < ApplicationRecord
   end
 
   def self.valid_users(season_id)
-    return User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", season_id)
+    return User.joins(:user_seasons).where("user_seasons.season_id = ? AND (users.preferences -> 'fake')::Bool = ?", season_id, false)
   end
 
   def self.getStatus(season_id)
