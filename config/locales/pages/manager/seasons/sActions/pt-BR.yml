@@ -30,7 +30,28 @@ pt-BR:
         steal_window: "Janela de Roubo"
         steal_window_question: "Abrir janela de Roubo de Jogadores?"
         steal_window_text: "O Roubo ficará ativo entre %{start} e %{stop}, encerrado automaticamente de forma aleatória entre os dois limites definidos"
-
         end_season: "Finalizar Temporada"
         end_season_question: "Finalizar Temporada?"
         end_season_text: "Caso haja algum campeonato em andamento, finalize-o primeiro para então encerrar a Temporada!"
+      sactions:
+        end_season:
+          confirm: "Encerrar a Temporada?"
+          confirm_text: "A temporada será encerrada e as opções selecionadas serão efetivadas. Você poderá conferir o resultado na página de informações desta temporada."
+          information:
+            title: "Informações"
+            title_desc: "Sobre o Encerramento"
+            blockquote: "Certifique-se de não haver nenhum jogo e/ou campeonato em aberto antes de encerrar a temporada. Caso exista algum você será informado e será necessário encerrá-los previamente."
+            main_html: "<h6>Ao encerrar a Temporada, algumas ações serão executadas automaticamente:</h6><ul><li>Devolver qualquer jogador emprestado</li><li>Cobrar qualquer empréstimo realizado</li><li>Pagar Patrocínios pendentes</li></ul>"
+
+          optional:
+            title: "Opcionais"
+            title_desc: "Selecione conforme sua liga"
+            pay_wage: "Pagar os Salários"
+            pay_wage_desc: "Os salários de todos os jogadores serão descontados do caixa dos respectivos clubes. Mesmo não permitindo o saldo negativo durante a temporada, caso o clube não possua saldo para o pagamento seu caixa ficará negativo."
+            empty_club_account: "Zerar Caixa dos Clubes"
+            empty_club_account_desc: "Finalizar a temporada e zerar o caixa dos clubes. Lembre-se de que caso selecione para pagar os salários e algum ficar negativo, zerar o caixa irá invalidar o saldo negativo e todos ficarão com seu saldo zerado."
+
+          confirmation:
+            title: "Confirmação"
+            title_desc: "Valide o Encerramento"
+            main_html: ""

@@ -1,0 +1,7 @@
+pt-BR:
+  defaults:
+    wizard:
+      previous: "anterior"
+      next: "próximo"
+      confirm: "Confirmar"
+      cancel: "Cancelar"
