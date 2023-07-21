@@ -233,6 +233,10 @@ class Manager::SeasonsController < ApplicationController
     end
   end
 
+  def users
+    @season = Season.find_by_hashid(params[:id])
+  end
+
   def details
     @season = Season.find_by_hashid(params[:id])
 
@@ -251,7 +255,6 @@ class Manager::SeasonsController < ApplicationController
     ## Biggest Transfers
     # @lTransfers = PlayerTransaction.includes(player_season: [player: :player_position]).where(player_seasons: { season_id: @season.id } ).order(transfer_rate: :desc).limit(5)
 
-    ## Seasons
     @seasons = Season.where(league_id: @league.id).where.not(id: @season.id).order(updated_at: :desc)
   end
 
@@ -284,7 +287,10 @@ class Manager::SeasonsController < ApplicationController
       success_message = t(".stop_transfer_window.success")
     when "steal_window"
       resolution = ManagerServices::Season::Steal.call(@season, current_user)
-      success_message = t(".stop_transfer_window.success")
+      success_message = t(".steal_window.success")
+    when "end"
+      resolution = ManagerServices::Season::End.call(@season, current_user, params)
+      success_message = t(".end.success")
     end
 
     respond_to do |format|
@@ -292,97 +298,13 @@ class Manager::SeasonsController < ApplicationController
         format.turbo_stream {flash.now["success"] = success_message}
         format.html { redirect_to manager_seasons_path, notice: success_message }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        flash.now["error"] = I18n.t("defaults.errors.season.#{resolution.error}")
+        format.html { render :details, status: :unprocessable_entity }
       end
     end
   end
-
-  #################
 
   def end_season
-    @season = Season.find_by_hashid(params[:id])
-  end
-
-  def end_season_
-    @season = Season.find_by_hashid(params[:id])
-    oActions = Championship.where(season_id: @season.id).where("status < 100").size
-    if oActions > 0
-      flash.now[:error] = "Existem Campeonatos em aberto!! Encerre-os antes de tentar Finalizar uma Temporada!"
-      respond_to do |format|
-        format.turbo_stream
-      end
-    else
-      pay_wages = params[:season_end].has_key?(:pay_wages) ? true : false
-      clear_club_balance = params[:season_end].has_key?(:clear_club_balance) ? true : false
-
-      ##
-      # Now that we have options, we go through each club and
-      # players from the season and apply each selected option
-      @season.user_seasons.each do |uSeason|
-        ## Get uSeason Club
-        club = uSeason.clubs.first
-
-        ## Get Club Players
-        players = User.getTeamPlayers(uSeason.user_id, @season.id).includes(player_season: [player: :player_position])
-
-        ## Go through each player
-        players.each do |cPlayer|
-          ## Check if Pay Wage was selected
-          if pay_wages
-            ## Ok, selected, now we need to debit players salary from club
-            wage = cPlayer.player_season.details["salary"].to_i
-
-            ## Debit player wage from Club Balance
-            ClubFinance.create(club_id: club.id, operation: "pay_wage", value: wage, source: cPlayer.player_season)
-          end
-
-          ## Add new entry to Player Transactions
-          PlayerTransaction.addNew(cPlayer.player_season, club, nil, "dismiss", 0)
-
-          ## Remove entry in ClubPlayers table
-          cPlayer.destroy!
-        end
-
-        ## If Club Balance Reset was selected
-        if clear_club_balance
-          ## Create 1st entry into Club Finance model
-          ClubFinance.create(club_id: club.id, operation: "clear_club_balance", value: 0, balance: 0, source: @season)
-        end
-      end
-
-      ## End Season and Notify Users
-      @season.status = 2
-      if @season.save
-        @season.update(
-          preferences = {
-            saction_players_choosing: 2,
-            saction_transfer_window: 2,
-            saction_player_steal: 2
-          }
-        )
-
-        ## WebPush Notify Season Users about change
-        Push::Notify.group_notify(
-          "season",
-          current_user.id,
-          @season,
-          "end_season",
-          "Temporada :: #{@season.name} :: Encerrada!",
-          true,
-          @season.id
-        )
-
-        flash[:success] = "Temporada encerrada com sucesso!"
-      else
-        flash[:error] = "Erro encerrando a Temporada!"
-      end
-      respond_to do |format|
-        format.js
-      end
-    end
-  end
-
-  def users
     @season = Season.find_by_hashid(params[:id])
   end
 
@@ -391,13 +313,13 @@ class Manager::SeasonsController < ApplicationController
     respond_to do |format|
       if @season.status == 1
         format.turbo_stream { flash["error"] = t(".in_progress") }
-        format.html { render :index, status: :unprocessable_entity, notice: t(".in_progress") }
+        format.html { render :details, status: :unprocessable_entity, notice: t(".in_progress") }
       else
         if @season.destroy!
           format.turbo_stream { flash["success"] = t(".success") }
           format.html { redirect_to manager_seasons_path, notice: t(".success") }
         else
-          format.html { render :index, status: :unprocessable_entity }
+          format.html { render :details, status: :unprocessable_entity }
         end
       end
     end
@@ -453,8 +375,4 @@ class Manager::SeasonsController < ApplicationController
   def award_params
     params.permit(award: {})
   end
-
-  # def user_params
-  #   params.permit(users: [])
-  # end
 end

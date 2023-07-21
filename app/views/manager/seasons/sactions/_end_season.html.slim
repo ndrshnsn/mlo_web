@@ -1,7 +1,7 @@
-= form_with model: @season, id: dom_id(@season), url: manager_season_end_path(season.hashid), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
+= form_with model: @season, id: dom_id(@season), url: manager_season_steps_path(id: @season.hashid, step: "end"), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
   input type="hidden" name="season_end[null]" id="season_end_null" value=""
   .horizontal-wizard.mb-0
-    .bs-stepper data-controller="stepper" data-stepper-modal-value="#{@manager_end_season_modal}"
+    .bs-stepper data-controller="stepper" data-stepper-modal-value="#{@modal_id}"
       .bs-stepper-header
         .step data-target="#end_season_information"
           button.step-trigger type="button"
@@ -46,6 +46,16 @@
             ul.list-group.list-group-flush
               li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
                 span.li-col
+                  = t('.optional.dismiss_players')
+                  i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.optional.dismiss_players_desc')}"
+                span
+                  .form-group
+                    .form-check.form-switch
+                      = check_box_tag "season_end[dismiss_players]", nil, true, class: "form-check-input"
+                      label.form-check-label[for="season_end_dismiss_players"]
+
+              li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
+                span.li-col
                   = t('.optional.pay_wage')
                   i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.optional.pay_wage_desc')}"
                 span
@@ -75,24 +85,8 @@
 
         #end_season_confirmation.content
           .content-header
-            p.card-text.mb-2
-              ul.list-style-icons
-                li
-                  i.jam.jam-check.mr-25.text-success
-                  | Devolução de Jogadores Emprestados
-                li
-                  i.jam.jam-check.mr-25.text-success
-                  | Pagar Empréstimo de Jogadores Emprestados
-                li
-                  i.jam.jam-check.mr-25.text-success#send_pay_wages
-                  | Pagar os Salários
-                / li
-                /   i.jam.jam-check.mr-25.text-success#send_pay_stakeholders
-                /   | Prêmio dos Patrocinadores
-                li
-                  i.jam.jam-check.mr-25.text-success#send_clear_club_balance
-                  | Zerar Caixa dos Clubes
-
+            p.card-text
+              = t('.confirmation.main_html')
 
           .d-flex.align-items-start.gap-3.mt-4
             button.btn.btn-light.btn-label.btn-prev type="button"

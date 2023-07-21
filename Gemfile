@@ -66,6 +66,8 @@ group :development do
 
   gem "bullet"
 
+  gem "solargraph"
+
 end
 
 gem "dotenv-rails"

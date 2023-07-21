@@ -1,8 +1,8 @@
-= render "layouts/modal/main", locals: { modal_id: "manager_end_season_modal"}
+= render "layouts/modal/main", modal_id: "manager_end_season_modal"
   .modal-header.bg-soft-primary.pb-3
     h5.modal-title.d-flex.align-items-center
       i.ri-stack-line.me-1
       = @season.name
     button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
   .modal-body.p-0
-    = render partial: "manager/seasons/sactions/end_season", locals: { season: @season, modal_id: "manager_end_season_modal" }
+    = render "manager/seasons/sactions/end_season", season: @season, modal_id: "manager_end_season_modal"

@@ -50,8 +50,10 @@ pt-BR:
             pay_wage_desc: "Os salários de todos os jogadores serão descontados do caixa dos respectivos clubes. Mesmo não permitindo o saldo negativo durante a temporada, caso o clube não possua saldo para o pagamento seu caixa ficará negativo."
             empty_club_account: "Zerar Caixa dos Clubes"
             empty_club_account_desc: "Finalizar a temporada e zerar o caixa dos clubes. Lembre-se de que caso selecione para pagar os salários e algum ficar negativo, zerar o caixa irá invalidar o saldo negativo e todos ficarão com seu saldo zerado."
+            dismiss_players: "Demitir Jogadores"
+            dismiss_players_desc: "Os jogadores do Clube serão removidos/demitidos. Caso deseje removê-los não será paga debitada nenhuma taxa de demissão do caixa dos clubes"
 
           confirmation:
             title: "Confirmação"
             title_desc: "Valide o Encerramento"
-            main_html: ""
+            main_html: "<strong>Confirmando o encerramento da Temporada</strong><p>A temporada será encerrada e serão aplicadas as opções conforme mencionadas no passo 1 e selecionadas no passo seguinte. Lembrando que caso haja algum jogo e/ou campeonato em aberto a temporada não poderá ser encerrada.</p><p>Os usuários serão informados do término da temporada e todos terão acesso aos dados finais na página específica de cada temporada - assim como funciona com os campeonatos anteriores.</p>"

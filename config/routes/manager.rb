@@ -36,7 +36,8 @@ namespace :manager do
   get "seasons/players/:user/:id", to: "seasons#user_players", as: :season_user_players
   post "seasons/get_available_players", to: "seasons#get_available_players", as: :season_get_available_players
 
-  post "seasons/actions/:step/:id", to: "seasons#steps", as: :season_steps
+  match "seasons/actions/:step/:id", to: "seasons#steps", as: :season_steps, via: [:post, :patch]
+  get "seasons/end/:id", to: "seasons#end_season", as: :season_end
 
   # match 'seasons/users/:id/:user/:player/dismiss', controller: 'seasons', action: 'user_player_dismiss', via: :post, as: :season_user_dismiss_player
   # match 'seasons/enqueue/:id', controller: 'seasons', action: 'enqueue', via: :get, as: :season_enqueue
@@ -45,18 +46,18 @@ namespace :manager do
 
 
 
-  match "seasons/get_cteams/:id/:user", controller: "seasons", action: "get_cteams", via: :post, as: :season_get_cteams
-  match "seasons/select_club", controller: "seasons", action: "select_club", via: :post, as: :season_select_club
-  match "seasons/start/:id", controller: "seasons", action: "start_season", via: :post, as: :season_start
-  get "seasons/end/:id", to: "seasons#end_season", as: :season_end
-  match "seasons/start_clubs_choosing/:id", controller: "seasons", action: "start_clubs_choosing", via: :post, as: :season_start_clubs_choosing
-  match "seasons/stop_clubs_choosing/:id", controller: "seasons", action: "stop_clubs_choosing", via: :post, as: :season_stop_clubs_choosing
-  post "seasons/start_players_raffle/:id", to: "seasons#players_raffle", via: :post, as: :season_start_players_raffle
-  match "seasons/start_change_wage/:id", controller: "seasons", action: "start_change_wage", via: :post, as: :season_start_change_wage
-  match "seasons/stop_change_wage/:id", controller: "seasons", action: "stop_change_wage", via: :post, as: :season_stop_change_wage
-  match "seasons/start_transfer_window/:id", controller: "seasons", action: "start_transfer_window", via: :post, as: :season_start_transfer_window
-  match "seasons/stop_transfer_window/:id", controller: "seasons", action: "stop_transfer_window", via: :post, as: :season_stop_transfer_window
-  match "seasons/start_players_steal/:id", controller: "seasons", action: "start_players_steal", via: :post, as: :season_start_players_steal
+  # match "seasons/get_cteams/:id/:user", controller: "seasons", action: "get_cteams", via: :post, as: :season_get_cteams
+  # match "seasons/select_club", controller: "seasons", action: "select_club", via: :post, as: :season_select_club
+  # match "seasons/start/:id", controller: "seasons", action: "start_season", via: :post, as: :season_start
+  
+  # match "seasons/start_clubs_choosing/:id", controller: "seasons", action: "start_clubs_choosing", via: :post, as: :season_start_clubs_choosing
+  # match "seasons/stop_clubs_choosing/:id", controller: "seasons", action: "stop_clubs_choosing", via: :post, as: :season_stop_clubs_choosing
+  # post "seasons/start_players_raffle/:id", to: "seasons#players_raffle", via: :post, as: :season_start_players_raffle
+  # match "seasons/start_change_wage/:id", controller: "seasons", action: "start_change_wage", via: :post, as: :season_start_change_wage
+  # match "seasons/stop_change_wage/:id", controller: "seasons", action: "stop_change_wage", via: :post, as: :season_stop_change_wage
+  # match "seasons/start_transfer_window/:id", controller: "seasons", action: "start_transfer_window", via: :post, as: :season_start_transfer_window
+  # match "seasons/stop_transfer_window/:id", controller: "seasons", action: "stop_transfer_window", via: :post, as: :season_stop_transfer_window
+  # match "seasons/start_players_steal/:id", controller: "seasons", action: "start_players_steal", via: :post, as: :season_start_players_steal
 
   ## Awards
   get "awards", controller: "awards", action: "index", as: :awards
