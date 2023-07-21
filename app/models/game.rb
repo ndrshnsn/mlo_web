@@ -104,4 +104,8 @@ class Game < ApplicationRecord
     game = Game.find(game_id)
     status[:"#{game.status}"]
   end
+
+  def self.get_running(season_id)
+    return Game.joins(:championship).where("championships.season_id = ? AND ( games.status > ? OR games.status < ?)", season_id, 0, 4)
+  end
 end

@@ -47,6 +47,8 @@ module MloWeb
     config.i18n.fallbacks = true
     config.i18n.fallbacks = [:en, :"pt-BR", :es]
 
+    config.active_job.queue_adapter = :sidekiq
+
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #

@@ -2,13 +2,14 @@ import { Controller } from "@hotwired/stimulus"
 import Stepper from 'bs-stepper'
 
 export default class extends Controller {
-  static values = { theme: String }
+  static values = { modal: String }
 
   connect() {
     var bsStepper = $(this.element)
     var stepper = new Stepper($(bsStepper)[0])
     var horizontalWizard = document.querySelector('.horizontal-wizard')
     var numberedStepper = new Stepper(horizontalWizard)
+    let modal = document.getElementById(this.modalValue)
 
     if (typeof bsStepper !== undefined && bsStepper !== null) {
       for (var el = 0; el < bsStepper.length; ++el) {
@@ -43,6 +44,11 @@ export default class extends Controller {
       e.preventDefault();
       numberedStepper.previous();
     });
+
+    $('.btn-cancel').on('click', function(e) {
+      e.preventDefault()
+      $(modal).toggle()
+    })
 
   }
 }

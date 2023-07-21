@@ -28,10 +28,10 @@
                 span
                   .form-group
                     .form-check.form-switch
-                      - sEnabled = ""
-                      - if current_user.preferences["sendpoint"]
-                        - sEnabled = current_user.preferences["sendpoint"].empty? ? "" : "checked"
-                      = check_box_tag "user[notifications]", nil, sEnabled, class: "mt-2 form-check-input", data: { controller: "notifications"}
+                      - sEnabled = @system_notified.empty? ? nil : "checked"
+                      = check_box_tag "user[notifications]", nil, sEnabled, class: "mt-2 form-check-input", data: { controller: "notifications"} 
+
+                      //span data-controller="notifications" data-action="turbo:load@window->notifications#subscribe"
                       label.form-check-label for="user_notifications"
 
       .row

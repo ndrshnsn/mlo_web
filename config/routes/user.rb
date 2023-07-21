@@ -26,10 +26,11 @@ as :user do
   patch "profile/update/:id", to: "profile#update", as: :profile_update
   get "profile/system", to: "profile#system", as: :profile_system
   patch "profile/update_system/:id", to: "profile#update_system", as: :profile_update_system
-  post "profile/notifications/subscribe", to: "profile#subscribe", as: :profile_subscribe
-  post "profile/notifications/unsubscribe", to: "profile#unsubscribe", as: :profile_unsubscribe
   get "profile/social", to: "profile#social", as: :profile_social
   patch "profile/social/disconnect/:provider", to: "profile#social_disconnect", as: :profile_social_disconnect
+
+  post "notifications/subscribe", to: "profile#subscribe", as: :notifications_subscribe
+  post "notifications/unsubscribe", to: "profile#unsubscribe", as: :notifications_unsubscribe
 
   ## Change App Language
   post "locale", to: "profile#setLocale", as: :profile_set_locale

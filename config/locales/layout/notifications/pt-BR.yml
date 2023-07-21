@@ -8,11 +8,22 @@ pt-BR:
       message:
         new: "Temporada %{season} Criada"
         start: "Temporada %{season} Iniciada"
-        club_choosed: "Clube Definido para a Temporada %{season}"
-        start_clubs_choosing: "Iniciada Escolha dos Clubes para a Temporada %{season}"
-        stop_clubs_choosing: "Encerrada escolha dos Clubes para a Temporada %{season}"
-        start_clubs_choosing_user: "Iniciada Escolha dos Clubes para a Temporada %{season}, acesse o menu Administrativo e defina qual clube você irá representar"
-        
+        club_choosed: "Clube Definido :: %{season}"
+        start_clubs_choosing: "Iniciada Escolha dos Clubes :: %{season}"
+        stop_clubs_choosing: "Encerrada escolha dos Clubes :: %{season}"
+        start_clubs_choosing_user: "Iniciada Escolha dos Clubes, acesse o menu Administrativo e defina qual clube você irá representar :: Temporada %{season}"
+        players_raffle: "Sorteio dos Jogadores Iniciado :: %{season}"
+        start_wage: "Liberado ajuste Salarial :: %{season}"
+        start_wage_user: "Ajuste Salarial liberado :: %{season}"
+        stop_wage: "Encerrado Ajuste Salarial :: %{season}"
+        stop_wage_user: "Encerrado o Ajuste Salarial :: %{season}"
+        start_transfer_window: "Aberta Janela de Transferências :: %{season}"
+        start_transfer_window_user: "Aberta Janela de Transferências :: %{season}"
+        stop_transfer_window: "Encerrada a Janela de Transferências :: %{season}"
+        stop_transfer_window_user: "Encerrada a Janela de Transferências :: %{season}"
+        steal_window: "Iniciada a Janela de Roubo :: %{season}"
+        steal_window_end: "Encerrada a Janela de Roubo :: %{season}"
+
     def_player_notification:
       message:
         stop_players_raffle: "Encerrado o Sorteio dos Jogadores Iniciais do seu Clube para a Temporada %{season}"

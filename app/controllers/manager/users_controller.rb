@@ -162,28 +162,21 @@ class Manager::UsersController < ApplicationController
     user_league_size = user_leagues.size
 
     respond_to do |format|
-      new_fake_account = AppServices::Users::CreateFake.call()
       user_league = UserLeague.find_by(league_id: @league.id, user_id: user.id)
-      if user_league.update(user_id: new_fake_account.user.id)
-        user.preferences["active_league"] = nil
-        user.save!
-
-        prev_user_leagues = League.joins([seasons: :user_seasons]).where(leagues: { id: @league.id }, user_seasons: { user_id: user.id }).pluck("seasons.id")
-        user_season = UserSeason.where(user_id: user.id, season_id: prev_user_leagues).update_all(user_id: new_fake_account.user.id)
-        UserMailer.with(user: user, league: @league).removed_from_league.deliver_later
-
+      if user_league.destroy!
         if user_league_size == 1
           user.preferences["request"] = false
+          user.preferences["active_league"] = nil
         else
           random_league = user_leagues.where.not(league_id: @league.id).order(Arel.sql("RANDOM()")).limit(1).first
           user.preferences["active_league"] = random_league&.id
         end
-  
-        if user.save
+
+        if user.save!
+          UserMailer.with(user: user, league: @league).removed_from_league.deliver_later
           update_tab_numbers
-          flash.now["success"] = t(".user_deactivated")
-          format.html { redirect_to manager_users_waiting_path, notice: t(".user_deactivated") }
-          format.turbo_stream
+          format.html { redirect_to manager_users_waiting_path, notice: t(".user_removed") }
+          format.turbo_stream { flash.now["success"] = t(".user_removed") }
         else
           format.html { render :index, status: :unprocessable_entity }
         end

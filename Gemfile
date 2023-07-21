@@ -64,6 +64,10 @@ group :development do
 
   gem "letter_opener"
 
+  gem "bullet"
+
+  gem "solargraph"
+
 end
 
 gem "dotenv-rails"
@@ -118,8 +122,6 @@ gem "public_activity", "~> 2.0"
 
 gem "web-push", "~> 3"
 
-gem "serviceworker-rails", "~> 0.6.0"
-
 gem "devise-i18n", "~> 1.11"
 
 gem "omniauth-google-oauth2", "~> 1.1"
@@ -135,3 +137,7 @@ gem "foreman", "~> 0.87.2"
 gem "sassc", "~> 2.4"
 
 gem "audited", "~> 5.3"
+
+gem "serviceworker-rails", "~> 0.6.0"
+
+gem "sidekiq-cron", "~> 1.10"

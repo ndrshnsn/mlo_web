@@ -1,6 +1,15 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.after_initialize do
+    Bullet.enable        = true
+    Bullet.alert         = false
+    Bullet.bullet_logger = false
+    Bullet.console       = false
+    Bullet.rails_logger  = true
+    Bullet.add_footer    = false
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -64,13 +73,9 @@ Rails.application.configure do
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
-  # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
-
   config.action_view.preload_links_header = false
 
   # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
   # config.action_cable.url = 'ws://app.mlo-dev.test/cable'
   # config.web_socket_server_url = 'ws://app.mlo-dev.test/cable'
   # config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
@@ -78,6 +83,8 @@ Rails.application.configure do
   # config.action_controller.action_on_unpermitted_parameters = :log
 
   config.playerdb_prefix = "http://127.0.0.1/playerdb"
-  config.root_url = "http://127.0.0.1:3000"
-  config.hosts << "app.mlo-dev.test"
+  config.root_url = "https://dev.bifrost.com:3000"
+  config.hosts << "dev.bifrost.com"
+  config.force_ssl = true
+  config.ssl_options = {hsts: false}
 end

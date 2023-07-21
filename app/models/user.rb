@@ -20,10 +20,7 @@ class User < ApplicationRecord
     instagram: [:string, default: ""],
     request: [:boolean, default: false],
     active_league: [:integer, default: nil],
-    fake: [:boolean, default: false],
-    sp256dh: [:string, default: ""],
-    sauth: [:string, default: ""],
-    sendpoint: [:string, default: ""]
+    fake: [:boolean, default: false]
 
   ## Associations
   has_many :user_acls, dependent: :destroy
@@ -31,6 +28,7 @@ class User < ApplicationRecord
   has_many :user_leagues, dependent: :destroy
   has_many :leagues, through: :user_leagues
   has_many :notifications, as: :recipient, dependent: :destroy
+  has_many :web_push_devices, dependent: :destroy
   has_many :user_seasons
   has_many :seasons, through: :user_seasons
   has_many :clubs, through: :user_seasons
@@ -72,6 +70,6 @@ class User < ApplicationRecord
   end
 
   def self.getTeamPlayers(user_id, season_id)
-    User.find(user_id).club_players.where(user_seasons: {season_id: season_id}).order_by_position
+    User.find(user_id).club_players.includes(:player_season).where(user_seasons: {season_id: season_id}).order_by_position
   end
 end

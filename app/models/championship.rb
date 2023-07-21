@@ -79,6 +79,10 @@ class Championship < ApplicationRecord
     status[:"#{championship.status}"]
   end
 
+  def self.get_running(season_id)
+    return Championship.where(season_id: season_id).where("status > ? AND status < ?", 0, 100)
+  end
+
   def self.getGoalers(championship)
     PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."player_season_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id, status: 4)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS goals").group(:id).order("goals desc")
   end

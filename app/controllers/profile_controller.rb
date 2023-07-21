@@ -12,6 +12,7 @@ class ProfileController < ApplicationController
   def system
     @user = User.find(current_user.id)
     @defCountries = DefCountry.getSorted
+    @system_notified = @user.web_push_devices.where(user_id: current_user, user_agent: request.user_agent, user_ip: request.ip)
     render "_system"
   end
 
@@ -36,11 +37,25 @@ class ProfileController < ApplicationController
 
   def subscribe
     sparams = params
-    user = User.find(current_user.id)
-    user.preferences[:sp256dh] = sparams[:subscription][:keys][:p256dh]
-    user.preferences[:sauth] = sparams[:subscription][:keys][:auth]
-    user.preferences[:sendpoint] = sparams[:subscription][:endpoint]
-    if user.save!
+    sub = current_user.web_push_devices.where(user_agent: request.user_agent, user_ip: request.ip)
+    if sub.empty?
+      WebPushDevice.new(
+        user: current_user,
+        endpoint: sparams[:subscription][:endpoint],
+        auth_key: sparams[:subscription][:keys][:auth],
+        p256dh_key: sparams[:subscription][:keys][:p256dh],
+        user_agent: request.user_agent,
+        user_ip: request.ip
+      ).save!
+    else
+      sub.update(
+        endpoint: sparams[:subscription][:endpoint],
+        auth_key: sparams[:subscription][:keys][:auth],
+        p256dh_key: sparams[:subscription][:keys][:p256dh]
+      )
+    end
+    
+    if sub
       flash.now["success"] = t(".success")
     else
       flash.now["error"] = t(".error")
@@ -51,12 +66,7 @@ class ProfileController < ApplicationController
   end
 
   def unsubscribe
-    sparams = params
-    user = User.find(current_user.id)
-    user.preferences[:sp256dh] = ""
-    user.preferences[:sauth] = ""
-    user.preferences[:sendpoint] = ""
-    if user.save!
+    if WebPushDevice.where(user: current_user, user_agent: request.user_agent, user_ip: request.ip).delete_all
       flash.now["success"] = t(".success")
     else
       flash.now["error"] = t(".error")

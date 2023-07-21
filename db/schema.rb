@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_22_130646) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_21_203929) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -286,6 +286,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_130646) do
     t.index ["season_id"], name: "index_player_seasons_on_season_id"
   end
 
+  create_table "player_transactions", force: :cascade do |t|
+    t.bigint "player_season_id", null: false
+    t.bigint "from_club_id"
+    t.bigint "to_club_id"
+    t.string "transfer_mode"
+    t.integer "transfer_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_club_id"], name: "index_player_transactions_on_from_club_id"
+    t.index ["player_season_id"], name: "index_player_transactions_on_player_season_id"
+    t.index ["to_club_id"], name: "index_player_transactions_on_to_club_id"
+  end
+
   create_table "seasons", force: :cascade do |t|
     t.string "name"
     t.bigint "league_id", null: false
@@ -381,6 +394,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_130646) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  create_table "web_push_devices", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "endpoint"
+    t.string "auth_key"
+    t.string "p256dh_key"
+    t.string "user_agent"
+    t.cidr "user_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_web_push_devices_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "awards", "leagues"
@@ -406,6 +431,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_130646) do
   add_foreign_key "player_season_finances", "player_seasons"
   add_foreign_key "player_seasons", "def_players"
   add_foreign_key "player_seasons", "seasons"
+  add_foreign_key "player_transactions", "clubs", column: "from_club_id"
+  add_foreign_key "player_transactions", "clubs", column: "to_club_id"
+  add_foreign_key "player_transactions", "player_seasons"
   add_foreign_key "seasons", "leagues"
   add_foreign_key "user_acls", "leagues"
   add_foreign_key "user_acls", "users"
@@ -413,4 +441,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_130646) do
   add_foreign_key "user_leagues", "users"
   add_foreign_key "user_seasons", "seasons"
   add_foreign_key "user_seasons", "users"
+  add_foreign_key "web_push_devices", "users"
 end

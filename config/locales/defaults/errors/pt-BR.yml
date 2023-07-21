@@ -1,5 +1,6 @@
 pt-BR:
-  error_list:
-    1:
-      title: ""
-      desc: ""
+  defaults:
+    errors:
+      season:
+        end:
+          previous_running: "Existe um Campeonato ou Jogo em Andamento ou não finalizado. Verifique essa informação antes de tentar finalizar uma temporada"
