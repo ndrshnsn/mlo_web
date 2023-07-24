@@ -27,6 +27,8 @@ class Ability
       can :manage, :all if user.admin?
     when "Admin::Insights"
       can :manage, :all if user.admin?
+    when "Myclub"
+      can :manage, :all if user.user?
     end
   end
 end

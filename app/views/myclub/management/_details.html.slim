@@ -67,7 +67,7 @@
           - else
             = t('.stadium_capacity_not_informed')
         - if @userClub
-          = image_tag("#{session[:pdbprefix]}/stadiums/#{(@userClub.def_team.name.upcase.delete(' '))}.png", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{image_url("generic-stadium.png")}';")
+          = image_tag("#{session[:pdbprefix]}/stadiums/#{(@userClub.def_team.name.upcase.delete(' '))}.jpg", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{image_url("generic-stadium.png")}';")
         - else
           = image_tag("generic-stadium.png", class: "mt-2 card-img")
 

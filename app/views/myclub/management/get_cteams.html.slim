@@ -1,5 +1,5 @@
 - @modal_size = "md"
-= render "layouts/modal/main"
+= render "layouts/modal/main", modal_size: "md"
   = form_with model: @userClub, id: dom_id(@userClub), url: myclub_management_select_club_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.myclub.management.confirm'), "form-text-value": t('.myclub.management.confirm_text'), "form-icon-value": "question"} do |f|
     .modal-header
       h5.modal-title.d-flex.align-items-center

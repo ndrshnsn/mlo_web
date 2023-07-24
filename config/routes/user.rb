@@ -59,6 +59,7 @@ as :user do
 
   ## Club Management
   get "myclub/management", to: "myclub/management#index"
+
   match "myclub/management/get_cteams", controller: "myclub/management", action: "get_cteams", via: :post, as: :myclub_management_get_cteams
   match "myclub/management/show_team_details", controller: "myclub/management", action: "show_team_details", via: :post, as: :myclub_management_show_team_details
   match "myclub/management/select_club", controller: "myclub/management", action: "select_club", via: [:post, :patch], as: :myclub_management_select_club

@@ -39,6 +39,8 @@ html lang="en" data-layout="vertical" data-layout-style="detached" data-sidebar=
       .main-content
         .page-content
           .container-fluid
+            - if current_user.user? && @global_notify
+              = render "layouts/global_notify", notify: @global_notify
             = yield
             = button_to 'turbo-xhref', {}, { id: "turbo-xhref-button", style: "display: none;", data: { "turbo-action": "advance", "turbo-frame": "" } , form: { id: "turbo-xhref-form"}}
 

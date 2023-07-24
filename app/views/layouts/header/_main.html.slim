@@ -1,40 +1,33 @@
 header#page-topbar
-    .layout-width
-        .navbar-header
-            .d-flex
-                .navbar-brand-box.horizontal-logo
-                    a href="index.html" class="logo logo-dark"
-                        span.logo-sm
-                            = image_tag('logo/mlo.png', alt: "", height: "22")
-                        span.logo-lg
-                            = image_tag('logo/mlo-light.png', alt: "", height: "32")
-
-                    a href="index.html" class="logo logo-light"
-                        span.logo-sm
-                            = image_tag('logo/mlo.png', alt: "", height: "22")
-                        span.logo-lg
-                            = image_tag('logo/mlo-light.png', alt: "", height: "32")
-
-                button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon"
-                    span.hamburger-icon
-                        span
-                        span
-                        span
-            .d-flex.align-items-center
-                // = render partial: 'layouts/header/search'
-                // render partial: 'layouts/header/cart'
-
-                - if current_user.role != "admin"
-                    = turbo_frame_tag "header_leagues" do
-                        = render partial: 'layouts/header/leagues'
-                        
-                .ms-1.header-item.d-none.d-sm-flex
-                    button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-toggle="fullscreen"
-                        i.ri-fullscreen-line.fs-22
+  .layout-width
+    .navbar-header
+      .d-flex
+        .navbar-brand-box.horizontal-logo
+          a href="index.html" class="logo logo-dark"
+            span.logo-sm = image_tag('logo/mlo.png', alt: "", height: "22")
+            span.logo-lg = image_tag('logo/mlo-light.png', alt: "", height: "32")
+          a href="index.html" class="logo logo-light"
+            span.logo-sm = image_tag('logo/mlo.png', alt: "", height: "22")
+            span.logo-lg = image_tag('logo/mlo-light.png', alt: "", height: "32")
+        button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon"
+          span.hamburger-icon
+            span
+            span
+            span
+      .d-flex.align-items-center
+        // = render partial: 'layouts/header/search'
+        // render partial: 'layouts/header/cart'
+        - if current_user.role != "admin"
+          = turbo_frame_tag "header_leagues" do
+            = render partial: 'layouts/header/leagues'
                 
-                - if !current_user.admin?
-                    = turbo_stream_from current_user, :notifications
-                    = turbo_frame_tag "notifications", src: notifications_path
+        .ms-1.header-item.d-none.d-sm-flex
+          button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-toggle="fullscreen"
+            i.ri-fullscreen-line.fs-22
+        
+        - if !current_user.admin?
+          = turbo_stream_from current_user, :notifications
+          = turbo_frame_tag "notifications", src: notifications_path
 
-                = turbo_frame_tag "header_user" do
-                    = render partial: 'layouts/header/user'
+          = turbo_frame_tag "header_user" do
+            = render partial: 'layouts/header/user'

@@ -2,7 +2,8 @@ module GlobalVars
   extend ActiveSupport::Concern
 
   included do
-    before_action :set_global_vars, :authenticate_user!
+    before_action :set_global_vars, if: :user_signed_in?
+    before_action :check_global_notify, if: :user_signed_in?
   end
 
   private
@@ -10,17 +11,17 @@ module GlobalVars
   def set_global_vars
     session[:error_list] = []
     session[:pdbprefix] = Rails.configuration.playerdb_prefix
-    if user_signed_in? && current_user.user?
+    if current_user.user?
       if !session[:user_id]
         session[:user_id] = current_user.id
         session[:league] = current_user.preferences["active_league"].presence
         session[:leagues] = League.joins(:users).where(users: {id: current_user.id}).pluck("leagues.id")
         session[:season] = Season.getActive(current_user.id)
-        if !session[:season].nil?
-          session[:userClub] = User.getClub(current_user.id, session[:season]).nil? ? nil : User.getClub(current_user.id, session[:season]).id
-        end
+        session[:userClub] = User.getClub(current_user.id, session[:season]).nil? ? nil : User.getClub(current_user.id, session[:season]).id if !session[:season].nil?
       end
-    elsif user_signed_in? && current_user.manager?
+    end
+
+    if current_user.manager?
       session[:league] = current_user.preferences["active_league"].presence
       session[:leagues] = League.where(user_id: current_user.id).pluck("leagues.id")
       session[:season] = Season.getActive(current_user.id)
@@ -36,6 +37,15 @@ module GlobalVars
         title: I18n.t("error_list.#{i}.title"),
         desc: I18n.t("error_list.#{i}.desc")
       )
+    end
+  end
+
+  def check_global_notify
+    if current_user.user? && session[:season]
+      season = Season.find(session[:season])
+      if season.preferences["saction_clubs_choosing"] == 1
+        @global_notify = "test"
+      end
     end
   end
 end

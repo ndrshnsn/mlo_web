@@ -49,9 +49,9 @@ class Myclub::ManagementController < ApplicationController
     respond_to do |format|
       if @club.save!
         session[:userClub] = @club.id
-        if request.post?
-          ClubFinance.create(club_id: @club.id, operation: "initial_funds", value: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, balance: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, source: @season)
-        end
+        # if request.post?
+        #   ClubFinance.create(club_id: @club.id, operation: "initial_funds", value: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, balance: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, source: @season)
+        # end
 
         SeasonNotification.with(
           season: @season,
@@ -75,8 +75,7 @@ class Myclub::ManagementController < ApplicationController
   private
 
   def set_local_vars
-    return redirect_to root_path if !session[:userClub].present?
-    @userClub = Club.find(session[:userClub])
+    @userClub = Club.find(session[:userClub]) if session[:userClub]
     @league = League.find(session[:league])
     @season = Season.find(session[:season])
   end

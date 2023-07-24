@@ -1,9 +1,8 @@
 - cLeague = League.find(session[:league]) if session[:league]
+- dropdown ||= session[:leagues]
 .dropdown.topbar-head-dropdown.ms-1.header-item
-
-	button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+	button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-bs-toggle="#{dropdown}" aria-haspopup="true" aria-expanded="false"
 		img.rounded src="#{leagueBadge(cLeague)}" height="26"
-
 	- if cLeague && session[:leagues].size > 1
 		.dropdown-menu.dropdown-menu-lg.p-0.dropdown-menu-end
 			.p-3.border-top-0.border-start-0.border-end-0.border-dashed.border
@@ -13,7 +12,6 @@
 							span.d-flex
 								i.ri-honour-line.me-1
 								= t('.my_leagues').upcase
-
 			.p-2
 			- session[:leagues].in_groups_of(3, false) do |lgroup|
 				.row.g-0
