@@ -37,7 +37,10 @@ Rails.application.routes.draw do
       omniauth_callbacks: "users/omniauth_callbacks"
     }
 
-  resources :notifications, only: [:index]
+  get "not_badge", to: "notifications#badge", as: :not_badge
+  post "not_badge/read_all", to: "notifications#badge_read_all", as: :not_badge_read_all
+  get "notifications", to: "notifications#index", as: :notifications
+
   get "dt_i18n", to: "datatables#datatable_i18n"
   post "gt_brcb", to: "breadcrumbs#update"
   post "cleague/:id", to: "dashboard#change_league", as: :change_active_league

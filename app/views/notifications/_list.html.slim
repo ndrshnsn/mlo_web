@@ -1,5 +1,5 @@
 .dropdown.topbar-head-dropdown.ms-1.header-item
-  button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+  button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-controller="not-badge" data-not-badge-url-value="#{not_badge_read_all_path}" data-action="click->not-badge#read_all"
     i.ri-notification-3-line.fs-22
     = render partial: "notifications/notify_counter", locals: { unread: @unread_notifications}
 
@@ -8,7 +8,9 @@
       .tab-pane.fade.show.active.py-2.ps-2 id="all-noti-tab" role="tabpanel"
         .pe-2 data-simplebar="" style="max-height: 300px;"
           #notification_list
-            = render partial: "notifications/notification", locals: {  notifications:  @notifications}
+            = render partial: "notifications/badge_item", locals: {  notifications:  @notifications}
 
           .my-3.text-center
-            button type="button" class="btn btn-soft-success waves-effect waves-light" #{t('.view_all_notifications')} <i class="ri-arrow-right-line align-middle"></i>
+            = link_to notifications_path, class: "btn btn-soft-success waves-effect waves-light" do
+              i.ri-arrow-right-line.align-middle.me-1
+              span = t('.view_all_notifications')

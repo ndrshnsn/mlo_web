@@ -2,12 +2,10 @@ class NotificationJob < ApplicationJob
   queue_as :notifications
 
   def perform(notification)
-    unreadNotifications = Notification.where(recipient: notification.recipient).unread.size
-    if unreadNotifications >= 99
-      unreadNotifications = "99+"
-    end
+    all_notifications = notification.recipient.notifications.where("notifications.params -> 'league' = ?", "#{notification.recipient.preferences['active_league']}").order(created_at: :desc)
+    unreadNotifications = all_notifications.unread.size >= 99 ? "99+" : all_notifications.unread.size
 
-    html = ApplicationController.render partial: "notifications/notification", locals: {notifications: Notification.where(recipient: notification.recipient).order(created_at: :desc).limit(10)}, formats: [:html]
+    html = ApplicationController.render partial: "notifications/badge_item", locals: {notifications: all_notifications.limit(10)}, formats: [:html]
 
     Turbo::StreamsChannel.broadcast_replace_to(
       notification.recipient,
