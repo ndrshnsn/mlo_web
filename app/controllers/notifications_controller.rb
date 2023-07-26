@@ -7,7 +7,9 @@ class NotificationsController < ApplicationController
   end
 
   def badge_read_all
-    NotificationJob.perform_later(all_notifications.first) if all_notifications.mark_as_read!
+    if all_notifications.unread.size > 0
+      NotificationJob.perform_later(all_notifications.first) if all_notifications.mark_as_read!
+    end
 
     head :ok
   end

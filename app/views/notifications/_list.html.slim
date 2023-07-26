@@ -1,5 +1,5 @@
 .dropdown.topbar-head-dropdown.ms-1.header-item
-  button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-controller="not-badge" data-not-badge-url-value="#{not_badge_read_all_path}" data-action="click->not-badge#read_all"
+  button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-controller="request" data-request-url-value="#{not_badge_read_all_path}" data-action="click->request#send_it"
     i.ri-notification-3-line.fs-22
     = render partial: "notifications/notify_counter", locals: { unread: @unread_notifications}
 

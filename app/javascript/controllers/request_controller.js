@@ -4,7 +4,7 @@ import { post } from "@rails/request.js"
 export default class extends Controller {
   static values = { url: String }
 
-  async read_all() {
+  async send_it() {
     const url = this.urlValue
     const response = await post(url, {responseKind: "turbo-stream"})
   }
