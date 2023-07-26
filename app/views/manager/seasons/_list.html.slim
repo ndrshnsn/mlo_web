@@ -5,11 +5,12 @@
         .row.g-4.mb-1
           .col-sm-auto
             h6.card-title.mb-0 = t('.seasons_management')
-          .col-sm
-            .d-flex.justify-content-sm-end
-              = link_to manager_season_new_path, class: "btn btn-primary add-btn", data: { "turbo-action": "advance" } do
-                  i.ri-add-line.align-bottom.me-1
-                  = t('.add_season')
+          - if check_ability(current_user, "Manager", "new", "season")
+            .col-sm
+              .d-flex.justify-content-sm-end
+                = link_to manager_season_new_path, class: "btn btn-primary add-btn", data: { "turbo-action": "advance" } do
+                    i.ri-add-line.align-bottom.me-1
+                    = t('.add_season')
       .card-body
         p.text-dark.mb-2 = t('.season_management_desc_html')
 .row

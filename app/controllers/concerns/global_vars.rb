@@ -41,11 +41,6 @@ module GlobalVars
   end
 
   def check_global_notify
-    if current_user.user? && session[:season]
-      season = Season.find(session[:season])
-      if season.preferences["saction_clubs_choosing"] == 1
-        @global_notify = "test"
-      end
-    end
+    @global_notify = GlobalNotification.get_valid(session[:league]) if current_user.user? && session[:league]
   end
 end

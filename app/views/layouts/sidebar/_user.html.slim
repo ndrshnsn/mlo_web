@@ -25,5 +25,5 @@ ul.navbar-nav id="navbar-nav"
           span.avatar-title.bg-transparent.text-reset
             i.ri-auction-line
     = render partial: "layouts/sidebar/user_items"
-  - if current_user.user_acls.size > 0
+  - if current_user.user_acls.where(permitted: true).size > 0
     = render partial: "layouts/sidebar/manager_items"

@@ -5,7 +5,7 @@ class Championship < ApplicationRecord
   belongs_to :season
   has_many :club_championships, dependent: :destroy
   has_many :clubs, through: :club_championships
-  # has_many :games, dependent: :destroy
+  has_many :games, dependent: :destroy
   # has_many :notifications, foreign_key: :notifiable_id, dependent: :destroy
   # has_many :rankings, foreign_key: :source_id, dependent: :destroy
   # has_many :championship_positions, dependent: :destroy

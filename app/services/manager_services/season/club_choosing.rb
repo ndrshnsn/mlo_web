@@ -24,6 +24,15 @@ class ManagerServices::Season::ClubChoosing < ApplicationService
     season = @season
     return handle_error(season, season&.error) unless season.update!(saction_clubs_choosing: 1)
 
+    ## Create Global Notification
+    params = {
+      title: I18n.t('global_notify.choose_clubs_open_title'),
+      body: I18n.t('global_notify.choose_clubs_open_desc_html'),
+      type: "info",
+      enabled: true
+    }
+    AppServices::GlobalNotification.call(season.league_id, params)
+
     SeasonNotification.with(
       season: season,
       league: season.league_id,
@@ -86,6 +95,9 @@ class ManagerServices::Season::ClubChoosing < ApplicationService
         ).deliver_later(user)
       end
     end
+
+    ## Remove Global Notification
+    GlobalNotification.disable(@season.league_id)
 
     SeasonNotification.with(
       season: season,

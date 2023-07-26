@@ -23,8 +23,10 @@ class AppServices::Users::Acl < ApplicationService
 
   def update_acl
     @params[:params].each do |acl_rule|
-      acl = UserAcl.where(user_id: @user, role: acl_rule.first).first_or_initialize
-      acl.permitted = acl_rule.last
+      acl_name = acl_rule.first.sub("_", "::")
+      acl = UserAcl.where(user_id: @user, role: acl_name).first_or_initialize
+      acl.permitted = acl_rule[1][:role]
+      acl.extra = acl_rule[1][:extra]
       acl.league_id = @league
 
       return handle_error(nil, acl&.error) unless acl.save!
@@ -43,7 +45,7 @@ class AppServices::Users::Acl < ApplicationService
         type: "season",
         data:
         [
-          { role: "season::read", i18n: "season_read" },
+          { role: "season::read", i18n: "season_read", extra: "season::details, season::users, season::get_susers_dt" },
           { role: "season::update", i18n: "season_update" }
         ]
       }

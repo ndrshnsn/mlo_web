@@ -1,5 +1,5 @@
 - cLeague = League.find(session[:league]) if session[:league]
-- dropdown ||= session[:leagues]
+- dropdown = session[:leagues].size > 1 ? "dropdown" : nil
 .dropdown.topbar-head-dropdown.ms-1.header-item
 	button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-bs-toggle="#{dropdown}" aria-haspopup="true" aria-expanded="false"
 		img.rounded src="#{leagueBadge(cLeague)}" height="26"

@@ -63,7 +63,7 @@ class Season < ApplicationRecord
   end
 
   def self.valid_users(season_id)
-    return User.joins(:user_seasons).where("user_seasons.season_id = ? AND (users.preferences -> 'fake')::Bool = ?", season_id, false)
+    User.joins(:user_seasons).where("user_seasons.season_id = ? AND (users.preferences -> 'fake')::Bool = ?", season_id, false)
   end
 
   def self.getStatus(season_id)
@@ -77,6 +77,11 @@ class Season < ApplicationRecord
   end
 
   def self.getClubs(season_id)
-		return Club.joins(:user_season).where(user_seasons: { season_id: season_id })
+		Club.joins(:user_season).where(user_seasons: { season_id: season_id })
 	end
+
+  def self.getBalance(season)
+		ClubFinance.where(club_id: Season.getClubs(season.id).pluck(:id)).order(club_id: :desc, created_at: :desc).sum(:value)
+	end
+
 end

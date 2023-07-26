@@ -105,6 +105,11 @@ pt-BR:
           users: "Usuários"
           remove: "Excluir"
           general: "Informações Gerais"
+        inspect:
+          championship: "Campeonatos"
+          games: "Jogos"
+          goals: "Gols"
+          balance: "Balanço"
       choose_award_modal:
         choose_award_instructions: "Selecione abaixo uma Premição Criada no Menu Premiações e para qual Resultado ela será aplicada"
         select_award: "Selecione a Premiação"

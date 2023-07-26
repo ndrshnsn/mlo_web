@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_21_203929) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_210420) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -131,6 +131,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_203929) do
     t.index ["club_id"], name: "index_club_finances_on_club_id"
   end
 
+  create_table "club_games", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "club_id", null: false
+    t.bigint "player_season_id", null: false
+    t.bigint "assist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assist_id"], name: "index_club_games_on_assist_id"
+    t.index ["club_id"], name: "index_club_games_on_club_id"
+    t.index ["game_id"], name: "index_club_games_on_game_id"
+    t.index ["player_season_id"], name: "index_club_games_on_player_season_id"
+  end
+
   create_table "club_players", force: :cascade do |t|
     t.bigint "club_id", null: false
     t.bigint "player_season_id", null: false
@@ -227,6 +240,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_203929) do
     t.index ["eresults_id"], name: "index_games_on_eresults_id"
     t.index ["home_id"], name: "index_games_on_home_id"
     t.index ["visitor_id"], name: "index_games_on_visitor_id"
+  end
+
+  create_table "global_notifications", force: :cascade do |t|
+    t.bigint "league_id", null: false
+    t.string "title"
+    t.text "body"
+    t.jsonb "params"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_id"], name: "index_global_notifications_on_league_id"
+    t.index ["params"], name: "index_global_notifications_on_params", using: :gin
   end
 
   create_table "identities", force: :cascade do |t|
@@ -328,6 +352,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_203929) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "league_id", null: false
+    t.string "extra"
     t.index ["league_id"], name: "index_user_acls_on_league_id"
     t.index ["role"], name: "index_user_acls_on_role"
     t.index ["user_id"], name: "index_user_acls_on_user_id"
@@ -415,6 +440,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_203929) do
   add_foreign_key "club_championships", "championships"
   add_foreign_key "club_championships", "clubs"
   add_foreign_key "club_finances", "clubs"
+  add_foreign_key "club_games", "clubs"
+  add_foreign_key "club_games", "games"
+  add_foreign_key "club_games", "player_seasons"
+  add_foreign_key "club_games", "player_seasons", column: "assist_id"
   add_foreign_key "club_players", "clubs"
   add_foreign_key "club_players", "player_seasons"
   add_foreign_key "clubs", "def_teams"
@@ -426,6 +455,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_203929) do
   add_foreign_key "games", "clubs", column: "eresults_id"
   add_foreign_key "games", "clubs", column: "home_id"
   add_foreign_key "games", "clubs", column: "visitor_id"
+  add_foreign_key "global_notifications", "leagues"
   add_foreign_key "identities", "users"
   add_foreign_key "leagues", "users"
   add_foreign_key "player_season_finances", "player_seasons"

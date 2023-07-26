@@ -1,6 +1,7 @@
 class Manager::SeasonsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
+  before_action :set_season, only: [:update, :users, :details, :end_season, :destroy, :start, :start_club_choosing, :stop_club_choosing, :start_players_raffle, :start_change_wage, :stop_change_wage, :start_transfer_window, :stop_transfer_window, :steal_window, :end]
   breadcrumb "dashboard", :root_path, match: :exact
   breadcrumb "manager.seasons.main", :manager_seasons_path, match: :exact
 
@@ -9,6 +10,10 @@ class Manager::SeasonsController < ApplicationController
     if @season
       @users = User.joins(:user_leagues).where("league_id = ?", @league.id)
     end
+  end
+
+  def set_season
+    @season = Season.find_by_hashid(params[:id])
   end
 
   def check_season_name
@@ -174,7 +179,6 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def update
-    @season = Season.find_by_hashid(params[:id])
     @season.name = season_params[:name]
     @season.start = DateTime.parse(season_params[:start_date])
     @season.duration = season_params[:time]
@@ -234,68 +238,62 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def users
-    @season = Season.find_by_hashid(params[:id])
   end
 
   def details
-    @season = Season.find_by_hashid(params[:id])
-
-    ## Season Champs
-    # @sChampionships = Championship.where(season_id: @season.id)
-
-    ## Season Games
-    # @sGames = @sChampionships.joins(:games).where(games: { status: 4 }).size
-
-    ## Season Goals
-    # @sGoals = @sChampionships.joins(games: :club_games).size
-
-    ## Season Balance
-    # @sBalance = Season.getBalance(@season)
-
-    ## Biggest Transfers
-    # @lTransfers = PlayerTransaction.includes(player_season: [player: :player_position]).where(player_seasons: { season_id: @season.id } ).order(transfer_rate: :desc).limit(5)
-
+    @season_championships = Championship.where(season_id: @season.id)
+    @season_games = @season_championships.joins(:games).where(games: { status: 4 }).size
+    @season_goals = @season_championships.joins(games: :club_games).size
+    @season_balance = Season.getBalance(@season)
+    @biggest_transfers = PlayerTransaction.includes(player_season: [def_player: :def_player_position]).where(player_seasons: { season_id: @season.id } ).order(transfer_rate: :desc).limit(5)
     @seasons = Season.where(league_id: @league.id).where.not(id: @season.id).order(updated_at: :desc)
   end
 
-  def steps
-    @season = Season.find_by_hashid(params[:id])
-    case params[:step]
-    when "start"
-      resolution = ManagerServices::Season::Start.call(@season, current_user)
-      success_message = t(".start.success")
-    when "start_club_choosing"
-      resolution = ManagerServices::Season::ClubChoosing.new(@season, current_user).call_start()
-      success_message = t(".start_club_choosing.success")
-    when "stop_club_choosing"
-      resolution = ManagerServices::Season::ClubChoosing.new(@season, current_user).call_stop()
-      success_message = t(".stop_club_choosing.success")
-    when "start_players_raffle"
-      resolution = ManagerServices::Season::PlayerRaffle.call(@season, current_user)
-      success_message = t(".start_players_raffle.success")
-    when "start_change_wage"
-      resolution = ManagerServices::Season::Wage.call(@season, current_user, "start")
-      success_message = t(".start_change_wage.success")
-    when "stop_change_wage"
-      resolution = ManagerServices::Season::Wage.call(@season, current_user, "stop")
-      success_message = t(".stop_change_wage.success")
-    when "start_transfer_window"
-      resolution = ManagerServices::Season::Transfer.call(@season, current_user, "start")
-      success_message = t(".start_transfer_window.success")
-    when "stop_transfer_window"
-      resolution = ManagerServices::Season::Transfer.call(@season, current_user, "stop")
-      success_message = t(".stop_transfer_window.success")
-    when "steal_window"
-      resolution = ManagerServices::Season::Steal.call(@season, current_user)
-      success_message = t(".steal_window.success")
-    when "end"
-      resolution = ManagerServices::Season::End.call(@season, current_user, params)
-      success_message = t(".end.success")
-    end
+  def start
+    show_step(ManagerServices::Season::Start.call(@season, current_user), t(".start.success"))
+  end
 
+  def start_club_choosing
+    show_step(ManagerServices::Season::ClubChoosing.new(@season, current_user).call_start(), t(".start_club_choosing.success"))
+  end
+
+  def stop_club_choosing
+    show_step(ManagerServices::Season::ClubChoosing.new(@season, current_user).call_stop(), t(".stop_club_choosing.success"))
+  end
+
+  def start_players_raffle
+    show_step(ManagerServices::Season::PlayerRaffle.call(@season, current_user), t(".start_players_raffle.success"))
+  end
+
+  def start_change_wage
+    show_step(ManagerServices::Season::Wage.call(@season, current_user, "start"), t(".start_change_wage.success"))
+  end
+
+  def stop_change_wage
+    show_step(ManagerServices::Season::Wage.call(@season, current_user, "stop"), t(".stop_change_wage.success"))
+  end
+
+  def start_transfer_window
+    show_step(ManagerServices::Season::Transfer.call(@season, current_user, "start"), t(".start_transfer_window.success"))
+  end
+
+  def stop_transfer_window
+    show_step(ManagerServices::Season::Transfer.call(@season, current_user, "stop"), t(".stop_transfer_window.success"))
+  end
+
+  def steal_window
+    show_step(ManagerServices::Season::Steal.call(@season, current_user), t(".steal_window.success"))
+  end
+
+  def end
+    show_step(ManagerServices::Season::End.call(@season, current_user, params), t(".end.success"))
+  end
+
+  def show_step(resolution, success_message)
     respond_to do |format|
       if resolution.success?
-        format.turbo_stream {flash.now["success"] = success_message}
+        flash.now["success"] = success_message
+        format.turbo_stream { render "show_step" }
         format.html { redirect_to manager_seasons_path, notice: success_message }
       else
         flash.now["error"] = I18n.t("defaults.errors.season.#{resolution.error}")
@@ -305,11 +303,9 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def end_season
-    @season = Season.find_by_hashid(params[:id])
   end
 
   def destroy
-    @season = Season.find_by_hashid(params[:id])
     respond_to do |format|
       if @season.status == 1
         format.turbo_stream { flash["error"] = t(".in_progress") }

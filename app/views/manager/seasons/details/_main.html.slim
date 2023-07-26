@@ -1,7 +1,8 @@
 .row
   .col-xl-9.col-lg-8
-    = render partial: 'manager/seasons/details/info'
+    = render 'manager/seasons/details/info'
+    = render "manager/seasons/details/inspect"
 
   .col-xl-3.col-lg-4
     = turbo_frame_tag "sactions_menu"
-      = render partial: 'manager/seasons/sActions', locals: { season: @season }
+      = render 'manager/seasons/sActions', season: @season

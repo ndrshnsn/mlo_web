@@ -25,18 +25,18 @@ class Manager::ActiveUsersDatatable < ApplicationDatatable
       mDisabled = (uLeague.user.preferences["fake"] == true) ? "disabled" : ""
       dtActions = [
         {
-          link: "javascript:;",
-          icon: "ri-#{pStatusIcon}-line",
-          text: pStatus,
-          disabled: mDisabled,
-          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{pStatusConfirm}' data-confirm-icon-value='warning' data-confirm-text-value='#{t("defaults.datatables.manager.users_confirm_deactivate")}' data-confirm-link-value='#{manager_user_toggle_path(uLeague.user.friendly_id)}' data-confirm-action-value='post'"
-        },
-        {
           link: manager_user_show_path(uLeague.user.friendly_id),
           icon: "ri-user-line",
           text: t("defaults.datatables.show"),
           disabled: mDisabled,
           turbo: "data-turbo-action='advance' data-turbo-frame='manager_users'"
+        },
+        {
+          link: "javascript:;",
+          icon: "ri-#{pStatusIcon}-line",
+          text: pStatus,
+          disabled: mDisabled,
+          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{pStatusConfirm}' data-confirm-icon-value='warning' data-confirm-text-value='#{t("defaults.datatables.manager.users_confirm_deactivate")}' data-confirm-link-value='#{manager_user_toggle_path(uLeague.user.friendly_id)}' data-confirm-action-value='post'"
         }
       ]
 

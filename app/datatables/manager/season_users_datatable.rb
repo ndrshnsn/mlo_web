@@ -17,18 +17,15 @@ class Manager::SeasonUsersDatatable < ApplicationDatatable
       stColumn += "</div>"
       stColumn += "</div>"
 
-      tName = image_tag("#{session[:pdbprefix]}/teams/#{uSeason.clubs.first.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", class: "me-1", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';")
-      tName += stringHuman(uSeason.clubs.first.def_team.name)
+      if uSeason.clubs.first
+        tName = image_tag("#{session[:pdbprefix]}/teams/#{uSeason.clubs.first.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", class: "me-1", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';")
+        tName += stringHuman(uSeason.clubs.first.def_team.name)
+      else
+        tName = nil
+      end
 
       mDisabled = (uSeason.user.preferences["fake"] == true) ? "disabled" : ""
       dtActions = [
-        {
-          link: manager_user_show_path(uSeason.user.friendly_id),
-          icon: "ri-information-line",
-          text: t("defaults.datatables.show"),
-          disabled: mDisabled,
-          turbo: "data-turbo-action='advance' data-turbo-frame='manager_users'"
-        },
         {
           link: manager_season_user_players_path(id: uSeason.season.hashid, user: uSeason.user.friendly_id),
           icon: "ri-group-line",

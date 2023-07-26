@@ -49,9 +49,6 @@ class Myclub::ManagementController < ApplicationController
     respond_to do |format|
       if @club.save!
         session[:userClub] = @club.id
-        # if request.post?
-        #   ClubFinance.create(club_id: @club.id, operation: "initial_funds", value: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, balance: @season.preferences["club_default_earning"].gsub(/[^\d.]/, "").to_i, source: @season)
-        # end
 
         SeasonNotification.with(
           season: @season,

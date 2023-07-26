@@ -26,6 +26,6 @@ class DefPlayerNotification < Noticed::Base
         tag: 'player-notification',
         url: params[:season]
       }
-    WebPushSubscription.notify(recipient, data) if params[:push]
+      WebPushDevice.notify(recipient, data) if params[:push]
   end
 end

@@ -1,0 +1,35 @@
+.row
+  .col-6.col-md-3
+    .card.text-center
+      .card-body
+        .avatar.bg-light-primary.p-50.mb-1
+          .avatar-content
+            i.font-medium-5 data-feather="target"
+        h2.font-weight-bolder = @season_championships.size
+        p.card-text = t('.championships')
+  .col-6.col-md-3
+    .card.text-center
+      .card-body
+        .avatar.bg-light-info.p-50.mb-1
+          .avatar-content
+            i.font-medium-5 data-feather="airplay"
+        h2.font-weight-bolder = @season_games
+        p.card-text = t('.games')
+
+  .col-6.col-md-3
+    .card.text-center
+      .card-body
+        .avatar.bg-light-warning.p-50.mb-1
+          .avatar-content
+            i.font-medium-5 data-feather="circle"
+        h2.font-weight-bolder = @season_goals
+        p.card-text = t('.goals')
+
+  .col-6.col-md-3
+    .card.text-center
+      .card-body
+        .avatar.bg-light-success.p-50.mb-1
+          .avatar-content
+            i.font-medium-5 data-feather="dollar-sign"
+        h2.font-weight-bolder #{number_to_human(@season_balance, precision: 3, format: "%n")}K
+        p.card-text = t('.balance')

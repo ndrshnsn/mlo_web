@@ -39,6 +39,12 @@ document.addEventListener("turbo:submit-end", function(event) {
   $.LoadingOverlay("hide", "force")
 });
 
+// document.addEventListener("turbo:frame-missing", (event) => {
+//   const { detail: { response, visit } } = event;
+//   event.preventDefault();
+//   visit(response.url);
+// });
+
 // if (window.history.state && window.history.state.turbo) {
 //   window.addEventListener("popstate", function () { location.reload(true); });
 // }

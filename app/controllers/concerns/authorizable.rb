@@ -18,16 +18,16 @@ module Authorizable
         end
       end
 
-      flash.now[:danger] = t("unauthorized")
+      flash.now[:error] = t("unauthorized")
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream:
             [
-              turbo_stream.update("dashboard", partial: "dashboard/main"),
+              # turbo_stream.update("dashboard", partial: "dashboard/main"),
               turbo_stream.update("flash", partial: "layouts/flash/main")
             ]
         end
-        format.html { redirect_to root_path, error: t("unauthorized") }
+        format.html { redirect_to request.referrer, error: t("unauthorized") }
       end
     end
   end

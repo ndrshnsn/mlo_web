@@ -1,3 +1,6 @@
-blockquote.blockquote.custom-blockquote.blockquote-info.rounded.mt-2
-  p.text-header = notify
-  p.text-body = t('.choose_clubs_open_desc')
+- notify.each do |n|
+  - ntype = n.type.nil? ? "primary" : n.type
+  blockquote class="blockquote custom-blockquote blockquote-#{ntype} rounded mt-2"
+    p.text-header = n.title.upcase
+    p.text-body = n.body.html_safe
+    footer.blockquote-footer.mt-0 = I18n.localize(n.updated_at, format: t('date.formats.default'))

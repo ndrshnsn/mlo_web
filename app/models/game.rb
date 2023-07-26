@@ -6,13 +6,13 @@ class Game < ApplicationRecord
   belongs_to :home, class_name: "Club"
   belongs_to :eresults, class_name: "Club", optional: true
   belongs_to :player_season, optional: true
-  # has_one :club_bestplayer, dependent: :destroy
+  has_one :club_bestplayer, dependent: :destroy
   # has_many :game_contests, dependent: :destroy
-  # has_many :club_games, dependent: :destroy
+  has_many :club_games, dependent: :destroy
   # has_many :game_cards, dependent: :destroy
-  # has_many :club_finances, foreign_key: :source_id, dependent: :destroy
+  has_many :club_finances, foreign_key: :source_id, dependent: :destroy
   # has_many :notifications, foreign_key: :notifiable_id, dependent: :destroy
-  # has_many :rankings, foreign_key: :source_id, dependent: :destroy
+  has_many :rankings, foreign_key: :source_id, dependent: :destroy
 
   ##
   # Return Winner and Lost of Game

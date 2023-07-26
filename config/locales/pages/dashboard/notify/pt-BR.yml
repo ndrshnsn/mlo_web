@@ -1,5 +1,4 @@
 pt-BR:
-  dashboard:
-    notify:
-      choose_clubs_open_title:
-      choose_clubs_open_desc:
+  global_notify:
+    choose_clubs_open_title: "Escolha do seu Clube/Brasão"
+    choose_clubs_open_desc_html: "Está ativa a opção de escolha do seu Clube. Caso você não selecione o Clube que irá representar o mesmo será definido de forma aleatória. Vá agora até a <strong>Central do Clube -> Administrativo</strong> e faça sua escolha.<p>Este aviso ficará visível até que o Manager encerre a escolha dos clubes."

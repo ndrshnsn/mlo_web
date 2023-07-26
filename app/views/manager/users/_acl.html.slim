@@ -10,6 +10,7 @@
           table.table.table-bordered
             tbody
               - acl[:data].each_with_index do |acl_rule,i|
+                - acl_rule[:role_] = acl_rule[:role].sub("::", "_")
                 tr
                   - if i == 0
                     td.text-center.align-middle.bg-primary style="width: 10%;" rowspan="#{acl[:data].size}"
@@ -18,8 +19,9 @@
                   td.align-middle style="width: 10%;"
                     - checked = @user_acl.size > 0 ? @user_acl.where(role: acl_rule[:role]).pluck(:permitted).first : false
                     .form-check.mb-2.text-center
-                      = hidden_field_tag "acl_rule[#{acl_rule[:role]}]", "false"
-                      = check_box_tag("acl_rule[#{acl_rule[:role]}]", "true", checked, { class: "form-check-input" })
+                      = hidden_field_tag "acl_rule[#{acl_rule[:role_]}][role]", "false"
+                      = check_box_tag("acl_rule[#{acl_rule[:role_]}][role]", "true", checked, { class: "form-check-input" })
+                      = hidden_field_tag "acl_rule[#{acl_rule[:role_]}][extra]", acl_rule[:extra]
     .row
       .col-12.text-end
         = link_to t('.back'), manager_users_path, data: {"turbo_frame": "manager_users", "turbo-action": "advance"}, class: "btn btn-outline-secondary me-1"
