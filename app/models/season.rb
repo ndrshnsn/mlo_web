@@ -77,7 +77,7 @@ class Season < ApplicationRecord
   end
 
   def self.getClubs(season_id)
-		Club.joins(:user_season).where(user_seasons: { season_id: season_id })
+		Club.joins(:user_season).includes(:def_team).where(user_seasons: { season_id: season_id })
 	end
 
   def self.getBalance(season)
