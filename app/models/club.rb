@@ -10,8 +10,8 @@ class Club < ApplicationRecord
   # has_many :rankings, dependent: :destroy
   has_many :championship_positions, through: :championships
   # has_many :championship_awards, through: :championships
-  # has_many :from_club, class_name: 'PlayerTransaction', foreign_key: :from_club_id, dependent: :destroy
-  # has_many :to_club, class_name: 'PlayerTransaction', foreign_key: :to_club_id, dependent: :destroy
+  has_many :from_club, class_name: 'PlayerTransaction', foreign_key: :from_club_id, dependent: :destroy
+  has_many :to_club, class_name: 'PlayerTransaction', foreign_key: :to_club_id, dependent: :destroy
   # has_many :club_bestplayers
 
   ## Settings
@@ -21,6 +21,10 @@ class Club < ApplicationRecord
     stealed_times: :integer,
     steal_times: :integer,
     stealer: [:integer, array: true, default: []]
+
+  def self.get_players(club_id, platform)
+    ClubPlayer.where(club_id: club_id).order_by_position(platform)
+  end
 
   def self.getUser(club_id, season_id)
     User.joins(user_seasons: :clubs).where(user_seasons: {season_id: season_id}, clubs: {id: club_id}).first

@@ -1,0 +1,5 @@
+= turbo_frame_tag "main_frame" do
+  = render "layouts/header/pageHeader", title: t('.clubs')
+
+  = turbo_frame_tag "clubs" do
+    = render "main"

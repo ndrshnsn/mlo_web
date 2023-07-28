@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  get '401', to: 'application#page_unauthorized', as: :page_unauthorized
+  get '404', to: 'application#page_not_found'
+  get '422', to: 'application#server_error'
+  get '500', to: 'application#server_error'
+
   # Devise Authentication
   # namespace :api, defaults: { format: :json } do
   #   devise_for :users,

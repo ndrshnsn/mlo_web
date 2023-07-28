@@ -29,5 +29,5 @@ header#page-topbar
           = turbo_stream_from current_user, :notifications
           = turbo_frame_tag "notifications", src: not_badge_path
 
-          = turbo_frame_tag "header_user" do
-            = render partial: 'layouts/header/user'
+        = turbo_frame_tag "header_user" do
+          = render partial: 'layouts/header/user'

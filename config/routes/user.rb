@@ -57,6 +57,11 @@ as :user do
   post "firststeps/get_proc_dt", to: "firststeps#get_proc_dt"
   post "firststeps/check_lname", to: "firststeps#check_lname", as: :request_league_check_lname
 
+  ## Clubs
+  get "clubs", to: "clubs#index"
+  get "clubs/:id", to: "clubs#summary", as: :club_summary
+  get "clubs/:id/:player_id", to: "clubs#player_details", as: :club_player_details
+
   ## Club Management
   get "myclub/management", to: "myclub/management#index"
 

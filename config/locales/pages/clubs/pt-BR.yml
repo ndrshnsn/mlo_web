@@ -1,0 +1,15 @@
+pt-BR:
+  clubs:
+    index:
+      clubs: "Clubes"
+    main:
+      club_page: "Página do Clube"
+    club_info:
+      founded: "Fundação: "
+      country: "País: "
+      city: "Cidade: "
+      club_players: "Elenco"
+      position: "Posição"
+      player_name: "Nome"
+      overall: "Over"
+      no_players: "Sem Jogadores no Clube"

@@ -72,6 +72,7 @@ class Myclub::ManagementController < ApplicationController
   private
 
   def set_local_vars
+    return redirect_to root_path if !session[:season]
     @userClub = Club.find(session[:userClub]) if session[:userClub]
     @league = League.find(session[:league])
     @season = Season.find(session[:season])

@@ -6,10 +6,10 @@ ul.navbar-nav id="navbar-nav"
   = turbo_frame_tag "sidebar_season_actions" do
     - transferWindow = salaryAdjustment = playerSteal = playerAuction = "opacity-75"
     - if @season
-      - transferWindow = @season.preferences["saction_transfer_window"] == 1  || @season.preferences["change_player_out_of_window"] == "on" ? "" : "opacity-75"
-      - salaryAdjustment = @season.preferences["saction_change_wage"] == 1 ? "" : "opacity-75"
-      - playerSteal = @season.preferences["saction_player_steal"] == 1 ? "" : "opacity-75"
-      - playerAuction = @season.preferences["saction_player_auction"] == 1 ? "" : "opacity-75"
+      - transferWindow = @season.preferences["saction_transfer_window"] == 1  || @season.preferences["change_player_out_of_window"] == "on" ? "" : "opacity-25"
+      - salaryAdjustment = @season.preferences["saction_change_wage"] == 1 ? "" : "opacity-25"
+      - playerSteal = @season.preferences["saction_player_steal"] == 1 ? "" : "opacity-25"
+      - playerAuction = @season.preferences["saction_player_auction"] == 1 ? "" : "opacity-25"
     li.nav-item.pt-3
       .d-flex.justify-content-center.flex-wrap.gap-1
         button class="btn btn-border avatar-xs btn-primary p-0 #{transferWindow}" data-toggle="tooltip" title="#{t('.trades')}"
@@ -19,10 +19,10 @@ ul.navbar-nav id="navbar-nav"
           span.avatar-title.bg-transparent
             i.ri-money-dollar-circle-line
         button class="btn btn-border avatar-xs btn-primary p-0 #{playerSteal}" data-toggle="tooltip" title="#{t('.steal')}"
-          span.avatar-title.bg-transparent.text-reset
+          span.avatar-title.bg-transparent
             i.ri-focus-3-line
         button class="btn btn-border avatar-xs btn-primary p-0 #{playerAuction}" data-toggle="tooltip" title="#{t('.auction')}"
-          span.avatar-title.bg-transparent.text-reset
+          span.avatar-title.bg-transparent
             i.ri-auction-line
     = render partial: "layouts/sidebar/user_items"
   - if current_user.user_acls.where(permitted: true).size > 0
