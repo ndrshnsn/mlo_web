@@ -7,11 +7,7 @@
             = image_tag("#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
           h5.card-title.mb-1 = stringHuman(DefTeam.getTranslation(club.def_team.name)[0])
           p.text-muted.mb-0 ##{club.user_season.user.nickname}
-        .card-footer.text-center
-          ul.list-inline.mb-0
-            li.list-inline-item
-              a.lh-1.align-middle.link-secondary
-                i.ri-group-line
-            li.list-inline-item
-              a.lh-1.align-middle.link-info
-                i.ri-survey-line
+        .card-footer.text-end
+          = link_to club_summary_path(club.def_team.slug), class: "link-info", data: {"turbo-action": "advance"} do
+            = t('.club_page')
+            i.ri-arrow-right-s-line.align-middle.ms-1

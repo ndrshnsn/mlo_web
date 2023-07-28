@@ -2,4 +2,4 @@
   = render "layouts/header/pageHeader", title: t('.clubs')
 
   = turbo_frame_tag "clubs" do
-    = render "main"
+    = render "club_info", club: @club, players: @players

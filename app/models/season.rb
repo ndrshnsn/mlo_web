@@ -6,8 +6,8 @@ class Season < ApplicationRecord
   belongs_to :league
   has_many :user_seasons, dependent: :destroy
   has_many :users, through: :user_seasons
-  # has_many :notifications, foreign_key: :notifiable_id
-  # has_many :notifications, dependent: :destroy
+  has_many :notifications, as: :recipient, dependent: :destroy
+  has_many :championships, dependent: :destroy
   has_many :player_seasons, dependent: :destroy
   # has_many :rankings, dependent: :destroy
   has_many :clubs, through: :user_seasons
@@ -77,7 +77,7 @@ class Season < ApplicationRecord
   end
 
   def self.getClubs(season_id)
-		Club.joins(:user_season).includes(:def_team).where(user_seasons: { season_id: season_id })
+		Club.includes([user_season: :user], :def_team).where(user_seasons: { season_id: season_id })
 	end
 
   def self.getBalance(season)

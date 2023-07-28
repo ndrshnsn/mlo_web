@@ -168,9 +168,11 @@ module ApplicationHelper
     global_platforms = AppConfig.platforms
     return global_platforms.each.detect { |i| i[1].include?(platform) }[0] if dna == true
     return global_platforms.collect {|i| i[level]} if level != nil
-    return global_platforms.find {|i| i=platform}[1] if platform != nil
+    return global_platforms[global_platforms.find_index {|h| h[0] == platform}][1] if platform != nil
     global_platforms
   end
+
+  
 
   ##
   # Translate Overall Ratings to Show it in accordingly colour.

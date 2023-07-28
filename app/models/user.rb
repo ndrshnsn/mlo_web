@@ -70,6 +70,7 @@ class User < ApplicationRecord
   end
 
   def self.getTeamPlayers(user_id, season_id)
-    User.find(user_id).club_players.includes(:player_season).where(user_seasons: {season_id: season_id}).order_by_position
+    season = Season.find(season_id)
+    User.find(user_id).club_players.includes(:player_season).where(user_seasons: {season_id: season.id}).order_by_position(season.preferences["raffle_platform"])
   end
 end

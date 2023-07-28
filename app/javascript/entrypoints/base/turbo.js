@@ -6,13 +6,13 @@ document.addEventListener("shown.bs.modal", function (event) {
   $.LoadingOverlay("hide", "force")
 });
 
-document.addEventListener("hidden.bs.modal", function (event) {
-  $.LoadingOverlay("hide", "force")
-});
+// document.addEventListener("hidden.bs.modal", function (event) {
+//   $.LoadingOverlay("hide", "force")
+// });
 
-document.addEventListener("hide.bs.modal", function (event) {
-  $.LoadingOverlay("show")
-});
+// document.addEventListener("hide.bs.modal", function (event) {
+//   $.LoadingOverlay("show")
+// });
 
 document.addEventListener("turbo:click", function(event) {
   $.LoadingOverlay("show")

@@ -26,15 +26,11 @@ class League < ApplicationRecord
   end
 
   def pre_destroy_task
-    ## check if admin manages other leagues
     other_leagues = League.where(user_id: user.id)
     if other_leagues.size > 0
-      # assign another league as active_league to users preferences
       user.preferences["active_league"] = other_leagues.order("RANDOM()").first.id
       user.save!
     end
-
-    ## remove any fake account from league before removing itself
-    users.each{ |u| U.delete if U.preferences["fake"] == true }
+    users.each{ |user| user.delete if user.preferences["fake"] == true }
   end
 end

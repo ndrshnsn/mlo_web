@@ -59,6 +59,8 @@ as :user do
 
   ## Clubs
   get "clubs", to: "clubs#index"
+  get "clubs/:id", to: "clubs#summary", as: :club_summary
+  get "clubs/:id/:player_id", to: "clubs#player_details", as: :club_player_details
 
   ## Club Management
   get "myclub/management", to: "myclub/management#index"

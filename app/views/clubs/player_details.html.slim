@@ -1,0 +1,9 @@
+= render "layouts/modal/main", modal_scrollable: true
+  .modal-header
+    h5.modal-title.d-flex.align-items-center
+      i.ri-user-line.me-1
+      = @defPlayer.name
+    button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+  .modal-body.pb-0
+    .container-fluid
+      = render partial: "layouts/platforms/#{@defPlayer.platform}", locals: { defPlayer: @defPlayer }

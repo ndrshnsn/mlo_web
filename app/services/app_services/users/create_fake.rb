@@ -1,4 +1,8 @@
 class AppServices::Users::CreateFake < ApplicationService
+  def initialize(league)
+    @league = league
+  end
+
   def call
     ActiveRecord::Base.transaction do
       create_fake
@@ -20,7 +24,8 @@ class AppServices::Users::CreateFake < ApplicationService
       active: true,
       nickname: "mlo_#{fake_id.first(4)}",
       preferences: {
-        fake: true
+        fake: true,
+        active_league: @league
       }
     )
     user.skip_confirmation!

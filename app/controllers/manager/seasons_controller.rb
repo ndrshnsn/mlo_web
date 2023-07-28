@@ -286,12 +286,13 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def end
-    show_step(ManagerServices::Season::End.call(@season, current_user, params), t(".end.success"))
+    show_step(ManagerServices::Season::End.call(@season, current_user, params), t(".end.success")) if request.patch?
   end
 
   def show_step(resolution, success_message)
     respond_to do |format|
       if resolution.success?
+        details
         flash.now["success"] = success_message
         format.turbo_stream { render "show_step" }
         format.html { redirect_to manager_seasons_path, notice: success_message }
@@ -300,9 +301,6 @@ class Manager::SeasonsController < ApplicationController
         format.html { render :details, status: :unprocessable_entity }
       end
     end
-  end
-
-  def end_season
   end
 
   def destroy

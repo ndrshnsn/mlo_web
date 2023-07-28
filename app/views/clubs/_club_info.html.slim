@@ -1,0 +1,66 @@
+.row
+  .col-lg-12
+    .card
+      .bg-secondary-subtle
+        .card-body.pb-0.px-4
+          .row.mb-3
+            .col-md
+              .row.align-items-center.g-3
+                .col-md-auto
+                  .avatar-xl
+                    = image_tag("#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+                .col-md
+                  div
+                    h4.fw-bold = stringHuman(DefTeam.getTranslation(club.def_team.name)[0])
+                    .vstack.gap-2.flex-wrap
+                      div
+                        = t('.founded')
+                        span.fw-semibold = club.def_team.details["teamFounded"]
+
+                      div
+                        = t('.city')
+                        span.fw-semibold = club.def_team.details["teamCity"]
+                      div
+                        = t('.country')
+                        = image_tag(countryFlag(club.def_team.def_country.name), class: "align-bottom ms-1 avatar-xxs", data: { toggle: "tooltip"}, title: stringHuman(t("defaults.countries.#{club.def_team.def_country.name}")))
+            / .col-md-auto
+            /   .hstack.gap-1.flex-wrap
+            /     button.btn.py-0.fs-16.favourite-btn.active type="button"
+            /       i.ri-star-fill
+.row
+  .col-xl-9.col-lg-8
+    .card
+      .card-header
+        h6.card-title.mb-0
+          i.ri-group-line.me-1.align-bottom
+          = t('.club_players')
+      .card-body
+        .table-responsive.table-card
+          table.table.table-striped
+            thead.table-light
+              th.text-center = t('.position')
+              th = t('.player_name')
+              th = t('.country')
+              th.text-center = t('.overall')
+              th
+            - if players.size == 0
+              tr
+                td.text-center colspan="5" = t('.no_players')
+            - else
+              - players.each do |player|
+                - player_name = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: player.def_players.first.platform, dna: true)}/#{player.def_players.first.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle me-1", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{image_url("/misc/generic-player.png")}';")
+                - player_name += player.def_players.first.name
+                - position = translate_pkeys(player.def_players.first.def_player_position.name, player.def_players.first.platform)
+                tr.align-middle
+                  td.text-center
+                    div class="badge badge-#{position[1]}" = position[0]
+                  td = player_name
+                  td = image_tag(countryFlag(player.def_players.first.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{player.def_players.first.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+                  td.text-center
+                    span class="stat #{translate_pscore(player.def_players.first.details["attrs"]["overallRating"])}"
+                      = player.def_players.first.details["attrs"]["overallRating"]
+                  td.text-center
+                    = link_to club_player_details_path(id: player.club.def_team.friendly_id, player_id: player.def_players.first.friendly_id), class: "btn btn-sm btn-primary waves-effect waves-light btn-icon", data: { "turbo-frame": 'modal' } do
+                      i.ri-information-line
+
+  .col-xl-3.col-lg-4
