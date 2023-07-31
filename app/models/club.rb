@@ -23,7 +23,7 @@ class Club < ApplicationRecord
     stealer: [:integer, array: true, default: []]
 
   def self.get_players(club_id, platform)
-    ClubPlayer.where(club_id: club_id).order_by_position(platform)
+    ClubPlayer.includes(:club).where(club_id: club_id).order_by_position(platform)
   end
 
   def self.getUser(club_id, season_id)

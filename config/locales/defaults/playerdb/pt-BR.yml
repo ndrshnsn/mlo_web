@@ -153,8 +153,8 @@ pt-BR:
           cb: "ZC"
           gk: "GO"
         fifa:
-          gk: "GO"
-          cb: "ZC"
+          gk: "GOL"
+          zc: "ZAG"
           lb: "LE"
           rb: "LD"
           rwb: "ADD"

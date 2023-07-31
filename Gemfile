@@ -74,7 +74,7 @@ gem "dotenv-rails"
 
 gem "vite_rails", "~> 3.0"
 
-gem "rack-cors", "~> 1.1"
+gem "rack-cors", "~> 2"
 
 gem "friendly_id", "~> 5.4"
 
@@ -88,9 +88,9 @@ gem "slim-rails", "~> 3.5"
 
 gem "jsonb_accessor", "~> 1.3"
 
-gem "turbo-rails", "~> 1.1"
+gem "turbo-rails", "~> 1.4"
 
-gem "stimulus-rails", "~> 1.1"
+gem "stimulus-rails", "~> 1.2.1"
 
 gem "redis-session-store", "~> 0.11.4"
 

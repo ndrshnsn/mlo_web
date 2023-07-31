@@ -6,6 +6,8 @@ pt-BR:
         main: "Meu Clube"
         management:
           main: "Administrativo"
+      clubs:
+        main: "Clubes"
       admin:
         playerdb:
           main: "PlayerDB"

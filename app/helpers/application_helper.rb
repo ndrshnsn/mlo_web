@@ -113,7 +113,7 @@ module ApplicationHelper
 
   def translate_pkeys(data, platform)
     list_of = ["PES", "FIFA"]
-    platform = list_of.include?(platform) ? platform : get_platforms(platform: platform, dna: true)
+    platform = get_platforms(platform: platform, dna: true)
 
     case platform
     when "PES"

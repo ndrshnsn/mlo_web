@@ -1,10 +1,10 @@
 class ClubsController < ApplicationController
   before_action :set_controller_vars
   breadcrumb "dashboard", :root_path, match: :exact
-  breadcrumb "clubs", :clubs_path, match: :exact
+  breadcrumb "clubs.main", :clubs_path, match: :exact
 
   def index
-    @clubs = Season.getClubs(@season.id)
+    @clubs = Season.getClubs(@season.id).where.not(id: User.getClub(current_user.id, @season.id))
   end
 
   def summary
