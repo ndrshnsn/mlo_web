@@ -1,0 +1,7 @@
+.row
+  .col-12
+    .page-title-box.d-sm-flex.align-items-center.justify-content-between
+      h4.mb-sm-0 = title
+      .page-title-right
+        = turbo_frame_tag "breadcrumbs" do
+          = render partial: 'layouts/breadcrumbs/main'

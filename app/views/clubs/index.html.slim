@@ -1,12 +1,5 @@
 = turbo_frame_tag "main_frame" do
-  = render "layouts/header/pageHeader", title: t('.clubs')
-
+  = render "layouts/header/page_frame"
   = turbo_frame_tag "clubs" do
-    .row
-      .col-12
-        .page-title-box.d-sm-flex.align-items-center.justify-content-between
-          h4.mb-sm-0 = t('.clubs')
-          .page-title-right
-            = turbo_frame_tag "breadcrumbs" do
-              = render partial: 'layouts/breadcrumbs/main'
+    = render "layouts/header/page_title", title: t('.clubs')
     = render "main"

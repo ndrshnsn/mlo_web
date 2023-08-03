@@ -1,5 +1,5 @@
 = turbo_frame_tag "main_frame" do
-  = render partial: "layouts/header/pageHeader", locals: { title: t('.leagues') }
-
+  = render "layouts/header/page_frame"
   = turbo_frame_tag "admin_leagues" do
+    = render "layouts/header/page_title", title: t('.leagues')
     = render "list"

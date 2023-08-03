@@ -4,6 +4,6 @@
 
 - AppConfig.season_player_raffle_first_order.find { |key| key.include?(@league.platform) }[1].uniq.each do |pos|
   - players = @tAvailablePlayersPP.select{ |e| e[0] == pos}[0][1] > 0 ? @tAvailablePlayersPP.select{ |e| e[0] == pos}[0][1] : 0
-  span class="badge badge-#{translate_pkeys(pos, @league.platform)[1]} me-1"
-    = translate_pkeys(pos, @league.platform)[0]
+  span class="badge badge-#{translate_pkeys(pos, @league.platform, false)[1]} me-1"
+    = translate_pkeys(pos, @league.platform, false)[0]
     | (#{players})

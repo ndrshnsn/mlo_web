@@ -7,6 +7,8 @@ export default class extends Controller {
     const autoshow = this.autoshowValue
     
     let backdrop = document.querySelector(".modal-backdrop");
+    window.preserve_scroll = true
+    
     if (backdrop) {
       backdrop.remove();
     }

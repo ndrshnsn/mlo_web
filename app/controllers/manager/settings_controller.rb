@@ -1,8 +1,8 @@
 class Manager::SettingsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-  breadcrumb "dashboard", :root_path, match: :exact
-  breadcrumb "manager.settings.main", :manager_settings_path, match: :exact
+  breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
+  breadcrumb "manager.settings.main", :manager_settings_path, match: :exact, frame: "manager_settings"
 
   def index
   end

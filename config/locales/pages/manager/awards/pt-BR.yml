@@ -4,7 +4,7 @@ pt-BR:
       new:
         awards: "Premiações"
         new: "Nova Premiação"
-        details_html: "<blockquote class='blockquote custom-blockquote blockquote-info rounded text-dark mb-2'>Aqui você cria/define as Premiações. Elas poderão ser utilizadas em diversos campeonatos diferentes, então é possível criar uma Premiação Específica ou trabalhar com Premiações Genéricas. Depois elas serão selecionadas quando você for criar um novo campeonato. Os prêmios serão aplicados ao término de cada Campeonato.</blockquote>"
+        details_html: "<blockquote class='blockquote custom-blockquote blockquote-info rounded text-reset mb-2'>Aqui você cria/define as Premiações. Elas poderão ser utilizadas em diversos campeonatos diferentes, então é possível criar uma Premiação Específica ou trabalhar com Premiações Genéricas. Depois elas serão selecionadas quando você for criar um novo campeonato. Os prêmios serão aplicados ao término de cada Campeonato.</blockquote>"
         confirm: "Criar Premiação?"
         confirm_text: "A Premiação será criada e você será redirecionado à lista de Premiações"
       edit:

@@ -18,9 +18,9 @@ li.nav-item
     i.ri-honour-line
     span data-key="t-seasons" = t('.clubs')
 li.nav-item
-  = link_to manager_seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
+  = link_to ranking_path, class: "menu-link nav-link #{'active' if controller_name == 'ranking'}", id: "sidebar_ranking" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_ranking", "sidebar-child-value": "sidebar_ranking" } do
     i.ri-line-chart-line
-    span data-key="t-seasons" = t('.ranking')
+    span data-key="t-ranking" = t('.ranking')
 
 li.menu-title.pt-3
     span = t('.club_management')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_25_210420) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -323,6 +323,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_210420) do
     t.index ["to_club_id"], name: "index_player_transactions_on_to_club_id"
   end
 
+  create_table "rankings", force: :cascade do |t|
+    t.bigint "season_id", null: false
+    t.bigint "club_id", null: false
+    t.integer "points"
+    t.string "operation"
+    t.integer "source_id"
+    t.string "source_type"
+    t.text "description"
+    t.integer "balance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_rankings_on_club_id"
+    t.index ["season_id"], name: "index_rankings_on_season_id"
+  end
+
   create_table "seasons", force: :cascade do |t|
     t.string "name"
     t.bigint "league_id", null: false
@@ -464,6 +479,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_210420) do
   add_foreign_key "player_transactions", "clubs", column: "from_club_id"
   add_foreign_key "player_transactions", "clubs", column: "to_club_id"
   add_foreign_key "player_transactions", "player_seasons"
+  add_foreign_key "rankings", "clubs"
+  add_foreign_key "rankings", "seasons"
   add_foreign_key "seasons", "leagues"
   add_foreign_key "user_acls", "leagues"
   add_foreign_key "user_acls", "users"

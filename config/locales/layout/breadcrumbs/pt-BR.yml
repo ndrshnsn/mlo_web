@@ -8,6 +8,8 @@ pt-BR:
           main: "Administrativo"
       clubs:
         main: "Clubes"
+      ranking:
+        main: "Ranking"
       admin:
         playerdb:
           main: "PlayerDB"
