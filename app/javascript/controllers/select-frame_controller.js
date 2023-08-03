@@ -8,9 +8,9 @@ export default class extends Controller {
 
     let select = $(this.element)
     select.on('select2:select', function (e) {
+      window.preserve_scroll = true
       var newSrc = $(e.params.data.element).data('src')
       frame.src = newSrc
-      frame.reload()
     });
   }
 }

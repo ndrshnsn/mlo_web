@@ -32,13 +32,6 @@ class Manager::SeasonUsersDatatable < ApplicationDatatable
           text: t("defaults.datatables.players"),
           disabled: "",
           turbo: "data-turbo-action='advance' data-turbo-frame='manager_users'"
-        },
-        {
-          link: "javascript:;",
-          icon: "ri-delete-bin-fill",
-          text: t("defaults.datatables.delete"),
-          disabled: mDisabled,
-          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{t("defaults.datatables.confirm_remove")}' data-confirm-text-value='#{t("defaults.datatables.manager.users_confirm_removal")}' data-confirm-icon-value='warning' data-confirm-link-value='#{manager_user_remove_path(uSeason.user.friendly_id)}'"
         }
       ]
 

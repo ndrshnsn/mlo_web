@@ -2,4 +2,4 @@
   ol.breadcrumb.m-0
     - breadcrumb_trail do |crumb|
       li class="breadcrumb-item #{"active" if crumb.current?}"
-        = link_to_unless crumb.current?, crumb.name, crumb.url, (crumb.current? ? {"aria-current" => "page"} : { target: "_top",  data: {turbo_action: :advance} })
+        = link_to_unless crumb.current?, crumb.name, crumb.url, (crumb.current? ? {"aria-current" => "page"} : { data: {turbo_action: :advance, "turbo-frame": crumb.frame, turbo: crumb.turbo } })

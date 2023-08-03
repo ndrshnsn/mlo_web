@@ -1,7 +1,7 @@
 = turbo_frame_tag "main_frame" do
-  = render partial: "layouts/header/pageHeader", locals: { title: t('.seasons') }
-    
+  = render "layouts/header/page_frame"
   = turbo_frame_tag "manager_seasons" do
+    = render "layouts/header/page_title", title: t('.seasons')
     .row
       .col-12
         = render partial: 'manager/seasons/details/info'

@@ -2,8 +2,8 @@ class Manager::UsersController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
   before_action :set_user, only: [:show, :acl, :acl_save, :toggle, :eseason]
-  breadcrumb "dashboard", :root_path, match: :exact
-  breadcrumb "manager.users.main", :manager_users_path, match: :exact
+  breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
+  breadcrumb "manager.users.main", :manager_users_path, match: :exact, frame: "manager_users"
 
   def index
   end
@@ -17,6 +17,7 @@ class Manager::UsersController < ApplicationController
   end
 
   def show
+    breadcrumb @user.friendly_id, manager_user_show_path(@user.friendly_id), match: :exact
     @defCountries = DefCountry.getSorted
   end
 
@@ -70,7 +71,7 @@ class Manager::UsersController < ApplicationController
 
   def replace_user_with_fake(user, league)
     user_league = UserLeague.find_by(league_id: league.id, user_id: user.id)
-    new_fake_account = AppServices::Users::CreateFake.call()
+    new_fake_account = AppServices::Users::CreateFake.call(league.id)
     if new_fake_account.success?
       UserLeague.new(
         league_id: league.id,

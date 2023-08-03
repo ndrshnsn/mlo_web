@@ -49,7 +49,6 @@ as :user do
   ## Check for Current Pw
   match "user/check_current_password", controller: "users/registrations", action: "check_current_password", via: :post, as: :user_check_current_password
 
-  ## FirstSteps
   get "firststeps", to: "firststeps#index"
   match "firststeps/request", controller: "firststeps", action: "request_league", via: [:get, :post], as: :request_league
   get "firststeps/join", controller: "firststeps#join", as: :join
@@ -57,18 +56,17 @@ as :user do
   post "firststeps/get_proc_dt", to: "firststeps#get_proc_dt"
   post "firststeps/check_lname", to: "firststeps#check_lname", as: :request_league_check_lname
 
-  ## Clubs
   get "clubs", to: "clubs#index"
   get "clubs/:id", to: "clubs#summary", as: :club_summary
   get "clubs/:id/:player_id", to: "clubs#player_details", as: :club_player_details
 
-  ## Club Management
   get "myclub/management", to: "myclub/management#index"
-
   match "myclub/management/get_cteams", controller: "myclub/management", action: "get_cteams", via: :post, as: :myclub_management_get_cteams
   match "myclub/management/show_team_details", controller: "myclub/management", action: "show_team_details", via: :post, as: :myclub_management_show_team_details
   match "myclub/management/select_club", controller: "myclub/management", action: "select_club", via: [:post, :patch], as: :myclub_management_select_club
 
   get "seasons", to: "seasons#index"
+
+  get "ranking", to: "ranking#index"
   
 end

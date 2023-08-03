@@ -13,7 +13,6 @@ class AppServices::Users::CreateFake < ApplicationService
 
   def create_fake
     require "securerandom"
-
     fake_id = SecureRandom.hex(8)
     user = User.new(
       email: "mlo_user_#{fake_id}@local",

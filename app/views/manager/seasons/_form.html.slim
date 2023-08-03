@@ -435,7 +435,7 @@
       .col-12.text-center.mb-2
         = turbo_frame_tag "tAvailablePlayersPP"
           - if faction == "new"
-            = render partial: 'manager/seasons/available_players', locals: { tAvailablePlayersPP: @tAvailablePlayersPP }
+            = render 'manager/seasons/available_players', tAvailablePlayersPP: @tAvailablePlayersPP
 
 .card 
   .card-body

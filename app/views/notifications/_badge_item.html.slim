@@ -6,9 +6,10 @@
           span.avatar-title.bg-soft-secondary.text-secondary.rounded-circle.fs-16
             - icon = notification.params[:icon] || "check"
             i class="ri-#{icon}-line"
-        .flex-1
-          a href="#!" class="stretched-link"
-            h6.mt-0.mb-2.lh-base = notification.to_notification.message
+        .flex-grow-1
+          a.stretched-link href="#!"
+            h6.mt-0.mb-2.lh-base.fs-13 = notification.to_notification.message
           p.mb-0.fs-11.fw-medium.text-uppercase.text-muted
             span
-              i.mdi.mdi-clock-outline = I18n.localize(notification.created_at.to_date, format: t('date.formats.short'))
+              i.mdi.mdi-clock-outline.me-1
+              = I18n.localize(notification.created_at.to_date, format: t('date.formats.short'))

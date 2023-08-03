@@ -111,9 +111,8 @@ module ApplicationHelper
      ]
   end
 
-  def translate_pkeys(data, platform)
-    list_of = ["PES", "FIFA"]
-    platform = get_platforms(platform: platform, dna: true)
+  def translate_pkeys(data, platform, check_dna = true)
+    platform = get_platforms(platform: platform, dna: true) if check_dna
 
     case platform
     when "PES"

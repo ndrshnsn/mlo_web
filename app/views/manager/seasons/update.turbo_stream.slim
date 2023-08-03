@@ -1,2 +1,4 @@
-= turbo_stream.update "manager_seasons", partial: "manager/seasons/details/main", locals: { season: @season }
+= turbo_stream.update "manager_seasons" do
+  = render "layouts/header/page_title", title: t('.seasons')
+  = render "manager/seasons/details/main", season: @season
 = render_turbo_stream_flash_messages

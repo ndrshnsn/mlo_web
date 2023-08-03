@@ -6,14 +6,6 @@ document.addEventListener("shown.bs.modal", function (event) {
   $.LoadingOverlay("hide", "force")
 });
 
-// document.addEventListener("hidden.bs.modal", function (event) {
-//   $.LoadingOverlay("hide", "force")
-// });
-
-// document.addEventListener("hide.bs.modal", function (event) {
-//   $.LoadingOverlay("show")
-// });
-
 document.addEventListener("turbo:click", function(event) {
   $.LoadingOverlay("show")
   $('.popover').remove()
@@ -23,7 +15,13 @@ document.addEventListener("turbo:visit", function(event) {
   $.LoadingOverlay("hide", "force")
 });
 
-document.addEventListener("turbo:frame-render", function(event) { 
+document.addEventListener("turbo:frame-render", function(event) {
+  if (typeof window.preserve_scroll === 'undefined' || window.preserve_scroll === null ) {
+    scrollTopFunction()
+  }else{
+    delete window.preserve_scroll
+  }
+
   $.LoadingOverlay("hide", "force")
 });
 

@@ -1,14 +1,13 @@
 = turbo_frame_tag "main_frame" do
-  = render partial: "layouts/header/pageHeader", locals: { title: t('.awards') }
-        
+  = render "layouts/header/page_frame"
   = turbo_frame_tag "manager_awards" do
+    = render "layouts/header/page_title", title: t('.awards')
     .row
       .col-12
         .card 
           .card-header.align-items-center.d-flex
             h4.card-title.mb-o.flex-grow-1 = t('.new')
           .card-body
-            p.text-muted
-              | #{t('.details_html')}
+            p = t('.details_html')
             = form_with model: @award, id: dom_id(@award), url: manager_award_create_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
               = render partial: "form", locals: { f: f }

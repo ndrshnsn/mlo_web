@@ -1,9 +1,8 @@
 class Manager::ChampionshipsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-
-  breadcrumb "dashboard", :root_path, match: :exact
-  breadcrumb "manager.championships.main", :manager_championships_path, match: :exact
+  breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
+  breadcrumb "manager.championships.main", :manager_championships_path, match: :exact, frame: "main_frame"
 
   def index
     if @season

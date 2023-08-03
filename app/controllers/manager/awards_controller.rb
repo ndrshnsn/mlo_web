@@ -1,8 +1,8 @@
 class Manager::AwardsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-  breadcrumb "dashboard", :root_path, match: :exact
-  breadcrumb "manager.awards.main", :manager_awards_path, match: :exact
+  breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
+  breadcrumb "manager.awards.main", :manager_awards_path, match: :exact, frame: "manager_awards"
 
   def index
   end
@@ -36,12 +36,10 @@ class Manager::AwardsController < ApplicationController
 
   def destroy
     award = Award.find_by_hashid(params[:id])
-
     aCount = 0
-    helpers.award_result_types.each do |atype|
-      aCount += Season.where("league_id = ? AND seasons.preferences ->> 'award_#{atype[0]}' = '?'", @league.id, award.id).size
+    AppServices::Award.new().list_awards.each do |award_list|
+      aCount += Season.where("league_id = ? AND seasons.preferences ->> 'award_#{award_list[:position]}' = '?'", @league.id, award.id).size
     end
-
     respond_to do |format|
       if aCount == 0
         if award.destroy!
@@ -51,7 +49,7 @@ class Manager::AwardsController < ApplicationController
           format.html { render :index, status: :unprocessable_entity }
         end
       else
-        format.turbo_stream {flash.now["danger"] = t(".error_have_dependencies")}
+        format.turbo_stream {flash.now["error"] = t(".error_have_dependencies")}
         format.html { render :index, status: :unprocessable_entity }
       end
     end
