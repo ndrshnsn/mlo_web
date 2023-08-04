@@ -3,9 +3,6 @@ pt-BR:
     championships:
       index:
         championships: "Campeonatos"
-      define_clubs:
-        success: "Clubes adicionados ao Campeonato com sucesso!"
-        error: "Erro adicionando os Clubes ao Campeonato, contate o Administrador!"
       list:
         add_championship: "Criar Campeonato"
         championships_management: "Gerenciar Campeonatos"
@@ -16,7 +13,7 @@ pt-BR:
         details: "Detalhes"
       cActions:
         championship_actions: ".: FASES :."
-        choose_club: "Defina os Clubes"
+        choose_club: "Defina os Participantes"
       details:
         info:
           date: "Data"
@@ -87,4 +84,11 @@ pt-BR:
         rules: "Regras / Notas"
         rule:
           notes_html: "Aqui você pode deixar alguma mensagem/regra específica sobre o Campeonato. Esta mensagem ficará visível para os participantes na página inicial do Campeonato."
+      define_clubs:
+        title: "%{championship} :: Participantes"
+        choose_clubs_desc_html: "<h5 class='fs-16 text-danger-emphasis'>ATENÇÃO</h5><p>Selecione os Clubes que irão participar do Campeonato, clicando no nome dos clubes na coluna da esquerda. O mínimo necessário para iniciar um campeonato é de %{minusers} Clubes.</p>"
+        select_all: "Selecionar Todos"
+        deselect_all: "Remover Todos"
+        success: "Clubes adicionados ao Campeonato com sucesso!"
+        error: "Erro adicionando os Clubes ao Campeonato, contate o Administrador!"
 

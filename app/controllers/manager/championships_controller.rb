@@ -1,6 +1,7 @@
 class Manager::ChampionshipsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
+  before_action :set_championship, only: [:details, :define_clubs]
   breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
   breadcrumb "manager.championships.main", :manager_championships_path, match: :exact, frame: "main_frame"
 
@@ -15,12 +16,16 @@ class Manager::ChampionshipsController < ApplicationController
     @championship = Championship.new
     @cTypes = Championship.types
     @awards = Award.where(league_id: current_user.preferences["active_league"]).order("id ASC")
-    @award_result_type = helpers.award_result_types
+    @award_result_type = AppServices::Award.new().list_awards
   end
 
   def check_championship_name
     season = Championship.exists?(name: params[:championship][:name], season_id: @season.id) ? :unauthorized : :ok
     render body: nil, status: season
+  end
+  
+  def set_championship
+    @championship = Championship.find_by_hashid(params[:id])
   end
 
   def get_ctype_partial
@@ -156,8 +161,6 @@ class Manager::ChampionshipsController < ApplicationController
   end
 
   def details
-    @championship = Championship.find_by_hashid(params[:id])
-
     breadcrumb @championship.name, :manager_championship_details_path
     if @championship.status == 100
       @cPositions = ChampionshipPosition.where(championship_id: @championship.id).order(position: :asc)
@@ -171,19 +174,41 @@ class Manager::ChampionshipsController < ApplicationController
     @user_season = UserSeason.where(season_id: @season.id).includes(:user)
   end
 
+  # def define_clubs
+  #   @championship = Championship.find_by_hashid(params[:id])
+  #   cClubs = params[:championship_clubs]
+  #   cClubs.each do |cClub|
+  #     cChampionship = ClubChampionship.new(
+  #       club_id: cClub,
+  #       championship_id: @championship.id
+  #     ).save!
+  #   end
+  #   respond_to do |format|
+  #     flash.now["success"] = t(".success")
+  #     format.html { redirect_to manager_championship_details_path(@championship.hashid), notice: t(".success") }
+  #     format.turbo_stream
+  #   end
+  # end
+
   def define_clubs
-    @championship = Championship.find_by_hashid(params[:id])
-    cClubs = params[:championship_clubs]
-    cClubs.each do |cClub|
-      cChampionship = ClubChampionship.new(
-        club_id: cClub,
-        championship_id: @championship.id
-      ).save!
+    if request.patch?
+      show_step(ManagerServices::Championship::Club.call(@championship, current_user, define_clubs_params), t(".clubs.success"))
+    else
+      @clubs = Season.getClubs(@season.id)
     end
+  end
+
+  def show_step(resolution, success_message)
     respond_to do |format|
-      flash.now["success"] = t(".success")
-      format.html { redirect_to manager_championship_details_path(@championship.hashid), notice: t(".success") }
-      format.turbo_stream
+      if resolution.success?
+        # details
+        flash.now["success"] = success_message
+        format.turbo_stream { render "show_step" }
+        format.html { redirect_to manager_championships_path, notice: success_message }
+      else
+        flash.now["error"] = I18n.t("defaults.errors.season.#{resolution.error}")
+        format.html { render :details, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -770,6 +795,10 @@ class Manager::ChampionshipsController < ApplicationController
     if session[:season]
       @season = Season.find(session[:season])
     end
+  end
+
+  def define_clubs_params
+    params.permit(championship_clubs: [])
   end
 
   def championship_params

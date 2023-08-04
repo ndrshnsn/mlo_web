@@ -1,4 +1,3 @@
-/* Sweetalert */
 @import url('css/sweetalert2/sweetalert2.min.css');
 @import url('css/sweetalert2/custom.css');
 @import url('css/bootstrap.min.css');
@@ -8,8 +7,6 @@
 @import url('css/app.css');
 @import url('css/custom.css'); 
 @import url('css/playerdb.css');
-
-/* DataTables */
 @import url('css/datatables/dataTables.bootstrap5.min.css');
 @import url('css/datatables/responsive.bootstrap.min.css');
 @import url('css/datatables/buttons.dataTables.min.css');

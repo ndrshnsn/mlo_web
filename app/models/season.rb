@@ -76,8 +76,10 @@ class Season < ApplicationRecord
     status[:"#{season.status}"]
   end
 
-  def self.getClubs(season_id)
-		Club.includes([user_season: :user], :def_team).where(user_seasons: { season_id: season_id })
+  def self.getClubs(season_id, fake = nil)
+		clubs = Club.includes([user_season: :user], :def_team).where(user_seasons: { season_id: season_id })
+    clubs.where("(users.preferences -> 'fake')::Bool = ?", fake) if !fake.nil?
+    clubs
 	end
 
   def self.getBalance(season)

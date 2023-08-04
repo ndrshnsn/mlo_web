@@ -217,15 +217,15 @@
         - @award_result_type.each do |atype|
           li.list-group-item.d-flex.justify-content-between.align-items-center[style="line-height: 35px!important;"]
             span.li-col
-              = atype[1]
-              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{atype[2]}"
+              = t(atype[:i18n])
+              i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{atype[:i18n_desc]}"
             span style="width: 130px!important;"
-              - award_id = "championship_#{atype[0]}"
-              - aValue = @championship["award_#{atype[0]}"] || nil
+              - award_id = "championship_#{atype[:position]}"
+              - aValue = @championship["award_#{atype[:position]}"] || nil
               .form-group
                 span
                   div id="popover_#{award_id}"
-                = select_tag "championship[#{atype[0]}]", options_for_select([[t('awardTypes.none'), "none"]] + @awards.collect { |award| [ award[:name], award[:id]] }, aValue), {include_blank: false,  class: "form-control select2", id: award_id, required: true, "data-controller": "select", "data-select-icon-value": false }
+                = select_tag "championship[#{atype[:position]}]", options_for_select([[t('awardTypes.none'), "none"]] + @awards.collect { |award| [ award[:name], award[:id]] }, aValue), {include_blank: false,  class: "form-control select2", id: award_id, required: true, "data-controller": "select", "data-select-icon-value": false }
 
 .card 
   .card-body

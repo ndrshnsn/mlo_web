@@ -79,11 +79,8 @@ module ApplicationHelper
   end
 
   def defTeamBadgeURL(prefix, defTeam)
-    url = "#{prefix}/teams/#{defTeam.name.upcase.delete(" ")}.png"
-    if image_exists?(url)
-      return "#{prefix}/teams/#{defTeam.name.upcase.delete(" ")}.png"
-    end
-    image_path("/misc/generic-team.png")
+    "#{prefix}/teams/#{defTeam.name.upcase.delete(" ")}.png"
+    # image_path("/misc/generic-team.png")
   end
 
   def getRandomCard

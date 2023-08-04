@@ -57,9 +57,9 @@ border:1px solid #7367F0 !important;
   height: 5px !important;
 } */
 
-.popover {
+/* .popover {
   z-index: 1001!important;
-}
+} */
 
 .popover-body {
   padding: 0.5rem 0.7rem !important;
@@ -128,6 +128,10 @@ tr.strikeout td:before {
 
 .modal {
   z-index: 1058 !important;
+}
+
+.swal2-container {
+  z-index: 1078 !important;
 }
 
 /** Remove spin arrows from firefox **/

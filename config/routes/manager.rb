@@ -47,8 +47,6 @@ namespace :manager do
   post "seasons/actions/steal_window/:id", to: "seasons#steal_window", as: :season_steal_window
   match "seasons/actions/end/:id", to: "seasons#end", as: :season_end, via: [:get, :patch]
 
-
-  ## Awards
   get "awards", controller: "awards", action: "index", as: :awards
   get "awards/get_proc_dt", to: "awards#get_proc_dt"
   get "awards/edit/:id", to: "awards#edit", as: :award_edit
@@ -58,16 +56,26 @@ namespace :manager do
   post "awards/create", to: "awards#create", as: :award_create
   delete "awards/destroy/:id", to: "awards#destroy", as: :award_destroy
 
-  ## Championships
   get "championships", to: "championships#index", as: :championships
   get "championships/new", to: "championships#new", as: :championship_new
   get "championships/check_championship_name", to: "championships#check_championship_name", as: :check_championship_name
   get "championships/get_ctype_partial/:ctype", to: "championships#get_ctype_partial", as: :championships_ctype_partial
-  get "championships/:id/details", to: "championships#details", as: :championship_details
+  get "championships/details/:id", to: "championships#details", as: :championship_details
   post "championships/create", to: "championships#create", as: :championship_create
-  get "championships/:id/:caction", to: "championships#cactions", as: :championship_caction
-  patch "championships/:id/define_clubs", to: "championships#define_clubs", as: :championship_define_clubs
   get "championships/get_ctype_options", to: "championships#get_ctype_options"
+
+  match "championships/actions/define_clubs/:id", to: "championships#define_clubs", as: :championship_define_clubs, via: [:get, :patch]
+  # post "championships/actions/start/:id", to: "seasons#start", as: :season_start
+  # post "seasons/actions/start_club_choosing/:id", to: "seasons#start_club_choosing", as: :season_start_club_choosing
+  # post "seasons/actions/stop_club_choosing/:id", to: "seasons#stop_club_choosing", as: :season_stop_club_choosing
+  # post "seasons/actions/start_players_raffle/:id", to: "seasons#start_players_raffle", as: :season_start_players_raffle
+  # post "seasons/actions/start_change_wage/:id", to: "seasons#start_change_wage", as: :season_start_change_wage
+  # post "seasons/actions/stop_change_wage/:id", to: "seasons#stop_change_wage", as: :season_stop_change_wage
+  # post "seasons/actions/start_transfer_window/:id", to: "seasons#start_transfer_window", as: :season_start_transfer_window
+  # post "seasons/actions/stop_transfer_window/:id", to: "seasons#stop_transfer_window", as: :season_stop_transfer_window
+  # post "seasons/actions/steal_window/:id", to: "seasons#steal_window", as: :season_steal_window
+  # match "seasons/actions/end/:id", to: "seasons#end", as: :season_end, via: [:get, :patch]
+
 
   match "championships/:id/settings", controller: "championships", action: "settings", via: :post, as: :championship_settings
   match "championships/games/:id", to: "championships#games", via: :post, as: :championship_games

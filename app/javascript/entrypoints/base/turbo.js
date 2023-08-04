@@ -6,6 +6,10 @@ document.addEventListener("shown.bs.modal", function (event) {
   $.LoadingOverlay("hide", "force")
 });
 
+document.addEventListener("hidden.bs.modal", function (event) {
+  $('.popover').remove()
+});
+
 document.addEventListener("turbo:click", function(event) {
   $.LoadingOverlay("show")
   $('.popover').remove()
