@@ -2,7 +2,7 @@
   "name": "app",
   "private": "true",
   "dependencies": {
-    "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
     "@popperjs/core": "^2.11.5",
     "@rails/actiontext": "^7.0.4-2",
@@ -17,6 +17,7 @@
     "esbuild": "^0.18.17",
     "flatpickr": "^4.6.13",
     "gasparesganga-jquery-loading-overlay": "^2.1.7",
+    "hotkeys-js": "^3.12.0",
     "jquery": "^3.6.3",
     "lodash.debounce": "^4.0.8",
     "node-waves": "^0.7.6",
