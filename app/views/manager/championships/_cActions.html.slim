@@ -3,34 +3,4 @@
     .card-title.mb-3.text-center = t('.championship_actions')
     .row.g-0.bg-light
       .d-grid.gap-2
-        - define_clubs_disabled = @championship.club_championships.size == 0 && @season.status == 1 && @season.preferences['saction_clubs_choosing'] == 2 ? "btn btn-primary btn-sm btn-border" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
-        = link_to manager_championship_define_clubs_path(@championship.hashid), id: "define_clubs", class: "btn btn-block btn-sm #{define_clubs_disabled} text-left", "data-turbo-frame": "modal" do
-          span = t('.choose_club')
-
-        / - start_championship_disabled = (@championship.status == 0 && @championship.club_championships.size >= 4) ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-        / = link_to "javascript:;", class: "btn btn-block btn-sm btn-border #{start_championship_disabled}", data: { action: 'click->confirm#dialog', controller: 'confirm', "confirm-title-value": t('.start_championship_confirm'), "confirm-text-value": t('.start_championship_confirm_text'), "confirm-icon-value": 'warning', "confirm-action-value": "GET", "confirm-link-value": manager_championship_caction_path(@championship.hashid, caction: "start_championship") }
-        /   span = t('.start_championship')
-
-        / - start_league_round_disabled = @championship.status == 1 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-        / = link_to manager_championship_caction_path(@championship.hashid, caction: "start_league_round"), class: "btn btn-block btn-sm btn-border #{start_league_round_disabled}"
-        /   span = t('.start_league_round')
-
-        / - if @championship.preferences["league_two_rounds"] == "on"
-        /   - start_league_secondround_disabled = @championship.status == 2 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-        /   = link_to manager_championship_caction_path(@championship.hashid, caction: "start_league_secondround"), class: "btn btn-block btn-sm btn-border #{start_league_secondround_disabled}", data: { "turbo-frame": 'modal' }
-        /     span = t('.start_league_secondround')
-
-        / - if @championship.preferences["league_finals"] == "on"
-        /   - if @championship.preferences["league_two_rounds"] == "on"
-        /     - start_league_semifinals_disabled = (@championship.status == 3 || @championship.status == 4) ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-
-        /   = link_to manager_championship_caction_path(@championship.hashid, caction: "start_league_semifinals"), class: "btn btn-block btn-sm #{start_league_semifinals_disabled} text-left" do
-        /     span = t('.start_league_semifinals')
-
-        /   - start_league_finals_disabled = @championship.status == 5 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
-        /   = link_to manager_championship_caction_path(@championship.hashid, caction: "start_league_finals"), class: "btn btn-block btn-sm #{start_league_finals_disabled} text-left" do
-        /       span = t('.start_league_finals')
-
-        / - end_season_disabled = @championship.status == 1 ? "btn btn-primary btn-sm btn-border" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
-        / = link_to manager_season_end_path(@championship), id: "end_season", class: "btn btn-block btn-sm #{end_season_disabled} text-left", "data-turbo-frame": "modal" do
-        /   span = t('.end_season')
+        = render "manager/championships/cactions/#{@championship.ctype}", championship: @championship

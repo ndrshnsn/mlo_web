@@ -65,18 +65,11 @@ namespace :manager do
   get "championships/get_ctype_options", to: "championships#get_ctype_options"
 
   match "championships/actions/define_clubs/:id", to: "championships#define_clubs", as: :championship_define_clubs, via: [:get, :patch]
-  # post "championships/actions/start/:id", to: "seasons#start", as: :season_start
-  # post "seasons/actions/start_club_choosing/:id", to: "seasons#start_club_choosing", as: :season_start_club_choosing
-  # post "seasons/actions/stop_club_choosing/:id", to: "seasons#stop_club_choosing", as: :season_stop_club_choosing
-  # post "seasons/actions/start_players_raffle/:id", to: "seasons#start_players_raffle", as: :season_start_players_raffle
-  # post "seasons/actions/start_change_wage/:id", to: "seasons#start_change_wage", as: :season_start_change_wage
-  # post "seasons/actions/stop_change_wage/:id", to: "seasons#stop_change_wage", as: :season_stop_change_wage
-  # post "seasons/actions/start_transfer_window/:id", to: "seasons#start_transfer_window", as: :season_start_transfer_window
-  # post "seasons/actions/stop_transfer_window/:id", to: "seasons#stop_transfer_window", as: :season_stop_transfer_window
-  # post "seasons/actions/steal_window/:id", to: "seasons#steal_window", as: :season_steal_window
-  # match "seasons/actions/end/:id", to: "seasons#end", as: :season_end, via: [:get, :patch]
+  post "championships/actions/start/:id", to: "championships#start", as: :championship_start
+  post "championships/actions/league/round/:id", to: "championships#start_league_round", as: :championship_start_league_round
+  match "championships/actions/league/secondround/:id", to: "championships#start_league_secondround", as: :championship_start_second_round, via: [:get, :post]
 
-
+###############
   match "championships/:id/settings", controller: "championships", action: "settings", via: :post, as: :championship_settings
   match "championships/games/:id", to: "championships#games", via: :post, as: :championship_games
   get "championships/games/:id/games_proc_dt", to: "championships#games_proc_dt", as: :championship_games_proc_dt

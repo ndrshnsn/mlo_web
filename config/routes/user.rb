@@ -67,6 +67,8 @@ as :user do
 
   get "seasons", to: "seasons#index"
 
+  get "championships", to: "championships#index"
+
   get "ranking", to: "ranking#index"
   
 end

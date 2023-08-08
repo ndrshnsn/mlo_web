@@ -1,7 +1,7 @@
 class Manager::ChampionshipsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-  before_action :set_championship, only: [:details, :define_clubs]
+  before_action :set_championship, only: [:details, :define_clubs, :start, :start_league_round, :start_league_secondround]
   breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
   breadcrumb "manager.championships.main", :manager_championships_path, match: :exact, frame: "main_frame"
 
@@ -166,35 +166,33 @@ class Manager::ChampionshipsController < ApplicationController
       @cPositions = ChampionshipPosition.where(championship_id: @championship.id).order(position: :asc)
     end
 
-    # @goalers = Championship.getGoalers(@championship).limit(5)
-    # @assists = Championship.getAssisters(@championship).limit(5)
-    # @fairplay = Championship.getFairPlay(@championship).limit(5)
-    # @bestplayer = Championship.getBestPlayer(@championship).limit(5)
-    # @lGames = Game.where(championship_id: @championship.id, status: 4).order(updated_at: :desc).limit(5)
+    @goalers = Championship.getGoalers(@championship).limit(5)
+    @assists = Championship.getAssisters(@championship).limit(5)
+    @fairplay = Championship.getFairPlay(@championship).limit(5)
+    @bestplayer = Championship.getBestPlayer(@championship).limit(5)
+    @lGames = Game.where(championship_id: @championship.id, status: 4).order(updated_at: :desc).limit(5)
     @user_season = UserSeason.where(season_id: @season.id).includes(:user)
   end
-
-  # def define_clubs
-  #   @championship = Championship.find_by_hashid(params[:id])
-  #   cClubs = params[:championship_clubs]
-  #   cClubs.each do |cClub|
-  #     cChampionship = ClubChampionship.new(
-  #       club_id: cClub,
-  #       championship_id: @championship.id
-  #     ).save!
-  #   end
-  #   respond_to do |format|
-  #     flash.now["success"] = t(".success")
-  #     format.html { redirect_to manager_championship_details_path(@championship.hashid), notice: t(".success") }
-  #     format.turbo_stream
-  #   end
-  # end
 
   def define_clubs
     if request.patch?
       show_step(ManagerServices::Championship::Club.call(@championship, current_user, define_clubs_params), t(".clubs.success"))
     else
       @clubs = Season.getClubs(@season.id)
+    end
+  end
+
+  def start
+    show_step(ManagerServices::Championship::Start.call(@championship, current_user), t(".start.success"))
+  end
+
+  def start_league_round
+    show_step(ManagerServices::Championship::League::Round.call(@championship, current_user), t(".league.round.success"))
+  end
+
+  def start_league_secondround
+    if request.post?
+      show_step(ManagerServices::Championship::League::SecondRound.call(@championship, current_user, params), t(".league.secondround.success"))
     end
   end
 
@@ -215,233 +213,6 @@ class Manager::ChampionshipsController < ApplicationController
   def cactions
     @championship = Championship.find_by_hashid(params[:id])
     case params[:caction]
-    when "choose_clubs"
-      @uLeague = UserSeason.includes(:user, [clubs: :def_team]).where(season_id: @season.id)
-      render "choose_clubs"
-    when "start_championship"
-      case @championship.preferences["ctype"]
-      when "league"
-        listOfClubs = lClubs = ClubChampionship.where(championship_id: @championship.id).pluck(:club_id)
-        firstHalf = []
-        secondHalf = []
-        i = 0
-
-        listOfClubs = listOfClubs.permutation(2).to_a
-        listOfClubs = listOfClubs.shuffle
-        listOfClubsHalfs = listOfClubs.count / 2
-        while i < listOfClubsHalfs
-          firstHalf << [listOfClubs[0][0], listOfClubs[0][1]]
-          secondHalf << [listOfClubs[0][1], listOfClubs[0][0]]
-          listOfClubs.delete_at(listOfClubs.find_index([listOfClubs[0][1], listOfClubs[0][0]]))
-          listOfClubs.delete_at(0)
-          i += 1
-        end
-
-        # firstHalf.each do |game|
-        #   Game.create(
-        #     championship_id: @championship.id,
-        #     home_id: game[0],
-        #     visitor_id: game[1],
-        #     phase: 1,
-        #     status: 0
-        #     )
-        # end
-
-        # if @championship.preferences["league_two_rounds"] == "on"
-        #   secondHalf.each do |game|
-        #     Game.create(
-        #       championship_id: @championship.id,
-        #       home_id: game[0],
-        #       visitor_id: game[1],
-        #       phase: 2,
-        #       status: 0
-        #       )
-        #   end
-        # end
-
-        lClubs.each do |lClub|
-          user = Club.getUser(lClub, @season.id)
-          ChampionshipNotification.with(
-            championship: @championship,
-            league: @season.league_id,
-            icon: "trophy",
-            push: true,
-            push_type: "user",
-            push_message: "#{t(".wnotify_subject", championship: @championship.name)}||#{t(".wnotify_text")}",
-            type: "start_championship"
-          ).deliver_later(user)
-        end
-
-        # ChampionshipNotification.with(
-        #   championship: @championship,
-        #   league: @season.league_id,
-        #   icon: "trophy",
-        #   push: true,
-        #   push_type: "user",
-        #   push_message: "#{t('.wnotify_subject', championship: @championship.name)}||#{t('.wnotify_text')}",
-        #   type: "start_championship").deliver_later(user)
-
-      when "cup"
-      when "brackets"
-      end
-
-      respond_to do |format|
-        # if @championship.update(status: 1)
-        flash.now["success"] = t(".success")
-        # else
-        #   flash.now["danger"] = t('.error')
-        # end
-        format.turbo_stream
-        format.html { redirect_to manager_championship_details_path(@championship.hashid) }
-      end
-
-    when "start_league_round"
-      ## Change Championship Status
-      @championship.update(status: 2)
-
-      ## WebPush Notify User about new Hire
-      Push::Notify.group_notify(
-        "championship",
-        current_user.id,
-        @championship,
-        "start_league_round",
-        "Turno do Camepenato #{@championship.name} Iniciado! Você já pode realizar seus jogos do turno.",
-        true,
-        @season.id
-      )
-
-      flash[:success] = "Turno do Campeonato #{@championship.name} Iniciado com sucesso!"
-    when "start_league_secondround"
-      ## Check for any missing game and declare Draw
-      # All Championship Games
-      allG = Game.where(championship_id: @championship.id, phase: "firstRound").where("status < ?", 4).order(created_at: :asc)
-      if allG.size == 0
-        ## All Games Finished so we're good to move to next phase
-
-        ## Change Championship Status
-        @championship.update(status: 3)
-
-        ## WebPush Notify User about new Hire
-        Push::Notify.group_notify(
-          "championship",
-          current_user.id,
-          @championship,
-          "start_league_secondround",
-          "Returno do Campeonato #{@championship.name} Iniciado! Você já pode realizar seus jogos do returno.",
-          true,
-          @season.id
-        )
-
-        flash[:success] = "Returno do Campeonato #{@championship.name} Iniciado com sucesso!"
-      else
-        nfGames = Game.where(championship_id: @championship.id, phase: "firstRound").where("status > ? AND status < ?", 0, 4).order(created_at: :asc)
-        if nfGames.size > 0
-          flash[:error] = "Existem jogos em Andamento! Cancele/Comunique os jogadores para finalizar os jogos antes de encerrar o turno!"
-        else
-          cGames = Game.where(championship_id: @championship.id, phase: "firstRound", status: 0).order(created_at: :asc)
-          cGames.each_with_index do |cGame, i|
-            iteration = i + 1
-
-            cGame.hscore = 0
-            cGame.vscore = 0
-            cGame.status = 4
-            cGame.wo = true
-            cGame.home_start_accepted = true
-            cGame.visitor_start_accepted = true
-            cGame.home_finish_accepted = true
-            cGame.visitor_finish_accepted = true
-            cGame.entering_results_id = nil
-            cGame.save!
-
-            ## Update Club Earnings
-            ClubFinance.updateEarnings(cGame, "confirm")
-
-            ## Update Global Ranking
-            Ranking.updateRanking(cGame, "confirm")
-
-            ## Status
-            @gameStatus = Game.getStatus(cGame.id)
-
-            ## Render
-            gameCard = render_to_string partial: "championships/games/card", locals: {game: cGame, iteration: iteration, current_user_id: cGame.home.user_season.user.id}
-
-            # Update Visitor/Home and Others Game Card
-            ActionCable.server.broadcast "gameCard:#{@season.id}_#{cGame.home.user_season.user.id}", {
-              sender: current_user.id,
-              audience: "match",
-              championship_id: cGame.championship.hashid,
-              game_id: cGame.hashid,
-              gameCard: gameCard,
-              home_id: cGame.home.user_season.user.id,
-              visitor_id: cGame.visitor.user_season.user.id,
-              phase: "reload_card"
-            }
-
-            ## Render
-            gameCard = render_to_string partial: "championships/games/card", locals: {game: cGame, iteration: iteration, current_user_id: cGame.visitor.user_season.user.id}
-
-            ActionCable.server.broadcast "gameCard:#{@season.id}_#{cGame.visitor.user_season.user.id}", {
-              sender: current_user.id,
-              audience: "match",
-              championship_id: cGame.championship.hashid,
-              game_id: cGame.hashid,
-              gameCard: gameCard,
-              home_id: cGame.home.user_season.user.id,
-              visitor_id: cGame.visitor.user_season.user.id,
-              phase: "reload_card"
-            }
-
-            ## Render
-            gameCard = render_to_string partial: "championships/games/card", locals: {game: cGame, iteration: iteration}
-
-            ActionCable.server.broadcast "gameCard:#{@season.id}", {
-              sender: current_user.id,
-              audience: "others",
-              championship_id: cGame.championship.hashid,
-              game_id: cGame.hashid,
-              gameCard: gameCard,
-              home_id: cGame.home.user_season.user.id,
-              visitor_id: cGame.visitor.user_season.user.id,
-              phase: "reload_card"
-            }
-          end
-
-          ## Change Championship Status
-          @championship.update(status: 3)
-
-          ## WebPush Notify User about new Hire
-          Push::Notify.group_notify(
-            "championship",
-            current_user.id,
-            @championship,
-            "start_league_secondround",
-            "Returno do Campeonato #{@championship.name} Iniciado! Você já pode realizar seus jogos do returno.",
-            true,
-            @season.id
-          )
-
-          flash[:success] = "Returno do Campeonato #{@championship.name} Iniciado com sucesso!"
-        end
-      end
-
-    when "start_league_secondround_option2"
-      ## Change Championship Status
-      @championship.preferences["secondRound_allowed_with_no_wo"] = true
-      @championship.status = 4
-      @championship.save!
-
-      ## WebPush Notify User about new Hire
-      Push::Notify.group_notify(
-        "championship",
-        current_user.id,
-        @championship,
-        "start_league_secondround",
-        "Returno do Campeonato #{@championship.name} Iniciado! Você já pode realizar seus jogos do returno.",
-        true,
-        @season.id
-      )
-
-      flash[:success] = "Returno do Campeonato #{@championship.name} Iniciado com sucesso!"
 
     ## League Semifinals
     when "start_league_semifinals"
