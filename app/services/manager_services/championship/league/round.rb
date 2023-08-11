@@ -13,7 +13,7 @@ class ManagerServices::Championship::League::Round < ApplicationService
   private
 
   def start_league_round
-    return handle_error(@championship, @championship&.error) unless @championship.update!(status: 2)
+    return handle_error(@championship, @championship&.error) unless @championship.update!(status: 10)
 
     ### NOTIFY
 

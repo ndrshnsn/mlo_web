@@ -10,11 +10,11 @@
     .card.card-body.border.card-border-primary
       h5.card-title Opção 1
       p.card-text.text-muted = t('manager.championships.league.start_secondround_desc_html')
-      = link_to "javascript:;", class: "btn btn-primary btn-sm", data: { controller: "confirm", "confirm-title-value": t('.start_league_round_question'), "confirm-text-value": t('.start_league_round_text'), "confirm-link-value": manager_championship_start_second_round_path(id: @championship.hashid, selected: "first_method"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+      = link_to "javascript:;", class: "btn btn-primary btn-sm", data: { controller: "confirm", "confirm-title-value": t('manager.championships.league.start_secondround_question'), "confirm-text-value": t('manager.championships.league.start_secondround_text'), "confirm-link-value": manager_championship_start_second_round_path(id: @championship.hashid, selected: "first_method"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
         span = t('manager.championships.league.start_secondround')
 
-    .card.card-body.border.card-border-danger
+    .card.card-body.border.card-border-primary
       h5.card-title Opção 2
       p.card-text.text-muted = t('manager.championships.league.start_secondround_secondoption_desc_html')
-      = link_to manager_championship_start_second_round_path(id: @championship.hashid, selected: "second_method"), class: "btn btn-danger btn-sm", data: { 'confirm-swal': "Iniciar Returno usando a Opção 2?"} do
+      = link_to "javascript:;", class: "btn btn-danger btn-sm", data: { controller: "confirm", "confirm-title-value": t('manager.championships.league.start_secondround_question'), "confirm-text-value": t('manager.championships.league.start_secondround_text'), "confirm-link-value": manager_championship_start_second_round_path(id: @championship.hashid, selected: "second_method"), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
         span.text-light = t('manager.championships.league.start_secondround')

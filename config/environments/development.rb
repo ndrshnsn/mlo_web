@@ -87,4 +87,5 @@ Rails.application.configure do
   config.hosts << "dev.bifrost.com"
   config.force_ssl = true
   config.ssl_options = {hsts: false}
+  config.web_console.permissions = "192.168.0.0/255.255.255.0"
 end

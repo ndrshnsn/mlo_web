@@ -8,9 +8,13 @@
           span.text-muted.fs-16.text-white.fw-semibold
             i.ri-more-2-fill.align-middle
         .dropdown-menu.dropdown-menu-end
-          = link_to manager_championship_details_path(id: @championship.hashid), class: "dropdown-item", data: { "turbo-action": "advance"} do
+          = link_to manager_championship_details_path(@championship.hashid), class: "dropdown-item", data: { "turbo-action": "advance"} do
             i.ri-information-line.me-2.align-bottom.text-muted
             = t('.general')
+
+          = link_to manager_championship_games_path(@championship.hashid), class: "dropdown-item", data: { "turbo-action": "advance"} do
+            i.ri-survey-line.me-2.align-bottom.text-muted
+            = t('.games')
 
           = link_to "javascript:void(0)", class: "dropdown-item", data: { action: 'click->confirm#dialog', controller: 'confirm', "confirm-title-value": t('.remove'), "confirm-text-value": t('.remove_text'), "confirm-icon-value": 'warning', "confirm-origin-value": "/manager/championships", "confirm-link-value": manager_championship_destroy_path(@championship.hashid) } do
             i.ri-close-line.me-2.align-bottom.text-muted
@@ -37,6 +41,8 @@
           //= link_to season_bestplayer_path(@season), class: "dropdown-item", method: :post, remote: :true do
             i.mr-50.jam.jam-chevrons-right
             span Melhor Jogador
+
+            
         
 
   .card-body
@@ -46,13 +52,7 @@
           img.rounded-circle.avatar-xl.img-thumbnail src="#{championshipBadge(@championship)}"
       .col-sm-12.col-md-8
         .table-card
-          - sStatus = Championship.getStatus(@championship.id)
-          - if sStatus[0] == "not_started"
-            - sBadge = "dark"
-          - elsif sStatus[0] == "running"
-            - sBadge = "success"
-          - elsif sStatus[0] == "finished"
-            - sBadge = "secondary"
+          - sStatus = Championship.translate_status(@championship.status)
           - cDate = @championship.time_start == @championship.time_end ? I18n.localize(@championship.time_start, format: t('date.formats.default'))  : "#{I18n.localize(@championship.time_start, format: t('date.formats.default'))} - #{I18n.localize(@championship.time_end, format: t('date.formats.default'))}"
           - cClubs = ClubChampionship.where(championship_id: @championship.id).size
           table.table.mb-0
@@ -69,4 +69,4 @@
               tr
                 td.fw-semibold = t('.status')
                 td.text-end
-                  span class="badge bg-#{sBadge}" = sStatus[1]
+                  span class="badge bg-#{sStatus[2]}" = sStatus[1]

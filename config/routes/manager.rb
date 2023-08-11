@@ -63,7 +63,7 @@ namespace :manager do
   get "championships/details/:id", to: "championships#details", as: :championship_details
   post "championships/create", to: "championships#create", as: :championship_create
   get "championships/get_ctype_options", to: "championships#get_ctype_options"
-
+  get "championships/:id/games", to: "championships#games", as: :championship_games
   match "championships/actions/define_clubs/:id", to: "championships#define_clubs", as: :championship_define_clubs, via: [:get, :patch]
   post "championships/actions/start/:id", to: "championships#start", as: :championship_start
   post "championships/actions/league/round/:id", to: "championships#start_league_round", as: :championship_start_league_round
@@ -71,7 +71,6 @@ namespace :manager do
 
 ###############
   match "championships/:id/settings", controller: "championships", action: "settings", via: :post, as: :championship_settings
-  match "championships/games/:id", to: "championships#games", via: :post, as: :championship_games
   get "championships/games/:id/games_proc_dt", to: "championships#games_proc_dt", as: :championship_games_proc_dt
   delete "championships/destroy/:id", to: "championships#destroy", as: :championship_destroy
   match "championships/update/:id", controller: "championships", action: "update", via: :post, as: :championships_update

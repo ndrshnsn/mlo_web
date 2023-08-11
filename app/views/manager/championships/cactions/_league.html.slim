@@ -11,7 +11,7 @@
   span = t('.start_league_round')
 
 - if championship.preferences["league_two_rounds"] == "on"
-  - start_league_secondround_disabled = championship.status == 2 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
+  - start_league_secondround_disabled = championship.status == 10 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
   = link_to manager_championship_start_second_round_path(championship.hashid), class: "btn btn-block btn-sm btn-border #{start_league_secondround_disabled}", data: { "turbo-frame": 'modal' }
     span = t('.start_league_secondround')
 

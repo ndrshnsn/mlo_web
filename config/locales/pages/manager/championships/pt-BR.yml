@@ -94,6 +94,8 @@ pt-BR:
       league:
         start_secondround: "Iniciar o Segundo Turno"
         start_secondround_subtitle: "Opções para Início do 2o Turno"
-        start_secondround_desc_html: "Inicie o Returno do Campeonato. Esta é a opção padrão mas <strong class='text-warning'>caso ainda existam jogos a ser realizados no Turno, aos mesmos será aplicado W.O Duplo</strong>"
-        start_secondround_secondoption_desc_html: "A segunda opção de Início do Returno <strong>NÃO APLICA</strong> o W.O Duplo nos jogos restantes do Turno, apenas liberando os jogos para sua realização."
+        start_secondround_desc_html: "Esta opção inicia o Returno e libera a realização dos jogos. Jogos ainda não finalizados ou iniciados no turno não soferão nenhuma alteração"
+        start_secondround_secondoption_desc_html: "Você pode forçar o início do returno e liberar os jogos mas <strong class='text-warning'>caso ainda existam jogos a ser realizados no Turno, os mesmos serão cancelados.</strong>. Jogos encerrados no Turno não sofrerão alteração."
+        start_secondround_question: "Iniciar o Returno?"
+        start_secondround_text: "O returno será liberado e os usuários informados de que poderão iniciar seus jogos"
 

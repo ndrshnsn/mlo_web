@@ -1,7 +1,7 @@
 class Manager::ChampionshipsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-  before_action :set_championship, only: [:details, :define_clubs, :start, :start_league_round, :start_league_secondround]
+  before_action :set_championship, only: [:details, :define_clubs, :start, :start_league_round, :start_league_secondround, :games]
   breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
   breadcrumb "manager.championships.main", :manager_championships_path, match: :exact, frame: "main_frame"
 
@@ -37,6 +37,10 @@ class Manager::ChampionshipsController < ApplicationController
     end
   end
 
+  def games
+    @games = Game.where(championship_id: @championship.id).order(id: :asc)
+  end
+
   def create
     ## Time Course
     time_course = championship_params[:time_course].split(" ")
@@ -67,19 +71,19 @@ class Manager::ChampionshipsController < ApplicationController
         league_two_rounds: championship_params[:league_two_rounds],
         league_finals: championship_params[:league_finals],
         league_criterion: championship_params[:league_criterion],
-        hattrick_earning: championship_params[:hattrick_earning],
+        hattrick_earning: championship_params[:hattrick_earning].to_i,
         cards_suspension: championship_params[:cards_suspension],
         match_best_player: championship_params[:match_best_player],
-        match_winning_earning: championship_params[:match_winning_earning],
-        match_draw_earning: championship_params[:match_draw_earning],
-        match_lost_earning: championship_params[:match_lost_earning],
-        match_goal_earning: championship_params[:match_goal_earning],
-        match_goal_lost: championship_params[:match_goal_lost],
-        match_yellow_card_loss: championship_params[:match_yellow_card_loss],
-        match_red_card_loss: championship_params[:match_red_card_loss],
-        match_winning_ranking: championship_params[:match_winning_ranking],
-        match_draw_ranking: championship_params[:match_draw_ranking],
-        match_lost_ranking: championship_params[:match_lost_ranking],
+        match_winning_earning: championship_params[:match_winning_earning].to_i,
+        match_draw_earning: championship_params[:match_draw_earning].to_i,
+        match_lost_earning: championship_params[:match_lost_earning].to_i,
+        match_goal_earning: championship_params[:match_goal_earning].to_i,
+        match_goal_lost: championship_params[:match_goal_lost].to_i,
+        match_yellow_card_loss: championship_params[:match_yellow_card_loss].to_i,
+        match_red_card_loss: championship_params[:match_red_card_loss].to_i,
+        match_winning_ranking: championship_params[:match_winning_ranking].to_i,
+        match_draw_ranking: championship_params[:match_draw_ranking].to_i,
+        match_lost_ranking: championship_params[:match_lost_ranking].to_i,
         award_firstplace: championship_params[:firstplace],
         award_secondplace: championship_params[:secondplace],
         award_thirdplace: championship_params[:thirdplace],
@@ -87,53 +91,6 @@ class Manager::ChampionshipsController < ApplicationController
         award_goaler: championship_params[:goaler],
         award_assister: championship_params[:assister],
         award_fairplay: championship_params[:fairplay]
-      }
-    when "cup"
-      @championship.preferences = {
-        time_start: time_start,
-        time_end: time_end,
-        ctype: championship_params[:ctype],
-        cup_number_of_groups: championship_params[:cup_number_of_groups],
-        cup_teams_that_classify: championship_params[:cup_teams_that_classify],
-        cup_group_two_rounds: championship_params[:cup_group_two_rounds],
-        cup_switching: championship_params[:cup_switching],
-        cup_criterion: championship_params[:cup_criterion],
-        hattrick_earning: championship_params[:hattrick_earning],
-        cards_suspension: championship_params[:cards_suspension],
-        match_best_player: championship_params[:match_best_player],
-        match_winning_earning: championship_params[:match_winning_earning],
-        match_draw_earning: championship_params[:match_draw_earning],
-        match_lost_earning: championship_params[:match_lost_earning],
-        match_goal_earning: championship_params[:match_goal_earning],
-        match_goal_lost: championship_params[:match_goal_lost],
-        match_yellow_card_loss: championship_params[:match_yellow_card_loss],
-        match_red_card_loss: championship_params[:match_red_card_loss],
-        match_winning_ranking: championship_params[:match_winning_ranking],
-        match_draw_ranking: championship_params[:match_draw_ranking],
-        match_lost_ranking: championship_params[:match_lost_ranking],
-        award: championship_params[:award]
-      }
-    when "brackets"
-      @championship.preferences = {
-        time_start: time_start,
-        time_end: time_end,
-        ctype: championship_params[:ctype],
-        bracket_two_rounds: championship_params[:bracket_two_rounds],
-        bracket_criterion: championship_params[:bracket_criterion],
-        hattrick_earning: championship_params[:hattrick_earning],
-        cards_suspension: championship_params[:cards_suspension],
-        match_best_player: championship_params[:match_best_player],
-        match_winning_earning: championship_params[:match_winning_earning],
-        match_draw_earning: championship_params[:match_draw_earning],
-        match_lost_earning: championship_params[:match_lost_earning],
-        match_goal_earning: championship_params[:match_goal_earning],
-        match_goal_lost: championship_params[:match_goal_lost],
-        match_yellow_card_loss: championship_params[:match_yellow_card_loss],
-        match_red_card_loss: championship_params[:match_red_card_loss],
-        match_winning_ranking: championship_params[:match_winning_ranking],
-        match_draw_ranking: championship_params[:match_draw_ranking],
-        match_lost_ranking: championship_params[:match_lost_ranking],
-        award: championship_params[:award]
       }
     end
 
@@ -192,7 +149,7 @@ class Manager::ChampionshipsController < ApplicationController
 
   def start_league_secondround
     if request.post?
-      show_step(ManagerServices::Championship::League::SecondRound.call(@championship, current_user, params), t(".league.secondround.success"))
+      show_step(ManagerServices::Championship::League::Secondround.call(@championship, current_user, params), t(".league.secondround.success"))
     end
   end
 

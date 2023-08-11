@@ -66,14 +66,13 @@ class Season < ApplicationRecord
     User.joins(:user_seasons).where("user_seasons.season_id = ? AND (users.preferences -> 'fake')::Bool = ?", season_id, false)
   end
 
-  def self.getStatus(season_id)
+  def self.translate_status(code)
     status = {
-      "0": ["not_started", "Não Iniciado", "warning"],
-      "1": ["season_running", "Em Andamento", "success"],
-      "2": ["season_finished", "Encerrada", "secondary"]
+      0 => ["not_started", "Não Iniciado", "warning"],
+      1 => ["season_running", "Em Andamento", "success"],
+      2 => ["season_finished", "Encerrada", "secondary"]
     }
-    season = Season.find(season_id)
-    status[:"#{season.status}"]
+    status[code]
   end
 
   def self.getClubs(season_id, fake = nil)

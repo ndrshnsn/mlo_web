@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_10_144243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -214,6 +214,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
     t.index ["def_country_id"], name: "index_def_teams_on_def_country_id"
     t.index ["details"], name: "index_def_teams_on_details", using: :gin
     t.index ["slug"], name: "index_def_teams_on_slug", unique: true
+  end
+
+  create_table "game_cards", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "player_season_id", null: false
+    t.bigint "club_id", null: false
+    t.boolean "ycard"
+    t.boolean "rcard"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_game_cards_on_club_id"
+    t.index ["game_id"], name: "index_game_cards_on_game_id"
+    t.index ["player_season_id"], name: "index_game_cards_on_player_season_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -466,6 +479,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
   add_foreign_key "def_players", "def_countries"
   add_foreign_key "def_players", "def_player_positions"
   add_foreign_key "def_teams", "def_countries"
+  add_foreign_key "game_cards", "clubs"
+  add_foreign_key "game_cards", "games"
+  add_foreign_key "game_cards", "player_seasons"
   add_foreign_key "games", "championships"
   add_foreign_key "games", "clubs", column: "eresults_id"
   add_foreign_key "games", "clubs", column: "home_id"

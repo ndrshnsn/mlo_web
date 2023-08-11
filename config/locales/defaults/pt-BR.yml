@@ -29,20 +29,6 @@ pt-BR:
   unauthorized: "Você não possui acesso!"
   money_sign: "R$"
   days: "dias"
-  championship:
-    status:
-      not_started: "Não Iniciado"
-      running: "Em Andamento"
-      round: "Turno em Andamento"
-      return: "Returno em Andamento"
-      round_return: "T/R em Andamento"
-      semifinals: "Semifinais"
-      finals_third_fourth: "Finais"
-      finished: "Encerrado"
-    types:
-      league: "Liga"
-      cup: "Copa"
-      brackets: "Mata-Mata"
   player_choosing_order:
     PES: "2 GO, 1 LD, 1 LE, 3 ZC, 2 VOL, 2 MLG, 1 MAT, 1 PTE, 1 PTD, 2 CA"
     FIFA: "2 GO, 1 LD, 1 LE, 3 CB, 2 CDM, 2 CM, 1 CAM, 1 RW, 1 LW, 2 ST"

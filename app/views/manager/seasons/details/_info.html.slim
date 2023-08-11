@@ -42,13 +42,7 @@
 
   .card-body 
     .table-card
-      - sStatus = Season.getStatus(@season.id)
-      - if sStatus[0] == "not_started"
-        - sBadge = "dark"
-      - elsif sStatus[0] == "season_running"
-        - sBadge = "success"
-      - elsif sStatus[0] == "season_finished"
-        - sBadge = "secondary"
+      - sStatus = Season.translate_status(@season.status)
       table.table.mb-0
         tbody
           tr
@@ -63,4 +57,4 @@
           tr
             td.fw-semibold = t('.status')
             td.text-end
-              span class="badge bg-#{sBadge}" = sStatus[1]
+              span class="badge bg-#{sStatus[2]}" = sStatus[1]

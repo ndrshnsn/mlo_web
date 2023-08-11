@@ -63,39 +63,51 @@ class Championship < ApplicationRecord
     end
   end
 
-  def self.getStatus(championship_id)
-    # status list
-    status = {
-      "0": ["not_started", I18n.t("championship.status.not_started"), "warning", ""],
-      "1": ["running", I18n.t("championship.status.running"), "success", ""],
-      "2": ["running", I18n.t("championship.status.round"), "success", "firstRound"],
-      "3": ["running", I18n.t("championship.status.return"), "success", "secondRound"],
-      "4": ["running", I18n.t("championship.status.round_return"), "success", "firstAndSecondRound"],
-      "5": ["running", I18n.t("championship.status.semifinals"), "success", "semifinals"],
-      "6": ["running", I18n.t("championship.status.finals_third_fourth"), "success", "[3rd4th, finals]"],
-      "100": ["finished", I18n.t("championship.status.finished"), "secondary", ""]
+  def self.translate_status(code)
+    statuses = {
+      0 => ["not_started", I18n.t("championship.status.not_started"), "warning", ""],
+      1 => ["running", I18n.t("championship.status.running"), "success", ""],
+
+      10 => ["running", I18n.t("championship.status.league.round"), "success", "firstRound"],
+      11 => ["running", I18n.t("championship.status.league.return"), "success", "secondRound"],
+      12 => ["running", I18n.t("championship.status.league.round_return"), "success", "firstAndSecondRound"],
+      13 => ["running", I18n.t("championship.status.league.semifinals"), "success", "semifinals"],
+      14 => ["running", I18n.t("championship.status.league.finals_third_fourth"), "success", "[3rd4th, finals]"],
+
+      100 => ["finished", I18n.t("championship.status.finished"), "secondary", ""]
     }
-    championship = Championship.find(championship_id)
-    status[:"#{championship.status}"]
+    statuses[code]
   end
+
+  def self.translate_phase(code)
+    phase = {
+      1 => [I18n.t("championship.phase.round"), "secondary"],
+      2 => [I18n.t("championship.phase.second_round"), "secondary"],
+      3 => [I18n.t("championship.phase.semifinals"), "warning"],
+      4 => [I18n.t("championship.phase.finals"), "success"],
+      5 => [I18n.t("championship.phase.thirdfourth"), "info"]
+    }
+    phase[code]
+  end
+
 
   def self.get_running(season_id)
     return Championship.where(season_id: season_id).where("status > ? AND status < ?", 0, 100)
   end
 
   def self.getGoalers(championship)
-    PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."player_season_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id, status: 4)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS goals").group(:id).order("goals desc")
+    PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."player_season_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id, status: 100)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS goals").group(:id).order("goals desc")
   end
 
   def self.getAssisters(championship)
-    PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."assist_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id, status: 4)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS assists").group(:id).order("assists desc")
+    PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."assist_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id, status: 100)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS assists").group(:id).order("assists desc")
   end
 
   def self.getFairPlay(championship)
-    PlayerSeason.joins('LEFT OUTER JOIN "game_cards" ON "game_cards"."player_season_id" = "player_seasons"."id"').where(game_cards: {game_id: Game.where(championship_id: championship.id, status: 4)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(game_cards.ycard) AS count_ycard, COUNT(game_cards.rcard) AS count_rcard").group(:id).order("count_rcard desc, count_ycard desc")
+    PlayerSeason.joins('LEFT OUTER JOIN "game_cards" ON "game_cards"."player_season_id" = "player_seasons"."id"').where(game_cards: {game_id: Game.where(championship_id: championship.id, status: 100)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(game_cards.ycard) AS count_ycard, COUNT(game_cards.rcard) AS count_rcard").group(:id).order("count_rcard desc, count_ycard desc")
   end
 
   def self.getBestPlayer(championship)
-    PlayerSeason.joins('LEFT OUTER JOIN "club_bestplayers" ON "club_bestplayers"."player_season_id" = "player_seasons"."id"').where(club_bestplayers: {game_id: Game.where(championship_id: championship.id, status: 4)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS bestplayer").group(:id).order("bestplayer desc")
+    PlayerSeason.joins('LEFT OUTER JOIN "club_bestplayers" ON "club_bestplayers"."player_season_id" = "player_seasons"."id"').where(club_bestplayers: {game_id: Game.where(championship_id: championship.id, status: 100)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS bestplayer").group(:id).order("bestplayer desc")
   end
 end
