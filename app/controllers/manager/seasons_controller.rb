@@ -1,7 +1,7 @@
 class Manager::SeasonsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-  before_action :set_season, only: [:update, :users, :details, :settings, :end_season, :destroy, :start, :start_club_choosing, :stop_club_choosing, :start_players_raffle, :start_change_wage, :stop_change_wage, :start_transfer_window, :stop_transfer_window, :steal_window, :end]
+  before_action :set_season, only: [:update, :users, :details, :end_season, :destroy, :start, :start_club_choosing, :stop_club_choosing, :start_players_raffle, :start_change_wage, :stop_change_wage, :start_transfer_window, :stop_transfer_window, :steal_window, :end]
   breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
   breadcrumb "manager.seasons.main", :manager_seasons_path, match: :exact, frame: "main_frame"
 
@@ -97,83 +97,90 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def settings
+    @season = Season.joins(:season_awards).find_by_hashid(params[:id])
     breadcrumb @season.name, manager_season_details_path(id: @season.hashid), match: :exact, frame: "main_frame"
     @awards = League.get_awards(@league.id)
     @award_result_type = AppServices::Award.new().list_awards
   end
 
   def create
-    @season = Season.new
-    @season.name = season_params[:name]
-    @season.start = DateTime.parse(season_params[:start_date])
-    @season.duration = season_params[:time].to_i
-    @season.league_id = current_user.preferences["active_league"]
-    @season.advertisement = season_params[:advertisement]
-    @season.status = 0
-    @season.preferences = {
-      min_players: season_params[:min_players].to_i,
-      max_players: season_params[:max_players].to_i,
-      allow_fire_player: season_params[:allow_fire_player],
-      change_player_out_of_window: season_params[:change_player_out_of_window],
-      enable_players_loan: season_params[:enable_players_loan],
-      enable_players_exchange: season_params[:enable_players_exchange],
-      enable_player_steal: season_params[:enable_player_steal],
-      max_steals_same_player: season_params[:max_steals_same_player].to_i,
-      max_steals_per_user: season_params[:max_steals_per_user].to_i,
-      max_stealed_players: season_params[:max_stealed_players].to_i,
-      steal_window_start: season_params[:steal_window_start],
-      steal_window_end: season_params[:steal_window_end],
-      add_value_after_steal: season_params[:add_value_after_steal].to_i,
-      allow_money_transfer: season_params[:allow_money_transfer],
-      default_player_earnings: season_params[:default_player_earnings],
-      default_player_earnings_fixed: season_params[:default_player_earnings_fixed].to_i,
-      allow_increase_earnings: season_params[:allow_increase_earnings],
-      allow_decrease_earnings: season_params[:allow_decrease_earnings],
-      allow_negative_funds: season_params[:allow_negative_funds],
-      club_default_earning: season_params[:club_default_earning].to_i,
-      club_max_total_wage: season_params[:club_max_total_wage].to_i,
-      operation_tax: season_params[:operation_tax].to_i,
-      player_value_earning_relation: season_params[:player_value_earning_relation].to_i,
-      fire_tax: season_params[:fire_tax],
-      fire_tax_fixed: season_params[:fire_tax_fixed].to_i,
-      default_mininum_operation: season_params[:default_mininum_operation].to_i,
-      time_game_confirmation: season_params[:time_game_confirmation],
-      raffle_platform: season_params[:raffle_platform],
-      raffle_low_over: season_params[:raffle_low_over].to_i,
-      raffle_high_over: season_params[:raffle_high_over].to_i,
-      raffle_remaining: season_params[:raffle_remaining],
-      saction_players_choosing: 0,
-      saction_transfer_window: 0,
-      saction_player_steal: 0,
-      saction_change_wage: 0,
-      saction_clubs_choosing: 0
-    }
+    ActiveRecord::Base.transaction do
+      @season = Season.new
+      @season.name = season_params[:name]
+      @season.start = DateTime.parse(season_params[:start_date])
+      @season.duration = season_params[:time].to_i
+      @season.league_id = current_user.preferences["active_league"]
+      @season.advertisement = season_params[:advertisement]
+      @season.status = 0
+      @season.preferences = {
+        min_players: season_params[:min_players].to_i,
+        max_players: season_params[:max_players].to_i,
+        allow_fire_player: season_params[:allow_fire_player],
+        change_player_out_of_window: season_params[:change_player_out_of_window],
+        enable_players_loan: season_params[:enable_players_loan],
+        enable_players_exchange: season_params[:enable_players_exchange],
+        enable_player_steal: season_params[:enable_player_steal],
+        max_steals_same_player: season_params[:max_steals_same_player].to_i,
+        max_steals_per_user: season_params[:max_steals_per_user].to_i,
+        max_stealed_players: season_params[:max_stealed_players].to_i,
+        steal_window_start: season_params[:steal_window_start],
+        steal_window_end: season_params[:steal_window_end],
+        add_value_after_steal: season_params[:add_value_after_steal].to_i,
+        allow_money_transfer: season_params[:allow_money_transfer],
+        default_player_earnings: season_params[:default_player_earnings],
+        default_player_earnings_fixed: season_params[:default_player_earnings_fixed].to_i,
+        allow_increase_earnings: season_params[:allow_increase_earnings],
+        allow_decrease_earnings: season_params[:allow_decrease_earnings],
+        allow_negative_funds: season_params[:allow_negative_funds],
+        club_default_earning: season_params[:club_default_earning].to_i,
+        club_max_total_wage: season_params[:club_max_total_wage].to_i,
+        operation_tax: season_params[:operation_tax].to_i,
+        player_value_earning_relation: season_params[:player_value_earning_relation].to_i,
+        fire_tax: season_params[:fire_tax],
+        fire_tax_fixed: season_params[:fire_tax_fixed].to_i,
+        default_mininum_operation: season_params[:default_mininum_operation].to_i,
+        time_game_confirmation: season_params[:time_game_confirmation],
+        raffle_platform: season_params[:raffle_platform],
+        raffle_low_over: season_params[:raffle_low_over].to_i,
+        raffle_high_over: season_params[:raffle_high_over].to_i,
+        raffle_remaining: season_params[:raffle_remaining],
+        saction_players_choosing: 0,
+        saction_transfer_window: 0,
+        saction_player_steal: 0,
+        saction_change_wage: 0,
+        saction_clubs_choosing: 0
+      }
 
-    AppServices::Award.new().list_awards.each do |award|
-      @season.preferences["award_#{award[:position]}"] = award_params[:award][award[:position].to_sym].to_i
-    end
+      respond_to do |format|
+        if @season.save!
+          award_params[:award].each do |award|
+            SeasonAward.create(
+              season_id: @season.id,
+              award_id: award[1].to_i,
+              award_type: award[0]
+              ) if award[1].to_i != 0
+          end
 
-    respond_to do |format|
-      if @season.save!
-        User.joins(:user_leagues).where("league_id = ? AND status = ?", @league.id, true).each do |user|
-          user_season = UserSeason.create(user_id: user.id, season_id: @season.id)
+          User.joins(:user_leagues).where("league_id = ? AND status = ?", @league.id, true).each do |user|
+            user_season = UserSeason.create(user_id: user.id, season_id: @season.id)
+          end
+
+          SeasonNotification.with(
+            season: @season,
+            league: @season.league_id,
+            icon: "stack",
+            push: true,
+            push_type: "user",
+            push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}",
+            type: "new"
+          ).deliver_later(current_user)
+
+          get_current_seasons
+          format.html { redirect_to manager_seasons_path, notice: t(".success") }
+          format.turbo_stream { flash.now["success"] = t(".success") }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
         end
-
-        SeasonNotification.with(
-          season: @season,
-          league: @season.league_id,
-          icon: "stack",
-          push: true,
-          push_type: "user",
-          push_message: "#{t(".wnotify_subject", season: @season.name)}||#{t(".wnotify_text")}",
-          type: "new"
-        ).deliver_later(current_user)
-
-        get_current_seasons
-        format.html { redirect_to manager_seasons_path, notice: t(".success") }
-        format.turbo_stream { flash.now["success"] = t(".success") }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
@@ -222,10 +229,6 @@ class Manager::SeasonsController < ApplicationController
       saction_change_wage: @season.saction_change_wage,
       saction_clubs_choosing: @season.saction_clubs_choosing
     }
-
-    AppServices::Award.new().list_awards.each do |award|
-      @season.preferences["award_#{award[:position]}"] = award_params[:award][award[:position].to_sym].to_i
-    end
 
     respond_to do |format|
       if @season.save!

@@ -7,9 +7,9 @@ class Championship < ApplicationRecord
   has_many :clubs, through: :club_championships
   has_many :games, dependent: :destroy
   has_many :notifications, as: :recipient, dependent: :destroy
-  # has_many :rankings, foreign_key: :source_id, dependent: :destroy
+  has_many :rankings, foreign_key: :source_id, dependent: :destroy
   has_many :championship_positions, dependent: :destroy
-  #has_many :championship_awards, dependent: :destroy
+  has_many :championship_awards, dependent: :destroy
 
   ## Settings
   jsonb_accessor :preferences,
@@ -38,8 +38,7 @@ class Championship < ApplicationRecord
     match_red_card_loss: :integer,
     match_winning_ranking: :integer,
     match_lost_ranking: :integer,
-    match_draw_ranking: :integer,
-    award: [:jsonb, array: true, default: []]
+    match_draw_ranking: :integer
 
   def self.types(type = nil)
     championship_types = [

@@ -9,7 +9,8 @@ class Season < ApplicationRecord
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :championships, dependent: :destroy
   has_many :player_seasons, dependent: :destroy
-  # has_many :rankings, dependent: :destroy
+  has_many :season_awards, dependent: :destroy
+  has_many :rankings, dependent: :destroy
   has_many :clubs, through: :user_seasons
   has_rich_text :advertisement
 

@@ -1,7 +1,7 @@
 class Manager::ChampionshipsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-  before_action :set_championship, only: [:details, :define_clubs, :start, :start_league_round, :start_league_secondround, :games]
+  before_action :set_championship, only: [:details, :define_clubs, :start, :start_league_round, :start_league_secondround, :games, :destroy]
   breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
   breadcrumb "manager.championships.main", :manager_championships_path, match: :exact, frame: "main_frame"
 
@@ -38,7 +38,7 @@ class Manager::ChampionshipsController < ApplicationController
   end
 
   def games
-    @games = Game.where(championship_id: @championship.id).order(id: :asc)
+    @pagy, @games = pagy(Game.includes([home: :def_team], [visitor: :def_team]).where(championship_id: @championship.id).order(id: :asc))
   end
 
   def create
@@ -83,19 +83,21 @@ class Manager::ChampionshipsController < ApplicationController
         match_red_card_loss: championship_params[:match_red_card_loss].to_i,
         match_winning_ranking: championship_params[:match_winning_ranking].to_i,
         match_draw_ranking: championship_params[:match_draw_ranking].to_i,
-        match_lost_ranking: championship_params[:match_lost_ranking].to_i,
-        award_firstplace: championship_params[:firstplace],
-        award_secondplace: championship_params[:secondplace],
-        award_thirdplace: championship_params[:thirdplace],
-        award_fourthtplace: championship_params[:fourthplace],
-        award_goaler: championship_params[:goaler],
-        award_assister: championship_params[:assister],
-        award_fairplay: championship_params[:fairplay]
+        match_lost_ranking: championship_params[:match_lost_ranking].to_i
       }
     end
 
     respond_to do |format|
       if @championship.save!
+
+        award_params[:award].each do |award|
+          ChampionshipAward.create(
+            championship_id: @championship.id,
+            award_id: award[1].to_i,
+            award_type: award[0]
+            ) if award[1].to_i != 0
+        end
+
         # User.joins(:user_leagues).where('league_id = ? AND status = ?', @league.id, true).each do |user|
         #   uSeason = UserSeason.create(user_id: user.id, season_id: @season.id)
         # end
@@ -151,6 +153,29 @@ class Manager::ChampionshipsController < ApplicationController
     if request.post?
       show_step(ManagerServices::Championship::League::Secondround.call(@championship, current_user, params), t(".league.secondround.success"))
     end
+  end
+
+  def destroy
+    respond_to do |format|
+      if @championship.status == 1
+        format.turbo_stream { flash["error"] = t(".in_progress") }
+        format.html { render :details, status: :unprocessable_entity, notice: t(".in_progress") }
+      else
+        games = Game.where(championship_id: @championship.id, status: 4)
+        games.each do |game|
+          AppServices::Games::Revoke.call(game)
+        end
+        
+        if @championship.destroy!
+          format.turbo_stream { flash["success"] = t(".success") }
+          format.html { redirect_to manager_championships_path, notice: t(".success") }
+        else
+          format.html { render :details, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    Award.updatePrizes(@championship, "cancel") if @championship.status == 100
   end
 
   def show_step(resolution, success_message)
@@ -496,27 +521,6 @@ class Manager::ChampionshipsController < ApplicationController
     # redirect_to manager_championship_details_path(@championship.hashid)
   end
 
-  def destroy
-    @championship = Championship.find_by_hashid(params[:id])
-    return flash[:warning] = t('.championship_in_progress') if @championship.status == 1
-
-    games = Game.where(championship_id: @championship.id, status: 4)
-    games.each do |game|
-      ClubFinance.updateEarnings(game, "cancel")
-      Ranking.updateRanking(game, "cancel")
-    end
-
-    Award.updatePrizes(@championship, "cancel") if @championship.status == 20
-
-    if @championship.destroy
-      flash[:success] = t(".championship_removed")
-    else
-      flash[:error] = t(".error_removing_championship")
-    end
-
-    redirect_to manager_championships_path
-  end
-
   private
 
   def set_local_vars
@@ -557,14 +561,11 @@ class Manager::ChampionshipsController < ApplicationController
       :match_winning_ranking,
       :match_draw_ranking,
       :match_lost_ranking,
-      :advertisement,
-      :firstplace,
-      :secondplace,
-      :thirdplace,
-      :fourthplace,
-      :goaler,
-      :assister,
-      :fairplay
+      :advertisement
     )
+  end
+
+  def award_params
+    params.permit(award: {})
   end
 end
