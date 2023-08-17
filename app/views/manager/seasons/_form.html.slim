@@ -361,8 +361,8 @@
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t(atype[:i18n_desc])}"
             span style="width: 130px!important;"
               - award_id = "award_#{atype[:position]}"
-              - aValue = @season.season_awards.find_by(award_type: atype[:position]).award_id if !aValue.nil?
-              = aValue
+              - aValue = @season.season_awards.find_by(award_type: atype[:position])
+              - aValue = aValue.award_id if !aValue.nil?
               .form-group
                 span
                   div id="popover_#{award_id}"

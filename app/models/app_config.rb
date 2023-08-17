@@ -18,7 +18,7 @@ class AppConfig < RailsSettings::Base
   field :championship_cards_suspension_rcard, type: :integer
   field :match_winning_earning, type: :integer
   field :match_draw_earning, type: :integer
-  field :match_lost_loss, type: :integer
+  field :match_lost_earning, type: :integer
   field :match_goal_earning, type: :integer
   field :match_goal_loss, type: :integer
   field :match_yellow_card_loss, type: :integer

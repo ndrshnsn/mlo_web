@@ -58,22 +58,24 @@ namespace :manager do
 
   get "championships", to: "championships#index", as: :championships
   get "championships/new", to: "championships#new", as: :championship_new
-  get "championships/check_championship_name", to: "championships#check_championship_name", as: :check_championship_name
-  get "championships/get_ctype_partial/:ctype", to: "championships#get_ctype_partial", as: :championships_ctype_partial
-  get "championships/details/:id", to: "championships#details", as: :championship_details
+  get "championships/check_championship_name/:id", to: "championships#check_championship_name", as: :check_championship_name
+  get "championships/:id/get_ctype_partial/:ctype", to: "championships#get_ctype_partial", as: :championships_ctype_partial
+  get "championships/:id/details", to: "championships#details", as: :championship_details
   post "championships/create", to: "championships#create", as: :championship_create
+  patch "championships/:id/update", to: "championships#update", as: :championship_update
   get "championships/get_ctype_options", to: "championships#get_ctype_options"
   get "championships/:id/games", to: "championships#games", as: :championship_games
-  match "championships/actions/define_clubs/:id", to: "championships#define_clubs", as: :championship_define_clubs, via: [:get, :patch]
-  post "championships/actions/start/:id", to: "championships#start", as: :championship_start
-  post "championships/actions/league/round/:id", to: "championships#start_league_round", as: :championship_start_league_round
-  match "championships/actions/league/secondround/:id", to: "championships#start_league_secondround", as: :championship_start_second_round, via: [:get, :post]
+  match "championships/:id/actions/define_clubs", to: "championships#define_clubs", as: :championship_define_clubs, via: [:get, :patch]
+  post "championships/:id/actions/start", to: "championships#start", as: :championship_start
+  post "championships/:id/actions/league/round", to: "championships#start_league_round", as: :championship_start_league_round
+  match "championships/:id/actions/league/secondround", to: "championships#start_league_secondround", as: :championship_start_second_round, via: [:get, :post]
+  get "championships/:id/settings", to: "championships#settings", as: :championship_settings
+  delete "championships/:id/destroy", to: "championships#destroy", as: :championship_destroy
 
 ###############
-  match "championships/:id/settings", controller: "championships", action: "settings", via: :post, as: :championship_settings
-  get "championships/games/:id/games_proc_dt", to: "championships#games_proc_dt", as: :championship_games_proc_dt
-  delete "championships/destroy/:id", to: "championships#destroy", as: :championship_destroy
-  match "championships/update/:id", controller: "championships", action: "update", via: :post, as: :championships_update
-  match "championships/:id/game/:game/:iteration/contest/:gaction", controller: "championships", action: "game_contest", via: [:get, :post], as: :championship_game_contest
-  match "championships/:id/game/:game/:iteration/applywo", controller: "championships", action: "applywo", via: :get, as: :championship_game_applywo
+
+  # get "championships/games/:id/games_proc_dt", to: "championships#games_proc_dt", as: :championship_games_proc_dt
+  # 
+  # match "championships/:id/game/:game/:iteration/contest/:gaction", controller: "championships", action: "game_contest", via: [:get, :post], as: :championship_game_contest
+  # match "championships/:id/game/:game/:iteration/applywo", controller: "championships", action: "applywo", via: :get, as: :championship_game_applywo
 end

@@ -6,20 +6,20 @@
           = t('.league.two_rounds')
           i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.league.two_rounds_desc')}"
         span
-          - league_two_rounds = @championship.present? && @championship.league_two_rounds == "on" ? "true" : nil
+          - league_two_rounds = @championship.present? && @championship.preferences["league_two_rounds"] == "on" ? "true" : nil
           .form-group.pt-1.pb-1
             .form-check.form-switch
-              = check_box_tag "championship[league_two_rounds]", nil, league_two_rounds, readonly: @sStarted, class: "mt-2 form-check-input"
+              = check_box_tag "championship[league_two_rounds]", nil, league_two_rounds, disabled: @sStarted, class: "mt-2 form-check-input"
               label.form-check-label for="championship_league_two_rounds"
       li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
         span.li-col
           = t('.league.finals')
           i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.league.finals_desc')}"
         span
-          - league_finals = @championship.present? && @championship.league_finals == "on" ? "true" : nil
+          - league_finals = @championship.present? && @championship.preferences["league_finals"] == "on" ? "true" : nil
           .form-group.pt-1.pb-1
             .form-check.form-switch
-              = check_box_tag "championship[league_finals]", nil, league_finals, readonly: @sStarted, class: "mt-2 form-check-input"
+              = check_box_tag "championship[league_finals]", nil, league_finals, disabled: @sStarted, class: "mt-2 form-check-input"
               label.form-check-label for="championship_league_finals"
       li.list-group-item.d-flex.justify-content-between.align-items-center 
             span.li-col
@@ -36,8 +36,8 @@
         = t('.cards_suspension')
         i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.cards_suspension_desc')}"
       span
-        - cards_suspension = @championship.present? && @championship.cards_suspension == "on" ? "true" : nil
+        - cards_suspension = @championship.present? && @championship.preferences["cards_suspension"] == "on" ? "true" : nil
         .form-group.pt-1.pb-1
           .form-check.form-switch
-            = check_box_tag "championship[cards_suspension]", nil, cards_suspension, readonly: @sStarted, class: "mt-2 form-check-input"
+            = check_box_tag "championship[cards_suspension]", nil, cards_suspension, disabled: @sStarted, class: "mt-2 form-check-input"
             label.form-check-label for="championship_cards_suspension"

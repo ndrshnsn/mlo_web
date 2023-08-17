@@ -14,14 +14,19 @@ const langMap = {
 if (clocale !== 'en') flatpickr.localize(langMap[clocale]);
 
 export default class FlatpickrController extends Controller {
-  static values = { ctype: String, sdate: { type: String, default: "false" }, edate: { type: String, default: "false" } }
+  static values = { ctype: String, sdate: { type: String, default: "false" }, edate: { type: String, default: "false" }, ddatei: { type: String, default: "false" }, ddatef: { type: String, default: "false" } }
 
   initialize() {
     const ctype = this.ctypeValue
     const rtype = this.rtypeValue
     const sdate = this.sdateValue
     const edate = this.edateValue
-  
+    let ddate = this.ddateValue
+
+    if ( this.ddateiValue !== "false" ) {
+      ddate = [''+ this.ddateiValue +'', ''+ this.ddatefValue +'']
+    }
+    
     switch(ctype) {
       case 'simple':
         flatpickr(this.element, {
@@ -51,6 +56,7 @@ export default class FlatpickrController extends Controller {
           mode: "range",
           altFormat: 'j M y',
           dateFormat: 'Y-m-d',
+          defaultDate: ddate,
           minDate: sdate,
           maxDate: edate,
           onReady: function (selectedDates, dateStr, instance) {

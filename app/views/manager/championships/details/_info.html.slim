@@ -11,11 +11,12 @@
           = link_to manager_championship_details_path(@championship.hashid), class: "dropdown-item", data: { "turbo-action": "advance"} do
             i.ri-information-line.me-2.align-bottom.text-muted
             = t('.general')
-
+          = link_to manager_championship_settings_path(@championship.hashid), class: "dropdown-item", data: { "turbo-action": "advance"} do
+            i.ri-settings-2-line.me-2.align-bottom.text-muted
+            = t('.settings')
           = link_to manager_championship_games_path(@championship.hashid), class: "dropdown-item", data: { "turbo-action": "advance"} do
             i.ri-survey-line.me-2.align-bottom.text-muted
             = t('.games')
-
           = link_to "javascript:void(0)", class: "dropdown-item", data: { action: 'click->confirm#dialog', controller: 'confirm', "confirm-title-value": t('.remove'), "confirm-text-value": t('.remove_text'), "confirm-icon-value": 'warning', "confirm-origin-value": "/manager/championships", "confirm-link-value": manager_championship_destroy_path(@championship.hashid) } do
             i.ri-close-line.me-2.align-bottom.text-muted
             = t('.remove_button')

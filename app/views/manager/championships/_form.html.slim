@@ -1,10 +1,12 @@
 - fDisabled = @championship.present? ? true : false
-- sStarted = false # @championship.status > 0 ? true : false
+- sStarted = false
+- if @championship.id.present?
+  - sStarted = @championship.status > 0 ? true : false
 
 .card 
   .card-header
     h6.card-title.d-flex
-      i.ri-settings-line.me-1
+      i.ri-settings-2-line.me-1
       span
         - if @championship.new_record?
           = t('.new')
@@ -21,23 +23,26 @@
               = f.label :badge, class: "profile-photo-edit avatar-xs" do
                 span class="avatar-title rounded-circle bg-light text-body"
                   i class="ri-camera-fill"
-              = f.hidden_field :badge, id: "trophy_hid", value: @championship.cached_badge_data
+              = f.hidden_field :badge, id: "badge_hid", value: @championship.cached_badge_data
               = f.file_field :badge, hidden: "true", accept: "image/*", "data-controller": "upload", "data-upload-img-value": "championship-badge-image"
 
       .col-sm-12.col-md-7.mb-3
         .form-group
           = f.label :name, t('.name'), class: "control-label"
-          - if @championship.id.present?
+          - if sStarted
             = f.text_field :name, class: "form-control", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase", readonly: true
           - else
-            = f.text_field :name, class: "form-control", required: true, "data-parsley-remote": "/manager/championships/check_championship_name", "data-parsley-trigger": "input", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase"
+            - if @championship.id.present?
+              = f.text_field :name, class: "form-control", required: true, "data-parsley-remote": "/manager/championships/check_championship_name/#{@championship.hashid}", "data-parsley-trigger": "input", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase"
+            - else
+              = f.text_field :name, class: "form-control", required: true, "data-parsley-remote": "/manager/championships/check_championship_name/none", "data-parsley-trigger": "input", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase"
         p
           small.text-muted = t('.name_suggestion_html')
         .row
           .form-group
             = f.label :name, t('.time_course'), class: "control-label"
             - if @championship.id.present?
-              = f.text_field :time_course, class: "text-center form-control", value: I18n.localize(@championship.time_course, format: t('date.formats.default')), readonly: sStarted
+              = f.text_field :time_course, class: "text-center form-control", required: true, "data-controller": "flatpickr", "data-flatpickr-ctype-value": "range", "data-flatpickr-ddatei-value": @championship.time_start, "data-flatpickr-ddatef-value": @championship.time_end
             - else
               = f.text_field :time_course, class: "text-center form-control", required: true, "data-controller": "flatpickr", "data-flatpickr-ctype-value": "range", "data-flatpickr-sdate-value": @season.start, "data-flatpickr-edate-value": @season.start+@season.duration.days, value: @season.start
     .row.mb-3
@@ -54,9 +59,9 @@
                 - championship_type = @championship.ctype || nil
                 span
                   #popover_championship_ctype
-                = select_tag "championship[ctype]", options_for_select(@cTypes.collect { |type| [type[:name], type[:type], {'data-src': manager_championships_ctype_partial_path(type[:type])}] }, championship_type), { include_blank: true, required: true, class: "text-center form-control select2", "data-parsley-errors-container": "championship_ctype", "data-controller": "select select-frame", "data-select-frame-target-value": "ctype_league",  "data-select-pholder-value": "select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-select-readonly-value": sStarted }
+                = select_tag "championship[ctype]", options_for_select(@cTypes.collect { |type| [type[:name], type[:type], {'data-src': manager_championships_ctype_partial_path(id: "none", ctype: type[:type])}] }, championship_type), { include_blank: true, required: true, class: "text-center form-control select2", "data-parsley-errors-container": "championship_ctype", "data-controller": "select select-frame", "data-select-frame-target-value": "ctype_league",  "data-select-pholder-value": "select", "data-select-icon-value": false, "data-minimum-results-for-search": "Infinity", "data-select-readonly-value": sStarted }
           - if championship_type != nil
-            = turbo_frame_tag :ctype_league, src: manager_championships_ctype_partial_path(type[:type])
+            = turbo_frame_tag :ctype_league, src: manager_championships_ctype_partial_path(id: @championship, ctype: championship_type)
           - else
             = turbo_frame_tag :ctype_league
 .card
@@ -99,12 +104,12 @@
               = t('.match.loss_prize')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.loss_prize_desc')}"
             span style="width: 130px!important;"
-              - match_lost_loss = @championship.match_lost_loss || AppConfig.match_lost_loss
+              - match_lost_earning = @championship.match_lost_earning || AppConfig.match_lost_earning
               .form-group
                 .input-group
                   .input-group-prepend
                     span.input-group-text = t('money_sign')
-                  = text_field_tag("championship[match_lost_loss]", match_lost_loss, class: "form-control", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
+                  = text_field_tag("championship[match_lost_earning]", match_lost_earning, class: "form-control", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "price"})
           li.list-group-item.d-flex.justify-content-between.align-items-center 
             span.li-col
               = t('.match.goal_prize')
@@ -165,10 +170,10 @@
               = t('.match.best_player')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.best_player_desc')}"
             span
-              - match_best_player = @championship.match_best_player == "on" ? "true" : nil
+              - match_best_player = @championship.preferences["match_best_player"] == "on" ? "true" : nil
               .form-group.pt-1.pb-1
                 .form-check.form-switch
-                  = check_box_tag "championship[match_best_player]", nil, match_best_player, readonly: sStarted, class: "mt-2 form-check-input"
+                  = check_box_tag "championship[match_best_player]", nil, match_best_player, disabled: sStarted, class: "mt-2 form-check-input"
                   label.form-check-label for="championship_match_best_player"
     .row
       .col-12
@@ -219,7 +224,8 @@
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t(atype[:i18n_desc])}"
             span style="width: 130px!important;"
               - award_id = "award_#{atype[:position]}"
-              - aValue = @championship.preferences["award_#{atype[:position]}"] || nil
+              - aValue = @championship.championship_awards.find_by(award_type: atype[:position])
+              - aValue = aValue.award_id if !aValue.nil?
               .form-group
                 span
                   div id="popover_#{award_id}"

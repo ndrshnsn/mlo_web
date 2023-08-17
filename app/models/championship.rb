@@ -31,7 +31,7 @@ class Championship < ApplicationRecord
     match_best_player: :boolean,
     match_winning_earning: :integer,
     match_draw_earning: :integer,
-    match_lost_loss: :integer,
+    match_lost_earning: :integer,
     match_goal_earning: :integer,
     match_goal_lost: :integer,
     match_yellow_card_loss: :integer,
@@ -108,5 +108,10 @@ class Championship < ApplicationRecord
 
   def self.getBestPlayer(championship)
     PlayerSeason.joins('LEFT OUTER JOIN "club_bestplayers" ON "club_bestplayers"."player_season_id" = "player_seasons"."id"').where(club_bestplayers: {game_id: Game.where(championship_id: championship.id, status: 100)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS bestplayer").group(:id).order("bestplayer desc")
+  end
+
+  def self.get_game_sequence(championship)
+    games = Game.where(championship_id: championship.id).order(gsequence: :desc)
+    games.size > 0 ? games.last.gsequence : 0
   end
 end

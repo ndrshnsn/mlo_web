@@ -12,7 +12,7 @@ class AppServices::Games::Revoke < ApplicationService
   private
 
   def revoke_game
-    if @game.status > 0 && @game.status < 3
+    if @game.status > 0 && @game.status < 4
       return handle_error(@game, @game&.error) unless GameCard.where(game_id: @game.id).destroy_all
       return handle_error(@game, @game&.error) unless ClubGame.where(game_id: @game.id).destroy_all
       Sidekiq::Cron::Job.find("result_confirmation_#{@game.championship.season.id}_#{@game.championship.id}_#{@game.id}").destroy

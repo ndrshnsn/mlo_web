@@ -1,7 +1,7 @@
 class Manager::ChampionshipsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-  before_action :set_championship, only: [:details, :define_clubs, :start, :start_league_round, :start_league_secondround, :games, :destroy]
+  before_action :set_championship, only: [:details, :define_clubs, :start, :start_league_round, :start_league_secondround, :games, :destroy, :update]
   breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
   breadcrumb "manager.championships.main", :manager_championships_path, match: :exact, frame: "main_frame"
 
@@ -15,13 +15,17 @@ class Manager::ChampionshipsController < ApplicationController
   def new
     @championship = Championship.new
     @cTypes = Championship.types
-    @awards = Award.where(league_id: current_user.preferences["active_league"]).order("id ASC")
+    @awards = Award.where(league_id: @league.id)
     @award_result_type = AppServices::Award.new().list_awards
   end
 
   def check_championship_name
-    season = Championship.exists?(name: params[:championship][:name], season_id: @season.id) ? :unauthorized : :ok
-    render body: nil, status: season
+    championship = Championship.exists?(name: params[:championship][:name], season_id: @season.id) ? :unauthorized : :ok
+    if params[:id] != "none"
+      championship = :ok if Championship.find_by_hashid(params[:id]).name == params[:championship][:name]
+    end
+      
+    render body: nil, status: championship
   end
   
   def set_championship
@@ -29,12 +33,11 @@ class Manager::ChampionshipsController < ApplicationController
   end
 
   def get_ctype_partial
-    @ctype = params[:ctype]
-    @sStarted = false
-    case @ctype
-    when "league"
-
+    if params[:id] != "none"
+      @championship = Championship.find_by_hashid(params[:id])
+      @sStarted = @championship.status > 0 ? true : false
     end
+    @ctype = params[:ctype]
   end
 
   def games
@@ -42,16 +45,13 @@ class Manager::ChampionshipsController < ApplicationController
   end
 
   def create
-    ## Time Course
     time_course = championship_params[:time_course].split(" ")
     time_start = time_course[0]
     time_end = time_course[2].nil? ? time_start : time_course[2]
 
-    ## New Champ
     @championship = Championship.new
     @championship.name = championship_params[:name]
 
-    ## Open Badge fila again
     if championship_params[:badge] == ""
       @championship.badge = championship_params[:original_badge]
     else
@@ -98,25 +98,75 @@ class Manager::ChampionshipsController < ApplicationController
             ) if award[1].to_i != 0
         end
 
-        # User.joins(:user_leagues).where('league_id = ? AND status = ?', @league.id, true).each do |user|
-        #   uSeason = UserSeason.create(user_id: user.id, season_id: @season.id)
-        # end
-
-        # SeasonNotification.with(
-        #   season: @season,
-        #   league: @season.league_id,
-        #   icon: "stack",
-        #   push: true,
-        #   push_type: "user",
-        #   push_message: "#{t('.wnotify_subject', season: @season.name)}||#{t('.wnotify_text')}",
-        #   type: "new").deliver_later(current_user)
-
-        flash.now["success"] = t(".success")
+        format.turbo_stream {flash.now["success"] = t(".success")}
         format.html { redirect_to manager_championships_path, notice: t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
+  end
+
+  def update
+    time_course = championship_params[:time_course].split(" ")
+    time_start = time_course[0]
+    time_end = time_course[2].nil? ? time_start : time_course[2]
+
+    @championship.name = championship_params[:name]
+    @championship.badge = championship_params[:badge]
+    @championship.advertisement = championship_params[:advertisement]
+    case championship_params[:ctype]
+    when "league"
+      @championship.preferences = {
+        time_start: time_start,
+        time_end: time_end,
+        ctype: championship_params[:ctype],
+        league_two_rounds: championship_params[:league_two_rounds],
+        league_finals: championship_params[:league_finals],
+        league_criterion: championship_params[:league_criterion],
+        hattrick_earning: championship_params[:hattrick_earning].to_i,
+        cards_suspension: championship_params[:cards_suspension],
+        match_best_player: championship_params[:match_best_player],
+        match_winning_earning: championship_params[:match_winning_earning].to_i,
+        match_draw_earning: championship_params[:match_draw_earning].to_i,
+        match_lost_earning: championship_params[:match_lost_earning].to_i,
+        match_goal_earning: championship_params[:match_goal_earning].to_i,
+        match_goal_lost: championship_params[:match_goal_lost].to_i,
+        match_yellow_card_loss: championship_params[:match_yellow_card_loss].to_i,
+        match_red_card_loss: championship_params[:match_red_card_loss].to_i,
+        match_winning_ranking: championship_params[:match_winning_ranking].to_i,
+        match_draw_ranking: championship_params[:match_draw_ranking].to_i,
+        match_lost_ranking: championship_params[:match_lost_ranking].to_i
+      }
+    end
+
+    respond_to do |format|
+      if @championship.save!
+
+        award_params[:award].each do |award|
+          if award[1] == "none"
+            championship_award = ChampionshipAward.find_by(championship_id: @championship.id, award_type: award[0])
+            championship_award.destroy! if !championship_award.nil?
+          else
+            ChampionshipAward.where(championship_id: @championship.id, award_type: award[0]).first_or_create do |championship_award|
+              championship_award.award_id = award[1].to_i
+            end
+          end
+        end
+
+        format.turbo_stream {flash.now["success"] = t(".success")}
+        format.html { redirect_to manager_championships_path, notice: t(".success") }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def settings
+    @championship = Championship.find_by_hashid(params[:id])
+    breadcrumb @championship.name, manager_championship_details_path(id: @championship.hashid), match: :exact, frame: "main_frame"
+    @cTypes = Championship.types
+    @awards = League.get_awards(@league.id)
+    @award_result_type = AppServices::Award.new().list_awards
   end
 
   def details
@@ -526,6 +576,7 @@ class Manager::ChampionshipsController < ApplicationController
   def set_local_vars
     if session[:season]
       @season = Season.find(session[:season])
+      @league = League.find(session[:league])
     end
   end
 
@@ -553,7 +604,7 @@ class Manager::ChampionshipsController < ApplicationController
       :match_best_player,
       :match_winning_earning,
       :match_draw_earning,
-      :match_lost_loss,
+      :match_lost_earning,
       :match_goal_earning,
       :match_goal_lost,
       :match_yellow_card_loss,

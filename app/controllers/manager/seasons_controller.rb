@@ -97,7 +97,7 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def settings
-    @season = Season.joins(:season_awards).find_by_hashid(params[:id])
+    @season = Season.find_by_hashid(params[:id])
     breadcrumb @season.name, manager_season_details_path(id: @season.hashid), match: :exact, frame: "main_frame"
     @awards = League.get_awards(@league.id)
     @award_result_type = AppServices::Award.new().list_awards
@@ -232,6 +232,18 @@ class Manager::SeasonsController < ApplicationController
 
     respond_to do |format|
       if @season.save!
+
+        award_params[:award].each do |award|
+          if award[1] == "none"
+            season_award = SeasonAward.find_by(season_id: @season.id, award_type: award[0])
+            season_award.destroy! if !season_award.nil?
+          else
+            SeasonAward.where(season_id: @season.id, award_type: award[0]).first_or_create do |season_award|
+              season_award.award_id = award[1].to_i
+            end
+          end
+        end
+
         format.turbo_stream {flash.now["success"] = t(".success")}
         format.html { redirect_to manager_seasons_path, notice: t(".success") }
       else

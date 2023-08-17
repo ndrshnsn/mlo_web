@@ -28,6 +28,8 @@ class ManagerServices::Championship::Start < ApplicationService
   end
 
   def create_league_games
+    next_game_sequence = Championship.get_game_sequence(@championship) + 1
+
     listOfClubs = lClubs = ClubChampionship.where(championship_id: @championship.id).pluck(:club_id)
     firstHalf = []
     secondHalf = []
@@ -49,8 +51,10 @@ class ManagerServices::Championship::Start < ApplicationService
         home_id: game[0],
         visitor_id: game[1],
         phase: 1,
-        status: 0
+        status: 0,
+        gsequence: next_game_sequence
         ).save!
+      next_game_sequence += 1
     end
 
     if @championship.preferences["league_two_rounds"] == "on"
@@ -60,8 +64,10 @@ class ManagerServices::Championship::Start < ApplicationService
           home_id: game[0],
           visitor_id: game[1],
           phase: 2,
-          status: 0
+          status: 0,
+          gsequence: next_game_sequence
           ).save!
+        next_game_sequence += 1
       end
     end
   end

@@ -11,7 +11,7 @@
         tbody
           - phase = Championship.translate_phase(game.phase)
           tr
-            td.text-center ##{i}
+            td.text-center ##{game.gsequence}
             td.text-center
               span class="badge bg-#{phase[1]}" = phase[0]
             td.text-center #{game.home.def_team.name} X #{game.visitor.def_team.name}

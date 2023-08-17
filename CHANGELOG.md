@@ -1,5 +1,17 @@
 # Change log
 
+## 7d55589 - 2023-08-17
+
+### Added
+* Manager Championship Settings
+
+### Changed
+* New column gsequence and function in Championship controller to get game sequence number
+
+### Fixed
+* Championship name check method
+* Championship badge upload/save
+
 ## 9d41857 - 2023-08-15
 
 ### Added
