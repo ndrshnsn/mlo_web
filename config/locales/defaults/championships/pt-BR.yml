@@ -1,0 +1,22 @@
+pt-BR:
+  championship:
+    status:
+      not_started: "Não Iniciado"
+      running: "Em Andamento"
+      finished: "Encerrado"
+      league:
+        round: "Turno em Andamento"
+        return: "Returno em Andamento"
+        round_return: "T/R em Andamento"
+        semifinals: "Semifinais"
+        finals_third_fourth: "Finais"
+    phase:
+      round: "Turno"
+      second_round: "Returno"
+      semifinals: "Semifinais"
+      finals: "Finais"
+      thirdfourth: "3o/4o Lugar"
+    types:
+      league: "Liga"
+      cup: "Copa"
+      brackets: "Mata-Mata"

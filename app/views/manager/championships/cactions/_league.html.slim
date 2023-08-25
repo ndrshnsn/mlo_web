@@ -1,0 +1,31 @@
+- define_clubs_disabled = championship.club_championships.size == 0 && @season.status == 1 && @season.preferences['saction_clubs_choosing'] == 2 ? "btn btn-primary btn-sm btn-border" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
+= link_to manager_championship_define_clubs_path(championship.hashid), id: "define_clubs", class: "btn btn-block btn-sm #{define_clubs_disabled} text-left", "data-turbo-frame": "modal" do
+  span = t('.choose_club')
+
+- start_championship_disabled = (championship.status == 0 && championship.club_championships.size >= 4) ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
+= link_to "javascript:;", class: "btn btn-primary btn-sm btn-border #{start_championship_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_championship_question'), "confirm-text-value": t('.start_championship_text'), "confirm-link-value": manager_championship_start_path(championship.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+  span = t('.start_championship')
+
+- start_round_disabled = championship.status == 1 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
+= link_to "javascript:;", class: "btn btn-primary btn-sm btn-border #{start_round_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_round_question'), "confirm-text-value": t('.start_round_text'), "confirm-link-value": manager_championship_start_league_round_path(championship.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+  span = t('.start_round')
+
+- if championship.preferences["league_two_rounds"] == "on"
+  - start_secondround_disabled = championship.status == 10 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
+  = link_to manager_championship_start_second_round_path(championship.hashid), class: "btn btn-block btn-sm btn-border #{start_secondround_disabled}", data: { "turbo-frame": 'modal' }
+    span = t('.start_secondround')
+
+- if championship.preferences["league_finals"] == "on"
+  - if championship.preferences["league_two_rounds"] == "on"
+    - start_league_semifinals_disabled = (championship.status == 11 || championship.status == 12) ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
+
+  = link_to "javascript:;", class: "btn btn-primary btn-sm btn-border #{start_league_semifinals_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_semifinals_question'), "confirm-text-value": t('.start_semifinals_text'), "confirm-link-value": manager_championship_start_league_semi_path(championship.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+    span = t('.start_semifinals')
+
+  - start_league_finals_disabled = championship.status == 13 ? "btn-primary" : "btn-secondary disabled text-decoration-line-through"
+  = link_to "javascript:;", class: "btn btn-primary btn-sm btn-border #{start_league_finals_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_finals_question'), "confirm-text-value": t('.start_finals_text'), "confirm-link-value": manager_championship_start_league_finals_path(championship.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+    span = t('.start_finals')
+
+- end_championship_disabled = championship.status == 14 ? "btn btn-primary btn-sm btn-border" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
+= link_to "javascript:;", class: "btn btn-primary btn-sm btn-border #{end_championship_disabled}", data: { controller: "confirm", "confirm-title-value": t('.end_championship_question'), "confirm-text-value": t('.end_championship_text'), "confirm-link-value": manager_championship_end_path(championship.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+  span = t('.end_championship')

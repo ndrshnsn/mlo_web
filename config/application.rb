@@ -60,6 +60,5 @@ module MloWeb
       File.write("config/version", `git describe --tags --always`)
     end
     config.version = File.read("config/version")
-    config.web_console.permissions = "192.168.0.0/255.255.255.0"
   end
 end

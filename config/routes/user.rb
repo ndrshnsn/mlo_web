@@ -29,6 +29,8 @@ as :user do
   get "profile/social", to: "profile#social", as: :profile_social
   patch "profile/social/disconnect/:provider", to: "profile#social_disconnect", as: :profile_social_disconnect
 
+  get "leagues/user_info/:id", to: "profile#user_popover", as: :user_get_basic_info
+
   post "notifications/subscribe", to: "profile#subscribe", as: :notifications_subscribe
   post "notifications/unsubscribe", to: "profile#unsubscribe", as: :notifications_unsubscribe
 
@@ -66,6 +68,8 @@ as :user do
   match "myclub/management/select_club", controller: "myclub/management", action: "select_club", via: [:post, :patch], as: :myclub_management_select_club
 
   get "seasons", to: "seasons#index"
+
+  get "championships", to: "championships#index"
 
   get "ranking", to: "ranking#index"
   

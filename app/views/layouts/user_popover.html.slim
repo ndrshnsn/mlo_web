@@ -1,0 +1,37 @@
+= turbo_frame_tag "basic_user_info_#{@user.id}" do
+  .d-flex.align-items-center.mb-2
+    .flex-shrink-0
+      img.avatar-xs.rounded-circle src="#{avatarURL(@user)}"
+    .flex-grow-1.ms-2
+      .mb-0 = @user.full_name
+      .text-muted = @user.email
+  ul.list-group.list-group-flush.p-0.mt-1
+    li.list-group-item.d-flex.justify-content-between.align-items-center.p-1
+      span.li-col
+        i.ri-hashtag.me-1.align-bottom
+        span = t('.nickname')
+      span.text-muted = @user.nickname
+    - if @user.preferences["country"].present? && !@user.preferences["country"].empty?
+      li.list-group-item.d-flex.justify-content-between.align-items-center.p-1
+        span.li-col
+          i.ri-map-pin-line.me-1.align-bottom
+          span = t('.location')
+        span.text-muted
+          = @user.preferences["city"]
+          br
+          = DefCountry.find(@user.preferences["country"].to_i).name.humanize
+
+  - if @user.preferences["fake"] == false
+    .row.mt-1.mb-0.border-top.border-opacity-10.pt-2
+      .col-4.text-center
+        - if @user.preferences["twitter"].present? && !@user.preferences["twitter"].empty?
+          = link_to social_link(@user.preferences["twitter"], "twitter"), target: "_blank", class: "btn bg-info-subtle btn-sm btn-icon waves-effect" do
+            i.ri-twitter-line
+      .col-4.text-center
+        - if @user.preferences["facebook"].present? && !@user.preferences["facebook"].empty?
+          = link_to social_link(@user.preferences["facebook"], "facebook"), target: "_blank", class: "btn bg-primary-subtle btn-sm btn-icon waves-effect" do
+            i.ri-facebook-line
+      .col-4.text-center
+        - if @user.preferences["instagram"].present? && !@user.preferences["instagram"].empty?
+          = link_to social_link(@user.preferences["instagram"], "instagram"), target: "_blank", class: "btn bg-danger-subtle btn-sm btn-icon waves-effect" do
+            i.ri-instagram-line

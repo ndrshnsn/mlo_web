@@ -19,14 +19,7 @@
       div
         .team-list.grid-view-filter.row
           - @seasons.each do |season|
-            - sStatus = Season.getStatus(season.id)
-            - if sStatus[0] == "not_started"
-              - sBadge = "dark"
-            - elsif sStatus[0] == "season_running"
-              - sBadge = "success"
-            - elsif sStatus[0] == "season_finished"
-              - sBadge = "secondary"
-
+            - sStatus = Season.translate_status(season.status)
             .col-md-4.col-sm-12
               .card.team-box
                 .team-cover
@@ -40,7 +33,7 @@
                         .team-content
                           h5.fs-16.mb-1 = season.name
                           p.text-muted.mb-0
-                            span class="badge bg-#{sBadge}" = sStatus[1]
+                            span class="badge bg-#{sStatus[2]}" = sStatus[1]
                     .col-lg-4.col
                       .row.text-muted.text-center
                         .col-6.border-end.border-end-dashed

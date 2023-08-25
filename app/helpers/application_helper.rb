@@ -1,5 +1,6 @@
 module ApplicationHelper
   include DatatablesHelper
+  include Pagy::Frontend
 
   def render_turbo_stream_flash_messages
     turbo_stream.prepend "flash", partial: "layouts/flash/main"
@@ -26,6 +27,14 @@ module ApplicationHelper
     I18n.t key, raise: true
   rescue
     false
+  end
+
+  def social_link(user, network)
+    case network
+    when "twitter" then "https://twitter.com/#{user}"
+    when "facebook" then "https://facebook.com/#{user}"
+    when "instagram" then "https://instagram.com/#{user}"
+    end
   end
 
   def avatarURL(user)
@@ -79,11 +88,8 @@ module ApplicationHelper
   end
 
   def defTeamBadgeURL(prefix, defTeam)
-    url = "#{prefix}/teams/#{defTeam.name.upcase.delete(" ")}.png"
-    if image_exists?(url)
-      return "#{prefix}/teams/#{defTeam.name.upcase.delete(" ")}.png"
-    end
-    image_path("/misc/generic-team.png")
+    "#{prefix}/teams/#{defTeam.name.upcase.delete(" ")}.png"
+    # image_path("/misc/generic-team.png")
   end
 
   def getRandomCard

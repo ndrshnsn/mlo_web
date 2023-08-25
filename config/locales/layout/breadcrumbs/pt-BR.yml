@@ -10,6 +10,8 @@ pt-BR:
         main: "Clubes"
       ranking:
         main: "Ranking"
+      championships:
+        main: "Campeonatos"
       admin:
         playerdb:
           main: "PlayerDB"

@@ -10,7 +10,7 @@ li.nav-item
     i.ri-stack-line
     span data-key="t-seasons" = t('.seasons')
 li.nav-item
-  = link_to manager_seasons_path, class: "menu-link nav-link #{'active' if controller_name == 'seasons'}", id: "sidebar_seasons" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_seasons", "sidebar-child-value": "sidebar_seasons" } do
+  = link_to championships_path, class: "menu-link nav-link #{'active' if controller_name == 'championships'}", id: "sidebar_championships" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_championships", "sidebar-child-value": "sidebar_championships" } do
     i.ri-trophy-line
     span data-key="t-seasons" = t('.championships')
 li.nav-item

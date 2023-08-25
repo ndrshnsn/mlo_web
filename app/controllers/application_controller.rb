@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include SetLocale
   include SetTheme
   include PublicActivity::StoreController
+  include Pagy::Backend
 
   ## HTML
   before_action :authenticate_user!, except: [:raise_not_found, :not_found, :error]

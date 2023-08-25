@@ -9,7 +9,8 @@ class Season < ApplicationRecord
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :championships, dependent: :destroy
   has_many :player_seasons, dependent: :destroy
-  # has_many :rankings, dependent: :destroy
+  has_many :season_awards, dependent: :destroy
+  has_many :rankings, dependent: :destroy
   has_many :clubs, through: :user_seasons
   has_rich_text :advertisement
 
@@ -66,18 +67,19 @@ class Season < ApplicationRecord
     User.joins(:user_seasons).where("user_seasons.season_id = ? AND (users.preferences -> 'fake')::Bool = ?", season_id, false)
   end
 
-  def self.getStatus(season_id)
+  def self.translate_status(code)
     status = {
-      "0": ["not_started", "Não Iniciado", "warning"],
-      "1": ["season_running", "Em Andamento", "success"],
-      "2": ["season_finished", "Encerrada", "secondary"]
+      0 => ["not_started", "Não Iniciado", "warning"],
+      1 => ["season_running", "Em Andamento", "success"],
+      2 => ["season_finished", "Encerrada", "secondary"]
     }
-    season = Season.find(season_id)
-    status[:"#{season.status}"]
+    status[code]
   end
 
-  def self.getClubs(season_id)
-		Club.includes([user_season: :user], :def_team).where(user_seasons: { season_id: season_id })
+  def self.getClubs(season_id, fake = nil)
+		clubs = Club.includes([user_season: :user], :def_team).where(user_seasons: { season_id: season_id })
+    clubs.where("(users.preferences -> 'fake')::Bool = ?", fake) if !fake.nil?
+    clubs
 	end
 
   def self.getBalance(season)

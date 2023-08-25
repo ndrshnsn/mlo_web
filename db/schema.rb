@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_205306) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,6 +86,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
     t.index ["league_id"], name: "index_awards_on_league_id"
   end
 
+  create_table "championship_awards", force: :cascade do |t|
+    t.bigint "championship_id", null: false
+    t.bigint "award_id", null: false
+    t.string "award_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["award_id"], name: "index_championship_awards_on_award_id"
+    t.index ["championship_id"], name: "index_championship_awards_on_championship_id"
+  end
+
   create_table "championship_positions", force: :cascade do |t|
     t.bigint "championship_id", null: false
     t.bigint "club_id", null: false
@@ -109,11 +119,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
     t.index ["season_id"], name: "index_championships_on_season_id"
   end
 
+  create_table "club_awards", force: :cascade do |t|
+    t.bigint "club_id", null: false
+    t.string "source_type", null: false
+    t.bigint "source_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_club_awards_on_club_id"
+    t.index ["source_type", "source_id"], name: "index_club_awards_on_source"
+  end
+
   create_table "club_championships", force: :cascade do |t|
     t.bigint "club_id", null: false
     t.bigint "championship_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "games", default: 0
+    t.integer "wins", default: 0
+    t.integer "draws", default: 0
+    t.integer "losses", default: 0
+    t.integer "goalsfor", default: 0
+    t.integer "goalsagainst", default: 0
+    t.integer "goalsdiff", default: 0
+    t.integer "points", default: 0
+    t.integer "gamerate", default: 0
+    t.integer "group"
     t.index ["championship_id"], name: "index_club_championships_on_championship_id"
     t.index ["club_id"], name: "index_club_championships_on_club_id"
   end
@@ -216,6 +246,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
     t.index ["slug"], name: "index_def_teams_on_slug", unique: true
   end
 
+  create_table "game_best_players", force: :cascade do |t|
+    t.bigint "club_id"
+    t.bigint "player_season_id", null: false
+    t.bigint "game_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_game_best_players_on_club_id"
+    t.index ["game_id"], name: "index_game_best_players_on_game_id"
+    t.index ["player_season_id"], name: "index_game_best_players_on_player_season_id"
+  end
+
+  create_table "game_cards", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "player_season_id", null: false
+    t.bigint "club_id", null: false
+    t.boolean "ycard"
+    t.boolean "rcard"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_game_cards_on_club_id"
+    t.index ["game_id"], name: "index_game_cards_on_game_id"
+    t.index ["player_season_id"], name: "index_game_cards_on_player_season_id"
+  end
+
   create_table "games", force: :cascade do |t|
     t.bigint "championship_id", null: false
     t.bigint "home_id", null: false
@@ -231,11 +285,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
     t.boolean "hfaccepted", default: false
     t.boolean "vfaccepted", default: false
     t.bigint "eresults_id"
-    t.boolean "wo", default: false
     t.boolean "mresult", default: false
     t.text "mdescription"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "gsequence"
+    t.integer "subtype", default: 0
     t.index ["championship_id"], name: "index_games_on_championship_id"
     t.index ["eresults_id"], name: "index_games_on_eresults_id"
     t.index ["home_id"], name: "index_games_on_home_id"
@@ -336,6 +391,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_rankings_on_club_id"
     t.index ["season_id"], name: "index_rankings_on_season_id"
+  end
+
+  create_table "season_awards", force: :cascade do |t|
+    t.bigint "season_id", null: false
+    t.bigint "award_id", null: false
+    t.string "award_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["award_id"], name: "index_season_awards_on_award_id"
+    t.index ["season_id"], name: "index_season_awards_on_season_id"
   end
 
   create_table "seasons", force: :cascade do |t|
@@ -449,9 +514,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "awards", "leagues"
+  add_foreign_key "championship_awards", "awards"
+  add_foreign_key "championship_awards", "championships"
   add_foreign_key "championship_positions", "championships"
   add_foreign_key "championship_positions", "clubs"
   add_foreign_key "championships", "seasons"
+  add_foreign_key "club_awards", "clubs"
   add_foreign_key "club_championships", "championships"
   add_foreign_key "club_championships", "clubs"
   add_foreign_key "club_finances", "clubs"
@@ -466,6 +534,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
   add_foreign_key "def_players", "def_countries"
   add_foreign_key "def_players", "def_player_positions"
   add_foreign_key "def_teams", "def_countries"
+  add_foreign_key "game_best_players", "clubs"
+  add_foreign_key "game_best_players", "games"
+  add_foreign_key "game_best_players", "player_seasons"
+  add_foreign_key "game_cards", "clubs"
+  add_foreign_key "game_cards", "games"
+  add_foreign_key "game_cards", "player_seasons"
   add_foreign_key "games", "championships"
   add_foreign_key "games", "clubs", column: "eresults_id"
   add_foreign_key "games", "clubs", column: "home_id"
@@ -481,6 +555,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_194454) do
   add_foreign_key "player_transactions", "player_seasons"
   add_foreign_key "rankings", "clubs"
   add_foreign_key "rankings", "seasons"
+  add_foreign_key "season_awards", "awards"
+  add_foreign_key "season_awards", "seasons"
   add_foreign_key "seasons", "leagues"
   add_foreign_key "user_acls", "leagues"
   add_foreign_key "user_acls", "users"

@@ -44,6 +44,8 @@ export default class ConfirmController extends Controller {
             history.pushState({}, null, newURL)
             Turbo.navigator.history.replace(url.toString())
           }
+          $('.modal').modal('hide')
+          $('.modal-backdrop').remove()
           turboform.requestSubmit()
         } else {
           return false;

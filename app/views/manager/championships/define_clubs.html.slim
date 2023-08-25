@@ -1,0 +1,28 @@
+= render "layouts/modal/main", modal_id: "manager_define_clubs_modal"
+  = form_with model: @championship, id: dom_id(@championship), url: manager_championship_define_clubs_path(@championship.hashid), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.manager.championships.add_users.confirm_text'), "form-icon-value": "question"} do |f|
+    .modal-header.bg-soft-primary.pb-3
+      h5.modal-title.d-flex.align-items-center
+        i.ri-stack-line.me-1
+        = t('manager.championships.define_clubs.title', championship: @championship.name)
+      button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+    .modal-body
+      = t('manager.championships.define_clubs.choose_clubs_desc_html', minusers: AppConfig.championship_minimum_players)
+      .row
+        span
+          #popover_championship_clubs
+        select multiple="multiple" id="championship_clubs" name="championship_clubs[]" data-controller="multi" data-multi-init-value="#{@clubs.size}" data-multi-leftcolumn-value="clubs" class="form-control mb-1 multi" data-parsley-required="true" data-parsley-mincheck="#{AppConfig.championship_minimum_players}"
+          - @clubs.each do |club|
+            option value="#{club.id}" data-ms-image="#{defTeamBadgeURL(session[:pdbprefix], club.def_team)}" data-html="<div class='media'><div class='media-body' style='line-height: normal;'><span class='font-weight-bold d-block text-nowrap'>#{stringHuman(club.def_team.name)}</span><small class='text-muted'>##{club.user_season.user.nickname}<small></div></div>"
+      .row
+        .col-6.text-center
+          input type="button" id="select_all" class="btn btn-sm btn-primary" data-controller="multi" data-multi-target-value="championship_clubs" data-action="click->multi#selectall" value="#{t('.select_all')}"
+        
+        .col-6.text-center
+          input type="button" id="unselect_all" class="btn btn-sm btn-primary" data-controller="multi" data-multi-target-value="championship_clubs" data-action="click->multi#deselectall" value="#{t('.deselect_all')}"
+
+    .modal-footer
+      .col-12 style="text-align: right;"
+        - if @clubs.size < AppConfig.championship_minimum_players
+          - button = "disabled"
+        button.btn.btn-outline-secondary.right.me-1.btn-cancel data-bs-dismiss="modal" = t('defaults.wizard.cancel')
+        = f.submit t('defaults.wizard.confirm'), class: "btn btn-primary #{button}"

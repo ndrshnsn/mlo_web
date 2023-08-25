@@ -1,0 +1,6 @@
+pt-BR:
+  game:
+    status:
+      not_started: "Não Iniciado"
+      revoked: "Cancelado"
+      finished: "Encerrado"

@@ -89,6 +89,7 @@
                 .form-check.form-switch
                   = check_box_tag "season[change_player_out_of_window]", nil, change_player_out_of_window, class: "mt-2 form-check-input"
                   label.form-check-label for="season_change_player_out_of_window"
+
           li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
             span.li-col
               = t('.trade.player_loan')
@@ -361,7 +362,8 @@
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t(atype[:i18n_desc])}"
             span style="width: 130px!important;"
               - award_id = "award_#{atype[:position]}"
-              - aValue = @season.preferences["award_#{atype[:position]}"] || nil
+              - aValue = @season.season_awards.find_by(award_type: atype[:position])
+              - aValue = aValue.award_id if !aValue.nil?
               .form-group
                 span
                   div id="popover_#{award_id}"

@@ -1,0 +1,9 @@
+= turbo_frame_tag "main_frame" do
+  = render "layouts/header/page_frame"
+  = turbo_frame_tag "manager_championships" do
+    = render "layouts/header/page_title", title: t('.championships')
+    .row
+      .col-12
+        = render partial: 'manager/championships/details/info'
+
+    = render "manager/championships/games/list", games: @games

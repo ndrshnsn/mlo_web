@@ -1,0 +1,62 @@
+= turbo_frame_tag "manager_championship_games" do
+  .card
+    .card-body
+      .table-responsive.table-card
+        table.table.table-striped.table-nowrap.align-middle
+          thead.table-light
+            tr
+              th.text-center scope="col" = t(".phase")
+              th.text-center scope="col" = t(".match_round")
+              th.text-center colspan="3" = t(".match")
+              th.text-center scope="col" = t(".status")
+              th.text-center scope="col" =t (".actions")
+          tbody
+          - games.each.with_index(@pagy.offset+1) do |game, i|
+              - phase = Championship.translate_phase(game.phase)
+              - status = Game.translate_status(game.status)
+              tr
+                th.text-center scope="row"
+                  span class="badge bg-#{phase[1]} text-dark" = phase[0]
+                td.text-center ##{game.gsequence}
+                td style="text-align: right;"
+                  .d-flex.align-items-center.justify-content-end
+                    .flex-grow-0
+                      h6.cart-title.mb-1 = game.home.def_team.teamAbbr
+                      p.text-muted.mb-0
+                        a href="javascript:void(0)" id="button_userinfo_home_#{i}" data-controller="popover" data-popover-id-value="#{game.home.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.home.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.home.user_season.user)}" ##{game.home.user_season.user.nickname}
+                    .flex-shrink-1.ms-2
+                      = image_tag("#{session[:pdbprefix]}/teams/#{game.home.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';", title: stringHuman(game.home.def_team.name), data: {toggle: "tooltip", placement: "top"})
+                td.text-center
+                  span.fs-18.me-1 = game.hscore
+                  span.fs-12 X
+                  span.fs-18.ms-1 = game.vscore
+                  - if !game.phscore.nil? || !game.pvscore.nil?
+                    br
+                    span.fs-11.me-1.text-warning
+                      | (#{game.phscore})
+                    span.fs-11.ms-1.text-warning
+                      | (#{game.pvscore})
+                td
+                  .d-flex.align-items-center
+                    .flex-shrink-0
+                      = image_tag("#{session[:pdbprefix]}/teams/#{game.visitor.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';", title: stringHuman(game.visitor.def_team.name), data: {toggle: "tooltip", placement: "top"})
+                    .flex-grow-1.ms-2
+                      h6.cart-title.mb-1 = game.visitor.def_team.teamAbbr
+                      p.text-muted.mb-0
+                        a href="javascript:void(0)" id="button_userinfo_visitor_#{i}" data-controller="popover" data-popover-id-value="#{game.visitor.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.visitor.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.visitor.user_season.user)}" ##{game.visitor.user_season.user.nickname}
+
+                td.text-center
+                  span class="badge bg-#{status[2]}-subtle text-#{status[2]} rounded-pill" = status[1]
+                td.text-center
+                  .dropdown
+                    a id="dropdown_#{i}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                      i.ri-more-2-fill
+                    ul.dropdown-menu aria-labelledby="dropdown_#{i}"
+                      li
+                        a.dropdown-item href="#" = t('.add_result')
+                        a.dropdown-item href="#" = t('.wo_home')
+                        a.dropdown-item href="#" = t('.wo_visitor')
+                        a.dropdown-item href="#" = t('.cancel_game')
+
+      .row.mt-3
+        = render 'layouts/pagy/main', pagy: @pagy, frame: "manager_championship_games"

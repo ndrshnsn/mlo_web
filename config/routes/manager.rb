@@ -47,8 +47,6 @@ namespace :manager do
   post "seasons/actions/steal_window/:id", to: "seasons#steal_window", as: :season_steal_window
   match "seasons/actions/end/:id", to: "seasons#end", as: :season_end, via: [:get, :patch]
 
-
-  ## Awards
   get "awards", controller: "awards", action: "index", as: :awards
   get "awards/get_proc_dt", to: "awards#get_proc_dt"
   get "awards/edit/:id", to: "awards#edit", as: :award_edit
@@ -58,22 +56,29 @@ namespace :manager do
   post "awards/create", to: "awards#create", as: :award_create
   delete "awards/destroy/:id", to: "awards#destroy", as: :award_destroy
 
-  ## Championships
   get "championships", to: "championships#index", as: :championships
   get "championships/new", to: "championships#new", as: :championship_new
-  get "championships/check_championship_name", to: "championships#check_championship_name", as: :check_championship_name
-  get "championships/get_ctype_partial/:ctype", to: "championships#get_ctype_partial", as: :championships_ctype_partial
+  get "championships/check_championship_name/:id", to: "championships#check_championship_name", as: :check_championship_name
+  get "championships/:id/get_ctype_partial/:ctype", to: "championships#get_ctype_partial", as: :championships_ctype_partial
   get "championships/:id/details", to: "championships#details", as: :championship_details
   post "championships/create", to: "championships#create", as: :championship_create
-  get "championships/:id/:caction", to: "championships#cactions", as: :championship_caction
-  patch "championships/:id/define_clubs", to: "championships#define_clubs", as: :championship_define_clubs
+  patch "championships/:id/update", to: "championships#update", as: :championship_update
   get "championships/get_ctype_options", to: "championships#get_ctype_options"
+  get "championships/:id/games", to: "championships#games", as: :championship_games
+  match "championships/:id/actions/define_clubs", to: "championships#define_clubs", as: :championship_define_clubs, via: [:get, :patch]
+  post "championships/:id/actions/start", to: "championships#start", as: :championship_start
+  post "championships/:id/actions/league/round", to: "championships#start_league_round", as: :championship_start_league_round
+  match "championships/:id/actions/league/secondround", to: "championships#start_league_secondround", as: :championship_start_second_round, via: [:get, :post]
+  post "championships/:id/actions/league/semi", to: "championships#start_league_semi", as: :championship_start_league_semi
+  post "championships/:id/actions/league/finals", to: "championships#start_league_finals", as: :championship_start_league_finals
+  get "championships/:id/settings", to: "championships#settings", as: :championship_settings
+  delete "championships/:id/destroy", to: "championships#destroy", as: :championship_destroy
+  post "championships/:id/actions/end", to: "championships#end", as: :championship_end
 
-  match "championships/:id/settings", controller: "championships", action: "settings", via: :post, as: :championship_settings
-  match "championships/games/:id", to: "championships#games", via: :post, as: :championship_games
-  get "championships/games/:id/games_proc_dt", to: "championships#games_proc_dt", as: :championship_games_proc_dt
-  delete "championships/destroy/:id", to: "championships#destroy", as: :championship_destroy
-  match "championships/update/:id", controller: "championships", action: "update", via: :post, as: :championships_update
-  match "championships/:id/game/:game/:iteration/contest/:gaction", controller: "championships", action: "game_contest", via: [:get, :post], as: :championship_game_contest
-  match "championships/:id/game/:game/:iteration/applywo", controller: "championships", action: "applywo", via: :get, as: :championship_game_applywo
+###############
+
+  # get "championships/games/:id/games_proc_dt", to: "championships#games_proc_dt", as: :championship_games_proc_dt
+  # 
+  # match "championships/:id/game/:game/:iteration/contest/:gaction", controller: "championships", action: "game_contest", via: [:get, :post], as: :championship_game_contest
+  # match "championships/:id/game/:game/:iteration/applywo", controller: "championships", action: "applywo", via: :get, as: :championship_game_applywo
 end

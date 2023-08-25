@@ -19,13 +19,7 @@
 .team-list.grid-view-filter.row
   - if @championships
     - @championships.each do |championship|
-      - sStatus = Championship.getStatus(championship.id)
-      - if sStatus[0] == "not_started"
-        - sBadge = "dark"
-      - elsif sStatus[0] == "running"
-        - sBadge = "success"
-      - elsif sStatus[0] == "finished"
-        - sBadge = "secondary"
+      - sStatus = Championship.translate_status(championship.status)
       - cDate = championship.time_start == championship.time_end ? I18n.localize(championship.time_start, format: t('date.formats.default'))  : "#{I18n.localize(championship.time_start, format: t('date.formats.default'))} - #{I18n.localize(championship.time_end, format: t('date.formats.default'))}"
 
       .col-md-4.col-sm-12
@@ -35,13 +29,15 @@
           .card-body
             .row.align-items-center.team-row
               .col-lg-4.col
-                .team-profile-img style="margin-top: 75px !important;"
-                  .avatar-lg.img-thumbnail.rounded-circle.flex-shrink-0
-                    img.img-fluid.d-block.rounded-circle src="#{championshipBadge(championship)}"
-                  .team-content
+                .team-profile-img style="margin-top: 35px !important;"
+                  / .avatar-lg.img-thumbnail.rounded-circle.flex-shrink-0
+                  /   img.img-thumbnail.rounded-circle.avatar-xl src="#{championshipBadge(championship)}"
+                  .profile-user.mx-auto
+                    img.img-thumbnail.rounded-circle.avatar-xl src="#{championshipBadge(championship)}"
+                  .team-content style="margin-top: 15px;"
                     h5.fs-16.mb-1 = championship.name
                     p.text-muted.mb-0
-                      span class="badge bg-#{sBadge}" = sStatus[1]
+                      span class="badge bg-#{sStatus[2]}" = sStatus[1]
               .col-lg-4.col
                 p.mb-1
                   = t('.championship_date')

@@ -1,0 +1,8 @@
+= turbo_frame_tag "main_frame" do
+  = render "layouts/header/page_frame"
+  = turbo_frame_tag "manager_championships" do
+    = render "layouts/header/page_title", title: t('.championships')
+    .row
+      .col-12
+        = form_with model: @championship, id: dom_id(@championship), url: manager_championship_update_path(@championship), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
+          = render partial: "form", locals: { f: f, faction: "edit" }

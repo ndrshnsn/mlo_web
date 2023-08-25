@@ -1,20 +1,20 @@
 = turbo_frame_tag "main_frame" do
-  = render partial: "layouts/header/pageHeader", locals: { title: t('.settings') }
-
+  = render "layouts/header/page_frame"
   = turbo_frame_tag "profile" do
-		.row
-			.col-xxl-12
-				.card.mt-xxl-n5
-					.card-body
-						ul.nav.nav-tabs.mb-3 role="tablist" id="profileTab"
-							li.nav-item
-								= link_to t('.personal_details'), profile_path, class: "nav-link active", id: "personalDetails", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
-							li.nav-item
-								= link_to t('.password'), profile_password_path, class: "nav-link", id: "password", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
-							li.nav-item
-								= link_to t('.system'), profile_system_path, class: "nav-link", id: "system", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
-							li.nav-item
-								= link_to t('.social'), profile_social_path, class: "nav-link", id: "social", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
-						.tab-content.p-2
-							= turbo_frame_tag "tab_content" do
-								= render "personalDetails"
+    = render "layouts/header/page_title", title: t('.settings')
+    .row
+      .col-xxl-12
+        .card.mt-xxl-n5
+          .card-body
+            ul.nav.nav-tabs.mb-3 role="tablist" id="profileTab"
+              li.nav-item
+                = link_to t('.personal_details'), profile_path, class: "nav-link active", id: "personalDetails", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+              li.nav-item
+                = link_to t('.password'), profile_password_path, class: "nav-link", id: "password", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+              li.nav-item
+                = link_to t('.system'), profile_system_path, class: "nav-link", id: "system", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+              li.nav-item
+                = link_to t('.social'), profile_social_path, class: "nav-link", id: "social", data: { controller: "tab", action: "click->tab#toggle", "turbo-frame": "tab_content" }
+            .tab-content.p-2
+              = turbo_frame_tag "tab_content" do
+                = render "personalDetails"

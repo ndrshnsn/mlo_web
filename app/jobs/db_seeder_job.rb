@@ -26,7 +26,7 @@ class DbSeederJob < ApplicationJob
         AppConfig.championship_cards_suspension_rcard = 1
         AppConfig.match_winning_earning = 1000
         AppConfig.match_draw_earning = 500
-        AppConfig.match_lost_loss = 500
+        AppConfig.match_lost_earning = 500
         AppConfig.match_goal_earning = 100
         AppConfig.match_goal_loss = 50
         AppConfig.match_yellow_card_loss = 50

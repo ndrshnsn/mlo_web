@@ -15,7 +15,7 @@ class PlayerSeason < ApplicationRecord
   has_many :games
   # has_many :player_transactions, dependent: :destroy
   has_many :club_games
-  # has_many :club_bestplayers
+  has_many :game_best_players
 
   attribute :goals, type: :integer, default: 0
   attribute :assists, type: :integer, default: 0
