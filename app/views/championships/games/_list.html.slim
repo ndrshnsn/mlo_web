@@ -1,0 +1,5 @@
+- games.each do |game|
+  = render "championships/games/card", game: game
+
+.row.mt-3
+  = render 'layouts/pagy/main', pagy: @pagy, frame: "championships"

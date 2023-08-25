@@ -1,5 +1,10 @@
 # Change log
 
+## cc4db9d - 2023-08-25
+
+### Added
+* User Championships view
+
 ## 6cdc550 - 2023-08-18
 
 ### Added

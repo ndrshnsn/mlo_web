@@ -1,0 +1,16 @@
+pt-BR:
+  championships:
+    index:
+      championships: "Campeonatos"
+    details:
+      championships: "Campeonatos"
+      info:
+        options: "Opções"
+        date: "Data"
+        format: "Formato"
+        participants: "Participantes"
+        status: "Status"
+    main:
+      championship_date: "Data"
+      format: "Formato"
+      details: "Detalhes"

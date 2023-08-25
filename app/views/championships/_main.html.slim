@@ -1,0 +1,33 @@
+- lDisabled = @season.present? ? "" : "disabled"
+.team-list.grid-view-filter.row
+  - if championships
+    - championships.each.with_index(@pagy.offset+1) do |championship, i|
+      - sStatus = Championship.translate_status(championship.status)
+      - cDate = championship.time_start == championship.time_end ? I18n.localize(championship.time_start, format: t('date.formats.default'))  : "#{I18n.localize(championship.time_start, format: t('date.formats.default'))} - #{I18n.localize(championship.time_end, format: t('date.formats.default'))}"
+
+      .col-md-4.col-sm-12
+        .card.team-box
+          .team-cover
+            img.img-fluid src="#{image_path('misc/championship_corner_card.png')}"
+          .card-body
+            .row.align-items-center.team-row
+              .col-lg-4.col
+                .team-profile-img style="margin-top: 35px !important;"
+                  .profile-user.mx-auto
+                    img.img-thumbnail.rounded-circle.avatar-xl src="#{championshipBadge(championship)}"
+                  .team-content style="margin-top: 15px;"
+                    h5.fs-16.mb-1 = championship.name
+                    p.text-muted.mb-0
+                      span class="badge bg-#{sStatus[2]} text-dark" = sStatus[1]
+              .col-lg-4.col
+                p.mb-1
+                  = t('.championship_date')
+                  span.float-end.text-muted.mb-0 = cDate
+                p.mb-1
+                  = t('.format')
+                  span.float-end.text-muted.mb-0 = Championship.types(championship.ctype)[0][:name]
+              .col-lg-2.col
+                .text-end
+                  = link_to t('.details'), championship_details_path(championship), class: "btn btn-light view-btn", data: { "turbo-action": "advance" }
+.row.mt-3
+  = render 'layouts/pagy/main', pagy: @pagy, frame: "championships"

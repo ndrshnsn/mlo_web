@@ -70,6 +70,9 @@ as :user do
   get "seasons", to: "seasons#index"
 
   get "championships", to: "championships#index"
+  get "championships/:id/details", to: "championships#details", as: :championship_details
+  get "championships/:id/games", to: "championships#games", as: :championship_games
+  get "championships/:id/settings", to: "championships#settings", as: :championship_settings
 
   get "ranking", to: "ranking#index"
   
