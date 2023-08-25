@@ -1,7 +1,6 @@
 class ClubFinance < ApplicationRecord
   belongs_to :club
   belongs_to :source, polymorphic: true
-
   after_create :update_club_balance
 
   private

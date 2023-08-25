@@ -238,8 +238,6 @@ class Manager::ChampionshipsController < ApplicationController
         end
       end
     end
-
-    Award.updatePrizes(@championship, "cancel") if @championship.status == 100
   end
 
   def show_step(resolution, success_message)
