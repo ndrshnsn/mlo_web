@@ -1,5 +1,16 @@
 # Change log
 
+## 6cdc550 - 2023-08-18
+
+### Added
+* Moved awards calc into generic app service
+* pry-rails
+* bootstrap popover to show basic user info when focus on usernames nick
+
+### Changed
+* Removed WO column from games and added subtype int to help control statuses
+* Changed championship jsonb type from datetime to date
+
 ## 7d55589 - 2023-08-17
 
 ### Added

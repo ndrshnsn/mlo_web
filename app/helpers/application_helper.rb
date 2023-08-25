@@ -29,6 +29,14 @@ module ApplicationHelper
     false
   end
 
+  def social_link(user, network)
+    case network
+    when "twitter" then "https://twitter.com/#{user}"
+    when "facebook" then "https://facebook.com/#{user}"
+    when "instagram" then "https://instagram.com/#{user}"
+    end
+  end
+
   def avatarURL(user)
     user = user.reload
     return user.identities.last.gravatar_url if user.identities.present?

@@ -69,8 +69,11 @@ namespace :manager do
   post "championships/:id/actions/start", to: "championships#start", as: :championship_start
   post "championships/:id/actions/league/round", to: "championships#start_league_round", as: :championship_start_league_round
   match "championships/:id/actions/league/secondround", to: "championships#start_league_secondround", as: :championship_start_second_round, via: [:get, :post]
+  post "championships/:id/actions/league/semi", to: "championships#start_league_semi", as: :championship_start_league_semi
+  post "championships/:id/actions/league/finals", to: "championships#start_league_finals", as: :championship_start_league_finals
   get "championships/:id/settings", to: "championships#settings", as: :championship_settings
   delete "championships/:id/destroy", to: "championships#destroy", as: :championship_destroy
+  post "championships/:id/actions/end", to: "championships#end", as: :championship_end
 
 ###############
 

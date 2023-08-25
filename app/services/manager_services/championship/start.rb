@@ -19,12 +19,6 @@ class ManagerServices::Championship::Start < ApplicationService
     when "cup"
     when "rounds"
     end
-
-    return handle_error(@championship, @championship&.error) unless @championship.update!(status: 1)
-
-    ### NOTIFY
-
-    OpenStruct.new(success?: true, championship: @championship, error: nil)
   end
 
   def create_league_games
@@ -70,51 +64,9 @@ class ManagerServices::Championship::Start < ApplicationService
         next_game_sequence += 1
       end
     end
-  end
 
-
-
-  def notify
-
-    # lClubs.each do |lClub|
-    #   user = Club.getUser(lClub, @season.id)
-    #   ChampionshipNotification.with(
-    #     championship: @championship,
-    #     league: @season.league_id,
-    #     icon: "trophy",
-    #     push: true,
-    #     push_type: "user",
-    #     push_message: "#{t(".wnotify_subject", championship: @championship.name)}||#{t(".wnotify_text")}",
-    #     type: "start_championship"
-    #   ).deliver_later(user)
-    # end
-
-    # ChampionshipNotification.with(
-    #   championship: @championship,
-    #   league: @season.league_id,
-    #   icon: "trophy",
-    #   push: true,
-    #   push_type: "user",
-    #   push_message: "#{t('.wnotify_subject', championship: @championship.name)}||#{t('.wnotify_text')}",
-    #   type: "start_championship").deliver_later(user)
-
-    SeasonNotification.with(
-      season: season,
-      league: season.league_id,
-      icon: "stack",
-      type: "start",
-      push: true,
-      push_message: "#{I18n.t("manager.seasons.steps.start.wnotify_subject", season: season.name)}||#{I18n.t("manager.seasons.steps.start.wnotify_text")}"
-    ).deliver_later(@user)
-
-    SeasonNotification.with(
-      season: season,
-      league: season.league_id,
-      icon: "stack",
-      type: "start",
-      push: true,
-      push_message: "#{I18n.t("manager.seasons.steps.start.wnotify_subject", season: season.name)}||#{I18n.t("manager.seasons.steps.start.wnotify_text")}"
-    ).deliver_later(User.joins(:user_seasons).where("user_seasons.season_id = ? AND users.preferences -> 'fake' IS NULL", season.id))
+    return handle_error(@championship, @championship&.error) unless @championship.update!(status: 1)
+    OpenStruct.new(success?: true, championship: @championship, error: nil)
   end
 
   def handle_error(season, error)

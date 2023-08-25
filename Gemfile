@@ -34,6 +34,7 @@ group :development do
   gem "letter_opener"
   gem "bullet"
   gem "solargraph"
+  gem "pry-rails"
 end
 
 gem "dotenv-rails"

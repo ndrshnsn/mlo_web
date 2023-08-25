@@ -4,6 +4,11 @@ class ProfileController < ApplicationController
     @defCountries = DefCountry.getSorted
   end
 
+  def user_popover
+    @user = User.friendly.find(params[:id])
+    render "layouts/user_popover"
+  end
+
   def pw
     @user = User.find(current_user.id)
     render "_pw"

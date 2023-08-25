@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_15_201544) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_205306) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -119,11 +119,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_201544) do
     t.index ["season_id"], name: "index_championships_on_season_id"
   end
 
+  create_table "club_awards", force: :cascade do |t|
+    t.bigint "club_id", null: false
+    t.string "source_type", null: false
+    t.bigint "source_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_club_awards_on_club_id"
+    t.index ["source_type", "source_id"], name: "index_club_awards_on_source"
+  end
+
   create_table "club_championships", force: :cascade do |t|
     t.bigint "club_id", null: false
     t.bigint "championship_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "games", default: 0
+    t.integer "wins", default: 0
+    t.integer "draws", default: 0
+    t.integer "losses", default: 0
+    t.integer "goalsfor", default: 0
+    t.integer "goalsagainst", default: 0
+    t.integer "goalsdiff", default: 0
+    t.integer "points", default: 0
+    t.integer "gamerate", default: 0
+    t.integer "group"
     t.index ["championship_id"], name: "index_club_championships_on_championship_id"
     t.index ["club_id"], name: "index_club_championships_on_club_id"
   end
@@ -265,12 +285,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_201544) do
     t.boolean "hfaccepted", default: false
     t.boolean "vfaccepted", default: false
     t.bigint "eresults_id"
-    t.boolean "wo", default: false
     t.boolean "mresult", default: false
     t.text "mdescription"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "gsequence"
+    t.integer "subtype", default: 0
     t.index ["championship_id"], name: "index_games_on_championship_id"
     t.index ["eresults_id"], name: "index_games_on_eresults_id"
     t.index ["home_id"], name: "index_games_on_home_id"
@@ -499,6 +519,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_201544) do
   add_foreign_key "championship_positions", "championships"
   add_foreign_key "championship_positions", "clubs"
   add_foreign_key "championships", "seasons"
+  add_foreign_key "club_awards", "clubs"
   add_foreign_key "club_championships", "championships"
   add_foreign_key "club_championships", "clubs"
   add_foreign_key "club_finances", "clubs"

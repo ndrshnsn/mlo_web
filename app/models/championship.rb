@@ -13,9 +13,9 @@ class Championship < ApplicationRecord
 
   ## Settings
   jsonb_accessor :preferences,
-    time_course: :datetime,
-    time_start: :datetime,
-    time_end: :datetime,
+    time_course: :date,
+    time_start: :date,
+    time_end: :date,
     ctype: :string,
     league_two_rounds: :boolean,
     league_finals: :boolean,
@@ -82,9 +82,10 @@ class Championship < ApplicationRecord
     phase = {
       1 => [I18n.t("championship.phase.round"), "secondary"],
       2 => [I18n.t("championship.phase.second_round"), "secondary"],
-      3 => [I18n.t("championship.phase.semifinals"), "warning"],
-      4 => [I18n.t("championship.phase.finals"), "success"],
-      5 => [I18n.t("championship.phase.thirdfourth"), "info"]
+
+      98 => [I18n.t("championship.phase.semifinals"), "warning"],
+      99 => [I18n.t("championship.phase.thirdfourth"), "info"],
+      100 => [I18n.t("championship.phase.finals"), "success"]
     }
     phase[code]
   end
@@ -94,24 +95,40 @@ class Championship < ApplicationRecord
     return Championship.where(season_id: season_id).where("status > ? AND status < ?", 0, 100)
   end
 
-  def self.getGoalers(championship)
-    PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."player_season_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id, status: 100)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS goals").group(:id).order("goals desc")
+  def self.getGoalers(championship,items=nil)
+    goalers = PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."player_season_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id)}).includes(:def_player).select("player_seasons.id, player_seasons.def_player_id, COUNT(player_seasons.id) AS goals").group(:id).order("goals desc")
+    goalers = goalers.limit(items) if items
+    goalers
   end
 
-  def self.getAssisters(championship)
-    PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."assist_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id, status: 100)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS assists").group(:id).order("assists desc")
+  def self.getAssisters(championship,items=nil)
+    assisters = PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."assist_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id)}).includes(:def_player).select("player_seasons.id, player_seasons.def_player_id, COUNT(player_seasons.id) AS assists").group(:id).order("assists desc")
+    assisters = assisters.limit(items) if items
+    assisters
   end
 
-  def self.getFairPlay(championship)
-    PlayerSeason.joins('LEFT OUTER JOIN "game_cards" ON "game_cards"."player_season_id" = "player_seasons"."id"').where(game_cards: {game_id: Game.where(championship_id: championship.id, status: 100)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(game_cards.ycard) AS count_ycard, COUNT(game_cards.rcard) AS count_rcard").group(:id).order("count_rcard desc, count_ycard desc")
+  def self.getFairPlay(championship,items=nil)
+    fairplay = PlayerSeason.joins('LEFT OUTER JOIN "game_cards" ON "game_cards"."player_season_id" = "player_seasons"."id"').where(game_cards: {game_id: Game.where(championship_id: championship.id)}).includes(:def_player).select("player_seasons.id, player_seasons.def_player_id, COUNT(game_cards.ycard) AS count_ycard, COUNT(game_cards.rcard) AS count_rcard").group(:id).order("count_rcard desc, count_ycard desc")
+    fairplay = fairplay.limit(items) if items
+    fairplay
   end
 
-  def self.getBestPlayer(championship)
-    PlayerSeason.joins('LEFT OUTER JOIN "club_bestplayers" ON "club_bestplayers"."player_season_id" = "player_seasons"."id"').where(club_bestplayers: {game_id: Game.where(championship_id: championship.id, status: 100)}).includes(:player).select("player_seasons.id, player_seasons.player_id, COUNT(player_seasons.id) AS bestplayer").group(:id).order("bestplayer desc")
+  def self.getBestPlayer(championship,items=nil)
+    getBestPlayer = PlayerSeason.joins('LEFT OUTER JOIN "game_best_players" ON "game_best_players"."player_season_id" = "player_seasons"."id"').where(game_best_players: {game_id: Game.where(championship_id: championship.id)}).includes(:def_player).select("player_seasons.id, player_seasons.def_player_id, COUNT(player_seasons.id) AS bestplayer").group(:id).order("bestplayer desc")
+    getBestPlayer = getBestPlayer.limit(items) if items
+    getBestPlayer
   end
 
   def self.get_game_sequence(championship)
-    games = Game.where(championship_id: championship.id).order(gsequence: :desc)
+    games = Game.where(championship_id: championship.id).order(gsequence: :asc)
     games.size > 0 ? games.last.gsequence : 0
+  end
+
+  def self.get_standing(championship, items = nil, group_number = nil)
+    standing = ClubChampionship.where(championship_id: championship)
+    standing = standing.where(group: group_number) if group_number
+    standing = standing.order(points: :desc, goalsdiff: :desc, wins: :desc, goalsfor: :desc)
+    standing = standing.limit(items) if items
+    standing
   end
 end

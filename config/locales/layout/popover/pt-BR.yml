@@ -1,0 +1,5 @@
+pt-BR:
+  layouts:
+    user_popover:
+      location: "Local"
+      nickname: "nickname"

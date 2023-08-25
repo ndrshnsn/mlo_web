@@ -37,7 +37,7 @@ class ManagerServices::Championship::League::Secondround < ApplicationService
 
   def second_method
     all_round_games = Game.where(championship_id: @championship.id, phase: 1)
-    not_finished_games = all_round_games.where("status < ?", 4)
+    not_finished_games = all_round_games.where("status < ?", 3)
     if not_finished_games.size > 0
       not_finished_games.each do |game|
         return handle_error(@championship, @championship&.error) unless AppServices::Games::Revoke.call(game)
@@ -47,8 +47,6 @@ class ManagerServices::Championship::League::Secondround < ApplicationService
 
     ## NOTIFY / RENDER / ACTIONCABLE
   end
-
-
 
   def notify
 

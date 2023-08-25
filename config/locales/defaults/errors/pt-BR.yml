@@ -4,3 +4,6 @@ pt-BR:
       season:
         end:
           previous_running: "Existe um Campeonato ou Jogo em Andamento ou não finalizado. Verifique essa informação antes de tentar finalizar uma temporada"
+      championship:
+        semi_not_finished: "Verifique os jogos pendentes para finalizar na Semi antes de Iniciar as Finais!!"
+        finals_not_finished: "Existem jogos pendentes nas Finais. Verifique antes de encerrar o campeonato"

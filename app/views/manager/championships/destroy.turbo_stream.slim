@@ -1,4 +1,4 @@
 = turbo_stream.update "manager_championships" do
   = render "layouts/header/page_title", title: t('.championships')
-  = render "manager/championships/details/main", championships: @championships
+  = render "list", championships: @championships
 = render_turbo_stream_flash_messages

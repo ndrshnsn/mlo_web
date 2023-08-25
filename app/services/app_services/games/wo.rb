@@ -18,7 +18,7 @@ class AppServices::Games::Wo < ApplicationService
       Sidekiq::Cron::Job.find("result_confirmation_#{@game.championship.season.id}_#{@game.championship.id}_#{@game.id}").destroy
     end
 
-    @game.status = 4
+    @game.status = 100
     @game.wo = true
     @game.hscore = 0
     @game.vscore = 0

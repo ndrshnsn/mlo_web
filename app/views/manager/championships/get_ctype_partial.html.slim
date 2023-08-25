@@ -11,6 +11,9 @@
             .form-check.form-switch
               = check_box_tag "championship[league_two_rounds]", nil, league_two_rounds, disabled: @sStarted, class: "mt-2 form-check-input"
               label.form-check-label for="championship_league_two_rounds"
+
+              - if @championship.present? && @sStarted
+                = hidden_field_tag "championship[league_two_rounds]", @championship.preferences["league_two_rounds"]
       li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
         span.li-col
           = t('.league.finals')
@@ -21,6 +24,10 @@
             .form-check.form-switch
               = check_box_tag "championship[league_finals]", nil, league_finals, disabled: @sStarted, class: "mt-2 form-check-input"
               label.form-check-label for="championship_league_finals"
+
+              - if @championship.present? && @sStarted
+                = hidden_field_tag "championship[league_finals]", @championship.preferences["league_finals"]
+
       li.list-group-item.d-flex.justify-content-between.align-items-center 
             span.li-col
               = t('.league.league_criterion')
@@ -41,3 +48,5 @@
           .form-check.form-switch
             = check_box_tag "championship[cards_suspension]", nil, cards_suspension, disabled: @sStarted, class: "mt-2 form-check-input"
             label.form-check-label for="championship_cards_suspension"
+            - if @championship.present? && @sStarted
+                = hidden_field_tag "championship[cards_suspension]", @championship.preferences["cards_suspension"]

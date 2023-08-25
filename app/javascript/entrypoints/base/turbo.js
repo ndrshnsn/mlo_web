@@ -10,6 +10,10 @@ document.addEventListener("hidden.bs.modal", function (event) {
   $('.popover').remove()
 });
 
+document.addEventListener("show.bs.popover", function (event) {
+  window.preserve_scroll = true
+});
+
 document.addEventListener("turbo:click", function(event) {
   $.LoadingOverlay("show")
   $('.popover').remove()
@@ -25,7 +29,6 @@ document.addEventListener("turbo:frame-render", function(event) {
   }else{
     delete window.preserve_scroll
   }
-
   $.LoadingOverlay("hide", "force")
 });
 

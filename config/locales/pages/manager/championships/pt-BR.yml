@@ -11,14 +11,23 @@ pt-BR:
         format: "Formato"
         championship_date: "Data"
         details: "Detalhes"
-      cActions:
-        championship_actions: ".: FASES :."
-        choose_club: "Defina os Participantes"
+      create:
+        success: "Campeonato criado com sucesso!"
+        error: "Erro criando campeonato. Contate o Adm!"
+      destroy:
+        success: "Campeonato excluído com sucesso!"
+        error: "Erro excluindo Campeonato. Contate o Adm!"
+      update:
+        success: "Campeonato atualizado com sucesso!"
+        error: "Erro atualizando Campeonato. Contate o Adm!"
       details:
         info:
           date: "Data"
           format: "Formato"
+          general: "Info Principal"
           participants: "Participantes"
+          settings: "Configurações"
+          games: "Jogos"
           status: "Status"
           remove: "Excluir?"
           remove_button: "Excluir"
@@ -27,6 +36,9 @@ pt-BR:
         championships: "Campeonatos"
         confirm: "Criar Campeonato?"
         confirm_text: "As opções de Grupos/Usuários serão definidos após a Criação do Campeonato"
+      settings:
+        confirm: "Atualizar Campeonato?"
+        confirm_text: "Alterações já serão aplicadas ao campeonato."
       get_ctype_partial:
         league:
           two_rounds: "Turno e Returno"
@@ -89,13 +101,54 @@ pt-BR:
         choose_clubs_desc_html: "<h5 class='fs-16 text-danger-emphasis'>ATENÇÃO</h5><p>Selecione os Clubes que irão participar do Campeonato, clicando no nome dos clubes na coluna da esquerda. O mínimo necessário para iniciar um campeonato é de %{minusers} Clubes.</p>"
         select_all: "Selecionar Todos"
         deselect_all: "Remover Todos"
-        success: "Clubes adicionados ao Campeonato com sucesso!"
-        error: "Erro adicionando os Clubes ao Campeonato, contate o Administrador!"
+        clubs:
+          success: "Clubes adicionados ao Campeonato com sucesso!"
+          error: "Erro adicionando os Clubes ao Campeonato, contate o Administrador!"
       league:
-        start_secondround: "Iniciar o Segundo Turno"
-        start_secondround_subtitle: "Opções para Início do 2o Turno"
-        start_secondround_desc_html: "Esta opção inicia o Returno e libera a realização dos jogos. Jogos ainda não finalizados ou iniciados no turno não soferão nenhuma alteração"
-        start_secondround_secondoption_desc_html: "Você pode forçar o início do returno e liberar os jogos mas <strong class='text-warning'>caso ainda existam jogos a ser realizados no Turno, os mesmos serão cancelados.</strong>. Jogos encerrados no Turno não sofrerão alteração."
-        start_secondround_question: "Iniciar o Returno?"
-        start_secondround_text: "O returno será liberado e os usuários informados de que poderão iniciar seus jogos"
+        secondround_subtitle: "Opções para iniciar o Returno"
+        second_round_option1: "Opção 1"
+        second_round_option2: "Opção 2"
+        secondround: "Iniciar Returno"
+        secondround_desc_html: "Esta opção inicia o Returno e libera a realização dos jogos. Jogos ainda não finalizados ou iniciados no turno não soferão nenhuma alteração"
+        secondround_secondoption_desc_html: "Você pode forçar o início do returno e liberar os jogos mas <strong class='text-warning'>caso ainda existam jogos a ser realizados no Turno, os mesmos serão cancelados.</strong>. Jogos encerrados no Turno não sofrerão alteração."
+        secondround_question: "Iniciar o Returno?"
+        secondround_text: "O returno será liberado e os usuários informados de que poderão iniciar seus jogos"
+      start:
+        success: "Campeonato Iniciado com sucesso!"
+        error: "Erro iniciando o Campeonato."
+      start_league_round:
+        success: "Turno iniciado com sucesso!"
+        error: "Erro iniciando o turno do Campeonato."
+      start_league_secondround:
+        success: "Returno iniciado com sucesso!"
+        error: "Erro iniciando o returno"
+      start_league_semi:
+        success: "Semifinais iniciadas com sucesso!"
+        error: "Erro iniciando as Semifinais"
+      cactions:
+        championship_actions: ".: FASES :."
+        choose_club: "Defina os Participantes"
+        league:
+          choose_club: "Participantes"
+          start_championship: "Iniciar Campeonato"
+          start_championship_question: "Iniciar o Campeonato?"
+          start_championship_text: "O campeonato será iniciado, os participantes serão informados e você poderá liberar a realização dos jogos."
+
+          start_round: "Iniciar Turno"
+          start_round_question: "Iniciar o Turno?"
+          start_round_text: "Os jogos do turno serão liberados para realização."
+
+          start_semifinals: "Iniciar Semifinais"
+          start_semifinals_question: "Iniciar as Semifinais?"
+          start_semifinals_text: "Os jogos serão liberados para realização e os usuários serão informados. IMPORTANTE : Caso existam jogos não iniciados e/ou em andamento, os mesmos serão cancelados!!"
+
+          start_finals: "Iniciar Finais"
+          start_finals_question: "Iniciar Finais?"
+          start_finals_text: "Os jogos da final e 3o/4o lugar serão liberados para realização e os usuários informados."
+
+          start_secondround: "Iniciar Returno"
+
+          end_championship: "Encerrar Campeonato"
+          end_championship_question: "Encerrar Campeonato?"
+          end_championship_text: "Com os jogos encerrados, a premiação definida será paga e o Ranking atualizado."
 

@@ -42,7 +42,13 @@
           .form-group
             = f.label :name, t('.time_course'), class: "control-label"
             - if @championship.id.present?
-              = f.text_field :time_course, class: "text-center form-control", required: true, "data-controller": "flatpickr", "data-flatpickr-ctype-value": "range", "data-flatpickr-ddatei-value": @championship.time_start, "data-flatpickr-ddatef-value": @championship.time_end
+              - if @championship.status == 0
+                = f.text_field :time_course, class: "text-center form-control", required: true, "data-controller": "flatpickr", "data-flatpickr-ctype-value": "range", "data-flatpickr-ddatei-value": @championship.time_start, "data-flatpickr-ddatef-value": @championship.time_end, readonly: sStarted
+              - else
+                = f.text_field :time_course, hidden: true, class: "text-center form-control", value: "#{@championship.time_start.strftime("%Y-%m-%d")} - #{@championship.time_end.strftime("%Y-%m-%d")}", readonly: sStarted
+
+                - time_course_value = "#{I18n.localize(@championship.time_start, format: t('date.formats.default'))} - #{I18n.localize(@championship.time_end, format: t('date.formats.default'))}"
+                = f.text_field :time_course_user, class: "text-center form-control", value: time_course_value, readonly: sStarted
             - else
               = f.text_field :time_course, class: "text-center form-control", required: true, "data-controller": "flatpickr", "data-flatpickr-ctype-value": "range", "data-flatpickr-sdate-value": @season.start, "data-flatpickr-edate-value": @season.start+@season.duration.days, value: @season.start
     .row.mb-3
@@ -175,6 +181,8 @@
                 .form-check.form-switch
                   = check_box_tag "championship[match_best_player]", nil, match_best_player, disabled: sStarted, class: "mt-2 form-check-input"
                   label.form-check-label for="championship_match_best_player"
+                  - if @championship.present? && sStarted
+                    = hidden_field_tag "championship[match_best_player]", @championship.preferences["match_best_player"]
     .row
       .col-12
         h6.mt-2.d-flex
