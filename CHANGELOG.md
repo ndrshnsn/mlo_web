@@ -4,6 +4,7 @@
 
 ### Added
 * User Championships view
+* Reorganized Game card elments into service objects and partials 
 
 ## 6cdc550 - 2023-08-18
 

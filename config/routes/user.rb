@@ -74,6 +74,8 @@ as :user do
   get "championships/:id/games", to: "championships#games", as: :championship_games
   get "championships/:id/settings", to: "championships#settings", as: :championship_settings
 
+  post "games/:id/start", to: "games#start", as: :game_start
+
   get "ranking", to: "ranking#index"
   
 end

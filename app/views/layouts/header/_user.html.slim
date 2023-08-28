@@ -4,7 +4,7 @@
             img src='#{avatarURL(current_user)}' class="rounded-circle header-profile-user"
             span.text-start.ms-xl-2
                 span.d-none.d-xl-inline-block.ms-1.fw-medium.user-name-text = current_user.full_name
-                span.d-none.d-xl-block.ms-1.fs-12.text-muted.user-name-sub-text ##{current_user.nickname}
+                span.d-none.d-xl-block.ms-1.fs-12.user-name-sub-text ##{current_user.nickname}
 
     .dropdown-menu.dropdown-menu-end
         = link_to profile_path, class: "dropdown-item", data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle" } do

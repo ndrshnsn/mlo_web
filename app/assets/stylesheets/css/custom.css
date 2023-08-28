@@ -127,7 +127,7 @@ tr.strikeout td:before {
 }
 
 .modal {
-  z-index: 1058 !important;
+  z-index: 1083 !important;
 }
 
 .swal2-container {
@@ -143,4 +143,49 @@ input[type=number]::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield;
+}
+
+.teams {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 100px 1fr;
+  grid-template-columns: 1fr 100px 1fr;
+}
+
+.teams-logo {
+  display: block;
+  margin: auto;
+    margin-bottom: auto;
+  margin-bottom: 10px;
+  width: 64px;
+  height: 64px;
+}
+
+.teams .teams-name {
+  text-transform: uppercase;
+}
+
+.score {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 85px;
+}
+
+.suspended-players, #game_details {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 2px 1fr;
+    grid-template-columns: 1fr 2px 1fr;
+}
+
+.game_actions {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 15px 1fr;
+  grid-template-columns: 1fr 100px 1fr;
+}
+
+.penalty, .score, .time, .match-item, .match-label, .match-team {
+  text-align: center;
 }

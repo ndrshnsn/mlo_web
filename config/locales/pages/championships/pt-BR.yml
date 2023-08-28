@@ -10,6 +10,9 @@ pt-BR:
         format: "Formato"
         participants: "Participantes"
         status: "Status"
+        games: "Jogos"
+        settings: "Configurações"
+        general: "Principal"
     main:
       championship_date: "Data"
       format: "Formato"

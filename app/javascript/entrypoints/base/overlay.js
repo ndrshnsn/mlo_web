@@ -3,9 +3,9 @@ import LoadingOverlay from "gasparesganga-jquery-loading-overlay"
 window.LoadingOverlay = LoadingOverlay
 
 $.LoadingOverlaySetup({
-  background      : "rgba(0, 0, 0, 0.5)",
+  background      : "rgba(0, 0, 0, 0.3)",
   image           : "",
-  fontawesome     : "ri ri-refresh-line",
+  fontawesome     : "",
   fontawesomeAnimation : "rotate_right",
   fontawesomeColor: "#ffffff",
   fontawesomeOrder: "1",
