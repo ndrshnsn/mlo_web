@@ -2829,8 +2829,8 @@ code {
 
 #back-to-top {
   position: fixed;
-  bottom: 100px;
-  right: 28px;
+  bottom: 35px;
+  right: 20px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   display: none;
@@ -3874,14 +3874,14 @@ code {
   --vz-input-border-custom: #ced4da;
 }
 :root[data-topbar=dark] {
-  --vz-header-bg: #132649;
+  --vz-header-bg: #364371;
   --vz-header-item-color: rgba(255, 255, 255, 0.85);
   --vz-header-item-bg: #1b3460;
   --vz-header-item-sub-color: #b0c4d9;
-  --vz-topbar-user-bg: #223558;
+  --vz-topbar-user-bg: #52639c;
   --vz-topbar-search-bg: rgba(255, 255, 255, 0.05);
   --vz-topbar-search-color: #fff;
-  --vz-header-border: #132649;
+  --vz-header-border: #405189;
 }
 
 :root {
@@ -3900,14 +3900,14 @@ code {
   --vz-vertical-menu-dropdown-box-shadow: 0 2px 4px rgba(15, 34, 58, 0.12);
 }
 :root[data-sidebar=dark] {
-  --vz-vertical-menu-bg: #132649;
-  --vz-vertical-menu-border: #132649;
+  --vz-vertical-menu-bg: #405189;
+  --vz-vertical-menu-border: #405189;
   --vz-vertical-menu-item-color: #96a7c7;
   --vz-vertical-menu-item-bg: rgba(255, 255, 255, 0.15);
   --vz-vertical-menu-item-hover-color: #fff;
   --vz-vertical-menu-item-active-color: #fff;
   --vz-vertical-menu-item-active-bg: rgba(255, 255, 255, 0.15);
-  --vz-vertical-menu-sub-item-color: #96a7c7;
+  --vz-vertical-menu-sub-item-color: #abb9e8;
   --vz-vertical-menu-sub-item-hover-color: #fff;
   --vz-vertical-menu-sub-item-active-color: #fff;
   --vz-vertical-menu-title-color: #838fb9;
