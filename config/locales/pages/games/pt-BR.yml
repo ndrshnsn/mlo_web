@@ -1,0 +1,9 @@
+pt-BR:
+  games:
+    card:
+      start_game: "Iniciar"
+      start_game_question: "Iniciar Jogo #%{game} ?"
+      start_game_text: "Importante: O jogo só será liberado para realização após o Adversário aceitar seu início."
+    start:
+      success: "Aceito início do jogo. Avise ou aguarde seu adversário"
+      error: "Erro aceitando o início do jogo!"

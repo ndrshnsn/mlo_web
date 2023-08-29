@@ -1,94 +1,94 @@
 - phase = Championship.translate_phase(game.phase)
 - status = Game.translate_status(game.status)
-.col-lg-6.col-xxl-4
-  = turbo_frame_tag "game_#{game.hashid}" do
-    .card
-      .card-header.d-flex.pb-0.bg-primary-subtle.rounded-top
-        .flex-grow-1
-          h6.card-title Jogo ##{game.gsequence}
-          p.card-subtitle
-            span class="badge bg-#{phase[1]}" = phase[0]
-        .flex-shrink-0.text-end
-          i.ri-map-pin-line.me-1.align-bottom.fs-12
-          span.fs-13 #{game.home.def_team.details["teamCity"]}, #{stringHuman(t("defaults.countries.#{game.home.def_team.def_country.name}"))}
-          p.text-muted.fs-12 = game.home.def_team.details["teamStadium"]
-      .card-body.pt-4.pb-3
-        .teams.mb-1
-          .text-center
-            span.teams-logo
-              = image_tag("#{session[:pdbprefix]}/teams/#{(game.home.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
-            span.teams-name.d-sm-block.d-none = game.home.def_team.name
-            span.teams-name.d-block.d-sm-none = game.home.def_team.details["teamAbbr"]
-            small.text-muted
-              a href="javascript:void(0)" id="button_userinfo_home_#{game.id}" data-controller="popover" data-popover-id-value="#{game.home.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.home.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.home.user_season.user)}" ##{game.home.user_season.user.nickname}
-          .text-center
-            span.score.d-flex.justify-content-center
-              span.fs-1 = game.hscore
-              span.ms-1.me-1.fs-6 X
-              span.fs-1 = game.vscore
-            span.penalty
-          .text-center
-            span.teams-logo
-              = image_tag("#{session[:pdbprefix]}/teams/#{(game.visitor.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
-            span.teams-name.d-sm-block.d-none = game.visitor.def_team.name
-            span.teams-name.d-block.d-sm-none = game.visitor.def_team.details["teamAbbr"]
-            small.text-muted
-              a href="javascript:void(0)" id="button_userinfo_visitor_#{game.id}" data-controller="popover" data-popover-id-value="#{game.visitor.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.visitor.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.visitor.user_season.user)}" ##{game.visitor.user_season.user.nickname}
+- session_pdbprefix = session.present? ? session[:pdbprefix] : session_pdbprefix
+= turbo_frame_tag "game_#{game.hashid}" do
+  .card
+    .card-header.d-flex.pb-0.bg-primary-subtle.rounded-top
+      .flex-grow-1
+        h6.card-title Jogo ##{game.gsequence}
+        p.card-subtitle
+          span class="badge bg-#{phase[1]}" = phase[0]
+      .flex-shrink-0.text-end
+        i.ri-map-pin-line.me-1.align-bottom.fs-12
+        span.fs-13 #{game.home.def_team.details["teamCity"]}, #{stringHuman(t("defaults.countries.#{game.home.def_team.def_country.name}"))}
+        p.text-muted.fs-12 = game.home.def_team.details["teamStadium"]
+    .card-body.pt-4.pb-3
+      .teams.mb-1
+        .text-center
+          span.teams-logo
+            = image_tag("#{session_pdbprefix}/teams/#{(game.home.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+          span.teams-name.d-sm-block.d-none = game.home.def_team.name
+          span.teams-name.d-block.d-sm-none = game.home.def_team.details["teamAbbr"]
+          small.text-muted
+            a href="javascript:void(0)" id="button_userinfo_home_#{game.id}" data-controller="popover" data-popover-id-value="#{game.home.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.home.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.home.user_season.user)}" ##{game.home.user_season.user.nickname}
+        .text-center
+          span.score.d-flex.justify-content-center
+            span.fs-1 = game.hscore
+            span.ms-1.me-1.fs-6 X
+            span.fs-1 = game.vscore
+          span.penalty
+        .text-center
+          span.teams-logo
+            = image_tag("#{session_pdbprefix}/teams/#{(game.visitor.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+          span.teams-name.d-sm-block.d-none = game.visitor.def_team.name
+          span.teams-name.d-block.d-sm-none = game.visitor.def_team.details["teamAbbr"]
+          small.text-muted
+            a href="javascript:void(0)" id="button_userinfo_visitor_#{game.id}" data-controller="popover" data-popover-id-value="#{game.visitor.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.visitor.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.visitor.user_season.user)}" ##{game.visitor.user_season.user.nickname}
 
-        #game_details
+      #game_details
 
-        - if game.home.user_season.user.id == current_user.id || game.visitor.user_season.user.id == current_user.id
+      - if game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id
 
-          - if game.status < 3
-            div.game_actions.mt-2 id="game_actions_#{game.championship.hashid}_#{game.hashid}"
-              .text-center
-                div id="game_actions_#{game.championship.hashid}_#{game.hashid}_home"
-                - if game.status == 0
-                  - if game.home.user_season.user.id == current_user.id
-                    - if game.hsaccepted
-                      = render "games/status/ready"
-                    - else
-                      = link_to "javascript:;", class: "btn btn-primary btn-sm", data: { controller: "confirm", "confirm-title-value": t('.start_game_question'), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
-                        i.ri-play-line.me-1.align-bottom
-                        span Iniciar
+        - if game.status < 3
+          div.game_actions.mt-2 id="game_actions_#{game.championship.hashid}_#{game.hashid}"
+            .text-center
+              div id="game_actions_#{game.championship.hashid}_#{game.hashid}_home"
+              - if game.status == 0
+                - if game.home.user_season.user.id == current_user_id
+                  - if game.hsaccepted
+                    = render "games/status/ready"
                   - else
-                    - if !game.hsaccepted && game.vsaccepted
-                      = render partial: "games/status/waiting"
-                    - elsif game.hsaccepted && !game.vsaccepted == false
-                      = render partial: "games/status/ready"
-              .text-center
-              .text-center
-                div id="game_actions_#{game.championship.hashid}_#{game.hashid}_visitor"
-                - if game.status == 0
-                  - if game.visitor.user_season.user.id == current_user.id
-                    - if game.vsaccepted
-                      = render "championships/games/gStatus_matchReady"
-                    - else
-                      = link_to game_start_path(game), class: "btn btn-sm btn-primary", id: "start_button_#{game.championship.hashid}_#{game.hashid}_visitor", data: { disable_with: 'Aguarde...'} do
-                        i.ri-play-line.me-1.align-bottom
-                        span Iniciar
-              /     - else
-              /       - if game.home_start_accepted == true && game.visitor_start_accepted == false
-              /         = render partial: "championships/games/gStatus_matchWaiting"
-              /       - elsif game.home_start_accepted == false && game.visitor_start_accepted == true
-              /         = render partial: "championships/games/gStatus_matchReady"
-      - if game.status < 3
-        .card-footer id="game_actions_footer_#{game.championship.hashid}_#{game.hashid}"
-          - if game.home.user_season.user.id == current_user.id || game.visitor.user_season.user.id == current_user.id
-          - current_side = game.home.user_season.user.id == current_user.id ? game.home.id : game.visitor.id
-          - if game.status == 1
-            - if game.entering_results_id == nil
+                    = link_to "javascript:;", class: "btn btn-primary btn-sm", data: { controller: "confirm", "confirm-title-value": t('.start_game_question', game: game.gsequence), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+                      i.ri-play-line.me-1.align-bottom
+                      span = t(".start_game")
+                - else
+                  - if !game.hsaccepted && game.vsaccepted
+                    = render "games/status/waiting"
+                  - elsif game.hsaccepted && !game.vsaccepted == false
+                    = render "games/status/ready"
+            .text-center
+            .text-center
+              div id="game_actions_#{game.championship.hashid}_#{game.hashid}_visitor"
+              - if game.status == 0
+                - if game.visitor.user_season.user.id == current_user_id
+                  - if game.vsaccepted
+                    = render "games/status/ready"
+                  - else
+                    = link_to "javascript:;", class: "btn btn-primary btn-sm", data: { controller: "confirm", "confirm-title-value": t('.start_game_question', game: game.gsequence), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+                      i.ri-play-line.me-1.align-bottom
+                      span = t(".start_game")
+                - else
+                  - if !game.vsaccepted && game.hsaccepted
+                    = render "games/status/waiting"
+                  - elsif game.vsaccepted && !game.hsaccepted == false
+                    = render "games/status/ready"
+    - if game.status < 3
+      .card-footer id="game_actions_footer_#{game.championship.hashid}_#{game.hashid}"
+        - if game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id
+        - current_side = game.home.user_season.user.id == current_user_id ? game.home.id : game.visitor.id
+        - if game.status == 1
+          - if game.entering_results_id == nil
+            = render 'games/status/enter_results', game: game
+          - else
+            - if game.eresults_id == current_side
               = render 'games/status/enter_results', game: game
             - else
-              - if game.eresults_id == current_side
-                = render 'games/status/enter_results', game: game
-              - else
-                = render 'games/status/opponent_results', game: game
-          - elsif game.status == 2
-            - if game.eresults_id == current_side
-              = render 'games/status/waiting_confirmation', game: game
-            - else
-              = render 'games/status/confirm_result', game: game
-          / - elsif game.status == 3
-          /   = render partial: 'championships/games/gStatus_inContest', locals: { game: game, iteration: iteration}
+              = render 'games/status/opponent_results', game: game
+        - elsif game.status == 2
+          - if game.eresults_id == current_side
+            = render 'games/status/waiting_confirmation', game: game
+          - else
+            = render 'games/status/confirm_result', game: game
+        / - elsif game.status == 3
+        /   = render partial: 'championships/games/gStatus_inContest', locals: { game: game, iteration: iteration}
 

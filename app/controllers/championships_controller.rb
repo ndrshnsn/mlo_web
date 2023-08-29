@@ -34,7 +34,7 @@ class ChampionshipsController < ApplicationController
     # if @allGames
     #     @games = Game.includes(:championship, :game_cards, club_games: [:club, player_season: [player: :player_position]]).where(championship_id: @championship.id).order(created_at: :asc).page(params[:page]).per(10)
     # else
-    @pagy, @games = pagy(Game.includes(:championship, :game_cards, club_games: [:club, player_season: [def_player: :def_player_position]]).where(championship_id: @championship.id).order(created_at: :asc), items: 4)
+    @pagy, @games = pagy(Game.includes(:championship, club_games: [:club, player_season: [def_player: :def_player_position]]).where(championship_id: @championship.id).order(created_at: :asc), items: 4)
   end
 
   def set_controller_vars

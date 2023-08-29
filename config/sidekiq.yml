@@ -5,3 +5,4 @@ production:
 :queues:
   - default
   - notifications
+  - games
