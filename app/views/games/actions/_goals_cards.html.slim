@@ -1,0 +1,110 @@
+.collapse-default[id="accordion_#{game.hashid}_#{iteration}"]
+  .card[style="background-color: #2e3342 !important;"]
+    div[class="card-header mb-50 card-header bg-primary text-white" style="padding: 0.3rem 2.8rem 0.3rem 0.8rem; border-radius: calc(.428rem - 1px) calc(.428rem - 1px) calc(.428rem - 1px) calc(.428rem - 1px)!important;" id="heading_accordion_#{game.hashid}_#{iteration}" data-toggle="collapse" role="button" data-target="#collapse_accordion_#{game.hashid}_#{iteration}" aria-expanded="false" aria-controls="collapse_accordion_#{game.hashid}_#{iteration}"]
+      span.lead.collapse-title[style="font-size: smaller; font-weight: 600;"] DETALHES
+    .collapse[id="collapse_accordion_#{game.hashid}_#{iteration}" aria-labelledby="heading_accordion_#{game.hashid}_#{iteration}" data-parent="#accordion_#{game.hashid}_#{iteration}"]
+      - if game.wo == true
+        .card-body.text-center[style="padding-top: 1rem;"]
+          h3
+            strong WO
+      - else
+        .card-body[style="padding-top: 1rem;"]
+          ul.timeline[style="margin-right: 1rem;"]
+            - game.club_games.each do |goal|
+              / Home // Visitor
+              - side = game.home_id == goal.club.id ? "home" : "visitor"
+              - rpPOS = translate_pkeys(goal.player_season.player.player_position.name, goal.player_season.player.platform)
+              - if side == "home"
+                li.timeline-item[style="padding-bottom: 0.7rem!important; padding-right: 1.5rem; padding-left: 1.5rem!important; border-right: 1px solid #435176;border-left: 1px solid #435176; min-height: 3rem!important;"]
+                  span.timeline-point
+                    i.bx.bx-football[style="color: #B4B7BD;"]
+                  .timeline-event
+                    / h6 = goal.club.player_team.name
+                    span
+                      .media.mb-25[style="font-size: small;"]
+                        .media-aside.align-self-center
+                          span.avatar.mr-75
+                            img[src="#{session[:pdbprefix]}/players/#{goal.player_season.player.platform}/#{goal.player_season.player.platformid}.png" class="avatar avatar-sm" style=" padding: 0px!important; width: 38px; height: 38px;"]
+                            / span[class="player-avatar-team"]
+                            span[class="gp-player-pos gp-player-pos-#{rpPOS[1]} mr-50" style="font-size: 9px!important; position: absolute; right: -10px; bottom: -3px;"] = rpPOS[0]
+                        .media-body.align-self-center
+                          span.d-block.font-weight-bold
+                            = goal.player_season.player.name
+                          small.text-muted
+                            i.bx.bx-expand.mr-25
+                            - if goal.assist_id == nil
+                              | NÃO IDENTIFICADO
+                            - else
+                              = goal.assist.player.name
+              - elsif side == "visitor"
+                li.timeline-item[style="padding-bottom: 0.7rem!important; padding-right: 1.5rem; border-left: 1px solid #435176; border-right: 1px solid #435176; padding-left: 1.5rem!important;min-height: 3rem!important;"]
+                  span.timeline-point[style="right: -0.9rem!important; left: auto!important;"]
+                    i.bx.bx-football[style="color: #B4B7BD;"]
+                  .timeline-event.text-right
+                    / h6 = goal.club.player_team.name
+                    span
+                      .media.mb-25[style="font-size: small;"]
+                        .media-body.align-self-center
+                          span.d-block.font-weight-bold
+                            = goal.player_season.player.name
+                          small.text-muted
+                            - if goal.assist_id == nil
+                              span.d-sm-block.d-none
+                                i.bx.bx-expand.mr-25
+                                | NÃO IDENTIFICADO
+                              span.d-block.d-sm-none
+                                i.bx.bx-expand.mr-25
+                                | N/A
+                            - else
+                              = goal.assist.player.name
+                        .media-aside.align-self-center
+                          span.avatar.ml-75
+                            img[src="#{session[:pdbprefix]}/players/#{goal.player_season.player.platform}/#{goal.player_season.player.platformid}.png" style=" padding: 0px!important; width: 38px; height: 38px;"]
+                            / span[class="player-avatar-team"]
+                            span[class="gp-player-pos gp-player-pos-#{rpPOS[1]} mr-50" style="font-size: 9px!important; position: absolute; right: -10px; bottom: -3px;"] = rpPOS[0]
+                      - game.club_games.each do |goal|
+
+            / CARDS
+            - game.game_cards.each do |card|
+              / Home // Visitor
+              - side = game.home_id == card.club.id ? "home" : "visitor"
+              - rpPOS = translate_pkeys(card.player_season.player.player_position.name, card.player_season.player.platform)
+              - if side == "home"
+                li.timeline-item[style="padding-bottom: 0.7rem!important; padding-right: 1.5rem; padding-left: 1.5rem!important;border-left: 1px solid #435176; border-right: 1px solid #435176;min-height: 3rem!important;"]
+                  span.timeline-point
+                    - if card.ycard == true
+                      i.bx.bx-square[style="color: yellow;"]
+                    - else
+                      i.bx.bx-square[style="color: red;"]
+                  .timeline-event
+                    / h6 = goal.club.player_team.name
+                    span
+                      .media.mb-25[style="font-size: small;"]
+                        .media-aside.align-self-center
+                          span.avatar.mr-75
+                            img[src="#{session[:pdbprefix]}/players/#{card.player_season.player.platform}/#{card.player_season.player.platformid}.png" class="avatar avatar-sm" style=" padding: 0px!important; width: 38px; height: 38px;"]
+                            / span[class="player-avatar-team"]
+                            span[class="gp-player-pos gp-player-pos-#{rpPOS[1]} mr-50" style="font-size: 9px!important; position: absolute; right: -10px; bottom: -3px;"] = rpPOS[0]
+                        .media-body.align-self-center
+                          span.d-block.font-weight-bold
+                            = card.player_season.player.name
+
+              - elsif side == "visitor"
+                li.timeline-item[style="padding-bottom: 0.7rem!important; padding-right: 1.5rem; border-left: 1px solid #435176; border-right: 1px solid #435176; padding-left: 1.5rem!important;min-height: 3rem!important;"]
+                  span.timeline-point[style="right: -0.9rem!important; left: auto!important;"]
+                    - if card.ycard == true
+                      i.bx.bx-square[style="color: yellow;"]
+                    - else
+                      i.bx.bx-square[style="color: red;"]
+                  .timeline-event.text-right
+                    / h6 = goal.club.player_team.name
+                    span
+                      .media.mb-25[style="font-size: small;"]
+                        .media-body.align-self-center
+                          span.d-block.font-weight-bold
+                            = card.player_season.player.name
+                        .media-aside.align-self-center
+                          span.avatar.ml-75
+                            img[src="#{session[:pdbprefix]}/players/#{card.player_season.player.platform}/#{card.player_season.player.platformid}.png" class="avatar avatar-sm" style=" padding: 0px!important; width: 38px; height: 38px;"]
+                            / span[class="player-avatar-team"]
+                            span[class="gp-player-pos gp-player-pos-#{rpPOS[1]} mr-50" style="font-size: 9px!important; position: absolute; right: -10px; bottom: -3px;"] = rpPOS[0]

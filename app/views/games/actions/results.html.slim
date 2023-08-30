@@ -1,0 +1,81 @@
+= render "layouts/modal/main", modal_size: "md"
+  = form_with model: @game, id: dom_id(@game), url: game_update_path(@game), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.myclub.management.confirm'), "form-text-value": t('.myclub.management.confirm_text'), "form-icon-value": "question"} do |f|
+    .modal-header
+      h5.modal-title.d-flex.align-items-center
+        i.ri-user-line.me-1
+        = t('.myclub.management.select_your_season_team')
+      button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+    .modal-body
+      - if @penalties
+        .col-12.text-center
+          .badge.badge-light-warning.mb-1 style="white-space: normal!important;" Lembre-se de Ativar as Penalidades para este jogo!
+      .container-fluid
+        .row
+          .teams
+            .text-center
+              span.teams-logo
+                = image_tag("#{session[:pdbprefix]}/teams/#{(@game.home.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+              span.teams-name.d-sm-block.d-none = stringHuman(@game.home.def_team.name)
+              span.teams-name.d-block.d-sm-none = stringHuman( @game.home.def_team.details['teamAbbr'])
+              small.text-muted ##{ @game.home.user_season.user.nickname}
+              p
+              = link_to game_update_add_goal_path(@game, user:  @game.home.user_season.user.id, side: "home" ), id: "championship_add_goal_game_home_button" do
+                .badge.bg-primary data-toggle="tooltip" data-title="Adicionar Gol"
+                  i.ri-football-line.me-1
+                  span.d-sm-block.d-none.ml-25[style="float: right;"] + Gol
+              / = link_to championship_add_card_game_path(@game, user:  @game.home.user_season.user.id, elid: "cards_home", side: "home" ), id: "championship_add_card_game_home_button", remote: true do
+              /   .badge.badge-primary.ml-50 data-toggle="tooltip" data-title="Adicionar Cartão"
+              /     i.bx.bx-square
+              /     span.d-sm-block.d-none.ml-25[style="float: right;"] + Cartão
+    /         .text-center
+    /           span.score
+    /             span.mr-25[id="game_modal_home_score_#{ @game.championship.hashid}_#{ @game.hashid}"]
+    /               =  @game.hscore
+    /             | x
+    /             span.ml-25[id="game_modal_visitor_score_#{ @game.championship.hashid}_#{ @game.hashid}"]
+    /               =  @game.vscore
+    /           span.penalty[id="game_penalty_#{ @game.championship.hashid}_#{ @game.hashid}"]
+    /             - if @prevGame
+    /               input type="hidden" id="prevGame_hscore_#{ @game.championship.hashid}_#{ @game.hashid}" value="#{@prev @game.hscore}"
+    /               input type="hidden" id="prevGame_vscore_#{ @game.championship.hashid}_#{ @game.hashid}" value="#{@prev @game.vscore}"
+    /               input type="hidden" id="prevGameAssignment" name="prevGameAssignment"
+    /             - if @penalties
+    /               .badge.badge-light-primary.mb-50 PÊNALTIS
+    /               #penaltyInput style="display: flex;"
+    /                 .form-group
+    /                   = text_field_tag("phscore_#{ @game.championship.hashid}_#{ @game.hashid}", '', class: "form-control form-control-sm phscore-mask text-center", size: 2, maxlength: 2, "data-parsley-checkpenaltyrequirement": 'true', "data-parsley-validate-if-empty": "true")
+    /                 span.ml-25.mr-25.font-weight-bolder style="line-height: 28px;"
+    /                   | X
+    /                 .form-group
+    /                   = text_field_tag("pvscore_#{ @game.championship.hashid}_#{ @game.hashid}", '', class: "form-control form-control-sm pvscore-mask text-center", size: 2, maxlength: 2, "data-parsley-checkpenaltyrequirement": 'true', "data-parsley-validate-if-empty": "true")
+
+
+    /             - if ! @game.phscore.nil? &&  @game.status == 4
+    /               | ( #{ @game.phscore} X #{ @game.pvscore} )
+    /         .text-center
+    /           span.teams-logo
+    /             img[src="#{ @game.visitor.player_team.badge_url}" style='width: 64px; height: 64px;']
+    /           span.teams-name.d-sm-block.d-none = stringHuman(PlayerTeam.getTranslation( @game.visitor.player_team.name)[0])
+    /           span.teams-name.d-block.d-sm-none = stringHuman( @game.visitor.player_team.details['teamAbbr'])
+    /           small.text-muted ##{ @game.visitor.user_season.user.nickname}
+    /           p
+    /           = link_to championship_add_goal_game_path(game, user:  @game.visitor.user_season.user.id, elid: "goals_visitor", side: "visitor" ), id: "championship_add_goal_game_visitor_button", remote: true do
+    /             .badge.badge-primary data-toggle="tooltip" data-title="Adicionar Gol"
+    /               i.bx.bx-football
+    /               span.d-sm-block.d-none.ml-25[style="float: right;"] + Gol
+    /           = link_to championship_add_card_game_path(game, user:  @game.visitor.user_season.user.id, elid: "cards_visitor", side: "visitor" ), id: "championship_add_card_game_visitor_button", remote: true do
+    /             .badge.badge-primary.ml-50 data-toggle="tooltip" data-title="Adicionar Cartão"
+    /               i.bx.bx-square
+    /               span.d-sm-block.d-none.ml-25[style="float: right;"] + Cartão
+
+
+    / div.row.match-height[id="goals-and-cards_#{ @game.championship.hashid}_#{ @game.hashid}"]
+            
+    / - if  @game.championship.preferences["match_best_player"] == "on"
+    /   = render partial: "championships/games/best_player", locals: { suspendedPlayers: players_suspended( @game.championship.hashid,  @game.hashid), homeTeam:  @game.home.player_team.name, visitorTeam:  @game.visitor.player_team.name, playersHome: @playersHome, playersVisitor: @playersVisitor }
+
+
+
+    .modal-footer
+      .col-12[style="text-align: right;"]
+        = f.submit t('.myclub.management.select_your_season_team_confirm'), class: "btn btn-primary mt-1"

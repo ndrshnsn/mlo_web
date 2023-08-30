@@ -1,5 +1,5 @@
 class GamesController < ApplicationController 
-  before_action :set_game, only: [:start, :update_card]
+  before_action :set_game, only: [:start, :results, :update_card]
 
   def set_game
     @game = Game.find_by_hashid(params[:id])
@@ -7,6 +7,10 @@ class GamesController < ApplicationController
 
   def start
     update_card(AppServices::Games::Start.call(@game, current_user, {club: session[:userClub]}), t(".success"))
+  end
+
+  def results
+    render "games/actions/results"
   end
 
   def update_card(resolution, success_message)

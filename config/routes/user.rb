@@ -75,6 +75,9 @@ as :user do
   get "championships/:id/settings", to: "championships#settings", as: :championship_settings
 
   post "games/:id/start", to: "games#start", as: :game_start
+  post "games/:id/results", to: "games#results", as: :game_results
+  post "games/:id/update", to: "games#update", as: :game_update
+  post "games/:id/update/goal", to: "games#add_goal", as: :game_update_add_goal
 
   get "ranking", to: "ranking#index"
   

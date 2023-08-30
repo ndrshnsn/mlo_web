@@ -35,7 +35,6 @@ class AppServices::Games::Start < ApplicationService
         ordered_games = Game.where('((home_id = ? AND visitor_id = ?) OR (home_id = ? AND visitor_id = ?)) AND championship_id = ? AND phase = ? AND subtype = ?', @game.home_id, @game.visitor_id, @game.visitor_id, @game.home_id, @game.championship_id, @game.phase, @game.subtype).order(:id).first
         return handle_error(@game, ".game_in_progress") if @game.id != ordered_games.id && ordered_games.status < 3
       end
-
       player_side = @game.home.user_season.user.id == @user.id ? "home" : "visitor"
       if player_side == "home"
         if @game.update(hsaccepted: true)
@@ -46,21 +45,9 @@ class AppServices::Games::Start < ApplicationService
           players_start_accepted = true if @game.hsaccepted
         end
       end
-
-      # if players_start_accepted
-      #   if @game.update(status: 1)
-      #     ## Get Suspended Players, if set to
-      #     @suspendedPlayers = ""
-      #     if @game.championship.preferences['cards_suspension'] == "on"
-      #         @suspendedPlayers = render_to_string partial: 'championships/games/gSuspendedPlayers', locals: { suspendedPlayers: helpers.players_suspended(@game.championship.hashid, @game.hashid)}
-      #     end
-
-      #     gameStatus = render_to_string partial: 'championships/games/gStatus_enterResultsButton', locals: { game: @game, iteration: params[:elid]}
-      #     gameStatusOthers = render_to_string partial: 'championships/games/gStatus_matchInProgress'
-
-      #   end
-      # end
-
+      if players_start_accepted
+        return handle_error(@game, ".game_start_error") unless @game.update(status: 1)
+      end
     end
     OpenStruct.new(success?: true, game: @game, error: nil)
   end

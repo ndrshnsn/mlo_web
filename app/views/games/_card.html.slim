@@ -17,7 +17,7 @@
         .text-center
           span.teams-logo
             = image_tag("#{session_pdbprefix}/teams/#{(game.home.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
-          span.teams-name.d-sm-block.d-none = game.home.def_team.name
+          span.teams-name.d-sm-block.d-none = stringHuman(DefTeam.getTranslation(game.home.def_team.name).first)
           span.teams-name.d-block.d-sm-none = game.home.def_team.details["teamAbbr"]
           small.text-muted
             a href="javascript:void(0)" id="button_userinfo_home_#{game.id}" data-controller="popover" data-popover-id-value="#{game.home.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.home.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.home.user_season.user)}" ##{game.home.user_season.user.nickname}
@@ -27,20 +27,28 @@
             span.ms-1.me-1.fs-6 X
             span.fs-1 = game.vscore
           span.penalty
+            - if game.status == 3 && ( game.phscore != nil && game.pvscore != nil )
+              span.text-warning 
+                | (#{game.phscore}  #{game.pvscore})
         .text-center
           span.teams-logo
             = image_tag("#{session_pdbprefix}/teams/#{(game.visitor.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
-          span.teams-name.d-sm-block.d-none = game.visitor.def_team.name
+          span.teams-name.d-sm-block.d-none = stringHuman(DefTeam.getTranslation(game.visitor.def_team.name).first)
           span.teams-name.d-block.d-sm-none = game.visitor.def_team.details["teamAbbr"]
           small.text-muted
             a href="javascript:void(0)" id="button_userinfo_visitor_#{game.id}" data-controller="popover" data-popover-id-value="#{game.visitor.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.visitor.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.visitor.user_season.user)}" ##{game.visitor.user_season.user.nickname}
 
-      #game_details
+      #game_details.card.collapse-icon.mb-0
+        - if game.status == 3
+          = render "games/actions/goals_cards", game: game
+        - if game.status == 1 || game.status == 2
+          - if game.championship.preferences['cards_suspension'] == "on"
+            = render "games/actions/suspended", game: game
 
+    .card-footer id="game_actions_footer_#{game.championship.hashid}_#{game.hashid}"
       - if game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id
-
         - if game.status < 3
-          div.game_actions.mt-2 id="game_actions_#{game.championship.hashid}_#{game.hashid}"
+          div.game_actions id="game_actions_#{game.championship.hashid}_#{game.hashid}"
             .text-center
               div id="game_actions_#{game.championship.hashid}_#{game.hashid}_home"
               - if game.status == 0
@@ -54,7 +62,7 @@
                 - else
                   - if !game.hsaccepted && game.vsaccepted
                     = render "games/status/waiting"
-                  - elsif game.hsaccepted && !game.vsaccepted == false
+                  - elsif game.hsaccepted && !game.vsaccepted
                     = render "games/status/ready"
             .text-center
             .text-center
@@ -70,25 +78,27 @@
                 - else
                   - if !game.vsaccepted && game.hsaccepted
                     = render "games/status/waiting"
-                  - elsif game.vsaccepted && !game.hsaccepted == false
+                  - elsif game.vsaccepted && !game.hsaccepted
                     = render "games/status/ready"
-    - if game.status < 3
-      .card-footer id="game_actions_footer_#{game.championship.hashid}_#{game.hashid}"
-        - if game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id
+      
         - current_side = game.home.user_season.user.id == current_user_id ? game.home.id : game.visitor.id
         - if game.status == 1
-          - if game.entering_results_id == nil
-            = render 'games/status/enter_results', game: game
+          - if game.eresults_id == nil
+            = render 'games/status/results', game: game
           - else
             - if game.eresults_id == current_side
-              = render 'games/status/enter_results', game: game
+              = render 'games/status/results', game: game
             - else
-              = render 'games/status/opponent_results', game: game
+              = render 'games/status/op_results', game: game
         - elsif game.status == 2
           - if game.eresults_id == current_side
-            = render 'games/status/waiting_confirmation', game: game
+            = render 'games/status/w_confirmation', game: game
           - else
-            = render 'games/status/confirm_result', game: game
+            = render 'games/status/confirm', game: game
+
+      - else
+        - if game.status == 1
+          = render "games/status/running"
+
         / - elsif game.status == 3
         /   = render partial: 'championships/games/gStatus_inContest', locals: { game: game, iteration: iteration}
-

@@ -4,6 +4,11 @@ pt-BR:
       start_game: "Iniciar"
       start_game_question: "Iniciar Jogo #%{game} ?"
       start_game_text: "Importante: O jogo só será liberado para realização após o Adversário aceitar seu início."
+    status:
+      results:
+        enter_match_info: "Resultado"
+      running:
+        in_progress: "Em Andamento"
     start:
       success: "Aceito início do jogo. Avise ou aguarde seu adversário"
       error: "Erro aceitando o início do jogo!"
