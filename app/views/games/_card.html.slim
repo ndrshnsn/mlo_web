@@ -102,3 +102,6 @@
 
         / - elsif game.status == 3
         /   = render partial: 'championships/games/gStatus_inContest', locals: { game: game, iteration: iteration}
+
+  = turbo_frame_tag "modal_goal_#{game.hashid}", target: "_top"
+  = turbo_frame_tag "modal_card_#{game.hashid}", target: "_top"

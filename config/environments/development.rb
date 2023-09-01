@@ -41,6 +41,8 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # config.session_store :cache_store, key: "_sessions_development", compress: true, pool_size: 5, expire_after: 1.year
+
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 

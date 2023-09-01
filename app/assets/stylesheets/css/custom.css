@@ -130,6 +130,10 @@ tr.strikeout td:before {
   z-index: 1083 !important;
 }
 
+.modal.fade {
+  background: rgba(0,0,0,0.4);
+}
+
 .swal2-container {
   z-index: 1084 !important;
 }

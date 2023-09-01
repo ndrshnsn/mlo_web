@@ -9,6 +9,8 @@ export default class FormController extends Controller {
     text: String,
     icon: String,
     scroll: Boolean,
+    swal: { type: Boolean, default: true },
+    modal: { type: String, default: "" },
     redirect: { type: String, default: "" }
   }
 
@@ -19,6 +21,9 @@ export default class FormController extends Controller {
     const icon = this.iconValue
     const scrollTop = this.scrollValue
     const redirect = this.redirectValue
+    const swal = this.swalValue
+    const modal = document.getElementById(this.modalValue)
+
     let scrollVar = scrollTop
 
     if (redirect) {
@@ -31,37 +36,49 @@ export default class FormController extends Controller {
 
     $(form).parsley();
     $(form).parsley().on('form:submit', function (formInstance) {
-      Swal.fire({
-        title: title,
-        text: text,
-        icon: icon,
-        showCancelButton: !0,
-        reverseButtons: true,
-        customClass: {
-          confirmButton: "btn btn-primary w-xs",
-          cancelButton: "btn btn-outline-secondary w-xs me-2",
-        },
-        confirmButtonText: i18n.t('confirm'),
-        cancelButtonText: i18n.t('cancel'),
-        buttonsStyling: !1,
-        showCloseButton: !0,
-        didClose: () => {
-          if (scrollTop === true && scrollVar === scrollTop ) {
-            scrollTopFunction()
+      if ( swal === true ) {
+        Swal.fire({
+          title: title,
+          text: text,
+          icon: icon,
+          showCancelButton: !0,
+          reverseButtons: true,
+          customClass: {
+            confirmButton: "btn btn-primary w-xs",
+            cancelButton: "btn btn-outline-secondary w-xs me-2",
+          },
+          confirmButtonText: i18n.t('confirm'),
+          cancelButtonText: i18n.t('cancel'),
+          buttonsStyling: !1,
+          showCloseButton: !0,
+          didClose: () => {
+            if (scrollTop === true && scrollVar === scrollTop ) {
+              scrollTopFunction()
+            }
           }
+        }).then((result) => {
+            if (result.value) {
+              scrollVar = true
+              $('.modal').modal('hide')
+              $('.modal-backdrop').remove()
+              $(form).parsley().destroy()
+              form.requestSubmit()
+            } else {
+              scrollVar = false
+              return false;
+            }
+        })
+      } else {
+        scrollVar = true
+        if ( modal !== "" ) {
+          $(modal).modal('toggle')
+        } else {
+          $('.modal').modal('toggle')
+          $('.modal-backdrop').remove()
         }
-      }).then((result) => {
-          if (result.value) {
-            scrollVar = true
-            $('.modal').modal('hide')
-            $('.modal-backdrop').remove()
-            $(form).parsley().destroy()
-            form.requestSubmit()
-          } else {
-            scrollVar = false
-            return false;
-          }
-      })
+        $(form).parsley().destroy()
+        form.submit()
+      }
       return false;
     });
   }

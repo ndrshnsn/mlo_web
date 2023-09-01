@@ -13,7 +13,7 @@ export default class extends Controller {
       backdrop.remove();
     }
     this.modal = new bootstrap.Modal(this.element);
-
+    
     if (autoshow) {
       this.modal.show();
     }

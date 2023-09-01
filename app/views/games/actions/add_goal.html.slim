@@ -1,0 +1,22 @@
+= render "layouts/modal/main", modal_size: "sm", modal_name: "modal_goal_#{@game.hashid}", modal_id: "goaler_#{@game.hashid}"
+  = form_with model: @game, id: "add_goal_", url: game_update_add_goal_path(@game.hashid), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-swal-value": false, "form-modal-value": "goaler_#{@game.hashid}"} do |f|
+    - pSuspended = @suspended_players[:home_ycard] + @suspended_players[:home_rcard] + @suspended_players[:visitor_ycard] + @suspended_players[:visitor_rcard]
+    .modal-header
+      h5.modal-title.d-flex.align-items-center
+        i.ri-user-line.me-1
+        = t('.myclub.management.select_your_season_team')
+      button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+    .modal-body
+      input[type="hidden" name="game_action" value="add_goal"]
+      input[type="hidden" name="side" value="#{@side}"]
+      .row
+        .col-12
+          .form-group
+            = f.label :season_time, t('.duration'), class: "control-label"
+            span
+              #popover_add_goal_selection
+            = select_tag "add_goal[selection]", options_for_select(@players.collect { |player| [player.player_season.def_player.name, player.player_season.id, {'data-img': "#{session[:pdbprefix]}/players/#{get_platforms(platform: player.player_season.def_player.platform, dna: true)}/#{player.player_season.def_player.platformid}.png", 'data-img-size': "22", 'data-position-value': translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)[0], 'data-position-class': translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)[1]} ]}, disabled: pSuspended), {include_blank: true, required: true, "data-parsley-errors-container": "game_goal_selection", class: "form-control select2", "data-controller": "select", "data-select-icon-value": true }
+
+    .modal-footer
+      .col-12[style="text-align: right;"]
+        = f.submit t('.myclub.management.select_your_season_team_confirm'), class: "btn btn-primary btn-sm mt-1"
