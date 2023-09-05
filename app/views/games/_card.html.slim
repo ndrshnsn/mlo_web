@@ -9,7 +9,7 @@
         p.card-subtitle
           span class="badge bg-#{phase[1]}" = phase[0]
       .flex-shrink-0.text-end
-        i.ri-map-pin-line.me-1.align-bottom.fs-12
+        i.ri-map-pin-line.me-1.fs-12
         span.fs-13 #{game.home.def_team.details["teamCity"]}, #{stringHuman(t("defaults.countries.#{game.home.def_team.def_country.name}"))}
         p.text-muted.fs-12 = game.home.def_team.details["teamStadium"]
     .card-body.pt-4.pb-3

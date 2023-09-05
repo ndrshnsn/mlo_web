@@ -77,8 +77,10 @@ as :user do
   post "games/:id/start", to: "games#start", as: :game_start
   post "games/:id/results", to: "games#results", as: :game_results
   post "games/:id/update", to: "games#update", as: :game_update
-  match "games/:id/update/goal/:side", to: "games#add_goal", as: :game_update_add_goal, via: [:get, :patch]
-  match "games/:id/update/card/:side", to: "games#add_card", as: :game_update_add_card, via: [:get, :patch]
+  match "games/:id/update/goal/add/:side", to: "games#add_goal", as: :game_update_add_goal, via: [:get, :patch]
+  match "games/:id/update/card/add/:side", to: "games#add_card", as: :game_update_add_card, via: [:get, :patch]
+  post "games/:id/update/goal/remove/:card", to: "games#remove_goal", as: :game_update_remove_goal
+  post "games/:id/update/card/remove/:card", to: "games#remove_card", as: :game_update_remove_card
 
   get "ranking", to: "ranking#index"
   

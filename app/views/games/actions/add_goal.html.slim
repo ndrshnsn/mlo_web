@@ -12,11 +12,42 @@
       .row
         .col-12
           .form-group
-            = f.label :season_time, t('.duration'), class: "control-label"
+            = f.label :add_goal_selection, t('.goaler'), class: "control-label"
             span
               #popover_add_goal_selection
             = select_tag "add_goal[selection]", options_for_select(@players.collect { |player| [player.player_season.def_player.name, player.player_season.id, {'data-img': "#{session[:pdbprefix]}/players/#{get_platforms(platform: player.player_season.def_player.platform, dna: true)}/#{player.player_season.def_player.platformid}.png", 'data-img-size': "22", 'data-position-value': translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)[0], 'data-position-class': translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)[1]} ]}, disabled: pSuspended), {include_blank: true, required: true, "data-parsley-errors-container": "game_goal_selection", class: "form-control select2", "data-controller": "select", "data-select-icon-value": true }
 
+        .form-group
+            = f.label :add_assist_selection, t('.assister'), class: "control-label"
+            span
+              #popover_add_assist_selection
+            = select_tag "add_assist[selection]", options_for_select([["NÃO IDENTIFICADO", "-"]] + @players.collect { |player| [player.player_season.def_player.name, player.player_season.id, {'data-img': "#{session[:pdbprefix]}/players/#{get_platforms(platform: player.player_season.def_player.platform, dna: true)}/#{player.player_season.def_player.platformid}.png", 'data-img-size': "22", 'data-position-value': translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)[0], 'data-position-class': translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)[1]} ]}, disabled: pSuspended), {include_blank: true, required: true, "data-parsley-errors-container": "game_goal_selection", class: "form-control select2", "data-controller": "select", "data-select-icon-value": true }
+
     .modal-footer
       .col-12[style="text-align: right;"]
         = f.submit t('.myclub.management.select_your_season_team_confirm'), class: "btn btn-primary btn-sm mt-1"
+
+  javascript:
+    var oldGoaler = "";
+    $("#add_goal_selection").on("change", function(){
+      var selectedOptionValue = $(this).val();
+        $('#add_assist_selection').each(function(index) {
+          $(this).find('option[value="' + oldGoaler + '"]').removeAttr('disabled');
+          if (selectedOptionValue !== 'null') {
+            $(this).find('option[value="' + selectedOptionValue + '"]').attr('disabled', 'disabled');
+          }
+        });
+        oldGoaler = selectedOptionValue; 
+    });
+
+    var oldAssister = "";
+    $("#add_assist_selection").on("change", function(){
+      var selectedOptionValue = $(this).val();
+        $('#add_goal_selection').each(function(index) {
+          $(this).find('option[value="' + oldAssister + '"]').removeAttr('disabled');
+          if (selectedOptionValue !== 'null') {
+            $(this).find('option[value="' + selectedOptionValue + '"]').attr('disabled', 'disabled');
+          }
+        });
+        oldAssister = selectedOptionValue; 
+    });

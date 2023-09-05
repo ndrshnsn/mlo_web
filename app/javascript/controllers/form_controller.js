@@ -77,7 +77,7 @@ export default class FormController extends Controller {
           $('.modal-backdrop').remove()
         }
         $(form).parsley().destroy()
-        form.submit()
+        Turbo.navigator.submitForm(form)
       }
       return false;
     });

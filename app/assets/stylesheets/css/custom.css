@@ -156,6 +156,13 @@ input[type=number] {
   grid-template-columns: 1fr 100px 1fr;
 }
 
+.teams-score {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
 .teams-logo {
   display: block;
   margin: auto;
@@ -193,3 +200,4 @@ input[type=number] {
 .penalty, .score, .time, .match-item, .match-label, .match-team {
   text-align: center;
 }
+

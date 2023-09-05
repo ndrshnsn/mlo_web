@@ -16,6 +16,12 @@ export default class SelectController extends Controller {
     } else {
       this.select2withoutIcons(el, this.readonlyValue, i18n.t(this.pholderValue))
     }
+
+    // $(el).on('select2:select', function () {
+    //   let event = new Event('change', { bubbles: true }) // fire a native event
+    //   this.dispatchEvent(event);
+    // })
+
   }
 
   select2withIcons(element, setReadonly, pHolder, size) {
@@ -48,7 +54,6 @@ export default class SelectController extends Controller {
     }
   }
 
-  // Format icon
   iconFormat(icon) {
     if (!icon.id) {
       return icon.text;
@@ -63,7 +68,11 @@ export default class SelectController extends Controller {
       player_class = "avatar-md img-thumbnail rounded-circle"
     }
 
-    let $icon = '<span class="d-flex align-items-center">' + player_position + '<img src="' + $(originalOption).data('img') + '" class="me-2 '+ player_class +'", style="width: ' + size + 'px; height: ' + size + 'px;">' + icon.text + '</span>';
+    if ( icon.id == "-" ) {
+      var $icon = '<span class="d-flex align-items-center">' + icon.text + '</span>'
+    } else {
+      var $icon = '<span class="d-flex align-items-center">' + player_position + '<img src="' + $(originalOption).data('img') + '" class="me-2 '+ player_class +'", style="width: ' + size + 'px; height: ' + size + 'px;">' + icon.text + '</span>'
+    }
 
     $icon = $($icon);
     return $icon;

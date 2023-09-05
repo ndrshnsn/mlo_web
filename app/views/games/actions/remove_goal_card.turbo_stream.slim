@@ -1,0 +1,5 @@
+= turbo_stream.remove @card_id
+
+= turbo_stream.prepend "goals-and-cards_#{@game.championship.hashid}_#{@game.hashid}" do
+  javascript:
+    update_score()

@@ -1,9 +1,6 @@
 class Game < ApplicationRecord
   include Hashid::Rails
 
-  attr_accessor :temporary_goals
-  attr_accessor :temporary_cards
-
   belongs_to :championship
   belongs_to :visitor, class_name: "Club"
   belongs_to :home, class_name: "Club"

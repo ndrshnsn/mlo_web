@@ -12,3 +12,10 @@ pt-BR:
     start:
       success: "Aceito início do jogo. Avise ou aguarde seu adversário"
       error: "Erro aceitando o início do jogo!"
+    add_card:
+      title: "Adicionar Cartão"
+      card: "Jogador"
+      card_type: "Tipo"
+      yellow_card: "Amarelo"
+      red_card: "Vermelho"
+      confirm: "Confirmar"
