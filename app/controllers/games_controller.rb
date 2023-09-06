@@ -1,5 +1,5 @@
 class GamesController < ApplicationController 
-  before_action :set_game, only: [:start, :results, :update_card, :add_goal, :remove_goal, :add_card, :remove_card]
+  before_action :set_game, only: [:start, :results, :update_card, :add_goal, :remove_goal, :add_card, :remove_goal_card]
 
   def set_game
     @game = Game.find_by_hashid(params[:id])
@@ -10,6 +10,12 @@ class GamesController < ApplicationController
   end
 
   def results
+    if @game.championship.preferences["match_best_player"] == "on"
+      @players_home = get_card_players(@game.home.user_season.user.id)
+      @players_visitor = get_card_players(@game.visitor.user_season.user.id)
+      @suspended_players = get_suspended_players(@game)
+    end
+
     render "games/actions/results"
   end
 
@@ -29,7 +35,7 @@ class GamesController < ApplicationController
     end
   end
 
-  def remove_goal
+  def remove_goal_card
     @card_id = params[:card]
     respond_to do |format|
       format.turbo_stream { render "games/actions/remove_goal_card" }
@@ -62,7 +68,6 @@ class GamesController < ApplicationController
     respond_to do |format|
       if resolution.success?
         GameCardJob.perform_later(@game, session[:pdbprefix], current_user)
-
         flash.now["success"] = success_message
         format.turbo_stream { render "games/actions/update_game" }
         format.html { redirect_to manager_championships_path, notice: success_message }

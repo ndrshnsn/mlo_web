@@ -2,13 +2,13 @@
   = form_with model: @game, id: "results_#{@game.hashid}", url: game_update_path(@game), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.myclub.management.confirm'), "form-text-value": t('.myclub.management.confirm_text'), "form-icon-value": "question"} do |f|
     .modal-header
       h5.modal-title.d-flex.align-items-center
-        i.ri-user-line.me-1
-        = t('.myclub.management.select_your_season_team')
+        i.ri-survey-line.me-1
+        = t('games.result.title', id: @game.gsequence)
       button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
     .modal-body
       - if @penalties
         .col-12.text-center
-          .badge.badge-light-warning.mb-1 style="white-space: normal!important;" Lembre-se de Ativar as Penalidades para este jogo!
+          .badge.badge-light-warning.mb-1 style="white-space: normal!important;" = t('games.result.penalty_warning')
       .row.mb-1
         .teams
           .text-center
@@ -54,15 +54,13 @@
           div
             = turbo_frame_tag "goals-and-cards_#{@game.championship.hashid}_#{@game.hashid}"
               
-    / - if  @game.championship.preferences["match_best_player"] == "on"
-    /   = render partial: "championships/games/best_player", locals: { suspendedPlayers: players_suspended( @game.championship.hashid,  @game.hashid), homeTeam:  @game.home.player_team.name, visitorTeam:  @game.visitor.player_team.name, playersHome: @playersHome, playersVisitor: @playersVisitor }
-
-
+      - if @game.championship.preferences["match_best_player"] == "on"
+        hr
+        = render partial: "games/actions/best_player", game: @game, suspended_players: @suspended_players, players_home: @players_home, players_visitor: @players_visitor
 
     .modal-footer
-      .col-12[style="text-align: right;"]
-        = f.submit t('.myclub.management.select_your_season_team_confirm'), class: "btn btn-primary mt-1"
-
+      .col-12.text-end
+        = f.submit t('games.result.confirm'), class: "btn btn-primary mt-1"
 
   javascript:
     var cid = "#{@game.championship.hashid}"

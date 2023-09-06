@@ -3,7 +3,7 @@
     - rpPOS = translate_pkeys(@actor.def_player.def_player_position.name, @actor.def_player.platform)
     - if @change_result == "add_goal"
       - if @assister == "-"
-        - @assister_name = t(".not_identified")
+        - @assister_name = t('games.add_goal.not_identified')
         input type="hidden" name="goals_#{@side}[]" value="[#{@actor.id}, '-']"
       - else
         - @assister_name = @assister.def_player.name
@@ -26,22 +26,21 @@
                   i.ri-drag-move-fill.me-1
                   span = @assister_name
             .flex-grow-1.text-end
+              = link_to game_update_remove_goal_card_path(id: @game.hashid, card: "goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"), data: { turbo_method: "post" } do
+                i.ri-close-line.text-danger
+              br
               - if @change_result == "add_goal"
-                = button_to game_update_remove_goal_path(id: @game.hashid, card: "goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}") do
-                  i.ri-close-line.text-danger
-                br
                 i.ri-football-line
               - elsif @change_result == "add_card"
                 - card_color = @type == "game_ycard" ? "yellow" : "red"
-                i.ri-close-line.text-danger
-                br
                 i class="ri-square-fill" style="color: #{card_color}"
     - elsif @side == "visitor"
       .d-flex.align-items-center
         .flex-grow-1
           .d-flex.align-items-center
             .flex-grow-1.text-start
-              i.ri-close-line.text-danger
+              = link_to game_update_remove_goal_card_path(id: @game.hashid, card: "goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"), data: { turbo_method: "post" } do
+                i.ri-close-line.text-danger
               br
               - if @change_result == "add_goal"
                 i.ri-football-line
