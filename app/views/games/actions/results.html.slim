@@ -49,13 +49,12 @@
               .badge.bg-primary data-toggle="tooltip" data-title="Adicionar Cartão"
                 i.ri-square-fill
                 span.d-sm-block.d-none.ms-1 style="float: right;" + Cartão
-      .row.pt-2
-        .simplebar-scrollable-y(data-simplebar style="max-height: 350px;")
+      .row.pt-2.mb-3
+        .simplebar-scrollable-y(data-simplebar style="max-height: 300px;")
           div
             = turbo_frame_tag "goals-and-cards_#{@game.championship.hashid}_#{@game.hashid}"
               
       - if @game.championship.preferences["match_best_player"] == "on"
-        hr
         = render partial: "games/actions/best_player", game: @game, suspended_players: @suspended_players, players_home: @players_home, players_visitor: @players_visitor
 
     .modal-footer

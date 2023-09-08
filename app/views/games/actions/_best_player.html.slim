@@ -1,8 +1,11 @@
 - psuspended = @suspended_players[:home_ycard] + @suspended_players[:home_rcard] + @suspended_players[:visitor_ycard] + @suspended_players[:visitor_rcard]
-card.mb-0.p-2
+.card.mb-0.border.border-secondary-subtle
   .card-body
-    h6.card-title = t('game.result.best_player')
-    p.text-center
+    h5.modal-title.d-flex.align-items-center
+      i.ri-vip-crown-line.me-1
+      = t('games.result.best_player')
+      
+    .col-12.text-center.pb-2.pt-2
       i.ri-star-fill.me-1.align-middle style="color: yellow; font-size: 15px;"
       i.ri-star-fill.me-2.align-middle style="color: yellow; font-size: 25px;"
 

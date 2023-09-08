@@ -35,7 +35,7 @@
                 - card_color = @type == "game_ycard" ? "yellow" : "red"
                 i class="ri-square-fill" style="color: #{card_color}"
     - elsif @side == "visitor"
-      .d-flex.align-items-center
+      .d-flex.align-items-center style="background-color: #24282d;"
         .flex-grow-1
           .d-flex.align-items-center
             .flex-grow-1.text-start
@@ -45,15 +45,19 @@
               - if @change_result == "add_goal"
                 i.ri-football-line
               - elsif @change_result == "add_card"
-                - card_color = @type == "game_ycard" ? "yellow" : "red"
-                i class="ri-square-fill" style="color: #{card_color}"
+                i.ri-square-line
             .flex-shrink-0.text-end
               span = @actor.def_player.name
-              - if @change_result == "add_goal"
-                br
+              br
                 span.text-muted.fs-12.d-flex.align-middle
-                  span = @assister_name
+                - if @change_result == "add_goal"
+                  span.text-muted = @assister_name
                   i.ri-drag-move-fill.ms-1
+                - elsif @change_result == "add_card"
+                  - card_color = @type == "game_ycard" ? "yellow" : "red"
+                  span.text-muted = t("games.add_card.#{card_color}_card")
+                  i class="ri-square-fill ms-1" style="color: #{card_color}"
+
         .flex-shrink-0.ms-3.mb-3.text-end style="position:relative;"
           img.avatar-sm.img-thumbnail.rounded-circle src="#{session[:pdbprefix]}/players/#{get_platforms(platform: @actor.def_player.platform, dna: true)}/#{@actor.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
           span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]

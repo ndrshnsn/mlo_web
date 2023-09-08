@@ -15,12 +15,14 @@ pt-BR:
     result:
       title: "Jogo #%{id} - Editar Resultado"
       confirm: "Confirmar"
+      penalty_warning: "Lembre-se de Ativar as Penalidades para este jogo!"
+      best_player: "Melhor Jogador"
     add_card:
       title: "Adicionar Cartão"
       card: "Jogador"
       card_type: "Tipo"
-      yellow_card: "Amarelo"
-      red_card: "Vermelho"
+      yellow_card: "Cartão Amarelo"
+      red_card: "Cartão Vermelho"
       confirm: "Confirmar"
     add_goal:
       title: "Adicionar Gol"
