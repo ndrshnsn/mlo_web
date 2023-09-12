@@ -20,11 +20,15 @@
           .d-flex.align-items-center
             .flex-shrink-0
               span = @actor.def_player.name
-              - if @change_result == "add_goal"
-                br
+              br
                 span.text-muted.fs-12.d-flex.align-middle
-                  i.ri-drag-move-fill.me-1
-                  span = @assister_name
+                - if @change_result == "add_goal"
+                  span.text-muted = @assister_name
+                  i.ri-drag-move-fill.ms-1
+                - elsif @change_result == "add_card"
+                  - card_color = @type == "game_ycard" ? "yellow" : "red"
+                  span.text-muted = t("games.add_card.#{card_color}_card")
+                  i class="ri-square-fill ms-1" style="color: #{card_color}"
             .flex-grow-1.text-end
               = link_to game_update_remove_goal_card_path(id: @game.hashid, card: "goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"), data: { turbo_method: "post" } do
                 i.ri-close-line.text-danger

@@ -1,5 +1,5 @@
 class GamesController < ApplicationController 
-  before_action :set_game, only: [:start, :results, :update_card, :add_goal, :remove_goal, :add_card, :remove_goal_card]
+  before_action :set_game, only: [:start, :results, :update_card, :add_goal, :remove_goal, :add_card, :remove_goal_card, :update, :confirm]
 
   def set_game
     @game = Game.find_by_hashid(params[:id])
@@ -14,6 +14,41 @@ class GamesController < ApplicationController
       @players_home = get_card_players(@game.home.user_season.user.id)
       @players_visitor = get_card_players(@game.visitor.user_season.user.id)
       @suspended_players = get_suspended_players(@game)
+    end
+
+    if Championship.translate_phase(@game.phase)[2]
+      phase_games = Game.where(championship_id: @game.championship_id).where("phase = ?", @game.phase).where("home_id = ? OR visitor_id = ?", @game.home_id, @game.home_id)
+
+      if phase_games.count == 1
+        @penalties = true
+      elsif phase.games.count == 2
+        @previous_game = phase_games.where(games: { status: 3 }).first
+
+        if @previous_game.hscore == @previous_game.vscore
+            @penalties = true
+        end
+      end
+    end
+
+    if @game.eresults_id == nil || current_user.manager?
+      if current_user.manager?
+        @game.update(
+          hsaccepted: true,
+          vsaccepted: true,
+          hfaccepted: true,
+          vfaccepted: true,
+          mresult: true
+        )
+
+        # gameStatusMatchOpponent = render_to_string partial: 'championships/games/gStatus_managerEnteringResults', locals: { game: @game, iteration: params[:elid]}
+
+      else                    
+        @game.update(eresults_id: session[:userClub])
+
+        # gameStatusMatchOpponent = render_to_string partial: 'championships/games/gStatus_opponentEnteringResults', locals: { game: @game, iteration: params[:elid]}
+
+      end
+      GameCardJob.perform_later(@game, session[:pdbprefix], session[:season], current_user)
     end
 
     render "games/actions/results"
@@ -58,6 +93,14 @@ class GamesController < ApplicationController
     end
   end
 
+  def confirm
+    update_card(AppServices::Games::Confirm.call(@game, current_user), t(".success"))
+  end
+
+  def update
+    update_card(AppServices::Games::Update.call(@game, current_user, {data: params, club: session[:userClub]}), t(".success"))
+  end
+
   def update_goal_card
     respond_to do |format|
       format.turbo_stream { render "games/actions/update_goal_card" }
@@ -67,7 +110,7 @@ class GamesController < ApplicationController
   def update_card(resolution, success_message)
     respond_to do |format|
       if resolution.success?
-        GameCardJob.perform_later(@game, session[:pdbprefix], current_user)
+        GameCardJob.perform_later(@game, session[:pdbprefix], session[:season], current_user)
         flash.now["success"] = success_message
         format.turbo_stream { render "games/actions/update_game" }
         format.html { redirect_to manager_championships_path, notice: success_message }
@@ -86,7 +129,7 @@ class GamesController < ApplicationController
   end
 
   def get_suspended_players(game)
-    helpers.players_suspended(game.championship.hashid, game.hashid)
+    helpers.players_suspended(game.championship.hashid, game.hashid, session[:season])
   end
 
 end

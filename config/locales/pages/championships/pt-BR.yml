@@ -17,3 +17,5 @@ pt-BR:
       championship_date: "Data"
       format: "Formato"
       details: "Detalhes"
+    games:
+      championships: "Campeonatos"

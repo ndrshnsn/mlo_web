@@ -1,4 +1,4 @@
-- suspendedPlayers = players_suspended(game.championship.hashid, game.hashid)
+- suspendedPlayers = players_suspended(game.championship.hashid, game.hashid, season)
 - if suspendedPlayers[:home_ycard].count > 0 || suspendedPlayers[:home_rcard].count > 0 || suspendedPlayers[:visitor_ycard].count > 0 || suspendedPlayers[:visitor_rcard].count > 0
   .badge.d-block.badge-danger.mt-1.mb-50 JOGADORES SUSPENSOS
   div.suspended-players
@@ -17,7 +17,7 @@
           span
             i.bx.bx-square[style="color: yellow;"]
       - suspendedPlayers[:home_rcard].each do |hrcard|
-        - sPlayer = Player.joins(:player_seasons).where(player_seasons: { id: hrcard }).first
+        - sPlayer = DefPlayer.joins(:player_seasons).where(player_seasons: { id: hrcard }).first
         li.list-group-item.d-flex.justify-content-between.align-items-center[style="padding: 0.25rem 0rem!important;"]
           span
             .media.mb-25

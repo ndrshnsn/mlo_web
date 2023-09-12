@@ -9,14 +9,26 @@ pt-BR:
         enter_match_info: "Resultado"
       running:
         in_progress: "Em Andamento"
+      op_results:
+        waiting_annotation: "Aguardando Resultado"
+      w_confirmation:
+        waiting_confirmation: "Aguardando Confirmação"
+      confirm:
+        result_question: "Confirmar Resultado?"
+        result_text: "O jogo será confirmado, o adversário será informado e os dados do Campeonato atualizado."
     start:
       success: "Aceito início do jogo. Avise ou aguarde seu adversário"
       error: "Erro aceitando o início do jogo!"
     result:
       title: "Jogo #%{id} - Editar Resultado"
       confirm: "Confirmar"
+      cancel: "Cancelar"
       penalty_warning: "Lembre-se de Ativar as Penalidades para este jogo!"
       best_player: "Melhor Jogador"
+      add_goal: "+ Gol"
+      add_card: "+ Cartão"
+      confirm_question: "Confirmar o Resultado?"
+      confirm_text: "O adversário irá receber uma notificação e o resultado será validado assim que ele confirmar o resultado."
     add_card:
       title: "Adicionar Cartão"
       card: "Jogador"

@@ -63,29 +63,33 @@ class Championship < ApplicationRecord
   end
 
   def self.translate_status(code)
+    ##
+    # main, i18n, status color
     statuses = {
-      0 => ["not_started", I18n.t("championship.status.not_started"), "warning", ""],
-      1 => ["running", I18n.t("championship.status.running"), "success", ""],
+      0 => ["not_started", I18n.t("championship.status.not_started"), "warning"],
+      1 => ["running", I18n.t("championship.status.running"), "success"],
 
-      10 => ["running", I18n.t("championship.status.league.round"), "success", "firstRound"],
-      11 => ["running", I18n.t("championship.status.league.return"), "success", "secondRound"],
-      12 => ["running", I18n.t("championship.status.league.round_return"), "success", "firstAndSecondRound"],
-      13 => ["running", I18n.t("championship.status.league.semifinals"), "success", "semifinals"],
-      14 => ["running", I18n.t("championship.status.league.finals_third_fourth"), "success", "[3rd4th, finals]"],
+      10 => ["running", I18n.t("championship.status.league.round"), "success"],
+      11 => ["running", I18n.t("championship.status.league.return"), "success"],
+      12 => ["running", I18n.t("championship.status.league.round_return"), "success"],
+      13 => ["running", I18n.t("championship.status.league.semifinals"), "success"],
+      14 => ["running", I18n.t("championship.status.league.finals_third_fourth"), "success"],
 
-      100 => ["finished", I18n.t("championship.status.finished"), "secondary", ""]
+      100 => ["finished", I18n.t("championship.status.finished"), "secondary"]
     }
     statuses[code]
   end
 
   def self.translate_phase(code)
+    ##
+    # i18n, color, penalty
     phase = {
-      1 => [I18n.t("championship.phase.round"), "secondary"],
-      2 => [I18n.t("championship.phase.second_round"), "secondary"],
+      1 => [I18n.t("championship.phase.round"), "secondary", false],
+      2 => [I18n.t("championship.phase.second_round"), "secondary", false],
 
-      98 => [I18n.t("championship.phase.semifinals"), "warning"],
-      99 => [I18n.t("championship.phase.thirdfourth"), "info"],
-      100 => [I18n.t("championship.phase.finals"), "success"]
+      98 => [I18n.t("championship.phase.semifinals"), "warning", true],
+      99 => [I18n.t("championship.phase.thirdfourth"), "info", true],
+      100 => [I18n.t("championship.phase.finals"), "success", true]
     }
     phase[code]
   end

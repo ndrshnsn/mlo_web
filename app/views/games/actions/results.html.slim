@@ -1,5 +1,5 @@
 = render "layouts/modal/main", modal_size: "md"
-  = form_with model: @game, id: "results_#{@game.hashid}", url: game_update_path(@game), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.myclub.management.confirm'), "form-text-value": t('.myclub.management.confirm_text'), "form-icon-value": "question"} do |f|
+  = form_with model: @game, id: "results_#{@game.hashid}", url: game_update_path(@game), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('games.result.confirm_question'), "form-text-value": t('games.result.confirm_text'), "form-icon-value": "question"} do |f|
     .modal-header
       h5.modal-title.d-flex.align-items-center
         i.ri-survey-line.me-1
@@ -21,11 +21,11 @@
             = link_to game_update_add_goal_path(id: @game, side: "home" ), data: { "turbo-frame": "modal_goal_#{@game.hashid}" } do
               .badge.bg-primary.me-1
                 i.ri-football-line
-                span.d-sm-block.d-none.ms-1 style="float: right;" + Gol
+                span.d-sm-block.d-none.ms-1 style="float: right;" = t('games.result.add_goal')
             = link_to game_update_add_card_path(id: @game, side: "home"), data: { "turbo_frame": "modal_card_#{@game.hashid}" } do
               .badge.bg-primary.me-1
                 i.ri-square-fill
-                span.d-sm-block.d-none.ms-1 style="float: right;" + Cartão
+                span.d-sm-block.d-none.ms-1 style="float: right;" = t('games.result.add_card')
           .text-center
             span.score
               span.me-1.fs-1 id="game_modal_home_score_#{@game.championship.hashid}_#{@game.hashid}"
@@ -44,11 +44,11 @@
             = link_to game_update_add_goal_path(id: @game, side: "visitor"), data: { "turbo-frame": "modal_goal_#{@game.hashid}" } do
               .badge.bg-primary.me-1
                 i.ri-football-line
-                span.d-sm-block.d-none.ms-1 style="float: right;" + Gol
+                span.d-sm-block.d-none.ms-1 style="float: right;" = t('games.result.add_goal')
             = link_to game_update_add_card_path(id: @game, side: "visitor"), data: { "turbo_frame": "modal_card_#{@game.hashid}" } do
               .badge.bg-primary data-toggle="tooltip" data-title="Adicionar Cartão"
                 i.ri-square-fill
-                span.d-sm-block.d-none.ms-1 style="float: right;" + Cartão
+                span.d-sm-block.d-none.ms-1 style="float: right;" = t('games.result.add_card')
       .row.pt-2.mb-3
         .simplebar-scrollable-y(data-simplebar style="max-height: 300px;")
           div
@@ -59,7 +59,8 @@
 
     .modal-footer
       .col-12.text-end
-        = f.submit t('games.result.confirm'), class: "btn btn-primary mt-1"
+        = button_tag t('games.result.cancel'), type: "button", "data-bs-dismiss": "modal", "aria-label": "Close", class: "btn btn-outline-secondary btn-sm me-1"
+        = f.submit t('games.result.confirm'), class: "btn btn-primary btn-sm"
 
   javascript:
     var cid = "#{@game.championship.hashid}"

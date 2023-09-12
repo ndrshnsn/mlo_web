@@ -7,3 +7,5 @@ pt-BR:
       championship:
         semi_not_finished: "Verifique os jogos pendentes para finalizar na Semi antes de Iniciar as Finais!!"
         finals_not_finished: "Existem jogos pendentes nas Finais. Verifique antes de encerrar o campeonato"
+      games:
+        game_in_progress: "Já existe um jogo em andamento ou pendente de confirmação!"
