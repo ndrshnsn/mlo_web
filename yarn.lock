@@ -269,11 +269,6 @@ debug@^4.3, debug@^4.3.4:
   dependencies:
     ms "2.1.2"
 
-easytimer.js@^4.5.4:
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/easytimer.js/-/easytimer.js-4.5.4.tgz#7e8ac85cafa8b5e5a38dcffa2e4b0254c75c71fe"
-  integrity sha512-65STy2sW2z6e9XwfJqSa18JVNWuOu2cb/FXaZ/BbiDiPnTvC53njMS3oY1BsAIm/Dzt9c8YUvcgc8FoPttm1Gw==
-
 esbuild@^0.18.10, esbuild@^0.18.17:
   version "0.18.20"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.18.20.tgz#4709f5a34801b43b799ab7d6d82f7284a9b7a7a6"
@@ -526,6 +521,11 @@ simplebar@^6.2.5:
   dependencies:
     can-use-dom "^0.1.0"
     simplebar-core "^1.2.4"
+
+simplycountdown.js@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/simplycountdown.js/-/simplycountdown.js-1.7.0.tgz#1d70d17df8410485cb437cdc5c59b59d130f7b4b"
+  integrity sha512-UB5LVDVRuVyawYsrosoQ8qOwSdK4JLX8njkmTy5y8ECBQ/h3HGCt6XdYAlMYVHfqQ9egp7dOHZzAjo7+FHYYAw==
 
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.0.2:
   version "1.0.2"
