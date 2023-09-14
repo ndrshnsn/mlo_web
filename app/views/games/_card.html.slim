@@ -9,14 +9,7 @@
         h6.card-title Jogo ##{game.gsequence}
         p.card-subtitle
           span class="badge bg-#{phase[1]}" = phase[0]
-          span class="badge bg-#{status[2]}-subtle ms-1 text-#{status[2]}" = t(status[1])
-
-          span.badge.badge-danger
-          - if (game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id) && game.status == 2
-            - if Sidekiq::Cron::Job.find("result_confirmation_#{game.championship.season.id}_#{game.championship.id}_#{game.id}").cron != nil
-              - next_enqueue = (Sidekiq::Cron::Job.find("result_confirmation_#{game.championship.season.id}_#{game.championship.id}_#{game.id}").last_enqueue_time).in_time_zone('Brasilia') + game.championship.season.preferences["time_game_confirmation"].hour
-              = render "games/status/confirm_time", next_enqueue: next_enqueue
-              
+          span class="badge bg-#{status[2]}-subtle ms-1 text-#{status[2]}" = t(status[1])    
       .flex-shrink-0.text-end
         i.ri-map-pin-line.me-1.fs-12
         span.fs-13 #{game.home.def_team.details["teamCity"]}, #{stringHuman(t("defaults.countries.#{game.home.def_team.def_country.name}"))}
@@ -50,6 +43,13 @@
       #game_details.card.collapse-icon.mb-0
         - if game.status == 3
           = render "games/actions/goals_cards", game: game
+
+      .row.text-center
+        span.badge.badge-danger
+        - if (game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id) && game.status == 2
+          - if Sidekiq::Cron::Job.find("result_confirmation_#{game.championship.season.id}_#{game.championship.id}_#{game.id}")
+            - next_enqueue = (Sidekiq::Cron::Job.find("result_confirmation_#{game.championship.season.id}_#{game.championship.id}_#{game.id}").last_enqueue_time).in_time_zone('Brasilia') + game.championship.season.preferences["time_game_confirmation"].hour
+            = render "games/status/confirm_time", next_enqueue: next_enqueue
 
     .card-footer id="game_actions_footer_#{game.championship.hashid}_#{game.hashid}"
       - if game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id

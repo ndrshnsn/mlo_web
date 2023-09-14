@@ -15,77 +15,17 @@ class AppServices::Games::Confirm < ApplicationService
   def confirm_game
     side = @game.home == session[:userClub] ? "home" : "visitor"
     opponent = @game.home.user_season.user.id == @user.id ? "visitor" : "home"
-
     @game.status = 3
     if side == "home"
       @game.hfaccepted = true
     else
       @game.vfaccepted = true
     end
+    return handle_error(@game, ".game_confirm_error") unless @game.save!
 
-    return handle_error(@game, ".game_start_error") unless @game.save!
-
-    ## Remove Cron Job
-    if Sidekiq::Cron::Job.find("result_confirmation_#{@season.id}_#{@game.championship.id}_#{@game.id}")
-        Sidekiq::Cron::Job.find("result_confirmation_#{@season.id}_#{@game.championship.id}_#{@game.id}").destroy
-    end
-
-    ## Update Club Earnings
-    ClubFinance.updateEarnings(@game, "confirm")
-
-    ## Update Global Ranking
-    Ranking.updateRanking(@game, "confirm")
-
-    ## Render   
-    gameCard = render_to_string partial: 'championships/games/card', locals: { game: @game, iteration: @iteration, current_user_id: @game.home.user_season.user.id }
-
-    # Update Visitor/Home and Others Game Card
-    ActionCable.server.broadcast "gameCard:#{@season.id}_#{@game.championship.id}_#{@game.home.user_season.user.id}", {
-        sender: current_user.id,
-        audience: "match",
-        championship_id: @game.championship.hashid,
-        game_id: @game.hashid,
-        gameCard: gameCard,
-        home_id: @game.home.user_season.user.id,
-        visitor_id: @game.visitor.user_season.user.id,
-        phase: "reload_card"
-    }
-
-    ## Render   
-    gameCard = render_to_string partial: 'championships/games/card', locals: { game: @game, iteration: @iteration, current_user_id: @game.visitor.user_season.user.id }
-
-    ActionCable.server.broadcast "gameCard:#{@season.id}_#{@game.championship.id}_#{@game.visitor.user_season.user.id}", {
-        sender: current_user.id,
-        audience: "match",
-        championship_id: @game.championship.hashid,
-        game_id: @game.hashid,
-        gameCard: gameCard,
-        home_id: @game.home.user_season.user.id,
-        visitor_id: @game.visitor.user_season.user.id,
-        phase: "reload_card"
-    }
-
-    ## Render   
-    gameCard = render_to_string partial: 'championships/games/card', locals: { game: @game, iteration: @iteration }
-
-    ActionCable.server.broadcast "gameCard:#{@season.id}_#{@game.championship.id}", {
-        sender: current_user.id,
-        audience: "others",
-        championship_id: @game.championship.hashid,
-        game_id: @game.hashid,
-        gameCard: gameCard,
-        home_id: @game.home.user_season.user.id,
-        visitor_id: @game.visitor.user_season.user.id,
-        phase: "reload_card"
-    }
-
-    respond_to do |format|
-        format.js { 
-            flash.now[:success] = 'Jogo Confirmado, confira a Classificação atualizada e seus rendimentos após o jogo.'
-            
-        }
-    end
-
+    return handle_error(@game, ".game_confirm_cron_error") unless Sidekiq::Cron::Job.destroy "result_confirmation_#{@game.championship.season.id}_#{@game.championship.id}_#{@game.id}"
+    return handle_error(@game, ".game_confirm_earning_error") unless AppServices::Games::Earning.new(@game).pay()
+    return handle_error(@game, ".game_confirm_ranking_error") unless AppServices::Ranking.new(game: @game).update()
     
     OpenStruct.new(success?: true, game: @game, error: nil)
   end

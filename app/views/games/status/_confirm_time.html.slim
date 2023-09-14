@@ -1,12 +1,3 @@
-input[type="hidden" id="next_enqueue_time" value="#{next_enqueue.strftime("%Y/%m/%d %H:%M")}"]
-span.d-none.d-sm-block.mr-25[style="float: left;"] CONFIRMAR EM:
-span id='timeLeft'
-
-javascript:
-  var timer = new Timer();
-  timer.start({countdown: true, startValues: {seconds: 30} });
-  $('#timeLeft').html(timer.getTimeValues().toString());
-  timer.addEventListener('secondsUpdated', function (e) {
-    $('#timeLeft').html(timer.getTimeValues().toString());
-  });
+span.d-none.d-sm-block.mr-25 style="float: left;" CONFIRMAR EM:
+span id='timeLeft' data-controller="countdown" data-countdown-ignition-value="#{countdown_timer(next_enqueue)}"
 

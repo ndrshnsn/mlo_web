@@ -41,7 +41,7 @@ class AppServices::Games::Earning < ApplicationService
       visitorDescription.push("Draw")
     end
 
-    if @game.wo
+    if @game.subtype == 3
       homeDescription.push("WO")
       visitorDescription.push("WO")
     else

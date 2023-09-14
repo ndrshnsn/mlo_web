@@ -269,6 +269,11 @@ debug@^4.3, debug@^4.3.4:
   dependencies:
     ms "2.1.2"
 
+easytimer.js@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/easytimer.js/-/easytimer.js-4.6.0.tgz#43b4c5adf5597e96023a617545a977cd18506b04"
+  integrity sha512-2kl/X/HnB5mKJ29x7N908CrNl5y8yDgDuD8U7TXTEHs/lBFVXT91DSoiXncYnwC1TPPDfomlLDKPaTSqT3dygQ==
+
 esbuild@^0.18.10, esbuild@^0.18.17:
   version "0.18.20"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.18.20.tgz#4709f5a34801b43b799ab7d6d82f7284a9b7a7a6"
@@ -384,6 +389,11 @@ jquery@>=1.7, jquery@>=1.7.0, jquery@>=1.8.0, jquery@^3.6.3:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.0.tgz#fe2c01a05da500709006d8790fe21c8a39d75612"
   integrity sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==
+
+local-time@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/local-time/-/local-time-2.1.0.tgz#be42f06bf269f9da77cb61ea722aa424dd01d919"
+  integrity sha512-4rB/8EkJIZ8O8Y5q536fSsRbzXOI0cL30l3ZKm4ISPC4D8jYOhRp/MpAaGKAYUvVIqkojT0c7kJk0RlnwtlR2w==
 
 lodash-es@^4.17.21:
   version "4.17.21"
@@ -521,11 +531,6 @@ simplebar@^6.2.5:
   dependencies:
     can-use-dom "^0.1.0"
     simplebar-core "^1.2.4"
-
-simplycountdown.js@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/simplycountdown.js/-/simplycountdown.js-1.7.0.tgz#1d70d17df8410485cb437cdc5c59b59d130f7b4b"
-  integrity sha512-UB5LVDVRuVyawYsrosoQ8qOwSdK4JLX8njkmTy5y8ECBQ/h3HGCt6XdYAlMYVHfqQ9egp7dOHZzAjo7+FHYYAw==
 
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.0.2:
   version "1.0.2"

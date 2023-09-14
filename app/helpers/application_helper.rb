@@ -178,7 +178,9 @@ module ApplicationHelper
     global_platforms
   end
 
-  
+  def countdown_timer(uglystring)
+    [0, uglystring.sec, uglystring.min, uglystring.hour, uglystring.day]
+  end
 
   ##
   # Translate Overall Ratings to Show it in accordingly colour.

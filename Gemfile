@@ -75,3 +75,5 @@ gem "sidekiq-cron", "~> 1.10"
 gem "pagy"
 
 gem "redis-actionpack", "~> 5.3"
+
+gem "local_time", "~> 2.1"
