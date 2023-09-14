@@ -232,7 +232,6 @@ GEM
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
-    local_time (2.1.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -497,6 +496,8 @@ GEM
     temple (0.10.2)
     thor (1.2.2)
     tilt (2.3.0)
+    time_difference (0.5.0)
+      activesupport
     timeout (0.4.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -570,7 +571,6 @@ DEPENDENCIES
   kaminari (~> 1.2)
   letter_opener
   loaf (~> 0.10.0)!
-  local_time (~> 2.1)
   mini_magick (~> 4.11)
   nokogiri (~> 1.13)
   noticed (~> 1.6)
@@ -604,6 +604,7 @@ DEPENDENCIES
   solargraph
   standard (~> 1.0)
   stimulus-rails (~> 1.2.1)
+  time_difference (~> 0.5.0)
   turbo-rails (~> 1.4)
   tzinfo-data
   vite_rails (~> 3.0)

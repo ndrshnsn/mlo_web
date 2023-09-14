@@ -76,4 +76,4 @@ gem "pagy"
 
 gem "redis-actionpack", "~> 5.3"
 
-gem "local_time", "~> 2.1"
+gem "time_difference", "~> 0.5.0"

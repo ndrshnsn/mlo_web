@@ -3,6 +3,7 @@
 - session_pdbprefix = session.present? ? session[:pdbprefix] : session_pdbprefix
 - session_season = session.present? ? session[:season] : session_season
 = turbo_frame_tag "game_#{game.hashid}" do
+  = local_time(Time.zone.now)
   .card
     .card-header.d-flex.pb-0.bg-primary-subtle.rounded-top
       .flex-grow-1

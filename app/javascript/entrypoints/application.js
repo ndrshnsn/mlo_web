@@ -3,7 +3,6 @@ import "@hotwired/turbo-rails"
 import '../channels'
 import '../controllers'
 
-import "./base/localtime"
 import "./base/trix"
 import "@rails/actiontext"
 import "./base/jquery"
