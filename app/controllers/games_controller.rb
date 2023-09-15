@@ -94,7 +94,7 @@ class GamesController < ApplicationController
   end
 
   def confirm
-    update_card(AppServices::Games::Confirm.call(@game, current_user), t(".success"))
+    update_card(AppServices::Games::Confirm.call(@game, current_user, session[:userClub]), t(".success"))
   end
 
   def update

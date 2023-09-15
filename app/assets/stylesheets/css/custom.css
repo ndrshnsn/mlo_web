@@ -12,6 +12,15 @@ File: Custom Css File
   }
 }
 
+.card {
+  .yellow {
+    color: #ffcd81 !important;
+  }
+  .red {
+    color: #f672a7 !important;
+  }
+}
+
 div.dataTables_paginate {
   margin: 0;
   white-space: nowrap;

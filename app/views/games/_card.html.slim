@@ -3,14 +3,13 @@
 - session_pdbprefix = session.present? ? session[:pdbprefix] : session_pdbprefix
 - session_season = session.present? ? session[:season] : session_season
 = turbo_frame_tag "game_#{game.hashid}" do
-  = local_time(Time.zone.now)
   .card
     .card-header.d-flex.pb-0.bg-primary-subtle.rounded-top
       .flex-grow-1
         h6.card-title Jogo ##{game.gsequence}
         p.card-subtitle
           span class="badge bg-#{phase[1]}" = phase[0]
-          span class="badge bg-#{status[2]}-subtle ms-1 text-#{status[2]}" = t(status[1])    
+          span class="badge bg-#{status[2]}-subtle ms-1 text-#{status[2]}" = status[1]
       .flex-shrink-0.text-end
         i.ri-map-pin-line.me-1.fs-12
         span.fs-13 #{game.home.def_team.details["teamCity"]}, #{stringHuman(t("defaults.countries.#{game.home.def_team.def_country.name}"))}
@@ -25,6 +24,12 @@
           small.text-muted
             a href="javascript:void(0)" id="button_userinfo_home_#{game.id}" data-controller="popover" data-popover-id-value="#{game.home.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.home.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.home.user_season.user)}" ##{game.home.user_season.user.nickname}
         .text-center
+          - if (game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id) && game.status == 2
+            - worker = Sidekiq::Cron::Job.find("game_confirm_#{game.championship.season.id}_#{game.championship.id}_#{game.id}")
+            - if worker
+              - next_enqueue = worker.last_enqueue_time + game.championship.season.preferences["time_game_confirmation"].hour
+              = render "games/status/confirm_time", next_enqueue: next_enqueue
+
           span.score.d-flex.justify-content-center
             span.fs-1 = game.hscore
             span.ms-1.me-1.fs-6 X
@@ -41,21 +46,17 @@
           small.text-muted
             a href="javascript:void(0)" id="button_userinfo_visitor_#{game.id}" data-controller="popover" data-popover-id-value="#{game.visitor.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.visitor.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.visitor.user_season.user)}" ##{game.visitor.user_season.user.nickname}
 
-      #game_details.card.collapse-icon.mb-0
-        - if game.status == 3
-          = render "games/actions/goals_cards", game: game
+      - if game.status == 3
+        = render "games/actions/goals_cards", game: game
 
-      .row.text-center
-        span.badge.badge-danger
-        - if (game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id) && game.status == 2
-          - if Sidekiq::Cron::Job.find("result_confirmation_#{game.championship.season.id}_#{game.championship.id}_#{game.id}")
-            - next_enqueue = (Sidekiq::Cron::Job.find("result_confirmation_#{game.championship.season.id}_#{game.championship.id}_#{game.id}").last_enqueue_time).in_time_zone('Brasilia') + game.championship.season.preferences["time_game_confirmation"].hour
-            = render "games/status/confirm_time", next_enqueue: next_enqueue
+      - if game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id
+        - if game.championship.preferences['cards_suspension'] == "on" && game.status == 1
+          = render "games/actions/suspended", game: game, season: session_season
+        - if game.status == 2
+          = render "games/actions/goals_cards", game: game
 
     .card-footer id="game_actions_footer_#{game.championship.hashid}_#{game.hashid}"
       - if game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id
-        - if game.championship.preferences['cards_suspension'] == "on" && game.status == 1
-            = render "games/actions/suspended", game: game, season: session_season
         - if game.status < 3
           div.game_actions id="game_actions_#{game.championship.hashid}_#{game.hashid}"
             .text-center

@@ -14,7 +14,7 @@ export default class CountdownController extends Controller {
 
     timer.start({
       countdown: true,
-      startValues: [0,0,0,2,0]
+      startValues: ignition
     })
 
     timer.addEventListener("secondsUpdated", function (e) {

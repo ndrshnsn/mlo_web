@@ -51,6 +51,9 @@ pt-BR:
     fairplay_desc: "Premiação para quem sofrer menos cartões"
     lessown: "Defesa menos Vazada"
     lessown_desc: "Time que tomou menos gols em todos os jogos"
+  cards:
+    yellow: "Cartão Amarelo"
+    red: "Cartão Vermelho"
   parsley:
     minimum_bigger: "O mínimo precisa ser menor que o máximo!"
   theme:

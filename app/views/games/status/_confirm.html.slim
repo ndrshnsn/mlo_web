@@ -1,5 +1,5 @@
 .text-center
-  = link_to "javascript:;", class: "btn btn-primary btn-sm", data: { controller: "confirm", "confirm-title-value": t('.result_question', game: game.gsequence), "confirm-text-value": t('.result_text'), "confirm-link-value": game_confirm_path(game.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+  = link_to "javascript:;", class: "btn bg-success-subtle border border-success btn-sm", data: { controller: "confirm", "confirm-title-value": t('.result_question', game: game.gsequence), "confirm-text-value": t('.result_text'), "confirm-link-value": game_confirm_path(game.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
     i.ri-check-line.align-bottom
     span.ms-1.d-none.d-sm-block style="float: right;" Confirmar
 

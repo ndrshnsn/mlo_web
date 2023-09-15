@@ -61,14 +61,14 @@ class AppServices::Games::Earning < ApplicationService
         end
       end
 
-      if @game.hscore.to_i > 0 && @game.wo == false
+      if @game.hscore.to_i > 0 && @game.subtype != 3
         homeEarnings += (@game.hscore.to_i * @game.championship.preferences["match_goal_earning"])
         homeDescription.push("Goals[#{@game.hscore}]")
         visitorEarnings -= (@game.hscore.to_i * @game.championship.preferences["match_goal_lost"])
         visitorDescription.push("GoalsAgainst[#{@game.hscore}]")
       end
 
-      if @game.vscore.to_i > 0 && @game.wo == false
+      if @game.vscore.to_i > 0 && @game.subtype != 3
         visitorEarnings += (@game.vscore.to_i * @game.championship.preferences["match_goal_earning"])
         visitorDescription.push("Goals[#{@game.vscore}]")
         homeEarnings -= (@game.vscore.to_i * @game.championship.preferences["match_goal_lost"])

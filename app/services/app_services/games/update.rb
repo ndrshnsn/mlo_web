@@ -153,14 +153,12 @@ class AppServices::Games::Update < ApplicationService
       Ranking.updateRanking(@game, "confirm")
     else
       season = @game.championship.season
-      confirmation_time = Time.now + season.preferences["time_game_confirmation"].hour
+      confirmation_time = Time.zone.now + season.preferences["time_game_confirmation"].hour
 
-      Sidekiq::Cron::Job.create(name: "result_confirmation_#{season.id}_#{@game.championship.id}_#{@game.id}", cron: "#{Time.now.strftime("%M")} #{confirmation_time.strftime("%H")} * * *", class: 'ResultConfirmationWorker', date_as_argument: true, args: [season.id, @user.id])
+      Sidekiq::Cron::Job.create(name: "game_confirm_#{season.id}_#{@game.championship.id}_#{@game.id}", cron: "#{Time.zone.now.strftime("%M")} #{confirmation_time.strftime("%H")} * * *", class: 'GameConfirmWorker', date_as_argument: true, args: [season.id, @user.id])
       
-      Sidekiq::Cron::Job.find("result_confirmation_#{season.id}_#{@game.championship.id}_#{@game.id}").enque!
+      Sidekiq::Cron::Job.find("game_confirm_#{season.id}_#{@game.championship.id}_#{@game.id}").enque!
       sleep 1
-
-      # nextEnqueue = (Sidekiq::Cron::Job.find("result_confirmation_#{@season.id}_#{@game.championship.id}_#{@game.id}").last_enqueue_time).in_time_zone('Brasilia') + (Time.parse(@season.preferences["time_game_confirmation"]).hour).hour
     end
 
     OpenStruct.new(success?: true, game: @game, error: nil)

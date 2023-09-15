@@ -1,5 +1,8 @@
 pt-BR:
   games:
+    actions:
+      goals_cards:
+        details: "Detalhes"
     card:
       start_game: "Iniciar"
       start_game_question: "Iniciar Jogo #%{game} ?"
@@ -42,3 +45,5 @@ pt-BR:
       assister: "Assistência"
       confirm: "Confirmar"
       not_identified: "NÃO IDENTIFICADO"
+    confirm:
+      success: "Jogo confirmado com sucesso!"

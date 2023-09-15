@@ -178,8 +178,9 @@ module ApplicationHelper
     global_platforms
   end
 
-  def countdown_timer(uglystring)
-    [0, uglystring.sec, uglystring.min, uglystring.hour, uglystring.day]
+  def countdown_timer(future_time)
+    diff = TimeDifference.between(Time.zone.now, future_time).in_general
+    [0, diff[:seconds], diff[:minutes], diff[:hours], 0]
   end
 
   ##
