@@ -28,7 +28,7 @@ html lang="en" data-layout="vertical" data-layout-style="detached" data-sidebar=
     = turbo_frame_tag "modal", target: "_top"
 
     - if user_signed_in?
-      span data-controller="timeout" data-timeout-frequency-value="15" data-timeout-tpath-value="#{timeout_path}" data-timeout-apath-value="#{active_path}" data-timeout-warning-value="30" data-timeout-modal-value="timeoutWarningModal"
+      span data-controller="timeout" data-timeout-frequency-value="15" data-timeout-tpath-value="#{timeout_path}" data-timeout-apath-value="#{active_path}" data-timeout-warning-value="30" data-timeout-modal-value="timeoutWarningModal" data-timeout-counter-value="stimeleft"
       = render 'layouts/modal/timeout'
 
     #layout-wrapper

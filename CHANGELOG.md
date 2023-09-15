@@ -1,5 +1,12 @@
 # Change log
 
+## 46a52ea - 2023-08-29
+
+### Added
+
+### Changed
+* Upgrade of Remixicon to 3.5.0
+
 ## cc4db9d - 2023-08-25
 
 ### Added

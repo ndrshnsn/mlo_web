@@ -1,6 +1,8 @@
 .row
+  = turbo_stream_from "games_#{current_user.id}"
   - games.each do |game|
-    = render "games/card", game: game
+    .col-lg-6.col-xxl-4
+      = render "games/card", game: game, current_user_id: current_user.id
 
 .row.mt-3
   = render 'layouts/pagy/main', pagy: @pagy, frame: "championships"

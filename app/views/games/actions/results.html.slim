@@ -1,0 +1,74 @@
+= render "layouts/modal/main", modal_size: "md"
+  = form_with model: @game, id: "results_#{@game.hashid}", url: game_update_path(@game), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('games.result.confirm_question'), "form-text-value": t('games.result.confirm_text'), "form-icon-value": "question"} do |f|
+    .modal-header
+      h5.modal-title.d-flex.align-items-center
+        i.ri-survey-line.me-1
+        = t('games.result.title', id: @game.gsequence)
+      button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+    .modal-body
+      - if @penalties
+        .col-12.text-center
+          .badge.badge-light-warning.mb-1 style="white-space: normal!important;" = t('games.result.penalty_warning')
+      .row.mb-1
+        .teams
+          .text-center
+            span.teams-logo
+              = image_tag("#{session[:pdbprefix]}/teams/#{(@game.home.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+            span.teams-name.d-sm-block.d-none = stringHuman(@game.home.def_team.name)
+            span.teams-name.d-block.d-sm-none = stringHuman( @game.home.def_team.details['teamAbbr'])
+            small.text-muted ##{ @game.home.user_season.user.nickname}
+            p
+            = link_to game_update_add_goal_path(id: @game, side: "home" ), data: { "turbo-frame": "modal_goal_#{@game.hashid}" } do
+              .badge.bg-primary.me-1
+                i.ri-football-line
+                span.d-sm-block.d-none.ms-1 style="float: right;" = t('games.result.add_goal')
+            = link_to game_update_add_card_path(id: @game, side: "home"), data: { "turbo_frame": "modal_card_#{@game.hashid}" } do
+              .badge.bg-primary.me-1
+                i.ri-square-fill
+                span.d-sm-block.d-none.ms-1 style="float: right;" = t('games.result.add_card')
+          .text-center
+            span.score
+              span.me-1.fs-1 id="game_modal_home_score_#{@game.championship.hashid}_#{@game.hashid}"
+                = @game.hscore
+              | x
+              span.ms-1.fs-1 id="game_modal_visitor_score_#{@game.championship.hashid}_#{@game.hashid}"
+                = @game.vscore
+
+          .text-center
+            span.teams-logo
+              = image_tag("#{session[:pdbprefix]}/teams/#{(@game.visitor.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+            span.teams-name.d-sm-block.d-none = stringHuman(@game.visitor.def_team.name)
+            span.teams-name.d-block.d-sm-none = stringHuman( @game.visitor.def_team.details['teamAbbr'])
+            small.text-muted ##{ @game.visitor.user_season.user.nickname}
+            p
+            = link_to game_update_add_goal_path(id: @game, side: "visitor"), data: { "turbo-frame": "modal_goal_#{@game.hashid}" } do
+              .badge.bg-primary.me-1
+                i.ri-football-line
+                span.d-sm-block.d-none.ms-1 style="float: right;" = t('games.result.add_goal')
+            = link_to game_update_add_card_path(id: @game, side: "visitor"), data: { "turbo_frame": "modal_card_#{@game.hashid}" } do
+              .badge.bg-primary data-toggle="tooltip" data-title="Adicionar Cartão"
+                i.ri-square-fill
+                span.d-sm-block.d-none.ms-1 style="float: right;" = t('games.result.add_card')
+      .row.pt-2.mb-3
+        .simplebar-scrollable-y(data-simplebar style="max-height: 300px;")
+          div
+            = turbo_frame_tag "goals-and-cards_#{@game.championship.hashid}_#{@game.hashid}"
+              
+      - if @game.championship.preferences["match_best_player"] == "on"
+        = render partial: "games/actions/best_player", game: @game, suspended_players: @suspended_players, players_home: @players_home, players_visitor: @players_visitor
+
+    .modal-footer
+      .col-12.text-end
+        = button_tag t('games.result.cancel'), type: "button", "data-bs-dismiss": "modal", "aria-label": "Close", class: "btn btn-outline-secondary btn-sm me-1"
+        = f.submit t('games.result.confirm'), class: "btn btn-primary btn-sm"
+
+  javascript:
+    var cid = "#{@game.championship.hashid}"
+    var gid = "#{@game.hashid}"
+
+    function update_score() {
+      var home_score_goals = document.getElementsByClassName('goal_card_home').length 
+      document.getElementById('game_modal_home_score_'+ cid +'_'+ gid).textContent = home_score_goals
+      var visitor_score_goals = document.getElementsByClassName('goal_card_visitor').length 
+      document.getElementById('game_modal_visitor_score_'+ cid +'_'+ gid).textContent = visitor_score_goals
+    }

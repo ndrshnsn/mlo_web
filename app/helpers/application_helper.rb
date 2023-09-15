@@ -1,5 +1,6 @@
 module ApplicationHelper
   include DatatablesHelper
+  include GamesHelper
   include Pagy::Frontend
 
   def render_turbo_stream_flash_messages
@@ -177,7 +178,10 @@ module ApplicationHelper
     global_platforms
   end
 
-  
+  def countdown_timer(future_time)
+    diff = TimeDifference.between(Time.zone.now, future_time).in_general
+    [0, diff[:seconds], diff[:minutes], diff[:hours], 0]
+  end
 
   ##
   # Translate Overall Ratings to Show it in accordingly colour.

@@ -33,18 +33,18 @@
                   td.text-center colspan="4" Nenhum jogador listado
               - else
                 - @goalers.each_with_index do |goaler,i|
-                  - rpPOS = translate_pkeys(goaler.player.player_position.name, goaler.player.platform)
+                  - rpPOS = translate_pkeys(goaler.def_player.def_player_position.name, goaler.def_player.platform)
                   tr
                     td.text-center ##{i+1}
                     td
                       .media
                         .media-aside.align-self-center
                           span.avatar.mr-75
-                            img[src="#{session[:pdbprefix]}/players/#{goaler.player.platform}/#{goaler.player.platformid}.png" class="avatar avatar-sm" style=" padding: 0px!important; width: 38px; height: 38px;"]
+                            / img[src="#{session[:pdbprefix]}/players/#{goaler.player.platform}/#{goaler.player.platformid}.png" class="avatar avatar-sm" style=" padding: 0px!important; width: 38px; height: 38px;"]
                             span[class="gp-player-pos gp-player-pos-#{rpPOS[1]} mr-50" style="font-size: 9px!important; position: absolute; right: -10px; bottom: -3px;"] = rpPOS[0]
                         .media-body.align-self-center
                           span.d-block.font-weight-bold
-                            = goaler.player.name
+                            = goaler.def_player.name
                     td
                       - if goaler.club_players.first.nil?
                         span.badge.badge-dark LIVRE
@@ -53,8 +53,8 @@
                           .media-aside.align-self-center.mr-50
                             a.b-avatar.badge-light-info.rounded-circle style='width: 32px; height: 32px;'
                               span.b-avatar-img
-                                img src="#{goaler.club_players.first.club.player_team.badge_url}" style='width: 32px; height: 32px;'
+                                //img src="#{goaler.club_players.first.club.player_team.badge_url}" style='width: 32px; height: 32px;'
                           .media-body.align-self-center
-                            span.font-weight-bold.d-block.text-nowrap = goaler.club_players.first.club.player_team.details['teamAbbr'].upcase
+                            span.font-weight-bold.d-block.text-nowrap = goaler.club_players.first.club.def_team.details['teamAbbr'].upcase
                             small.text-muted ##{goaler.club_players.first.club.user_season.user.nickname}
                     td.text-center = goaler.goals

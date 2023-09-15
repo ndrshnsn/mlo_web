@@ -75,6 +75,12 @@ as :user do
   get "championships/:id/settings", to: "championships#settings", as: :championship_settings
 
   post "games/:id/start", to: "games#start", as: :game_start
+  post "games/:id/results", to: "games#results", as: :game_results
+  patch "games/:id/update", to: "games#update", as: :game_update
+  match "games/:id/update/goal/add/:side", to: "games#add_goal", as: :game_update_add_goal, via: [:get, :patch]
+  match "games/:id/update/card/add/:side", to: "games#add_card", as: :game_update_add_card, via: [:get, :patch]
+  post "games/:id/update/card/remove/:card", to: "games#remove_goal_card", as: :game_update_remove_goal_card
+  post "games/:id/confirm", to: "games#confirm", as: :game_confirm
 
   get "ranking", to: "ranking#index"
   

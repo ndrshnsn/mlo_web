@@ -12,6 +12,15 @@ File: Custom Css File
   }
 }
 
+.card {
+  .yellow {
+    color: #ffcd81 !important;
+  }
+  .red {
+    color: #f672a7 !important;
+  }
+}
+
 div.dataTables_paginate {
   margin: 0;
   white-space: nowrap;
@@ -130,8 +139,12 @@ tr.strikeout td:before {
   z-index: 1083 !important;
 }
 
+.modal.fade {
+  background: rgba(0,0,0,0.4);
+}
+
 .swal2-container {
-  z-index: 1078 !important;
+  z-index: 1084 !important;
 }
 
 /** Remove spin arrows from firefox **/
@@ -150,6 +163,13 @@ input[type=number] {
   display: grid;
   -ms-grid-columns: 1fr 100px 1fr;
   grid-template-columns: 1fr 100px 1fr;
+}
+
+.teams-score {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .teams-logo {
@@ -189,3 +209,4 @@ input[type=number] {
 .penalty, .score, .time, .match-item, .match-label, .match-team {
   text-align: center;
 }
+

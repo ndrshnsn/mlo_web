@@ -3,4 +3,6 @@ pt-BR:
     status:
       not_started: "Não Iniciado"
       revoked: "Cancelado"
+      running: "Em Andamento"
       finished: "Encerrado"
+      result_confirmation: "Confirmação"

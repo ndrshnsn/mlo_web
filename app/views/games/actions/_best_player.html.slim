@@ -1,0 +1,27 @@
+- psuspended = @suspended_players[:home_ycard] + @suspended_players[:home_rcard] + @suspended_players[:visitor_ycard] + @suspended_players[:visitor_rcard]
+.card.mb-0.border.border-1
+  .card-body
+    h5.modal-title.d-flex.align-items-center
+      i.ri-vip-crown-line.me-1
+      = t('games.result.best_player')
+      
+    .col-12.text-center.pb-2.pt-2
+      i.ri-star-fill.me-1.align-middle style="color: yellow; font-size: 15px;"
+      i.ri-star-fill.me-2.align-middle style="color: yellow; font-size: 25px;"
+
+      img#best_player_image.rounded-circle.avatar-sm src="#{image_path('generic-player.png')}" style="border: 2px outset #CACE7C; width: 96px; height: 96px;"
+
+      i.ri-star-fill.ms-2.align-middle style="color: yellow; font-size: 25px;"
+      i.ri-star-fill.ms-1.align-middle style="color: yellow; font-size: 15px;"
+
+    .col-12
+      .form-group
+        span
+          #popover_match_best_player_selection
+        = select_tag "match_best_player_selection", grouped_options_for_select([[stringHuman(@game.home.def_team.name), @players_home.collect { |player| [player.player_season.def_player.name, player.player_season.id, {'data-img': "#{session[:pdbprefix]}/players/#{get_platforms(platform: player.player_season.def_player.platform, dna: true)}/#{player.player_season.def_player.platformid}.png", 'data-img-size': "22", 'data-position-value': translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)[0], 'data-position-class': translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)[1]} ]} ], [stringHuman(@game.visitor.def_team.name), @players_visitor.collect { |player| [player.player_season.def_player.name, player.player_season.id, {'data-img': "#{session[:pdbprefix]}/players/#{get_platforms(platform: player.player_season.def_player.platform, dna: true)}/#{player.player_season.def_player.platformid}.png", 'data-img-size': "22", 'data-position-value': translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)[0], 'data-position-class': translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)[1]} ]} ]], disabled: psuspended), { include_blank: true, required: true, "data-parsley-errors-container": "match_best_player_selection", class: "form-control select2", "data-controller": "select", "data-select-icon-value": true }
+
+javascript:
+  $("#match_best_player_selection").on("change", function(){
+    var selectedOptionValue = $(this);
+    $('#best_player_image').attr('src', $('option:selected', selectedOptionValue).attr("data-img"));
+  });

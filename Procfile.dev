@@ -3,4 +3,4 @@ js: yarn build --watch
 css: yarn build:css --watch
 vite: bin/vite dev
 redis: redis-server
-worker: bundle exec sidekiq -C config/sidekiq.yml
+sidekiq: bundle exec sidekiq -C config/sidekiq.yml

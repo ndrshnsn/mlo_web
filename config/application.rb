@@ -49,11 +49,6 @@ module MloWeb
 
     config.active_job.queue_adapter = :sidekiq
 
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    config.time_zone = "America/Sao_Paulo"
-
     # Only attempt update on local machine
     if Rails.env.development?
       # Update version file from latest git tag

@@ -6853,6 +6853,7 @@ a {
 }
 
 .popover {
+  z-index: 1083 !important;
   max-width:600px !important;
   min-width: auto !important;
   -webkit-box-shadow: 0 5px 10px rgba(30, 32, 37, 0.12);
@@ -12828,7 +12829,7 @@ span.flatpickr-weekday {
   max-width: 1400px;
   margin: 0 auto;
 }
-.timeline::after {
+/* .timeline::after {
   content: "";
   position: absolute;
   width: 2px;
@@ -12837,7 +12838,7 @@ span.flatpickr-weekday {
   bottom: 166px;
   left: 50%;
   margin-left: -1.5px;
-}
+} */
 
 .timeline-item {
   padding: 30px 60px;
@@ -12850,15 +12851,15 @@ span.flatpickr-weekday {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 25px;
+  font-size: 22px;
   top: 30px;
   right: -30px;
   padding: 9px 0;
@@ -12878,7 +12879,7 @@ span.flatpickr-weekday {
   font-style: italic;
 }
 .timeline-item .content {
-  padding: 20px;
+  /* padding: 20px; */
   background: var(--vz-secondary-bg);
   position: relative;
   border: 1px solid var(--vz-border-color);
@@ -12887,32 +12888,32 @@ span.flatpickr-weekday {
           box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 .timeline-item.left {
-  left: 0;
+  left: 0px;
 }
 .timeline-item.left .date {
   left: calc(100% + 48px);
   text-align: start;
 }
 .timeline-item.right {
-  left: 50%;
+  left: 0px;
 }
 .timeline-item.right .icon {
-  left: -30px;
+  left: 0px;
 }
 .timeline-item.right .date {
   right: calc(100% + 48px);
   text-align: end;
 }
-.timeline-item.right::before {
+/* .timeline-item.right::before {
   left: 28px;
   border-color: transparent transparent transparent #fff;
-}
+} */
 
 @media (max-width: 991.98px) {
-  .timeline::after {
+  /* .timeline::after {
     left: 24px;
     bottom: 180px;
-  }
+  } */
   .timeline-item {
     width: 100%;
     padding-left: 48px;
@@ -12922,16 +12923,15 @@ span.flatpickr-weekday {
     left: 0%;
   }
   .timeline-item.right .icon, .timeline-item.left .icon {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     top: 0;
     font-size: 18px;
-    left: 0;
   }
-  .timeline-item.right::before, .timeline-item.left::before {
+  /* .timeline-item.right::before, .timeline-item.left::before {
     left: 110px;
     border-color: transparent transparent transparent var(--vz-border-color);
-  }
+  } */
   .timeline-item.right .date, .timeline-item.left .date {
     right: auto;
     left: 48px;

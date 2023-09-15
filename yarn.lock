@@ -269,10 +269,10 @@ debug@^4.3, debug@^4.3.4:
   dependencies:
     ms "2.1.2"
 
-easytimer.js@^4.5.4:
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/easytimer.js/-/easytimer.js-4.5.4.tgz#7e8ac85cafa8b5e5a38dcffa2e4b0254c75c71fe"
-  integrity sha512-65STy2sW2z6e9XwfJqSa18JVNWuOu2cb/FXaZ/BbiDiPnTvC53njMS3oY1BsAIm/Dzt9c8YUvcgc8FoPttm1Gw==
+easytimer.js@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/easytimer.js/-/easytimer.js-4.6.0.tgz#43b4c5adf5597e96023a617545a977cd18506b04"
+  integrity sha512-2kl/X/HnB5mKJ29x7N908CrNl5y8yDgDuD8U7TXTEHs/lBFVXT91DSoiXncYnwC1TPPDfomlLDKPaTSqT3dygQ==
 
 esbuild@^0.18.10, esbuild@^0.18.17:
   version "0.18.20"
@@ -475,6 +475,11 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+remixicon@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/remixicon/-/remixicon-3.5.0.tgz#ad3ea8e6cd80d6bc7a9a261fafc229f04a32ce5f"
+  integrity sha512-wNzWGKf4frb3tEmgvP5shry0n1OdTjjEk9RHLuRuAhfA50bvEdpKH1XWNUYrHUSjAQQkkdyIm+lf4mOuysIKTQ==
 
 reusify@^1.0.4:
   version "1.0.4"

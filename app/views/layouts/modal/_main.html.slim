@@ -1,9 +1,10 @@
-- mSize = defined?(modal_size) ? modal_size : "lg"
-- mScrollable = defined?(modal_scrollable) ? "modal-dialog-scrollable" : ""
-- modal_id = defined?(modal_id) ? modal_id : "modal_id_#{rand(8)}"
-- autoshow = defined?(modal_autoshow) ? modal_autoshow : true
+- mName = local_assigns.has_key?(:modal_name) ? modal_name : "modal"
+- mSize = local_assigns.has_key?(:modal_size) ? modal_size : "lg"
+- mScrollable = local_assigns.has_key?(:modal_scrollable) ? "modal-dialog-scrollable" : ""
+- modal_id = local_assigns.has_key?(:modal_id) ? modal_id : "modal_id_#{rand(12)}"
+- autoshow = local_assigns.has_key?(:modal_autoshow) ? modal_autoshow : true
 
-= turbo_frame_tag "modal" do
+= turbo_frame_tag mName do
   div class="modal fade" id="#{modal_id}" data-controller="modal" data-modal-autoshow-value="#{autoshow}" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" data-action="turbo:before-render@document->modal#hideBeforeRender"
     div class="modal-dialog modal-dialog-centered modal-#{mSize} #{mScrollable}"
       .modal-content

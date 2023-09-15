@@ -1,0 +1,70 @@
+= turbo_stream.prepend "goals-and-cards_#{@game.championship.hashid}_#{@game.hashid}" do
+  div.border-bottom.border-1.p-1 class="#{@change_result == 'add_goal' ? "goal_card_#{@side}" : ''}" id="goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"
+    - rpPOS = translate_pkeys(@actor.def_player.def_player_position.name, @actor.def_player.platform)
+    - if @change_result == "add_goal"
+      - if @assister == "-"
+        - @assister_name = t('games.add_goal.not_identified')
+        input type="hidden" name="goals_#{@side}[]" value="[#{@actor.id}, '-']"
+      - else
+        - @assister_name = @assister.def_player.name
+        input type="hidden" name="goals_#{@side}[]" value="[#{@actor.id}, #{@assister.id}]"
+    - elsif @change_result == "add_card"
+      input type="hidden" name="cards_#{@side}[]" value="[#{@actor.id}, #{@type}]"
+
+    - if @side == "home"
+      .d-flex.align-items-center 
+        .flex-shrink-0.me-3.mb-3 style="position:relative;"
+          img.avatar-sm.img-thumbnail.rounded-circle src="#{session[:pdbprefix]}/players/#{get_platforms(platform: @actor.def_player.platform, dna: true)}/#{@actor.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
+          span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
+        .flex-grow-1
+          .d-flex.align-items-center
+            .flex-shrink-0
+              span = @actor.def_player.name
+              br
+                span.text-muted.fs-12.d-flex.align-middle
+                - if @change_result == "add_goal"
+                  span.text-muted = @assister_name
+                  i.ri-drag-move-fill.ms-1
+                - elsif @change_result == "add_card"
+                  - card_color = @type == "game_ycard" ? "yellow" : "red"
+                  span.text-muted = t("games.add_card.#{card_color}_card")
+                  i class="ri-square-fill ms-1" style="color: #{card_color}"
+            .flex-grow-1.text-end
+              = link_to game_update_remove_goal_card_path(id: @game.hashid, card: "goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"), data: { turbo_method: "post" } do
+                i.ri-close-line.text-danger
+              br
+              - if @change_result == "add_goal"
+                i.ri-football-line
+              - elsif @change_result == "add_card"
+                - card_color = @type == "game_ycard" ? "yellow" : "red"
+                i class="ri-square-fill" style="color: #{card_color}"
+    - elsif @side == "visitor"
+      .d-flex.align-items-center style="background-color: #24282d;"
+        .flex-grow-1
+          .d-flex.align-items-center
+            .flex-grow-1.text-start
+              = link_to game_update_remove_goal_card_path(id: @game.hashid, card: "goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"), data: { turbo_method: "post" } do
+                i.ri-close-line.text-danger
+              br
+              - if @change_result == "add_goal"
+                i.ri-football-line
+              - elsif @change_result == "add_card"
+                i.ri-square-line
+            .flex-shrink-0.text-end
+              span = @actor.def_player.name
+              br
+                span.text-muted.fs-12.d-flex.align-middle
+                - if @change_result == "add_goal"
+                  span.text-muted = @assister_name
+                  i.ri-drag-move-fill.ms-1
+                - elsif @change_result == "add_card"
+                  - card_color = @type == "game_ycard" ? "yellow" : "red"
+                  span.text-muted = t("games.add_card.#{card_color}_card")
+                  i class="ri-square-fill ms-1" style="color: #{card_color}"
+
+        .flex-shrink-0.ms-3.mb-3.text-end style="position:relative;"
+          img.avatar-sm.img-thumbnail.rounded-circle src="#{session[:pdbprefix]}/players/#{get_platforms(platform: @actor.def_player.platform, dna: true)}/#{@actor.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
+          span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
+
+    javascript:
+      update_score()

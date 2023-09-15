@@ -1,7 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
+import Timer from "easytimer.js"
 
 export default class extends Controller {
-  static values = { frequency: String, tpath: String, apath: String, warning: String, modal: String }
+  static values = { 
+    frequency: String,
+    tpath: String,
+    apath: String,
+    warning: String,
+    modal: String,
+    counter: String
+  }
 
   connect() {
     const frequency = this.frequencyValue
@@ -9,6 +17,7 @@ export default class extends Controller {
     const tpath = this.tpathValue
     const warning = this.warningValue
     const modal = this.modalValue
+    const counter = document.getElementById(this.counterValue)
 
     setTimeout(periodicalQuery, (frequency * 1000))
 
@@ -30,6 +39,21 @@ export default class extends Controller {
             if (!modal_el.classList.contains('show')) {
               let show_modal = new bootstrap.Modal(modal_el)
               show_modal.show()
+
+              var timer = new Timer()
+              timer.start({
+                countdown: true,
+                startValues: [0,30,0,0,0]
+              })
+        
+              timer.addEventListener("secondsUpdated", function (e) {
+                counter.innerHTML =  timer.getTimeValues().toString()
+              })
+                
+              timer.addEventListener('targetAchieved', function (e) {
+                window.location.reload()
+              })
+
             }
           }
         }
