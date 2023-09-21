@@ -7,8 +7,11 @@
       button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
     .modal-body
       - if @penalties
-        .col-12.text-center
-          .badge.badge-light-warning.mb-1 style="white-space: normal!important;" = t('games.result.penalty_warning')
+        span.col-12.text-center.badge.bg-danger-subtle.border.border-danger.mb-1.mb-3 style="white-space: normal!important;" = t('games.result.penalty_warning')
+      - if @previous_game
+        .row.mb-1.p-2
+          blockquote#combined_message_span.blockquote.custom-blockquote.blockquote-danger.rounded.fs-14 hidden="true"
+            p.text-body = t('games.result.combined_message')
       .row.mb-1
         .teams
           .text-center
@@ -28,11 +31,24 @@
                 span.d-sm-block.d-none.ms-1 style="float: right;" = t('games.result.add_card')
           .text-center
             span.score
-              span.me-1.fs-1 id="game_modal_home_score_#{@game.championship.hashid}_#{@game.hashid}"
-                = @game.hscore
+              span.me-1.fs-1 id="game_modal_home_score_#{@game.championship.hashid}_#{@game.hashid}" 0
               | x
-              span.ms-1.fs-1 id="game_modal_visitor_score_#{@game.championship.hashid}_#{@game.hashid}"
-                = @game.vscore
+              span.ms-1.fs-1 id="game_modal_visitor_score_#{@game.championship.hashid}_#{@game.hashid}" 0
+
+            span.penalty
+              - if @previous_game
+                input type="hidden" id="prevGame_hscore" value="#{@previous_game.hscore}"
+                input type="hidden" id="prevGame_vscore" value="#{@previous_game.vscore}"
+                input type="hidden" id="result_criterion" value="#{@result_criterion}"
+              - if @penalties
+                span.badge.bg-primary.mt-3.mb-1 = t('.penalties')
+                #penaltyInput.d-flex
+                  .form-group
+                    = text_field_tag("phscore", '', class: "form-control form-control-sm phscore-mask text-center border border-primary", size: 2, maxlength: 2, "data-parsley-checkpenaltyrequirement": 'true', "data-parsley-validate-if-empty": "true", "data-controller": "cleave", "data-cleave-ctype-value": "penalty")
+                  span.ms-1.me-1.font-weight-bolder style="line-height: 28px;"
+                    | :
+                  .form-group
+                    = text_field_tag("pvscore", '', class: "form-control form-control-sm pvscore-mask text-center border border-primary", size: 2, maxlength: 2, "data-parsley-checkpenaltyrequirement": 'true', "data-parsley-validate-if-empty": "true", "data-controller": "cleave", "data-cleave-ctype-value": "penalty")
 
           .text-center
             span.teams-logo
@@ -60,15 +76,47 @@
     .modal-footer
       .col-12.text-end
         = button_tag t('games.result.cancel'), type: "button", "data-bs-dismiss": "modal", "aria-label": "Close", class: "btn btn-outline-secondary btn-sm me-1"
-        = f.submit t('games.result.confirm'), class: "btn btn-primary btn-sm"
+        = f.submit t('games.result.confirm'), class: "btn btn-primary btn-sm", id: "submit_result"
 
   javascript:
     var cid = "#{@game.championship.hashid}"
     var gid = "#{@game.hashid}"
+    var previous_game = "#{@previous_game}"
+    var result_criterion = document.getElementById('result_criterion').value
 
-    function update_score() {
-      var home_score_goals = document.getElementsByClassName('goal_card_home').length 
+    function check_for_combined_result(home_score_goals, visitor_score_goals, previous_home_score_goals, previous_visitor_score_goals) {
+      if (previous_game) {
+        console.log(check_goal_assignment(home_score_goals, visitor_score_goals, previous_home_score_goals, previous_visitor_score_goals))
+        if ( check_goal_assignment(home_score_goals, visitor_score_goals, previous_home_score_goals, previous_visitor_score_goals) == false && ( (home_score_goals != visitor_score_goals) || (previous_home_score_goals != previous_visitor_score_goals) ) ) {
+          var combined_result = false
+          var submit_button_status = true
+        } else {
+          var combined_result = true
+          var submit_button_status = false
+        }
+        document.getElementById('combined_message_span').hidden = combined_result
+        document.getElementById('submit_result').disabled = submit_button_status
+      }
+    }
+
+    function update_score(home_score_goals, visitor_score_goals) {
       document.getElementById('game_modal_home_score_'+ cid +'_'+ gid).textContent = home_score_goals
-      var visitor_score_goals = document.getElementsByClassName('goal_card_visitor').length 
       document.getElementById('game_modal_visitor_score_'+ cid +'_'+ gid).textContent = visitor_score_goals
+    }
+
+    function check_goal_assignment(home_score_goals, visitor_score_goals, previous_home_score_goals, previous_visitor_score_goals) {
+      var home_sum = home_score_goals + previous_visitor_score_goals
+      var visitor_sum = previous_home_score_goals + visitor_score_goals
+      if (home_sum == visitor_sum) {
+        if (result_criterion == "outGoals") {
+          if (previous_visitor_score_goals == visitor_score_goals) {
+            return false
+          } else {
+            return true
+          }
+        }
+        return false
+      } else {
+        return true
+      }
     }

@@ -2,4 +2,10 @@
 
 = turbo_stream.prepend "goals-and-cards_#{@game.championship.hashid}_#{@game.hashid}" do
   javascript:
-    update_score()
+    var home_score_goals = document.getElementsByClassName('goal_card_home').length
+    var visitor_score_goals = document.getElementsByClassName('goal_card_visitor').length
+    var previous_home_score_goals = parseInt($('#prevGame_hscore').val())
+    var previous_visitor_score_goals = parseInt($('#prevGame_vscore').val())
+
+    update_score(home_score_goals, visitor_score_goals)
+    check_for_combined_result(home_score_goals, visitor_score_goals, previous_home_score_goals, previous_visitor_score_goals)

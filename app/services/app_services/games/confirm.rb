@@ -2,7 +2,7 @@ class AppServices::Games::Confirm < ApplicationService
   def initialize(game, user, club)
     @game = game
     @user = user
-    @club
+    @club = club
   end
 
   def call
@@ -18,9 +18,9 @@ class AppServices::Games::Confirm < ApplicationService
     opponent = @game.home.user_season.user.id == @user.id ? "visitor" : "home"
     @game.status = 3
     if side == "home"
-      @game.hfaccepted = true
-    else
       @game.vfaccepted = true
+    else
+      @game.hfaccepted = true
     end
     return handle_error(@game, ".game_confirm_error") unless @game.save!
 

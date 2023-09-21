@@ -63,7 +63,7 @@ export default class SelectController extends Controller {
     let player_position = ''
     let player_class = ''
 
-    if ( $(originalOption).data('position-value') !== null ) {
+    if ( $(originalOption).data('position-value') ) {
       player_position = '<span class="me-1 badge badge-' + $(originalOption).data('position-class') + '">' + $(originalOption).data('position-value') + '</span>'
       player_class = "avatar-md img-thumbnail rounded-circle"
     }
@@ -71,7 +71,7 @@ export default class SelectController extends Controller {
     if ( icon.id == "-" ) {
       var $icon = '<span class="d-flex align-items-center">' + icon.text + '</span>'
     } else {
-      var $icon = '<span class="d-flex align-items-center">' + player_position + '<img src="' + $(originalOption).data('img') + '" class="me-2 '+ player_class +'", style="width: ' + size + 'px; height: ' + size + 'px;">' + icon.text + '</span>'
+      var $icon = '<span class="d-flex align-items-center">' + player_position + '<img src="' + $(originalOption).data('img') + '" class="me-2 rounded-circle '+ player_class +'", style="width: ' + size + 'px; height: ' + size + 'px;">' + icon.text + '</span>'
     }
 
     $icon = $($icon);

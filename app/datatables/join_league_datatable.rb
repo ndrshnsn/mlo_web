@@ -16,7 +16,7 @@ class JoinLeagueDatatable < ApplicationDatatable
 
       platform = league.platform
 
-      league_users = League.includes(:user_leagues, :users).where(leagues: { id: league.id }, user_leagues: { status: true }).where("(users.preferences -> 'fake')::Boolean = ?", false).count
+      league_users = League.joins([user_leagues: :user]).where(leagues: { id: league.id }, user_leagues: { status: true }, users: { role: 0 } ).where("(users.preferences -> 'fake')::Boolean = ?", false).count
 
       slots = (league.slots - league_users)
 

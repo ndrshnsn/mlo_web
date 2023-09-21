@@ -32,6 +32,12 @@ export default class CleaveController extends Controller {
           numericOnly: true,
           blocks: [99999]
         });
+      case 'penalty':
+        new Cleave(this.element, {
+          numeral: true,
+          blocks: [99],
+          delimiter: ''
+        });
     }
   }
 }

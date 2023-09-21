@@ -11,7 +11,7 @@ class Game < ApplicationRecord
   has_many :club_games, dependent: :destroy
   has_many :game_cards, dependent: :destroy
   has_many :club_finances, foreign_key: :source_id, dependent: :destroy
-  # has_many :notifications, foreign_key: :notifiable_id, dependent: :destroy
+  has_many :notifications, foreign_key: :notifiable_id, dependent: :destroy
   has_many :rankings, foreign_key: :source_id, dependent: :destroy
 
   def self.translate_status(code)

@@ -1,71 +1,72 @@
-.row.pt-2
-  .col-xxl-6
-    div id="goals_cards_#{game.hashid}" class="accordion custom-accordionwithicon accordion-fill-secondary"
-      .accordion-item
-        h2.accordion-header
-          button.accordion-button.collapsed type="button" data-bs-toggle="collapse" data-bs-target="#goals_cards_content_#{game.hashid}" aria-expanded="false" aria-controls="goals_cards_content_#{game.hashid}" style="padding: 8px 12px 8px 12px !important;" = t('.details')
-        div.accordion-collapse.collapse id="goals_cards_content_#{game.hashid}" data-bs-parent="goals_cards_#{game.hashid}"
-          .accordion-body.p-0
-            .timeline
-              - game.club_games.each do |goal|
-                - side = game.home_id == goal.club.id ? "home" : "visitor"
-                - rpPOS = translate_pkeys(goal.player_season.def_player.def_player_position.name, goal.player_season.def_player.platform)
-                - assister_name = goal.assist_id == nil ? t('games.add_goal.not_identified') : goal.assist.def_player.name
-                - if side == "home"
-                  .timeline-item.left.w-100.p-0
-                    i.icon.ri-football-line.text-reset style="top: 15px !important; right: 15px !important"
-                    .content.p-1.d-flex.align-items-center style="border: 0 !important;"
-                      .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
-                        img.avatar-sm.img-thumbnail.rounded-circle src="#{session[:pdbprefix]}/players/#{get_platforms(platform: goal.player_season.def_player.platform, dna: true)}/#{goal.player_season.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
-                        span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
-                      .flex-grow-1
-                        span = goal.player_season.def_player.name
-                        span.text-muted.fs-12.d-flex.align-middle
-                          i.ri-drag-move-fill.me-1
-                          span.text-muted = assister_name
+- if game.club_games.size > 0 || game.game_cards.size > 0
+  .row.pt-2
+    .col-xxl-6
+      div id="goals_cards_#{game.hashid}" class="accordion custom-accordionwithicon accordion-fill-secondary"
+        .accordion-item
+          h2.accordion-header
+            button.accordion-button.collapsed type="button" data-bs-toggle="collapse" data-bs-target="#goals_cards_content_#{game.hashid}" aria-expanded="false" aria-controls="goals_cards_content_#{game.hashid}" style="padding: 8px 12px 8px 12px !important;" = t('.details')
+          div.accordion-collapse.collapse id="goals_cards_content_#{game.hashid}" data-bs-parent="goals_cards_#{game.hashid}"
+            .accordion-body.p-0
+              .timeline
+                - game.club_games.each do |goal|
+                  - side = game.home_id == goal.club.id ? "home" : "visitor"
+                  - rpPOS = translate_pkeys(goal.player_season.def_player.def_player_position.name, goal.player_season.def_player.platform)
+                  - assister_name = goal.assist_id == nil ? t('games.add_goal.not_identified') : goal.assist.def_player.name
+                  - if side == "home"
+                    .timeline-item.left.w-100.p-0
+                      i.icon.ri-football-line.text-reset style="top: 15px !important; right: 15px !important"
+                      .content.p-1.d-flex.align-items-center style="border: 0 !important;"
+                        .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
+                          img.avatar-sm.img-thumbnail.rounded-circle src="#{session_pdbprefix}/players/#{get_platforms(platform: goal.player_season.def_player.platform, dna: true)}/#{goal.player_season.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
+                          span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
+                        .flex-grow-1
+                          span = goal.player_season.def_player.name
+                          span.text-muted.fs-12.d-flex.align-middle
+                            i.ri-drag-move-fill.me-1
+                            span.text-muted = assister_name
 
-                - if side == "visitor"
-                  .timeline-item.right.w-100.p-0 style="background-color: #24282d;"
-                    i.icon.ri-football-line.text-reset style="top: 15px !important; left: 15px !important"
-                    .content.p-1.d-flex.align-items-center style="border: 0 !important;"
+                  - if side == "visitor"
+                    .timeline-item.right.w-100.p-0 style="background-color: #24282d;"
+                      i.icon.ri-football-line.text-reset style="top: 15px !important; left: 15px !important"
+                      .content.p-1.d-flex.align-items-center style="border: 0 !important;"
 
-                      .flex-grow-1.text-end
-                        span = goal.player_season.def_player.name
-                        br
-                        span.text-muted.fs-12.align-middle
-                          = assister_name
-                          i.ri-drag-move-fill.ms-1
+                        .flex-grow-1.text-end
+                          span = goal.player_season.def_player.name
+                          br
+                          span.text-muted.fs-12.align-middle
+                            = assister_name
+                            i.ri-drag-move-fill.ms-1
 
-                      .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
-                        img.avatar-sm.img-thumbnail.rounded-circle src="#{session[:pdbprefix]}/players/#{get_platforms(platform: goal.player_season.def_player.platform, dna: true)}/#{goal.player_season.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
-                        span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
+                        .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
+                          img.avatar-sm.img-thumbnail.rounded-circle src="#{session_pdbprefix}/players/#{get_platforms(platform: goal.player_season.def_player.platform, dna: true)}/#{goal.player_season.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
+                          span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
 
 
-              - game.game_cards.each do |card|
-                - side = game.home_id == card.club.id ? "home" : "visitor"
-                - rpPOS = translate_pkeys(card.player_season.def_player.def_player_position.name, card.player_season.def_player.platform)
-                - card_name = card.ycard == true ? t('cards.yellow') : t('cards.red')
-                - card_color = card.ycard == true ? "yellow" : "red"
+                - game.game_cards.each do |card|
+                  - side = game.home_id == card.club.id ? "home" : "visitor"
+                  - rpPOS = translate_pkeys(card.player_season.def_player.def_player_position.name, card.player_season.def_player.platform)
+                  - card_name = card.ycard == true ? t('cards.yellow') : t('cards.red')
+                  - card_color = card.ycard == true ? "yellow" : "red"
 
-                - if side == "home"
-                  .timeline-item.left.w-100.p-0
-                    i class="icon ri-square-line text-reset card #{card_color}" style="top: 15px !important; right: 15px !important"
-                    .content.p-1.d-flex.align-items-center style="border: 0 !important;"
-                      .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
-                        img.avatar-sm.img-thumbnail.rounded-circle src="#{session[:pdbprefix]}/players/#{get_platforms(platform: card.player_season.def_player.platform, dna: true)}/#{card.player_season.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
-                        span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
-                      .flex-grow-1
-                        span = card.player_season.def_player.name
-                        span.text-muted.fs-12.d-flex.align-middle
-                          span.text-muted = card_name
-                - if side == "visitor"
-                  .timeline-item.right.w-100.p-0 style="background-color: #24282d;"
-                    i class="icon ri-square-line text-reset card #{card_color}" style="top: 15px !important; right: 15px !important"
-                    .content.p-1.d-flex.align-items-center style="border: 0 !important;"
-                      .flex-grow-1.text-end
-                        span = goal.player_season.def_player.name
-                        span.text-muted.fs-12.d-flex.align-middle
-                          span.text-muted = card_name
-                      .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
-                        img.avatar-sm.img-thumbnail.rounded-circle src="#{session[:pdbprefix]}/players/#{get_platforms(platform: goal.player_season.def_player.platform, dna: true)}/#{goal.player_season.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
-                        span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
+                  - if side == "home"
+                    .timeline-item.left.w-100.p-0
+                      i class="icon ri-square-line text-reset card #{card_color}" style="top: 15px !important; right: 15px !important"
+                      .content.p-1.d-flex.align-items-center style="border: 0 !important;"
+                        .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
+                          img.avatar-sm.img-thumbnail.rounded-circle src="#{session_pdbprefix}/players/#{get_platforms(platform: card.player_season.def_player.platform, dna: true)}/#{card.player_season.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
+                          span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
+                        .flex-grow-1
+                          span = card.player_season.def_player.name
+                          br
+                          span.text-muted.fs-12 = card_name
+                  - if side == "visitor"
+                    .timeline-item.right.w-100.p-0 style="background-color: #24282d;"
+                      i class="icon ri-square-line text-reset card #{card_color}" style="top: 15px !important; left: 15px !important"
+                      .content.p-1.d-flex.align-items-center style="border: 0 !important;"
+                        .flex-grow-1.text-end
+                          span = card.player_season.def_player.name
+                          br
+                          span.text-muted.fs-12 = card_name
+                        .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
+                          img.avatar-sm.img-thumbnail.rounded-circle src="#{session_pdbprefix}/players/#{get_platforms(platform: card.player_season.def_player.platform, dna: true)}/#{card.player_season.def_player.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
+                          span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]

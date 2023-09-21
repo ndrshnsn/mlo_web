@@ -27,7 +27,7 @@
           - if (game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id) && game.status == 2
             - worker = Sidekiq::Cron::Job.find("game_confirm_#{game.championship.season.id}_#{game.championship.id}_#{game.id}")
             - if worker
-              - next_enqueue = worker.last_enqueue_time + game.championship.season.preferences["time_game_confirmation"].hour
+              - next_enqueue = Time.parse(worker.enqueue_args[4]) + game.championship.season.preferences["time_game_confirmation"].hour
               = render "games/status/confirm_time", next_enqueue: next_enqueue
 
           span.score.d-flex.justify-content-center
@@ -35,9 +35,10 @@
             span.ms-1.me-1.fs-6 X
             span.fs-1 = game.vscore
           span.penalty
-            - if game.status == 3 && ( game.phscore != nil && game.pvscore != nil )
-              span.text-warning 
-                | (#{game.phscore}  #{game.pvscore})
+            - if game.phscore != nil && game.pvscore != nil
+              span.badge.bg-primary-subtle.mb-1 = t('.penalties')
+              p.text-warning
+                | #{game.phscore} : #{game.pvscore}
         .text-center
           span.teams-logo
             = image_tag("#{session_pdbprefix}/teams/#{(game.visitor.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
@@ -47,13 +48,13 @@
             a href="javascript:void(0)" id="button_userinfo_visitor_#{game.id}" data-controller="popover" data-popover-id-value="#{game.visitor.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.visitor.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.visitor.user_season.user)}" ##{game.visitor.user_season.user.nickname}
 
       - if game.status == 3
-        = render "games/actions/goals_cards", game: game
+        = render "games/actions/goals_cards", game: game, season: session_season, session_pdbprefix: session_pdbprefix
 
       - if game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id
         - if game.championship.preferences['cards_suspension'] == "on" && game.status == 1
-          = render "games/actions/suspended", game: game, season: session_season
+          = render "games/actions/suspended", game: game, season: session_season, session_pdbprefix: session_pdbprefix
         - if game.status == 2
-          = render "games/actions/goals_cards", game: game
+          = render "games/actions/goals_cards", game: game, season: session_season, session_pdbprefix: session_pdbprefix
 
     .card-footer id="game_actions_footer_#{game.championship.hashid}_#{game.hashid}"
       - if game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id

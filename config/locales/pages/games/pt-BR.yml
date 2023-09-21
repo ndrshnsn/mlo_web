@@ -1,9 +1,12 @@
 pt-BR:
   games:
     actions:
+      suspended:
+        suspended_players: "Jogadores Suspensos"
       goals_cards:
         details: "Detalhes"
     card:
+      penalties: "PN"
       start_game: "Iniciar"
       start_game_question: "Iniciar Jogo #%{game} ?"
       start_game_text: "Importante: O jogo só será liberado para realização após o Adversário aceitar seu início."
@@ -30,6 +33,7 @@ pt-BR:
       best_player: "Melhor Jogador"
       add_goal: "+ Gol"
       add_card: "+ Cartão"
+      combined_message: "O resultado combinado de ambas as partidas é o mesmo! Decida o resultado em uma partida adicional e incremente o resultado ou conforme as orientações do Manager da Liga."
       confirm_question: "Confirmar o Resultado?"
       confirm_text: "O adversário irá receber uma notificação e o resultado será validado assim que ele confirmar o resultado."
     add_card:

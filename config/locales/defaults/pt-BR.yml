@@ -51,6 +51,8 @@ pt-BR:
     fairplay_desc: "Premiação para quem sofrer menos cartões"
     lessown: "Defesa menos Vazada"
     lessown_desc: "Time que tomou menos gols em todos os jogos"
+    bestplayer: "Melhor Jogador"
+    bestplayer_desc: "Jogador mais vezes premiado como melhor da partida"
   cards:
     yellow: "Cartão Amarelo"
     red: "Cartão Vermelho"

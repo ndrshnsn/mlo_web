@@ -26,7 +26,8 @@ class AppServices::Award < ApplicationService
       { position: "goaler", i18n: "awardTypes.goaler", i18n_desc: "awardTypes.goaler_desc"},
       { position: "assister", i18n: "awardTypes.assister", i18n_desc: "awardTypes.assister_desc"},
       { position: "fairplay", i18n: "awardTypes.fairplay", i18n_desc: "awardTypes.fairplay_desc"},
-      { position: "lessown", i18n: "awardTypes.lessown", i18n_desc: "awardTypes.lessown_desc"}
+      { position: "lessown", i18n: "awardTypes.lessown", i18n_desc: "awardTypes.lessown_desc"},
+      { position: "bestplayer", i18n: "awardTypes.bestplayer", i18n_desc: "awardTypes.bestplayer_desc"}
     )
     awards
   end
@@ -86,17 +87,16 @@ class AppServices::Award < ApplicationService
           end
           result = find_unique_min_value_2d(ownGoals)
           award_transactions(ownGoals[result[:row]][0], championship_award) if !result.nil?
+        when "bestplayer"
+          if @championship.preferences["match_best_player"] == "on"
+            bestPlayer = Championship.getBestPlayer(@championship, 2)
+            if bestPlayer.length == 1 || ( bestPlayer.size > 1 && bestPlayer.first.bestplayer > bestPlayer.second.bestplayer )
+              club = ClubPlayer.where(player_season_id: bestPlayer.first.id).first.club_id
+              award_transactions(club, championship_award, bestPlayer.first.id)
+            end
+          end
         end
       end
-
-      if @championship.preferences["match_best_player"] == "on"
-        bestPlayer = Championship.getBestPlayer(@championship, 2)
-        if bestPlayer.length == 1 || ( bestPlayer.size > 1 && bestPlayer.first.bestplayer > bestPlayer.second.bestplayer )
-          club = ClubPlayer.where(player_season_id: bestPlayer.first.id).first.club_id
-          award_transactions(club, championship_award, assister.first.id)
-        end
-      end
-
     end
     OpenStruct.new(success?: true, error: nil)
   end

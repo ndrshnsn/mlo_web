@@ -1,61 +1,66 @@
 - suspendedPlayers = players_suspended(game.championship.hashid, game.hashid, season)
 - if suspendedPlayers[:home_ycard].count > 0 || suspendedPlayers[:home_rcard].count > 0 || suspendedPlayers[:visitor_ycard].count > 0 || suspendedPlayers[:visitor_rcard].count > 0
-  .badge.d-block.badge-danger.mt-1.mb-50 JOGADORES SUSPENSOS
-  div.suspended-players
-    ul.list-group.list-group-flush[style="font-size: smaller;"]
-      - suspendedPlayers[:home_ycard].each do |hycard|
-        - sPlayer = Player.joins(:player_seasons).where(player_seasons: { id: hycard }).first
-        li.list-group-item.d-flex.justify-content-between.align-items-center[style="padding: 0.25rem 0rem!important;"]
-          span
-            .media.mb-25
-              .media-aside.align-self-center.mr-25
-                span.b-avatar.badge-light-info.rounded-circle[style='width: 32px; height: 32px;']
-                  span.b-avatar-img
-                    img[src="#{session[:pdbprefix]}/players/#{sPlayer.platform}/#{sPlayer.platformid}.png" class="avatar avatar-sm mr-25" style="width: 28px; height: 28px;"]
-              .media-body.align-self-center
-                span.d-block = sPlayer.name
-          span
-            i.bx.bx-square[style="color: yellow;"]
-      - suspendedPlayers[:home_rcard].each do |hrcard|
-        - sPlayer = DefPlayer.joins(:player_seasons).where(player_seasons: { id: hrcard }).first
-        li.list-group-item.d-flex.justify-content-between.align-items-center[style="padding: 0.25rem 0rem!important;"]
-          span
-            .media.mb-25
-              .media-aside.align-self-center.mr-25
-                span.b-avatar.badge-light-info.rounded-circle[style='width: 32px; height: 32px;']
-                  span.b-avatar-img
-                    img[src="#{session[:pdbprefix]}/players/#{sPlayer.platform}/#{sPlayer.platformid}.png" class="avatar avatar-sm mr-25" style="width: 28px; height: 28px;"]
-              .media-body.align-self-center
-                span.d-block = sPlayer.name
-          span
-            i.bx.bx-square[style="color: red;"]
-    .text-center
-    .text-right
-      ul.list-group.list-group-flush[style="font-size: smaller;"]
-        - suspendedPlayers[:visitor_ycard].each do |vycard|
-          - sPlayer = Player.joins(:player_seasons).where(player_seasons: { id: vycard }).first
-          li.list-group-item.d-flex.justify-content-between.align-items-center[style="padding: 0.25rem 0rem!important;"]
-            span
-              i.bx.bx-square[style="color: yellow;"]
-            span
-              .media.mb-25
-                .media-aside.align-self-center.mr-25
-                  span.d-block = sPlayer.name
-                .media-body
-                  span.b-avatar.badge-light-info.rounded-circle[style='width: 32px; height: 32px;']
-                    span.b-avatar-img
-                      img[src="#{session[:pdbprefix]}/players/#{sPlayer.platform}/#{sPlayer.platformid}.png" class="avatar avatar-sm mr-25" style="width: 28px; height: 28px;"]
-            
-        - suspendedPlayers[:visitor_rcard].each do |vrcard|
-          - sPlayer = Player.joins(:player_seasons).where(player_seasons: { id: vrcard }).first
-          li.list-group-item.d-flex.justify-content-between.align-items-center[style="padding: 0.25rem 0rem!important;"]
-            span
-              i.bx.bx-square[style="color: red;"]
-            span
-              .media.mb-25
-                .media-aside.align-self-center.mr-25
-                  span.d-block = sPlayer.name
-                .media-body
-                  span.b-avatar.badge-light-info.rounded-circle[style='width: 32px; height: 32px;']
-                    span.b-avatar-img
-                      img[src="#{session[:pdbprefix]}/players/#{sPlayer.platform}/#{sPlayer.platformid}.png" class="avatar avatar-sm mr-25" style="width: 28px; height: 28px;"]
+  span.badge.d-block.bg-danger.mt-1 = t('.suspended_players')
+  .row
+    .col-12
+      div
+        .timeline
+          - suspendedPlayers[:home_ycard].each do |hycard|
+            - sPlayer = DefPlayer.joins(:player_seasons).where(player_seasons: { id: hycard }).first
+            - rpPOS = translate_pkeys(sPlayer.def_player_position.name, sPlayer.platform)
+
+            .timeline-item.left.w-100.p-0
+              i class="icon ri-square-line text-reset card yellow" style="top: 15px !important; right: 15px !important"
+              .content.p-1.d-flex.align-items-center style="border: 0 !important;"
+                .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
+                  img.avatar-sm.img-thumbnail.rounded-circle src="#{session_pdbprefix}/players/#{get_platforms(platform: sPlayer.platform, dna: true)}/#{sPlayer.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
+                  span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
+                .flex-grow-1
+                  span = sPlayer.name
+                  span.text-muted.fs-12.d-flex.align-middle
+                    span.text-muted = t('cards.yellow')
+
+          - suspendedPlayers[:home_rcard].each do |hrcard|
+            - sPlayer = DefPlayer.joins(:player_seasons).where(player_seasons: { id: hrcard }).first
+            - rpPOS = translate_pkeys(sPlayer.def_player_position.name, sPlayer.platform)
+
+            .timeline-item.left.w-100.p-0
+              i class="icon ri-square-line text-reset card red" style="top: 15px !important; right: 15px !important"
+              .content.p-1.d-flex.align-items-center style="border: 0 !important;"
+                .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
+                  img.avatar-sm.img-thumbnail.rounded-circle src="#{session_pdbprefix}/players/#{get_platforms(platform: sPlayer.platform, dna: true)}/#{sPlayer.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
+                  span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
+                .flex-grow-1
+                  span = sPlayer.name
+                  span.text-muted.fs-12.d-flex.align-middle
+                    span.text-muted = t('cards.red')
+
+          - suspendedPlayers[:visitor_ycard].each do |vycard|
+            - sPlayer = DefPlayer.joins(:player_seasons).where(player_seasons: { id: vycard }).first
+            - rpPOS = translate_pkeys(sPlayer.def_player_position.name, sPlayer.platform)
+
+            .timeline-item.right.w-100.p-0 style="background-color: #24282d;"
+              i class="icon ri-square-line text-reset card yellow" style="top: 15px !important; right: 15px !important"
+              .content.p-1.d-flex.align-items-center style="border: 0 !important;"
+                .flex-grow-1.text-end
+                  span = sPlayer.name
+                  br
+                  span.text-muted.fs-12 = t('cards.yellow')
+                .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
+                  img.avatar-sm.img-thumbnail.rounded-circle src="#{session_pdbprefix}/players/#{get_platforms(platform: sPlayer.platform, dna: true)}/#{sPlayer.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
+                  span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
+
+          - suspendedPlayers[:visitor_rcard].each do |vrcard|
+            - sPlayer = DefPlayer.joins(:player_seasons).where(player_seasons: { id: vrcard }).first
+            - rpPOS = translate_pkeys(sPlayer.def_player_position.name, sPlayer.platform)
+
+            .timeline-item.right.w-100.p-0 style="background-color: #24282d;"
+              i class="icon ri-square-line text-reset card red" style="top: 15px !important; right: 15px !important"
+              .content.p-1.d-flex.align-items-center style="border: 0 !important;"
+                .flex-grow-1.text-end
+                  span = sPlayer.name
+                  br
+                  span.text-muted.fs-12 = t('cards.red')
+                .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
+                  img.avatar-sm.img-thumbnail.rounded-circle src="#{session_pdbprefix}/players/#{get_platforms(platform: sPlayer.platform, dna: true)}/#{sPlayer.platformid}.png" class="avatar avatar-sm" style="width: 38px; height: 38px;"
+                  span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
