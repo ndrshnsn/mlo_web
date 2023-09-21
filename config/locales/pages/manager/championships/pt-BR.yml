@@ -125,6 +125,12 @@ pt-BR:
       start_league_semi:
         success: "Semifinais iniciadas com sucesso!"
         error: "Erro iniciando as Semifinais"
+      start_league_finals:
+        success: "Finais iniciadas com sucesso!"
+        error: "Erro iniciando as Finais"
+      end:
+        success: "Campeonato finalizado com sucesso!"
+        error: "Erro finalizando Campeonato!"
       cactions:
         championship_actions: ".: FASES :."
         choose_club: "Defina os Participantes"
@@ -151,4 +157,3 @@ pt-BR:
           end_championship: "Encerrar Campeonato"
           end_championship_question: "Encerrar Campeonato?"
           end_championship_text: "Com os jogos encerrados, a premiação definida será paga e o Ranking atualizado."
-

@@ -2,7 +2,3 @@
   = link_to "javascript:;", class: "btn bg-success-subtle border border-success btn-sm", data: { controller: "confirm", "confirm-title-value": t('.result_question', game: game.gsequence), "confirm-text-value": t('.result_text'), "confirm-link-value": game_confirm_path(game.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
     i.ri-check-line.align-bottom
     span.ms-1.d-none.d-sm-block style="float: right;" Confirmar
-
-/ = link_to championship_contest_game_path(game, elid: "#{iteration}"), id: "championship_results_game_contest_button", method: :get, remote: :true, class: "btn btn-sm btn-danger ml-25" do
-/     i.bx.bx-x
-/     span.mt-25.d-none.d-sm-block Contestar

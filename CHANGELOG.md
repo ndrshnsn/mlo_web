@@ -1,8 +1,10 @@
 # Change log
 
-## 46a52ea - 2023-08-29
+## ff28f6d - 2023-09-19
 
 ### Added
+* Added ruby-lsp do Dev bundle
+* Automatic Game Confirmation through Cron Sidekiq Worker
 
 ### Changed
 * Upgrade of Remixicon to 3.5.0

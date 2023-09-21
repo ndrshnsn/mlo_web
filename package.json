@@ -38,6 +38,7 @@
     "build:css": "sass ./app/assets/stylesheets/application.css:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "devDependencies": {
+    "prettier": "3.0.3",
     "vite": "^4.4.7",
     "vite-plugin-full-reload": "^1.0.5",
     "vite-plugin-ruby": "^3.2.2"

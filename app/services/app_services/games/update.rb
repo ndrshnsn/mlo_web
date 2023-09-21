@@ -111,8 +111,8 @@ class AppServices::Games::Update < ApplicationService
     end
 
     
-    @game.phscore = @params[:data]["phscore_#{@game.championship_id}_#{@game.id}"] if @params[:data]["phscore_#{@game.championship_id}_#{@game.id}"]
-    @game.pvscore = @params[:data]["pvscore_#{@game.championship_id}_#{@game.id}"] if @params[:data]["pvscore_#{@game.championship_id}_#{@game.id}"]
+    @game.phscore = @params[:data]["phscore"] if @params[:data]["phscore"]
+    @game.pvscore = @params[:data]["pvscore"] if @params[:data]["pvscore"]
     
     if @game.championship.preferences["match_best_player"] == "on"
       best_player = PlayerSeason.find(@params[:data][:match_best_player_selection])
@@ -154,10 +154,7 @@ class AppServices::Games::Update < ApplicationService
     else
       season = @game.championship.season
       confirmation_time = Time.zone.now + season.preferences["time_game_confirmation"].hour
-
-      Sidekiq::Cron::Job.create(name: "game_confirm_#{season.id}_#{@game.championship.id}_#{@game.id}", cron: "#{Time.zone.now.strftime("%M")} #{confirmation_time.strftime("%H")} * * *", class: 'GameConfirmWorker', date_as_argument: true, args: [season.id, @user.id])
-      
-      Sidekiq::Cron::Job.find("game_confirm_#{season.id}_#{@game.championship.id}_#{@game.id}").enque!
+      Sidekiq::Cron::Job.create(name: "game_confirm_#{season.id}_#{@game.championship.id}_#{@game.id}", cron: "#{Time.zone.now.strftime("%M")} #{confirmation_time.strftime("%H")} * * *", class: 'GameConfirmWorker', date_as_argument: true, args: [@game.id, season.id, @user.id, Rails.configuration.playerdb_prefix, Time.zone.now])
       sleep 1
     end
 

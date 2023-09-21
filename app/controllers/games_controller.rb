@@ -21,12 +21,10 @@ class GamesController < ApplicationController
 
       if phase_games.count == 1
         @penalties = true
-      elsif phase.games.count == 2
+      elsif phase_games.count == 2
         @previous_game = phase_games.where(games: { status: 3 }).first
-
-        if @previous_game.hscore == @previous_game.vscore
-            @penalties = true
-        end
+        @result_criterion = @game.championship.preferences["league_criterion"]
+        @penalties = true if @previous_game && @previous_game.hscore == @previous_game.vscore
       end
     end
 
@@ -39,18 +37,11 @@ class GamesController < ApplicationController
           vfaccepted: true,
           mresult: true
         )
-
-        # gameStatusMatchOpponent = render_to_string partial: 'championships/games/gStatus_managerEnteringResults', locals: { game: @game, iteration: params[:elid]}
-
       else                    
-        @game.update(eresults_id: session[:userClub])
-
-        # gameStatusMatchOpponent = render_to_string partial: 'championships/games/gStatus_opponentEnteringResults', locals: { game: @game, iteration: params[:elid]}
-
+        @game.update!(eresults_id: session[:userClub])
       end
       GameCardJob.perform_later(@game, session[:pdbprefix], session[:season], current_user)
     end
-
     render "games/actions/results"
   end
 

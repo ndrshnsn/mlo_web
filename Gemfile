@@ -35,6 +35,7 @@ group :development do
   gem "bullet"
   gem "solargraph"
   gem "pry-rails"
+  gem "ruby-lsp"
 end
 
 gem "dotenv-rails"
@@ -73,7 +74,5 @@ gem "audited", "~> 5.3"
 gem "serviceworker-rails", "~> 0.6.0"
 gem "sidekiq-cron", "~> 1.10"
 gem "pagy"
-
 gem "redis-actionpack", "~> 5.3"
-
 gem "time_difference", "~> 0.5.0"

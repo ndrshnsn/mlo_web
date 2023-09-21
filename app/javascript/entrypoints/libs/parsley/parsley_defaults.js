@@ -98,3 +98,24 @@ window.Parsley.addValidator('special', {
     en: 'Your password must contain at least (%s) special characters.'
   }
 });
+
+window.Parsley.addValidator('checkpenaltyrequirement', {
+  validate: function () {
+    var hScore = $('.goal_card_home').length;
+    var vScore = $('.goal_card_visitor').length;
+    var hpSet = $('#phscore').val();
+    var vpSet = $('#pvscore').val();
+
+    if (hScore == vScore) {
+      if ((hpSet == "" || vpSet == "") || (hpSet == vpSet)) {
+        var phScore = parseInt($('#prevGame_hscore').val());
+        var pvScore = parseInt($('#prevGame_vscore').val());
+        return check_goal_assignment(hScore, vScore, phScore, pvScore)
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+  }
+});
