@@ -17,9 +17,9 @@ class ChampionshipsController < ApplicationController
 
   def details
     breadcrumb @championship.name, :championship_details_path
-    # if @championship.status == 100
-    #   @cPositions = ChampionshipPosition.where(championship_id: @championship.id).order(position: :asc)
-    # end
+    if @championship.status == 100
+      @cPositions = ChampionshipPosition.where(championship_id: @championship.id).order(position: :asc)
+    end
 
     @goalers = Championship.getGoalers(@championship, 5)
     @assists = Championship.getAssisters(@championship, 5)

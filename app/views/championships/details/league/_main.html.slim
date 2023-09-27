@@ -1,0 +1,52 @@
+
+.row
+  .col-sm-6.col-md-4
+    .card
+      .card-header.align-items-center.d-flex
+        i.ri-medal-line.me-1
+        h4.card-title.mb-0.flex-grow-1 = t('.result')
+      .card-body
+        ul.list-group
+          li.list-group-item style="border: 0; padding: 0px 0px 8px 0px !important"
+            .d-flex.align-items-center
+              .flex-grow-1
+                = t('.champion')
+              .flex-shrink-0
+                = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.first.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+          li.list-group-item style="border: 0; padding: 0px 0px 8px 0px !important"
+            .d-flex.align-items-center
+              .flex-grow-1
+                = t('.vice')
+              .flex-shrink-0
+                = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.second.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+          li.list-group-item style="border: 0; padding: 0px 0px 8px 0px !important"
+            .d-flex.align-items-center
+              .flex-grow-1
+                = t('.third')
+              .flex-shrink-0
+                = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.third.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+          li.list-group-item style="border: 0; padding: 0px 0px 8px 0px !important"
+            .d-flex.align-items-center
+              .flex-grow-1
+                = t('.fourth')
+              .flex-shrink-0
+                = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.fourth.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+
+    .card
+      .card-header.align-items-center.d-flex
+        i.ri-honour-line.me-1
+        h4.card-title.mb-0.flex-grow-1 = t('.clubs')
+      .card-body
+        .d-flex.justify-content-center
+          - @championship.club_championships.each do |champ_club|
+            = image_tag("#{session[:pdbprefix]}/teams/#{(champ_club.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-sm me-1 ms-1", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+
+  .col-sm-6.col-md-8
+    - if !@championship.advertisement.blank?
+      .card
+        .card-header.align-items-center.d-flex
+          i.ri-error-warning-line.me-1
+          h4.card-title.mb-0.flex-grow-1 = t('.advertisement')
+        .card-body
+          = @championship.advertisement.html_safe
+
