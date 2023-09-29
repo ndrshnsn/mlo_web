@@ -1,0 +1,12 @@
+pt-BR:
+  trades:
+    main:
+      buy_players: "Comprar Jogadores"
+      buy_players_desc: "Procure no Mercado Jogadores Disponíveis para Compra"
+      sell_players: "Vender Jogadores"
+      sell_players_desc: "Coloque seus jogadores para venda no Mercado"
+      loan_players: "Emprestar Jogadores"
+      loan_players_desc: "Empreste ou Contrate Jogadores por Empréstimo"
+      swap_players: "Trocar Jogadores"
+      swap_players_desc: "Troque jogadores com outros Usuários"
+      go: "Ir"

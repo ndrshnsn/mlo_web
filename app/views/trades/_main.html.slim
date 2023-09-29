@@ -1,0 +1,72 @@
+.row
+  .col-12
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            .d-flex.align-items-center
+              .flex-grow-0
+                i.ri-shopping-cart-line.fs-24.me-2
+              .flex-shrink-1
+                span.fs-6.fw-semibold = t('.buy_players')
+                br
+                span.fs-8.text-muted = t('.buy_players_desc')
+                
+          .flex-shrink-0
+            = link_to trades_buy_path, class: "btn btn-primary btn-sm w-100", data: { "turbo-action": "advance" } do
+              i.ri-arrow-right-line.align-bottom
+              span.d-sm-block.d-none.ms-1 style="float: right;" = t('.go')
+
+  .col-12
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            .d-flex.align-items-center
+              .flex-grow-0
+                i.ri-flight-takeoff-line.fs-24.me-2
+              .flex-shrink-1
+                span.fs-6.fw-semibold = t('.sell_players')
+                br
+                span.fs-8.text-muted = t('.sell_players_desc')
+                
+          .flex-shrink-0
+            button.btn.btn-primary.btn-sm.w-100
+              i.ri-arrow-right-line.align-bottom
+              span.d-sm-block.d-none.ms-1 style="float: right;" = t('.go')
+
+  .col-12
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            .d-flex.align-items-center
+              .flex-grow-0
+                i.ri-book-line.fs-24.me-2
+              .flex-shrink-1
+                span.fs-6.fw-semibold = t('.loan_players')
+                br
+                span.fs-8.text-muted = t('.loan_players_desc')
+                
+          .flex-shrink-0
+            button.btn.btn-primary.btn-sm.w-100
+              i.ri-arrow-right-line.align-bottom
+              span.d-sm-block.d-none.ms-1 style="float: right;" = t('.go')
+
+  .col-12
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            .d-flex.align-items-center
+              .flex-grow-0
+                i.ri-exchange-line.fs-24.me-2
+              .flex-shrink-1
+                span.fs-6.fw-semibold = t('.swap_players')
+                br
+                span.fs-8.text-muted = t('.swap_players_desc')
+                
+          .flex-shrink-0
+            button.btn.btn-primary.btn-sm.w-100
+              i.ri-arrow-right-line.align-bottom
+              span.d-sm-block.d-none.ms-1 style="float: right;" = t('.go')

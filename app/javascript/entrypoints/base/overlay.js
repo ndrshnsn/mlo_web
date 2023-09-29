@@ -1,14 +1,14 @@
-// LoadingOverlay
-import LoadingOverlay from "gasparesganga-jquery-loading-overlay"
-window.LoadingOverlay = LoadingOverlay
-
-$.LoadingOverlaySetup({
-  background      : "rgba(0, 0, 0, 0.3)",
-  image           : "",
-  fontawesome     : "",
-  fontawesomeAnimation : "rotate_right",
-  fontawesomeColor: "#ffffff",
-  fontawesomeOrder: "1",
-  minSize         : "25",
-  maxSize         : "75"
-});
+function JsLoadingOverlay(action) {
+  var overlay = document.getElementById("overlay");
+  if (typeof(overlay) != 'undefined' && overlay != null) {
+    switch(action) {
+      case "show":
+        overlay.style.display = "flex"
+        break
+      case "hide":
+        overlay.style.display = "none"
+        break
+    }
+  }
+}
+window.JsLoadingOverlay = JsLoadingOverlay

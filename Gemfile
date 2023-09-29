@@ -18,7 +18,6 @@ gem "image_processing", "~> 1.2"
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "rspec-rails"
-  gem "faker"
   gem "factory_bot_rails"
 end
 
@@ -38,12 +37,12 @@ group :development do
   gem "ruby-lsp"
 end
 
+gem "faker"
 gem "dotenv-rails"
 gem "vite_rails", "~> 3.0"
 gem "rack-cors", "~> 2"
 gem "friendly_id", "~> 5.4"
 gem "devise", "~> 4.9"
-gem "kaminari", "~> 1.2"
 gem "loaf", "~> 0.10.0", git: 'git@github.com:ndrshnsn/loaf.git'
 gem "slim-rails", "~> 3.5"
 gem "jsonb_accessor", "~> 1.3"
@@ -76,3 +75,5 @@ gem "sidekiq-cron", "~> 1.10"
 gem "pagy"
 gem "redis-actionpack", "~> 5.3"
 gem "time_difference", "~> 0.5.0"
+
+gem "kaminari", "~> 1.2"

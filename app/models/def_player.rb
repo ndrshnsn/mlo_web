@@ -1,6 +1,6 @@
 class DefPlayer < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: :scoped, scope: :platform
   has_noticed_notifications
 
   ## Player Attributes
@@ -23,13 +23,20 @@ class DefPlayer < ApplicationRecord
   has_many :player_seasons
   has_many :club_players, through: :player_seasons
 
+  def slug_candidates
+    [
+      :name,
+      [:name, Faker::Name.last_name]
+    ]
+  end
+
   def self.getSeasonInitialSalary(season, player)
     if season.preferences["default_player_earnings"] == "fixed"
       return season.preferences["default_player_earnings"].gsub(/[^\d.]/, "").to_i
     end
 
     if season.preferences["default_player_earnings"] == "proportional"
-      sMultiplier = "1.0#{player.details["attrs"]["overallRating"].to_i}".to_f
+      sMultiplier = "1.0#{player.details["attrs"]["overallRating"]}".to_f
       ((player.details["attrs"]["overallRating"].to_i * sMultiplier) * 100).round(0)
     end
   end

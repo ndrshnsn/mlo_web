@@ -1,0 +1,33 @@
+= turbo_frame_tag "main_frame" do
+  = render "layouts/header/page_frame"
+  = turbo_frame_tag "trades" do
+    = render "layouts/header/page_title", title: t('.trades')
+
+
+    .row
+      .col-12
+        .card
+          .card-body
+
+
+            div data-controller="dt--user-trades-buy"
+              #tableDom.table-responsive.table-card.mb-1.mt-3
+                table.table.table-striped.table-nowrap.dt-responsive.align-middle.mb-0 id="dt-user-trades-buy" style="width: 100%;"
+                  thead.table-light
+                    tr
+                      th = t('.name')
+                      th.text-center = t('.position')
+                      th.text-center = t('.overall')
+                      th = t('.hired')
+                      th.text-center = t('.transfer_fee')
+                      th
+                      th.text-center = t('.actions')
+                  tfoot.table-light
+                    tr
+                      th = t('.name')
+                      th.text-center = t('.position')
+                      th.text-center = t('.overall')
+                      th = t('.hired')
+                      th.text-center = t('.transfer_fee')
+                      th
+                      th.text-center = t('.actions')
