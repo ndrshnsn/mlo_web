@@ -1,6 +1,6 @@
 .row
   .col-12
-    .card.card-animate
+    .card
       .card-body
         .d-flex.align-items-center
           .flex-grow-1
@@ -13,7 +13,7 @@
                 span.fs-8.text-muted = t('.buy_players_desc')
                 
           .flex-shrink-0
-            = link_to trades_buy_path, class: "btn btn-primary btn-sm w-100", data: { "turbo-action": "advance" } do
+            = link_to trades_buy_path, class: "btn btn-primary btn-sm w-100", data: { "turbo-action": "advance", controller: "managedt", action: "click->managedt#clear_state" } do
               i.ri-arrow-right-line.align-bottom
               span.d-sm-block.d-none.ms-1 style="float: right;" = t('.go')
 

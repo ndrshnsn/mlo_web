@@ -37,6 +37,9 @@ export default class extends Controller {
       createdRow: function( row, data, dataIndex ) {
         $(row).attr('id', 'defPlayer_' + row.id);
       },
+      initComplete: function (settings) {
+        sessionStorage.setItem('initialSort', JSON.stringify([[2,"desc"]]));
+      },
       columnDefs: [
         {
           targets: [1,2,3,4,-1],
@@ -77,16 +80,47 @@ export default class extends Controller {
 
     // Search
     function filterColumn(i, val) {
-      $('#dt-admin-playerdb-players').DataTable().column(i).search(val, false, true).draw();
+      $('#dt-user-trades-buy').DataTable().column(i).search(val, false, true).draw();
     }
 
-    // on key up from input field
-    $('input.dt-input').on('keyup', function () {
+    $('#player_name').on('keyup', function () {
         filterColumn($(this).attr('data-column'), $(this).val());
     });
 
-    $('.dt-select').on('change', function() { 
+    $('#player_nationality').on('change', function() { 
         filterColumn($(this).attr('data-column'), $(this).val());
+    });
+
+    $('#player_position').on('change', function() { 
+        filterColumn($(this).attr('data-column'), $(this).val());
+    });
+
+    $('#player_overall_min').on('change', function () {
+        filterColumn($(this).attr('data-name'), $(this).val());
+    });
+
+    $('#player_overall_max').on('change', function () {
+        filterColumn($(this).attr('data-name'), $(this).val());
+    });
+
+    $('#club_filter').on('change', function() { 
+        filterColumn($(this).attr('data-column'), $(this).val());
+    });
+
+    $('#player_value_min').on('change', function() { 
+        filterColumn($(this).attr('data-name'), $(this).val());
+    });
+
+    $('#player_value_max').on('change', function() { 
+        filterColumn($(this).attr('data-name'), $(this).val());
+    });
+
+    $('#player_age_min').on('change', function() { 
+        filterColumn($(this).attr('data-name'), $(this).val());
+    });
+
+    $('#player_age_max').on('change', function() { 
+        filterColumn($(this).attr('data-name'), $(this).val());
     });
   }
 }

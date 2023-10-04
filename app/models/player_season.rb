@@ -13,7 +13,7 @@ class PlayerSeason < ApplicationRecord
   # has_many :player_sells, dependent: :destroy
   has_many :club_players
   has_many :games
-  # has_many :player_transactions, dependent: :destroy
+  has_many :player_transactions, dependent: :destroy
   has_many :club_games
   has_many :game_best_players
 
@@ -23,6 +23,6 @@ class PlayerSeason < ApplicationRecord
   attribute :bestplayer, type: :integer, default: 0
 
   def self.getPlayerPass(player_season, season)
-    player_season.details["salary"].to_i * season.preferences["player_value_earning_relation"].to_i
+    player_season.details["salary"] * season.preferences["player_value_earning_relation"]
   end
 end

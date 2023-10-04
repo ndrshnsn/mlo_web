@@ -5,9 +5,3 @@ export default class ManagedtController extends Controller {
     sessionStorage.setItem('clearDTState', true)
   }
 }
-
-
-
-
-
-

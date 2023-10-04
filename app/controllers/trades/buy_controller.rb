@@ -5,6 +5,64 @@ class Trades::BuyController < ApplicationController
 
   def index
     breadcrumb "trades.buy.main", :trades_buy_path, match: :exact, frame: "main_frame"
+
+    season_platform = @season.preferences["raffle_platform"]
+
+    @clubs = Club.joins(:user_season).includes(:def_team, user_season: :user).where(user_seasons: { season_id: @season.id } )
+    @def_countries = DefCountry.getSorted
+    @ages = DefPlayer.get_ages(season_platform)
+    @player_position = DefPlayerPosition.get_sorted(season_platform)
+
+
+    higher_over = DefPlayer.where(platform: season_platform).order(Arel.sql("def_players.details -> 'attrs' ->> 'overallRating' DESC")).limit(1)
+    higher_over_initial_salary = DefPlayer.getSeasonInitialSalary(@season, higher_over.first)
+    lower_over = DefPlayer.where(platform: season_platform).order(Arel.sql("def_players.details -> 'attrs' ->> 'overallRating' ASC")).limit(1)
+    lower_over_initial_salary = DefPlayer.getSeasonInitialSalary(@season, lower_over.first)
+
+    @overs = []
+    for i in (lower_over.first.details["attrs"]["overallRating"]..higher_over.first.details["attrs"]["overallRating"]).step(1)
+    	@overs << {
+    		value: i,
+    		reference: i
+    	}
+    end
+
+    higher_transfer_fee = PlayerSeason.where(player_seasons: { season_id: @season.id } ).order(Arel.sql("player_seasons.details->'salary' DESC")).first.details['salary']
+    higher_transfer_fee = higher_over_initial_salary if higher_over_initial_salary > higher_transfer_fee
+    lower_transfer_fee =  PlayerSeason.where(player_seasons: { season_id: @season.id } ).order(Arel.sql("player_seasons.details->'salary' ASC")).first.details['salary']
+    lower_transfer_fee = lower_over_initial_salary if lower_over_initial_salary < lower_transfer_fee
+    
+    @pValue = []
+    for i in (lower_transfer_fee..higher_transfer_fee).step(@season.preferences["default_mininum_operation"])
+    	@pValue << {
+    		value: i*@season.preferences["player_value_earning_relation"],
+    		reference: i
+    	}
+    end
+    @pValue << {
+      value: higher_transfer_fee*@season.preferences["player_value_earning_relation"],
+      reference: higher_transfer_fee
+    }
+
+  end
+
+  def confirm
+    show_step(AppServices::Trades::Buy.call(@championship), t(".success"))
+  end
+
+  def show_step(resolution, success_message)
+    respond_to do |format|
+      if resolution.success?
+        # details
+        flash.now["success"] = success_message
+        format.turbo_stream { render "show_step" }
+        format.html { redirect_to manager_championships_path, notice: success_message }
+      else
+        flash.now["error"] = I18n.t("defaults.errors.championship.#{resolution.error}")
+        format.turbo_stream { render "show_step" }
+        format.html { render :details, status: :unprocessable_entity }
+      end
+    end
   end
 
   def set_controller_vars

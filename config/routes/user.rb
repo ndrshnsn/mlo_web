@@ -87,5 +87,6 @@ as :user do
   get "trades", to: "trades#index"
   get "trades/buy", to: "trades/buy#index", as: :trades_buy
   post "trades/buy/get_proc_dt", to: "trades/buy#get_proc_dt"
+  post "trades/buy/confirm", to: "trades/buy#confirm", as: :trades_buy_confirm
   
 end

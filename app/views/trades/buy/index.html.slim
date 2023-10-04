@@ -9,6 +9,62 @@
         .card
           .card-body
 
+            .row
+              .col-12.mb-1
+                .row
+                  .col-md-6.col-sm-12
+                    = label_tag("#{t '.name'}", nil, class: "control-label")
+                    .form-icon.right
+                      input type="text" id="player_name" name="player_name" class="form-control form-control-icon" data-column="0" data-column-index="1"
+                      i.ri-search-line
+                  .col-md-6.col-sm-12
+                    = label_tag("#{t '.club'}", nil, class: "control-label")
+                    input type="text" style="display: none;" id="generic-club-path" value="#{image_path('generic-team.png')}"
+
+                    = select_tag "club_filter", options_for_select([[t('.free_players'), '-']] + @clubs.collect { |club| [stringHuman(DefTeam.getTranslation(club.def_team.name)[0]) , club.id, {'data-img': "#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", 'data-user': club.user_season.user.nickname}] }), {required: true, include_blank: true, class: "text-center form-control select2", "data-controller": "select", "data-select-search-value": true, "data-select-icon-value": true, id: 'club_filter', 'data-column': "3", 'data-column-index': "3" }
+
+            #player_filter.accordion.custom-accordionwithicon.mt-2
+              .accordion-item
+                h2#heading_one.accordion-header
+                  button.accordion-button.collapsed type="button" data-bs-toggle="collapse" data-bs-target="#player_filter_collapse" aria-expanded="false" aria-controls="player_filter_collapse"
+                    i.ri-filter-line.me-1
+                    = t('.advanced_filter')
+                #player_filter_collapse.accordion-collapse.collapse aria-labelledby="collapse_one" data-bs-parent="#player_filter"
+                  .accordion-body
+                    .row
+                      .col-md-4.col-12
+                        = label_tag("#{t '.country'}", nil, class: "control-label")
+                        #popover_player_nationality
+                        = select_tag "player_nationality", options_for_select(@def_countries.collect { |def_country| [ def_country[:name_i18n], def_country[:id], {'data-img': countryFlag(def_country[:name])}] }, current_user.preferences['country']), {include_blank: true,  class: "form-control select2", id: 'user_country',  required: true, "data-controller": "select", "data-select-icon-value": true, id: 'player_nationality', 'data-column': "5", 'data-column-index': "5" }
+
+                      .col-6.col-md-2
+                        = label_tag("#{t '.min_over'}", nil, class: "control-label")
+                        = select_tag "player_overall_min", options_for_select(@overs.collect { |i| [i[:value], -(i[:reference])]}, "-#{@overs.first[:value]}"), {include_blank: true,  class: "form-control select2 other", 'data-name': "player_overall_min", "data-controller": "select", "data-select-icon-value": false, id: 'player_overall_min', 'data-column': "2", 'data-column-index': "3" }
+
+                      .col-6.col-md-2
+                        = label_tag("#{t '.max_over'}", nil, class: "control-label")
+                        = select_tag "player_overall_max", options_for_select(@overs.collect { |i| [i[:value], i[:reference]]}, @overs.last[:value]), {include_blank: true,  class: "form-control select2 other", 'data-name': "player_overall_max", "data-controller": "select", "data-select-icon-value": false, id: 'player_overall_max', 'data-column': "2", 'data-column-index': "3" }
+
+                      .col-md-4.col-sm-12
+                        = label_tag("#{t '.position'}", nil, class: "control-label")
+                        = select_tag "player_position", options_for_select(@player_position.collect { |position| [translate_pkeys(position.name, @season.preferences["raffle_platform"], true)[0], position.name, {'data-position-value': translate_pkeys(position.name, @season.preferences["raffle_platform"], true)[0], 'data-position-class': translate_pkeys(position.name, @season.preferences["raffle_platform"], true)[1]}] }), {include_blank: true,  class: "select2 form-control text-center", "data-controller": "select", "data-select-icon-value": true, id: 'player_position', 'data-column': "1", 'data-column-index': "2" }
+
+                    .row
+                      .col-6.col-md-2
+                        = label_tag("#{t '.min_age'}", nil, class: "control-label")
+                        = select_tag "player_age_min", options_for_select(@ages.collect { |i| [i[:value], -(i[:reference])]}, -(@ages.first[:reference])), {include_blank: true,  class: "form-control select2 other", "data-controller": "select", "data-select-icon-value": false, 'data-name': "player_age_min", id: 'player_age_min' }
+
+                      .col-6.col-md-2
+                        = label_tag("#{t '.max_age'}", nil, class: "control-label")
+                        = select_tag "player_age_max", options_for_select(@ages.collect { |i| [i[:value], i[:reference]]}, @ages.last[:reference]), {include_blank: true,  class: "form-control select2 other", "data-controller": "select", "data-select-icon-value": false, 'data-name': "player_age_max", id: 'player_age_max' }
+
+                      .col-12.col-md-4
+                        = label_tag("#{t '.min_transfer_fee'}", nil, class: "control-label")
+                        = select_tag "player_value_min", options_for_select(@pValue.collect { |i| [toCurrency(i[:value]), -(i[:reference])]}, -(@pValue.first[:reference])), {include_blank: true,  class: "form-control select2 other", "data-controller": "select", "data-select-icon-value": false, "data-select-clear-value": false, 'data-name': "player_value_min", id: 'player_value_min' }
+
+                      .col-12.col-md-4
+                        = label_tag("#{t '.max_transfer_fee'}", nil, class: "control-label")
+                        = select_tag "player_value_max", options_for_select(@pValue.collect { |i| [toCurrency(i[:value]), i[:reference]]}, @pValue.last[:reference]), {include_blank: true,  class: "form-control select2 other", "data-controller": "select", "data-select-icon-value": false, "data-select-clear-value": false, 'data-name': "player_value_max", id: 'player_value_max' }
 
             div data-controller="dt--user-trades-buy"
               #tableDom.table-responsive.table-card.mb-1.mt-3

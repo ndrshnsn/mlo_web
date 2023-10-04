@@ -1,5 +1,5 @@
 class User::Trades::BuyDatatable < ApplicationDatatable
-  delegate :session, :logger, :t, :image_tag, :current_user, :translate_pscore, :translate_pkeys, :get_platforms, :countryFlag, :toCurrency, :stringHuman, :teamLogoURL, :dt_actionsMenu, :image_url, :content_tag, :logger, :button_to, to: :@view
+  delegate :session, :logger, :t, :image_tag, :current_user, :translate_pscore, :translate_pkeys, :get_platforms, :countryFlag, :toCurrency, :stringHuman, :teamLogoURL, :dt_actionsMenu, :image_url, :content_tag, :logger, :button_to, :trades_buy_confirm_path, to: :@view
 
   private
 
@@ -10,11 +10,22 @@ class User::Trades::BuyDatatable < ApplicationDatatable
       season = Season.find(session[:season])
 
       ## Nationality
-      nationality = image_tag(countryFlag(player.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+      nationality = image_tag(countryFlag(player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
 
       ## Player Name
-      playerName = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: player.platform, dna: true)}/#{player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle me-1", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{image_url("/misc/generic-player.png")}';")
-      playerName += player.name
+      playerName = "<div class='d-flex align-items-center'>"
+      playerName += "<div class='flex-shrink-0'>"
+      playerName += image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: player.platform, dna: true)}/#{player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{image_url("/misc/generic-player.png")}';")
+      playerName += "</div><div class='flex-grow-1 ms-2 text-start'>"
+      playerName += "<span class='font-weight-bold d-block text-nowrap'>#{player.name}</span>"
+
+      playerName += "<small class='d-flex text-muted mb-0'>"
+      playerName += "<div class='d-flex align-items-center'>"
+      playerName += "<div class='flex-shrink-0'>#{nationality}</div>"
+      playerName += "<div class='flex-grow-1 ms-1 text-start'>Idade #{player.age} / Altura #{player.height}</div>"
+
+      playerName += "</div></small>"
+      playerName += "</div></div>"
 
       rpPOS = translate_pkeys(player.def_player_position.name, player.platform)
       position = "<div class='badge badge-#{rpPOS[1]}'>#{rpPOS[0]}</div>"
@@ -32,7 +43,7 @@ class User::Trades::BuyDatatable < ApplicationDatatable
           playerTeam += "<span class='text-muted'>##{pSeason.club_players[0].club.user_season.user.nickname}</span>"
           playerTeam += "</div></div>"
         else
-          playerTeam = "<div class='badge badge-dark'>LIVRE</span>"
+          playerTeam = "<div class='badge badge-dark'>#{t('.free')}</span>"
         end
       end
 
@@ -47,11 +58,6 @@ class User::Trades::BuyDatatable < ApplicationDatatable
         playerValue = toCurrency(playerValue)
       end
 
-      ## Active
-      pStatus = (player.active == true) ? t("defaults.datatables.disable") : t("defaults.datatables.enable")
-      pStatusIcon = (player.active == true) ? "close" : "check"
-      pStatusConfirm = (player.active == true) ? t("defaults.datatables.confirm_disable") : t("defaults.datatables.confirm_enable")
-
       ## Actions
       dtActions = [
         {
@@ -63,10 +69,10 @@ class User::Trades::BuyDatatable < ApplicationDatatable
         },
         {
           link: "javascript:;",
-          icon: "ri-#{pStatusIcon}-line",
-          text: pStatus,
+          icon: "ri-shopping-cart-line",
+          text: t("defaults.datatables.buy"),
           disabled: "",
-          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{pStatusConfirm}' data-confirm-icon-value='warning' data-confirm-link-value='' data-confirm-action-value='post'"
+          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{t('defaults.datatables.buy_question')}' data-confirm-icon-value='question' data-confirm-link-value='#{trades_buy_confirm_path}' data-confirm-action-value='post'"
         }
       ]
 
@@ -88,15 +94,14 @@ class User::Trades::BuyDatatable < ApplicationDatatable
 
   def getPlayers(season)
     season = Season.find(season)
-
-    players = DefPlayer.where(platform: season.preferences["raffle_platform"], active: true )
-    players = players.includes(:def_player_position, :def_country).eager_load(:club_players, :player_seasons)
+    players = DefPlayer.eager_load(:def_player_position, :def_country, :club_players)
     players = players.select("def_players.*, player_seasons.details -> 'salary', def_players.details -> 'attrs' ->> 'overallRating'")
+    players = players.where(def_players: { platform: season.preferences["raffle_platform"], active: true } )
     players
   end
 
   def count
-    getPlayers(session[:season]).size
+    getPlayers(session[:season]).count
   end
 
   def total_entries
@@ -116,33 +121,32 @@ class User::Trades::BuyDatatable < ApplicationDatatable
     columns.each_with_index do |term, i|
       if params[:columns]["#{i}"][:searchable] == "true" && !params[:columns]["#{i}"][:search][:value].blank?
         if term == 'def_players"."active'
-            search_string << "\"#{term}\" = '#{params[:columns]["#{i}"][:search][:value]}'"
+          search_string << "\"#{term}\" = '#{params[:columns]["#{i}"][:search][:value]}'"
         elsif term == 'def_players"."playerTeam'
-            if params[:columns]["#{i}"][:search][:value] == "free"
-                searchFreePlayers = true
-                @cPlayers = ClubPlayer.joins(:player_season, :players).where(player_seasons: { season_id: active_season } ).pluck('def_players.id')
-            elsif params[:columns]["#{i}"][:search][:value] == "selling"
-                searchSellingPlayers = true
-                @cPlayers = ClubPlayer.joins(:players, player_season: [:player_sells]).where(player_sells: { season_id: active_season}).pluck('club_players.player_season_id')
-            else
-                @cPlayers = Club.joins(:club_players).where(clubs: { id: params[:columns]["#{i}"][:search][:value] }).pluck('club_players.player_season_id')
-            end
-            searchTeams = true
+          if params[:columns]["#{i}"][:search][:value] == "-"
+            searchFreePlayers = true
+            @cPlayers = ClubPlayer.joins(:player_season, :def_players).where(player_seasons: { season_id: active_season } ).pluck('def_players.id')
+          else
+            @cPlayers = Club.joins(:club_players).where(clubs: { id: params[:columns]["#{i}"][:search][:value] }).pluck('club_players.player_season_id')
+          end
+          searchTeams = true
         elsif term == 'overallRating'
+        elsif term == 'def_countries"."id'
+          search_string << "\"#{term}\" = '#{params[:columns]["#{i}"][:search][:value]}'"
         else
-            search_string << "\"#{term}\" ilike '%#{params[:columns]["#{i}"][:search][:value]}%'"
+          search_string << "\"#{term}\" ilike '%#{params[:columns]["#{i}"][:search][:value]}%'"
         end
       end
     end
 
     players = getPlayers(active_season)
 
-    if params[:player_value_min]
-      having_string = "COALESCE((player_seasons.details->'salary')::Integer, #{@season.preferences["default_player_earnings"].delete(',')}) >= '#{params[:minPlayerValue].to_i.abs}'"
+    if params[:minPlayerValue]
+      having_string = "COALESCE((player_seasons.details->'salary')::Integer, #{DefPlayer.getSeasonInitialSalary(nil, nil, true)} ) >= #{params[:minPlayerValue].to_i.abs}"
     end
 
-    if params[:player_value_max]
-      having_string += " AND COALESCE((player_seasons.details->'salary')::Integer, #{@season.preferences["default_player_earnings"].delete(',')}) <= '#{params[:maxPlayerValue].to_i.abs}'"
+    if params[:maxPlayerValue]
+      having_string += " AND COALESCE((player_seasons.details->'salary')::Integer, #{DefPlayer.getSeasonInitialSalary(nil, nil, true)} ) <= #{params[:maxPlayerValue].to_i.abs}"
     end
 
     if params[:minAge]
@@ -176,7 +180,7 @@ class User::Trades::BuyDatatable < ApplicationDatatable
     elsif sort_column == 'overallRating'
       players = players.order(Arel.sql("def_players.details -> 'attrs' ->> 'overallRating' #{sort_direction}"))
     elsif sort_column == 'def_players"."playerValue'
-      players = players.order(Arel.sql("player_seasons.details -> 'salary' #{sort_direction} nulls last"))
+      players = players.order(Arel.sql("COALESCE((player_seasons.details->'salary')::Integer, #{DefPlayer.getSeasonInitialSalary(nil, nil, true)} ) #{sort_direction} nulls last"))
     elsif sort_column == 'def_players"."playerTeam'
       players = players.order("club_players.id #{sort_direction}")
     else
@@ -195,7 +199,7 @@ class User::Trades::BuyDatatable < ApplicationDatatable
       'overallRating',
       'def_players"."playerTeam',
       'def_players"."playerValue',
-      'def_countries".".name'
+      'def_countries"."id'
     ]
   end
 end

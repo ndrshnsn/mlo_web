@@ -11,6 +11,9 @@ export default class extends Controller {
             d.season = $('#season').val()
         },
       },
+      initComplete: function (settings) {
+        sessionStorage.setItem('initialSort', JSON.stringify([[0,"asc"]]));
+      },
       order: [
           [0, "asc"]
       ],

@@ -1,5 +1,6 @@
 import dataTable from "datatables.net-bs5"
-$.extend( $.fn.dataTable.defaults, {
+
+$.extend( $.fn.DataTable.defaults, {
   searching: true,
   stateSave: true,
   paging: true,
@@ -8,24 +9,28 @@ $.extend( $.fn.dataTable.defaults, {
   iDisplayLength: 15,
   drawCallback: function (settings) {
     if (sessionStorage.getItem('clearDTState') === 'true') {
-      let api = this.api()
-      api.state.clear()
-      api.draw()
+      if ( sessionStorage.getItem('initialSort') ) {
+        this.DataTable().search('').columns().search('').order().state.clear()
+        this.DataTable().columns().header()[JSON.parse(sessionStorage.getItem('initialSort'))]      
+        this.DataTable().order(JSON.parse(sessionStorage.getItem('initialSort')))
+        this.DataTable().draw()
+        sessionStorage.removeItem('initialSort')
+      }
       sessionStorage.setItem('clearDTState', false)
     }
   },
   ajax: {
-      type: 'POST'
+    type: 'POST'
   },
   pagingType: "numbers",
   columnDefs: [
     {
-       targets: '_all',
-       defaultContent: '-'
+      targets: '_all',
+      defaultContent: '-'
     }
   ],
   language: { url: '/dt_i18n?locale=' + $('body').attr('data-locale') },
-  dom: 't<"info d-flex justify-content-between mx-0 row mt-1"<"col-6 d-none d-sm-block"i><"col-6 d-block d-sm-none "><"col-6 "p>>r', "initComplete": function(settings, json) {
-        $(".info").appendTo($("#tableDom"))
+    dom: 't<"info d-flex justify-content-between mx-0 row mt-1"<"col-6 d-none d-sm-block"i><"col-6 d-block d-sm-none "><"col-6 "p>>r', "initComplete": function(settings, json) {
+      $(".info").appendTo($("#tableDom"))
     }
 } );

@@ -10,3 +10,17 @@ pt-BR:
       swap_players: "Trocar Jogadores"
       swap_players_desc: "Troque jogadores com outros Usuários"
       go: "Ir"
+    buy:
+      index:
+        name: "Nome"
+        club: "Contrato"
+        free_players: "Jogadores Livres"
+        advanced_filter: "Filtro Avançado"
+        country: "País"
+        min_over: "Overall Mín."
+        max_over: "Overall Máx."
+        position: "Posição"
+        min_age: "Idade Mín."
+        max_age: "Idade Máx."
+        min_transfer_fee: "Passe Mín."
+        max_transfer_fee: "Passe Máx."
