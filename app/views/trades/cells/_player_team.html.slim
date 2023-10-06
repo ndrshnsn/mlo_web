@@ -1,0 +1,6 @@
+.d-flex.align-items-center
+  .flex-shrink-0
+    = image_tag("#{session_pdbprefix}/teams/#{(pSeason.club_players[0].club.def_team.name.upcase.delete(' '))}.png", class: "avatar-xs")
+  .flex-grow-1.ms-2.text-start
+    span.font-weight-bold.d-block.text-nowrap = pSeason.club_players[0].club.def_team.details['teamAbbr']
+    span.text-muted ##{pSeason.club_players[0].club.user_season.user.nickname}

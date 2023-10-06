@@ -1,0 +1,5 @@
+= link_to player_details_path(id: player.friendly_id, platform: player.platform), type: "button", class: "btn btn-secondary btn-icon btn-sm", title: "#{t('.player_information')}", data: { "turbo-frame": "modal", toggle: "tooltip", placement: "top" } do
+  .ri-information-line
+
+= link_to "javascript:;", type: "button", class: "btn btn-primary btn-icon btn-sm ms-1", title: "#{t('.player_buy')}", data: { toggle: "tooltip", placement: "top", action: "click->confirm#dialog", controller: "confirm", "confirm-title-value": "#{t('defaults.datatables.buy_question')}", "confirm-icon-value": "question", "confirm-link-value": trades_buy_confirm_path(player.id), "confirm-action-value": "post" } do
+  i.ri-shopping-bag-line

@@ -25,12 +25,7 @@ export default class extends Controller {
       { data: 'position' },
       { data: 'overallRating'},
       { data: 'playerTeam'},
-      { data: 
-        {
-          _: 'playerValue',
-          sort: 'playerValueOnly'
-        }
-      },
+      { data: 'playerValue'},
       { data: 'nationality'},
       { data: 'DT_Actions'}
       ],

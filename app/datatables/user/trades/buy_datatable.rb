@@ -9,72 +9,30 @@ class User::Trades::BuyDatatable < ApplicationDatatable
       pSeason = PlayerSeason.find_by(def_player_id: player.id, season_id: session[:season])
       season = Season.find(session[:season])
 
-      ## Nationality
       nationality = image_tag(countryFlag(player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
 
-      ## Player Name
-      playerName = "<div class='d-flex align-items-center'>"
-      playerName += "<div class='flex-shrink-0'>"
-      playerName += image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: player.platform, dna: true)}/#{player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{image_url("/misc/generic-player.png")}';")
-      playerName += "</div><div class='flex-grow-1 ms-2 text-start'>"
-      playerName += "<span class='font-weight-bold d-block text-nowrap'>#{player.name}</span>"
+      playerName = ApplicationController.render partial: "trades/cells/player_name", locals: {session_pdbprefix: session[:pdbprefix], player: player, nationality: nationality }
 
-      playerName += "<small class='d-flex text-muted mb-0'>"
-      playerName += "<div class='d-flex align-items-center'>"
-      playerName += "<div class='flex-shrink-0'>#{nationality}</div>"
-      playerName += "<div class='flex-grow-1 ms-1 text-start'>Idade #{player.age} / Altura #{player.height}</div>"
+      position = ApplicationController.render partial: "trades/cells/position", locals: {rpPOS: translate_pkeys(player.def_player_position.name, player.platform) }
 
-      playerName += "</div></small>"
-      playerName += "</div></div>"
-
-      rpPOS = translate_pkeys(player.def_player_position.name, player.platform)
-      position = "<div class='badge badge-#{rpPOS[1]}'>#{rpPOS[0]}</div>"
-      overallRating = "<span class='stat #{translate_pscore(player.attrs["overallRating"])}'>#{player.attrs["overallRating"]}</span>"
-
+      overallRating = ApplicationController.render partial: "trades/cells/overall_rating", locals: {translated_class: translate_pscore(player.attrs["overallRating"]), player: player }
+      
       if !pSeason
-        playerTeam = "<div class='badge badge-dark'>LIVRE</span>"
+        playerTeam = ApplicationController.render partial: "trades/cells/player_free"
       else
         if pSeason.club_players.size == 1
-          playerTeam = "<div class='d-flex align-items-center'>"
-          playerTeam += "<div class='flex-shrink-0'>"
-          playerTeam += image_tag("#{session[:pdbprefix]}/teams/#{(pSeason.club_players[0].club.def_team.name.upcase.delete(' '))}.png", class: "avatar-xs", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
-          playerTeam += "</div><div class='flex-grow-1 ms-2 text-start'>"
-          playerTeam += "<span class='font-weight-bold d-block text-nowrap'>#{pSeason.club_players[0].club.def_team.details['teamAbbr']}</span>"
-          playerTeam += "<span class='text-muted'>##{pSeason.club_players[0].club.user_season.user.nickname}</span>"
-          playerTeam += "</div></div>"
+          playerTeam = ApplicationController.render partial: "trades/cells/player_team", locals: {pSeason: pSeason, session_pdbprefix: session[:pdbprefix]}
         else
-          playerTeam = "<div class='badge badge-dark'>#{t('.free')}</span>"
+          playerTeam = ApplicationController.render partial: "trades/cells/player_free"
         end
       end
 
       ## PlayerValue
-      if pSeason != nil
-        playerValue = PlayerSeason.getPlayerPass(pSeason, season)
-        playerValueOnly = playerValue
-        playerValue = toCurrency(playerValue)
-      else
-        playerValue = DefPlayer.getSeasonInitialSalary(season, player)* season.preferences["player_value_earning_relation"]
-        playerValueOnly = playerValue
-        playerValue = toCurrency(playerValue)
-      end
+      playerValue = pSeason != nil ? PlayerSeason.getPlayerPass(pSeason, season) : DefPlayer.getSeasonInitialSalary(season, player)* season.preferences["player_value_earning_relation"]
+      playerValue = ApplicationController.render partial: "trades/cells/player_value", locals: { playerValue: playerValue }
 
       ## Actions
-      dtActions = [
-        {
-          link: player.friendly_id,
-          icon: "ri-information-line",
-          text: t("defaults.datatables.show"),
-          disabled: "",
-          turbo: "data-turbo-frame='modal'"
-        },
-        {
-          link: "javascript:;",
-          icon: "ri-shopping-cart-line",
-          text: t("defaults.datatables.buy"),
-          disabled: "",
-          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{t('defaults.datatables.buy_question')}' data-confirm-icon-value='question' data-confirm-link-value='#{trades_buy_confirm_path}' data-confirm-action-value='post'"
-        }
-      ]
+      dtActions = ApplicationController.render partial: "trades/cells/actions", locals: {player: player}
 
       {
         id: player.id,
@@ -85,8 +43,7 @@ class User::Trades::BuyDatatable < ApplicationDatatable
         age: player.age,
         playerTeam: playerTeam,
         playerValue: playerValue,
-        playerValueOnly: playerValueOnly,
-        DT_Actions: dt_actionsMenu(dtActions),
+        DT_Actions: dtActions,
         DT_RowId: player.id
       }
     end

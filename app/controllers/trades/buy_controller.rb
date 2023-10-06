@@ -47,26 +47,26 @@ class Trades::BuyController < ApplicationController
   end
 
   def confirm
-    show_step(AppServices::Trades::Buy.call(@championship), t(".success"))
+    player = DefPlayer.find(params[:id])
+    show_step(AppServices::Trades::Buy.call(@club, @season, player), t(".success"))
   end
 
   def show_step(resolution, success_message)
     respond_to do |format|
       if resolution.success?
-        # details
         flash.now["success"] = success_message
-        format.turbo_stream { render "show_step" }
-        format.html { redirect_to manager_championships_path, notice: success_message }
+        format.html { redirect_to trades_buy_path, notice: success_message }
       else
         flash.now["error"] = I18n.t("defaults.errors.championship.#{resolution.error}")
-        format.turbo_stream { render "show_step" }
         format.html { render :details, status: :unprocessable_entity }
       end
+      format.turbo_stream { render "show_step" }
     end
   end
 
   def set_controller_vars
     @season = Season.find(session[:season])
+    @club = User.getClub(current_user.id, @season.id)
   end
 
   def get_proc_dt

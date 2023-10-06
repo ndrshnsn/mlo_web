@@ -66,6 +66,7 @@
                         = label_tag("#{t '.max_transfer_fee'}", nil, class: "control-label")
                         = select_tag "player_value_max", options_for_select(@pValue.collect { |i| [toCurrency(i[:value]), i[:reference]]}, @pValue.last[:reference]), {include_blank: true,  class: "form-control select2 other", "data-controller": "select", "data-select-icon-value": false, "data-select-clear-value": false, 'data-name': "player_value_max", id: 'player_value_max' }
 
+            = turbo_stream_from "trades_buy_#{session[:season]}"
             div data-controller="dt--user-trades-buy"
               #tableDom.table-responsive.table-card.mb-1.mt-3
                 table.table.table-striped.table-nowrap.dt-responsive.align-middle.mb-0 id="dt-user-trades-buy" style="width: 100%;"

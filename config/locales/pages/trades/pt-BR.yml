@@ -10,6 +10,13 @@ pt-BR:
       swap_players: "Trocar Jogadores"
       swap_players_desc: "Troque jogadores com outros Usuários"
       go: "Ir"
+    cells:
+      player_name:
+        age: "Idade"
+        height: "Altura"
+      actions:
+        player_information: "Informações"
+        player_buy: "Comprar Jogador"
     buy:
       index:
         name: "Nome"
@@ -24,3 +31,7 @@ pt-BR:
         max_age: "Idade Máx."
         min_transfer_fee: "Passe Mín."
         max_transfer_fee: "Passe Máx."
+        hired: "Contrato"
+        transfer_fee: "Passe"
+        actions: "Ações"
+        overall: "Over"
