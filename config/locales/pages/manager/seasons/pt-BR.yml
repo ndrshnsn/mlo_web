@@ -229,3 +229,7 @@ pt-BR:
         no_players_to_raffle_html: "Não há Jogadores Suficientes para o Sorteio! Ajuste as definições acima!<p>Por favor modifique estes campos para que nenhum valor de posição fique em zero. Considere alguma 'folga' para estes valores.</p>"
       get_available_players:
         no_spaces_check: "Não há Jogadores Suficientes!"
+      start_transfer_window:
+        start_transfer_window:
+          success: "Janela de Transferências liberada!"
+          error: "Erro iniciando Janela de Transferências"

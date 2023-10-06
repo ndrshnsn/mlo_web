@@ -1,0 +1,11 @@
+= turbo_stream.update "playerTeam_#{player.id}" do
+  - if pSeason.club_players.size == 1
+    = render "trades/cells/player_team", pSeason: pSeason, session_pdbprefix: session_pdbprefix
+  - else
+    = render "trades/cells/player_free"
+
+= turbo_stream.update "playerValue_#{player.id}" do
+  = render "trades/cells/player_value", playerValue: playerValue
+
+= turbo_stream.update "pActions_#{player.id}" do
+  = render "trades/cells/actions", player: player

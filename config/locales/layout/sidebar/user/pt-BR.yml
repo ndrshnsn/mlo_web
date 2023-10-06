@@ -18,3 +18,10 @@ pt-BR:
         ranking: "Ranking"
         club_management: "Central do Clube"
         management: "Administrativo"
+        market:
+          main: "Mercado"
+          players: "Jogadores"
+          trades: "Negociações"
+          steals: "Roubos"
+          auctions: "Leilão"
+        

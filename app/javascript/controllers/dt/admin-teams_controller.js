@@ -9,6 +9,9 @@ export default class extends Controller {
       ajax: {
         url: '/admin/playerdb/teams/get_proc_dt'
       },
+      initComplete: function (settings) {
+        sessionStorage.setItem('initialSort', JSON.stringify([[0,"asc"]]));
+      },
       order: [
           [0, "asc"]
       ],

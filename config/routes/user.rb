@@ -83,5 +83,12 @@ as :user do
   post "games/:id/confirm", to: "games#confirm", as: :game_confirm
 
   get "ranking", to: "ranking#index"
+
+  get "players/:platform/:id", to: "players#details", as: :player_details
+
+  get "trades", to: "trades#index"
+  get "trades/buy", to: "trades/buy#index", as: :trades_buy
+  post "trades/buy/get_proc_dt", to: "trades/buy#get_proc_dt"
+  post "trades/buy/:id", to: "trades/buy#confirm", as: :trades_buy_confirm
   
 end

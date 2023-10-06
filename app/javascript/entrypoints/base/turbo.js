@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
-  $.LoadingOverlay("hide", "force")
+  JsLoadingOverlay("hide")
 });
 
 document.addEventListener("shown.bs.modal", function (event) {
-  $.LoadingOverlay("hide", "force")
+  JsLoadingOverlay("hide")
 });
 
 document.addEventListener("hidden.bs.modal", function (event) {
@@ -15,12 +15,12 @@ document.addEventListener("show.bs.popover", function (event) {
 });
 
 document.addEventListener("turbo:click", function(event) {
-  $.LoadingOverlay("show")
+  JsLoadingOverlay("show")
   $('.popover').remove()
 });
 
 document.addEventListener("turbo:visit", function(event) { 
-  $.LoadingOverlay("hide", "force")
+  JsLoadingOverlay("hide")
 });
 
 document.addEventListener("turbo:frame-render", function(event) {
@@ -29,19 +29,19 @@ document.addEventListener("turbo:frame-render", function(event) {
   }else{
     delete window.preserve_scroll
   }
-  $.LoadingOverlay("hide", "force")
+  JsLoadingOverlay("hide")
 });
 
 document.addEventListener("turbo:load", function(event) {
-  $.LoadingOverlay("hide", "force")
+  JsLoadingOverlay("hide")
 });
 
 document.addEventListener("turbo:submit-start", function(event) { 
-  $.LoadingOverlay("show")
+  JsLoadingOverlay("show")
 });
 
 document.addEventListener("turbo:submit-end", function(event) { 
-  $.LoadingOverlay("hide", "force")
+  JsLoadingOverlay("hide")
 });
 
 // document.addEventListener("turbo:frame-missing", (event) => {

@@ -1,0 +1,37 @@
+pt-BR:
+  trades:
+    main:
+      buy_players: "Comprar Jogadores"
+      buy_players_desc: "Procure no Mercado Jogadores Disponíveis para Compra"
+      sell_players: "Vender Jogadores"
+      sell_players_desc: "Coloque seus jogadores para venda no Mercado"
+      loan_players: "Emprestar Jogadores"
+      loan_players_desc: "Empreste ou Contrate Jogadores por Empréstimo"
+      swap_players: "Trocar Jogadores"
+      swap_players_desc: "Troque jogadores com outros Usuários"
+      go: "Ir"
+    cells:
+      player_name:
+        age: "Idade"
+        height: "Altura"
+      actions:
+        player_information: "Informações"
+        player_buy: "Comprar Jogador"
+    buy:
+      index:
+        name: "Nome"
+        club: "Contrato"
+        free_players: "Jogadores Livres"
+        advanced_filter: "Filtro Avançado"
+        country: "País"
+        min_over: "Overall Mín."
+        max_over: "Overall Máx."
+        position: "Posição"
+        min_age: "Idade Mín."
+        max_age: "Idade Máx."
+        min_transfer_fee: "Passe Mín."
+        max_transfer_fee: "Passe Máx."
+        hired: "Contrato"
+        transfer_fee: "Passe"
+        actions: "Ações"
+        overall: "Over"

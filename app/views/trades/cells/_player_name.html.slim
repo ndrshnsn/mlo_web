@@ -1,0 +1,9 @@
+.d-flex.align-items-center
+  .flex-shrink-0
+    = image_tag("#{session_pdbprefix}/players/#{get_platforms(platform: player.platform, dna: true)}/#{player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle", style: "width: 36px; height: 36px;")
+  .flex-grow-1.ms-2.text-start
+    span.font-weight-bold.d-block.text-nowrap = player.name
+    small.d-flex.text-muted.mb-0
+      .d-flex.align-items-center
+        .flex-shrink-0 = nationality
+        .flex-grow-1.ms-1.text-start #{t('.age')} #{player.age} / #{t('.height')} #{player.height}

@@ -9,7 +9,7 @@ class Club < ApplicationRecord
   has_many :championships, through: :club_championships
   has_many :rankings, dependent: :destroy
   has_many :championship_positions, through: :championships
-  # has_many :championship_awards, through: :championships
+  has_many :championship_awards, through: :championships
   has_many :from_club, class_name: 'PlayerTransaction', foreign_key: :from_club_id, dependent: :destroy
   has_many :to_club, class_name: 'PlayerTransaction', foreign_key: :to_club_id, dependent: :destroy
   # has_many :club_bestplayers

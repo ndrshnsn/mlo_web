@@ -1,7 +1,7 @@
 = turbo_frame_tag "main_frame" do
-  = render partial: "layouts/header/pageHeader", locals: { title: t('.accounts') }
-
+  = render "layouts/header/page_frame"
   = turbo_frame_tag "admin_accounts" do
+    = render "layouts/header/page_title", title: t('.accounts')
     .row
       .col-12
         .card 

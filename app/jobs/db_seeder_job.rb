@@ -19,7 +19,7 @@ class DbSeederJob < ApplicationJob
         AppConfig.mail_username = ENV['GMAIL_USERNAME']
         AppConfig.mail_password = ENV['GMAIL_PASSWORD']
         AppConfig.generic_player = 999999
-        AppConfig.platforms = [["PES", ["PES21", "EFOOT23"]], ["FIFA", ["FIFA23"]]]
+        AppConfig.platforms = [["PES", ["PES21", "EFOOT24"]], ["FIFA", ["FIFA24"]]]
         AppConfig.fake_account_password = "asdasdasdasdas" 
         AppConfig.championship_minimum_players = 4
         AppConfig.championship_cards_suspension_ycard = 3

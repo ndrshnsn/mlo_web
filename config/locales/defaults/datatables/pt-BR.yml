@@ -6,6 +6,7 @@ pt-BR:
       show: "Detalhes"
       enable: "Ativar"
       players: "Jogadores"
+      free: "LIVRE"
       confirm_enable: "Ativar?"
       confirm_enable_text: "Confirma que quer ativar este ítem?"
       disable: "Desativar"

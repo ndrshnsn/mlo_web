@@ -6,32 +6,34 @@ export default class SelectController extends Controller {
   static values = { 
     icon: Boolean,
     pholder: { type: String, default: 'all_items' },
-    readonly: { type: Boolean, default: false }
+    readonly: { type: Boolean, default: false },
+    clear: { type: Boolean, default: true },
+    search: { type: Boolean, default: false }
   }
 
   connect() {
     const el = document.getElementById(this.element.id)
+    const searchOption = this.searchValue == false ? "Infinity" : 20
     if ( this.iconValue === true ) {
-      this.select2withIcons(el, this.readonlyValue, i18n.t(this.pholderValue))
+      this.select2withIcons(el, this.readonlyValue, i18n.t(this.pholderValue), searchOption)
     } else {
-      this.select2withoutIcons(el, this.readonlyValue, i18n.t(this.pholderValue))
+      this.select2withoutIcons(el, this.readonlyValue, i18n.t(this.pholderValue), searchOption)
     }
-
     // $(el).on('select2:select', function () {
     //   let event = new Event('change', { bubbles: true }) // fire a native event
     //   this.dispatchEvent(event);
     // })
-
   }
 
-  select2withIcons(element, setReadonly, pHolder, size) {
+  select2withIcons(element, setReadonly, pHolder, searchOption) {
     $(element).select2({
       templateResult: this.iconFormat,
       templateSelection: this.iconFormat,
       placeholder: pHolder,
-      allowClear: true,
+      allowClear: this.clearValue,
       dropdownAutoWidth: true,
       width: '100%',
+      minimumResultsForSearch: searchOption,
       dropdownParent: $(element).parent()
     });
 
@@ -40,12 +42,13 @@ export default class SelectController extends Controller {
     }
   }
 
-  select2withoutIcons(element, setReadonly, pHolder) {
+  select2withoutIcons(element, setReadonly, pHolder, searchOption) {
     $(element).select2({
       placeholder: pHolder,
       dropdownAutoWidth: true,
       width: '100%',
-      allowClear: true,
+      allowClear: this.clearValue,
+      minimumResultsForSearch: searchOption,
       dropdownParent: $(element).parent()
     });
 
@@ -71,7 +74,11 @@ export default class SelectController extends Controller {
     if ( icon.id == "-" ) {
       var $icon = '<span class="d-flex align-items-center">' + icon.text + '</span>'
     } else {
-      var $icon = '<span class="d-flex align-items-center">' + player_position + '<img src="' + $(originalOption).data('img') + '" class="me-2 rounded-circle '+ player_class +'", style="width: ' + size + 'px; height: ' + size + 'px;">' + icon.text + '</span>'
+      if ( $(originalOption).data('img') ) {
+        var $icon = '<span class="d-flex align-items-center">' + player_position + '<img src="' + $(originalOption).data('img') + '" class="me-2 rounded-circle '+ player_class +'", style="width: ' + size + 'px; height: ' + size + 'px;">' + icon.text + '</span>'
+      } else {
+        var $icon = '<span>' + player_position + '</span>'
+      }
     }
 
     $icon = $($icon);

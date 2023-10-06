@@ -9,6 +9,9 @@ export default class extends Controller {
       ajax: {
         url: '/manager/users/get_wproc_dt'
       },
+      initComplete: function (settings) {
+        sessionStorage.setItem('initialSort', JSON.stringify([[0,"asc"]]));
+      },
       order: [
           [0, "asc"]
       ],
