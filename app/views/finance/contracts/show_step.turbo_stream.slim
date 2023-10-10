@@ -1,0 +1,5 @@
+= turbo_stream.update "finance_contracts" do
+  = render "layouts/header/page_title", title: t('.contracts')
+  = render "main", club_players: @club_players
+
+= render_turbo_stream_flash_messages

@@ -24,4 +24,8 @@ pt-BR:
           trades: "Negociações"
           steals: "Roubos"
           auctions: "Leilão"
+        finance:
+          main: "Financeiro"
+          contracts: "Contratos"
+          
         

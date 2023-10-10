@@ -2,7 +2,7 @@ class DefTeam < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  serialize :platforms, JSON
+  #serialize :platforms, JSON
 
   has_many :clubs
   belongs_to :def_country

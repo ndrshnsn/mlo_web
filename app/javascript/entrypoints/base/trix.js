@@ -4,10 +4,8 @@ const i18n = document.querySelector("body").getAttribute('data-locale')
 import translations from "../base/locales/locales.js"
 Trix.config.toolbar.getDefaultHTML = toolbarDefaultHTML;
 
-// trix-before-initialize runs too early.
-// We only need to do this once. Everything after initialize will get the
-// defaultHTML() call automatically.
-document.addEventListener('trix-initialize', updateToolbars, { once: true });
+addEventListener("trix-before-initialize", () => Object.assign(Trix.config.lang, translations[i18n]))
+addEventListener('trix-initialize', updateToolbars, { once: true });
 
 function updateToolbars(event) {
   const toolbars = document.querySelectorAll('trix-toolbar');
@@ -18,7 +16,7 @@ function updateToolbars(event) {
 Trix.config.textAttributes.underline = {
   tagName: 'u'
 }
-Trix.config.lang = translations[i18n]
+// Trix.config.lang = translations[i18n]
 
 const {lang} = Trix.config;
 /**

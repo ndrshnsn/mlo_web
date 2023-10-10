@@ -12,6 +12,10 @@ pt-BR:
         main: "Ranking"
       championships:
         main: "Campeonatos"
+      finance:
+        main: "Financeiro"
+        contracts:
+          main: "Contratos"
       admin:
         playerdb:
           main: "PlayerDB"

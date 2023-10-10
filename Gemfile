@@ -31,7 +31,6 @@ group :development do
   gem "standard", "~> 1.0", require: false
   gem "binding_of_caller"
   gem "letter_opener"
-  gem "bullet"
   gem "solargraph"
   gem "pry-rails"
   gem "ruby-lsp"

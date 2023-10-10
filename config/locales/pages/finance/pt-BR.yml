@@ -1,0 +1,24 @@
+pt-BR:
+  finance:
+    contracts:
+      index:
+        contracts: "Contratos"
+      main:
+        name: "Nome"
+        position: "Posição"
+        overall: "Over"
+        wage: "Salário"
+        transfer_fee: "Passe"
+        actions: "Ações"
+        age: "Idade"
+        height: "Altura"
+        player_information: "Informações"
+        player_fire: "Demitir Jogador"
+        player_fire_question: "Demitir %{player_name}?"
+        player_fire_text: "O clube precisará pagará %{fire_tax} para efetivar a demissão do jogador."
+        player_fire_text_nil: "O Clube não precisa pagar nenhuma taxa de recisão para demitir o jogador"
+        club_wage: "Salários"
+        club_funds: "Saldo do Clube"
+        club_wage_limit: "Limite de Salários"
+      fire:
+        success: "Jogador desligado do Clube com sucesso!"

@@ -1,0 +1,91 @@
+.row
+  .col-xl-4.col-md-6
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            h5.fw-semibold = toCurrency(Club.getFunds(@club.id))
+            span.fs-6.fw-medium.text-muted.mb-0 = t('.club_funds')
+          .flex-shrink-0
+            .avatar-sm
+              span.avatar-title.bg-info-subtle.rounded-circle.fs-3
+                i.ri-funds-line
+
+  .col-xl-4.col-md-6
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            h5.fw-semibold = toCurrency(Club.getTeamTotalWage(@club.id))
+            span.fs-6.fw-medium.text-muted.mb-0 = t('.club_wage')
+          .flex-shrink-0
+            .avatar-sm
+              span.avatar-title.bg-secondary-subtle.rounded-circle.fs-3
+                i.ri-group-line
+
+  .col-xl-4.col-md-6
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            h5.fw-semibold = toCurrency(@season.preferences["club_max_total_wage"] - Club.getTeamTotalWage(@club.id))
+            span.fs-6.fw-medium.text-muted.mb-0 = t('.club_wage_limit')
+          .flex-shrink-0
+            .avatar-sm
+              span.avatar-title.bg-warning-subtle.rounded-circle.fs-3
+                i.ri-refund-line
+
+.row
+  .col-12
+    .card
+      .card-body
+        div
+          .table-responsive.table-card
+            table.table.table-striped.table-nowrap.dt-responsive.align-middle.mb-0
+              thead.table-light
+                tr
+                  th = t('.name')
+                  th.text-center = t('.position')
+                  th.text-center = t('.overall')
+                  th.text-center = t('.wage')
+                  th.text-center = t('.transfer_fee')
+                  th.text-center = t('.actions')
+              tbody
+                - @club_players.each do |club_player|
+                  tr
+                    td
+                      .d-flex.align-items-center
+                        .flex-shrink-0
+                          = image_tag("#{session["pdbprefix"]}/players/#{get_platforms(platform: club_player.def_player.platform, dna: true)}/#{club_player.def_player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle", style: "width: 36px; height: 36px;")
+                        .flex-grow-1.ms-2.text-start
+                          span.font-weight-bold.d-block.text-nowrap = club_player.def_player.name
+                          small.d-flex.text-muted.mb-0
+                            .d-flex.align-items-center
+                              .flex-shrink-0 = image_tag(countryFlag(club_player.def_player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{club_player.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+                              .flex-grow-1.ms-1.text-start #{t('.age')} #{club_player.def_player.age} / #{t('.height')} #{club_player.def_player.height}
+
+                    td.text-center
+                      - rpPOS = translate_pkeys(club_player.def_player_position.name, club_player.def_player.platform)
+                      div class="badge badge-#{rpPOS[1]}" = rpPOS[0]
+                    td.text-center
+                      - translated_class = translate_pscore(club_player.def_player.attrs["overallRating"])
+                      span class="stat #{translated_class}" = club_player.def_player.attrs["overallRating"]
+                    td.text-center = toCurrency(club_player.player_season.details["salary"])
+                    td.text-center = toCurrency(PlayerSeason.getPlayerPass(club_player.player_season, @season))
+                    td.text-center
+                      = link_to player_details_path(id: club_player.def_player.friendly_id, platform: club_player.def_player.platform), type: "button", class: "btn btn-secondary btn-icon btn-sm", title: "#{t('.player_information')}", data: { "turbo-frame": "modal", toggle: "tooltip", placement: "top" } do
+                        .ri-information-line
+
+                      - fire_tax = Season.get_player_fire_tax(@season.id, club_player.player_season.id)
+                      - fire_tax_text = fire_tax > 0 ? t('.player_fire_text', fire_tax: fire_tax) : t('.player_fire_text_nil')
+                      = link_to "javascript:;", type: "button", class: "btn btn-danger btn-icon btn-sm ms-1", title: "#{t('.player_fire')}", data: { toggle: "tooltip", placement: "top", action: "click->confirm#dialog", controller: "confirm", "confirm-title-value": "#{t('.player_fire_question', player_name: club_player.def_player.name)}", "confirm-text-value": "#{fire_tax_text}", "confirm-icon-value": "warning", "confirm-link-value": finance_contract_fire_player_path(club_player.id), "confirm-action-value": "delete" } do
+                        i.ri-close-line
+
+              tfoot.table-light
+                tr
+                  th = t('.name')
+                  th.text-center = t('.position')
+                  th.text-center = t('.overall')
+                  th.text-center = t('.wage')
+                  th.text-center = t('.transfer_fee')
+                  th.text-center = t('.actions')

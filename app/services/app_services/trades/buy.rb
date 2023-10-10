@@ -17,7 +17,7 @@ class AppServices::Trades::Buy < ApplicationService
     club_players = Club.get_players(@club.id, @season.preferences["raffle_platform"])
     club_funds = Club.getFunds(@club.id)
 
-    #return handle_error(@club, ".max_player_limit") unless club_players.size < @season.preferences["max_players"]
+    return handle_error(@club, ".max_player_limit") unless club_players.size < @season.preferences["max_players"]
     season_player = PlayerSeason.where(def_player_id: @player.id, season_id: @season.id).first_or_create do |sp|
       sp.details = {
         salary: DefPlayer.getSeasonInitialSalary(@season, @player)

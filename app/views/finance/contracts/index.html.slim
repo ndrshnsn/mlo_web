@@ -1,0 +1,5 @@
+= turbo_frame_tag "main_frame" do
+  = render "layouts/header/page_frame"
+  = turbo_frame_tag "finance_contracts" do
+    = render "layouts/header/page_title", title: t('.contracts')
+    = render "main"
