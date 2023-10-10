@@ -1,5 +1,4 @@
 class Championship < ApplicationRecord
-  include Hashid::Rails
   include BadgeUploader::Attachment(:badge)
 
   belongs_to :season

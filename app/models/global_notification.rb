@@ -1,6 +1,4 @@
 class GlobalNotification < ApplicationRecord
-  include Hashid::Rails
-
   belongs_to :league
 
   jsonb_accessor :params,

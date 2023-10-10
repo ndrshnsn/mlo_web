@@ -1,5 +1,4 @@
 class Season < ApplicationRecord
-  include Hashid::Rails
   has_noticed_notifications
   audited
 

@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
 
   ## HTML
-  before_action :authenticate_user!, except: [:raise_not_found, :not_found, :error]
-
+  before_action :authenticate_user!
+  
   ## Custom Flash Types
   add_flash_types :success, :info, :error, :warning
 
