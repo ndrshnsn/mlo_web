@@ -1,19 +1,27 @@
 # Change log
 
+## 8768ca7 - 2023-10-10
+
+### Added
+ - finance menu with contracts option
+ - fire players through contracts table
+ - fire service object and check for any restrictions
+
 ## ff28f6d - 2023-09-19
 
 ### Added
 * Added ruby-lsp do Dev bundle
 * Automatic Game Confirmation through Cron Sidekiq Worker
-
+  
 ### Changed
 * Upgrade of Remixicon to 3.5.0
 
+  
 ## cc4db9d - 2023-08-25
 
 ### Added
 * User Championships view
-* Reorganized Game card elments into service objects and partials 
+* Reorganized Game card elments into service objects and partials
 
 ## 6cdc550 - 2023-08-18
 

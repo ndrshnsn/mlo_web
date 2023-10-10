@@ -90,5 +90,8 @@ as :user do
   get "trades/buy", to: "trades/buy#index", as: :trades_buy
   post "trades/buy/get_proc_dt", to: "trades/buy#get_proc_dt"
   post "trades/buy/:id", to: "trades/buy#confirm", as: :trades_buy_confirm
+
+  get "finance/contracts", to: "finance/contracts#index"
+  delete "finance/contracts/:id/fire", to: "finance/contracts#fire", as: :finance_contract_fire_player
   
 end

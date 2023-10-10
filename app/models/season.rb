@@ -86,4 +86,18 @@ class Season < ApplicationRecord
 		ClubFinance.where(club_id: Season.getClubs(season.id).pluck(:id)).order(club_id: :desc, created_at: :desc).sum(:value)
 	end
 
+  def self.get_player_fire_tax(season_id, player_season_id)
+    season = Season.find(season_id)
+    player = PlayerSeason.find(player_season_id)
+    case season.preferences["fire_tax"]
+    when "wage"
+      tax = player.details["salary"]
+    when "fixed"
+      tax = season.preferences["fire_tax_fixed"].delete(',').to_i
+    when "none"
+      tax = 0
+    end
+    return tax
+  end
+
 end

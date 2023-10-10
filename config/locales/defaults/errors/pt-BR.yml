@@ -10,3 +10,9 @@ pt-BR:
       games:
         game_in_progress: "Já existe um jogo em andamento ou pendente de confirmação!"
         game_confirm_cron_error: "Erro confirmando jogo. CRON WORKER NOT FOUND"
+      finance:
+        contracts:
+          min_player_limit: "Seu clube já tem o limite mínimo de jogadores!"
+
+
+          
