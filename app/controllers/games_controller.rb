@@ -1,8 +1,8 @@
 class GamesController < ApplicationController 
-  before_action :set_game, only: [:start, :results, :update_card, :add_goal, :remove_goal, :add_card, :remove_goal_card, :update, :confirm]
+  before_action :set_game, only: [:start, :results, :update_card, :add_goal, :add_card, :remove_goal_card, :update, :confirm]
 
   def set_game
-    @game = Game.find_by_hashid(params[:id])
+    @game = Game.find(params[:id])
   end
 
   def start
@@ -120,7 +120,7 @@ class GamesController < ApplicationController
   end
 
   def get_suspended_players(game)
-    helpers.players_suspended(game.championship.hashid, game.hashid, session[:season])
+    helpers.players_suspended(game.championship_id, game.id, session[:season])
   end
 
 end

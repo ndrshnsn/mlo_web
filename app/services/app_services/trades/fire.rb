@@ -32,6 +32,8 @@ class AppServices::Trades::Fire < ApplicationService
 
     return handle_error(@club, @player&error) unless @player.destroy
 
+    Trades::BuyJob.perform_later(Rails.configuration.playerdb_prefix, @club.user_season.season.id, player)
+
     OpenStruct.new(success?: true, player: @club, error: nil)
   end
 

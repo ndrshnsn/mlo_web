@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_10_190948) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_11_205620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_10_190948) do
     t.string "remote_address"
     t.string "request_uuid"
     t.datetime "created_at"
+    t.uuid "auditable_id", default: -> { "gen_random_uuid()" }, null: false
     t.index ["associated_type", "associated_id"], name: "associated_index"
     t.index ["auditable_type", "version"], name: "auditable_index"
     t.index ["created_at"], name: "index_audits_on_created_at"
@@ -115,6 +116,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_10_190948) do
     t.jsonb "preferences", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["preferences"], name: "index_championships_on_preferences", using: :gin
     t.index ["season_id"], name: "index_championships_on_season_id"
   end
@@ -153,11 +155,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_10_190948) do
     t.string "operation"
     t.integer "value"
     t.integer "balance"
-    t.integer "source_id"
     t.string "source_type"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "source_id"
     t.index ["club_id"], name: "index_club_finances_on_club_id"
   end
 

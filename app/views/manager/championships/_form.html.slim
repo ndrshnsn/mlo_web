@@ -33,7 +33,7 @@
             = f.text_field :name, class: "form-control", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase", readonly: true
           - else
             - if @championship.id.present?
-              = f.text_field :name, class: "form-control", required: true, "data-parsley-remote": "/manager/championships/check_championship_name/#{@championship.hashid}", "data-parsley-trigger": "input", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase"
+              = f.text_field :name, class: "form-control", required: true, "data-parsley-remote": "/manager/championships/check_championship_name/#{@championship.id}", "data-parsley-trigger": "input", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase"
             - else
               = f.text_field :name, class: "form-control", required: true, "data-parsley-remote": "/manager/championships/check_championship_name/none", "data-parsley-trigger": "input", "data-controller": "cleave", "data-cleave-ctype-value": "uppercase"
         p
@@ -195,19 +195,19 @@
               = t('.ranking.winning_prize')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.ranking.winning_prize_desc')}"
             span style="width: 130px!important;"
-              - match_winning_earning = @championship.match_winning_earning || AppConfig.match_winning_earning
+              - match_winning_ranking = @championship.match_winning_ranking || AppConfig.match_winning_ranking
               .form-group
                 .input-group
-                  = text_field_tag("championship[match_winning_earning]", match_winning_earning, class: "form-control text-center", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "numerical"})
+                  = text_field_tag("championship[match_winning_ranking]", match_winning_ranking, class: "form-control text-center", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "numerical"})
           li.list-group-item.d-flex.justify-content-between.align-items-center 
             span.li-col
               = t('.ranking.draw_prize')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.ranking.draw_prize_desc')}"
             span style="width: 130px!important;"
-              - match_draw_earning = @championship.match_draw_earning || AppConfig.match_draw_earning
+              - match_draw_ranking = @championship.match_draw_ranking || AppConfig.match_draw_ranking
               .form-group
                 .input-group
-                  = text_field_tag("championship[match_draw_earning]", match_draw_earning, class: "form-control text-center", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "numerical"})
+                  = text_field_tag("championship[match_draw_ranking]", match_draw_ranking, class: "form-control text-center", readonly: sStarted, data: { controller: "cleave", "cleave-ctype-value": "numerical"})
           li.list-group-item.d-flex.justify-content-between.align-items-center 
             span.li-col
               = t('.ranking.loss_prize')

@@ -6,10 +6,9 @@ class ClubFinance < ApplicationRecord
   private
 
   def update_club_balance
-    userClub = User.getClub(club.user_season.user.id, club.user_season.season_id)
-    if ClubFinance.where(club_id: userClub.id).count > 1
-      previousBalance = ClubFinance.where(club_id: userClub.id).order("updated_at ASC").second_to_last
-      current = ClubFinance.where(club_id: userClub.id).order("updated_at ASC").last
+    if ClubFinance.where(club_id: club.id).count > 1
+      previousBalance = ClubFinance.where(club_id: club.id).order("updated_at ASC").second_to_last
+      current = ClubFinance.where(club_id: club.id).order("updated_at ASC").last
 
       case current.operation
       when "player_hire"

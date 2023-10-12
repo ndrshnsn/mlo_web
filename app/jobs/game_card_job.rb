@@ -10,20 +10,20 @@ class GameCardJob < ApplicationJob
       "games_#{home.id}",
       partial: "games/card",
       locals: { game: game, session_pdbprefix: pdbprefix, session_season: session, current_user_id: home.id },
-      target: "game_#{game.hashid}")
+      target: "game_#{game.id}")
 
     Turbo::StreamsChannel.broadcast_replace_to(
       "games_#{visitor.id}",
       partial: "games/card",
       locals: { game: game, session_pdbprefix: pdbprefix, session_season: session, current_user_id: visitor.id },
-      target: "game_#{game.hashid}")
+      target: "game_#{game.id}")
 
     remaining_users.each do |remaining_user|
       Turbo::StreamsChannel.broadcast_replace_to(
         "games_#{remaining_user.user_season.user.id}",
         partial: "games/card",
         locals: { game: game, session_pdbprefix: pdbprefix, session_season: session, current_user_id: remaining_user.user_season.user.id },
-        target: "game_#{game.hashid}")
+        target: "game_#{game.id}")
     end
   end
 end

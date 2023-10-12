@@ -19,7 +19,7 @@ class User < ApplicationRecord
     facebook: [:string, default: ""],
     instagram: [:string, default: ""],
     request: [:boolean, default: false],
-    active_league: [:integer, default: nil],
+    active_league: [:string, default: nil],
     fake: [:boolean, default: false]
 
   ## Associations
@@ -33,7 +33,7 @@ class User < ApplicationRecord
   has_many :seasons, through: :user_seasons
   has_many :clubs, through: :user_seasons
   has_many :club_players, through: :clubs
-  # has_many :club_championships, through: :clubs
+  has_many :club_championships, through: :clubs
 
   ## Devise
   devise :database_authenticatable, :registerable, :confirmable, :trackable,

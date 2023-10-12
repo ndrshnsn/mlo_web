@@ -86,6 +86,8 @@ as :user do
 
   get "players/:platform/:id", to: "players#details", as: :player_details
 
+  get "squad", to: "squad#index"
+
   get "trades", to: "trades#index"
   get "trades/buy", to: "trades/buy#index", as: :trades_buy
   post "trades/buy/get_proc_dt", to: "trades/buy#get_proc_dt"

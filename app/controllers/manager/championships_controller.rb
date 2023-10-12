@@ -22,7 +22,7 @@ class Manager::ChampionshipsController < ApplicationController
   def check_championship_name
     championship = Championship.exists?(name: params[:championship][:name], season_id: @season.id) ? :unauthorized : :ok
     if params[:id] != "none"
-      championship = :ok if Championship.find_by_hashid(params[:id]).name == params[:championship][:name]
+      championship = :ok if Championship.find(params[:id]).name == params[:championship][:name]
     end
       
     render body: nil, status: championship
@@ -33,19 +33,19 @@ class Manager::ChampionshipsController < ApplicationController
   end
   
   def set_championship
-    @championship = Championship.find_by_hashid(params[:id])
+    @championship = Championship.friendly.find(params[:id])
   end
 
   def get_ctype_partial
     if params[:id] != "none"
-      @championship = Championship.find_by_hashid(params[:id])
+      @championship = Championship.find(params[:id])
       @sStarted = @championship.status > 0 ? true : false
     end
     @ctype = params[:ctype]
   end
 
   def games
-    breadcrumb @championship.name, manager_championship_details_path(id: @championship.hashid), match: :exact, frame: "main_frame"
+    breadcrumb @championship.name, manager_championship_details_path(id: @championship.id), match: :exact, frame: "main_frame"
     @pagy, @games = pagy(Game.includes([home: :def_team], [visitor: :def_team]).where(championship_id: @championship.id).order(id: :asc))
   end
 
@@ -163,8 +163,8 @@ class Manager::ChampionshipsController < ApplicationController
   end
 
   def settings
-    @championship = Championship.find_by_hashid(params[:id])
-    breadcrumb @championship.name, manager_championship_details_path(id: @championship.hashid), match: :exact, frame: "main_frame"
+    @championship = Championship.find(params[:id])
+    breadcrumb @championship.name, manager_championship_details_path(id: @championship.id), match: :exact, frame: "main_frame"
     @cTypes = Championship.types
     @awards = League.get_awards(@league.id)
     @award_result_type = AppServices::Award.new().list_awards

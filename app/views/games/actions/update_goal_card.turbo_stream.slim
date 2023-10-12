@@ -1,15 +1,15 @@
-= turbo_stream.prepend "goals-and-cards_#{@game.championship.hashid}_#{@game.hashid}" do
+= turbo_stream.prepend "goals-and-cards_#{@game.championship.id}_#{@game.id}" do
   div.border-bottom.border-1.p-1 class="#{@change_result == 'add_goal' ? "goal_card_#{@side}" : ''}" id="goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"
     - rpPOS = translate_pkeys(@actor.def_player.def_player_position.name, @actor.def_player.platform)
     - if @change_result == "add_goal"
       - if @assister == "-"
         - @assister_name = t('games.add_goal.not_identified')
-        input type="hidden" name="goals_#{@side}[]" value="[#{@actor.id}, '-']"
+        input type="hidden" name="goals_#{@side}[]" value="['#{@actor.id}', '-']"
       - else
         - @assister_name = @assister.def_player.name
-        input type="hidden" name="goals_#{@side}[]" value="[#{@actor.id}, #{@assister.id}]"
+        input type="hidden" name="goals_#{@side}[]" value="['#{@actor.id}', '#{@assister.id}']"
     - elsif @change_result == "add_card"
-      input type="hidden" name="cards_#{@side}[]" value="[#{@actor.id}, #{@type}]"
+      input type="hidden" name="cards_#{@side}[]" value="['#{@actor.id}', '#{@type}']"
 
     - if @side == "home"
       .d-flex.align-items-center 
@@ -30,7 +30,7 @@
                   span.text-muted = t("games.add_card.#{card_color}_card")
                   i class="ri-square-fill ms-1" style="color: #{card_color}"
             .flex-grow-1.text-end
-              = link_to game_update_remove_goal_card_path(id: @game.hashid, card: "goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"), data: { turbo_method: "post" } do
+              = link_to game_update_remove_goal_card_path(id: @game, card: "goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"), data: { turbo_method: "post" } do
                 i.ri-close-line.text-danger
               br
               - if @change_result == "add_goal"
@@ -43,7 +43,7 @@
         .flex-grow-1
           .d-flex.align-items-center
             .flex-grow-1.text-start
-              = link_to game_update_remove_goal_card_path(id: @game.hashid, card: "goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"), data: { turbo_method: "post" } do
+              = link_to game_update_remove_goal_card_path(id: @game, card: "goal_card_#{@side}_#{@actor.def_player.id}_#{@card_rand}"), data: { turbo_method: "post" } do
                 i.ri-close-line.text-danger
               br
               - if @change_result == "add_goal"

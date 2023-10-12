@@ -1,0 +1,4 @@
+= turbo_stream.update "manager_awards" do
+  = render "layouts/header/page_title", title: t('.awards')
+  = render "manager/awards/list"
+= render_turbo_stream_flash_messages

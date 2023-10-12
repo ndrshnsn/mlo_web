@@ -2,7 +2,7 @@
 - status = Game.translate_status(game.status)
 - session_pdbprefix = session.present? ? session[:pdbprefix] : session_pdbprefix
 - session_season = session.present? ? session[:season] : session_season
-= turbo_frame_tag "game_#{game.hashid}" do
+= turbo_frame_tag "game_#{game.id}" do
   .card
     .card-header.d-flex.pb-0.bg-primary-subtle.rounded-top
       .flex-grow-1
@@ -56,18 +56,18 @@
         - if game.status == 2
           = render "games/actions/goals_cards", game: game, season: session_season, session_pdbprefix: session_pdbprefix
 
-    .card-footer id="game_actions_footer_#{game.championship.hashid}_#{game.hashid}"
+    .card-footer id="game_actions_footer_#{game.championship.id}_#{game.id}"
       - if game.home.user_season.user.id == current_user_id || game.visitor.user_season.user.id == current_user_id
         - if game.status < 3
-          div.game_actions id="game_actions_#{game.championship.hashid}_#{game.hashid}"
+          div.game_actions id="game_actions_#{game.championship.id}_#{game.id}"
             .text-center
-              div id="game_actions_#{game.championship.hashid}_#{game.hashid}_home"
+              div id="game_actions_#{game.championship.id}_#{game.id}_home"
               - if game.status == 0
                 - if game.home.user_season.user.id == current_user_id
                   - if game.hsaccepted
                     = render "games/status/ready"
                   - else
-                    = link_to "javascript:;", class: "btn bg-primary-subtle btn-sm border border-primary", data: { controller: "confirm", "confirm-title-value": t('.start_game_question', game: game.gsequence), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+                    = link_to "javascript:;", class: "btn bg-primary-subtle btn-sm border border-primary", data: { controller: "confirm", "confirm-title-value": t('.start_game_question', game: game.gsequence), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
                       i.ri-play-line.me-1.align-bottom
                       span = t(".start_game")
                 - else
@@ -77,13 +77,13 @@
                     = render "games/status/ready"
             .text-center
             .text-center
-              div id="game_actions_#{game.championship.hashid}_#{game.hashid}_visitor"
+              div id="game_actions_#{game.championship.id}_#{game.id}_visitor"
               - if game.status == 0
                 - if game.visitor.user_season.user.id == current_user_id
                   - if game.vsaccepted
                     = render "games/status/ready"
                   - else
-                    = link_to "javascript:;", class: "btn bg-primary-subtle btn-sm border border-primary", data: { controller: "confirm", "confirm-title-value": t('.start_game_question', game: game.gsequence), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game.hashid), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+                    = link_to "javascript:;", class: "btn bg-primary-subtle btn-sm border border-primary", data: { controller: "confirm", "confirm-title-value": t('.start_game_question', game: game.gsequence), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
                       i.ri-play-line.me-1.align-bottom
                       span = t(".start_game")
                 - else
@@ -114,5 +114,5 @@
         / - elsif game.status == 3
         /   = render partial: 'championships/games/gStatus_inContest', locals: { game: game, iteration: iteration}
 
-  = turbo_frame_tag "modal_goal_#{game.hashid}", target: "_top"
-  = turbo_frame_tag "modal_card_#{game.hashid}", target: "_top"
+  = turbo_frame_tag "modal_goal_#{game.id}", target: "_top"
+  = turbo_frame_tag "modal_card_#{game.id}", target: "_top"

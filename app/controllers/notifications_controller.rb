@@ -15,6 +15,6 @@ class NotificationsController < ApplicationController
   end
 
   def all_notifications
-    all_notifications = current_user.notifications.where("notifications.params -> 'league' = ?", "#{session[:league]}").order(created_at: :desc)
+    all_notifications = current_user.notifications.where("notifications.params ->> 'league' = '#{session[:league]}'").order(created_at: :desc)
   end
 end

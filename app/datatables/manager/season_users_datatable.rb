@@ -24,16 +24,18 @@ class Manager::SeasonUsersDatatable < ApplicationDatatable
         tName = nil
       end
 
-      mDisabled = (uSeason.user.preferences["fake"] == true) ? "disabled" : ""
+      mDisabled = ( tName.nil? || uSeason.clubs.first.club_players.size == 0 ) ? "disabled" : ""
       dtActions = [
         {
-          link: manager_season_user_players_path(id: uSeason.season.hashid, user: uSeason.user.friendly_id),
+          link: manager_season_user_players_path(id: uSeason.season.id, user: uSeason.user.friendly_id),
           icon: "ri-group-line",
           text: t("defaults.datatables.players"),
-          disabled: "",
+          disabled: mDisabled,
           turbo: "data-turbo-action='advance' data-turbo-frame='manager_users'"
         }
       ]
+
+      tName = "-" if tName.nil?
 
       {
         id: uSeason.user.id,

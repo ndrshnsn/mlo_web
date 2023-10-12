@@ -34,6 +34,11 @@ li.nav-item
     span data-key="t-seasons" = t('.management')
 
 li.nav-item
+  = link_to squad_path, class: "menu-link nav-link #{'active' if controller_name == 'squad'}", id: "sidebar_squad" , data: { controller: "sidebar", "turbo-frame": "main_frame", "turbo-action": "advance", action: "click->sidebar#toggle", "sidebar-father-value": "sidebar_squad", "sidebar-child-value": "sidebar_squad" } do
+    i.ri-team-line
+    span data-key="t-squad" = t('.squad')
+
+li.nav-item
   a.nav-link.menu-link id="sidebar_finance" href="#sidebar_finance_collapse" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar_finance_collapse"
     i.ri-briefcase-line
     span data-key="t-finance" = t('.finance.main')

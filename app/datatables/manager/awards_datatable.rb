@@ -24,7 +24,7 @@ class Manager::AwardsDatatable < ApplicationDatatable
 
       dtActions = [
         {
-          link: manager_award_edit_path(award.hashid),
+          link: manager_award_edit_path(award),
           icon: "ri-edit-line",
           text: t("defaults.datatables.edit"),
           disabled: "",
@@ -35,7 +35,7 @@ class Manager::AwardsDatatable < ApplicationDatatable
           icon: "ri-delete-bin-fill",
           text: t("defaults.datatables.delete"),
           disabled: "",
-          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{t("defaults.datatables.confirm_remove")}' data-confirm-text-value='#{t("defaults.datatables.confirm_remove_text")}' data-confirm-icon-value='warning' data-confirm-link-value='#{manager_award_destroy_path(award.hashid)}'"
+          turbo: "data-action='click->confirm#dialog' data-controller='confirm' data-confirm-title-value='#{t("defaults.datatables.confirm_remove")}' data-confirm-text-value='#{t("defaults.datatables.confirm_remove_text")}' data-confirm-icon-value='warning' data-confirm-link-value='#{manager_award_destroy_path(award)}'"
         }
       ]
 
