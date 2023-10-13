@@ -1,0 +1,309 @@
+.player-card-strip {
+	width: 100%;
+	height: 64px;
+	flex-shrink: 0;
+	flex-grow: 0;
+	position: relative;
+	overflow: hidden;
+	user-select: none;
+	background-image: url(/rplayer_strip_bg.png);
+	background-size: cover;
+	margin: 5px 0px 5px 0px;
+}
+
+.player-strip-image {
+	width: 64px;
+	height: 64px;
+	position: absolute;
+	top: 0px;
+	right: -4px;
+	z-index: 3;
+}
+
+.player-strip-actions {
+	width: 14px;
+	height: 50px;
+	position: absolute;
+	top: 2px;
+	right: 5px;
+	z-index: 6;
+	text-align: center;
+}
+
+.player-strip-ovr {
+	position: absolute;
+	text-align: center;
+	font-size: 26px;
+	font-weight: bold;
+	color: #FFF;
+	width: 50px;
+	top: 33px;
+    left: 5px;
+	text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+	z-index: 5;
+}
+
+.player-strip-position {
+	position: absolute;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFF;
+	width: 45px;
+	top: 8px;
+    left: 6px;
+    text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+}
+
+.player-strip-name {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	height: 28px;
+	font-size: 13px;
+	text-align: center;
+	background: rgba(0,0,0,0.7);
+	z-index: 1;
+	color: #FFF;
+	text-transform: uppercase;
+	line-height: 28px;
+	white-space: nowrap;
+}
+
+//****** STRIP INFO ***//
+.player-card-info {
+	width: 100%;
+	height: 145px;
+	flex-shrink: 0;
+	flex-grow: 0;
+	position: relative;
+	overflow: hidden;
+	user-select: none;
+	background-image: url(/rplayer_strip_bg.png);
+	background-size: cover;
+	margin: 5px 0px 5px 0px;
+}
+
+.player-info-image {
+	width: 72px;
+	height: 72px;
+	position: absolute;
+	top: -5px;
+	right: -8px;
+	z-index: 3;
+}
+
+.player-info-ovr {
+	position: absolute;
+	text-align: center;
+	font-size: 26px;
+	font-weight: bold;
+	color: #FFF;
+	width: 50px;
+	top: 30px;
+    left: 5px;
+	text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+	z-index: 5;
+}
+
+.player-info-position {
+	position: absolute;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFF;
+	width: 50px;
+	top: 5px;
+    left: 5px;
+    text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+}
+
+.player-info-name {
+	position: absolute;
+	bottom: 50px;
+	width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	height: 28px;
+	font-size: 11px;
+	text-align: center;
+	background: rgba(0,0,0,0.7);
+	z-index: 1;
+	color: #FFF;
+	text-transform: uppercase;
+	line-height: 28px;
+	white-space: nowrap;
+}
+
+.player-info-stats-bg {
+    position: absolute;
+    background: rgba(0,0,0,0.3);
+    left: 0;
+    top: 95px;
+    height: 100px;
+    width: 100%;
+    z-index: 4;
+}
+
+.player-info-stats-col-1, .player-info-stats-col-2 {
+    font-size: 14px;
+    color: #FFF;
+    position: absolute;
+    top: 98px;
+    z-index: 5;
+	font-weight: bold;
+}
+
+.player-info-stats-col-1 {
+	left: 15px;
+}
+
+.player-info-stats-col-2 {
+	left: 72px;
+}
+
+
+.player-card {
+	width: 162px;
+	height: 215px;
+	flex-shrink: 0;
+	flex-grow: 0;
+	position: relative;
+	overflow: hidden;
+	user-select: none;
+	margin: 0;
+	padding: 0;
+	background-image: url(/rplayer_silver.png);
+	background-size: cover;
+}
+
+.player-card-shadow {
+	box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.388), 0 0 8px 0px rgba(0, 0, 0, 0.259);
+}
+
+.player-info-column .player-card {
+	margin: 0 auto 20px;
+}
+
+.player-card-name {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	height: 28px;
+	font-size: 13px;
+	text-align: center;
+	background: rgba(0,0,0,0.7);
+	z-index: 5;
+	color: #FFF;
+	text-transform: uppercase;
+	line-height: 28px;
+	white-space: nowrap;
+}
+
+.player-card-ovr {
+	position: absolute;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    width: 66px;
+    top: 30px;
+    left: 0;
+    z-index: 4;
+    text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+}
+
+.player-card-position {
+	position: absolute;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    width: 57px;
+    top: 8px;
+    left: 5px;
+    z-index: 4;
+    text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+}
+
+.player-card-teamlogo {
+    position: absolute;
+    width: 32px;
+    left: 16px;
+    top: 73px;
+    z-index: 4;
+}
+
+.player-card-image-featured {
+	width: 256px;
+	height: 256px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
+.player-card-image {
+	width: 106px;
+	height: 106px;
+	position: absolute;
+	top: 8px;
+	right: -10px;
+	z-index: 3;
+}
+
+.player-card-stats-col-1, .player-card-stats-col-2 {
+    font-size: 16px;
+    color: #FFF;
+    position: absolute;
+    top: 116px;
+    z-index: 5;
+	font-weight: bold;
+}
+
+.player-card-stats-col-1 {
+	left: 14px;
+}
+
+.player-card-stats-col-2 {
+	left: 92px;
+}
+
+.player-card-stats-name {
+	margin-left: 5px;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.player-card-stats-col-bg {
+    position: absolute;
+    background: rgba(0,0,0,0.2);
+    left: 0;
+    top: 114px;
+    height: 100px;
+    width: 100%;
+    z-index: 4;
+}
+
+.player-card-Forward {
+    background: #dd4b39;
+}
+.player-card-Goalkeeper {
+    background: #f39c12;
+}
+.player-card-Midfielder {
+    background: #00a65a;
+}
+.player-card-Defender {
+    background: #367fa9;
+}
+.player-card-Goalkeeper, .player-card-Defender, .player-card-Midfielder, .player-card-Forward {
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-weight: 900 !important;
+    color: #fff;
+}

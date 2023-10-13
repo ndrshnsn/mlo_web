@@ -1,0 +1,30 @@
+es:
+  layouts:
+    sidebar:
+      user_club_info:
+        generic_club_name: "Sin Club"
+      user:
+        generic_club_name: "Mi Club"
+        trades: "Intercambios"
+        salary: "Ajuste Salarial"
+        steal: "Robar"
+        auction: "Subasta"
+      user_items:
+        main_menu: "Menú Principal"
+        dashboard: "Panel"
+        seasons: "Temporadas"
+        championships: "Campeonatos"
+        clubs: "Clubes"
+        ranking: "Clasificación"
+        club_management: "Gestión del Club"
+        management: "Gestión"
+        market:
+          main: "Mercado"
+          players: "Jugadores"
+          trades: "Intercambios"
+          steals: "Robos"
+          auctions: "Subastas"
+        finance:
+          main: "Finanzas"
+          contracts: "Contratos"
+        squad: "Plantilla"
