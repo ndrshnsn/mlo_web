@@ -4,9 +4,9 @@
       .card-body
         .d-flex.align-items-center
           .flex-grow-1
-            - club_spaces = "<small class='fs-6 text-muted'> ( #{@season.preferences["max_players"] - @club_players.size} ) #{t('.club_spaces')}</small>"
-            h5.fw-semibold #{@club_players.size} #{club_spaces.html_safe}
-            span.fs-6.fw-medium.text-muted.mb-0 = t('.club_players')
+            - club_spaces = "#{@season.preferences["max_players"] - @club_players.size} #{t('.club_spaces')}"
+            h5.fw-semibold #{club_spaces.html_safe} 
+            span.fs-6.fw-medium.text-muted.mb-0 #{@club_players.size} #{t('.club_players')}
           .flex-shrink-0
             .avatar-sm
               span.avatar-title.bg-info-subtle.rounded-circle.fs-3
@@ -22,7 +22,7 @@
             span.fs-6.fw-medium.text-muted.mb-0 = t('.club_overall_avg')
           .flex-shrink-0
             .avatar-sm
-              span.avatar-title.bg-secondary-subtle.rounded-circle.fs-3
+              span.avatar-title.bg-success-subtle.rounded-circle.fs-3
                 i.ri-flashlight-line
 
   .col-xl-4.col-md-6
@@ -38,50 +38,5 @@
               span.avatar-title.bg-warning-subtle.rounded-circle.fs-3
                 i.ri-battery-charge-line
 
-.row
-
-  .col-md-5.col-sm-12
-    h4 = t('.main_formation')
-    .card.card-overlay
-      img src="#{image_path('soccer_field.png')}"
-
-      - team_formations[@club.details["team_formation"]][:pos].each do |pPosition|
-        - playerPosition = @club.details["formation_pos"].select{ |h| h["pos"] == pPosition }
-        - if playerPosition[0]["player"] != ""
-          - cPlayer = DefPlayer.find(playerPosition[0]["player"])
-          div[class="gp-player gp-player-#{pPosition}"]
-            = link_to squad_del_player_gp_path(formation_selection: cPlayer.id), method: :post, class: "gp-link trigger--fire-modal-1", data: { 'confirm-swal': 'Remover do Mapa Tático?' } do
-              img.gp-face id="player-image" src=image_path("#{session[:pdbprefix]}/players/#{get_platforms(platform: cPlayer.platform, dna: true)}/#{cPlayer.platformid}.png")
-
-              .gp-position
-                - rpPOS = translate_pkeys(cPlayer.player_position.name, cPlayer.platform)
-                - css_class = rpPOS[1]
-                div[class="gp-player-pos gp-player-pos-#{rpPOS[1]}" style="margin-left: 2px; padding: 3px !important;"]
-                  = rpPOS[0]
-                .gp-player-ovr
-                  = cPlayer.attrs['overallRating']
-              .gp-playername.scroll
-                = cPlayer.name
-        - else
-          div class="gp-player gp-player-#{pPosition}"
-            = link_to squad_add_player_gp_path(position: pPosition), class: "gp-link", method: :post do
-              img.gp-face[src="#{image_path('generic-player.png')}"]
-              .gp-position
-                .gp-player-ovr
-                  | &nbsp;
-
-.row
-  .col-md-4.col-sm-6
-    .card
-      .card-header
-        h4.font-weight-bolder.mb-0 = t('.tactic_plan')
-      .card-body
-        = form_tag squad_set_formation_path, {id: "team_formation_select", name: "team_formation_select"}
-          = select_tag "formation_selection", options_for_select(team_formations.map { |obj| [obj[:name], obj[:id]] }, selected: @club.details["team_formation"].to_i), {disabled: @userTeamSelection, include_blank: true, class: "text-center form-control select2 mt-1", style: "width: 100%;" }
-
-    h4.mb-1 = t('.players')
-      - @club_players.each_with_index do |player, i|
-        - playerPosition = @club.details["formation_pos"].select{ |h| h["player"] == "#{player.player_season.def_player.id}" }
-        - if playerPosition.count == 0
-          div[id="player_strip_#{i}"]
-            = render partial: "squad/player_card_strip", locals: { positionOrder: i, teamSelection: false, sOrder: nil, player: player}
+= turbo_frame_tag "tactics" do
+  = render "squad/tactics"

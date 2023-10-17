@@ -1,6 +1,6 @@
 .player-card-strip {
 	width: 100%;
-	height: 64px;
+	height: 60px;
 	flex-shrink: 0;
 	flex-grow: 0;
 	position: relative;
@@ -12,10 +12,10 @@
 }
 
 .player-strip-image {
-	width: 64px;
-	height: 64px;
+	width: 50px;
+	height: 50px;
 	position: absolute;
-	top: 0px;
+	top: 9px;
 	right: -4px;
 	z-index: 3;
 }
@@ -33,12 +33,12 @@
 .player-strip-ovr {
 	position: absolute;
 	text-align: center;
-	font-size: 26px;
+	font-size: 20px;
 	font-weight: bold;
 	color: #FFF;
 	width: 50px;
-	top: 33px;
-    left: 5px;
+	top: 32px;
+  left: 5px;
 	text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
 	z-index: 5;
 }
@@ -46,7 +46,7 @@
 .player-strip-position {
 	position: absolute;
 	text-align: center;
-	font-size: 12px;
+	font-size: 11px;
 	font-weight: bold;
 	color: #FFF;
 	width: 45px;
@@ -62,7 +62,7 @@
 	text-overflow: ellipsis;
 	overflow: hidden;
 	height: 28px;
-	font-size: 13px;
+	font-size: 12px;
 	text-align: center;
 	background: rgba(0,0,0,0.7);
 	z-index: 1;
@@ -72,7 +72,6 @@
 	white-space: nowrap;
 }
 
-//****** STRIP INFO ***//
 .player-card-info {
 	width: 100%;
 	height: 145px;
@@ -87,8 +86,8 @@
 }
 
 .player-info-image {
-	width: 72px;
-	height: 72px;
+	width: 65px;
+	height: 65px;
 	position: absolute;
 	top: -5px;
 	right: -8px;

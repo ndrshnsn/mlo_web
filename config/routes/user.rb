@@ -87,9 +87,9 @@ as :user do
   get "players/:platform/:id", to: "players#details", as: :player_details
 
   get "squad", to: "squad#index"
-  post "squad/formation/position_select", to: "squad#position_select", as: :squad_formation_position_select
+  get "squad/formation/position_select", to: "squad#position_select", as: :squad_formation_position_select
   post "squad/formation/set", to: "squad#set_formation", as: :squad_set_formation
-  post "squad/formation/add_player", to: "squad#add_player_to_gp", as: :squad_add_player_gp
+  patch "squad/formation/add_player", to: "squad#add_player_to_gp", as: :squad_add_player_gp
   post "squad/formation/del_player", to: "squad#del_player_from_gp", as: :squad_del_player_gp
 
   get "trades", to: "trades#index"
