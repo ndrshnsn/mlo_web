@@ -1,11 +1,11 @@
 - if game.club_games.size > 0 || game.game_cards.size > 0
   .row.pt-2
     .col-xxl-6
-      div id="goals_cards_#{game.hashid}" class="accordion custom-accordionwithicon accordion-fill-secondary"
+      div id="goals_cards_#{game.id}" class="accordion custom-accordionwithicon accordion-fill-secondary"
         .accordion-item
           h2.accordion-header
-            button.accordion-button.collapsed type="button" data-bs-toggle="collapse" data-bs-target="#goals_cards_content_#{game.hashid}" aria-expanded="false" aria-controls="goals_cards_content_#{game.hashid}" style="padding: 8px 12px 8px 12px !important;" = t('.details')
-          div.accordion-collapse.collapse id="goals_cards_content_#{game.hashid}" data-bs-parent="goals_cards_#{game.hashid}"
+            button.accordion-button.collapsed type="button" data-bs-toggle="collapse" data-bs-target="#goals_cards_content_#{game.id}" aria-expanded="false" aria-controls="goals_cards_content_#{game.id}" style="padding: 8px 12px 8px 12px !important;" = t('.details')
+          div.accordion-collapse.collapse id="goals_cards_content_#{game.id}" data-bs-parent="goals_cards_#{game.id}"
             .accordion-body.p-0
               .timeline
                 - game.club_games.each do |goal|

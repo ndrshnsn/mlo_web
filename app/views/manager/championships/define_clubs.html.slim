@@ -1,5 +1,5 @@
 = render "layouts/modal/main", modal_id: "manager_define_clubs_modal"
-  = form_with model: @championship, id: dom_id(@championship), url: manager_championship_define_clubs_path(@championship.hashid), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.manager.championships.add_users.confirm_text'), "form-icon-value": "question"} do |f|
+  = form_with model: @championship, id: dom_id(@championship), url: manager_championship_define_clubs_path(@championship), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.manager.championships.add_users.confirm_text'), "form-icon-value": "question"} do |f|
     .modal-header.bg-soft-primary.pb-3
       h5.modal-title.d-flex.align-items-center
         i.ri-stack-line.me-1

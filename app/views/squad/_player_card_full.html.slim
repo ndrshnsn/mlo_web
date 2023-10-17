@@ -1,0 +1,119 @@
+.player-card.player-card-shadow
+  .player-card-ovr
+    - if player
+      = player.def_player.attrs['overallRating']
+  
+  - if player
+    div[class="player-card-position player-card-#{translate_pkeys(player.def_player_position.name, player.def_player.platform)[1]}"]
+      = translate_pkeys(player.def_player_position.name, player.def_player.platform)[0]
+  - else
+    .player-card-position
+  .player-card-name
+    - if player
+      = player.def_player.name
+  - if player
+    img.player-card-image src="#{session[:pdbprefix]}/players/#{get_platforms(platform: player.def_player.platform, dna: true)}/#{player.def_player.platformid}.png"
+  - else
+    img.player-card-image src=image_path('/generic-player.png')
+
+  - platform = get_platforms(platform: player.def_player.platform, dna: true)
+  - if platform == "FIFA"
+    .player-card-stats-col-1
+      span
+        - if player
+          = player.attrs['sprintSpeed']
+        - else
+          | -
+      span.player-card-stats-name
+        | SPD
+      br
+      span
+        - if player
+          = player.attrs['finishing']
+        - else
+          | -
+      span.player-card-stats-name
+        | FIN
+      br
+      span
+        - if player
+          = player.attrs['shortPass']
+        - else
+          | -
+      span.player-card-stats-name
+        | PAS
+    .player-card-stats-col-2
+      span
+        - if player
+          = player.attrs['dribbling']
+        - else
+          | -
+      span.player-card-stats-name
+        | DRI
+      br
+      span
+        - if player
+          = player.attrs['marking']
+        - else
+          | -
+      span.player-card-stats-name
+        | DEF
+      br
+      span
+        - if player
+          = player.attrs['strength']
+        - else
+          | -
+      span.player-card-stats-name
+        | FIS
+    .player-card-stats-col-bg
+  - elsif platform == "PES"
+    .player-card-stats-col-1
+      span
+        - if player
+          = player.def_player.attrs['speed']
+        - else
+          | -
+      span.player-card-stats-name
+        | VEL
+      br
+      span
+        - if player
+          = player.def_player.attrs['dribbling']
+        - else
+          | -
+      span.player-card-stats-name
+        | DRI
+      br
+      span
+        - if player
+          = player.def_player.attrs['lowPass']
+        - else
+          | -
+      span.player-card-stats-name
+        | PAS
+    .player-card-stats-col-2
+      span
+        - if player
+          = player.def_player.attrs['finishing']
+        - else
+          | -
+      span.player-card-stats-name
+        | FIN
+      br
+      span
+        - if player
+          = player.def_player.attrs['physicalContact']
+        - else
+          | -
+      span.player-card-stats-name
+        | FOR
+      br
+      span
+        - if player
+          = player.def_player.attrs['defensiveAwareness']
+        - else
+          | -
+      span.player-card-stats-name
+        | DEF
+    .player-card-stats-col-bg

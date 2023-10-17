@@ -7,7 +7,7 @@ export default class FormController extends Controller {
   static values = {
     title: String,
     text: String,
-    icon: String,
+    icon: { type: String, default: "question" },
     scroll: Boolean,
     swal: { type: Boolean, default: true },
     modal: { type: String, default: "" },

@@ -37,7 +37,7 @@ class ManagerServices::Season::PlayerRaffle < ApplicationService
         user_players = User.getTeamPlayers(user_id, season.id)
 
         if raffle_position[:position] == "any"
-          raffled_player = DefPlayer.left_outer_joins(:def_player_position).where(platform: season.raffle_platform).where.not(def_players: {id: ClubPlayer.joins(:player_season, :def_players).where(player_seasons: {season_id: season.id}).pluck("def_players.id")})
+          raffled_player = DefPlayer.left_outer_joins(:def_player_position).where(platform: season.raffle_platform).where.not(def_players: {id: ClubPlayer.joins(player_season: :def_player).where(player_seasons: {season_id: season.id}).pluck("def_players.id")})
 
           remaining = season.preferences["raffle_remaining"]
           remainingOverall = remaining.first(2)
@@ -49,7 +49,7 @@ class ManagerServices::Season::PlayerRaffle < ApplicationService
             raffled_player.where("def_players.active = ? AND (def_players.details -> 'attrs' ->> 'overallRating')::int >= ?", true, remainingOverall).order(Arel.sql("RANDOM()")).first
           end
         else
-          raffled_player = DefPlayer.left_outer_joins(:def_player_position).where("def_players.platform = ? AND def_players.active = ? AND def_player_positions.name = ? AND (def_players.details -> 'attrs' ->> 'overallRating')::int >= ? AND (def_players.details -> 'attrs' ->> 'overallRating')::int <= ?", season.raffle_platform, true, raffle_position[:position], season.preferences["raffle_low_over"], season.preferences["raffle_high_over"]).where.not(def_players: {id: ClubPlayer.joins(:player_season, :def_players).where(player_seasons: {season_id: season.id}).pluck("def_players.id")}).order(Arel.sql("RANDOM()")).first
+          raffled_player = DefPlayer.left_outer_joins(:def_player_position).where("def_players.platform = ? AND def_players.active = ? AND def_player_positions.name = ? AND (def_players.details -> 'attrs' ->> 'overallRating')::int >= ? AND (def_players.details -> 'attrs' ->> 'overallRating')::int <= ?", season.raffle_platform, true, raffle_position[:position], season.preferences["raffle_low_over"], season.preferences["raffle_high_over"]).where.not(def_players: {id: ClubPlayer.joins(player_season: :def_player).where(player_seasons: {season_id: season.id}).pluck("def_players.id")}).order(Arel.sql("RANDOM()")).first
         end
         player_salary = DefPlayer.getSeasonInitialSalary(season, raffled_player)
         season_player = PlayerSeason.where(def_player_id: raffled_player.id, season_id: season.id).first_or_create do |sP|
@@ -67,7 +67,7 @@ class ManagerServices::Season::PlayerRaffle < ApplicationService
           player_season_id: season_player.id,
           operation: "initial_salary",
           value: player_salary,
-          source: Club.find(user_club.id)
+          source: user_club
         )
         
       end

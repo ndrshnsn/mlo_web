@@ -54,7 +54,7 @@ class Season < ApplicationRecord
   def self.getActive(user)
     getUser = User.find(user)
     if getUser.preferences["active_league"].present?
-      season = Season.where("league_id = #{getUser.preferences["active_league"]} and (status = 0 OR status = 1)")
+      season = Season.where("league_id = '#{getUser.preferences["active_league"]}' and (status = 0 OR status = 1)")
       if season.count > 0
         return season.first.id
       end

@@ -1,0 +1,9 @@
+  .player-card-strip.player-card-shadow
+    #player-ovr.player-strip-ovr
+      = player.def_player.attrs['overallRating']
+    div id="player-position" class="player-strip-position player-card-#{translate_pkeys(player.def_player_position.name, player.def_player.platform)[1]}"
+      = translate_pkeys(player.def_player_position.name, player.def_player.platform)[0]
+    #player-name.player-strip-name
+      = player.def_player.name
+    img.player-strip-image id="player-image" src="#{session[:pdbprefix]}/players/#{get_platforms(platform: player.def_player.platform, dna: true)}/#{player.def_player.platformid}.png"
+    .player.strip.actions

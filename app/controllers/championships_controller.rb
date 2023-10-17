@@ -12,7 +12,7 @@ class ChampionshipsController < ApplicationController
   end
 
   def set_championship
-    @championship = Championship.find_by_hashid(params[:id])
+    @championship = Championship.friendly.find(params[:id])
   end
 
   def details

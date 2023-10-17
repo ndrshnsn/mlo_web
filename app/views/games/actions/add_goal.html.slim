@@ -1,5 +1,5 @@
-= render "layouts/modal/main", modal_size: "sm", modal_name: "modal_goal_#{@game.hashid}", modal_id: "goaler_#{@game.hashid}"
-  = form_with model: @game, id: "add_goal_", url: game_update_add_goal_path(@game.hashid), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-swal-value": false, "form-modal-value": "goaler_#{@game.hashid}"} do |f|
+= render "layouts/modal/main", modal_size: "sm", modal_name: "modal_goal_#{@game.id}", modal_id: "goaler_#{@game.id}"
+  = form_with model: @game, id: "add_goal_", url: game_update_add_goal_path(@game), class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-swal-value": false, "form-modal-value": "goaler_#{@game.id}"} do |f|
     - pSuspended = @suspended_players[:home_ycard] + @suspended_players[:home_rcard] + @suspended_players[:visitor_ycard] + @suspended_players[:visitor_rcard]
     .modal-header
       h5.modal-title.d-flex.align-items-center

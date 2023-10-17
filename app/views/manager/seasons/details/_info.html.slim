@@ -8,20 +8,20 @@
           span.text-muted.fs-16.text-white.fw-semibold
             i.ri-more-2-fill.align-middle
         .dropdown-menu.dropdown-menu-end
-          = link_to manager_season_details_path(id: @season.hashid), class: "dropdown-item", data: { "turbo-action": "advance"} do
+          = link_to manager_season_details_path(id: @season), class: "dropdown-item", data: { "turbo-action": "advance"} do
             i.ri-information-line.me-2.align-bottom.text-muted
             = t('.general')
 
           .dropdown-divider
-          = link_to manager_season_settings_path(@season.hashid), class: "dropdown-item", data: { "turbo-action": "advance"} do
+          = link_to manager_season_settings_path(@season), class: "dropdown-item", data: { "turbo-action": "advance"} do
             i.ri-settings-line.me-2.align-bottom.text-muted
             = t('.settings')
 
-          = link_to manager_season_users_path(@season.hashid), class: "dropdown-item", data: { "turbo-action": "advance"} do
+          = link_to manager_season_users_path(@season), class: "dropdown-item", data: { "turbo-action": "advance"} do
             i.ri-group-line.me-2.align-bottom.text-muted
             = t('.users')
 
-          = link_to "javascript:void(0)", class: "dropdown-item", data: { action: 'click->confirm#dialog', controller: 'confirm', "confirm-title-value": t('defaults.datatables.confirm_remove'), "confirm-text-value": t('defaults.datatables.confirm_remove_text'), "confirm-icon-value": 'warning', "confirm-origin-value": "/manager/seasons", "confirm-link-value": manager_season_destroy_path(@season.hashid) } do
+          = link_to "javascript:void(0)", class: "dropdown-item", data: { action: 'click->confirm#dialog', controller: 'confirm', "confirm-title-value": t('defaults.datatables.confirm_remove'), "confirm-text-value": t('defaults.datatables.confirm_remove_text'), "confirm-icon-value": 'warning', "confirm-origin-value": "/manager/seasons", "confirm-link-value": manager_season_destroy_path(@season) } do
             i.ri-close-line.me-2.align-bottom.text-muted
             = t('.remove')
             

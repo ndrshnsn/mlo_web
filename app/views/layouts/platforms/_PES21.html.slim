@@ -1,7 +1,7 @@
 .row.mb-2
   .col-lg-4.col-sm-12
     .span.text-center.mb-2
-      = image_tag("#{session[:pdbprefix]}/players/#{@defPlayer.platform}/#{@defPlayer.details['platformid']}.png", class: "avatar-lg img-thumbnail rounded-circle", style: "width: 96px; height: 96px;", onerror: "this.error=null;this.src='#{image_url("/misc/generic-player.png")}';")
+      = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: @defPlayer.platform, dna: true)}/#{@defPlayer.details['platformid']}.png", class: "avatar-lg img-thumbnail rounded-circle", style: "width: 96px; height: 96px;")
     ul.list-group.list-group-flush
       li.list-group-item.d-flex.justify-content-between.align-items-center
         span = t('playerdb.players.country')

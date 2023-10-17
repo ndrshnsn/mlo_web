@@ -1,6 +1,23 @@
 pt-BR:
   manager:
     seasons:
+      start:
+        success: "Temporada iniciada com Sucesso!"
+        error: "Erro iniciando a Temporada"
+      start_club_choosing:
+        success:
+        error:
+      stop_club_choosing:
+        success:
+        error:
+      start_players_raffle:
+        success:
+        error:
+      end:
+        success:
+        error:
+
+
       sActions:
         season_actions: "Ações"
         start_season_question: "Iniciar Temporada?"

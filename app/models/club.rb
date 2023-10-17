@@ -31,7 +31,7 @@ class Club < ApplicationRecord
   end
 
   def self.getTeamStrength(user_id, season_id)
-    User.find(user_id).club_players.where(user_seasons: {season_id: season_id}).joins(:player_season, :players).sum(Arel.sql("CAST(players.details -> 'attrs' ->> 'overallRating' AS int)"))
+    User.find(user_id).club_players.where(user_seasons: {season_id: season_id}).joins(:player_season, :def_player).sum(Arel.sql("CAST(def_players.details -> 'attrs' ->> 'overallRating' AS int)"))
   end
 
   def self.getFunds(club_id)

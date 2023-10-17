@@ -1,0 +1,24 @@
+pt-BR:
+  squad:
+    index:
+      squad: "Equipe"
+    main:
+      club_spaces: "Vagas"
+      club_players: "Jogadores"
+      club_overall_avg: "Média Overall"
+      club_strength: "Força do Time"
+    tactics:
+      change_plan: "Trocar"
+      tactic_plan: "Definir Formação"
+      players: "Jogadores"
+      main_formation: "Formação Principal"
+    set_formation:
+      success: "Formação trocada com sucesso!"
+      confirm_question: "Trocar Formação Tática?"
+      confirm_text: "Uma nova formação será definida no plano tático e removidos os jogadores definidos anteriormente."
+    add_player_to_gp:
+      success: "Jogado Adicionado ao Plano Tático"
+      confirm_button: "Confirmar"
+      choose_player: "Selecione o Jogador"
+    del_player_from_gp:
+      success: "Jogador Removido do Plano Tático"

@@ -1,0 +1,195 @@
+.gp-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+.gp-face {
+  width: 50px;
+  height: 50px;
+}
+
+.gp-position {
+  display: flex;
+  width: 90px;
+  justify-content: space-between;
+  background: #202020;
+  border-radius: 6px;
+  align-items: center;
+  padding: 0px;
+  margin-bottom: 2px;
+  max-width: 90%;
+  font-size: 11px;
+}
+
+.gp-player-pos {
+  border: 0;
+  padding: 0;
+  line-height: 1;
+  background: #202020;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.gp-player-pos-Forward {
+  background: #dd4b39;
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-weight: 900 !important;
+  color: #fff;
+}
+.gp-player-pos-Goalkeeper {
+  background: #f39c12;
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-weight: 900 !important;
+  color: #fff;
+}
+.gp-player-pos-Midfielder {
+  background: #00a65a;
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-weight: 900 !important;
+  color: #fff;
+}
+.gp-player-pos-Defender {
+  background: #367fa9;
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-weight: 900 !important;
+  color: #fff;
+}
+
+.gp-player-ovr {
+  font-size: 14px;
+  text-shadow: none;
+  font-style: normal;
+  font-weight: bold;
+  color: #fff;
+  margin-right: 3px;
+}
+
+.gp-playername {
+  text-decoration: none;
+  color: #fff;
+  text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,1);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+  text-align: center;
+  width: 180px;
+}
+
+.gp-player {
+  position: absolute;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gp-pos-Goalkeeper {
+  color: #feb907;
+}
+
+.gp-player-GK {
+  bottom: 5.5%;
+  left: 40%;
+}
+
+.gp-player-RCB {
+  top: 64%;
+  left: 51.538461538462%;
+}
+
+.gp-player-LCB {
+  top: 64%;
+  left: 28.461538461538%;
+}
+
+.gp-player-LB {
+  top: 61%;
+  left: 5.3846153846154%;
+}
+
+.gp-player-RB {
+  top: 61%;
+  left: 74.615384615385%;
+}
+
+.gp-player-LCMF {
+  top: 35%;
+  left: 24.615384615385%;
+}
+
+.gp-player-LDCMF {
+  top: 44%;
+  left: 24.615384615385%;
+}
+
+.gp-player-DMF {
+  top: 47%;
+  left: 40%;
+}
+
+.gp-player-RDMF {
+  top: 44%;
+  left: 55.384615384615%;
+}
+
+.gp-player-RCMF {
+  top: 35%;
+  left: 55.384615384615%;
+}
+
+.gp-player-LAMF {
+  top: 26%;
+  left: 29%;
+}
+
+.gp-player-AMF {
+  top: 26%;
+  left: 40%;
+}
+
+.gp-player-RAMF {
+  top: 26%;
+  left: 51%;
+}
+
+.gp-player-LMF {
+  top: 30%;
+  left: 9.2307692307692%;
+}
+
+.gp-player-LWF {
+  top: 11%;
+  left: 9.2307692307692%;
+}
+
+.gp-player-LCF {
+  top: 6%;
+  left: 29%;
+}
+
+.gp-player-CF {
+  top: 6%;
+  left: 40%;
+}
+
+.gp-player-SS {
+  top: 6%;
+  left: 51%;
+}
+
+.gp-player-RMF {
+  top: 30%;
+  left: 70.769230769231%;
+}
+
+.gp-player-RWF {
+  top: 11%;
+  left: 70.769230769231%;
+}

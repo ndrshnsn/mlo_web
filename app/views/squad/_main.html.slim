@@ -1,0 +1,42 @@
+.row
+  .col-xl-4.col-md-6
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            - club_spaces = "#{@season.preferences["max_players"] - @club_players.size} #{t('.club_spaces')}"
+            h5.fw-semibold #{club_spaces.html_safe} 
+            span.fs-6.fw-medium.text-muted.mb-0 #{@club_players.size} #{t('.club_players')}
+          .flex-shrink-0
+            .avatar-sm
+              span.avatar-title.bg-info-subtle.rounded-circle.fs-3
+                i.ri-group-line
+
+  .col-xl-4.col-md-6
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            h5.fw-semibold
+              span.badge.border.border-success = @team_overall_avg
+            span.fs-6.fw-medium.text-muted.mb-0 = t('.club_overall_avg')
+          .flex-shrink-0
+            .avatar-sm
+              span.avatar-title.bg-success-subtle.rounded-circle.fs-3
+                i.ri-flashlight-line
+
+  .col-xl-4.col-md-6
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            h5.fw-semibold
+              span.badge.border.border-warning = @team_strength
+            span.fs-6.fw-medium.text-muted.mb-0 = t('.club_strength')
+          .flex-shrink-0
+            .avatar-sm
+              span.avatar-title.bg-warning-subtle.rounded-circle.fs-3
+                i.ri-battery-charge-line
+
+= turbo_frame_tag "tactics" do
+  = render "squad/tactics"

@@ -1,5 +1,7 @@
 class Championship < ApplicationRecord
   include BadgeUploader::Attachment(:badge)
+  extend FriendlyId
+  friendly_id :name, use: :scoped, scope: :season_id
 
   belongs_to :season
   has_many :club_championships, dependent: :destroy

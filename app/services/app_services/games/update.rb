@@ -60,7 +60,7 @@ class AppServices::Games::Update < ApplicationService
 
     if @params[:data][:cards_home]
       @params[:data][:cards_home].each do |card|
-        card = card[1...-1].delete(' ').split(',')
+        card = eval(card)
         player_season = PlayerSeason.find(card[0])
 
         game_card = GameCard.new(
@@ -86,7 +86,7 @@ class AppServices::Games::Update < ApplicationService
 
     if @params[:data][:cards_visitor]
       @params[:data][:cards_visitor].each do |card|
-        card = card[1...-1].delete(' ').split(',')
+        card = eval(card)
         player_season = PlayerSeason.find(card[0])
 
         game_card = GameCard.new(

@@ -1,4 +1,4 @@
-- suspendedPlayers = players_suspended(game.championship.hashid, game.hashid, season)
+- suspendedPlayers = players_suspended(game.championship.id, game.id, season)
 - if suspendedPlayers[:home_ycard].count > 0 || suspendedPlayers[:home_rcard].count > 0 || suspendedPlayers[:visitor_ycard].count > 0 || suspendedPlayers[:visitor_rcard].count > 0
   span.badge.d-block.bg-danger.mt-1 = t('.suspended_players')
   .row

@@ -15,7 +15,7 @@ class ClubsController < ApplicationController
   end
 
   def player_details
-    @defPlayer = DefPlayer.includes(:def_player_position).friendly.find(params[:player_id])
+    @defPlayer = DefPlayer.includes(:def_player_position).find_by(slug: params[:player_id], platform: params[:id])
     @positions = helpers.getVisualPlayerPositions(@defPlayer)
   end
 

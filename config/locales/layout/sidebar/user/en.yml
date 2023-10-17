@@ -1,0 +1,32 @@
+en:
+  layouts:
+    sidebar:
+      user_club_info:
+        generic_club_name: "No Club"
+      user:
+        generic_club_name: "My Club"
+        trades: "Trades"
+        salary: "Wage Adjustment"
+        steal: "Steal"
+        auction: "Auction"
+      user_items:
+        main_menu: "Main Menu"
+        dashboard: "Panel"
+        seasons: "Seasons"
+        championships: "Championships"
+        clubs: "Clubs"
+        ranking: "Ranking"
+        club_management: "Club Central"
+        management: "Management"
+        market:
+          main: "Market"
+          players: "Players"
+          trades: "Trades"
+          steals: "Steals"
+          auctions: "Auction"
+        finance:
+          main: "Finance"
+          contracts: "Contracts"
+        squad: "Squad"
+          
+        

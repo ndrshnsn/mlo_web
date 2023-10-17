@@ -1,6 +1,6 @@
 = turbo_stream.remove @card_id
 
-= turbo_stream.prepend "goals-and-cards_#{@game.championship.hashid}_#{@game.hashid}" do
+= turbo_stream.prepend "goals-and-cards_#{@game.championship.id}_#{@game.id}" do
   javascript:
     var home_score_goals = document.getElementsByClassName('goal_card_home').length
     var visitor_score_goals = document.getElementsByClassName('goal_card_visitor').length

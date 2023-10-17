@@ -1,7 +1,7 @@
 class Manager::SeasonsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-  before_action :set_season, only: [:update, :users, :details, :end_season, :destroy, :start, :start_club_choosing, :stop_club_choosing, :start_players_raffle, :start_change_wage, :stop_change_wage, :start_transfer_window, :stop_transfer_window, :steal_window, :end]
+  before_action :set_season, only: [:update, :users, :details, :destroy, :start, :start_club_choosing, :stop_club_choosing, :start_players_raffle, :start_change_wage, :stop_change_wage, :start_transfer_window, :stop_transfer_window, :steal_window, :end]
   breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
   breadcrumb "manager.seasons.main", :manager_seasons_path, match: :exact, frame: "main_frame"
 
@@ -13,7 +13,7 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def set_season
-    @season = Season.find_by_hashid(params[:id])
+    @season = Season.find(params[:id])
   end
 
   def check_season_name
@@ -38,7 +38,7 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def get_susers_dt
-    season = Season.find_by_hashid(params[:season])
+    season = Season.find(params[:season])
     render json: Manager::SeasonUsersDatatable.new(view_context, season: season.id)
   end
 
@@ -91,14 +91,14 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def user_players
-    @season = Season.find_by_hashid(params[:id])
+    @season = Season.find(params[:id])
     @user = User.friendly.find(params[:user])
     @teamPlayers = User.getTeamPlayers(@user.id, @season.id)
   end
 
   def settings
-    @season = Season.find_by_hashid(params[:id])
-    breadcrumb @season.name, manager_season_details_path(id: @season.hashid), match: :exact, frame: "main_frame"
+    @season = Season.find(params[:id])
+    breadcrumb @season.name, manager_season_details_path(id: @season), match: :exact, frame: "main_frame"
     @awards = League.get_awards(@league.id)
     @award_result_type = AppServices::Award.new().list_awards
   end
@@ -253,11 +253,11 @@ class Manager::SeasonsController < ApplicationController
   end
 
   def users
-    breadcrumb @season.name, manager_season_details_path(id: @season.hashid), match: :exact, frame: "main_frame"
+    breadcrumb @season.name, manager_season_details_path(id: @season), match: :exact, frame: "main_frame"
   end
 
   def details
-    breadcrumb @season.name, manager_season_details_path(id: @season.hashid), match: :exact, frame: "main_frame"
+    breadcrumb @season.name, manager_season_details_path(id: @season), match: :exact, frame: "main_frame"
 
     @season_championships = Championship.where(season_id: @season.id)
     @season_games = @season_championships.joins(:games).where(games: { status: 4 }).size

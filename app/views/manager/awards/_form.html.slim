@@ -1,37 +1,40 @@
 .row.mb-3
-	.col-sm-12.col-md-5.mb-3
-		.text-center.pt-4
-			.profile-user.position-relative.d-inline-block.mx-auto.mb-3
-				img id="award-trophy-image" src='#{awardTrophy(@award)}' class="rounded-circle avatar-xl img-thumbnail award-trophy-image" 
-				.avatar-xs.p-0.rounded-circle.profile-photo-edit
-					= f.label :trophy, class: "profile-photo-edit avatar-xs" do
-						span class="avatar-title rounded-circle bg-light text-body"
-							i class="ri-camera-fill"
-					= f.hidden_field :trophy, id: "trophy_hid", value: @award.cached_trophy_data
-					= f.file_field :trophy, hidden: "true", accept: "image/*", "data-controller": "upload", "data-upload-img-value": "award-trophy-image"
+  .col-sm-12.col-md-5.mb-3
+    .text-center.pt-4
+      .profile-user.position-relative.d-inline-block.mx-auto.mb-3
+        img id="award-trophy-image" src='#{awardTrophy(@award)}' class="rounded-circle avatar-xl img-thumbnail award-trophy-image" 
+        .avatar-xs.p-0.rounded-circle.profile-photo-edit
+          = f.label :trophy, class: "profile-photo-edit avatar-xs" do
+            span class="avatar-title rounded-circle bg-light text-body"
+              i class="ri-camera-fill"
+          = f.hidden_field :trophy, id: "trophy_hid", value: @award.cached_trophy_data
+          = f.file_field :trophy, hidden: "true", accept: "image/*", "data-controller": "upload", "data-upload-img-value": "award-trophy-image"
 
-	.col-sm-12.col-md-7.mb-3
-		.form-group.mb-3
-			= label_tag("#{t '.name'}", nil, class: "control-label")
-			= f.text_field :name, class: "form-control", value: @award.name, required: true, data: { controller: "cleave", "cleave-ctype-value": "uppercase" }
-		.row
-			.col-6
-				.form-group.mb-3
-					= label_tag("#{t '.prize'}", nil, class: "control-label")
-					.input-group
-						span.input-group-text = t('money_sign')
-						= f.text_field :prize, class: "form-control text-end", value: @award.prize, required: true, data: { controller: "cleave", "cleave-ctype-value": "price" }
-			.col-6
-				.form-group.mb-3
-					= label_tag("#{t '.ranking'}", nil, class: "control-label")
-					= f.text_field :ranking, class: "form-control text-center", value: @award.ranking, required: true, data: { controller: "cleave", "cleave-ctype-value": "numerical" }
-		/ .row
-		/ 	.col-sm-12.col-md-3.mb-3
-		/ 		.form-check.text-end style="position: absolute!important; top: 50%;"
-		/ 			= f.check_box :status, class: "form-check-input disabled"
-		/ 			= f.label :status, t('.status'), class: "form-check-label"
+  .col-sm-12.col-md-7.mb-3
+    .form-group.mb-3
+      = label_tag("#{t '.name'}", nil, class: "control-label")
+      = f.text_field :name, class: "form-control", value: @award.name, required: true, data: { controller: "cleave", "cleave-ctype-value": "uppercase" }
+
+    .row
+      .col-6
+        .form-group.mb-3
+          = label_tag("#{t '.prize'}", nil, class: "control-label")
+          .input-group
+            span.input-group-text = t('money_sign')
+            = f.text_field :prize, class: "form-control text-end", value: @award.prize, required: true, data: { controller: "cleave", "cleave-ctype-value": "price" }
+
+      .col-6
+        .form-group.mb-3
+          = label_tag("#{t '.ranking'}", nil, class: "control-label")
+          = f.text_field :ranking, class: "form-control text-center", value: @award.ranking, required: true, data: { controller: "cleave", "cleave-ctype-value": "numerical" }
+    .row
+      input type="hidden" name="award[status]" value="true"
+      .col-sm-12.col-md-3.mb-3
+        .form-check.text-end style="position: absolute!important; top: 50%;"
+          = check_box_tag :status_check, class: "form-check-input", disabled: "", checked: true
+          = label_tag :status_check, t('.status'), class: "form-check-label"
 
 .row
-	.col-12.text-end
-		= link_to t('.cancel'), manager_awards_path, class: "btn btn-outline-secondary me-1", data: { "turbo-action": "advance" }
-		= f.submit t('.confirm'), class: "btn btn-submit btn-primary"
+  .col-12.text-end
+    = link_to t('.cancel'), manager_awards_path, class: "btn btn-outline-secondary me-1", data: { "turbo-action": "advance" }
+    = f.submit t('.confirm'), class: "btn btn-submit btn-primary"

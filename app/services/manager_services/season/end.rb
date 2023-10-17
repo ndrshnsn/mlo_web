@@ -31,7 +31,7 @@ class ManagerServices::Season::End < ApplicationService
         ClubFinance.create(club_id: club.id, operation: "pay_wage", value: club_player.player_season.details["salary"], source: club_player.player_season) if pay_wages
 
         if dismiss_players
-          PlayerTransaction.addNew(club_player.player_season, club, nil, "dismiss", 0)
+          PlayerTransaction.new_transaction(club_player.player_season, club, nil, "dismiss", 0)
           club_player.destroy!
         end
       end

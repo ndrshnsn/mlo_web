@@ -12,7 +12,7 @@ class Manager::AwardsController < ApplicationController
   end
 
   def edit
-    @award = Award.find_by_hashid(params[:id])
+    @award = Award.find(params[:id])
   end
 
   def create
@@ -35,10 +35,10 @@ class Manager::AwardsController < ApplicationController
   end
 
   def destroy
-    award = Award.find_by_hashid(params[:id])
+    award = Award.find(params[:id])
     aCount = 0
     AppServices::Award.new().list_awards.each do |award_list|
-      aCount += Season.where("league_id = ? AND seasons.preferences ->> 'award_#{award_list[:position]}' = '?'", @league.id, award.id).size
+      aCount += Season.where("league_id = ? AND seasons.preferences ->> 'award_#{award_list[:position]}' = ?", @league.id, award.id).size
     end
     respond_to do |format|
       if aCount == 0
@@ -56,12 +56,13 @@ class Manager::AwardsController < ApplicationController
   end
 
   def update
-    award = Award.find_by_hashid(params[:id])
+    award = Award.find(params[:id])
     respond_to do |format|
       if award.update!(award_params)
-        flash.now["success"] = t(".success")
+        format.turbo_stream { flash.now["success"] = t(".success") }
         format.html { redirect_to manager_awards_path, notice: t(".success") }
       else
+        flash.now["success"] = t(".success")
         format.html { render :edit, status: :unprocessable_entity }
       end
     end

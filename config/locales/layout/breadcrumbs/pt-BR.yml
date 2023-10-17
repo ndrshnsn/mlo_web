@@ -16,6 +16,8 @@ pt-BR:
         main: "Financeiro"
         contracts:
           main: "Contratos"
+      squad:
+        main: "Equipe"
       admin:
         playerdb:
           main: "PlayerDB"

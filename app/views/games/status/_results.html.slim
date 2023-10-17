@@ -1,4 +1,4 @@
 .text-center
-  = button_to game_results_path(game.hashid), class: "button btn btn-sm btn-primary waves-effect", data: { "turbo-frame": 'modal' } do
+  = button_to game_results_path(game), class: "button btn btn-sm btn-primary waves-effect", data: { "turbo-frame": 'modal' } do
     i.ri-play-line.me-1.align-bottom
     span = t('.enter_match_info')

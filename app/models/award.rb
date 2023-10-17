@@ -4,5 +4,4 @@ class Award < ApplicationRecord
   has_many :season_awards
 
   include TrophyUploader::Attachment(:trophy)
-  include Hashid::Rails
 end
