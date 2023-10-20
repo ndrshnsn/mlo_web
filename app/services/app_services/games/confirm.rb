@@ -27,6 +27,7 @@ class AppServices::Games::Confirm < ApplicationService
     Sidekiq::Cron::Job.destroy "game_confirm_#{@game.championship.season.id}_#{@game.championship.id}_#{@game.id}"
     
     return handle_error(@game, ".game_confirm_earning_error") unless AppServices::Games::Earning.new(@game).pay()
+    return handle_error(@game, ".game_confirm_standing_error") unless AppServices::Championship::Standing.new(@game).update()
     return handle_error(@game, ".game_confirm_ranking_error") unless AppServices::Ranking.new(game: @game).update()
 
     OpenStruct.new(success?: true, game: @game, error: nil)
@@ -36,3 +37,6 @@ class AppServices::Games::Confirm < ApplicationService
     OpenStruct.new(success?: false, game: @game, error: error)
   end
 end
+
+
+#mlo_3f40

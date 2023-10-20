@@ -1,77 +1,65 @@
-.card
-  .card-header.align-items-center.d-flex.p-3.bg-light-subtle.rounded-top
-    i.ri-trophy-line.me-1
-    h4.card-title.mb-0.flex-grow-1 = @championship.name
-    .flex-shrink-0
-      .btn-group
-        button.btn.btn-sm.btn-primary = t('.options')
-        button.btn.btn-sm.btn-primary.dropdown-toggle.dropdown-toggle-split type="button" data-bs-toggle="dropdown" 
-        / a.text-reset.dropdown-btn href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-        /   span.text-muted.fs-16.text-white.fw-semibold
-        /     i.ri-more-2-fill.align-middle
-        .dropdown-menu.dropdown-menu-end
-          = link_to manager_championship_details_path(@championship), class: "dropdown-item", data: { "turbo-action": "advance"} do
-            i.ri-information-line.me-2.align-bottom.text-muted
-            = t('.general')
-          = link_to manager_championship_settings_path(@championship), class: "dropdown-item", data: { "turbo-action": "advance"} do
-            i.ri-settings-2-line.me-2.align-bottom.text-muted
-            = t('.settings')
-          - if @championship.status > 0
-            = link_to championship_games_path(@championship), class: "dropdown-item", data: { "turbo-action": "advance"} do
-              i.ri-survey-line.me-2.align-bottom.text-muted
-              = t('.games')
-          - if @championship.status == 0 || @championship.status == 100
-            = link_to "javascript:void(0)", class: "dropdown-item", data: { action: 'click->confirm#dialog', controller: 'confirm', "confirm-title-value": t('.remove'), "confirm-text-value": t('.remove_text'), "confirm-icon-value": 'warning', "confirm-origin-value": "/manager/championships", "confirm-link-value": manager_championship_destroy_path(@championship) } do
-              i.ri-close-line.me-2.align-bottom.text-muted
-              = t('.remove_button')
+.row
+  .col-12
+    .card
+      .card-header.align-items-center.d-flex.p-3.bg-light-subtle.rounded-top
+        i.ri-trophy-line.me-1
+        h4.card-title.mb-0.flex-grow-1 = @championship.name
+        .flex-shrink-0
+          .btn-group
+            button.btn.btn-sm.btn-primary = t('.options')
+            button.btn.btn-sm.btn-primary.dropdown-toggle.dropdown-toggle-split type="button" data-bs-toggle="dropdown" 
+            .dropdown-menu.dropdown-menu-end
+              = link_to championship_details_path(@championship), class: "dropdown-item", data: { "turbo-action": "advance"} do
+                i.ri-information-line.me-2.align-bottom.text-muted
+                = t('.general')
+              - if @championship.status > 0
+                = link_to championship_games_path(@championship), class: "dropdown-item", data: { "turbo-action": "advance"} do
+                  i.ri-survey-line.me-2.align-bottom.text-muted
+                  = t('.games')
 
-        /   .dropdown-divider
-        /   = link_to manager_season_settings_path(@season), class: "dropdown-item", data: { "turbo-action": "advance"} do
-        /     i.ri-settings-line.me-2.align-bottom.text-muted
-        /     = t('.settings')
+                = link_to championship_standing_path(@championship), class: "dropdown-item", data: {"turbo-action": "advance"} do
+                  i.ri-grid-line.me-2.align-bottom.text-muted
+                  = t('.standing')
 
-        /   = link_to manager_season_users_path(@season), class: "dropdown-item", data: { "turbo-action": "advance"} do
-        /     i.ri-group-line.me-2.align-bottom.text-muted
-        /     = t('.users')
+                = link_to championship_goalers_path(@championship), class: "dropdown-item", data: {"turbo-action": "advance"} do
+                  i.ri-football-line.me-2.align-bottom.text-muted
+                  = t('.goalers')
 
-          //= link_to season_goalers_path(@season), class: "dropdown-item", method: :post, remote: :true do
-            i.mr-50.jam.jam-chevrons-right
-            span Artilheiros
-          //= link_to season_assists_path(@season), class: "dropdown-item", method: :post, remote: :true do
-            i.mr-50.jam.jam-chevrons-right
-            span Assistências
-          //= link_to season_cards_path(@season), class: "dropdown-item", method: :post, remote: :true do
-            i.mr-50.jam.jam-chevrons-right
-            span Cartões
-          //= link_to season_bestplayer_path(@season), class: "dropdown-item", method: :post, remote: :true do
-            i.mr-50.jam.jam-chevrons-right
-            span Melhor Jogador
+                = link_to championship_assisters_path(@championship), class: "dropdown-item", data: { "turbo-action": "advance"} do
+                  i.ri-drag-move-2-line.me-2.align-bottom.text-muted
+                  = t('.assisters')
 
-            
-        
+                = link_to championship_fairplay_path(@championship), class: "dropdown-item", data: { "turbo-action": "advance"} do
+                  i.ri-square-line.me-2.align-bottom.text-muted
+                  = t('.fairplay')
 
-  .card-body
-    .row
-      .col-sm-12.col-md-4.d-flex.align-items-center
-        .profile-user.mx-auto
-          img.rounded-circle.avatar-xl.img-thumbnail src="#{championshipBadge(@championship)}"
-      .col-sm-12.col-md-8
-        .table-card
-          - sStatus = Championship.translate_status(@championship.status)
-          - cDate = @championship.time_start == @championship.time_end ? I18n.localize(@championship.time_start, format: t('date.formats.default'))  : "#{I18n.localize(@championship.time_start, format: t('date.formats.default'))} - #{I18n.localize(@championship.time_end, format: t('date.formats.default'))}"
-          - cClubs = ClubChampionship.where(championship_id: @championship.id).size
-          table.table.mb-0
-            tbody
-              tr
-                td.fw-semibold = t('.date')
-                td.text-end = cDate
-              tr
-                td.fw-semibold = t('.format')
-                td.text-end = Championship.types(@championship.ctype)[0][:name]
-              tr
-                td.fw-semibold = t('.participants')
-                td.text-end = cClubs
-              tr
-                td.fw-semibold = t('.status')
-                td.text-end
-                  span class="badge bg-#{sStatus[2]} text-light" = sStatus[1]
+                = link_to championship_bestofmatch_path(@championship), class: "dropdown-item", data: { "turbo-action": "advance"} do
+                  i.ri-vip-crown-line.me-2.align-bottom.text-muted
+                  = t('.bestofmatch')            
+
+      .card-body
+        .row
+          .col-sm-12.col-md-4.d-flex.align-items-center
+            .profile-user.mx-auto
+              img.rounded-circle.avatar-xl.img-thumbnail src="#{championshipBadge(@championship)}"
+          .col-sm-12.col-md-8
+            .table-card
+              - sStatus = Championship.translate_status(@championship.status)
+              - cDate = @championship.time_start == @championship.time_end ? I18n.localize(@championship.time_start, format: t('date.formats.default'))  : "#{I18n.localize(@championship.time_start, format: t('date.formats.default'))} - #{I18n.localize(@championship.time_end, format: t('date.formats.default'))}"
+              - cClubs = ClubChampionship.where(championship_id: @championship.id).size
+              table.table.mb-0
+                tbody
+                  tr
+                    td.fw-semibold = t('.date')
+                    td.text-end = cDate
+                  tr
+                    td.fw-semibold = t('.format')
+                    td.text-end = Championship.types(@championship.ctype)[0][:name]
+                  tr
+                    td.fw-semibold = t('.participants')
+                    td.text-end = cClubs
+                  tr
+                    td.fw-semibold = t('.status')
+                    td.text-end
+                      span class="badge bg-#{sStatus[2]} text-light" = sStatus[1]
+                      

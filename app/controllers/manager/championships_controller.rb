@@ -163,7 +163,7 @@ class Manager::ChampionshipsController < ApplicationController
   end
 
   def settings
-    @championship = Championship.find(params[:id])
+    @championship = Championship.friendly.find(params[:id])
     breadcrumb @championship.name, manager_championship_details_path(id: @championship.id), match: :exact, frame: "main_frame"
     @cTypes = Championship.types
     @awards = League.get_awards(@league.id)
@@ -176,10 +176,10 @@ class Manager::ChampionshipsController < ApplicationController
       @cPositions = ChampionshipPosition.where(championship_id: @championship.id).order(position: :asc)
     end
 
-    @goalers = Championship.getGoalers(@championship).limit(5)
-    @assists = Championship.getAssisters(@championship).limit(5)
-    @fairplay = Championship.getFairPlay(@championship).limit(5)
-    @bestplayer = Championship.getBestPlayer(@championship).limit(5)
+    @goalers = Championship.getGoalers(@championship)
+    @assists = Championship.getAssisters(@championship)
+    @fairplay = Championship.getFairPlay(@championship)
+    @bestplayer = Championship.getBestPlayer(@championship)
     @lGames = Game.where(championship_id: @championship.id, status: 4).order(updated_at: :desc).limit(5)
     @user_season = UserSeason.where(season_id: @season.id).includes(:user)
   end

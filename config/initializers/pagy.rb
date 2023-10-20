@@ -32,6 +32,7 @@ Pagy::DEFAULT[:page_param] = :page                           # default
 
 # Frontend Extras
 require 'pagy/extras/bootstrap'
+require 'pagy/extras/array'
 
 # Feature Extras
 

@@ -1,8 +1,16 @@
 .row
+  .col-12.mb-2
+    .float-end
+      = form_with model: @club_championship, id: dom_id(@club_championship), url: championship_games_path, class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-swal-value": false} do |f|
+        .form-check.form-switch.form-switch-md
+          = f.check_box "show_all_games", class: "form-check-input", onchange: 'this.form.submit();'
+          = f.label "show_all_games", t('.show_all_games'), class: "form-check-label" 
+
+.row
   = turbo_stream_from "games_#{current_user.id}"
   - games.each do |game|
     .col-lg-6.col-xxl-4
       = render "games/card", game: game, current_user_id: current_user.id
 
-.row.mt-3
+.row.mt-2
   = render 'layouts/pagy/main', pagy: @pagy, frame: "championships"

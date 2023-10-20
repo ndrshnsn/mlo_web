@@ -1,5 +1,6 @@
 - if pagy.pages > 1
-  - link = pagy_link_proc(pagy, link_extra: "class='page-link' data-turbo-action='advance' data-turbo-frame='#{frame}'")
+  - turbo_advance = true
+  - link = pagy_link_proc(pagy, link_extra: "class='page-link' #{turbo_advance} data-turbo-frame='#{frame}'")
 
   nav.pagy-bootstrap-nav role="navigation"
     ul.pagination.justify-content-end

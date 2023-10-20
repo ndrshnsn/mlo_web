@@ -34,6 +34,10 @@ class Ability
       can :manage, :all if user.admin?
     when "Myclub"
       can :manage, :all if user.user?
+    when "Finance"
+      can :manage, :all if user.user?
+    when "Trade"
+      can :manage, :all if user.user?
     end
   end
 end

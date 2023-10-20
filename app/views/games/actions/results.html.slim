@@ -82,7 +82,7 @@
     var cid = "#{@game.championship.id}"
     var gid = "#{@game.id}"
     var previous_game = "#{@previous_game}"
-    var result_criterion = document.getElementById('result_criterion').value
+    var result_criterion = document.getElementById('result_criterion') == null ? "" : document.getElementById('result_criterion').value
 
     function check_for_combined_result(home_score_goals, visitor_score_goals, previous_home_score_goals, previous_visitor_score_goals) {
       if (previous_game) {

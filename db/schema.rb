@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_11_205620) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_19_211418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -146,6 +146,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_205620) do
     t.integer "points", default: 0
     t.integer "gamerate", default: 0
     t.integer "group"
+    t.boolean "show_all_games", default: false
     t.index ["championship_id"], name: "index_club_championships_on_championship_id"
     t.index ["club_id"], name: "index_club_championships_on_club_id"
   end

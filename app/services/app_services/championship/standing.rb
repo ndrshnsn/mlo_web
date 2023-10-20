@@ -1,7 +1,6 @@
-class ManagerServices::Championship::Standing < ApplicationService
-  def initialize(game, params = nil)
+class AppServices::Championship::Standing < ApplicationService
+  def initialize(game)
     @game = game
-    @params = params if params
   end
 
   def update
@@ -19,7 +18,6 @@ class ManagerServices::Championship::Standing < ApplicationService
   private
 
   def update_standing
-
     home = ClubChampionship.find_by(club_id: @game.home_id, championship_id: @game.championship_id)
     home.games += 1
     home.goalsfor += @game.hscore

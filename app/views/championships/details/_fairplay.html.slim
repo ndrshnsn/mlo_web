@@ -8,9 +8,9 @@
       .card
         .card-header.d-flex
           .flex-shrink-0
-            i.ri.ri-football-line.me-1
+            i.ri.ri-drag-move-2-line.me-1
           .flex-grow-1
-            h6.card-title = t('.goalers')
+            h6.card-title = t('.fairplay')
         .card-body
           .table-responsive.table-card
             table.table.table-striped
@@ -19,32 +19,35 @@
                   th.text-center = t('.position')
                   th = t('.player')
                   th = t('.club')
-                  th.text-center = t('.goals')
+                  th.text-center = t('.yellow_cards')
+                  th.text-center = t('.red_cards')
               tbody
-                tr
-                - if @goalers.nil?
+                - if @cards.nil?
                   tr
-                    td.text-center colspan="4" = t('.no_player')
+                    td.text-center colspan="5" = t('.no_player')
                 - else
-                  - @goalers.each_with_index do |goaler,i|
-                    - rpPOS = translate_pkeys(goaler.def_player.def_player_position.name, goaler.def_player.platform)
-                    tr
-                      td.align-middle.text-center ##{i+1}
+                  - @cards.each_with_index do |card,i|
+                    - rpPOS = translate_pkeys(card.def_player.def_player_position.name, card.def_player.platform)
+                    tr.align-middle
+                      td.text-center ##{i+1}
                       td
                         .d-flex.align-items-center
                           .flex-shrink-0
-                            = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: goaler.def_player.platform, dna: true)}/#{goaler.def_player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle", style: "width: 36px; height: 36px;")
+                            = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: card.def_player.platform, dna: true)}/#{card.def_player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle", style: "width: 36px; height: 36px;")
+
                           .flex-grow-1.ms-2.text-start
-                            span.font-weight-bold.d-block.text-nowrap = goaler.def_player.name
+                            span.font-weight-bold.d-block.text-nowrap = card.def_player.name
                             span class="badge badge-#{rpPOS[1]}" style="font-size: 0.6rem" = rpPOS[0]
                       td.align-middle
-                        - player_club = goaler.club_games.first.club
+                        - player_club = card.game_cards.first.club
                         .d-flex.align-items-center
                           .flex-shrink-0
                             = image_tag("#{session[:pdbprefix]}/teams/#{(player_club.def_team.name.upcase.delete(' '))}.png", class: "avatar-xs")
                           .flex-grow-1.ms-2.text-start
                             span.font-weight-bold.d-block.text-nowrap = player_club.def_team.details['teamAbbr']
                             span.text-muted ##{player_club.user_season.user.nickname}
-                      td.align-middle.text-center = goaler.goals
+
+                      td.text-center = card.count_ycard
+                      td.text-center = card.count_rcard
       .row.mt-3
         = render 'layouts/pagy/main', pagy: @pagy, turbo_advance: false, frame: "championship_details"
