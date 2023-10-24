@@ -26,6 +26,6 @@
   = link_to "javascript:;", class: "btn btn-primary btn-sm btn-border #{start_league_finals_disabled}", data: { controller: "confirm", "confirm-title-value": t('.start_finals_question'), "confirm-text-value": t('.start_finals_text'), "confirm-link-value": manager_championship_start_league_finals_path(championship), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
     span = t('.start_finals')
 
-- end_championship_disabled = championship.status == 14 ? "btn btn-primary btn-sm btn-border" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
+- end_championship_disabled = @end_enabled == true ? "btn btn-primary btn-sm btn-border" : "btn btn-secondary btn-sm btn-border disabled text-decoration-line-through"
 = link_to "javascript:;", class: "btn btn-primary btn-sm btn-border #{end_championship_disabled}", data: { controller: "confirm", "confirm-title-value": t('.end_championship_question'), "confirm-text-value": t('.end_championship_text'), "confirm-link-value": manager_championship_end_path(championship), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
   span = t('.end_championship')

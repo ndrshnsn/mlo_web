@@ -15,7 +15,7 @@ class AppServices::Games::Revoke < ApplicationService
     if @game.status > 0 && @game.status < 100 && @game.mdescription != "revoked"
       return handle_error(@game, @game&.error) unless GameCard.where(game_id: @game.id).destroy_all
       return handle_error(@game, @game&.error) unless ClubGame.where(game_id: @game.id).destroy_all
-      Sidekiq::Cron::Job.find("result_confirmation_#{@game.championship.season.id}_#{@game.championship.id}_#{@game.id}").destroy
+      Sidekiq::Cron::Job.find("result_confirmation_#{@game.championship.season.id}_#{@game.championship.id}_#{@game.id}").destroy!
     elsif @game.status == 100
       return handle_error(@game, @game&.error) unless AppServices::Games::Earning.new(@game).reversal
       return handle_error(@game, @game&.error) unless AppServices::Ranking.new(game: @game).reversal

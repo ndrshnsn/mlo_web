@@ -18,9 +18,9 @@ class WebPushDevice < ApplicationRecord
             private_key: ENV['VAPID_PRIVATE_KEY']
           }
         )
-        rescue => error
-          Rails.logger.warn("Error sending browser notification: #{error.inspect}")
-          false
+      rescue => error
+        Rails.logger.warn("Error sending browser notification: #{error.inspect}")
+        false
       end
     end
   end

@@ -51,10 +51,10 @@ class AppServices::Championship::Standing < ApplicationService
     club_games = club_games.where(group: @params[:group]) if !@params.nil?
 
     home_club_games = club_games.where("home_id = ? OR visitor_id = ?", @game.home_id, @game.home_id)
-    home.gamerate = home.games == 0 ? 0 : ((home.points * 100) / (home_club_games.size * AppConfig.match_winning_points)).round(2)
+    home.gamerate = (home.games == 0) ? 0 : ((home.points * 100) / (home_club_games.size * AppConfig.match_winning_points)).round(2)
 
     visitor_club_games = club_games.where("home_id = ? OR visitor_id = ?", @game.visitor_id, @game.visitor_id)
-    visitor.gamerate = visitor.games == 0 ? 0 : ((visitor.points * 100) / (visitor_club_games.size * AppConfig.match_winning_points)).round(2)
+    visitor.gamerate = (visitor.games == 0) ? 0 : ((visitor.points * 100) / (visitor_club_games.size * AppConfig.match_winning_points)).round(2)
 
     return handle_error(@game, @game&.error) unless home.save!
     return handle_error(@game, @game&.error) unless visitor.save!
@@ -97,10 +97,10 @@ class AppServices::Championship::Standing < ApplicationService
     club_games = club_games.where(group: @params[:group]) if !@params.nil?
 
     home_club_games = club_games.where("home_id = ? OR visitor_id = ?", @game.home_id, @game.home_id)
-    home.gamerate = home.games == 0 ? 0 : ((home.points * 100) / (home_club_games.size * AppConfig.match_winning_points)).round(2)
+    home.gamerate = (home.games == 0) ? 0 : ((home.points * 100) / (home_club_games.size * AppConfig.match_winning_points)).round(2)
 
     visitor_club_games = club_games.where("home_id = ? OR visitor_id = ?", @game.visitor_id, @game.visitor_id)
-    visitor.gamerate = visitor.games == 0 ? 0 : ((visitor.points * 100) / (visitor_club_games.size * AppConfig.match_winning_points)).round(2)
+    visitor.gamerate = (visitor.games == 0) ? 0 : ((visitor.points * 100) / (visitor_club_games.size * AppConfig.match_winning_points)).round(2)
 
     return handle_error(@game, @game&.error) unless home.save!
     return handle_error(@game, @game&.error) unless visitor.save!

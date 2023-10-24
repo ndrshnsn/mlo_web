@@ -25,12 +25,13 @@ class ChampionshipsController < ApplicationController
     if @championship.status == 100
       @cPositions = ChampionshipPosition.where(championship_id: @championship.id).order(position: :asc)
     end
-    
+
     @assists = Championship.getAssisters(@championship, 5)
     @fairplay = Championship.getFairPlay(@championship, 5)
     @bestplayer = Championship.getBestPlayer(@championship, 5)
     @lGames = Game.where(championship_id: @championship.id, status: 3).order(updated_at: :desc).limit(5)
     @user_season = UserSeason.where(season_id: @season.id).includes(:user)
+    @next_games = Game.where(championship_id: @championship.id, status: 0).order(gsequence: :asc).limit(2)
   end
 
   def standing
@@ -59,26 +60,16 @@ class ChampionshipsController < ApplicationController
   end
 
   def games
-    # @allGames = params[:games] == "all" ? true : false
-    # if @allGames
-    #     @games = Game.includes(:championship, :game_cards, club_games: [:club, player_season: [player: :player_position]]).where(championship_id: @championship.id).order(created_at: :asc).page(params[:page]).per(10)
-    # else
-
-    if request.patch?
-      club_championship = ClubChampionship.find_by(championship_id: @championship.id, club_id: session[:userClub])
-      club_championship.show_all_games = params[:club_championship][:show_all_games]
-      club_championship.save!
-    end
-
     breadcrumb @championship.name, :championship_details_path
     @club_championship = ClubChampionship.find_by(championship_id: @championship.id, club_id: session[:userClub])
-
     championship_games = Game.includes(:championship, club_games: [:club, player_season: [def_player: :def_player_position]]).where(championship_id: @championship.id)
-
-    if @club_championship.show_all_games == false
-      championship_games = championship_games.where("games.home_id = ? OR games.visitor_id = ?", session[:userClub], session[:userClub])
+    if @club_championship
+      session[:show_all_games] |= false
+      if request.patch?
+        session[:show_all_games] = params[:championship][:show_all_games] == "1" ? true : false
+      end
+      championship_games = championship_games.where("games.home_id = ? OR games.visitor_id = ?", session[:userClub], session[:userClub]) if session[:show_all_games] == false
     end
-    
     @pagy, @games = pagy(championship_games.order(created_at: :asc), items: 4)
   end
 

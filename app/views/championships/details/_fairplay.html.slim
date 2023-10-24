@@ -14,7 +14,7 @@
         .card-body
           .table-responsive.table-card
             table.table.table-striped
-              thead
+              thead.table-light
                 tr
                   th.text-center = t('.position')
                   th = t('.player')
@@ -22,9 +22,9 @@
                   th.text-center = t('.yellow_cards')
                   th.text-center = t('.red_cards')
               tbody
-                - if @cards.nil?
+                - if @cards.size == 0
                   tr
-                    td.text-center colspan="5" = t('.no_player')
+                    td.text-center colspan="5" = t('.no_player_information')
                 - else
                   - @cards.each_with_index do |card,i|
                     - rpPOS = translate_pkeys(card.def_player.def_player_position.name, card.def_player.platform)

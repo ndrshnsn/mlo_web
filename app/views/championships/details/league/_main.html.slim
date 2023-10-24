@@ -51,10 +51,12 @@
       .card-body
         .d-flex.justify-content-center
           - @championship.club_championships.each do |champ_club|
-            = image_tag("#{session[:pdbprefix]}/teams/#{(champ_club.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-sm me-1 ms-1", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+            = image_tag("#{session[:pdbprefix]}/teams/#{(champ_club.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-sm me-1 ms-1")
 
   .col-sm-6.col-md-8
     - if !@championship.advertisement.blank?
       .card.border.border-warning-subtle
         .card-body
           = @championship.advertisement.html_safe
+
+    = render "championships/details/next_games", next_games: @next_games

@@ -14,16 +14,16 @@
         .card-body
           .table-responsive.table-card
             table.table.table-striped
-              thead
+              thead.table-light
                 tr
                   th.text-center = t('.position')
                   th = t('.player')
                   th = t('.club')
                   th.text-center = t('.matches')
               tbody
-                - if @bestofmatch.nil?
+                - if @bestofmatch.size == 0
                   tr.align-middle.text-center
-                    td.text-center colspan="4" = t('.no_player')
+                    td.text-center colspan="4" = t('.no_player_information')
                 - else
                   - @bestofmatch.each_with_index do |player,i|
                     - rpPOS = translate_pkeys(player.def_player.def_player_position.name, player.def_player.platform)

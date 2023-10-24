@@ -3,4 +3,4 @@
   = turbo_frame_tag "championships" do
     = render "layouts/header/page_title", title: t('.championships')
     = render 'championships/details/info'
-    = render "championships/games/list", games: @games
+    = render "championships/games/list", games: @games, club_championship: @club_championship

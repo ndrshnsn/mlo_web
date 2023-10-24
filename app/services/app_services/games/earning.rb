@@ -18,7 +18,6 @@ class AppServices::Games::Earning < ApplicationService
   private
 
   def pay_earnings
-    
     homeEarnings = 0
     visitorEarnings = 0
     homeDescription = []
