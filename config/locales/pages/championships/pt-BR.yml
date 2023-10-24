@@ -4,6 +4,8 @@ pt-BR:
       championships: "Campeonatos"
     details:
       championships: "Campeonatos"
+      next_games:
+        next_games: "Próximos Jogos"
       info:
         options: "Opções"
         date: "Data"
@@ -13,9 +15,66 @@ pt-BR:
         games: "Jogos"
         settings: "Configurações"
         general: "Principal"
+        goalers: "Artilharia"
+        assisters: "Assistências"
+        fairplay: "Cartões"
+        bestofmatch: "Melhor da Partida"
+        standing: "Classificação"
+      goalers:
+        goalers: "Artilharia"
+        position: "Posição"
+        player: "Jogador"
+        club: "Clube"
+        goals: "Gols"
+        no_player_information: "Sem Dados para Visualização"
+      assisters:
+        assisters: "Assistências"
+        player: "Jogador"
+        club: "Clube"
+        assists: "Assistências"
+        position: "Posição"
+        no_player_information: "Sem Dados para Visualização"
+      fairplay:
+        fairplay: "Cartões"
+        position: "Posição"
+        player: "Jogador"
+        club: "Clube"
+        yellow_cards: "CA"
+        red_cards: "CV"
+        no_player_information: "Sem Dados para Visualização"
+      bestofmatch:
+        bestofmatch: "Melhor da Partida"
+        position: "Posição"
+        player: "Jogador"
+        club: "Clube"
+        matches: "Partidas"
+        no_player_information: "Sem Dados para Visualização"
+      league:
+        main:
+          result: "Resultados"
+          clubs: "Participantes"
+          champion: "Campeão"
+          vice: "Vice"
+          third: "Terceiro"
+          fourth: "Quarto"
+        standing:
+          standing: "Classificação"
+          position: "Posição"
+          header_points: "P"
+          header_matches: "J"
+          header_wins: "V"
+          header_draws: "E"
+          header_losses: "D"
+          header_goalsfor: "GP"
+          header_goalsagainst: "GC"
+          header_goalsdiff: "SG"
+          header_gamerate: "%"
+          standing_criterion_html: "Critério de  Desempate: <strong>P / SG / V / GP</strong>"
     main:
       championship_date: "Data"
       format: "Formato"
       details: "Detalhes"
     games:
       championships: "Campeonatos"
+      list:
+        show_all_games: "Mostrar Todos os Jogos"

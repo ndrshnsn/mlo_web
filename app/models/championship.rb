@@ -95,38 +95,60 @@ class Championship < ApplicationRecord
     phase[code]
   end
 
-
   def self.get_running(season_id)
-    return Championship.where(season_id: season_id).where("status > ? AND status < ?", 0, 100)
+    Championship.where(season_id: season_id).where("status > ? AND status < ?", 0, 100)
   end
 
   def self.getGoalers(championship,items=nil)
-    goalers = PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."player_season_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id)}).includes(:def_player).select("player_seasons.id, player_seasons.def_player_id, COUNT(player_seasons.id) AS goals").group(:id).order("goals desc")
+    goalers = PlayerSeason.left_joins(:club_games, :def_player)
+      .where(club_games: {game_id: Game.where(championship_id: championship.id)})
+      .select("player_seasons.id, player_seasons.def_player_id, COUNT(player_seasons.id) AS goals")
+      .group(:id)
+      .order("goals desc")
     goalers = goalers.limit(items) if items
-    goalers
+    goalers.to_a
   end
 
   def self.getAssisters(championship,items=nil)
-    assisters = PlayerSeason.joins('LEFT OUTER JOIN "club_games" ON "club_games"."assist_id" = "player_seasons"."id"').where(club_games: {game_id: Game.where(championship_id: championship.id)}).includes(:def_player).select("player_seasons.id, player_seasons.def_player_id, COUNT(player_seasons.id) AS assists").group(:id).order("assists desc")
+    join_query = <<-SQL.squish
+      JOIN club_games 
+      ON player_seasons.id = club_games.assist_id
+    SQL
+
+    assisters = PlayerSeason
+      .joins(join_query)
+      .where(club_games: {game_id: Game.where(championship_id: championship.id)})
+      .select("player_seasons.id, player_seasons.def_player_id, COUNT(player_seasons.id) AS assists")
+      .includes(:def_player)
+      .group(:id)
+      .order("assists desc")
     assisters = assisters.limit(items) if items
-    assisters
+    assisters.to_a
   end
 
   def self.getFairPlay(championship,items=nil)
-    fairplay = PlayerSeason.joins('LEFT OUTER JOIN "game_cards" ON "game_cards"."player_season_id" = "player_seasons"."id"').where(game_cards: {game_id: Game.where(championship_id: championship.id)}).includes(:def_player).select("player_seasons.id, player_seasons.def_player_id, COUNT(game_cards.ycard) AS count_ycard, COUNT(game_cards.rcard) AS count_rcard").group(:id).order("count_rcard desc, count_ycard desc")
+    fairplay = PlayerSeason.left_joins(:game_cards, :def_player)
+      .where(game_cards: {game_id: Game.where(championship_id: championship.id)})
+      .select("player_seasons.id, player_seasons.def_player_id, COUNT(game_cards.ycard) AS count_ycard, COUNT(game_cards.rcard) AS count_rcard")
+      .group(:id)
+      .order("count_rcard desc, count_ycard desc")
     fairplay = fairplay.limit(items) if items
-    fairplay
+    fairplay.to_a
   end
 
   def self.getBestPlayer(championship,items=nil)
-    getBestPlayer = PlayerSeason.joins('LEFT OUTER JOIN "game_best_players" ON "game_best_players"."player_season_id" = "player_seasons"."id"').where(game_best_players: {game_id: Game.where(championship_id: championship.id)}).includes(:def_player).select("player_seasons.id, player_seasons.def_player_id, COUNT(player_seasons.id) AS bestplayer").group(:id).order("bestplayer desc")
-    getBestPlayer = getBestPlayer.limit(items) if items
-    getBestPlayer
+    bestplayer = PlayerSeason.left_joins(:game_best_players, :def_player)
+      .where(game_best_players: {game_id: Game.where(championship_id: championship.id)})
+      .select("player_seasons.id, player_seasons.def_player_id, COUNT(player_seasons.id) AS bestplayer")
+      .group(:id)
+      .order("bestplayer desc")
+    bestplayer = bestplayer.limit(items) if items
+    bestplayer.to_a
   end
 
   def self.get_game_sequence(championship)
     games = Game.where(championship_id: championship.id).order(gsequence: :asc)
-    games.size > 0 ? games.last.gsequence : 0
+    (games.size > 0) ? games.last.gsequence : 0
   end
 
   def self.get_standing(championship, items = nil, group_number = nil)

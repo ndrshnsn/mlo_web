@@ -5,11 +5,10 @@ class Game < ApplicationRecord
   belongs_to :eresults, class_name: "Club", optional: true
   belongs_to :player_season, optional: true
   has_one :game_best_player, dependent: :destroy
-  # has_many :game_contests, dependent: :destroy
   has_many :club_games, dependent: :destroy
   has_many :game_cards, dependent: :destroy
   has_many :club_finances, foreign_key: :source_id, dependent: :destroy
-  has_many :notifications, foreign_key: :notifiable_id, dependent: :destroy
+  has_many :notifications, as: :recipient, dependent: :destroy
   has_many :rankings, foreign_key: :source_id, dependent: :destroy
 
   def self.translate_status(code)
@@ -32,6 +31,23 @@ class Game < ApplicationRecord
   end
 
   def self.get_running(season_id)
-    return Game.joins(:championship).where("championships.season_id = ? AND ( games.status > ? OR games.status < ?)", season_id, 0, 3)
+    Game.joins(:championship).where("championships.season_id = ? AND ( games.status > ? OR games.status < ?)", season_id, 0, 3)
+  end
+
+  def self.start_permission(game)
+    championship = game.championship
+    permitted = false
+
+    return if championship.status == 0
+    if championship.status > 0
+      case championship.preferences["ctype"]
+      when "league"
+        permitted = true if championship.status == 10 && game.phase == 1
+        permitted = true if ([11, 12].include? championship.status) && ([1, 2].include? game.phase)
+        permitted = true if ([13, 14].include? championship.status) && game.phase > 2
+      end
+    end
+
+    permitted
   end
 end

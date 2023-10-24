@@ -1,0 +1,61 @@
+= turbo_frame_tag "main_frame" do
+  = render "layouts/header/page_frame"
+  = turbo_frame_tag "championships" do
+    = render "layouts/header/page_title", title: t('.championships')
+    = render 'championships/details/info'
+      
+    = turbo_frame_tag "championship_details" do
+      .card
+        .card-header.d-flex
+          .flex-shrink-0
+            i.ri.ri-grid-line.me-1
+          .flex-grow-1
+            h6.card-title = t('.standing')
+        .card-body
+          .table-responsive.table-card
+            table.table.table-striped
+              thead.table-light
+                tr
+                  th = t('.position')
+                  th.text-center = t('.header_points')
+                  th.text-center = t('.header_matches')
+                  th.text-center = t('.header_wins')
+                  th.text-center = t('.header_draws')
+                  th.text-center = t('.header_losses')
+                  th.text-center = t('.header_goalsfor')
+                  th.text-center = t('.header_goalsagainst')
+                  th.text-center = t('.header_goalsdiff')
+                  th.text-center = t('.header_gamerate')
+              tbody
+                - @standing.each_with_index do |standing, i|
+                  tr
+                    td
+                      .d-flex.align-items-center
+                        .flex-shrink-0
+                          = image_tag("#{session[:pdbprefix]}/teams/#{(standing.club.club_players.first.club.def_team.name.upcase.delete(' '))}.png", class: "avatar-xs")
+                        .flex-grow-1.ms-2.text-start
+                          span.font-weight-bold.d-block.text-nowrap = standing.club.club_players.first.club.def_team.details['teamAbbr']
+                          span.text-muted ##{standing.club.club_players.first.club.user_season.user.nickname}
+                    td.text-center = standing.points
+                    td.text-center = standing.games
+                    td.text-center = standing.wins
+                    td.text-center = standing.draws
+                    td.text-center = standing.losses
+                    td.text-center = standing.goalsfor
+                    td.text-center = standing.goalsagainst
+                    td.text-center = standing.goalsdiff
+                    td.text-center = standing.gamerate
+              tfoot.table-light
+                tr
+                  th = t('.position')
+                  th.text-center = t('.header_points')
+                  th.text-center = t('.header_matches')
+                  th.text-center = t('.header_wins')
+                  th.text-center = t('.header_draws')
+                  th.text-center = t('.header_losses')
+                  th.text-center = t('.header_goalsfor')
+                  th.text-center = t('.header_goalsagainst')
+                  th.text-center = t('.header_goalsdiff')
+                  th.text-center = t('.header_gamerate')
+            span.text-end
+              p.small.me-3 = t('.standing_criterion_html')

@@ -71,8 +71,13 @@ as :user do
 
   get "championships", to: "championships#index"
   get "championships/:id/details", to: "championships#details", as: :championship_details
-  get "championships/:id/games", to: "championships#games", as: :championship_games
+  match "championships/:id/games", to: "championships#games", as: :championship_games, via: [:get, :patch]
   get "championships/:id/settings", to: "championships#settings", as: :championship_settings
+  get "championships/:id/goalers", to: "championships#goalers", as: :championship_goalers
+  get "championships/:id/assisters", to: "championships#assisters", as: :championship_assisters
+  get "championships/:id/fairplay", to: "championships#fairplay", as: :championship_fairplay
+  get "championships/:id/bestofmatch", to: "championships#bestofmatch", as: :championship_bestofmatch
+  get "championships/:id/standing", to: "championships#standing", as: :championship_standing
 
   post "games/:id/start", to: "games#start", as: :game_start
   post "games/:id/results", to: "games#results", as: :game_results

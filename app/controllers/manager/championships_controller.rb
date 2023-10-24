@@ -24,21 +24,20 @@ class Manager::ChampionshipsController < ApplicationController
     if params[:id] != "none"
       championship = :ok if Championship.find(params[:id]).name == params[:championship][:name]
     end
-      
     render body: nil, status: championship
   end
 
   def all_championships
     @championships = Championship.where(season_id: @season.id).order(updated_at: :desc)
   end
-  
+
   def set_championship
     @championship = Championship.friendly.find(params[:id])
   end
 
   def get_ctype_partial
     if params[:id] != "none"
-      @championship = Championship.find(params[:id])
+      @championship = Championship.friendly.find(params[:id])
       @sStarted = @championship.status > 0 ? true : false
     end
     @ctype = params[:ctype]
@@ -46,7 +45,7 @@ class Manager::ChampionshipsController < ApplicationController
 
   def games
     breadcrumb @championship.name, manager_championship_details_path(id: @championship.id), match: :exact, frame: "main_frame"
-    @pagy, @games = pagy(Game.includes([home: :def_team], [visitor: :def_team]).where(championship_id: @championship.id).order(id: :asc))
+    @pagy, @games = pagy(Game.includes([home: :def_team], [visitor: :def_team]).where(championship_id: @championship.id).order(gsequence: :asc))
   end
 
   def create
@@ -99,7 +98,7 @@ class Manager::ChampionshipsController < ApplicationController
             championship_id: @championship.id,
             award_id: award[1].to_i,
             award_type: award[0]
-            ) if award[1].to_i != 0
+          ) if award[1].to_i != 0
         end
         format.turbo_stream {flash.now["success"] = t(".success")}
         format.html { redirect_to manager_championships_path, notice: t(".success") }
@@ -163,7 +162,7 @@ class Manager::ChampionshipsController < ApplicationController
   end
 
   def settings
-    @championship = Championship.find(params[:id])
+    @championship = Championship.friendly.find(params[:id])
     breadcrumb @championship.name, manager_championship_details_path(id: @championship.id), match: :exact, frame: "main_frame"
     @cTypes = Championship.types
     @awards = League.get_awards(@league.id)
@@ -176,12 +175,18 @@ class Manager::ChampionshipsController < ApplicationController
       @cPositions = ChampionshipPosition.where(championship_id: @championship.id).order(position: :asc)
     end
 
-    @goalers = Championship.getGoalers(@championship).limit(5)
-    @assists = Championship.getAssisters(@championship).limit(5)
-    @fairplay = Championship.getFairPlay(@championship).limit(5)
-    @bestplayer = Championship.getBestPlayer(@championship).limit(5)
+    @goalers = Championship.getGoalers(@championship)
+    @assists = Championship.getAssisters(@championship)
+    @fairplay = Championship.getFairPlay(@championship)
+    @bestplayer = Championship.getBestPlayer(@championship)
     @lGames = Game.where(championship_id: @championship.id, status: 4).order(updated_at: :desc).limit(5)
     @user_season = UserSeason.where(season_id: @season.id).includes(:user)
+
+    @end_enabled = false
+    if Game.where("championship_id = ? AND status < ?", @championship.id, 3).length == 0
+      @end_enabled = true if @championship.status == 14 && @championship.preferences["league_finals"] == "on"
+      @end_enabled = true if @championship.preferences["league_finals"] == nil
+    end
   end
 
   def define_clubs
@@ -201,9 +206,9 @@ class Manager::ChampionshipsController < ApplicationController
   end
 
   def start_league_secondround
-    if request.post?
-      show_step(ManagerServices::Championship::League::Secondround.call(@championship, current_user, params), t(".success"))
-    end
+    show_step(ManagerServices::Championship::League::Secondround.call(@championship, current_user, params), t(".success")) if request.post?
+
+    render("manager/championships/cactions/start_league_secondround") if request.get?
   end
 
   def start_league_semi
@@ -220,22 +225,16 @@ class Manager::ChampionshipsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if @championship.status == 1
-        format.turbo_stream { flash["error"] = t(".in_progress") }
-        format.html { render :details, status: :unprocessable_entity, notice: t(".in_progress") }
+      games = Game.where(championship_id: @championship.id, status: 4)
+      games.each do |game|
+        AppServices::Games::Revoke.call(game)
+      end
+      if @championship.destroy!
+        all_championships
+        format.turbo_stream { flash["success"] = t(".success") }
+        format.html { redirect_to manager_championships_path, notice: t(".success") }
       else
-        games = Game.where(championship_id: @championship.id, status: 4)
-        games.each do |game|
-          AppServices::Games::Revoke.call(game)
-        end
-        
-        if @championship.destroy!
-          all_championships
-          format.turbo_stream { flash["success"] = t(".success") }
-          format.html { redirect_to manager_championships_path, notice: t(".success") }
-        else
-          format.html { render :details, status: :unprocessable_entity }
-        end
+        format.html { render :details, status: :unprocessable_entity }
       end
     end
   end
@@ -243,7 +242,6 @@ class Manager::ChampionshipsController < ApplicationController
   def show_step(resolution, success_message)
     respond_to do |format|
       if resolution.success?
-        # details
         flash.now["success"] = success_message
         format.turbo_stream { render "show_step" }
         format.html { redirect_to manager_championships_path, notice: success_message }

@@ -7,30 +7,29 @@ class ClubFinance < ApplicationRecord
 
   def update_club_balance
     if ClubFinance.where(club_id: club.id).count > 1
-      previousBalance = ClubFinance.where(club_id: club.id).order("updated_at ASC").second_to_last
+      previous_balance = ClubFinance.where(club_id: club.id).order("updated_at ASC").second_to_last
       current = ClubFinance.where(club_id: club.id).order("updated_at ASC").last
-
       case current.operation
       when "player_hire"
-        updatedBalance = previousBalance.balance - current.value
+        updated_balance = previous_balance.balance - current.value
       when "pay_wage"
-        updatedBalance = previousBalance.balance - current.value
+        updated_balance = previous_balance.balance - current.value
       when "clear_club_balance"
-        updatedBalance = current.value
+        updated_balance = current.value
       when "fire_tax"
-        updatedBalance = previousBalance.balance - current.value
+        updated_balance = previous_balance.balance - current.value
       when "player_steal"
-        updatedBalance = previousBalance.balance - current.value
+        updated_balance = previous_balance.balance - current.value
       when "player_sold"
-        updatedBalance = previousBalance.balance + current.value
+        updated_balance = previous_balance.balance + current.value
       when "player_stealed"
-        updatedBalance = previousBalance.balance + current.value
+        updated_balance = previous_balance.balance + current.value
       when "game"
-        updatedBalance = previousBalance.balance + current.value
+        updated_balance = previous_balance.balance + current.value
       when "award"
-        updatedBalance = previousBalance.balance + current.value
+        updated_balance = previous_balance.balance + current.value
       end
-      current.balance = updatedBalance
+      current.balance = updated_balance
       current.save!
     end
   end

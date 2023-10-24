@@ -1,5 +1,3 @@
-.row
-  .col-12
-    = render 'championships/details/info'
-.row
-  = render "championships/details/goalers"
+= render 'championships/details/info'
+= turbo_frame_tag "championship_details" do
+  = render "championships/details/#{@championship.ctype}/main"

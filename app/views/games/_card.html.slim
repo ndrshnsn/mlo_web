@@ -1,5 +1,6 @@
 - phase = Championship.translate_phase(game.phase)
 - status = Game.translate_status(game.status)
+- start_allowed = Game.start_permission(game)
 - session_pdbprefix = session.present? ? session[:pdbprefix] : session_pdbprefix
 - session_season = session.present? ? session[:season] : session_season
 = turbo_frame_tag "game_#{game.id}" do
@@ -67,9 +68,7 @@
                   - if game.hsaccepted
                     = render "games/status/ready"
                   - else
-                    = link_to "javascript:;", class: "btn bg-primary-subtle btn-sm border border-primary", data: { controller: "confirm", "confirm-title-value": t('.start_game_question', game: game.gsequence), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
-                      i.ri-play-line.me-1.align-bottom
-                      span = t(".start_game")
+                    = render "games/status/start", game: game, start_allowed: start_allowed
                 - else
                   - if !game.hsaccepted && game.vsaccepted
                     = render "games/status/waiting"
@@ -83,9 +82,7 @@
                   - if game.vsaccepted
                     = render "games/status/ready"
                   - else
-                    = link_to "javascript:;", class: "btn bg-primary-subtle btn-sm border border-primary", data: { controller: "confirm", "confirm-title-value": t('.start_game_question', game: game.gsequence), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
-                      i.ri-play-line.me-1.align-bottom
-                      span = t(".start_game")
+                    = render "games/status/start", game: game, start_allowed: start_allowed
                 - else
                   - if !game.vsaccepted && game.hsaccepted
                     = render "games/status/waiting"
@@ -110,9 +107,6 @@
       - else
         - if game.status == 1
           = render "games/status/running"
-
-        / - elsif game.status == 3
-        /   = render partial: 'championships/games/gStatus_inContest', locals: { game: game, iteration: iteration}
 
   = turbo_frame_tag "modal_goal_#{game.id}", target: "_top"
   = turbo_frame_tag "modal_card_#{game.id}", target: "_top"

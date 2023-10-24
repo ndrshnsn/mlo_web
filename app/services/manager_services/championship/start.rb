@@ -16,8 +16,6 @@ class ManagerServices::Championship::Start < ApplicationService
     case @championship.ctype
     when "league"
       create_league_games
-    when "cup"
-    when "rounds"
     end
   end
 

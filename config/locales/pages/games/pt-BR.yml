@@ -7,10 +7,11 @@ pt-BR:
         details: "Detalhes"
     card:
       penalties: "PN"
-      start_game: "Iniciar"
-      start_game_question: "Iniciar Jogo #%{game} ?"
-      start_game_text: "Importante: O jogo só será liberado para realização após o Adversário aceitar seu início."
     status:
+      start:
+        start_game: "Iniciar"
+        start_game_question: "Iniciar Jogo #%{game} ?"
+        start_game_text: "Importante: O jogo só será liberado para realização após o Adversário aceitar seu início."
       results:
         enter_match_info: "Resultado"
       running:

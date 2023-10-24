@@ -1,5 +1,5 @@
 class Season < ApplicationRecord
-  has_noticed_notifications
+  #has_noticed_notifications
   audited
 
   belongs_to :league

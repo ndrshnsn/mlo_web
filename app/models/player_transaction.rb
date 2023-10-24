@@ -1,20 +1,18 @@
 class PlayerTransaction < ApplicationRecord
   belongs_to :player_season
-  belongs_to :from_club, :class_name => 'Club', optional: true
-  belongs_to :to_club, :class_name => 'Club', optional: true
+  belongs_to :from_club, class: "Club", optional: true
+  belongs_to :to_club, class: "Club", optional: true
 
-  def self.new_transaction(playerSeason, fromClub, toClub, transferMode, transferRate)
-    # It can be nil
-    fromClub_id = fromClub.nil? ? nil : fromClub.id
-    toClub_id = toClub.nil? ? nil : toClub.id
+  def self.new_transaction(player_season, from_club, to_club, transfer_mode, transfer_rate)
+    from_club_id = from_club.nil? ? nil : from_club.id
+    to_club_id = to_club.nil? ? nil : to_club.id
 
-    # Create new Entry in PlayerTransaction
-    pTransaction = PlayerTransaction.new(
-        player_season_id: playerSeason.id,
-        from_club_id: fromClub_id,
-        to_club_id: toClub_id,
-        transfer_mode: transferMode,
-        transfer_rate: transferRate
-      ).save!
+    PlayerTransaction.new(
+      player_season_id: player_season.id,
+      from_club_id: from_club_id,
+      to_club_id: to_club_id,
+      transfer_mode: transfer_mode,
+      transfer_rate: transfer_rate
+    ).save!
   end
 end

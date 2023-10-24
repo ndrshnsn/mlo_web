@@ -1,7 +1,7 @@
 class DefPlayer < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :scoped, scope: :platform
-  has_noticed_notifications
+  #has_noticed_notifications
 
   ## Player Attributes
   jsonb_accessor :details,

@@ -14,7 +14,6 @@ class ManagerServices::Championship::League::Secondround < ApplicationService
   private
 
   def start_league_second_round
-
     case @params[:selected]
     when "first_method"
       first_method

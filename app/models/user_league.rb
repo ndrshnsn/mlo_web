@@ -3,6 +3,6 @@ class UserLeague < ApplicationRecord
   belongs_to :league
 
   def self.get_fake_accounts(id)
-    self.joins(:user).where("user_leagues.league_id = ? AND users.preferences -> 'fake' = ?", id, "true")
+    UserLeague.joins(:user).where("user_leagues.league_id = ? AND users.preferences -> 'fake' = ?", id, "true")
   end
 end
