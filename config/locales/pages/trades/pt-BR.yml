@@ -1,5 +1,7 @@
 pt-BR:
   trades:
+    index:
+      trades: "Negociações"
     main:
       buy_players: "Comprar Jogadores"
       buy_players_desc: "Procure no Mercado Jogadores Disponíveis para Compra"
@@ -17,8 +19,11 @@ pt-BR:
       actions:
         player_information: "Informações"
         player_buy: "Comprar Jogador"
+        buy_question: "Comprar Jogador?"
+        buy_text: "Seu Clube pagará a quantia de %{buy_value} por %{buy_player}. Verifique o financeiro antes de fechar negócio!"
     buy:
       index:
+        buy_players: "Comprar Jogadores"
         name: "Nome"
         club: "Contrato"
         free_players: "Jogadores Livres"
@@ -35,3 +40,54 @@ pt-BR:
         transfer_fee: "Passe"
         actions: "Ações"
         overall: "Over"
+    exchange:
+      index:
+        exchange_players: "Troca de Jogadores"
+      status:
+        waiting_answer: "Aguardando..."
+        accepted: "Aceita"
+        denied: "Negada"
+        cancelled: "Cancelada"
+      proposals:
+        sent: "Enviada"
+        received: "Recebida"
+        exchange_proposal: "Proposta de Troca"
+        additional_value: "Valor Adicional"
+        accept_exchange: "Aceitar"
+        deny_exchange: "Negar"
+        add_proposal: "Nova Proposta"
+        cancel_proposal: "Cancelar"
+        cancel_proposal_question: "Cancelar Proposta?"
+        deny_proposal_question: "Negar Proposta?"
+        deny_proposal_text: "A proposta será negada e o outro clube informado sobre sua decisão"
+        accept_proposal_question: "Aceitar proposta de Troca?"
+        accept_proposal_text: "Os jogadores serão trocados de clube e se houver valor adicional, transferido entre os clubes."
+      history:
+        exchange_history: "Histórico"
+        date: "Data"
+        from_club: "De"
+        to_club: "Para"
+        proposal: "Proposta"
+        decision: "Decisão"
+      proposal:
+        new_proposal:
+          information_html: "<strong>Informações</strong><p>Para enviar uma nova proposta de troca, selecione na primeira coluna um ou mais jogadores do seu clube e um valor ( caso queira adicionar ). Já na outra coluna selecione o Clube de destino e um ou mais jogadores que deseja realizar a troca. O Técnico do outro Clube irá receber a proposta que poderá ser aceita ou rejeitada.</p>"
+          club_players: "Selecione o(s) Jogador(es)"
+          proposal_value: "Valor Adicional"
+          destination_club: "Clube"
+          destination_players: "Selecione o(s) Jogador(es)"
+          proposal_title: "Proposta de Troca"
+          confirm: "Confirma a Proposta de Troca?"
+          confirm_text: "A proposta será enviada ao Técnico do Clube de destino"
+      cancel_proposal:
+        success: "Proposta Cancelada com sucesso"
+        error: "Erro cancelando proposta!"
+      send_proposal:
+        success: "Proposta enviada com sucesso"
+        error: "Erro enviando proposta!"
+      deny_proposal:
+        success: "Proposta negada com sucesso"
+        error: "Erro negando proposta"
+      accept_proposal:
+        success: "Proposta aceita com sucesso"
+        error: "Erro aceitando proposta"

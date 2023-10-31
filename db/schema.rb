@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_11_205620) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -148,6 +148,21 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_205620) do
     t.integer "group"
     t.index ["championship_id"], name: "index_club_championships_on_championship_id"
     t.index ["club_id"], name: "index_club_championships_on_club_id"
+  end
+
+  create_table "club_exchanges", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "from_club_id", null: false
+    t.uuid "to_club_id", null: false
+    t.jsonb "from_details", default: {}
+    t.jsonb "to_details", default: {}
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "reason"
+    t.index ["from_club_id"], name: "index_club_exchanges_on_from_club_id"
+    t.index ["from_details"], name: "index_club_exchanges_on_from_details", using: :gin
+    t.index ["to_club_id"], name: "index_club_exchanges_on_to_club_id"
+    t.index ["to_details"], name: "index_club_exchanges_on_to_details", using: :gin
   end
 
   create_table "club_finances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -524,6 +539,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_205620) do
   add_foreign_key "club_awards", "clubs"
   add_foreign_key "club_championships", "championships"
   add_foreign_key "club_championships", "clubs"
+  add_foreign_key "club_exchanges", "clubs", column: "from_club_id"
+  add_foreign_key "club_exchanges", "clubs", column: "to_club_id"
   add_foreign_key "club_finances", "clubs"
   add_foreign_key "club_games", "clubs"
   add_foreign_key "club_games", "games"

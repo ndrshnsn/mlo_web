@@ -5,18 +5,17 @@ pt-BR:
         success: "Temporada iniciada com Sucesso!"
         error: "Erro iniciando a Temporada"
       start_club_choosing:
-        success:
-        error:
+        success: "Iniciada escolha dos Clubes"
+        error: "Erro iniciando escolha dos Clubes"
       stop_club_choosing:
-        success:
-        error:
+        success: "Finalizada escolha dos Clubes"
+        error: "Erro finalizando escolha dos Clubes"
       start_players_raffle:
-        success:
-        error:
+        success: "Iniciado Sorteio dos Jogadores"
+        error: "Erro iniciando sorteio dos Jogadores"
       end:
-        success:
-        error:
-
+        success: "Encerrada Temporada!"
+        error: "Erro encerrando a temporada"
 
       sActions:
         season_actions: "Ações"

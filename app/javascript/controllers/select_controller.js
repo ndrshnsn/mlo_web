@@ -8,31 +8,45 @@ export default class SelectController extends Controller {
     pholder: { type: String, default: 'all_items' },
     readonly: { type: Boolean, default: false },
     clear: { type: Boolean, default: true },
-    search: { type: Boolean, default: false }
+    search: { type: Boolean, default: false },
+    close: { type: Boolean, default: true }
   }
 
   connect() {
     const el = document.getElementById(this.element.id)
     const searchOption = this.searchValue == false ? "Infinity" : 20
     if ( this.iconValue === true ) {
-      this.select2withIcons(el, this.readonlyValue, i18n.t(this.pholderValue), searchOption)
+      this.select2withIcons(el, this.readonlyValue, i18n.t(this.pholderValue), searchOption, this.closeValue)
     } else {
-      this.select2withoutIcons(el, this.readonlyValue, i18n.t(this.pholderValue), searchOption)
+      this.select2withoutIcons(el, this.readonlyValue, i18n.t(this.pholderValue), searchOption, this.closeValue)
     }
-    // $(el).on('select2:select', function () {
-    //   let event = new Event('change', { bubbles: true }) // fire a native event
-    //   this.dispatchEvent(event);
-    // })
   }
 
-  select2withIcons(element, setReadonly, pHolder, searchOption) {
+  select2withIcons(element, setReadonly, pHolder, searchOption, closeOption) {
     $(element).select2({
-      templateResult: this.iconFormat,
-      templateSelection: this.iconFormat,
+      templateResult: this.formatResult,
+      templateSelection: this.formatSelection,
       placeholder: pHolder,
       allowClear: this.clearValue,
       dropdownAutoWidth: true,
       width: '100%',
+      minimumResultsForSearch: searchOption,
+      closeOnSelect: closeOption,
+      dropdownParent: $(element).parent()
+    });
+
+    if ( setReadonly === true ) {
+      $(element).attr("readonly", "readonly");
+    }
+  }
+
+  select2withoutIcons(element, setReadonly, pHolder, searchOption, closeOption) {
+    $(element).select2({
+      placeholder: pHolder,
+      dropdownAutoWidth: true,
+      width: '100%',
+      allowClear: this.clearValue,
+      closeOnSelect: closeOption,
       minimumResultsForSearch: searchOption,
       dropdownParent: $(element).parent()
     });
@@ -42,46 +56,55 @@ export default class SelectController extends Controller {
     }
   }
 
-  select2withoutIcons(element, setReadonly, pHolder, searchOption) {
-    $(element).select2({
-      placeholder: pHolder,
-      dropdownAutoWidth: true,
-      width: '100%',
-      allowClear: this.clearValue,
-      minimumResultsForSearch: searchOption,
-      dropdownParent: $(element).parent()
-    });
-
-    if ( setReadonly === true ) {
-      $(element).attr("readonly", "readonly");
-    }
-  }
-
-  iconFormat(icon) {
+  formatSelection(icon) {
     if (!icon.id) {
       return icon.text;
     }
-    let originalOption = icon.element;
-    let size = $(originalOption).data('img-size') == null ? "14" : $(originalOption).data('img-size')
-    let player_position = ''
-    let player_class = ''
-
-    if ( $(originalOption).data('position-value') ) {
-      player_position = '<span class="me-1 badge badge-' + $(originalOption).data('position-class') + '">' + $(originalOption).data('position-value') + '</span>'
-      player_class = "avatar-md img-thumbnail rounded-circle"
-    }
-
-    if ( icon.id == "-" ) {
-      var $icon = '<span class="d-flex align-items-center">' + icon.text + '</span>'
+  
+    const originalOption = icon.element;
+    const size = $(originalOption).data('img-size') || '14';
+    const playerPosition = $(originalOption).data('position-value');
+    const selectionFloat = $(originalOption).data('float') ? "style='float: right;'" : '';
+    const playerClass = playerPosition ? 'avatar-md img-thumbnail rounded-circle' : '';
+    const playerBadge = playerPosition
+      ? '<span class="me-1 badge badge-'+ $(originalOption).data('position-class') +'">' + playerPosition + '</span>'
+      : '';
+  
+    if (icon.id === '-') {
+      var $icon = '<span class="d-flex align-items-center">' + icon.text + '</span>';
+    } else if ($(originalOption).data('img')) {
+      var $icon = '<span '+ selectionFloat +' class="d-flex align-items-center">' + playerBadge + '<img src="' + $(originalOption).data('img') + '" class="me-2 rounded-circle '+ playerClass +'" style="width: '+ size +'px; height: '+ size +'px;">'+ icon.text +'</span>';
     } else {
-      if ( $(originalOption).data('img') ) {
-        var $icon = '<span class="d-flex align-items-center">' + player_position + '<img src="' + $(originalOption).data('img') + '" class="me-2 rounded-circle '+ player_class +'", style="width: ' + size + 'px; height: ' + size + 'px;">' + icon.text + '</span>'
-      } else {
-        var $icon = '<span>' + player_position + '</span>'
-      }
+      var $icon = '<span>'+ playerBadge +'</span>';
     }
 
     $icon = $($icon);
     return $icon;
   }
+
+  formatResult(icon) {
+    if (!icon.id) {
+      return icon.text;
+    }
+  
+    const originalOption = icon.element;
+    const size = $(originalOption).data('img-size') || '14';
+    const playerPosition = $(originalOption).data('position-value');
+    const playerClass = playerPosition ? 'avatar-md img-thumbnail rounded-circle' : '';
+    const playerBadge = playerPosition
+      ? '<span class="me-1 badge badge-'+ $(originalOption).data('position-class') +'">' + playerPosition + '</span>'
+      : '';
+  
+    if (icon.id === '-') {
+      var $icon = '<span class="d-flex align-items-center">' + icon.text + '</span>';
+    } else if ($(originalOption).data('img')) {
+      var $icon = '<span class="d-flex align-items-center">' + playerBadge + '<img src="' + $(originalOption).data('img') + '" class="me-2 rounded-circle '+ playerClass +'" style="width: '+ size +'px; height: '+ size +'px;">'+ icon.text +'</span>';
+    } else {
+      var $icon = '<span>'+ playerBadge +'</span>';
+    }
+
+    $icon = $($icon);
+    return $icon;
+  }
+
 }

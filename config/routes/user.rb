@@ -101,6 +101,13 @@ as :user do
   get "trades/buy", to: "trades/buy#index", as: :trades_buy
   post "trades/buy/get_proc_dt", to: "trades/buy#get_proc_dt"
   post "trades/buy/:id", to: "trades/buy#confirm", as: :trades_buy_confirm
+  get "trades/exchange", to: "trades/exchange#index", as: :trades_exchange
+  get "trades/exchange/proposal", to: "trades/exchange#new_proposal", as: :trades_exchange_new_proposal
+  patch "trades/exchange/proposal", to: "trades/exchange#send_proposal", as: :trades_exchange_send_proposal
+  get "trades/exchange/proposal/:id", to: "trades/exchange#proposal_club_players", as: :trades_exchange_get_club_players
+  post "trades/exchange/proposal/:id/accept", to: "trades/exchange#accept_proposal", as: :trades_exchange_accept_proposal
+  post "trades/exchange/proposal/:id/deny", to: "trades/exchange#deny_proposal", as: :trades_exchange_deny_proposal
+  post "trades/exchange/proposal/:id/cancel", to: "trades/exchange#cancel_proposal", as: :trades_exchange_cancel_proposal
 
   get "finance/contracts", to: "finance/contracts#index"
   delete "finance/contracts/:id/fire", to: "finance/contracts#fire", as: :finance_contract_fire_player

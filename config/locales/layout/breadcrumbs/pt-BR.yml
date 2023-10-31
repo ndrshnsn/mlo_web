@@ -18,6 +18,12 @@ pt-BR:
           main: "Contratos"
       squad:
         main: "Equipe"
+      trades:
+        main: "Negociações"
+        buy:
+          main: "Comprar"
+        exchange:
+          main: "Trocar"
       admin:
         playerdb:
           main: "PlayerDB"

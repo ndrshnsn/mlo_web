@@ -24,6 +24,8 @@ class ClubFinance < ApplicationRecord
         updated_balance = previous_balance.balance + current.value
       when "player_stealed"
         updated_balance = previous_balance.balance + current.value
+      when "player_exchange"
+        updated_balance = previous_balance.balance + current.value
       when "game"
         updated_balance = previous_balance.balance + current.value
       when "award"

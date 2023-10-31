@@ -10,7 +10,7 @@ class Admin::Playerdb::TeamsDatatable < ApplicationDatatable
       tName += stringHuman(team.name)
 
       ## Platform
-      tAvailable = team.platforms
+      tAvailable = eval(team.platforms)
 
       ## Country
       tCountry = image_tag(countryFlag(team.def_country.name), class: "rounded me-50", height: "18", width: "24", title: stringHuman(t("defaults.countries.#{team.def_country.name}")), data: {toggle: "tooltip", placement: "top"})

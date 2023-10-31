@@ -1,6 +1,7 @@
 module ApplicationHelper
   include DatatablesHelper
   include GamesHelper
+  include TradesHelper
   include Pagy::Frontend
 
   def render_turbo_stream_flash_messages
@@ -79,6 +80,10 @@ module ApplicationHelper
 
   def toCurrency(value)
     number_to_currency(value, unit: "#{I18n.t("money_sign")} ", separator: ".", delimiter: ".", precision: 0)
+  end
+
+  def currency_to_number currency
+    currency.to_s.gsub(/[$,]/, "").to_i
   end
 
   def countryFlag(country)

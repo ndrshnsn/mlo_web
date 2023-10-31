@@ -1,5 +1,8 @@
 = link_to player_details_path(id: player.friendly_id, platform: player.platform), type: "button", class: "btn btn-secondary btn-icon btn-sm", title: "#{t('.player_information')}", data: { "turbo-frame": "modal", toggle: "tooltip", placement: "top" } do
   .ri-information-line
 
-= link_to "javascript:;", type: "button", class: "btn btn-primary btn-icon btn-sm ms-1", title: "#{t('.player_buy')}", data: { toggle: "tooltip", placement: "top", action: "click->confirm#dialog", controller: "confirm", "confirm-title-value": "#{t('defaults.datatables.buy_question')}", "confirm-icon-value": "question", "confirm-link-value": trades_buy_confirm_path(player.id), "confirm-action-value": "post" } do
-  i.ri-shopping-bag-line
+- enabled = (season.preferences["saction_transfer_window"] == 0 || season.preferences["change_player_out_of_window"] == nil) ? false : true
+
+- if (!player_season || player_season.club_players.size == 0) && enabled
+  = link_to "javascript:;", type: "button", class: "btn btn-primary btn-icon btn-sm ms-1", title: "#{t('.player_buy')}", data: { toggle: "tooltip", placement: "top", action: "click->confirm#dialog", controller: "confirm", "confirm-title-value": "#{t('.buy_question')}", "confirm-text-value": "#{t('.buy_text', buy_value: player_value, buy_player: player.name)}", "confirm-icon-value": "question", "confirm-link-value": trades_buy_confirm_path(player.id), "confirm-action-value": "post", "turbo-disabled": true } do
+    i.ri-shopping-bag-line

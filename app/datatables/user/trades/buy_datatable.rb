@@ -6,44 +6,41 @@ class User::Trades::BuyDatatable < ApplicationDatatable
   def data
     players.map do |player|
 
-      pSeason = PlayerSeason.find_by(def_player_id: player.id, season_id: session[:season])
+      player_season = PlayerSeason.find_by(def_player_id: player.id, season_id: session[:season])
       season = Season.find(session[:season])
 
       nationality = image_tag(countryFlag(player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
 
-      playerName = ApplicationController.render partial: "trades/cells/player_name", locals: {session_pdbprefix: session[:pdbprefix], player: player, nationality: nationality }
+      player_name = ApplicationController.render partial: "trades/cells/player_name", locals: {session_pdbprefix: session[:pdbprefix], player: player, nationality: nationality }
 
       position = ApplicationController.render partial: "trades/cells/position", locals: {rpPOS: translate_pkeys(player.def_player_position.name, player.platform) }
 
-      overallRating = ApplicationController.render partial: "trades/cells/overall_rating", locals: {translated_class: translate_pscore(player.attrs["overallRating"]), player: player }
-      
-      if !pSeason
-        playerTeam = ApplicationController.render partial: "trades/cells/player_free"
+      overall_rating = ApplicationController.render partial: "trades/cells/overall_rating", locals: {translated_class: translate_pscore(player.attrs["overallRating"]), player: player }
+
+      player_team = if !player_season
+        ApplicationController.render partial: "trades/cells/player_free"
       else
-        if pSeason.club_players.size == 1
-          playerTeam = ApplicationController.render partial: "trades/cells/player_team", locals: {pSeason: pSeason, session_pdbprefix: session[:pdbprefix]}
+        if player_season.club_players.size == 1
+          ApplicationController.render partial: "trades/cells/player_team", locals: {pSeason: player_season, session_pdbprefix: session[:pdbprefix]}
         else
-          playerTeam = ApplicationController.render partial: "trades/cells/player_free"
+          ApplicationController.render partial: "trades/cells/player_free"
         end
       end
 
-      ## PlayerValue
-      playerValue = pSeason != nil ? PlayerSeason.getPlayerPass(pSeason, season) : DefPlayer.getSeasonInitialSalary(season, player)* season.preferences["player_value_earning_relation"]
-      playerValue = ApplicationController.render partial: "trades/cells/player_value", locals: { playerValue: playerValue }
+      player_value = (!player_season.nil?) ? PlayerSeason.getPlayerPass(player_season, season) : DefPlayer.getSeasonInitialSalary(season, player)* season.preferences["player_value_earning_relation"]
+      player_value = ApplicationController.render partial: "trades/cells/player_value", locals: {playerValue: player_value}
 
-      ## Actions
-      dtActions = ApplicationController.render partial: "trades/cells/actions", locals: {player: player}
-
+      dt_actions = ApplicationController.render partial: "trades/cells/actions", locals: {season: season, player_season: player_season, player: player, player_value: player_value}
       {
         id: player.id,
-        playerName: playerName,
+        playerName: player_name,
         nationality: nationality,
         position: position,
-        overallRating: overallRating,
+        overallRating: overall_rating,
         age: player.age,
-        playerTeam: playerTeam,
-        playerValue: playerValue,
-        DT_Actions: dtActions,
+        playerTeam: player_team,
+        playerValue: player_value,
+        DT_Actions: dt_actions,
         DT_RowId: player.id
       }
     end
@@ -52,8 +49,8 @@ class User::Trades::BuyDatatable < ApplicationDatatable
   def getPlayers(season)
     season = Season.find(season)
     players = DefPlayer.eager_load(:def_player_position, :def_country, :club_players)
-    players = players.select("def_players.*, player_seasons.details -> 'salary', def_players.details -> 'attrs' ->> 'overallRating'")
-    players = players.where(def_players: { platform: season.preferences["raffle_platform"], active: true } )
+    players = players.where(def_players: {platform: season.preferences["raffle_platform"], active: true})
+    players.select("def_players.*, player_seasons.details -> 'salary', def_players.details -> 'attrs' ->> 'overallRating'")
     players
   end
 
@@ -71,7 +68,7 @@ class User::Trades::BuyDatatable < ApplicationDatatable
 
   def fetch_players
     active_season = session[:season]
-    userClub = User.getClub(current_user.id, active_season)
+    #userClub = User.getClub(current_user.id, active_season)
 
     searchTeams = searchSellingPlayers = searchFreePlayers = false
     search_string = []
@@ -99,11 +96,11 @@ class User::Trades::BuyDatatable < ApplicationDatatable
     players = getPlayers(active_season)
 
     if params[:minPlayerValue]
-      having_string = "COALESCE((player_seasons.details->'salary')::Integer, #{DefPlayer.getSeasonInitialSalary(nil, nil, true)} ) >= #{params[:minPlayerValue].to_i.abs}"
+      having_string = "COALESCE((player_seasons.details->'salary')::Integer, #{DefPlayer.getSeasonInitialSalary(nil, nil, true)} ) >= #{params[:minPlayerValue].to_i.abs - 1}"
     end
 
     if params[:maxPlayerValue]
-      having_string += " AND COALESCE((player_seasons.details->'salary')::Integer, #{DefPlayer.getSeasonInitialSalary(nil, nil, true)} ) <= #{params[:maxPlayerValue].to_i.abs}"
+      having_string += " AND COALESCE((player_seasons.details->'salary')::Integer, #{DefPlayer.getSeasonInitialSalary(nil, nil, true)} ) <= #{params[:maxPlayerValue].to_i.abs + 1}"
     end
 
     if params[:minAge]
@@ -123,30 +120,30 @@ class User::Trades::BuyDatatable < ApplicationDatatable
     end
 
     if searchTeams == true
-      if searchFreePlayers == true
-        players = players.where('def_players.id NOT IN (?)', @cPlayers)
+      players = if searchFreePlayers == true
+        players.where.not(def_players: {id: @cPlayers})
       elsif searchSellingPlayers == true
-        players = players.where('player_seasons.id IN (?)', @cPlayers)
+        players.where(player_seasons: {id: @cPlayers})
       else
-        players = players.where('player_seasons.id IN (?)', @cPlayers)
+        players.where(player_seasons: {id: @cPlayers})
       end
     end
 
-    if sort_column == 'def_player_positions"."name'
-      players = players.order(Arel.sql("def_player_positions.order #{sort_direction}"))
+    players = if sort_column == 'def_player_positions"."name'
+      players.order(Arel.sql("def_player_positions.order #{sort_direction}"))
     elsif sort_column == 'overallRating'
-      players = players.order(Arel.sql("def_players.details -> 'attrs' ->> 'overallRating' #{sort_direction}"))
+      players.order(Arel.sql("def_players.details -> 'attrs' ->> 'overallRating' #{sort_direction}"))
     elsif sort_column == 'def_players"."playerValue'
-      players = players.order(Arel.sql("COALESCE((player_seasons.details->'salary')::Integer, #{DefPlayer.getSeasonInitialSalary(nil, nil, true)} ) #{sort_direction} nulls last"))
+      players.order(Arel.sql("COALESCE((player_seasons.details->'salary')::Integer, #{DefPlayer.getSeasonInitialSalary(nil, nil, true)} ) #{sort_direction} nulls last"))
     elsif sort_column == 'def_players"."playerTeam'
-      players = players.order("club_players.id #{sort_direction}")
+      players.order("club_players.id #{sort_direction}")
     else
-      players = players.order(Arel.sql("\"#{sort_column}\" #{sort_direction}"))
+      players.order(Arel.sql("\"#{sort_column}\" #{sort_direction}"))
     end
 
     players = players.where(search_string.join(' AND '))
-    players = players.where(having_string)
-    players = players.page(page).per(per_page)
+    players = players.where(having_string) 
+    players.page(page).per(per_page)
   end
 
   def columns

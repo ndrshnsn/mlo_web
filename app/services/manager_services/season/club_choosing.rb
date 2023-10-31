@@ -26,8 +26,8 @@ class ManagerServices::Season::ClubChoosing < ApplicationService
 
     ## Create Global Notification
     params = {
-      title: I18n.t('global_notify.choose_clubs_open_title'),
-      body: I18n.t('global_notify.choose_clubs_open_desc_html'),
+      title: I18n.t("global_notify.choose_clubs_open_title"),
+      body: I18n.t("global_notify.choose_clubs_open_desc_html"),
       type: "info",
       enabled: true
     }
@@ -82,7 +82,7 @@ class ManagerServices::Season::ClubChoosing < ApplicationService
         }
         club.save!
 
-        ClubFinance.create(club_id: club.id, operation: "initial_funds", value: season.preferences["club_default_earning"].to_i, balance: season.preferences["club_default_earning"].to_i, source: season)
+        ClubFinance.create!(club_id: club.id, operation: "initial_funds", value: season.preferences["club_default_earning"].to_i, balance: season.preferences["club_default_earning"].to_i, source: season)
 
         SeasonNotification.with(
           season: season,
