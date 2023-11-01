@@ -1,7 +1,6 @@
 module ApplicationHelper
   include DatatablesHelper
   include GamesHelper
-  include TradesHelper
   include Pagy::Frontend
 
   def render_turbo_stream_flash_messages
