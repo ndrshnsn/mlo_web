@@ -77,7 +77,7 @@
                         .ri-information-line
 
                       - fire_tax = Season.get_player_fire_tax(@season.id, club_player.player_season.id)
-                      - fire_tax_text = fire_tax > 0 ? t('.player_fire_text', fire_tax: fire_tax) : t('.player_fire_text_nil')
+                      - fire_tax_text = fire_tax > 0 ? t('.player_fire_text', fire_tax: toCurrency(fire_tax)) : t('.player_fire_text_nil')
                       = link_to "javascript:;", type: "button", class: "btn btn-danger btn-icon btn-sm ms-1", title: "#{t('.player_fire')}", data: { toggle: "tooltip", placement: "top", action: "click->confirm#dialog", controller: "confirm", "confirm-title-value": "#{t('.player_fire_question', player_name: club_player.def_player.name)}", "confirm-text-value": "#{fire_tax_text}", "confirm-icon-value": "warning", "confirm-link-value": finance_contract_fire_player_path(club_player.id), "confirm-action-value": "delete" } do
                         i.ri-close-line
 

@@ -14,30 +14,36 @@ export default class CleaveController extends Controller {
           blocks: [0, 2, 5, 4],
           delimiters: ["(", ") ", "-"]
         });
-        break
+        break;
       case 'uppercase':
         new Cleave(this.element, {
           blocks: [99999],
           delimiter: '',
           uppercase: true
         });
-        break
+        break;
       case 'price':
         new Cleave(this.element, {
           numeral: true,
-          numeralThousandsGroupStyle: 'thousand'
+          numeralThousandsGroupStyle: 'thousand',
+          numeralPositiveOnly: true
         });
+        break;
       case 'numerical':
         new Cleave(this.element, {
           numericOnly: true,
-          blocks: [99999]
+          blocks: [99999],
+          numeralPositiveOnly: true
         });
+        break;
       case 'penalty':
         new Cleave(this.element, {
           numeral: true,
           blocks: [99],
-          delimiter: ''
+          delimiter: '',
+          numeralPositiveOnly: true
         });
+        break;
     }
   }
 }

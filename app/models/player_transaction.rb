@@ -1,7 +1,7 @@
 class PlayerTransaction < ApplicationRecord
   belongs_to :player_season
-  belongs_to :from_club, class: "Club", optional: true
-  belongs_to :to_club, class: "Club", optional: true
+  belongs_to :from_club, class_name: "Club", optional: true
+  belongs_to :to_club, class_name: "Club", optional: true
 
   def self.new_transaction(player_season, from_club, to_club, transfer_mode, transfer_rate)
     from_club_id = from_club.nil? ? nil : from_club.id

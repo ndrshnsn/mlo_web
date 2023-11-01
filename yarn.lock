@@ -499,9 +499,9 @@ run-parallel@^1.1.9:
     queue-microtask "^1.2.2"
 
 sass@^1.58.3:
-  version "1.69.4"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.69.4.tgz#10c735f55e3ea0b7742c6efa940bce30e07fbca2"
-  integrity sha512-+qEreVhqAy8o++aQfCJwp0sklr2xyEzkm9Pp/Igu9wNPoe7EZEQ8X/MBvvXggI2ql607cxKg/RKOwDj6pp2XDA==
+  version "1.69.5"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.69.5.tgz#23e18d1c757a35f2e52cc81871060b9ad653dfde"
+  integrity sha512-qg2+UCJibLr2LCVOt3OlPhr/dqVHWOa9XtZf2OjbLs/T4VPSJ00udtgJxH3neXZm+QqX8B+3cU7RaLqp1iVfcQ==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -556,9 +556,9 @@ stimulus-vite-helpers@^3.0.0:
   integrity sha512-v8vii8wTyzbH5REE3Z6DbtKqnXEuEQ3ylYs4jQRmLAQrH9vlii7p98MG8gIii1anEEPmnBB1JWWvxKXGZh7apQ==
 
 sweetalert2@^11.6.13:
-  version "11.7.32"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.7.32.tgz#366fde9eaa1fc8d7a8993400d7582715647a31cf"
-  integrity sha512-44tNNe2oLe7T94mT6dus4hc9G7qg6jZU/K5qZzpNS6e5HGPrSF6Kie6oZ7B5puIJydB34V2h/8f5EhIFivYo4A==
+  version "11.9.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.9.0.tgz#c761c9ed6773f22f5c97edfef0c51944f1e70280"
+  integrity sha512-PA3qinKZMNGAhA+AUu2wU7yQOpeZCgOaYWRcg26f4cZN6f7M9iPBuobsxOhR9EHs7ihUIxT6vhAMiB4kcmk1SA==
 
 to-regex-range@^5.0.1:
   version "5.0.1"

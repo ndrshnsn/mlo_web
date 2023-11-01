@@ -263,7 +263,7 @@ class Manager::SeasonsController < ApplicationController
     @season_games = @season_championships.joins(:games).where(games: { status: 4 }).size
     @season_goals = @season_championships.joins(games: :club_games).size
     @season_balance = Season.getBalance(@season)
-    @biggest_transfers = PlayerTransaction.includes(player_season: [def_player: :def_player_position]).where(player_seasons: { season_id: @season.id } ).order(transfer_rate: :desc).limit(5)
+    @biggest_transfers = PlayerTransaction.includes(player_season: [def_player: :def_player_position]).where(player_seasons: {season_id: @season.id}).order(transfer_rate: :desc).limit(5)
     @seasons = Season.where(league_id: @league.id).where.not(id: @season.id).order(updated_at: :desc)
   end
 

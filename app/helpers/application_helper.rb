@@ -81,6 +81,10 @@ module ApplicationHelper
     number_to_currency(value, unit: "#{I18n.t("money_sign")} ", separator: ".", delimiter: ".", precision: 0)
   end
 
+  def currency_to_number currency
+    currency.to_s.gsub(/[$,]/, "").to_i
+  end
+
   def countryFlag(country)
     if !File.exist?("#{Dir.pwd}/app/assets/images/flags/#{DefCountry.getISO(country.humanize)}.svg")
       return image_path("generic-flag.png")

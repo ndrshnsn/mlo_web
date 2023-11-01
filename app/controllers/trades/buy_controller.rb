@@ -13,7 +13,6 @@ class Trades::BuyController < ApplicationController
     @ages = DefPlayer.get_ages(season_platform)
     @player_position = DefPlayerPosition.get_sorted(season_platform)
 
-
     higher_over = DefPlayer.where(platform: season_platform).order(Arel.sql("def_players.details -> 'attrs' ->> 'overallRating' DESC")).limit(1)
     higher_over_initial_salary = DefPlayer.getSeasonInitialSalary(@season, higher_over.first)
     lower_over = DefPlayer.where(platform: season_platform).order(Arel.sql("def_players.details -> 'attrs' ->> 'overallRating' ASC")).limit(1)

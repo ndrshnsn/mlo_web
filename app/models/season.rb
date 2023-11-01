@@ -76,14 +76,14 @@ class Season < ApplicationRecord
   end
 
   def self.getClubs(season_id, fake = nil)
-		clubs = Club.includes([user_season: :user], :def_team).where(user_seasons: { season_id: season_id })
+    clubs = Club.includes([user_season: :user], :def_team).where(user_seasons: { season_id: season_id })
     clubs.where("(users.preferences -> 'fake')::Bool = ?", fake) if !fake.nil?
     clubs
-	end
+  end
 
   def self.getBalance(season)
-		ClubFinance.where(club_id: Season.getClubs(season.id).pluck(:id)).order(club_id: :desc, created_at: :desc).sum(:value)
-	end
+    ClubFinance.where(club_id: Season.getClubs(season.id).select(:id)).order(club_id: :desc, created_at: :desc).sum(:value) || 0
+  end
 
   def self.get_player_fire_tax(season_id, player_season_id)
     season = Season.find(season_id)
@@ -92,11 +92,10 @@ class Season < ApplicationRecord
     when "wage"
       tax = player.details["salary"]
     when "fixed"
-      tax = season.preferences["fire_tax_fixed"].delete(',').to_i
+      tax = season.preferences["fire_tax_fixed"]
     when "none"
       tax = 0
     end
-    return tax
+    tax
   end
-
 end
