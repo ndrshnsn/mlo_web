@@ -1,19 +1,22 @@
-source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+# frozen_string_literal: true
 
-ruby "3.2.2"
-gem "rails", "~> 7.1"
-gem "propshaft"
-gem "pg", "~> 1.1"
-gem "puma", "~> 6"
-gem "jsbundling-rails"
-gem "cssbundling-rails"
-gem "jbuilder"
-gem "redis", "~> 5"
-gem "bcrypt", "~> 3.1"
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
-gem "bootsnap", require: false
-gem "image_processing", "~> 1.2"
+source 'https://rubygems.org'
+
+ruby '3.2.0'
+
+gem 'bcrypt', '~> 3.1.7'
+gem 'bootsnap', require: false
+gem 'cssbundling-rails'
+gem 'image_processing', '~> 1.2'
+gem 'jbuilder'
+gem 'pg', '~> 1.1'
+gem 'propshaft'
+gem 'puma', '>= 5.0'
+gem 'rails', '>=7.1.3'
+gem 'redis', '>= 4.0.1'
+gem 'stimulus-rails'
+gem 'turbo-rails', '~> 2.0.5'
+gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
@@ -31,9 +34,7 @@ group :development do
   gem "standard", "~> 1.0", require: false
   gem "binding_of_caller"
   gem "letter_opener"
-  gem "solargraph"
   gem "pry-rails"
-  gem "ruby-lsp"
 end
 
 gem "faker"
@@ -45,8 +46,6 @@ gem "devise", "~> 4.9"
 gem "loaf", "~> 0.10.0", git: 'git@github.com:ndrshnsn/loaf.git'
 gem "slim-rails", "~> 3.5"
 gem "jsonb_accessor", "~> 1.3"
-gem "turbo-rails", "~> 1.4"
-gem "stimulus-rails", "~> 1.2.1"
 gem "sidekiq"
 gem "requestjs-rails", "~> 0.0.9"
 gem "devise-jwt", "~> 0.11.0"
@@ -68,10 +67,11 @@ gem "sendgrid-ruby", "~> 6.6"
 gem "foreman", "~> 0.87.2"
 gem "sassc", "~> 2.4"
 gem "audited", "~> 5.3"
-gem "serviceworker-rails", "~> 0.6.0"
 gem "sidekiq-cron", "~> 1.10"
 gem "pagy"
 gem "redis-actionpack", "~> 5.3"
 gem "time_difference", "~> 0.5.0"
 
 gem "kaminari", "~> 1.2"
+
+gem "kamal", "~> 1.0"

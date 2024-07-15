@@ -1,7 +1,7 @@
 class DbSeederJob < ApplicationJob
     queue_as :default
 
-    ADMIN_EMAIL = ENV['ADMIN_USERNAME']
+    ADMIN_EMAIL = ENV['ADMIN_EMAIL']
     ADMIN_PASSWORD = ENV['ADMIN_PASSWORD']
     ADMIN_FULLNAME = ENV['ADMIN_FULLNAME']
 

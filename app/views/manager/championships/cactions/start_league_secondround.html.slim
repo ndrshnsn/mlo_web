@@ -1,0 +1,29 @@
+- @modal_size = "md"
+= render "layouts/modal/main", modal_size: "md"
+  .modal-header
+    h5.modal-title.d-flex.align-items-center
+      i.ri-user-line.me-1
+      = t('.myclub.management.select_your_season_team')
+    button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+  .modal-body
+    .container-fluid
+      .row
+        .col-12
+					.card.card-dark.mb-50
+						.card-body
+							h5.card-title Opção 1
+							p.card-text Inicie o Returno do Campeonato. Esta é a opção padrão mas caso ainda existam jogos a ser realizados no Turno, aos mesmos será aplicado W.O Duplo.
+
+						.card-footer
+							= button_to manager_championship_start_second_round_path(@championship.friendly_id, selected: "first_method"), class: "btn btn-block btn-primary btn-sm", data: { 'confirm-swal': "Iniciar Returno usando a Opção 1?" }, form: { class: 'd-grid'} do
+								span Iniciar Returno
+      .row
+        .col-12
+					.card.card-dark
+						.card-body
+							h5.card-title Opção 2
+							p.card-text A segunda opção de Início do Returno não aplica o W.O Duplo nos jogos restantes do Turno, apenas liberando os jogos para sua realização.
+
+						.card-footer
+							= button_to manager_championship_start_second_round_path(@championship.friendly_id, selected: "second_method"), class: "btn btn-block btn-sm btn-secondary", data: { 'confirm-swal': "Iniciar Returno usando a Opção 2?" }, form: { class: 'd-grid'} do
+								span Iniciar Returno

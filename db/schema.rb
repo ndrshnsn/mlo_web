@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_27_182302) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -53,11 +53,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "audits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "auditable_type"
-    t.uuid "associated_id"
+  create_table "audits", force: :cascade do |t|
+    t.integer "auditable_type"
+    t.integer "associated_id"
     t.string "associated_type"
-    t.uuid "user_id"
+    t.integer "user_id"
     t.string "user_type"
     t.string "username"
     t.string "action"
@@ -65,21 +65,23 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.integer "version", default: 0
     t.string "comment"
     t.string "remote_address"
-    t.string "request_uuid"
+    t.string "request_id"
     t.datetime "created_at"
-    t.uuid "auditable_id", default: -> { "gen_random_uuid()" }, null: false
+    t.integer "auditable_id", null: false
+    t.string "request_uuid"
     t.index ["associated_type", "associated_id"], name: "associated_index"
     t.index ["auditable_type", "version"], name: "auditable_index"
     t.index ["created_at"], name: "index_audits_on_created_at"
+    t.index ["request_id"], name: "index_audits_on_request_id"
     t.index ["request_uuid"], name: "index_audits_on_request_uuid"
     t.index ["user_id", "user_type"], name: "user_index"
   end
 
-  create_table "awards", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "awards", force: :cascade do |t|
     t.string "name"
     t.integer "prize"
     t.integer "ranking"
-    t.uuid "league_id", null: false
+    t.integer "league_id", null: false
     t.boolean "status", default: true
     t.text "trophy_data"
     t.datetime "created_at", null: false
@@ -87,9 +89,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["league_id"], name: "index_awards_on_league_id"
   end
 
-  create_table "championship_awards", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "championship_id", null: false
-    t.uuid "award_id", null: false
+  create_table "championship_awards", force: :cascade do |t|
+    t.integer "championship_id", null: false
+    t.integer "award_id", null: false
     t.string "award_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -97,9 +99,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["championship_id"], name: "index_championship_awards_on_championship_id"
   end
 
-  create_table "championship_positions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "championship_id", null: false
-    t.uuid "club_id", null: false
+  create_table "championship_positions", force: :cascade do |t|
+    t.integer "championship_id", null: false
+    t.integer "club_id", null: false
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -107,9 +109,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["club_id"], name: "index_championship_positions_on_club_id"
   end
 
-  create_table "championships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "championships", force: :cascade do |t|
     t.string "name"
-    t.uuid "season_id", null: false
+    t.integer "season_id", null: false
     t.text "badge_data"
     t.integer "status"
     t.text "advertisement"
@@ -121,19 +123,19 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["season_id"], name: "index_championships_on_season_id"
   end
 
-  create_table "club_awards", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "club_id", null: false
+  create_table "club_awards", force: :cascade do |t|
+    t.integer "club_id", null: false
     t.string "source_type", null: false
-    t.uuid "source_id", null: false
+    t.integer "source_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_club_awards_on_club_id"
     t.index ["source_type", "source_id"], name: "index_club_awards_on_source"
   end
 
-  create_table "club_championships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "club_id", null: false
-    t.uuid "championship_id", null: false
+  create_table "club_championships", force: :cascade do |t|
+    t.integer "club_id", null: false
+    t.integer "championship_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "games", default: 0
@@ -150,9 +152,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["club_id"], name: "index_club_championships_on_club_id"
   end
 
-  create_table "club_exchanges", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "from_club_id", null: false
-    t.uuid "to_club_id", null: false
+  create_table "club_exchanges", force: :cascade do |t|
+    t.bigint "from_club_id", null: false
+    t.bigint "to_club_id", null: false
     t.jsonb "from_details", default: {}
     t.jsonb "to_details", default: {}
     t.integer "status", default: 0
@@ -165,8 +167,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["to_details"], name: "index_club_exchanges_on_to_details", using: :gin
   end
 
-  create_table "club_finances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "club_id", null: false
+  create_table "club_finances", force: :cascade do |t|
+    t.bigint "club_id", null: false
     t.string "operation"
     t.integer "value"
     t.integer "balance"
@@ -178,11 +180,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["club_id"], name: "index_club_finances_on_club_id"
   end
 
-  create_table "club_games", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "game_id", null: false
-    t.uuid "club_id", null: false
-    t.uuid "player_season_id", null: false
-    t.uuid "assist_id"
+  create_table "club_games", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "club_id", null: false
+    t.bigint "player_season_id", null: false
+    t.bigint "assist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["assist_id"], name: "index_club_games_on_assist_id"
@@ -191,18 +193,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["player_season_id"], name: "index_club_games_on_player_season_id"
   end
 
-  create_table "club_players", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "club_id", null: false
-    t.uuid "player_season_id", null: false
+  create_table "club_players", force: :cascade do |t|
+    t.integer "club_id", null: false
+    t.integer "player_season_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_club_players_on_club_id"
     t.index ["player_season_id"], name: "index_club_players_on_player_season_id"
   end
 
-  create_table "clubs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "def_team_id", null: false
-    t.uuid "user_season_id", null: false
+  create_table "clubs", force: :cascade do |t|
+    t.integer "def_team_id", null: false
+    t.integer "user_season_id", null: false
     t.jsonb "details", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -211,14 +213,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["user_season_id"], name: "index_clubs_on_user_season_id"
   end
 
-  create_table "def_countries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "def_countries", force: :cascade do |t|
     t.string "name"
     t.string "alias"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "def_player_positions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "def_player_positions", force: :cascade do |t|
     t.string "name"
     t.integer "order"
     t.string "platform", default: "null"
@@ -226,7 +228,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "def_players", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "def_players", force: :cascade do |t|
     t.string "name"
     t.integer "height"
     t.integer "weight"
@@ -236,8 +238,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.string "platform"
     t.string "slug"
     t.jsonb "details", default: {}
-    t.uuid "def_player_position_id", null: false
-    t.uuid "def_country_id", null: false
+    t.integer "def_player_position_id", null: false
+    t.integer "def_country_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["def_country_id"], name: "index_def_players_on_def_country_id"
@@ -247,11 +249,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["slug"], name: "index_def_players_on_slug"
   end
 
-  create_table "def_teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "def_teams", force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.boolean "nation", default: false
-    t.uuid "def_country_id", null: false
+    t.integer "def_country_id", null: false
     t.boolean "active", default: true
     t.jsonb "details", default: {}, null: false
     t.text "platforms"
@@ -263,10 +265,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["slug"], name: "index_def_teams_on_slug", unique: true
   end
 
-  create_table "game_best_players", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "club_id"
-    t.uuid "player_season_id", null: false
-    t.uuid "game_id", null: false
+  create_table "game_best_players", force: :cascade do |t|
+    t.integer "club_id"
+    t.integer "player_season_id", null: false
+    t.integer "game_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_game_best_players_on_club_id"
@@ -274,10 +276,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["player_season_id"], name: "index_game_best_players_on_player_season_id"
   end
 
-  create_table "game_cards", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "game_id", null: false
-    t.uuid "player_season_id", null: false
-    t.uuid "club_id", null: false
+  create_table "game_cards", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "player_season_id", null: false
+    t.integer "club_id", null: false
     t.boolean "ycard"
     t.boolean "rcard"
     t.datetime "created_at", null: false
@@ -287,10 +289,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["player_season_id"], name: "index_game_cards_on_player_season_id"
   end
 
-  create_table "games", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "championship_id", null: false
-    t.uuid "home_id", null: false
-    t.uuid "visitor_id", null: false
+  create_table "games", force: :cascade do |t|
+    t.integer "championship_id", null: false
+    t.integer "home_id", null: false
+    t.integer "visitor_id", null: false
     t.integer "phase"
     t.integer "hscore"
     t.integer "vscore"
@@ -301,7 +303,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.boolean "vsaccepted", default: false
     t.boolean "hfaccepted", default: false
     t.boolean "vfaccepted", default: false
-    t.uuid "eresults_id"
+    t.integer "eresults_id"
     t.boolean "mresult", default: false
     t.text "mdescription"
     t.datetime "created_at", null: false
@@ -314,8 +316,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["visitor_id"], name: "index_games_on_visitor_id"
   end
 
-  create_table "global_notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "league_id", null: false
+  create_table "global_notifications", force: :cascade do |t|
+    t.integer "league_id", null: false
     t.string "title"
     t.text "body"
     t.jsonb "params"
@@ -325,19 +327,19 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["params"], name: "index_global_notifications_on_params", using: :gin
   end
 
-  create_table "identities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "identities", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
-    t.uuid "user_id"
+    t.integer "user_id"
     t.string "gravatar_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
-  create_table "leagues", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "leagues", force: :cascade do |t|
     t.string "name"
-    t.uuid "user_id", null: false
+    t.integer "user_id", null: false
     t.boolean "status"
     t.string "slug"
     t.string "platform"
@@ -348,9 +350,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["user_id"], name: "index_leagues_on_user_id"
   end
 
-  create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "notifications", force: :cascade do |t|
     t.string "recipient_type", null: false
-    t.uuid "recipient_id", null: false
+    t.integer "recipient_id", null: false
     t.string "type", null: false
     t.jsonb "params"
     t.datetime "read_at"
@@ -360,20 +362,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
-  create_table "player_season_finances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "player_season_id", null: false
+  create_table "player_season_finances", force: :cascade do |t|
+    t.integer "player_season_id", null: false
     t.string "operation"
     t.integer "value"
-    t.uuid "source_id"
+    t.integer "source_id"
     t.string "source_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["player_season_id"], name: "index_player_season_finances_on_player_season_id"
   end
 
-  create_table "player_seasons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "def_player_id", null: false
-    t.uuid "season_id", null: false
+  create_table "player_seasons", force: :cascade do |t|
+    t.integer "def_player_id", null: false
+    t.integer "season_id", null: false
     t.jsonb "details", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -382,10 +384,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["season_id"], name: "index_player_seasons_on_season_id"
   end
 
-  create_table "player_transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "player_season_id", null: false
-    t.uuid "from_club_id"
-    t.uuid "to_club_id"
+  create_table "player_transactions", force: :cascade do |t|
+    t.integer "player_season_id", null: false
+    t.integer "from_club_id"
+    t.integer "to_club_id"
     t.string "transfer_mode"
     t.integer "transfer_rate"
     t.datetime "created_at", null: false
@@ -395,12 +397,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["to_club_id"], name: "index_player_transactions_on_to_club_id"
   end
 
-  create_table "rankings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "season_id", null: false
-    t.uuid "club_id", null: false
+  create_table "rankings", force: :cascade do |t|
+    t.integer "season_id", null: false
+    t.integer "club_id", null: false
     t.integer "points"
     t.string "operation"
-    t.uuid "source_id"
+    t.integer "source_id"
     t.string "source_type"
     t.text "description"
     t.integer "balance"
@@ -410,9 +412,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["season_id"], name: "index_rankings_on_season_id"
   end
 
-  create_table "season_awards", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "season_id", null: false
-    t.uuid "award_id", null: false
+  create_table "season_awards", force: :cascade do |t|
+    t.integer "season_id", null: false
+    t.integer "award_id", null: false
     t.string "award_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -420,9 +422,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["season_id"], name: "index_season_awards_on_season_id"
   end
 
-  create_table "seasons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "seasons", force: :cascade do |t|
     t.string "name"
-    t.uuid "league_id", null: false
+    t.integer "league_id", null: false
     t.jsonb "preferences", default: {}
     t.integer "status", default: 0
     t.text "advertisement"
@@ -434,7 +436,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["preferences"], name: "index_seasons_on_preferences", using: :gin
   end
 
-  create_table "settings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "settings", force: :cascade do |t|
     t.string "var", null: false
     t.text "value"
     t.datetime "created_at", null: false
@@ -442,22 +444,22 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
-  create_table "user_acls", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
+  create_table "user_acls", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "role"
     t.boolean "permitted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "league_id", null: false
+    t.integer "league_id", null: false
     t.string "extra"
     t.index ["league_id"], name: "index_user_acls_on_league_id"
     t.index ["role"], name: "index_user_acls_on_role"
     t.index ["user_id"], name: "index_user_acls_on_user_id"
   end
 
-  create_table "user_leagues", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
-    t.uuid "league_id", null: false
+  create_table "user_leagues", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "league_id", null: false
     t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -465,9 +467,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["user_id"], name: "index_user_leagues_on_user_id"
   end
 
-  create_table "user_seasons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
-    t.uuid "season_id", null: false
+  create_table "user_seasons", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "season_id", null: false
     t.jsonb "preferences", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -476,7 +478,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["user_id"], name: "index_user_seasons_on_user_id"
   end
 
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -516,8 +518,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_175403) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "web_push_devices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
+  create_table "web_push_devices", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "endpoint"
     t.string "auth_key"
     t.string "p256dh_key"
