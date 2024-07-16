@@ -14,25 +14,25 @@ class ClubFinance < ApplicationRecord
 
       case current.operation
       when "player_hire"
-        updated_balance = previous_balance.balance - current.value
+        updated_balance = previous_balance - current.value
       when "pay_wage"
-        updated_balance = previous_balance.balance - current.value
+        updated_balance = previous_balance - current.value
       when "clear_club_balance"
         updated_balance = current.value
       when "fire_tax"
-        updated_balance = previous_balance.balance - current.value
+        updated_balance = previous_balance - current.value
       when "player_steal"
-        updated_balance = previous_balance.balance - current.value
+        updated_balance = previous_balance - current.value
       when "player_sold"
-        updated_balance = previous_balance.balance + current.value
+        updated_balance = previous_balance + current.value
       when "player_stealed"
-        updated_balance = previous_balance.balance + current.value
+        updated_balance = previous_balance + current.value
       when "player_exchange"
-        updated_balance = previous_balance.balance + current.value
+        updated_balance = previous_balance + current.value
       when "game"
         updated_balance = previous_balance + current.value
       when "award"
-        updated_balance = previous_balance.balance + current.value
+        updated_balance = previous_balance + current.value
       end
       
       current.balance = updated_balance

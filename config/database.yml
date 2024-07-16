@@ -17,4 +17,6 @@ test:
 
 production:
   <<: *default
+  username: <%= Rails.application.credentials.dig(:postgres, :prod_username) %>
+  password: <%= Rails.application.credentials.dig(:postgres, :prod_password) %>
   database: mlo_production
