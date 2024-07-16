@@ -4,14 +4,14 @@
     "watchAdditionalPaths": []
   },
   "development": {
-    "https": true,
+    "https": false,
     "host": "0.0.0.0",
     "autoBuild": true,
     "publicOutputDir": "vite-dev",
     "port": 3036
   },
   "test": {
-    "https": true,
+    "https": false,
     "autoBuild": true,
     "publicOutputDir": "vite-test",
     "port": 3037
