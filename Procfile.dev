@@ -1,4 +1,4 @@
-web: bin/rails server -b "ssl://0.0.0.0:3000?key=./config/ssl/dev.bifrost.com-key.pem&cert=./config/ssl/dev.bifrost.com.pem"
+web: bin/rails server
 js: yarn build --watch
 css: yarn build:css --watch
 vite: bin/vite dev

@@ -1,5 +1,5 @@
 Redis.new(
-  url: ENV["REDIS_URL"], port: ENV["REDIS_PORT"], db: ENV["REDIS_DB"],
+  url: Rails.application.credentials.dig(:redis, :host), port: Rails.application.credentials.dig(:redis, :host), db: Rails.application.credentials.dig(:redis, :db),
   timeout: ENV.fetch("REDIS_TIMEOUT", 1).to_i,
   reconnect_attempts: ENV.fetch("REDIS_RECONNECT_ATTEMPTS", 3).to_i
 )

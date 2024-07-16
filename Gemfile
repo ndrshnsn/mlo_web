@@ -75,3 +75,5 @@ gem "time_difference", "~> 0.5.0"
 gem "kaminari", "~> 1.2"
 
 gem "kamal", "~> 1.0"
+
+gem "aws-sdk-s3", "~> 1.156"

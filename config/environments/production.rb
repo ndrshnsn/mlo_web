@@ -30,7 +30,7 @@ Rails.application.configure do
   config.assets.compile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.asset_host = "http://assets.example.com"
+  config.asset_host = "https://cdn.masterleagueonline.com.br"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
@@ -49,7 +49,7 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
@@ -72,6 +72,23 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "mlo_web_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'masterleagueonline.manager@gmail.com'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'masterleagueonline.com.br',
+  user_name:            Rails.application.credentials.dig(:gmail, :username),
+  password:            Rails.application.credentials.dig(:gmail, :password),
+  authentication:       'plain',
+  enable_starttls_auto: true  }
+  config.action_mailer.default_url_options = {:host =>'app.masterleagueonline.com.br'}
+  config.action_controller.default_url_options = {:host =>'app.masterleagueonline.com.br'}
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -94,4 +111,14 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.active_record.dump_schema_after_migration = false
+  config.action_cable.url = 'wss://app.masterleagueonline.com.br/cable'
+  config.action_cable.allowed_request_origins = [ 'https://masterleagueonline.com.br', 'https://app.masterleagueonline.com.br', /https:\/\/masterleagueonline.*/ ]
+  config.action_cable.allowed_request_origins = ["https://app.masterleagueonline.com.br/"]
+  config.action_cable.disable_request_forgery_protection = true
+  config.action_controller.asset_host = "https://cdn.masterleagueonline.com.br"
+  config.playerdb_prefix = "https://cdn.masterleagueonline.com.br/playerdb"
+
+
 end

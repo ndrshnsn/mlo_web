@@ -83,7 +83,7 @@ Rails.application.configure do
   config.playerdb_prefix = "http://127.0.0.1/playerdb"
   config.root_url = "https://dev.bifrost.com:3000"
   config.hosts << "dev.bifrost.com"
-  config.force_ssl = true
+  config.force_ssl = false
   config.ssl_options = {hsts: false}
   config.web_console.permissions = "192.168.0.0/255.255.255.0"
 end

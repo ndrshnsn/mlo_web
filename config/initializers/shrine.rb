@@ -1,24 +1,24 @@
 require "shrine" # core
 require "shrine/storage/file_system"
-# require 'shrine/storage/s3'
+require 'shrine/storage/s3'
 
-# s3_options = {
-#   access_key_id: Rails.application.credentials.dig(:digitalocean, :mlospaceks),
-#   secret_access_key: Rails.application.credentials.dig(:digitalocean, :secret),
-#   bucket: 'cdn-mlo',
-#   endpoint: 'https://sfo3.digitaloceanspaces.com',
-#   region: 'sfo3'
-# }
-
-# Shrine.storages = {
-#   cache: Shrine::Storage::S3.new(prefix: 'uploads/cache', upload_options: {acl: 'public-read'}, **s3_options),
-#   store: Shrine::Storage::S3.new(prefix: 'uploads/store', upload_options: {acl: 'public-read'}, **s3_options),
-# }
+s3_options = {
+  access_key_id: Rails.application.credentials.dig(:docean, :mlospaceks),
+  secret_access_key: Rails.application.credentials.dig(:docean, :secret),
+  bucket: 'cdn-mlo',
+  endpoint: 'https://sfo3.digitaloceanspaces.com',
+  region: 'sfo3'
+}
 
 Shrine.storages = {
-  cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"), # temporary
-  store: Shrine::Storage::FileSystem.new("public", prefix: "uploads")       # permanent
+  cache: Shrine::Storage::S3.new(prefix: 'uploads/cache', upload_options: {acl: 'public-read'}, **s3_options),
+  store: Shrine::Storage::S3.new(prefix: 'uploads/store', upload_options: {acl: 'public-read'}, **s3_options),
 }
+
+# Shrine.storages = {
+#   cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"), # temporary
+#   store: Shrine::Storage::FileSystem.new("public", prefix: "uploads")       # permanent
+# }
 
 Shrine.plugin :determine_mime_type # check MIME TYPE
 Shrine.plugin :cached_attachment_data
