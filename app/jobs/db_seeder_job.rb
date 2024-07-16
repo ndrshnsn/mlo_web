@@ -1,9 +1,9 @@
 class DbSeederJob < ApplicationJob
     queue_as :default
 
-    ADMIN_EMAIL = ENV['ADMIN_EMAIL']
-    ADMIN_PASSWORD = ENV['ADMIN_PASSWORD']
-    ADMIN_FULLNAME = ENV['ADMIN_FULLNAME']
+    ADMIN_EMAIL = Rails.application.credentials.dig(:admin, :email)
+    ADMIN_PASSWORD = Rails.application.credentials.dig(:admin, :password)
+    ADMIN_FULLNAME = Rails.application.credentials.dig(:admin, :fullname)
 
     def perform
       ActiveRecord::Base.transaction do
@@ -15,12 +15,12 @@ class DbSeederJob < ApplicationJob
     private
 
     def default_app_config
-      AppConfig.mail_admin = ENV['GMAIL_USERNAME']
-      AppConfig.mail_username = ENV['GMAIL_USERNAME']
-      AppConfig.mail_password = ENV['GMAIL_PASSWORD']
+      AppConfig.mail_admin = Rails.application.credentials.dig(:gmail, :username)
+      AppConfig.mail_username = Rails.application.credentials.dig(:gmail, :username)
+      AppConfig.mail_password = Rails.application.credentials.dig(:gmail, :password)
       AppConfig.generic_player = 999999
       AppConfig.platforms = [["PES", ["PES21", "EFOOT24"]], ["FIFA", ["FIFA24"]]]
-      AppConfig.fake_account_password = "asdasdasdasdas" 
+      AppConfig.fake_account_password = "12qwaszx!@QW" 
       AppConfig.championship_minimum_players = 4
       AppConfig.championship_cards_suspension_ycard = 3
       AppConfig.championship_cards_suspension_rcard = 1
