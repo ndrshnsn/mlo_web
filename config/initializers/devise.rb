@@ -343,6 +343,6 @@ Devise.setup do |config|
   OmniAuth.config.allowed_request_methods = %i[post]
   OmniAuth.config.full_host = Rails.env.production? ? ENV['PROD_URL'] : ENV['DEV_URL']
 
-  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_SECRET'], skip_jwt: true
-  config.omniauth :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_SECRET']
+  config.omniauth :google_oauth2, Rails.application.credentials.dig(:omniauth, :google_client_id), Rails.application.credentials.dig(:omniauth, :google_secret), skip_jwt: true
+  config.omniauth :github, Rails.application.credentials.dig(:omniauth, :github_client_id), Rails.application.credentials.dig(:omniauth, :github_secret)
 end
