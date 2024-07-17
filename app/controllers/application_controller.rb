@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   ## API
   protect_from_forgery with: :null_session, if: :json_request?
   skip_before_action :verify_authenticity_token, if: :json_request?
-  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_auth_token
+  #rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_auth_token
   before_action :set_current_user, if: :json_request?
 
   protected
