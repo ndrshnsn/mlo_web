@@ -12,6 +12,8 @@ import StimulusHMR from 'vite-plugin-stimulus-hmr'
 //   : {};
 
 export default defineConfig({
+  clearScreen: false,
+  base: "/app/assets",
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './app/javascript/entrypoints'),
@@ -21,7 +23,13 @@ export default defineConfig({
     RubyPlugin(),
     FullReload(['config/routes.rb', 'app/views/**/*'], { delay: 200 }),
     StimulusHMR(),
-  ]
+  ],
+  build: {
+    manifest: true,
+    rollupOptions: {
+      input: "/app/javascript/entrypoints/application.js"
+    }
+  }
   // server: {
   //   http
   // }

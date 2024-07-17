@@ -341,7 +341,7 @@ Devise.setup do |config|
   config.omniauth_path_prefix = "/auth"
   OmniAuth.config.logger = Rails.logger
   OmniAuth.config.allowed_request_methods = %i[post]
-  OmniAuth.config.full_host = Rails.env.production? ? ENV['PROD_URL'] : ENV['DEV_URL']
+  #OmniAuth.config.full_host = Rails.env.production? ? ENV['PROD_URL'] : ENV['DEV_URL']
 
   config.omniauth(:google_oauth2,
     Rails.application.credentials.dig(:omniauth, :google_client_id),
