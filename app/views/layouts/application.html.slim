@@ -11,8 +11,7 @@ html lang="en" data-layout="vertical" data-layout-style="detached" data-sidebar=
     = csp_meta_tag
     = action_cable_meta_tag
     = stylesheet_link_tag 'application'
-    = vite_client_tag
-    = vite_javascript_tag 'application'
+    = javascript_include_tag 'application'
 
     link rel="manifest" href="/manifest.json"
 
@@ -54,7 +53,7 @@ html lang="en" data-layout="vertical" data-layout-style="detached" data-sidebar=
     button#back-to-top.btn.btn-danger.btn-icon onClick="scrollTopFunction()"
       i.ri-arrow-up-line
 
-    = vite_javascript_tag 'plugins'
-    = vite_javascript_tag 'app'
+    = javascript_include_tag 'plugins'
+    = javascript_include_tag 'app'
 
     
