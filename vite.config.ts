@@ -13,7 +13,8 @@ import StimulusHMR from 'vite-plugin-stimulus-hmr'
 
 export default defineConfig({
   clearScreen: false,
-  base: "/app/assets",
+  // base: "/app/assets",
+  publicDir: 'public',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './app/javascript/entrypoints'),
@@ -25,6 +26,7 @@ export default defineConfig({
     StimulusHMR(),
   ],
   build: {
+    outDir: 'assets',
     manifest: true,
     rollupOptions: {
       input: "/app/javascript/entrypoints/application.js"

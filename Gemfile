@@ -39,7 +39,7 @@ end
 
 gem "faker"
 gem "dotenv-rails"
-gem "vite_rails", "~> 3.0"
+gem "vite_rails"
 gem "rack-cors", "~> 2"
 gem "friendly_id", "~> 5.4"
 gem "devise", "~> 4.9"
