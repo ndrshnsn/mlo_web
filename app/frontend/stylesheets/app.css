@@ -25,7 +25,7 @@ File: Main Css File
 
 @font-face {
     font-family: hkgrotesk;
-    src: url(/hkgrotesk-medium.eot);
+    src: url(@fonts/hkgrotesk-medium.eot);
     src: local("hkgrotesk medium"), url(@fonts/hkgrotesk-medium.woff) format("woff");
     font-weight: 500
 }
@@ -1198,7 +1198,7 @@ File: Main Css File
   opacity: 0.07;
 }
 
-[data-sidebar-image=img-1] .sidebar-background {
+/* [data-sidebar-image=img-1] .sidebar-background {
   background-image: url("@img/sidebar/img-1.jpg");
 }
 
@@ -1212,7 +1212,7 @@ File: Main Css File
 
 [data-sidebar-image=img-4] .sidebar-background {
   background-image: url("@img/sidebar/img-4.jpg");
-}
+} */
 
 [data-layout=semibox] .page-title-box {
   padding: 10px 0;
@@ -12750,10 +12750,10 @@ span.flatpickr-weekday {
   max-width: 130px !important;
 }
 
-.bg-marketplace {
+/* .bg-marketplace {
   background-image: url(@img/nft/marketplace.png);
   background-size: cover;
-}
+} */
 
 .dash-countdown .countdownlist .count-num {
   background-color: var(--vz-secondary-bg);
@@ -14605,7 +14605,7 @@ span.flatpickr-weekday {
 }
 
 .user-chat {
-  background: url("@img/chat-bg-pattern.png");
+  /* background: url("@img/chat-bg-pattern.png"); */
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
   position: relative;
@@ -15526,7 +15526,7 @@ span.flatpickr-weekday {
   height: 180px;
   width: 270px;
   margin: 0 auto;
-  background-image: url("@img/file.png");
+  /* background-image: url("@img/file.png"); */
   background-size: cover;
   background-position: center;
 }
@@ -15634,7 +15634,7 @@ span.flatpickr-weekday {
 }
 
 .bg-overlay-pattern {
-  background-image: url("@img/landing/bg-pattern.png");
+  /* background-image: url("@img/landing/bg-pattern.png"); */
   background-color: transparent;
   background-position: center;
   background-size: cover;
@@ -16006,7 +16006,7 @@ span.flatpickr-weekday {
 }
 
 .bg-job {
-  background-image: url(@img/new.png);
+  /* background-image: url(@img/new.png); */
   background-size: cover;
   background-position: center;
 }
