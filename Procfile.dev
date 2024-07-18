@@ -1,6 +1,6 @@
 web: bin/rails server
-js: yarn build --watch
-css: yarn build:css --watch
+##js: yarn build --watch
+##css: yarn build:css --watch
 vite: bin/vite dev
-#redis: redis-server
+##redis: redis-server
 sidekiq: bundle exec sidekiq -C config/sidekiq.yml

@@ -1,5 +1,5 @@
 class Admin::Playerdb::PlayersDatatable < ApplicationDatatable
-  delegate :session, :logger, :t, :image_tag, :current_user, :translate_pscore, :translate_pkeys, :get_platforms, :countryFlag, :admin_playerdb_player_details_path, :admin_playerdb_player_toggle_path, :stringHuman, :teamLogoURL, :admin_playerdb_player_disable_path, :admin_playerdb_player_enable_path, :dt_actionsMenu, :image_url, :content_tag, :logger, :button_to, to: :@view
+  delegate :session, :logger, :t, :vite_image_tag, :image_tag, :current_user, :translate_pscore, :translate_pkeys, :get_platforms, :countryFlag, :admin_playerdb_player_details_path, :admin_playerdb_player_toggle_path, :stringHuman, :teamLogoURL, :admin_playerdb_player_disable_path, :admin_playerdb_player_enable_path, :dt_actionsMenu, :image_url, :content_tag, :logger, :button_to, to: :@view
 
   private
 

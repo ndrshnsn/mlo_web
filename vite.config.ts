@@ -13,11 +13,14 @@ import StimulusHMR from 'vite-plugin-stimulus-hmr'
 
 export default defineConfig({
   clearScreen: false,
-  // base: "/app/assets",
+  base: './',
   publicDir: 'public',
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './app/javascript/entrypoints'),
+      '@js': path.resolve(__dirname, './app/frontend/javascript'),
+      '@css': path.resolve(__dirname, './app/frontend/stylesheets'),
+      '@img': path.resolve(__dirname, './app/frontend/images'),
+      '@fonts': path.resolve(__dirname, './app/frontend/fonts')
     },
   },
   plugins: [
@@ -26,13 +29,12 @@ export default defineConfig({
     StimulusHMR(),
   ],
   build: {
-    outDir: 'assets',
-    manifest: true,
-    rollupOptions: {
-      input: "/app/javascript/entrypoints/application.js"
-    }
+    outDir: './public/assets/',
+    emptyOutDir: true,
+    cssCodeSplit: true,
+    manifest: true
+  },
+  server: {
+    origin: 'http://localhost:5000'
   }
-  // server: {
-  //   http
-  // }
 })

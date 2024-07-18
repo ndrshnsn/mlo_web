@@ -1,5 +1,5 @@
 class Admin::Playerdb::CountriesDatatable < ApplicationDatatable
-  delegate :logger, :t, :image_tag, :content_tag, :admin_playerdb_countries_destroy_path, :admin_playerdb_countries_edit_path, :dt_actionsMenu, :button_to, to: :@view
+  delegate :logger, :t, :vite_image_tag, :content_tag, :admin_playerdb_countries_destroy_path, :admin_playerdb_countries_edit_path, :dt_actionsMenu, :button_to, to: :@view
 
   private
 
@@ -8,7 +8,7 @@ class Admin::Playerdb::CountriesDatatable < ApplicationDatatable
       cLogoName = DefCountry.getISO(playernationality.name.humanize)
       cLogo = ""
       if !cLogoName.nil?
-        cLogo = image_tag("flags/#{cLogoName}.svg", class: "rounded mr-50", height: "18", width: "24")
+        cLogo = vite_image_tag("images/flags/#{cLogoName}.svg", class: "rounded mr-50", height: "18", width: "24")
       end
 
       dtActions = [

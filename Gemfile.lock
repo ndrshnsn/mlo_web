@@ -131,8 +131,6 @@ GEM
     connection_pool (2.4.1)
     content_disposition (1.0.0)
     crass (1.0.6)
-    cssbundling-rails (1.4.0)
-      railties (>= 6.0.0)
     csv (3.3.0)
     date (3.3.4)
     debug (1.9.2)
@@ -376,11 +374,6 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.6)
-    propshaft (0.9.0)
-      actionpack (>= 7.0.0)
-      activesupport (>= 7.0.0)
-      rack
-      railties (>= 7.0.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -636,7 +629,6 @@ DEPENDENCIES
   binding_of_caller
   bootsnap
   cancancan (~> 3.5)
-  cssbundling-rails
   debug
   devise (~> 4.9)
   devise-i18n (~> 1.11)
@@ -664,7 +656,6 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   pagy
   pg (~> 1.1)
-  propshaft
   pry-rails
   public_activity (~> 2.0)
   puma (>= 5.0)

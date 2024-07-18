@@ -32,10 +32,6 @@
     "trix": "^2",
     "vite-plugin-stimulus-hmr": "^3.0.0"
   },
-  "scripts": {
-    "build": "esbuild app/javascript/entrypoints/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets --format=esm",
-    "build:css": "sass ./app/assets/stylesheets/application.css:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
-  },
   "devDependencies": {
     "prettier": "3.0.3",
     "vite": "^5.0.0",
