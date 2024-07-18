@@ -12,9 +12,6 @@ import StimulusHMR from 'vite-plugin-stimulus-hmr'
 //   : {};
 
 export default defineConfig({
-  clearScreen: false,
-  base: './',
-  publicDir: 'public',
   resolve: {
     alias: {
       '@js': path.resolve(__dirname, './app/frontend/javascript'),
@@ -27,14 +24,5 @@ export default defineConfig({
     RubyPlugin(),
     FullReload(['config/routes.rb', 'app/views/**/*'], { delay: 200 }),
     StimulusHMR(),
-  ],
-  build: {
-    outDir: './public/assets/',
-    emptyOutDir: true,
-    cssCodeSplit: true,
-    manifest: true
-  },
-  server: {
-    origin: 'http://localhost:5000'
-  }
+  ]
 })
