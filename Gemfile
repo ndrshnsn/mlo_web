@@ -76,6 +76,5 @@ gem "kamal", "~> 1.0"
 
 gem "aws-sdk-s3", "~> 1.156"
 
-gem "asset_sync", "~> 2.19"
 
 gem "fog-aws", "~> 3.24"
