@@ -4,6 +4,7 @@ import { existsSync, readFileSync } from "node:fs"
 import RubyPlugin from 'vite-plugin-ruby'
 import FullReload from 'vite-plugin-full-reload'
 import StimulusHMR from 'vite-plugin-stimulus-hmr' 
+import gzipPlugin from 'rollup-plugin-gzip'
 
 // const certPath = "./config/ssl/dev.bifrost.com.pem"
 // const keyPath = "./config/ssl/dev.bifrost.com-key.pem"
@@ -12,6 +13,7 @@ import StimulusHMR from 'vite-plugin-stimulus-hmr'
 //   : {};
 
 export default defineConfig({
+  publicOutputDir: './',
   resolve: {
     alias: {
       '@js': path.resolve(__dirname, './app/frontend/javascript'),
@@ -20,9 +22,17 @@ export default defineConfig({
       '@fonts': path.resolve(__dirname, './app/frontend/fonts')
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {}
+      },
+    },
+  },
   plugins: [
     RubyPlugin(),
     FullReload(['config/routes.rb', 'app/views/**/*'], { delay: 200 }),
     StimulusHMR(),
+    gzipPlugin()
   ]
 })
