@@ -112,7 +112,7 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [ 'https://masterleagueonline.com.br', 'https://app.masterleagueonline.com.br', /https:\/\/masterleagueonline.*/ ]
   config.action_cable.allowed_request_origins = ["https://app.masterleagueonline.com.br/"]
   config.action_cable.disable_request_forgery_protection = true
-  config.action_controller.asset_host = "https://cdn.masterleagueonline.com.br"
+  #config.action_controller.asset_host = "https://cdn.masterleagueonline.com.br"
   config.playerdb_prefix = "https://cdn.masterleagueonline.com.br/playerdb"
 
 
