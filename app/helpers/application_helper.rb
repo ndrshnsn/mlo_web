@@ -41,33 +41,33 @@ module ApplicationHelper
   def avatarURL(user)
     user = user.reload
     return user.identities.last.gravatar_url if user.identities.present?
-    return asset_path("generic-avatar.png") if user.avatar_data.blank?
+    return vite_asset_path("images/generic-avatar.png") if user.avatar_data.blank?
     user.avatar_url
   end
 
   def leagueBadge(league)
     league = league.reload
-    return asset_path("generic-league.png") if league.badge_data.blank?
+    return vite_asset_path("images/generic-league.png") if league.badge_data.blank?
     league.badge_url
   end
 
   def awardTrophy(award)
     if award.new_record?
-      asset_path("generic-trophy.png")
+      vite_asset_path("images/generic-trophy.png")
     else
       award = award.reload
-      return asset_path("generic-trophy.png") if award.trophy_data.blank?
+      return vite_asset_path("images/generic-trophy.png") if award.trophy_data.blank?
       award.trophy_url
     end
   end
 
   def championshipBadge(championship)
     if championship.new_record?
-      asset_path("generic-trophy.png")
+      vite_asset_path("images/generic-trophy.png")
     else
       championship = championship.reload
       if championship.badge_data.blank?
-        return asset_path("generic-trophy.png")
+        return vite_asset_path("images/generic-trophy.png")
       end
       championship.badge_url
     end
@@ -86,10 +86,10 @@ module ApplicationHelper
   end
 
   def countryFlag(country)
-    if !File.exist?("#{Dir.pwd}/app/assets/images/flags/#{DefCountry.getISO(country.humanize)}.svg")
-      return image_path("generic-flag.png")
+    if !File.exist?("#{Dir.pwd}/app/frontend/images/flags/#{DefCountry.getISO(country.humanize)}.svg")
+      return vite_asset_path("images/generic-flag.png")
     end
-    image_path("flags/#{DefCountry.getISO(country.humanize)}.svg")
+    vite_asset_path("images/flags/#{DefCountry.getISO(country.humanize)}.svg")
   end
 
   def defTeamBadgeURL(prefix, defTeam)
@@ -98,7 +98,7 @@ module ApplicationHelper
   end
 
   def getRandomCard
-    "cards/#{Dir.glob("app/assets/images/cards/*.png").map { |s| File.basename(s) }.sample}"
+    "images/cards/#{Dir.glob("app/frontend/images/cards/*.png").map { |s| File.basename(s) }.sample}"
   end
 
   def image_exists?(url)

@@ -1,5 +1,5 @@
 class Admin::Playerdb::TeamsDatatable < ApplicationDatatable
-  delegate :logger, :t, :image_tag, :image_path, :countryFlag, :teamLogoURL, :admin_playerdb_team_destroy_path, :admin_playerdb_team_edit_path, :admin_playerdb_team_edit_path, :current_user, :teamBadge, :stringHuman, :dt_actionsMenu, :content_tag, :image_url, :session, :button_to, to: :@view
+  delegate :logger, :t, :vite_image_tag, :image_tag, :image_path, :countryFlag, :teamLogoURL, :admin_playerdb_team_destroy_path, :admin_playerdb_team_edit_path, :admin_playerdb_team_edit_path, :current_user, :teamBadge, :stringHuman, :dt_actionsMenu, :content_tag, :image_url, :session, :button_to, to: :@view
 
   private
 
