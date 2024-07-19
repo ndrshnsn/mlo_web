@@ -1,2 +1,0 @@
-var o=Object.defineProperty;var e=(s,t,r)=>t in s?o(s,t,{enumerable:!0,configurable:!0,writable:!0,value:r}):s[t]=r;var a=(s,t,r)=>e(s,typeof t!="symbol"?t+"":t,r);import{C as i}from"./application-BzDBbQCT.js";import{p as l}from"./verbs-DNA89zgE.js";import"./fetch_request-Bi6ZTe2Y.js";class n extends i{async send_it(){const t=this.urlValue;await l(t,{responseKind:"turbo-stream"})}}a(n,"values",{url:String});export{n as default};
-//# sourceMappingURL=request_controller-BnlUJdIv.js.map
