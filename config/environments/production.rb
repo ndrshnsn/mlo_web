@@ -21,7 +21,7 @@ Rails.application.configure do
   # config.require_master_key = true
 
   # Enable static file serving from the `/public` folder (turn off if using NGINX/Apache for it).
-  config.public_file_server.enabled = false
+  config.public_file_server.enabled = true
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
@@ -66,23 +66,23 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "mlo_web_production"
 
-  config.action_mailer.perform_caching = false
-  config.action_mailer.perform_caching = false
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'masterleagueonline.manager@gmail.com'}
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com',
-  port:                 587,
-  domain:               'masterleagueonline.com.br',
-  user_name:            Rails.application.credentials.dig(:gmail, :username),
-  password:            Rails.application.credentials.dig(:gmail, :password),
-  authentication:       'plain',
-  enable_starttls_auto: true  }
-  config.action_mailer.default_url_options = {:host =>'app.masterleagueonline.com.br'}
-  config.action_controller.default_url_options = {:host =>'app.masterleagueonline.com.br'}
+  # config.action_mailer.perform_caching = false
+  # config.action_mailer.perform_caching = false
+  # config.action_mailer.delivery_method = :sendmail
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.default_options = {from: 'masterleagueonline.manager@gmail.com'}
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  # address:              'smtp.gmail.com',
+  # port:                 587,
+  # domain:               'masterleagueonline.com.br',
+  # user_name:            Rails.application.credentials.dig(:gmail, :username),
+  # password:            Rails.application.credentials.dig(:gmail, :password),
+  # authentication:       'plain',
+  # enable_starttls_auto: true  }
+  # config.action_mailer.default_url_options = {:host =>'app.masterleagueonline.com.br'}
+  # config.action_controller.default_url_options = {:host =>'app.masterleagueonline.com.br'}
 
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -107,11 +107,11 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
-  config.active_record.dump_schema_after_migration = false
-  config.action_cable.url = 'wss://app.masterleagueonline.com.br/cable'
-  config.action_cable.allowed_request_origins = [ 'https://masterleagueonline.com.br', 'https://app.masterleagueonline.com.br', /https:\/\/masterleagueonline.*/ ]
-  config.action_cable.allowed_request_origins = ["https://app.masterleagueonline.com.br/"]
-  config.action_cable.disable_request_forgery_protection = true
+  # config.active_record.dump_schema_after_migration = false
+  # config.action_cable.url = 'wss://app.masterleagueonline.com.br/cable'
+  # config.action_cable.allowed_request_origins = [ 'https://masterleagueonline.com.br', 'https://app.masterleagueonline.com.br', /https:\/\/masterleagueonline.*/ ]
+  # config.action_cable.allowed_request_origins = ["https://app.masterleagueonline.com.br/"]
+  # config.action_cable.disable_request_forgery_protection = true
   #config.action_controller.asset_host = "https://cdn.masterleagueonline.com.br"
   config.playerdb_prefix = "https://cdn.masterleagueonline.com.br/playerdb"
 

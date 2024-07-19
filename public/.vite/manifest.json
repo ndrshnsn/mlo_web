@@ -5,15 +5,15 @@
     "src": "../../node_modules/@rails/actioncable/src/index.js",
     "isDynamicEntry": true
   },
-  "_datatables-D5jVJngu.js": {
-    "file": "assets/datatables-D5jVJngu.js",
+  "_datatables-8stRqzRe.js": {
+    "file": "assets/datatables-8stRqzRe.js",
     "name": "datatables",
     "imports": [
       "entrypoints/application.js"
     ]
   },
-  "_easytimer-Cn2kbt1-.js": {
-    "file": "assets/easytimer-Cn2kbt1-.js",
+  "_easytimer-Ec3WqwRK.js": {
+    "file": "assets/easytimer-Ec3WqwRK.js",
     "name": "easytimer",
     "imports": [
       "entrypoints/application.js"
@@ -23,15 +23,15 @@
     "file": "assets/fetch_request-Bi6ZTe2Y.js",
     "name": "fetch_request"
   },
-  "_i18n-CZyHUTA_.js": {
-    "file": "assets/i18n-CZyHUTA_.js",
+  "_i18n-CgWkoZ9O.js": {
+    "file": "assets/i18n-CgWkoZ9O.js",
     "name": "i18n",
     "imports": [
       "entrypoints/application.js"
     ]
   },
-  "_sweetalert2-0y_ANCQ_.js": {
-    "file": "assets/sweetalert2-0y_ANCQ_.js",
+  "_sweetalert2-B-ufEM21.js": {
+    "file": "assets/sweetalert2-B-ufEM21.js",
     "name": "sweetalert2",
     "imports": [
       "entrypoints/application.js"
@@ -375,12 +375,12 @@
     "isEntry": true
   },
   "entrypoints/application.css": {
-    "file": "assets/application-CGYj9xH4.css",
+    "file": "assets/application-VXmiXE4z.css",
     "src": "entrypoints/application.css",
     "isEntry": true
   },
   "entrypoints/application.js": {
-    "file": "assets/application-CCzRwA6_.js",
+    "file": "assets/application-BmvZbK7X.js",
     "name": "entrypoints/application.js",
     "src": "entrypoints/application.js",
     "isEntry": true,
@@ -771,7 +771,7 @@
     "src": "it.svg"
   },
   "javascript/controllers/cleave_controller.js": {
-    "file": "assets/cleave_controller-DlksBnet.js",
+    "file": "assets/cleave_controller-zIej0Qvj.js",
     "name": "cleave_controller",
     "src": "javascript/controllers/cleave_controller.js",
     "isDynamicEntry": true,
@@ -780,156 +780,156 @@
     ]
   },
   "javascript/controllers/confirm_controller.js": {
-    "file": "assets/confirm_controller-D24EKtCu.js",
+    "file": "assets/confirm_controller-JiK2wN4I.js",
     "name": "confirm_controller",
     "src": "javascript/controllers/confirm_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_sweetalert2-0y_ANCQ_.js",
-      "_i18n-CZyHUTA_.js"
+      "_sweetalert2-B-ufEM21.js",
+      "_i18n-CgWkoZ9O.js"
     ]
   },
   "javascript/controllers/countdown_controller.js": {
-    "file": "assets/countdown_controller-VkLMgia0.js",
+    "file": "assets/countdown_controller-BpiPnGmy.js",
     "name": "countdown_controller",
     "src": "javascript/controllers/countdown_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_easytimer-Cn2kbt1-.js"
+      "_easytimer-Ec3WqwRK.js"
     ]
   },
   "javascript/controllers/dt/admin-accounts_controller.js": {
-    "file": "assets/admin-accounts_controller-iB_A1V-g.js",
+    "file": "assets/admin-accounts_controller-BllMW2xy.js",
     "name": "admin-accounts_controller",
     "src": "javascript/controllers/dt/admin-accounts_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js",
-      "_sweetalert2-0y_ANCQ_.js"
+      "_datatables-8stRqzRe.js",
+      "_sweetalert2-B-ufEM21.js"
     ]
   },
   "javascript/controllers/dt/admin-audits_controller.js": {
-    "file": "assets/admin-audits_controller-BiEq9pyD.js",
+    "file": "assets/admin-audits_controller-BNmZFjFM.js",
     "name": "admin-audits_controller",
     "src": "javascript/controllers/dt/admin-audits_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js"
+      "_datatables-8stRqzRe.js"
     ]
   },
   "javascript/controllers/dt/admin-countries_controller.js": {
-    "file": "assets/admin-countries_controller-CG6GRqLr.js",
+    "file": "assets/admin-countries_controller-DFtWqM6u.js",
     "name": "admin-countries_controller",
     "src": "javascript/controllers/dt/admin-countries_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js",
-      "_sweetalert2-0y_ANCQ_.js"
+      "_datatables-8stRqzRe.js",
+      "_sweetalert2-B-ufEM21.js"
     ]
   },
   "javascript/controllers/dt/admin-leagues_controller.js": {
-    "file": "assets/admin-leagues_controller-C1wRI_BN.js",
+    "file": "assets/admin-leagues_controller-BT1ouUU9.js",
     "name": "admin-leagues_controller",
     "src": "javascript/controllers/dt/admin-leagues_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js"
+      "_datatables-8stRqzRe.js"
     ]
   },
   "javascript/controllers/dt/admin-players_controller.js": {
-    "file": "assets/admin-players_controller-CF2A_h6J.js",
+    "file": "assets/admin-players_controller-D4JfwEYf.js",
     "name": "admin-players_controller",
     "src": "javascript/controllers/dt/admin-players_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js",
-      "_sweetalert2-0y_ANCQ_.js"
+      "_datatables-8stRqzRe.js",
+      "_sweetalert2-B-ufEM21.js"
     ]
   },
   "javascript/controllers/dt/admin-teams_controller.js": {
-    "file": "assets/admin-teams_controller-Bw8yHgZg.js",
+    "file": "assets/admin-teams_controller-CpTSBIh0.js",
     "name": "admin-teams_controller",
     "src": "javascript/controllers/dt/admin-teams_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js",
-      "_sweetalert2-0y_ANCQ_.js"
+      "_datatables-8stRqzRe.js",
+      "_sweetalert2-B-ufEM21.js"
     ]
   },
   "javascript/controllers/dt/firststeps-leagues_controller.js": {
-    "file": "assets/firststeps-leagues_controller-DJ6DNMvn.js",
+    "file": "assets/firststeps-leagues_controller-DYnbUOai.js",
     "name": "firststeps-leagues_controller",
     "src": "javascript/controllers/dt/firststeps-leagues_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js"
+      "_datatables-8stRqzRe.js"
     ]
   },
   "javascript/controllers/dt/manager-active-users_controller.js": {
-    "file": "assets/manager-active-users_controller-C2PqjUmp.js",
+    "file": "assets/manager-active-users_controller-DZwukykn.js",
     "name": "manager-active-users_controller",
     "src": "javascript/controllers/dt/manager-active-users_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js",
-      "_sweetalert2-0y_ANCQ_.js"
+      "_datatables-8stRqzRe.js",
+      "_sweetalert2-B-ufEM21.js"
     ]
   },
   "javascript/controllers/dt/manager-awards_controller.js": {
-    "file": "assets/manager-awards_controller-CVYBxCWr.js",
+    "file": "assets/manager-awards_controller-Bfl7ifjh.js",
     "name": "manager-awards_controller",
     "src": "javascript/controllers/dt/manager-awards_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js",
-      "_sweetalert2-0y_ANCQ_.js"
+      "_datatables-8stRqzRe.js",
+      "_sweetalert2-B-ufEM21.js"
     ]
   },
   "javascript/controllers/dt/manager-season-users_controller.js": {
-    "file": "assets/manager-season-users_controller-COFSxs3h.js",
+    "file": "assets/manager-season-users_controller-Cly9Av-7.js",
     "name": "manager-season-users_controller",
     "src": "javascript/controllers/dt/manager-season-users_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js"
+      "_datatables-8stRqzRe.js"
     ]
   },
   "javascript/controllers/dt/manager-waiting-users_controller.js": {
-    "file": "assets/manager-waiting-users_controller-CpUECuB0.js",
+    "file": "assets/manager-waiting-users_controller-3TJ0BV79.js",
     "name": "manager-waiting-users_controller",
     "src": "javascript/controllers/dt/manager-waiting-users_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js",
-      "_sweetalert2-0y_ANCQ_.js"
+      "_datatables-8stRqzRe.js",
+      "_sweetalert2-B-ufEM21.js"
     ]
   },
   "javascript/controllers/dt/user-trades-buy_controller.js": {
-    "file": "assets/user-trades-buy_controller-C2sb5WIV.js",
+    "file": "assets/user-trades-buy_controller-Dswy21aZ.js",
     "name": "user-trades-buy_controller",
     "src": "javascript/controllers/dt/user-trades-buy_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_datatables-D5jVJngu.js",
-      "_sweetalert2-0y_ANCQ_.js"
+      "_datatables-8stRqzRe.js",
+      "_sweetalert2-B-ufEM21.js"
     ]
   },
   "javascript/controllers/flash_controller.js": {
-    "file": "assets/flash_controller-PxOIMJAr.js",
+    "file": "assets/flash_controller-DnwZmiBp.js",
     "name": "flash_controller",
     "src": "javascript/controllers/flash_controller.js",
     "isDynamicEntry": true,
@@ -938,7 +938,7 @@
     ]
   },
   "javascript/controllers/flatpickr_controller.js": {
-    "file": "assets/flatpickr_controller-RQLj3mbL.js",
+    "file": "assets/flatpickr_controller-CXJgLOtH.js",
     "name": "flatpickr_controller",
     "src": "javascript/controllers/flatpickr_controller.js",
     "isDynamicEntry": true,
@@ -947,18 +947,18 @@
     ]
   },
   "javascript/controllers/form_controller.js": {
-    "file": "assets/form_controller-DdK4tfWo.js",
+    "file": "assets/form_controller-DYIw8uBs.js",
     "name": "form_controller",
     "src": "javascript/controllers/form_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_sweetalert2-0y_ANCQ_.js",
-      "_i18n-CZyHUTA_.js"
+      "_sweetalert2-B-ufEM21.js",
+      "_i18n-CgWkoZ9O.js"
     ]
   },
   "javascript/controllers/input-number_controller.js": {
-    "file": "assets/input-number_controller-Dj4B33Ub.js",
+    "file": "assets/input-number_controller-DFxI8CUw.js",
     "name": "input-number_controller",
     "src": "javascript/controllers/input-number_controller.js",
     "isDynamicEntry": true,
@@ -967,7 +967,7 @@
     ]
   },
   "javascript/controllers/managedt_controller.js": {
-    "file": "assets/managedt_controller-DWNXLyTl.js",
+    "file": "assets/managedt_controller-BFwrdbDu.js",
     "name": "managedt_controller",
     "src": "javascript/controllers/managedt_controller.js",
     "isDynamicEntry": true,
@@ -976,7 +976,7 @@
     ]
   },
   "javascript/controllers/manager/seasons_controller.js": {
-    "file": "assets/seasons_controller-C7MLXNMu.js",
+    "file": "assets/seasons_controller-CU9wES_s.js",
     "name": "seasons_controller",
     "src": "javascript/controllers/manager/seasons_controller.js",
     "isDynamicEntry": true,
@@ -986,7 +986,7 @@
     ]
   },
   "javascript/controllers/modal_controller.js": {
-    "file": "assets/modal_controller-BDQtPkqW.js",
+    "file": "assets/modal_controller-DLK3GHTX.js",
     "name": "modal_controller",
     "src": "javascript/controllers/modal_controller.js",
     "isDynamicEntry": true,
@@ -995,17 +995,17 @@
     ]
   },
   "javascript/controllers/multi_controller.js": {
-    "file": "assets/multi_controller-Dl8Ulf6n.js",
+    "file": "assets/multi_controller-CVMhAKaW.js",
     "name": "multi_controller",
     "src": "javascript/controllers/multi_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_i18n-CZyHUTA_.js"
+      "_i18n-CgWkoZ9O.js"
     ]
   },
   "javascript/controllers/notifications_controller.js": {
-    "file": "assets/notifications_controller-DVZNxRPJ.js",
+    "file": "assets/notifications_controller-CJ_yhfyu.js",
     "name": "notifications_controller",
     "src": "javascript/controllers/notifications_controller.js",
     "isDynamicEntry": true,
@@ -1016,7 +1016,7 @@
     ]
   },
   "javascript/controllers/popover_controller.js": {
-    "file": "assets/popover_controller-CBl8bXRS.js",
+    "file": "assets/popover_controller-vtrAq03V.js",
     "name": "popover_controller",
     "src": "javascript/controllers/popover_controller.js",
     "isDynamicEntry": true,
@@ -1025,7 +1025,7 @@
     ]
   },
   "javascript/controllers/request_controller.js": {
-    "file": "assets/request_controller-HfN9OUCy.js",
+    "file": "assets/request_controller-DAQ20PK0.js",
     "name": "request_controller",
     "src": "javascript/controllers/request_controller.js",
     "isDynamicEntry": true,
@@ -1036,7 +1036,7 @@
     ]
   },
   "javascript/controllers/select-frame_controller.js": {
-    "file": "assets/select-frame_controller-BxS4uuqv.js",
+    "file": "assets/select-frame_controller-C-6i9Fnp.js",
     "name": "select-frame_controller",
     "src": "javascript/controllers/select-frame_controller.js",
     "isDynamicEntry": true,
@@ -1045,17 +1045,17 @@
     ]
   },
   "javascript/controllers/select_controller.js": {
-    "file": "assets/select_controller-BJj3o6AH.js",
+    "file": "assets/select_controller-TWa5Cam8.js",
     "name": "select_controller",
     "src": "javascript/controllers/select_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_i18n-CZyHUTA_.js"
+      "_i18n-CgWkoZ9O.js"
     ]
   },
   "javascript/controllers/sidebar_controller.js": {
-    "file": "assets/sidebar_controller-CQAGVqu8.js",
+    "file": "assets/sidebar_controller-BebIaxJG.js",
     "name": "sidebar_controller",
     "src": "javascript/controllers/sidebar_controller.js",
     "isDynamicEntry": true,
@@ -1064,7 +1064,7 @@
     ]
   },
   "javascript/controllers/stepper_controller.js": {
-    "file": "assets/stepper_controller-BH5KEMS9.js",
+    "file": "assets/stepper_controller-BATlRuMy.js",
     "name": "stepper_controller",
     "src": "javascript/controllers/stepper_controller.js",
     "isDynamicEntry": true,
@@ -1073,7 +1073,7 @@
     ]
   },
   "javascript/controllers/tab_controller.js": {
-    "file": "assets/tab_controller-sv9PM3Tz.js",
+    "file": "assets/tab_controller-DhEeyJTb.js",
     "name": "tab_controller",
     "src": "javascript/controllers/tab_controller.js",
     "isDynamicEntry": true,
@@ -1082,7 +1082,7 @@
     ]
   },
   "javascript/controllers/theme_controller.js": {
-    "file": "assets/theme_controller-C4-WY6tX.js",
+    "file": "assets/theme_controller-G9XVGD_d.js",
     "name": "theme_controller",
     "src": "javascript/controllers/theme_controller.js",
     "isDynamicEntry": true,
@@ -1091,17 +1091,17 @@
     ]
   },
   "javascript/controllers/timeout_controller.js": {
-    "file": "assets/timeout_controller-B_vtDHZc.js",
+    "file": "assets/timeout_controller-D0JtZ_QX.js",
     "name": "timeout_controller",
     "src": "javascript/controllers/timeout_controller.js",
     "isDynamicEntry": true,
     "imports": [
       "entrypoints/application.js",
-      "_easytimer-Cn2kbt1-.js"
+      "_easytimer-Ec3WqwRK.js"
     ]
   },
   "javascript/controllers/toast_controller.js": {
-    "file": "assets/toast_controller-VOBgsf1X.js",
+    "file": "assets/toast_controller-CVAg-Vaj.js",
     "name": "toast_controller",
     "src": "javascript/controllers/toast_controller.js",
     "isDynamicEntry": true,
@@ -1110,7 +1110,7 @@
     ]
   },
   "javascript/controllers/trix_controller.js": {
-    "file": "assets/trix_controller-XZOtq9rM.js",
+    "file": "assets/trix_controller-MxsxxlWm.js",
     "name": "trix_controller",
     "src": "javascript/controllers/trix_controller.js",
     "isDynamicEntry": true,
@@ -1119,7 +1119,7 @@
     ]
   },
   "javascript/controllers/upload_controller.js": {
-    "file": "assets/upload_controller-rIEDTkgb.js",
+    "file": "assets/upload_controller-CrzmMOHU.js",
     "name": "upload_controller",
     "src": "javascript/controllers/upload_controller.js",
     "isDynamicEntry": true,
