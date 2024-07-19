@@ -5,7 +5,6 @@ import RubyPlugin from 'vite-plugin-ruby'
 import FullReload from 'vite-plugin-full-reload'
 import StimulusHMR from 'vite-plugin-stimulus-hmr' 
 import gzipPlugin from 'rollup-plugin-gzip'
-import noBundlePlugin from 'vite-plugin-no-bundle';
 
 // const certPath = "./config/ssl/dev.bifrost.com.pem"
 // const keyPath = "./config/ssl/dev.bifrost.com-key.pem"
@@ -14,6 +13,7 @@ import noBundlePlugin from 'vite-plugin-no-bundle';
 //   : {};
 
 export default defineConfig({
+  base: "/public/assets",
   resolve: {
     alias: {
       '@js': path.resolve(__dirname, './app/frontend/javascript'),
@@ -23,17 +23,15 @@ export default defineConfig({
     },
   },
   build: {
-    lib: {
-      formats: ['es'],
-      entry: 'src/index.ts',
-    },
-    cssCodeSplit: true
+    assetsDir: 'assets',
+    cssCodeSplit: true,
+    outDir: "/assets",
+    manifest: "manifest.json"
   },
   plugins: [
     RubyPlugin(),
     FullReload(['config/routes.rb', 'app/views/**/*'], { delay: 200 }),
     StimulusHMR(),
-    gzipPlugin(),
-    noBundlePlugin({ copy: '**/*.css' })
+    gzipPlugin()
   ]
 })
