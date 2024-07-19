@@ -1,0 +1,2 @@
+var c=Object.defineProperty;var n=(t,e,s)=>e in t?c(t,e,{enumerable:!0,configurable:!0,writable:!0,value:s}):t[e]=s;var r=(t,e,s)=>n(t,typeof e!="symbol"?e+"":e,s);import{C as o}from"./application-BzDBbQCT.js";class m extends o{connect(){const e=document.getElementById(this.targetValue);$(this.element).on("select2:select",function(a){window.preserve_scroll=!0;var l=$(a.params.data.element).data("src");e.src=l})}}r(m,"values",{target:String});export{m as default};
+//# sourceMappingURL=select-frame_controller-DoGvYeFw.js.map
