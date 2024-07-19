@@ -1,0 +1,1822 @@
+{
+  "../../node_modules/@rails/actioncable/src/index.js": {
+    "file": "assets/index-FRQGQGEM.js",
+    "name": "index",
+    "src": "../../node_modules/@rails/actioncable/src/index.js",
+    "isDynamicEntry": true
+  },
+  "_datatables-D5jVJngu.js": {
+    "file": "assets/datatables-D5jVJngu.js",
+    "name": "datatables",
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "_easytimer-Cn2kbt1-.js": {
+    "file": "assets/easytimer-Cn2kbt1-.js",
+    "name": "easytimer",
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "_fetch_request-Bi6ZTe2Y.js": {
+    "file": "assets/fetch_request-Bi6ZTe2Y.js",
+    "name": "fetch_request"
+  },
+  "_i18n-CZyHUTA_.js": {
+    "file": "assets/i18n-CZyHUTA_.js",
+    "name": "i18n",
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "_sweetalert2-0y_ANCQ_.js": {
+    "file": "assets/sweetalert2-0y_ANCQ_.js",
+    "name": "sweetalert2",
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "_verbs-DNA89zgE.js": {
+    "file": "assets/verbs-DNA89zgE.js",
+    "name": "verbs",
+    "imports": [
+      "_fetch_request-Bi6ZTe2Y.js"
+    ]
+  },
+  "ac.svg": {
+    "file": "assets/ac-D7D9PYwJ.svg",
+    "src": "ac.svg"
+  },
+  "ad.svg": {
+    "file": "assets/ad-BLNJJBny.svg",
+    "src": "ad.svg"
+  },
+  "ae.svg": {
+    "file": "assets/ae-9VMosuIo.svg",
+    "src": "ae.svg"
+  },
+  "af.svg": {
+    "file": "assets/af-DB5PZ-uQ.svg",
+    "src": "af.svg"
+  },
+  "ag.svg": {
+    "file": "assets/ag-BuOaTByT.svg",
+    "src": "ag.svg"
+  },
+  "ai.svg": {
+    "file": "assets/ai-BZFnw-fc.svg",
+    "src": "ai.svg"
+  },
+  "al.svg": {
+    "file": "assets/al-CILYWioi.svg",
+    "src": "al.svg"
+  },
+  "am.svg": {
+    "file": "assets/am-Brwuaa2u.svg",
+    "src": "am.svg"
+  },
+  "ao.svg": {
+    "file": "assets/ao-BdhsxdlM.svg",
+    "src": "ao.svg"
+  },
+  "aq.svg": {
+    "file": "assets/aq-DBYM-ScO.svg",
+    "src": "aq.svg"
+  },
+  "ar.svg": {
+    "file": "assets/ar-o406yzIH.svg",
+    "src": "ar.svg"
+  },
+  "as.svg": {
+    "file": "assets/as-BBWb0VLV.svg",
+    "src": "as.svg"
+  },
+  "at.svg": {
+    "file": "assets/at-Bd1UH8n6.svg",
+    "src": "at.svg"
+  },
+  "au.svg": {
+    "file": "assets/au-Bdo1ETlp.svg",
+    "src": "au.svg"
+  },
+  "aw.svg": {
+    "file": "assets/aw-DCnzCFAp.svg",
+    "src": "aw.svg"
+  },
+  "awards.png": {
+    "file": "assets/awards-5fjRxsTu.png",
+    "src": "awards.png"
+  },
+  "ax.svg": {
+    "file": "assets/ax-Bly_ijXn.svg",
+    "src": "ax.svg"
+  },
+  "az.svg": {
+    "file": "assets/az-PtLKWgfN.svg",
+    "src": "az.svg"
+  },
+  "ba.svg": {
+    "file": "assets/ba-Dbx9Aran.svg",
+    "src": "ba.svg"
+  },
+  "bb.svg": {
+    "file": "assets/bb-AWGobXc7.svg",
+    "src": "bb.svg"
+  },
+  "bd.svg": {
+    "file": "assets/bd-DvPoLH3C.svg",
+    "src": "bd.svg"
+  },
+  "be.svg": {
+    "file": "assets/be-hI05Ag8w.svg",
+    "src": "be.svg"
+  },
+  "bf.svg": {
+    "file": "assets/bf-DCbfaYlw.svg",
+    "src": "bf.svg"
+  },
+  "bg.svg": {
+    "file": "assets/bg-xQluPOC1.svg",
+    "src": "bg.svg"
+  },
+  "bh.svg": {
+    "file": "assets/bh-DgfmyT2n.svg",
+    "src": "bh.svg"
+  },
+  "bi.svg": {
+    "file": "assets/bi-cELXgJIL.svg",
+    "src": "bi.svg"
+  },
+  "bj.svg": {
+    "file": "assets/bj-DD8Q8hnh.svg",
+    "src": "bj.svg"
+  },
+  "bl.svg": {
+    "file": "assets/bl-Ci30-2xD.svg",
+    "src": "bl.svg"
+  },
+  "bm.svg": {
+    "file": "assets/bm-7XrHt736.svg",
+    "src": "bm.svg"
+  },
+  "bn.svg": {
+    "file": "assets/bn-4XPSpXLE.svg",
+    "src": "bn.svg"
+  },
+  "bo.svg": {
+    "file": "assets/bo-BTFWTlxR.svg",
+    "src": "bo.svg"
+  },
+  "bq.svg": {
+    "file": "assets/bq-SWpsjb2t.svg",
+    "src": "bq.svg"
+  },
+  "br.svg": {
+    "file": "assets/br-BevDKjWV.svg",
+    "src": "br.svg"
+  },
+  "bs.svg": {
+    "file": "assets/bs-BgOo3iga.svg",
+    "src": "bs.svg"
+  },
+  "bt.svg": {
+    "file": "assets/bt-BMyVy5ha.svg",
+    "src": "bt.svg"
+  },
+  "bv.svg": {
+    "file": "assets/bv-DBWzRaf_.svg",
+    "src": "bv.svg"
+  },
+  "bw.svg": {
+    "file": "assets/bw-jLG8_gP0.svg",
+    "src": "bw.svg"
+  },
+  "by.svg": {
+    "file": "assets/by-CwdMuTEh.svg",
+    "src": "by.svg"
+  },
+  "bz.svg": {
+    "file": "assets/bz-DAlR05u-.svg",
+    "src": "bz.svg"
+  },
+  "ca.svg": {
+    "file": "assets/ca-kBTgXJhY.svg",
+    "src": "ca.svg"
+  },
+  "cc.svg": {
+    "file": "assets/cc-BoFpkC_Y.svg",
+    "src": "cc.svg"
+  },
+  "cd.svg": {
+    "file": "assets/cd-B0jl4T-h.svg",
+    "src": "cd.svg"
+  },
+  "cefta.svg": {
+    "file": "assets/cefta-DHVXp2yN.svg",
+    "src": "cefta.svg"
+  },
+  "cf.svg": {
+    "file": "assets/cf-BANLBjqx.svg",
+    "src": "cf.svg"
+  },
+  "cg.svg": {
+    "file": "assets/cg-CY-wjH_B.svg",
+    "src": "cg.svg"
+  },
+  "ch.svg": {
+    "file": "assets/ch-Do8WoVrp.svg",
+    "src": "ch.svg"
+  },
+  "championship.png": {
+    "file": "assets/championship-CR8XiOjC.png",
+    "src": "championship.png"
+  },
+  "championship_corner_card.png": {
+    "file": "assets/championship_corner_card-EMXnTZz9.png",
+    "src": "championship_corner_card.png"
+  },
+  "championship_corner_card_full.png": {
+    "file": "assets/championship_corner_card_full-NR4yo1J8.png",
+    "src": "championship_corner_card_full.png"
+  },
+  "ci.svg": {
+    "file": "assets/ci-Cn5asHD7.svg",
+    "src": "ci.svg"
+  },
+  "ck.svg": {
+    "file": "assets/ck-VjQ-vT4C.svg",
+    "src": "ck.svg"
+  },
+  "cl.svg": {
+    "file": "assets/cl-BBUJYbm0.svg",
+    "src": "cl.svg"
+  },
+  "cm.svg": {
+    "file": "assets/cm-bV3dLVvd.svg",
+    "src": "cm.svg"
+  },
+  "cn.svg": {
+    "file": "assets/cn-h7PJQWyb.svg",
+    "src": "cn.svg"
+  },
+  "co.svg": {
+    "file": "assets/co-BRjxMuCM.svg",
+    "src": "co.svg"
+  },
+  "coach.png": {
+    "file": "assets/coach-C1L4Eg_Z.png",
+    "src": "coach.png"
+  },
+  "corner.png": {
+    "file": "assets/corner-CTvAkw_u.png",
+    "src": "corner.png"
+  },
+  "corner_card.png": {
+    "file": "assets/corner_card-BbebZk03.png",
+    "src": "corner_card.png"
+  },
+  "cp.svg": {
+    "file": "assets/cp-B_BR0ZRs.svg",
+    "src": "cp.svg"
+  },
+  "cr.svg": {
+    "file": "assets/cr-CcuKkUIo.svg",
+    "src": "cr.svg"
+  },
+  "crowd-clap.png": {
+    "file": "assets/crowd-clap-B8E0UBN8.png",
+    "src": "crowd-clap.png"
+  },
+  "cu.svg": {
+    "file": "assets/cu-DIJP0Oen.svg",
+    "src": "cu.svg"
+  },
+  "cv.svg": {
+    "file": "assets/cv-Cs4q_s-7.svg",
+    "src": "cv.svg"
+  },
+  "cw.svg": {
+    "file": "assets/cw-HRo-y3zf.svg",
+    "src": "cw.svg"
+  },
+  "cx.svg": {
+    "file": "assets/cx-jda5tbm9.svg",
+    "src": "cx.svg"
+  },
+  "cy.svg": {
+    "file": "assets/cy-b_QUXiYZ.svg",
+    "src": "cy.svg"
+  },
+  "cz.svg": {
+    "file": "assets/cz-CgTuLLXv.svg",
+    "src": "cz.svg"
+  },
+  "de.svg": {
+    "file": "assets/de-BksKoY6L.svg",
+    "src": "de.svg"
+  },
+  "defaultteams.png": {
+    "file": "assets/defaultteams-Du5kj8bj.png",
+    "src": "defaultteams.png"
+  },
+  "dg.svg": {
+    "file": "assets/dg-BY0wnCJB.svg",
+    "src": "dg.svg"
+  },
+  "disabled_league.png": {
+    "file": "assets/disabled_league-4_qdlNgq.png",
+    "src": "disabled_league.png"
+  },
+  "dj.svg": {
+    "file": "assets/dj-O8f-LXCA.svg",
+    "src": "dj.svg"
+  },
+  "dk.svg": {
+    "file": "assets/dk-2cglAULc.svg",
+    "src": "dk.svg"
+  },
+  "dm.svg": {
+    "file": "assets/dm-BH40T9J5.svg",
+    "src": "dm.svg"
+  },
+  "do.svg": {
+    "file": "assets/do-De-QhrzZ.svg",
+    "src": "do.svg"
+  },
+  "dz.svg": {
+    "file": "assets/dz-EwXBYPv9.svg",
+    "src": "dz.svg"
+  },
+  "ea.svg": {
+    "file": "assets/ea-Do3OdSQn.svg",
+    "src": "ea.svg"
+  },
+  "ec.svg": {
+    "file": "assets/ec-4yhEjDNG.svg",
+    "src": "ec.svg"
+  },
+  "ee.svg": {
+    "file": "assets/ee-Cg_xYV4v.svg",
+    "src": "ee.svg"
+  },
+  "eg.svg": {
+    "file": "assets/eg-DDHs6Djq.svg",
+    "src": "eg.svg"
+  },
+  "eh.svg": {
+    "file": "assets/eh-CPVcpsdx.svg",
+    "src": "eh.svg"
+  },
+  "entrypoints/app.js": {
+    "file": "assets/app-CzkDOVpp.js",
+    "name": "entrypoints/app.js",
+    "src": "entrypoints/app.js",
+    "isEntry": true
+  },
+  "entrypoints/application.css": {
+    "file": "assets/application-CGYj9xH4.css",
+    "src": "entrypoints/application.css",
+    "isEntry": true
+  },
+  "entrypoints/application.js": {
+    "file": "assets/application-CCzRwA6_.js",
+    "name": "entrypoints/application.js",
+    "src": "entrypoints/application.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "../../node_modules/@rails/actioncable/src/index.js",
+      "javascript/controllers/cleave_controller.js",
+      "javascript/controllers/confirm_controller.js",
+      "javascript/controllers/countdown_controller.js",
+      "javascript/controllers/dt/admin-accounts_controller.js",
+      "javascript/controllers/dt/admin-audits_controller.js",
+      "javascript/controllers/dt/admin-countries_controller.js",
+      "javascript/controllers/dt/admin-leagues_controller.js",
+      "javascript/controllers/dt/admin-players_controller.js",
+      "javascript/controllers/dt/admin-teams_controller.js",
+      "javascript/controllers/dt/firststeps-leagues_controller.js",
+      "javascript/controllers/dt/manager-active-users_controller.js",
+      "javascript/controllers/dt/manager-awards_controller.js",
+      "javascript/controllers/dt/manager-season-users_controller.js",
+      "javascript/controllers/dt/manager-waiting-users_controller.js",
+      "javascript/controllers/dt/user-trades-buy_controller.js",
+      "javascript/controllers/flash_controller.js",
+      "javascript/controllers/flatpickr_controller.js",
+      "javascript/controllers/form_controller.js",
+      "javascript/controllers/input-number_controller.js",
+      "javascript/controllers/managedt_controller.js",
+      "javascript/controllers/manager/seasons_controller.js",
+      "javascript/controllers/modal_controller.js",
+      "javascript/controllers/multi_controller.js",
+      "javascript/controllers/notifications_controller.js",
+      "javascript/controllers/popover_controller.js",
+      "javascript/controllers/request_controller.js",
+      "javascript/controllers/select-frame_controller.js",
+      "javascript/controllers/select_controller.js",
+      "javascript/controllers/sidebar_controller.js",
+      "javascript/controllers/stepper_controller.js",
+      "javascript/controllers/tab_controller.js",
+      "javascript/controllers/theme_controller.js",
+      "javascript/controllers/timeout_controller.js",
+      "javascript/controllers/toast_controller.js",
+      "javascript/controllers/trix_controller.js",
+      "javascript/controllers/upload_controller.js"
+    ]
+  },
+  "entrypoints/plugins.js": {
+    "file": "assets/plugins-C9pQRQAp.js",
+    "name": "entrypoints/plugins.js",
+    "src": "entrypoints/plugins.js",
+    "isEntry": true
+  },
+  "er.svg": {
+    "file": "assets/er-DM1IsQ_0.svg",
+    "src": "er.svg"
+  },
+  "es-ct.svg": {
+    "file": "assets/es-ct-DdzobtBd.svg",
+    "src": "es-ct.svg"
+  },
+  "es-ga.svg": {
+    "file": "assets/es-ga-CU_CA1R8.svg",
+    "src": "es-ga.svg"
+  },
+  "es.svg": {
+    "file": "assets/es--B7UgIMY.svg",
+    "src": "es.svg"
+  },
+  "et.svg": {
+    "file": "assets/et-rRm3cQB2.svg",
+    "src": "et.svg"
+  },
+  "eu.svg": {
+    "file": "assets/eu-Bbe-Wr3m.svg",
+    "src": "eu.svg"
+  },
+  "facebook.png": {
+    "file": "assets/facebook-Rdh8UQSV.png",
+    "src": "facebook.png"
+  },
+  "fi.svg": {
+    "file": "assets/fi-Brjq_KK6.svg",
+    "src": "fi.svg"
+  },
+  "fj.svg": {
+    "file": "assets/fj-BtT2JxDW.svg",
+    "src": "fj.svg"
+  },
+  "fk.svg": {
+    "file": "assets/fk-B5sf-drt.svg",
+    "src": "fk.svg"
+  },
+  "fm.svg": {
+    "file": "assets/fm-fzAkPW-D.svg",
+    "src": "fm.svg"
+  },
+  "fo.svg": {
+    "file": "assets/fo-qcRkq4yZ.svg",
+    "src": "fo.svg"
+  },
+  "fonts/hkgrotesk-bold.ttf": {
+    "file": "assets/hkgrotesk-bold-DfZ8A5MJ.ttf",
+    "src": "fonts/hkgrotesk-bold.ttf"
+  },
+  "fonts/hkgrotesk-bold.woff": {
+    "file": "assets/hkgrotesk-bold-CNnIfM9m.woff",
+    "src": "fonts/hkgrotesk-bold.woff"
+  },
+  "fonts/hkgrotesk-light.eot": {
+    "file": "assets/hkgrotesk-light-CFOlwwJU.eot",
+    "src": "fonts/hkgrotesk-light.eot"
+  },
+  "fonts/hkgrotesk-light.woff": {
+    "file": "assets/hkgrotesk-light-Bch7Jc8H.woff",
+    "src": "fonts/hkgrotesk-light.woff"
+  },
+  "fonts/hkgrotesk-medium.eot": {
+    "file": "assets/hkgrotesk-medium-DhAVEcVM.eot",
+    "src": "fonts/hkgrotesk-medium.eot"
+  },
+  "fonts/hkgrotesk-medium.woff": {
+    "file": "assets/hkgrotesk-medium-CPEAN8-4.woff",
+    "src": "fonts/hkgrotesk-medium.woff"
+  },
+  "fonts/hkgrotesk-regular.eot": {
+    "file": "assets/hkgrotesk-regular-C5FQFgYW.eot",
+    "src": "fonts/hkgrotesk-regular.eot"
+  },
+  "fonts/hkgrotesk-regular.woff": {
+    "file": "assets/hkgrotesk-regular-BONCcfZ_.woff",
+    "src": "fonts/hkgrotesk-regular.woff"
+  },
+  "fonts/hkgrotesk-semibold.eot": {
+    "file": "assets/hkgrotesk-semibold-D2R7JsFz.eot",
+    "src": "fonts/hkgrotesk-semibold.eot"
+  },
+  "fonts/hkgrotesk-semibold.woff": {
+    "file": "assets/hkgrotesk-semibold-CaqhRViJ.woff",
+    "src": "fonts/hkgrotesk-semibold.woff"
+  },
+  "fonts/materialdesignicons-webfont.eot": {
+    "file": "assets/materialdesignicons-webfont-C9N43Jxz.eot",
+    "src": "fonts/materialdesignicons-webfont.eot"
+  },
+  "fonts/materialdesignicons-webfont.ttf": {
+    "file": "assets/materialdesignicons-webfont-hPx70ptL.ttf",
+    "src": "fonts/materialdesignicons-webfont.ttf"
+  },
+  "fonts/materialdesignicons-webfont.woff": {
+    "file": "assets/materialdesignicons-webfont-DSMUHRBL.woff",
+    "src": "fonts/materialdesignicons-webfont.woff"
+  },
+  "fonts/materialdesignicons-webfont.woff2": {
+    "file": "assets/materialdesignicons-webfont-D8huMFN2.woff2",
+    "src": "fonts/materialdesignicons-webfont.woff2"
+  },
+  "fr.svg": {
+    "file": "assets/fr-CaPytDrd.svg",
+    "src": "fr.svg"
+  },
+  "ga.svg": {
+    "file": "assets/ga-CgNkrnfv.svg",
+    "src": "ga.svg"
+  },
+  "gb-eng.svg": {
+    "file": "assets/gb-eng-DTHmDHq3.svg",
+    "src": "gb-eng.svg"
+  },
+  "gb-nir.svg": {
+    "file": "assets/gb-nir-CXfsz-Vr.svg",
+    "src": "gb-nir.svg"
+  },
+  "gb-sct.svg": {
+    "file": "assets/gb-sct-D5L2FKKv.svg",
+    "src": "gb-sct.svg"
+  },
+  "gb-wls.svg": {
+    "file": "assets/gb-wls-lLp_JivI.svg",
+    "src": "gb-wls.svg"
+  },
+  "gb.svg": {
+    "file": "assets/gb-B7feHi7O.svg",
+    "src": "gb.svg"
+  },
+  "gd.svg": {
+    "file": "assets/gd-pSS-3osU.svg",
+    "src": "gd.svg"
+  },
+  "ge.svg": {
+    "file": "assets/ge-CkgMv3g1.svg",
+    "src": "ge.svg"
+  },
+  "generic-avatar.png": {
+    "file": "assets/generic-avatar-3drOqxuz.png",
+    "src": "generic-avatar.png"
+  },
+  "generic-club.png": {
+    "file": "assets/generic-club-CORp8bwx.png",
+    "src": "generic-club.png"
+  },
+  "generic-flag.png": {
+    "file": "assets/generic-flag-CDuW17QT.png",
+    "src": "generic-flag.png"
+  },
+  "generic-kit-g1.png": {
+    "file": "assets/generic-kit-g1-DphRyFNB.png",
+    "src": "generic-kit-g1.png"
+  },
+  "generic-league.png": {
+    "file": "assets/generic-league-Ds2clY-9.png",
+    "src": "generic-league.png"
+  },
+  "generic-player.png": {
+    "file": "assets/generic-player-oqjT1IgX.png",
+    "src": "generic-player.png"
+  },
+  "generic-stadium.png": {
+    "file": "assets/generic-stadium-BIdZKbTQ.png",
+    "src": "generic-stadium.png"
+  },
+  "generic-trophy.png": {
+    "file": "assets/generic-trophy-D2h-tWZj.png",
+    "src": "generic-trophy.png"
+  },
+  "gf.svg": {
+    "file": "assets/gf-DmPBKJy6.svg",
+    "src": "gf.svg"
+  },
+  "gg.svg": {
+    "file": "assets/gg-C92b0skB.svg",
+    "src": "gg.svg"
+  },
+  "gh.svg": {
+    "file": "assets/gh-DtAqzRIB.svg",
+    "src": "gh.svg"
+  },
+  "gi.svg": {
+    "file": "assets/gi-DxULXcyh.svg",
+    "src": "gi.svg"
+  },
+  "github.png": {
+    "file": "assets/github-DD2HQoCn.png",
+    "src": "github.png"
+  },
+  "gl.svg": {
+    "file": "assets/gl-D6qP-fnE.svg",
+    "src": "gl.svg"
+  },
+  "gm.svg": {
+    "file": "assets/gm-DI7EpeCC.svg",
+    "src": "gm.svg"
+  },
+  "gn.svg": {
+    "file": "assets/gn-kt7YA1XT.svg",
+    "src": "gn.svg"
+  },
+  "google_oauth2.png": {
+    "file": "assets/google_oauth2-CFLXCO1S.png",
+    "src": "google_oauth2.png"
+  },
+  "gp.svg": {
+    "file": "assets/gp-DfFO2Tto.svg",
+    "src": "gp.svg"
+  },
+  "gq.svg": {
+    "file": "assets/gq-7TPEDItK.svg",
+    "src": "gq.svg"
+  },
+  "gr.svg": {
+    "file": "assets/gr-COThnT__.svg",
+    "src": "gr.svg"
+  },
+  "gs.svg": {
+    "file": "assets/gs-PfxFHEJt.svg",
+    "src": "gs.svg"
+  },
+  "gt.svg": {
+    "file": "assets/gt-Dmwnvp_6.svg",
+    "src": "gt.svg"
+  },
+  "gu.svg": {
+    "file": "assets/gu-2lXXtQYh.svg",
+    "src": "gu.svg"
+  },
+  "gw.svg": {
+    "file": "assets/gw-C7WtB2Gz.svg",
+    "src": "gw.svg"
+  },
+  "gy.svg": {
+    "file": "assets/gy-DqVe45bs.svg",
+    "src": "gy.svg"
+  },
+  "hk.svg": {
+    "file": "assets/hk-DmlAlDm3.svg",
+    "src": "hk.svg"
+  },
+  "hkgrotesk-bold.woff2": {
+    "file": "assets/hkgrotesk-bold-6ttUrHGX.woff2",
+    "src": "hkgrotesk-bold.woff2"
+  },
+  "hkgrotesk-light.woff2": {
+    "file": "assets/hkgrotesk-light-D-IvdBaW.woff2",
+    "src": "hkgrotesk-light.woff2"
+  },
+  "hkgrotesk-medium.woff2": {
+    "file": "assets/hkgrotesk-medium-Uuv9AilU.woff2",
+    "src": "hkgrotesk-medium.woff2"
+  },
+  "hkgrotesk-regular.woff2": {
+    "file": "assets/hkgrotesk-regular-CTvFlCD0.woff2",
+    "src": "hkgrotesk-regular.woff2"
+  },
+  "hkgrotesk-semibold.woff2": {
+    "file": "assets/hkgrotesk-semibold-Dc-_Vk5k.woff2",
+    "src": "hkgrotesk-semibold.woff2"
+  },
+  "hm.svg": {
+    "file": "assets/hm-qv4alcAr.svg",
+    "src": "hm.svg"
+  },
+  "hn.svg": {
+    "file": "assets/hn-CGK2wPJs.svg",
+    "src": "hn.svg"
+  },
+  "hr.svg": {
+    "file": "assets/hr-DKOqx_KX.svg",
+    "src": "hr.svg"
+  },
+  "ht.svg": {
+    "file": "assets/ht-CJQ6cFWH.svg",
+    "src": "ht.svg"
+  },
+  "hu.svg": {
+    "file": "assets/hu-Bm8S5mAU.svg",
+    "src": "hu.svg"
+  },
+  "ic.svg": {
+    "file": "assets/ic-tiZZSA7Y.svg",
+    "src": "ic.svg"
+  },
+  "id.svg": {
+    "file": "assets/id-CJiY5UnY.svg",
+    "src": "id.svg"
+  },
+  "ie.svg": {
+    "file": "assets/ie-DhxI4aJv.svg",
+    "src": "ie.svg"
+  },
+  "il.svg": {
+    "file": "assets/il-B8Gk93tR.svg",
+    "src": "il.svg"
+  },
+  "im.svg": {
+    "file": "assets/im-CvvgQOSS.svg",
+    "src": "im.svg"
+  },
+  "images/auth-one-bg.jpg": {
+    "file": "assets/auth-one-bg-CNifX54h.jpg",
+    "src": "images/auth-one-bg.jpg"
+  },
+  "images/cover-pattern.png": {
+    "file": "assets/cover-pattern-CzcjCYXt.png",
+    "src": "images/cover-pattern.png"
+  },
+  "images/flags/us.svg": {
+    "file": "assets/us-Bd9dYj6g.svg",
+    "src": "images/flags/us.svg"
+  },
+  "in.svg": {
+    "file": "assets/in-CEquytpT.svg",
+    "src": "in.svg"
+  },
+  "io.svg": {
+    "file": "assets/io-xmggvB2x.svg",
+    "src": "io.svg"
+  },
+  "iq.svg": {
+    "file": "assets/iq-Ci3fLikF.svg",
+    "src": "iq.svg"
+  },
+  "ir.svg": {
+    "file": "assets/ir-B-vhSQAr.svg",
+    "src": "ir.svg"
+  },
+  "is.svg": {
+    "file": "assets/is-Bcz4oQ9S.svg",
+    "src": "is.svg"
+  },
+  "it.svg": {
+    "file": "assets/it-lvp2tGC_.svg",
+    "src": "it.svg"
+  },
+  "javascript/controllers/cleave_controller.js": {
+    "file": "assets/cleave_controller-DlksBnet.js",
+    "name": "cleave_controller",
+    "src": "javascript/controllers/cleave_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/confirm_controller.js": {
+    "file": "assets/confirm_controller-D24EKtCu.js",
+    "name": "confirm_controller",
+    "src": "javascript/controllers/confirm_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_sweetalert2-0y_ANCQ_.js",
+      "_i18n-CZyHUTA_.js"
+    ]
+  },
+  "javascript/controllers/countdown_controller.js": {
+    "file": "assets/countdown_controller-VkLMgia0.js",
+    "name": "countdown_controller",
+    "src": "javascript/controllers/countdown_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_easytimer-Cn2kbt1-.js"
+    ]
+  },
+  "javascript/controllers/dt/admin-accounts_controller.js": {
+    "file": "assets/admin-accounts_controller-iB_A1V-g.js",
+    "name": "admin-accounts_controller",
+    "src": "javascript/controllers/dt/admin-accounts_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js",
+      "_sweetalert2-0y_ANCQ_.js"
+    ]
+  },
+  "javascript/controllers/dt/admin-audits_controller.js": {
+    "file": "assets/admin-audits_controller-BiEq9pyD.js",
+    "name": "admin-audits_controller",
+    "src": "javascript/controllers/dt/admin-audits_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js"
+    ]
+  },
+  "javascript/controllers/dt/admin-countries_controller.js": {
+    "file": "assets/admin-countries_controller-CG6GRqLr.js",
+    "name": "admin-countries_controller",
+    "src": "javascript/controllers/dt/admin-countries_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js",
+      "_sweetalert2-0y_ANCQ_.js"
+    ]
+  },
+  "javascript/controllers/dt/admin-leagues_controller.js": {
+    "file": "assets/admin-leagues_controller-C1wRI_BN.js",
+    "name": "admin-leagues_controller",
+    "src": "javascript/controllers/dt/admin-leagues_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js"
+    ]
+  },
+  "javascript/controllers/dt/admin-players_controller.js": {
+    "file": "assets/admin-players_controller-CF2A_h6J.js",
+    "name": "admin-players_controller",
+    "src": "javascript/controllers/dt/admin-players_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js",
+      "_sweetalert2-0y_ANCQ_.js"
+    ]
+  },
+  "javascript/controllers/dt/admin-teams_controller.js": {
+    "file": "assets/admin-teams_controller-Bw8yHgZg.js",
+    "name": "admin-teams_controller",
+    "src": "javascript/controllers/dt/admin-teams_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js",
+      "_sweetalert2-0y_ANCQ_.js"
+    ]
+  },
+  "javascript/controllers/dt/firststeps-leagues_controller.js": {
+    "file": "assets/firststeps-leagues_controller-DJ6DNMvn.js",
+    "name": "firststeps-leagues_controller",
+    "src": "javascript/controllers/dt/firststeps-leagues_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js"
+    ]
+  },
+  "javascript/controllers/dt/manager-active-users_controller.js": {
+    "file": "assets/manager-active-users_controller-C2PqjUmp.js",
+    "name": "manager-active-users_controller",
+    "src": "javascript/controllers/dt/manager-active-users_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js",
+      "_sweetalert2-0y_ANCQ_.js"
+    ]
+  },
+  "javascript/controllers/dt/manager-awards_controller.js": {
+    "file": "assets/manager-awards_controller-CVYBxCWr.js",
+    "name": "manager-awards_controller",
+    "src": "javascript/controllers/dt/manager-awards_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js",
+      "_sweetalert2-0y_ANCQ_.js"
+    ]
+  },
+  "javascript/controllers/dt/manager-season-users_controller.js": {
+    "file": "assets/manager-season-users_controller-COFSxs3h.js",
+    "name": "manager-season-users_controller",
+    "src": "javascript/controllers/dt/manager-season-users_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js"
+    ]
+  },
+  "javascript/controllers/dt/manager-waiting-users_controller.js": {
+    "file": "assets/manager-waiting-users_controller-CpUECuB0.js",
+    "name": "manager-waiting-users_controller",
+    "src": "javascript/controllers/dt/manager-waiting-users_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js",
+      "_sweetalert2-0y_ANCQ_.js"
+    ]
+  },
+  "javascript/controllers/dt/user-trades-buy_controller.js": {
+    "file": "assets/user-trades-buy_controller-C2sb5WIV.js",
+    "name": "user-trades-buy_controller",
+    "src": "javascript/controllers/dt/user-trades-buy_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_datatables-D5jVJngu.js",
+      "_sweetalert2-0y_ANCQ_.js"
+    ]
+  },
+  "javascript/controllers/flash_controller.js": {
+    "file": "assets/flash_controller-PxOIMJAr.js",
+    "name": "flash_controller",
+    "src": "javascript/controllers/flash_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/flatpickr_controller.js": {
+    "file": "assets/flatpickr_controller-RQLj3mbL.js",
+    "name": "flatpickr_controller",
+    "src": "javascript/controllers/flatpickr_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/form_controller.js": {
+    "file": "assets/form_controller-DdK4tfWo.js",
+    "name": "form_controller",
+    "src": "javascript/controllers/form_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_sweetalert2-0y_ANCQ_.js",
+      "_i18n-CZyHUTA_.js"
+    ]
+  },
+  "javascript/controllers/input-number_controller.js": {
+    "file": "assets/input-number_controller-Dj4B33Ub.js",
+    "name": "input-number_controller",
+    "src": "javascript/controllers/input-number_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/managedt_controller.js": {
+    "file": "assets/managedt_controller-DWNXLyTl.js",
+    "name": "managedt_controller",
+    "src": "javascript/controllers/managedt_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/manager/seasons_controller.js": {
+    "file": "assets/seasons_controller-C7MLXNMu.js",
+    "name": "seasons_controller",
+    "src": "javascript/controllers/manager/seasons_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_fetch_request-Bi6ZTe2Y.js"
+    ]
+  },
+  "javascript/controllers/modal_controller.js": {
+    "file": "assets/modal_controller-BDQtPkqW.js",
+    "name": "modal_controller",
+    "src": "javascript/controllers/modal_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/multi_controller.js": {
+    "file": "assets/multi_controller-Dl8Ulf6n.js",
+    "name": "multi_controller",
+    "src": "javascript/controllers/multi_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_i18n-CZyHUTA_.js"
+    ]
+  },
+  "javascript/controllers/notifications_controller.js": {
+    "file": "assets/notifications_controller-DVZNxRPJ.js",
+    "name": "notifications_controller",
+    "src": "javascript/controllers/notifications_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_verbs-DNA89zgE.js",
+      "_fetch_request-Bi6ZTe2Y.js"
+    ]
+  },
+  "javascript/controllers/popover_controller.js": {
+    "file": "assets/popover_controller-CBl8bXRS.js",
+    "name": "popover_controller",
+    "src": "javascript/controllers/popover_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/request_controller.js": {
+    "file": "assets/request_controller-HfN9OUCy.js",
+    "name": "request_controller",
+    "src": "javascript/controllers/request_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_verbs-DNA89zgE.js",
+      "_fetch_request-Bi6ZTe2Y.js"
+    ]
+  },
+  "javascript/controllers/select-frame_controller.js": {
+    "file": "assets/select-frame_controller-BxS4uuqv.js",
+    "name": "select-frame_controller",
+    "src": "javascript/controllers/select-frame_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/select_controller.js": {
+    "file": "assets/select_controller-BJj3o6AH.js",
+    "name": "select_controller",
+    "src": "javascript/controllers/select_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_i18n-CZyHUTA_.js"
+    ]
+  },
+  "javascript/controllers/sidebar_controller.js": {
+    "file": "assets/sidebar_controller-CQAGVqu8.js",
+    "name": "sidebar_controller",
+    "src": "javascript/controllers/sidebar_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/stepper_controller.js": {
+    "file": "assets/stepper_controller-BH5KEMS9.js",
+    "name": "stepper_controller",
+    "src": "javascript/controllers/stepper_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/tab_controller.js": {
+    "file": "assets/tab_controller-sv9PM3Tz.js",
+    "name": "tab_controller",
+    "src": "javascript/controllers/tab_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/theme_controller.js": {
+    "file": "assets/theme_controller-C4-WY6tX.js",
+    "name": "theme_controller",
+    "src": "javascript/controllers/theme_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/timeout_controller.js": {
+    "file": "assets/timeout_controller-B_vtDHZc.js",
+    "name": "timeout_controller",
+    "src": "javascript/controllers/timeout_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js",
+      "_easytimer-Cn2kbt1-.js"
+    ]
+  },
+  "javascript/controllers/toast_controller.js": {
+    "file": "assets/toast_controller-VOBgsf1X.js",
+    "name": "toast_controller",
+    "src": "javascript/controllers/toast_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/trix_controller.js": {
+    "file": "assets/trix_controller-XZOtq9rM.js",
+    "name": "trix_controller",
+    "src": "javascript/controllers/trix_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "javascript/controllers/upload_controller.js": {
+    "file": "assets/upload_controller-rIEDTkgb.js",
+    "name": "upload_controller",
+    "src": "javascript/controllers/upload_controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "entrypoints/application.js"
+    ]
+  },
+  "je.svg": {
+    "file": "assets/je-DROji0q4.svg",
+    "src": "je.svg"
+  },
+  "jm.svg": {
+    "file": "assets/jm-DEJfu4RU.svg",
+    "src": "jm.svg"
+  },
+  "jo.svg": {
+    "file": "assets/jo-BRe7tnYX.svg",
+    "src": "jo.svg"
+  },
+  "jp.svg": {
+    "file": "assets/jp-C3VkK6qO.svg",
+    "src": "jp.svg"
+  },
+  "ke.svg": {
+    "file": "assets/ke-Wodvgy_j.svg",
+    "src": "ke.svg"
+  },
+  "kg.svg": {
+    "file": "assets/kg-Dy6J6H2f.svg",
+    "src": "kg.svg"
+  },
+  "kh.svg": {
+    "file": "assets/kh-BVOcSw0F.svg",
+    "src": "kh.svg"
+  },
+  "ki.svg": {
+    "file": "assets/ki-C7IfIjhK.svg",
+    "src": "ki.svg"
+  },
+  "km.svg": {
+    "file": "assets/km-Cjvgn2KF.svg",
+    "src": "km.svg"
+  },
+  "kn.svg": {
+    "file": "assets/kn-C3Fp9e0_.svg",
+    "src": "kn.svg"
+  },
+  "kp.svg": {
+    "file": "assets/kp-BMteJhxq.svg",
+    "src": "kp.svg"
+  },
+  "kr.svg": {
+    "file": "assets/kr-CA3ljIEo.svg",
+    "src": "kr.svg"
+  },
+  "kw.svg": {
+    "file": "assets/kw-Csjhajr6.svg",
+    "src": "kw.svg"
+  },
+  "ky.svg": {
+    "file": "assets/ky-DZMQBKIs.svg",
+    "src": "ky.svg"
+  },
+  "kz.svg": {
+    "file": "assets/kz-B3eENQJu.svg",
+    "src": "kz.svg"
+  },
+  "la.svg": {
+    "file": "assets/la-a8NG4Y8T.svg",
+    "src": "la.svg"
+  },
+  "lb.svg": {
+    "file": "assets/lb-DV5L7avk.svg",
+    "src": "lb.svg"
+  },
+  "lc.svg": {
+    "file": "assets/lc-DKXV_NqL.svg",
+    "src": "lc.svg"
+  },
+  "leagues.png": {
+    "file": "assets/leagues-DE0lP1cg.png",
+    "src": "leagues.png"
+  },
+  "li.svg": {
+    "file": "assets/li-ButdGxKa.svg",
+    "src": "li.svg"
+  },
+  "lk.svg": {
+    "file": "assets/lk-CqZzcQbX.svg",
+    "src": "lk.svg"
+  },
+  "locker.png": {
+    "file": "assets/locker-BkKA2Pfa.png",
+    "src": "locker.png"
+  },
+  "logo-dark.png": {
+    "file": "assets/logo-dark-DEgjC4YH.png",
+    "src": "logo-dark.png"
+  },
+  "logo-light.png": {
+    "file": "assets/logo-light-ClrpaeKd.png",
+    "src": "logo-light.png"
+  },
+  "logo-sm.png": {
+    "file": "assets/logo-sm-C_2SwDY3.png",
+    "src": "logo-sm.png"
+  },
+  "lr.svg": {
+    "file": "assets/lr-njW_TzU3.svg",
+    "src": "lr.svg"
+  },
+  "ls.svg": {
+    "file": "assets/ls-CXnUmd8v.svg",
+    "src": "ls.svg"
+  },
+  "lt.svg": {
+    "file": "assets/lt-CU4QmtZ-.svg",
+    "src": "lt.svg"
+  },
+  "lu.svg": {
+    "file": "assets/lu-VEXvWBhh.svg",
+    "src": "lu.svg"
+  },
+  "lv.svg": {
+    "file": "assets/lv-DjyqV19Q.svg",
+    "src": "lv.svg"
+  },
+  "ly.svg": {
+    "file": "assets/ly-DCiZh9kE.svg",
+    "src": "ly.svg"
+  },
+  "ma.svg": {
+    "file": "assets/ma-BNn_BSaU.svg",
+    "src": "ma.svg"
+  },
+  "masterleague.png": {
+    "file": "assets/masterleague-B0GjEBJZ.png",
+    "src": "masterleague.png"
+  },
+  "mc.svg": {
+    "file": "assets/mc-JhJMKfOk.svg",
+    "src": "mc.svg"
+  },
+  "md.svg": {
+    "file": "assets/md-Cz-vcLfl.svg",
+    "src": "md.svg"
+  },
+  "me.svg": {
+    "file": "assets/me-CRPx6jfh.svg",
+    "src": "me.svg"
+  },
+  "mf.svg": {
+    "file": "assets/mf-DAXQ_ZOW.svg",
+    "src": "mf.svg"
+  },
+  "mg.svg": {
+    "file": "assets/mg-DDrNyYWg.svg",
+    "src": "mg.svg"
+  },
+  "mh.svg": {
+    "file": "assets/mh-Ddrxsbqz.svg",
+    "src": "mh.svg"
+  },
+  "mk.svg": {
+    "file": "assets/mk-Cx9Yf_ZD.svg",
+    "src": "mk.svg"
+  },
+  "ml.svg": {
+    "file": "assets/ml-BBMGMlrT.svg",
+    "src": "ml.svg"
+  },
+  "mlo-dark-250.png": {
+    "file": "assets/mlo-dark-250-1DWycMG0.png",
+    "src": "mlo-dark-250.png"
+  },
+  "mlo-dark.png": {
+    "file": "assets/mlo-dark-Br28BRAb.png",
+    "src": "mlo-dark.png"
+  },
+  "mlo-light.png": {
+    "file": "assets/mlo-light-DZwycX95.png",
+    "src": "mlo-light.png"
+  },
+  "mlo-light.svg": {
+    "file": "assets/mlo-light-B9n8J77O.svg",
+    "src": "mlo-light.svg"
+  },
+  "mlo.png": {
+    "file": "assets/mlo-D4WhnJVb.png",
+    "src": "mlo.png"
+  },
+  "mm.svg": {
+    "file": "assets/mm-DbZhPukv.svg",
+    "src": "mm.svg"
+  },
+  "mn.svg": {
+    "file": "assets/mn-BFXZsxAv.svg",
+    "src": "mn.svg"
+  },
+  "mo.svg": {
+    "file": "assets/mo-DIBS7EUb.svg",
+    "src": "mo.svg"
+  },
+  "modal-bg.png": {
+    "file": "assets/modal-bg-lSTJOrdl.png",
+    "src": "modal-bg.png"
+  },
+  "mp.svg": {
+    "file": "assets/mp-DWCziwR1.svg",
+    "src": "mp.svg"
+  },
+  "mq.svg": {
+    "file": "assets/mq-d17zVMxj.svg",
+    "src": "mq.svg"
+  },
+  "mr.svg": {
+    "file": "assets/mr-CUTxDJBp.svg",
+    "src": "mr.svg"
+  },
+  "ms.svg": {
+    "file": "assets/ms-CCU60c2p.svg",
+    "src": "ms.svg"
+  },
+  "mt.svg": {
+    "file": "assets/mt-8i8lIqCl.svg",
+    "src": "mt.svg"
+  },
+  "mu.svg": {
+    "file": "assets/mu-B2mIIRce.svg",
+    "src": "mu.svg"
+  },
+  "mv.svg": {
+    "file": "assets/mv-BXI4x8em.svg",
+    "src": "mv.svg"
+  },
+  "mw.svg": {
+    "file": "assets/mw-81IepNBw.svg",
+    "src": "mw.svg"
+  },
+  "mx.svg": {
+    "file": "assets/mx-CQQIOxnH.svg",
+    "src": "mx.svg"
+  },
+  "my.svg": {
+    "file": "assets/my-BLFm8FK0.svg",
+    "src": "my.svg"
+  },
+  "mz.svg": {
+    "file": "assets/mz-b4CXFw8I.svg",
+    "src": "mz.svg"
+  },
+  "na.svg": {
+    "file": "assets/na-C9l4khdg.svg",
+    "src": "na.svg"
+  },
+  "nc.svg": {
+    "file": "assets/nc-DBcipKv1.svg",
+    "src": "nc.svg"
+  },
+  "ne.svg": {
+    "file": "assets/ne-Cium2f5G.svg",
+    "src": "ne.svg"
+  },
+  "nf.svg": {
+    "file": "assets/nf-CV85_wcL.svg",
+    "src": "nf.svg"
+  },
+  "ng.svg": {
+    "file": "assets/ng-CLL1nzMk.svg",
+    "src": "ng.svg"
+  },
+  "ni.svg": {
+    "file": "assets/ni-CpUnh1E3.svg",
+    "src": "ni.svg"
+  },
+  "nl.svg": {
+    "file": "assets/nl-BC8R4Z62.svg",
+    "src": "nl.svg"
+  },
+  "no.svg": {
+    "file": "assets/no-67wnnm5y.svg",
+    "src": "no.svg"
+  },
+  "np.svg": {
+    "file": "assets/np-lc_hXCRc.svg",
+    "src": "np.svg"
+  },
+  "nr.svg": {
+    "file": "assets/nr-BaWUququ.svg",
+    "src": "nr.svg"
+  },
+  "nu.svg": {
+    "file": "assets/nu-Dm-LLXct.svg",
+    "src": "nu.svg"
+  },
+  "nz.svg": {
+    "file": "assets/nz-CtGQ3bQb.svg",
+    "src": "nz.svg"
+  },
+  "office.png": {
+    "file": "assets/office-Bz4IcgR6.png",
+    "src": "office.png"
+  },
+  "om.svg": {
+    "file": "assets/om-gu3vKvLc.svg",
+    "src": "om.svg"
+  },
+  "pa.svg": {
+    "file": "assets/pa-CyG5_TF4.svg",
+    "src": "pa.svg"
+  },
+  "pe.svg": {
+    "file": "assets/pe-MCkS2C3O.svg",
+    "src": "pe.svg"
+  },
+  "pf.svg": {
+    "file": "assets/pf-pbIGO-zA.svg",
+    "src": "pf.svg"
+  },
+  "pg.svg": {
+    "file": "assets/pg-DMmkPxnM.svg",
+    "src": "pg.svg"
+  },
+  "ph.svg": {
+    "file": "assets/ph-tkdbn4OA.svg",
+    "src": "ph.svg"
+  },
+  "pk.svg": {
+    "file": "assets/pk-Dk1VtyQc.svg",
+    "src": "pk.svg"
+  },
+  "pl.svg": {
+    "file": "assets/pl-jl6riBSr.svg",
+    "src": "pl.svg"
+  },
+  "players.png": {
+    "file": "assets/players-Z6YLXCPO.png",
+    "src": "players.png"
+  },
+  "pm.svg": {
+    "file": "assets/pm-CzIfbOoc.svg",
+    "src": "pm.svg"
+  },
+  "pn.svg": {
+    "file": "assets/pn-zYWD89NL.svg",
+    "src": "pn.svg"
+  },
+  "pr.svg": {
+    "file": "assets/pr-Di972MN-.svg",
+    "src": "pr.svg"
+  },
+  "ps.svg": {
+    "file": "assets/ps-CvlEi3qU.svg",
+    "src": "ps.svg"
+  },
+  "pt.svg": {
+    "file": "assets/pt-B42nLpIC.svg",
+    "src": "pt.svg"
+  },
+  "pw.svg": {
+    "file": "assets/pw-CO-DAzMk.svg",
+    "src": "pw.svg"
+  },
+  "py.svg": {
+    "file": "assets/py-R1rCMiBw.svg",
+    "src": "py.svg"
+  },
+  "qa.svg": {
+    "file": "assets/qa-BNPyG8Oz.svg",
+    "src": "qa.svg"
+  },
+  "re.svg": {
+    "file": "assets/re-Bg1MZWMt.svg",
+    "src": "re.svg"
+  },
+  "ro.svg": {
+    "file": "assets/ro-C2av9jVe.svg",
+    "src": "ro.svg"
+  },
+  "rplayer_strip_bg.png": {
+    "file": "assets/rplayer_strip_bg-Dqs3aNFY.png",
+    "src": "rplayer_strip_bg.png"
+  },
+  "rs.svg": {
+    "file": "assets/rs-CYGINAFO.svg",
+    "src": "rs.svg"
+  },
+  "ru.svg": {
+    "file": "assets/ru-BxWofXrV.svg",
+    "src": "ru.svg"
+  },
+  "rw.svg": {
+    "file": "assets/rw-C8bwfGEc.svg",
+    "src": "rw.svg"
+  },
+  "sa.svg": {
+    "file": "assets/sa-dgfwY4lP.svg",
+    "src": "sa.svg"
+  },
+  "sb.svg": {
+    "file": "assets/sb-C0S13pjk.svg",
+    "src": "sb.svg"
+  },
+  "sc.svg": {
+    "file": "assets/sc-DFTNEfqs.svg",
+    "src": "sc.svg"
+  },
+  "sd.svg": {
+    "file": "assets/sd-C4QNIRG-.svg",
+    "src": "sd.svg"
+  },
+  "se.svg": {
+    "file": "assets/se-LJR7KPbG.svg",
+    "src": "se.svg"
+  },
+  "season_corner_card.png": {
+    "file": "assets/season_corner_card-SHYhrHwv.png",
+    "src": "season_corner_card.png"
+  },
+  "seasons.png": {
+    "file": "assets/seasons-BnAZZs16.png",
+    "src": "seasons.png"
+  },
+  "selling-icon.png": {
+    "file": "assets/selling-icon-BUcIUgt-.png",
+    "src": "selling-icon.png"
+  },
+  "sg.svg": {
+    "file": "assets/sg-1StwqMyu.svg",
+    "src": "sg.svg"
+  },
+  "sh.svg": {
+    "file": "assets/sh-Du8unv9l.svg",
+    "src": "sh.svg"
+  },
+  "shakinghands.png": {
+    "file": "assets/shakinghands-1s-BXZsG.png",
+    "src": "shakinghands.png"
+  },
+  "si.svg": {
+    "file": "assets/si-DFe7CBnO.svg",
+    "src": "si.svg"
+  },
+  "sj.svg": {
+    "file": "assets/sj-AM0BJ0qg.svg",
+    "src": "sj.svg"
+  },
+  "sk.svg": {
+    "file": "assets/sk-GNJEbusl.svg",
+    "src": "sk.svg"
+  },
+  "sl.svg": {
+    "file": "assets/sl-g6tI7b1i.svg",
+    "src": "sl.svg"
+  },
+  "sm.svg": {
+    "file": "assets/sm-ChSbRMAO.svg",
+    "src": "sm.svg"
+  },
+  "sn.svg": {
+    "file": "assets/sn-C4abx9Xn.svg",
+    "src": "sn.svg"
+  },
+  "so.svg": {
+    "file": "assets/so-4rzV2w1_.svg",
+    "src": "so.svg"
+  },
+  "soccer_field.png": {
+    "file": "assets/soccer_field-CG621uBp.png",
+    "src": "soccer_field.png"
+  },
+  "soccerball.png": {
+    "file": "assets/soccerball-BIPSo7OJ.png",
+    "src": "soccerball.png"
+  },
+  "sr.svg": {
+    "file": "assets/sr-CfMKAfua.svg",
+    "src": "sr.svg"
+  },
+  "ss.svg": {
+    "file": "assets/ss-BaOLQVHm.svg",
+    "src": "ss.svg"
+  },
+  "st.svg": {
+    "file": "assets/st-BPNWFo4C.svg",
+    "src": "st.svg"
+  },
+  "strenght.png": {
+    "file": "assets/strenght-D8lGWD1g.png",
+    "src": "strenght.png"
+  },
+  "stylesheets/remixicon/remixicon.eot": {
+    "file": "assets/remixicon-CiuhZXp1.eot",
+    "src": "stylesheets/remixicon/remixicon.eot"
+  },
+  "stylesheets/remixicon/remixicon.svg": {
+    "file": "assets/remixicon-Dm70R5XZ.svg",
+    "src": "stylesheets/remixicon/remixicon.svg"
+  },
+  "stylesheets/remixicon/remixicon.ttf": {
+    "file": "assets/remixicon-DIVZIXW2.ttf",
+    "src": "stylesheets/remixicon/remixicon.ttf"
+  },
+  "stylesheets/remixicon/remixicon.woff": {
+    "file": "assets/remixicon-C14Fpfy6.woff",
+    "src": "stylesheets/remixicon/remixicon.woff"
+  },
+  "stylesheets/remixicon/remixicon.woff2": {
+    "file": "assets/remixicon-B83Wci9r.woff2",
+    "src": "stylesheets/remixicon/remixicon.woff2"
+  },
+  "sv.svg": {
+    "file": "assets/sv-DY7qdIK2.svg",
+    "src": "sv.svg"
+  },
+  "sx.svg": {
+    "file": "assets/sx-Df7tElRn.svg",
+    "src": "sx.svg"
+  },
+  "sy.svg": {
+    "file": "assets/sy-C_k15Phj.svg",
+    "src": "sy.svg"
+  },
+  "sz.svg": {
+    "file": "assets/sz-xMHKiEik.svg",
+    "src": "sz.svg"
+  },
+  "ta.svg": {
+    "file": "assets/ta-DFc0l8q-.svg",
+    "src": "ta.svg"
+  },
+  "tactics.png": {
+    "file": "assets/tactics-B2aeatgt.png",
+    "src": "tactics.png"
+  },
+  "tc.svg": {
+    "file": "assets/tc-vHtBmY6O.svg",
+    "src": "tc.svg"
+  },
+  "td.svg": {
+    "file": "assets/td-DTceyj29.svg",
+    "src": "td.svg"
+  },
+  "team_back.png": {
+    "file": "assets/team_back-Dj130zco.png",
+    "src": "team_back.png"
+  },
+  "tf.svg": {
+    "file": "assets/tf-Dg85Om7s.svg",
+    "src": "tf.svg"
+  },
+  "tg.svg": {
+    "file": "assets/tg-Df4DPBRc.svg",
+    "src": "tg.svg"
+  },
+  "th.svg": {
+    "file": "assets/th-DK2zZyMY.svg",
+    "src": "th.svg"
+  },
+  "timeline.png": {
+    "file": "assets/timeline-D22GayFq.png",
+    "src": "timeline.png"
+  },
+  "tj.svg": {
+    "file": "assets/tj-GlTnph_a.svg",
+    "src": "tj.svg"
+  },
+  "tk.svg": {
+    "file": "assets/tk-DhSbuHz5.svg",
+    "src": "tk.svg"
+  },
+  "tl.svg": {
+    "file": "assets/tl-DIH0QZG7.svg",
+    "src": "tl.svg"
+  },
+  "tm.svg": {
+    "file": "assets/tm-CJpUsTgJ.svg",
+    "src": "tm.svg"
+  },
+  "tn.svg": {
+    "file": "assets/tn-CIMswNqq.svg",
+    "src": "tn.svg"
+  },
+  "to.svg": {
+    "file": "assets/to-6m55WaQo.svg",
+    "src": "to.svg"
+  },
+  "tr.svg": {
+    "file": "assets/tr-D_GaM_2-.svg",
+    "src": "tr.svg"
+  },
+  "tt.svg": {
+    "file": "assets/tt-BCeQWr4E.svg",
+    "src": "tt.svg"
+  },
+  "tv.svg": {
+    "file": "assets/tv-MqebyrVm.svg",
+    "src": "tv.svg"
+  },
+  "tw.svg": {
+    "file": "assets/tw-BxJA8BEN.svg",
+    "src": "tw.svg"
+  },
+  "twitter.png": {
+    "file": "assets/twitter-Ce1pstfi.png",
+    "src": "twitter.png"
+  },
+  "tz.svg": {
+    "file": "assets/tz-C5bKAQPT.svg",
+    "src": "tz.svg"
+  },
+  "ua.svg": {
+    "file": "assets/ua-BquxXKta.svg",
+    "src": "ua.svg"
+  },
+  "ug.svg": {
+    "file": "assets/ug-DSgQ85kZ.svg",
+    "src": "ug.svg"
+  },
+  "um.svg": {
+    "file": "assets/um-WjBXcvVs.svg",
+    "src": "um.svg"
+  },
+  "un.svg": {
+    "file": "assets/un-A3rCgucu.svg",
+    "src": "un.svg"
+  },
+  "uy.svg": {
+    "file": "assets/uy-CIih_alT.svg",
+    "src": "uy.svg"
+  },
+  "uz.svg": {
+    "file": "assets/uz-B-s05ecB.svg",
+    "src": "uz.svg"
+  },
+  "va.svg": {
+    "file": "assets/va-DFO3k8dN.svg",
+    "src": "va.svg"
+  },
+  "vc.svg": {
+    "file": "assets/vc-CiOteOkC.svg",
+    "src": "vc.svg"
+  },
+  "ve.svg": {
+    "file": "assets/ve-CPylIGZw.svg",
+    "src": "ve.svg"
+  },
+  "vg.svg": {
+    "file": "assets/vg-DVRx0bys.svg",
+    "src": "vg.svg"
+  },
+  "vi.svg": {
+    "file": "assets/vi-5Sso8kL9.svg",
+    "src": "vi.svg"
+  },
+  "vn.svg": {
+    "file": "assets/vn-5s9EOkR8.svg",
+    "src": "vn.svg"
+  },
+  "vu.svg": {
+    "file": "assets/vu-DkK2ni09.svg",
+    "src": "vu.svg"
+  },
+  "wf.svg": {
+    "file": "assets/wf-D3C-PQYE.svg",
+    "src": "wf.svg"
+  },
+  "ws.svg": {
+    "file": "assets/ws-IVFNwTc1.svg",
+    "src": "ws.svg"
+  },
+  "xk.svg": {
+    "file": "assets/xk-BpdOTDmI.svg",
+    "src": "xk.svg"
+  },
+  "xx.svg": {
+    "file": "assets/xx-DVpK_Zin.svg",
+    "src": "xx.svg"
+  },
+  "ye.svg": {
+    "file": "assets/ye-B8FoKx7I.svg",
+    "src": "ye.svg"
+  },
+  "yt.svg": {
+    "file": "assets/yt-C3jbIdwD.svg",
+    "src": "yt.svg"
+  },
+  "za.svg": {
+    "file": "assets/za-CNoVUQUP.svg",
+    "src": "za.svg"
+  },
+  "zm.svg": {
+    "file": "assets/zm-CsHveeKK.svg",
+    "src": "zm.svg"
+  },
+  "zw.svg": {
+    "file": "assets/zw-CnQGIqfV.svg",
+    "src": "zw.svg"
+  }
+}
