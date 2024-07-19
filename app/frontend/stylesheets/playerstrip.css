@@ -6,7 +6,7 @@
 	position: relative;
 	overflow: hidden;
 	user-select: none;
-	background-image: url(images/rplayer_strip_bg.png);
+	background-image: url(@img/rplayer_strip_bg.png);
 	background-size: cover;
 	margin: 5px 0px 5px 0px;
 }
@@ -80,7 +80,7 @@
 	position: relative;
 	overflow: hidden;
 	user-select: none;
-	background-image: url(images/rplayer_strip_bg.png);
+	background-image: url(@img/rplayer_strip_bg.png);
 	background-size: cover;
 	margin: 5px 0px 5px 0px;
 }
@@ -174,7 +174,7 @@
 	user-select: none;
 	margin: 0;
 	padding: 0;
-	background-image: url(images/rplayer_silver.png);
+	background-image: url(@img/rplayer_silver.png);
 	background-size: cover;
 }
 

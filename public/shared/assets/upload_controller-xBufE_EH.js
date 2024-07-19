@@ -1,0 +1,2 @@
+var c=Object.defineProperty;var r=(a,e,t)=>e in a?c(a,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):a[e]=t;var o=(a,e,t)=>r(a,typeof e!="symbol"?e+"":e,t);import{C as d}from"./application-BzDBbQCT.js";class m extends d{connect(){const e=document.getElementById(this.imgValue);let t=$(e),l=$(this.element);l&&l.on("change",function(i){let n=new FileReader,s=i.target.files;n.onload=function(){t&&t.attr("src",n.result)},n.readAsDataURL(s[0])})}}o(m,"values",{img:String});export{m as default};
+//# sourceMappingURL=upload_controller-xBufE_EH.js.map

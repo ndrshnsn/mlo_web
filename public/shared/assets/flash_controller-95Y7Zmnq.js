@@ -1,0 +1,2 @@
+import{C as s}from"./application-BzDBbQCT.js";class l extends s{connect(){const e=this.element;this.animateCSS("rubberBand").then(()=>{this.animateCSS("zoomOut").then(()=>{e.style.visibility="hidden"})})}animateCSS(e){return new Promise((a,d)=>{const t=`animate__${e}`,n=this.element;n.classList.add("animate__animated",t);function i(o){o.stopPropagation(),n.classList.remove("animate__animated",t),a("Animation ended")}n.addEventListener("animationend",i)})}}export{l as default};
+//# sourceMappingURL=flash_controller-95Y7Zmnq.js.map

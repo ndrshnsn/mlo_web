@@ -13,7 +13,7 @@ import gzipPlugin from 'rollup-plugin-gzip'
 //   : {};
 
 export default defineConfig({
-  base: "/public/assets",
+  base: "/assets",
   resolve: {
     alias: {
       '@js': path.resolve(__dirname, './app/frontend/javascript'),
@@ -26,7 +26,8 @@ export default defineConfig({
     assetsDir: 'assets',
     cssCodeSplit: true,
     outDir: "/assets",
-    manifest: "manifest.json"
+    manifest: "manifest.json",
+    chunkSizeWarningLimit: 800
   },
   plugins: [
     RubyPlugin(),
