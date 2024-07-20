@@ -70,14 +70,14 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'masterleagueonline.manager@gmail.com'}
+  config.action_mailer.default_options = {from: 'admin@masterleagueonline.com.br'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com',
+  address:              'smtp.umbler.com',
   port:                 587,
   domain:               'masterleagueonline.com.br',
   user_name:            Rails.application.credentials.dig(:gmail, :username),
-  password:            Rails.application.credentials.dig(:gmail, :password),
+  password:             Rails.application.credentials.dig(:gmail, :password),
   authentication:       'plain',
   enable_starttls_auto: true  }
   config.action_mailer.default_url_options = {:host =>'app.masterleagueonline.com.br'}
