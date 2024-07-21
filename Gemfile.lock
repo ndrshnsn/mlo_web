@@ -505,11 +505,8 @@ GEM
     ruby-vips (2.2.2)
       ffi (~> 1.12)
       logger
-    ruby_http_client (3.5.5)
     sassc (2.4.0)
       ffi (~> 1.9)
-    sendgrid-ruby (6.7.0)
-      ruby_http_client (~> 3.4)
     shrine (3.6.0)
       content_disposition (~> 1.0)
       down (~> 5.1)
@@ -662,7 +659,6 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   sassc (~> 2.4)
-  sendgrid-ruby (~> 6.6)
   shrine (~> 3.4)
   sidekiq
   sidekiq-cron (~> 1.10)
