@@ -1,7 +1,7 @@
 rails_env = "production"
 environment rails_env
 
-app_dir = "/home/deploy/mlo" # Update me with your root rails app path
+app_dir = "/home/deploy/mlo_web" # Update me with your root rails app path
 
 # bind  "unix://#{app_dir}/tmp/sockets/puma.sock"
 pidfile "#{app_dir}/tmp/pids/puma.pid"
