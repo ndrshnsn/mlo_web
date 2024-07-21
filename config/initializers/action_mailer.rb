@@ -1,9 +1,9 @@
 ActionMailer::Base.smtp_settings = {
-  user_name: "apikey", # do not change this field
-  password: ENV['SENDGRID_API'],
-  domain: "mlo.app", # change it to your own domain
-  address: "smtp.sendgrid.net",
+  address: 'smtp.gmail.com',
   port: 587,
-  authentication: :plain,
+  domain: 'gmail.com',
+  user_name: Rails.application.credentials.dig(:sendmail, :username),
+  password: Rails.application.credentials.dig(:sendmail, :password),
+  authentication: :login,
   enable_starttls_auto: true
 }
