@@ -72,3 +72,5 @@ gem "kaminari", "~> 1.2"
 gem "kamal", "~> 1.0"
 gem "aws-sdk-s3", "~> 1.156"
 gem "fog-aws", "~> 3.24"
+
+gem "propshaft", "~> 0.9.0"
