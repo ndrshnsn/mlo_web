@@ -4,7 +4,7 @@
       .card
         .card-body.p-4.text-center
           .mx-auto.avatar-md.mb-3
-            = image_tag("#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+            = image_tag("#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
           h5.card-title.mb-1 = stringHuman(DefTeam.getTranslation(club.def_team.name)[0])
           p.text-muted.mb-0 ##{club.user_season.user.nickname}
         .card-footer.text-end

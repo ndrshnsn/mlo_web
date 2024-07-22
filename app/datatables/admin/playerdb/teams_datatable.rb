@@ -1,12 +1,12 @@
 class Admin::Playerdb::TeamsDatatable < ApplicationDatatable
-  delegate :logger, :t, :vite_image_tag, :image_tag, :image_path, :countryFlag, :teamLogoURL, :admin_playerdb_team_destroy_path, :admin_playerdb_team_edit_path, :admin_playerdb_team_edit_path, :current_user, :teamBadge, :stringHuman, :dt_actionsMenu, :content_tag, :image_url, :session, :button_to, to: :@view
+  delegate :logger, :t, :vite_image_tag, :vite_asset_url, :image_tag, :image_path, :countryFlag, :teamLogoURL, :admin_playerdb_team_destroy_path, :admin_playerdb_team_edit_path, :admin_playerdb_team_edit_path, :current_user, :teamBadge, :stringHuman, :dt_actionsMenu, :content_tag, :image_url, :session, :button_to, to: :@view
 
   private
 
   def data
     teams.map do |team|
       ## Team Name
-      tName = image_tag("#{session[:pdbprefix]}/teams/#{team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", class: "me-1", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';")
+      tName = image_tag("#{session[:pdbprefix]}/teams/#{team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", class: "me-1", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-team.png")}';")
       tName += stringHuman(team.name)
 
       ## Platform

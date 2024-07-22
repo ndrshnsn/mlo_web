@@ -3,7 +3,7 @@
     .row
       .col-12
         .card
-          = image_tag("misc/disabled_league.png", class: "card-img-top img-fluid")
+          = vite_image_tag("images/misc/disabled_league.png", class: "card-img-top img-fluid")
           .card-body
             h6.cart-title.text-warning.fs-18 = t('.disabled_league')
             p.cart-text = t('.disabled_league_obs_html', admin: AppConfig.mail_admin)

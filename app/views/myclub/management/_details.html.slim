@@ -8,9 +8,9 @@
   .col-md-5.col-sm-12
     .card
       - if !@userClub
-        img.card-img-top[src=image_path('generic-club.png') style="padding: 55px;"]
+        img.card-img-top[src=vite_image_tag('images/generic-club.png') style="padding: 55px;"]
       - else
-        img.card-img-top[src=image_path("#{session[:pdbprefix]}/teams/#{(@userClub.def_team.name.upcase.delete(' '))}.png") style="padding: 55px;"]
+        img.card-img-top[src=image_tag("#{session[:pdbprefix]}/teams/#{(@userClub.def_team.name.upcase.delete(' '))}.png") style="padding: 55px;"]
       .card-body
         h4.card-title = t('.main_information')
         table.table.table-borderless.mt-0
@@ -43,7 +43,7 @@
               strong = t('.country')
             td.text-right
               - if @userClub
-                = image_tag(countryFlag(@userClub.def_team.def_country.name), class: "avatar-xs", data: { toggle: "tooltip"}, title: stringHuman(t("defaults.countries.#{@userClub.def_team.def_country.name}")))
+                = vite_image_tag(countryFlag(@userClub.def_team.def_country.name), class: "avatar-xs", data: { toggle: "tooltip"}, title: stringHuman(t("defaults.countries.#{@userClub.def_team.def_country.name}")))
               - else
                 | -
 
@@ -67,9 +67,9 @@
           - else
             = t('.stadium_capacity_not_informed')
         - if @userClub
-          = image_tag("#{session[:pdbprefix]}/stadiums/#{(@userClub.def_team.name.upcase.delete(' '))}.jpg", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{image_url("generic-stadium.png")}';")
+          = image_tag("#{session[:pdbprefix]}/stadiums/#{(@userClub.def_team.name.upcase.delete(' '))}.jpg", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-stadium.png")}';")
         - else
-          = image_tag("generic-stadium.png", class: "mt-2 card-img")
+          = vite_image_tag("images/generic-stadium.png", class: "mt-2 card-img")
 
     .card
       .card-body
@@ -78,11 +78,11 @@
         .row
           .col-6
             - if @userClub
-              = image_tag("#{session[:pdbprefix]}/kits/#{(@userClub.def_team.name.upcase.delete(' '))}-p1.png", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{image_url("generic-kit-p1.png")}';")
+              = image_tag("#{session[:pdbprefix]}/kits/#{(@userClub.def_team.name.upcase.delete(' '))}-p1.png", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-kit-p1.png")}';")
             - else
-              = image_tag("generic-kit-p1.png", class: "img-fluid")
+              = vite_image_tag("images/generic-kit-p1.png", class: "img-fluid")
           .col-6
             - if @userClub
-              = image_tag("#{session[:pdbprefix]}/kits/#{(@userClub.def_team.name.upcase.delete(' '))}-p2.png", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{image_url("generic-kit-p2.png")}';")
+              = image_tag("#{session[:pdbprefix]}/kits/#{(@userClub.def_team.name.upcase.delete(' '))}-p2.png", class: "mt-2 card-img", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-kit-p2.png")}';")
             - else
-              = image_tag("generic-kit-p2.png", class: "img-fluid")
+              = vite_image_tag("images/generic-kit-p2.png", class: "img-fluid")

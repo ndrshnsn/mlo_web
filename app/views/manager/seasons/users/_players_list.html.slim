@@ -19,11 +19,11 @@
                 - rpPOS = translate_pkeys(cPlayer.def_player.def_player_position.name, cPlayer.def_player.platform)
                 tr
                   td
-                    = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: cPlayer.def_player.platform, dna: true)}/#{cPlayer.def_player.details['platformid']}.png", class: "avatar-md img-thumbnail rounded-circle me-1", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{image_url("/misc/generic-player.png")}';")
+                    = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: cPlayer.def_player.platform, dna: true)}/#{cPlayer.def_player.details['platformid']}.png", class: "avatar-md img-thumbnail rounded-circle me-1", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-player.png")}';")
                     = cPlayer.def_player.name
                   td.text-center = cPlayer.def_player.age
                   td.text-center = cPlayer.def_player.height
-                  td.text-center = image_tag(countryFlag(cPlayer.def_player.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{cPlayer.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+                  td.text-center = vite_image_tag(countryFlag(cPlayer.def_player.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{cPlayer.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
                   td.text-center
                     div class="badge badge-#{rpPOS[1]}"
                       = rpPOS[0]

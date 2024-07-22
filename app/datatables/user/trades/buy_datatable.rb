@@ -1,5 +1,5 @@
 class User::Trades::BuyDatatable < ApplicationDatatable
-  delegate :session, :logger, :t, :image_tag, :current_user, :translate_pscore, :translate_pkeys, :get_platforms, :countryFlag, :toCurrency, :stringHuman, :teamLogoURL, :dt_actionsMenu, :image_url, :content_tag, :logger, :button_to, :trades_buy_confirm_path, to: :@view
+  delegate :session, :logger, :t, :image_tag, :vite_image_tag, :current_user, :translate_pscore, :translate_pkeys, :get_platforms, :countryFlag, :toCurrency, :stringHuman, :teamLogoURL, :dt_actionsMenu, :image_url, :content_tag, :logger, :button_to, :trades_buy_confirm_path, to: :@view
 
   private
 
@@ -9,7 +9,7 @@ class User::Trades::BuyDatatable < ApplicationDatatable
       player_season = PlayerSeason.find_by(def_player_id: player.id, season_id: session[:season])
       season = Season.find(session[:season])
 
-      nationality = image_tag(countryFlag(player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+      nationality = vite_image_tag(countryFlag(player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
 
       player_name = ApplicationController.render partial: "trades/cells/player_name", locals: {session_pdbprefix: session[:pdbprefix], player: player, nationality: nationality }
 

@@ -1,5 +1,5 @@
 class Manager::SeasonUsersDatatable < ApplicationDatatable
-  delegate :logger, :t, :manager_users_path, :manager_user_toggle_path, :manager_user_show_path, :manager_user_remove_path, :manager_season_user_players_path, :image_tag, :dt_actionsMenu, :stringHuman, :image_url, :avatarURL, :content_tag, :session, :button_to, to: :@view
+  delegate :logger, :t, :manager_users_path, :manager_user_toggle_path, :manager_user_show_path, :manager_user_remove_path, :manager_season_user_players_path, :image_tag, :vite_asset_url, :vite_image_tag, :dt_actionsMenu, :stringHuman, :image_url, :avatarURL, :content_tag, :session, :button_to, to: :@view
 
   private
 
@@ -18,7 +18,7 @@ class Manager::SeasonUsersDatatable < ApplicationDatatable
       stColumn += "</div>"
 
       if uSeason.clubs.first
-        tName = image_tag("#{session[:pdbprefix]}/teams/#{uSeason.clubs.first.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", class: "me-1", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';")
+        tName = vite_image_tag("#{session[:pdbprefix]}/teams/#{uSeason.clubs.first.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", class: "me-1", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-team.png")}';")
         tName += stringHuman(uSeason.clubs.first.def_team.name)
       else
         tName = nil

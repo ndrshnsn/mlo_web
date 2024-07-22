@@ -1,9 +1,9 @@
 .row.mb-3
   .col-sm-12.col-md-4.d-flex.justify-content-center
     - if @defTeam.id
-      = image_tag("#{session[:pdbprefix]}/teams/#{(@defTeam.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';")
+      = vite_image_tag("#{session[:pdbprefix]}/teams/#{(@defTeam.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';")
     - else
-      = image_tag(image_url("/misc/generic-team.png"), class: "img-fluid")
+      = vite_image_tag(vite_asset_url("images/misc/generic-team.png"), class: "img-fluid")
 
   .col-sm-12.col-md-8
     .form-group.mb-3
@@ -93,14 +93,14 @@
         .row.h-100.d-flex.align-items-center
           .col-6
             - if @defTeam.id
-              = image_tag("#{session[:pdbprefix]}/kits/#{(@defTeam.name.upcase.delete(' '))}-p1.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-kit-p1.png")}';")
+              = image_tag("#{session[:pdbprefix]}/kits/#{(@defTeam.name.upcase.delete(' '))}-p1.png", class: "img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-kit-p1.png")}';")
             - else
-              = image_tag(image_url("/misc/generic-kit-p1.png"), class: "img-fluid")
+              = vite_image_tag("images/misc/generic-kit-p1.png", class: "img-fluid")
           .col-6
             - if @defTeam.id
-              = image_tag("#{session[:pdbprefix]}/kits/#{(@defTeam.name.upcase.delete(' '))}-p2.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-kit-p2.png")}';")
+              = image_tag("#{session[:pdbprefix]}/kits/#{(@defTeam.name.upcase.delete(' '))}-p2.png", class: "img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-kit-p2.png")}';")
             - else
-              = image_tag(image_url("/misc/generic-kit-p2.png"), class: "img-fluid")
+              = vite_image_tag("images/misc/generic-kit-p2.png", class: "img-fluid")
 
       .col.mb-3
         h5.mb-1.mt-1.d-flex.align-items-center
@@ -117,9 +117,9 @@
           - else
             -
           - if @defTeam.id
-            = image_tag("#{session[:pdbprefix]}/stadiums/#{(@defTeam.name.upcase.delete(' '))}.jpg", class: "rounded img-fluid", onerror: "this.error=null;this.src='#{image_url("/misc/generic-stadium.png")}';")
+            = image_tag("#{session[:pdbprefix]}/stadiums/#{(@defTeam.name.upcase.delete(' '))}.jpg", class: "rounded img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-stadium.png")}';")
           - else
-            = image_tag(image_url("/misc/generic-stadium.png"), class: "img-fluid")
+            = vite_image_tag("images/misc/generic-stadium.png", class: "img-fluid")
 
 .row
   .col-12.text-end

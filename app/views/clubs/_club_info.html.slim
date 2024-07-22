@@ -8,7 +8,7 @@
               .d-flex.align-items-center
                 .flex-shrink-0
                   .avatar-xl
-                    = image_tag("#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+                    = vite_image_tag("#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("generic-club.png")}';")
                 .flex-grow-1.text-wrap.ms-2
                   h4.fw-bold = stringHuman(DefTeam.getTranslation(club.def_team.name)[0])
                   .vstack.gap-2.flex-wrap
@@ -21,7 +21,7 @@
                       span.fw-semibold = club.def_team.details["teamCity"]
                     div
                       = t('.country')
-                      = image_tag(countryFlag(club.def_team.def_country.name), class: "align-bottom ms-1 avatar-xxs", data: { toggle: "tooltip"}, title: stringHuman(t("defaults.countries.#{club.def_team.def_country.name}")))
+                      = vite_image_tag(countryFlag(club.def_team.def_country.name), class: "align-bottom ms-1 avatar-xxs", data: { toggle: "tooltip"}, title: stringHuman(t("defaults.countries.#{club.def_team.def_country.name}")))
                     div
                       = t('.manager')
                       span.fw-semibold ##{club.user_season.user.nickname}
@@ -57,9 +57,9 @@
                     div class="badge badge-#{position[1]}" = position[0]
                   td
                     .d-flex.align-items-center
-                      .flex-shrink-0 = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: player.def_player.platform, dna: true)}/#{player.def_player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle me-1", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{image_url("/misc/generic-player.png")}';")
+                      .flex-shrink-0 = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: player.def_player.platform, dna: true)}/#{player.def_player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle me-1", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-player.png")}';")
                       .flex-grow-1.text-wrap.ms-1 = player.def_player.name
-                  td = image_tag(countryFlag(player.def_player.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{player.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+                  td = vite_image_tag(countryFlag(player.def_player.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{player.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
                   td.text-center
                     span class="stat #{translate_pscore(player.def_player.details["attrs"]["overallRating"])}"
                       = player.def_player.details["attrs"]["overallRating"]

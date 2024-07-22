@@ -19,7 +19,7 @@
       .teams.mb-1
         .text-center
           span.teams-logo
-            = image_tag("#{session_pdbprefix}/teams/#{(game.home.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+            = image_tag("#{session_pdbprefix}/teams/#{(game.home.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
           span.teams-name.d-sm-block.d-none = stringHuman(DefTeam.getTranslation(game.home.def_team.name).first)
           span.teams-name.d-block.d-sm-none = game.home.def_team.details["teamAbbr"]
           small.text-muted
@@ -42,7 +42,7 @@
                 | #{game.phscore} : #{game.pvscore}
         .text-center
           span.teams-logo
-            = image_tag("#{session_pdbprefix}/teams/#{(game.visitor.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+            = image_tag("#{session_pdbprefix}/teams/#{(game.visitor.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
           span.teams-name.d-sm-block.d-none = stringHuman(DefTeam.getTranslation(game.visitor.def_team.name).first)
           span.teams-name.d-block.d-sm-none = game.visitor.def_team.details["teamAbbr"]
           small.text-muted
