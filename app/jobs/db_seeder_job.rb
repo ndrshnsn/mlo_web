@@ -15,9 +15,9 @@ class DbSeederJob < ApplicationJob
     private
 
     def default_app_config
-      AppConfig.mail_admin = Rails.application.credentials.dig(:gmail, :username)
-      AppConfig.mail_username = Rails.application.credentials.dig(:gmail, :username)
-      AppConfig.mail_password = Rails.application.credentials.dig(:gmail, :password)
+      AppConfig.mail_admin = Rails.application.credentials.dig(:admin, :email)
+      AppConfig.mail_username = Rails.application.credentials.dig(:admin, :email)
+      AppConfig.mail_password = Rails.application.credentials.dig(:admin, :password)
       AppConfig.generic_player = 999999
       AppConfig.platforms = [["PES", ["PES21", "EFOOT24"]], ["FIFA", ["FIFA24"]]]
       AppConfig.fake_account_password = "12qwaszx!@QW" 

@@ -9,7 +9,7 @@ class AppConfig < RailsSettings::Base
 
   ## Generic Player
   field :generic_player, type: :integer
-  field :platforms, type: :array
+  field :platforms, type: :string
   field :fake_account_password, type: :string
 
   ## Championship Defaults

@@ -29,11 +29,6 @@
                 .position-relative
                   = f.label :generic_player, t('.playerdb.generic_player'), class: "form-label"
                   = f.text_field :generic_player, class: "form-control", "data-parsley-required": true, value: AppConfig.generic_player
-            .col-sm-12.col-md-6
-              .mb-3
-                .position-relative
-                  = f.label :platforms, t('.playerdb.platforms'), class: "form-label"
-                  = f.text_field :platforms, class: "form-control", "data-parsley-required": true, value: AppConfig.platforms
           h6.text-muted.mb-3.mt-4
             i.ri-settings-line.align-middle.me-1
             = t('.league.title')
