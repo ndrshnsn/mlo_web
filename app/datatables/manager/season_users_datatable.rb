@@ -18,7 +18,7 @@ class Manager::SeasonUsersDatatable < ApplicationDatatable
       stColumn += "</div>"
 
       if uSeason.clubs.first
-        tName = vite_image_tag("#{session[:pdbprefix]}/teams/#{uSeason.clubs.first.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", class: "me-1", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-team.png")}';")
+        tName = image_tag("#{session[:pdbprefix]}/teams/#{uSeason.clubs.first.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", class: "me-1", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-team.png")}';")
         tName += stringHuman(uSeason.clubs.first.def_team.name)
       else
         tName = nil
