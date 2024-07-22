@@ -11,7 +11,7 @@
 						= form_with url: request_league_path, id: "request_league", class: "needs-validation", html: {"data-parsley-errors-messages-disabled": "true" }, data: { controller: "form", "form-title-value": t('.confirm'), "form-text-value": t('.confirm_text'), "form-icon-value": "question"} do |f|
 							.row
 								.col-sm-12.col-md-6
-									img.card-img-top.rounded.img-fluid src=("#{vite_image_path('images/misc/masterleague.png')}")
+									img.card-img-top.rounded.img-fluid src=("#{vite_asset_path('images/misc/masterleague.png')}")
 								.col-sm-12.col-md-6
 									blockquote.blockquote.custom-blockquote.blockquote-primary.rounded
 										p = t('.main_info_html')
