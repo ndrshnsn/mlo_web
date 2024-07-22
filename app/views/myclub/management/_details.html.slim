@@ -8,9 +8,9 @@
   .col-md-5.col-sm-12
     .card
       - if !@userClub
-        img.card-img-top[src=vite_image_tag('images/generic-club.png') style="padding: 55px;"]
+        = vite_image_tag('images/generic-club.png', style: "padding: 55px;", class: 'card-img-top')
       - else
-        img.card-img-top[src=image_tag("#{session[:pdbprefix]}/teams/#{(@userClub.def_team.name.upcase.delete(' '))}.png") style="padding: 55px;"]
+        = image_tag("#{session[:pdbprefix]}/teams/#{@userClub.def_team.name.upcase.delete(' ')}.png", style: "padding: 55px;", class: 'card-img-top')
       .card-body
         h4.card-title = t('.main_information')
         table.table.table-borderless.mt-0
@@ -43,7 +43,7 @@
               strong = t('.country')
             td.text-right
               - if @userClub
-                = vite_image_tag(countryFlag(@userClub.def_team.def_country.name), class: "avatar-xs", data: { toggle: "tooltip"}, title: stringHuman(t("defaults.countries.#{@userClub.def_team.def_country.name}")))
+                = image_tag(countryFlag(@userClub.def_team.def_country.name), class: "avatar-xs", data: { toggle: "tooltip"}, title: stringHuman(t("defaults.countries.#{@userClub.def_team.def_country.name}")))
               - else
                 | -
 

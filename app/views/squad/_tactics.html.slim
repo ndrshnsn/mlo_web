@@ -13,7 +13,7 @@
 
     h4 = t('.main_formation')
     .card.card-overlay
-      img src="#{image_path('soccer_field.png')}"
+      = vite_image_tag('images/soccer_field.png')
 
       - team_formations[@club.details["team_formation"]][:pos].each do |pPosition|
         - playerPosition = @club.details["formation_pos"].select{ |h| h["pos"] == pPosition }
@@ -35,7 +35,7 @@
         - else
           div class="gp-player gp-player-#{pPosition}"
             = link_to squad_formation_position_select_path(position: pPosition), class: "gp-link", data: { "turbo-frame": 'modal' } do
-              img.gp-face[src="#{image_path('generic-player.png')}"]
+              img.gp-face[src="#{vite_asset_path('images/generic-player.png')}"]
               .gp-position
                 .gp-player-ovr
                   | &nbsp;
