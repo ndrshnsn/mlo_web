@@ -8,13 +8,11 @@ class Admin::SettingsController < ApplicationController
 
   def update
     setting_params.keys.each do |key|
-      # if Setting.get_field(key)[:type] == :array
-      #  value = setting_params[key].scan(/(\w+):\s+([^;]+)/).each_with_object({}) do |(k,v), hash|
-      #    hash[k.to_sym] = v.strip
-      #  end
-      # else
-      value = setting_params[key].strip
-      # end
+      if AppConfig.get_field(key)[:type] == :array
+       value = setting_params[key].split(" ")
+      else
+        value = setting_params[key].strip
+      end
       AppConfig.send("#{key}=", value) unless setting_params[key].nil?
     end
 
@@ -49,7 +47,6 @@ class Admin::SettingsController < ApplicationController
       :season_club_default_earning,
       :season_club_max_total_wage,
       :league_slots,
-      :platforms,
       :generic_player,
       :fake_account_password,
       :championship_minimum_players,
@@ -57,7 +54,7 @@ class Admin::SettingsController < ApplicationController
       :championship_cards_suspension_rcard,
       :match_winning_earning,
       :match_draw_earning,
-      :match_lost_loss,
+      :match_lost_earning,
       :match_goal_earning,
       :match_goal_loss,
       :match_yellow_card_loss,
