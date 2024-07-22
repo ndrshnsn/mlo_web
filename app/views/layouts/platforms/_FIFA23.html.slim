@@ -5,7 +5,7 @@
       ul.list-group.list-group-flush
           li.list-group-item.d-flex.justify-content-between.align-items-center
               span = t('playerdb.players.country')
-              span = image_tag(countryFlag(@defPlayer.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{@defPlayer.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+              span = vite_image_tag(countryFlag(@defPlayer.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{@defPlayer.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
           li.list-group-item.d-flex.justify-content-between.align-items-center
               span = t('playerdb.players.age')
               span = @defPlayer.age

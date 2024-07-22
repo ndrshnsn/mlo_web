@@ -9,7 +9,7 @@
             .flex-grow-1
               h4.card-title.align-middle style="line-height: 18px!important;"
                 - if @cLogoName
-                  = image_tag("flags/#{@cLogoName}.png", class: "me-1", style: "margin-top: -0.2rem;")
+                  = vite_image_tag("images/flags/#{@cLogoName}.png", class: "me-1", style: "margin-top: -0.2rem;")
                 = t('.edit')
           .card-body
             p.text-muted

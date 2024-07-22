@@ -9,7 +9,7 @@
                     .ribbon.ribbon-primary.ribbon-shape = sProvider[1]
                     .ribbon-content.text-center.mt-4
                         .d-flex.justify-content-center.mb-3
-                            = image_tag("logo/social/#{sProvider[0]}.png", class: "avatar-sm mt-3")
+                            = vite_image_tag("images/logo/social/#{sProvider[0]}.png", class: "avatar-sm mt-3")
 
                         = link_to "javascript:void(0)", class: "btn btn-sm btn-primary #{active}", data: { controller: "confirm", "confirm-title-value": t('.remove_social_connection'), "confirm-text-value": t('.remove_social_connection_text'), "confirm-link-value": profile_social_disconnect_path(sProvider[0]), "confirm-icon-value": "question", "confirm-action-value": "PATCH", action: "click->confirm#dialog" } do
                             span = t('.disconnect')

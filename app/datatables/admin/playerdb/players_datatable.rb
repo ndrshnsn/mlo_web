@@ -1,15 +1,15 @@
 class Admin::Playerdb::PlayersDatatable < ApplicationDatatable
-  delegate :session, :logger, :t, :vite_image_tag, :image_tag, :current_user, :translate_pscore, :translate_pkeys, :get_platforms, :countryFlag, :admin_playerdb_player_details_path, :admin_playerdb_player_toggle_path, :stringHuman, :teamLogoURL, :admin_playerdb_player_disable_path, :admin_playerdb_player_enable_path, :dt_actionsMenu, :image_url, :content_tag, :logger, :button_to, to: :@view
+  delegate :session, :logger, :t, :vite_image_tag, :image_tag, :current_user, :translate_pscore, :translate_pkeys, :get_platforms, :countryFlag, :admin_playerdb_player_details_path, :admin_playerdb_player_toggle_path, :stringHuman, :teamLogoURL, :admin_playerdb_player_disable_path, :admin_playerdb_player_enable_path, :dt_actionsMenu, :image_url, :vite_asset_url, :content_tag, :logger, :button_to, to: :@view
 
   private
 
   def data
     players.map do |player|
       ## Nationality
-      nationality = image_tag(countryFlag(player.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+      nationality = vite_image_tag(countryFlag(player.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
 
       ## Player Name
-      playerName = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: player.platform, dna: true)}/#{player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle me-1", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{image_url("/misc/generic-player.png")}';")
+      playerName = vite_image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: player.platform, dna: true)}/#{player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle me-1", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-player.png")}';")
       playerName += player.name
 
       rpPOS = translate_pkeys(player.def_player_position.name, player.platform)

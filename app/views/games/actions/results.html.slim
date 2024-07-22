@@ -16,7 +16,7 @@
         .teams
           .text-center
             span.teams-logo
-              = image_tag("#{session[:pdbprefix]}/teams/#{(@game.home.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+              = image_tag("#{session[:pdbprefix]}/teams/#{(@game.home.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
             span.teams-name.d-sm-block.d-none = stringHuman(@game.home.def_team.name)
             span.teams-name.d-block.d-sm-none = stringHuman( @game.home.def_team.details['teamAbbr'])
             small.text-muted ##{ @game.home.user_season.user.nickname}
@@ -52,7 +52,7 @@
 
           .text-center
             span.teams-logo
-              = image_tag("#{session[:pdbprefix]}/teams/#{(@game.visitor.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+              = image_tag("#{session[:pdbprefix]}/teams/#{(@game.visitor.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
             span.teams-name.d-sm-block.d-none = stringHuman(@game.visitor.def_team.name)
             span.teams-name.d-block.d-sm-none = stringHuman( @game.visitor.def_team.details['teamAbbr'])
             small.text-muted ##{ @game.visitor.user_season.user.nickname}

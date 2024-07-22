@@ -13,7 +13,7 @@
                 = t('.champion')
               .flex-shrink-0
                 - if @championship.status == 100
-                  = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.first.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+                  = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.first.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
                 - else
                   span -
           li.list-group-item style="border: 0; padding: 0px 0px 8px 0px !important"
@@ -22,7 +22,7 @@
                 = t('.vice')
               .flex-shrink-0
                 - if @championship.status == 100
-                  = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.second.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+                  = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.second.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
                 - else
                   span -
           li.list-group-item style="border: 0; padding: 0px 0px 8px 0px !important"
@@ -31,7 +31,7 @@
                 = t('.third')
               .flex-shrink-0
                 - if @championship.status == 100
-                  = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.third.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+                  = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.third.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
                 - else
                   span -
           li.list-group-item style="border: 0; padding: 0px 0px 8px 0px !important"
@@ -40,7 +40,7 @@
                 = t('.fourth')
               .flex-shrink-0
                 - if @championship.status == 100
-                  = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.fourth.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{image_url("generic-club.png")}';")
+                  = image_tag("#{session[:pdbprefix]}/teams/#{(@cPositions.fourth.club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid avatar-xs", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
                 - else
                   span -
 

@@ -61,7 +61,7 @@
                           span.font-weight-bold.d-block.text-nowrap = club_player.def_player.name
                           small.d-flex.text-muted.mb-0
                             .d-flex.align-items-center
-                              .flex-shrink-0 = image_tag(countryFlag(club_player.def_player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{club_player.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+                              .flex-shrink-0 = vite_image_tag(countryFlag(club_player.def_player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{club_player.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
                               .flex-grow-1.ms-1.text-start #{t('.age')} #{club_player.def_player.age} / #{t('.height')} #{club_player.def_player.height}
 
                     td.text-center

@@ -25,7 +25,7 @@
                       p.text-muted.mb-0
                         a href="javascript:void(0)" id="button_userinfo_home_#{i}" data-controller="popover" data-popover-id-value="#{game.home.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{game.home.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(game.home.user_season.user)}" ##{game.home.user_season.user.nickname}
                     .flex-shrink-1.ms-2
-                      = image_tag("#{session[:pdbprefix]}/teams/#{game.home.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';", title: stringHuman(game.home.def_team.name), data: {toggle: "tooltip", placement: "top"})
+                      = image_tag("#{session[:pdbprefix]}/teams/#{game.home.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-team.png")}';", title: stringHuman(game.home.def_team.name), data: {toggle: "tooltip", placement: "top"})
                 td.text-center
                   span.fs-18.me-1 = game.hscore
                   span.fs-12 X
@@ -39,7 +39,7 @@
                 td
                   .d-flex.align-items-center
                     .flex-shrink-0
-                      = image_tag("#{session[:pdbprefix]}/teams/#{game.visitor.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{image_url("/misc/generic-team.png")}';", title: stringHuman(game.visitor.def_team.name), data: {toggle: "tooltip", placement: "top"})
+                      = image_tag("#{session[:pdbprefix]}/teams/#{game.visitor.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-team.png")}';", title: stringHuman(game.visitor.def_team.name), data: {toggle: "tooltip", placement: "top"})
                     .flex-grow-1.ms-2
                       h6.cart-title.mb-1 = game.visitor.def_team.teamAbbr
                       p.text-muted.mb-0

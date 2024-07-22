@@ -1,11 +1,11 @@
 class JoinLeagueDatatable < ApplicationDatatable
-  delegate :logger, :t, :admin_leagues_path, :admin_league_edit_path, :admin_league_destroy_path, :leagueBadge, :dt_actionsMenu, :join_league_path, :image_tag, :content_tag, :button_to, to: :@view
+  delegate :logger, :t, :admin_leagues_path, :admin_league_edit_path, :admin_league_destroy_path, :leagueBadge, :dt_actionsMenu, :join_league_path, :image_tag, :vite_asset_url, :vite_image_tag, :content_tag, :button_to, to: :@view
 
   private
 
   def data
     leagues.map do |league|
-      lName = image_tag(leagueBadge(league), class: "rounded me-1", height: "28", width: "28")
+      lName = vite_image_tag(leagueBadge(league), class: "rounded me-1", height: "28", width: "28")
       lName += league.name
 
       lStatus = if league.status
