@@ -6,7 +6,7 @@
 			.row
 				.col-md-12
 					.card.p-3
-						img class="card-img-top" src="#{image_path('misc/crowd-clap.png')}" alt="Card image cap" 
+						img class="card-img-top" src="#{vite_image_path('images/misc/crowd-clap.png')}" alt="Card image cap" 
 							.card-body
 								h5.card-title = t('.request_completed')
 								p.card-text.fs-15
@@ -18,7 +18,7 @@
 			.row.match-height
 				.col-md-6.col-lg-6
 					.card
-						img class="card-img-top" src="#{image_path('misc/coach.png')}"
+						img class="card-img-top" src="#{vite_image_path('images/misc/coach.png')}"
 							.card-body
 								h4.card-title = t('.league_manager')
 								p.card-text = t('.league_manager_obs')
@@ -26,7 +26,7 @@
 									= link_to t('.request_league'), request_league_path, class: "btn btn-primary waves-effect", data: { "turbo-action": "advance"}
 				.col-md-6.col-lg-6
 					.card
-						img class="card-img-top" src="#{image_path('misc/team_back.png')}"
+						img class="card-img-top" src="#{vite_image_path('images/misc/team_back.png')}"
 							.card-body
 								h4.card-title = t('.join_league')
 								p.card-text = t('.join_league_obs')

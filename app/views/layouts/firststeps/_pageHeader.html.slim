@@ -1,6 +1,6 @@
 .row.pt-3
   .col-12
-    .card.text-center style='background-image: url(#{image_path("misc/corner.png")})'
+    .card.text-center style='background-image: url(#{vite_asset_path("images/misc/corner.png")})'
       .card-body
         h2.text-primary #{t('.welcome')} 👋👋
         - if !current_user.preferences["request"]
