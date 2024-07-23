@@ -57,7 +57,7 @@
                     div class="badge badge-#{position[1]}" = position[0]
                   td
                     .d-flex.align-items-center
-                      .flex-shrink-0 = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: player.def_player.platform, dna: true)}/#{player.def_player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle me-1", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-player.png")}';")
+                      .flex-shrink-0 = image_tag("#{session[:pdbprefix]}/players/#{get_platforms(platform: player.def_player.platform, dna: true)}/#{player.def_player.details["platformid"]}.png", class: "avatar-md img-thumbnail rounded-circle me-1", style: "width: 36px; height: 36px;", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-player.png")}';")
                       .flex-grow-1.text-wrap.ms-1 = player.def_player.name
                   td = image_tag(countryFlag(player.def_player.def_country.name), height: "18", width: "24", title: stringHuman(t("defaults.countries.#{player.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
                   td.text-center
