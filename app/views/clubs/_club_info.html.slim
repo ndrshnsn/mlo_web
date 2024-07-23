@@ -8,7 +8,7 @@
               .d-flex.align-items-center
                 .flex-shrink-0
                   .avatar-xl
-                    = vite_image_tag("#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
+                    = image_tag("#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", class: "img-fluid", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-club.png")}';")
                 .flex-grow-1.text-wrap.ms-2
                   h4.fw-bold = stringHuman(DefTeam.getTranslation(club.def_team.name)[0])
                   .vstack.gap-2.flex-wrap
