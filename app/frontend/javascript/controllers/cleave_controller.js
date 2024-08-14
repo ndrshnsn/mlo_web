@@ -26,7 +26,10 @@ export default class CleaveController extends Controller {
         new Cleave(this.element, {
           numeral: true,
           numeralThousandsGroupStyle: 'thousand',
-          numeralPositiveOnly: true
+          numeralPositiveOnly: true,
+          numeralDecimalScale: 2,
+          delimiter: ',',
+          numeralDecimalMark: '.'
         });
         break;
       case 'numerical':

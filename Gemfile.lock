@@ -301,6 +301,15 @@ GEM
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.24.1)
+    monetize (1.13.0)
+      money (~> 6.12)
+    money (6.19.0)
+      i18n (>= 0.6.4, <= 2)
+    money-rails (1.15.0)
+      activesupport (>= 3.0)
+      monetize (~> 1.9)
+      money (~> 6.13)
+      railties (>= 3.0)
     msgpack (1.7.2)
     multi_json (1.15.0)
     multi_xml (0.7.1)
@@ -642,6 +651,7 @@ DEPENDENCIES
   letter_opener
   loaf (~> 0.10.0)!
   mini_magick (~> 4.11)
+  money-rails (~> 1.15)
   nokogiri (~> 1.13)
   noticed (~> 1.6)
   omniauth-github (~> 2.0)
