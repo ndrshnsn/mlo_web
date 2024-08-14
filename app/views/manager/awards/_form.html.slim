@@ -21,7 +21,7 @@
           = label_tag("#{t '.prize'}", nil, class: "control-label")
           .input-group
             span.input-group-text = t('money_sign')
-            = f.text_field :prize, class: "form-control text-end", value: @award.prize, required: true, data: { controller: "cleave", "cleave-ctype-value": "price" }
+            = f.text_field :prize, class: "form-control text-end", value: @award.prize.format(symbol: false), required: true, data: { controller: "cleave", "cleave-ctype-value": "price" }
 
       .col-6
         .form-group.mb-3

@@ -43,7 +43,7 @@ class Manager::AwardsDatatable < ApplicationDatatable
         id: award.id,
         name: aName,
         prize: award.prize,
-        prizeValue: toCurrency(award.prize),
+        prizeValue: award.prize.format,
         ranking: award.ranking,
         status: aStatus,
         DT_Actions: dt_actionsMenu(dtActions),
@@ -79,7 +79,7 @@ class Manager::AwardsDatatable < ApplicationDatatable
   def columns
     [
       "name",
-      "prize",
+      "prize_cents",
       "ranking",
       "status"
     ]

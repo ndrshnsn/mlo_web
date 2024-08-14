@@ -74,3 +74,5 @@ gem "aws-sdk-s3", "~> 1.156"
 gem "fog-aws", "~> 3.24"
 
 gem "propshaft", "~> 0.9.0"
+
+gem "money-rails", "~> 1.15"

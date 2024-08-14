@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_27_182302) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_29_185233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -79,13 +79,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_182302) do
 
   create_table "awards", force: :cascade do |t|
     t.string "name"
-    t.integer "prize"
     t.integer "ranking"
     t.integer "league_id", null: false
     t.boolean "status", default: true
     t.text "trophy_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prize_cents", default: 0, null: false
     t.index ["league_id"], name: "index_awards_on_league_id"
   end
 
@@ -153,17 +153,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_182302) do
   end
 
   create_table "club_exchanges", force: :cascade do |t|
-    t.bigint "from_club_id", null: false
-    t.bigint "to_club_id", null: false
+    t.bigint "from_id", null: false
+    t.bigint "to_club", null: false
     t.jsonb "from_details", default: {}
     t.jsonb "to_details", default: {}
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reason"
-    t.index ["from_club_id"], name: "index_club_exchanges_on_from_club_id"
     t.index ["from_details"], name: "index_club_exchanges_on_from_details", using: :gin
-    t.index ["to_club_id"], name: "index_club_exchanges_on_to_club_id"
+    t.index ["from_id"], name: "index_club_exchanges_on_from_id"
+    t.index ["to_club"], name: "index_club_exchanges_on_to_club"
     t.index ["to_details"], name: "index_club_exchanges_on_to_details", using: :gin
   end
 
@@ -541,8 +541,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_182302) do
   add_foreign_key "club_awards", "clubs"
   add_foreign_key "club_championships", "championships"
   add_foreign_key "club_championships", "clubs"
-  add_foreign_key "club_exchanges", "clubs", column: "from_club_id"
-  add_foreign_key "club_exchanges", "clubs", column: "to_club_id"
+  add_foreign_key "club_exchanges", "clubs", column: "from_id"
+  add_foreign_key "club_exchanges", "clubs", column: "to_club"
   add_foreign_key "club_finances", "clubs"
   add_foreign_key "club_games", "clubs"
   add_foreign_key "club_games", "games"

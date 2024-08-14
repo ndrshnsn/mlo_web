@@ -13,7 +13,7 @@ class PlayerSeason < ApplicationRecord
   # has_many :player_sells, dependent: :destroy
   has_many :club_players
   has_many :games
-  has_many :player_transactions
+  has_many :player_transactions, dependent: :destroy
   has_many :club_games
   has_many :club_game_assists, foreign_key: "assist_id", class_name: "ClubGame"
   has_many :game_cards
