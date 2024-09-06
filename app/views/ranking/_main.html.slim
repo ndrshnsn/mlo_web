@@ -15,7 +15,7 @@
             td.d-flex.justify-content-between
               .d-flex.align-items-center
                 .flex-grow-0.me-2
-                  = image_tag("#{session[:pdbprefix]}/teams/#{club.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-team.png")}';", title: stringHuman(club.def_team.name), data: {toggle: "tooltip", placement: "top"})
+                  = image_tag("#{session[:pdbprefix]}/teams/#{club.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-team.png")}';", title: stringHuman(club.def_team.name), data: {toggle: "tooltip", placement: "top"})
                 .flex-shrink-1
                   h6.cart-title.mb-1 = stringHuman(DefTeam.getTranslation(club.def_team.name)[0])
                   p.text-muted.mb-0
