@@ -1,0 +1,36 @@
+.card
+  .card-body
+    .table-responsive.table-card
+      table.table.table-striped.table-nowrap.align-middle
+        thead.table-light
+          tr
+            th.text-center = t(".position")
+            th = t(".club")
+            th.text-center = t(".points")
+        tbody
+        - @ranking.each.with_index do |position, i|
+          - club = Club.find(position[:club_id])
+          tr
+            td.text-center ##{i+1}
+            td.d-flex.justify-content-between
+              .d-flex.align-items-center
+                .flex-grow-0.me-2
+                  = image_tag("#{session[:pdbprefix]}/teams/#{club.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{vite_asset_url("images/misc/generic-team.png")}';", title: stringHuman(club.def_team.name), data: {toggle: "tooltip", placement: "top"})
+                .flex-shrink-1
+                  h6.cart-title.mb-1 = stringHuman(DefTeam.getTranslation(club.def_team.name)[0])
+                  p.text-muted.mb-0
+                    a href="javascript:void(0)" id="button_userinfo_home_#{i}" data-controller="popover" data-popover-id-value="#{club.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{club.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(club.user_season.user)}" ##{club.user_season.user.nickname}
+
+              = link_to ranking_history_path(position[:club_id]), class: "ms-4 btn btn-light position-relative avatar-xs rounded-circle", data: { turbo_stream: true } do
+                span.avatar-title.bg-transparent.text-reset
+                  i.ri-information-line
+
+            td.text-center = position[:points]
+
+        tfoot.table-light
+          tr
+            th.text-center = t(".position")
+            th = t(".club")
+            th.text-center = t(".points")
+
+= turbo_frame_tag "ranking_history", target: "_top"

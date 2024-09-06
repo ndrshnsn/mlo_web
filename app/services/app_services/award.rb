@@ -8,6 +8,10 @@ class AppServices::Award < ApplicationService
     award_list
   end
 
+  def translate
+    translate_award
+  end
+
   def pay
     ActiveRecord::Base.transaction do
       pay_awards
@@ -30,6 +34,10 @@ class AppServices::Award < ApplicationService
       { position: "bestplayer", i18n: "awardTypes.bestplayer", i18n_desc: "awardTypes.bestplayer_desc"}
     )
     awards
+  end
+
+  def translate_award
+    self.award_list.select { |pos| pos[:position] == @type }[0]
   end
 
   def pay_awards
@@ -68,14 +76,14 @@ class AppServices::Award < ApplicationService
           ClubChampionship.where(championship_id: @championship.id ).each do |club|
             tCards = Game.joins(:game_cards).where(games: { championship_id: @championship.id }, game_cards: { club_id: club.club_id } ).select('games.id, game_cards.club_id, COUNT(game_cards.ycard) + COUNT(game_cards.rcard) as cards').group('games.id, game_cards.club_id')
 
-            if tCards.size == 0
+            if tCards.length == 0
               cCards << [club.club_id, 0]
             else
               cCards << [club.club_id, tCards.first.cards]
             end
           end
-          cCards = cCards.sort.sort_by{|e| e[1]}
-          if cCards[0][1] < cCards[1][1]
+          cCards = cCards.sort.sort_by{|e| e[1]}.reverse
+          if cCards[0][1] > cCards[1][1]
             club = cCards[0][0]
           end
           award_transactions(club, championship_award)

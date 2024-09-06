@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_29_185233) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_06_130404) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -170,7 +170,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_185233) do
   create_table "club_finances", force: :cascade do |t|
     t.bigint "club_id", null: false
     t.string "operation"
-    t.integer "value"
+    t.integer "value_cents"
     t.integer "balance"
     t.string "source_type"
     t.text "description"
@@ -365,7 +365,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_185233) do
   create_table "player_season_finances", force: :cascade do |t|
     t.integer "player_season_id", null: false
     t.string "operation"
-    t.integer "value"
+    t.integer "value_cents"
     t.integer "source_id"
     t.string "source_type"
     t.datetime "created_at", null: false

@@ -1,4 +1,5 @@
 .text-center
-  = link_to "javascript:;", class: "btn border-primary btn-sm", data: { controller: "confirm", "confirm-title-value": t('.start_game_question', game: game.gsequence), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
+  - start_status = start_allowed ? nil : 'disabled'
+  = link_to "javascript:;", class: "btn border-primary btn-sm #{start_status}", data: { controller: "confirm", "confirm-title-value": t('.start_game_question', game: game.gsequence), "confirm-text-value": t('.start_game_text'), "confirm-link-value": game_start_path(game), "confirm-icon-value": "question", "confirm-action-value": "POST", action: "click->confirm#dialog" } do
     i.ri-flag-line.align-bottom
     span.ms-1.d-none.d-sm-block style="float: right;" = t('.start_game')

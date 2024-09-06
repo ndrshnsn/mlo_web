@@ -8,7 +8,7 @@ File: Custom Css File
 
 @media (max-width: 575.98px) {
   div.dataTables_wrapper {
-      overflow: scroll;
+    overflow: scroll;
   }
 }
 
@@ -16,6 +16,7 @@ File: Custom Css File
   .yellow {
     color: #ffcd81 !important;
   }
+
   .red {
     color: #f672a7 !important;
   }
@@ -29,12 +30,13 @@ div.dataTables_paginate {
   float: right;
 }
 
-.table td, .table th {
-white-space: nowrap;
+.table td,
+.table th {
+  white-space: nowrap;
 }
 
 div.dataTables_paginate ul {
-  margin-top: inherit!important;
+  margin-top: inherit !important;
 }
 
 /* table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
@@ -73,12 +75,12 @@ border:1px solid #7367F0 !important;
 .popover-body {
   padding: 0.5rem 0.7rem !important;
   font-size: small;
-  box-shadow: 0 1px 2px rgba(56,65,74,.15)!important;
+  box-shadow: 0 1px 2px rgba(56, 65, 74, .15) !important;
 }
 
 /* Force Padding of Avatar Thumbnail */
 .img-thumbnail {
-  padding: 0!important;
+  padding: 0 !important;
 }
 
 /* Force color of Select2 arrow */
@@ -98,23 +100,23 @@ border:1px solid #7367F0 !important;
   left: 0;
 }
 
-select[readonly].select2-hidden-accessible + .select2-container {
+select[readonly].select2-hidden-accessible+.select2-container {
   pointer-events: none;
   touch-action: none;
 }
 
-select[readonly].select2-hidden-accessible + .select2-container .select2-selection {
+select[readonly].select2-hidden-accessible+.select2-container .select2-selection {
   background: var(--vz-input-disabled-bg);
   box-shadow: none;
 }
 
-select[readonly].select2-hidden-accessible + .select2-container .select2-selection__arrow,
-select[readonly].select2-hidden-accessible + .select2-container .select2-selection__clear {
+select[readonly].select2-hidden-accessible+.select2-container .select2-selection__arrow,
+select[readonly].select2-hidden-accessible+.select2-container .select2-selection__clear {
   display: none;
 }
 
 .select2-container .select2-selection--single .select2-selection__rendered {
-  z-index:1!important;
+  z-index: 1 !important;
 }
 
 tr.strikeout td:before {
@@ -132,7 +134,11 @@ tr.strikeout td:before {
   margin-right: 5px;
   float: left;
   margin-top: 2px;
-  border-radius: 50%!important;
+  border-radius: 50% !important;
+}
+
+.tooltip {
+  z-index: 1084 !important;
 }
 
 .modal {
@@ -140,7 +146,7 @@ tr.strikeout td:before {
 }
 
 .modal.fade {
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .swal2-container {
@@ -150,12 +156,12 @@ tr.strikeout td:before {
 /** Remove spin arrows from firefox **/
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type=number] {
-    -moz-appearance:textfield;
+  -moz-appearance: textfield;
 }
 
 .teams {
@@ -175,7 +181,7 @@ input[type=number] {
 .teams-logo {
   display: block;
   margin: auto;
-    margin-bottom: auto;
+  margin-bottom: auto;
   margin-bottom: 10px;
   width: 64px;
   height: 64px;
@@ -192,11 +198,12 @@ input[type=number] {
   line-height: 85px;
 }
 
-.suspended-players, #game_details {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 1fr 2px 1fr;
-    grid-template-columns: 1fr 2px 1fr;
+.suspended-players,
+#game_details {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2px 1fr;
+  grid-template-columns: 1fr 2px 1fr;
 }
 
 .game_actions {
@@ -206,7 +213,12 @@ input[type=number] {
   grid-template-columns: 1fr 100px 1fr;
 }
 
-.penalty, .score, .time, .match-item, .match-label, .match-team {
+.penalty,
+.score,
+.time,
+.match-item,
+.match-label,
+.match-team {
   text-align: center;
 }
 
@@ -217,7 +229,8 @@ input[type=number] {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Background opacity */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Background opacity */
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -241,10 +254,15 @@ input[type=number] {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .select2-selection__clear {
-  z-index:1;
+  z-index: 1;
 }

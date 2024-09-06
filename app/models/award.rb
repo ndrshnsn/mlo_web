@@ -6,4 +6,5 @@ class Award < ApplicationRecord
   include TrophyUploader::Attachment(:trophy)
 
   monetize :prize_cents, as: :prize
+
 end

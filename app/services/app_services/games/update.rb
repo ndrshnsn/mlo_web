@@ -16,10 +16,12 @@ class AppServices::Games::Update < ApplicationService
   def update_game
     return handle_error(@game, ".game_already_finished") unless @game.status < 3
 
-    user_club = @params[:club]
+    unless @game.mresult
+      user_club = @params[:club]
+      side = @game.home == user_club ? "home" : "visitor"
+      opponent = @game.home.user_season.user.id == @user.id ? "visitor" : "home"
+    end
     goals_home = goals_visitor = 0
-    side = @game.home == user_club ? "home" : "visitor"
-    opponent = @game.home.user_season.user.id == @user.id ? "visitor" : "home"
 
     if @params[:data][:goals_home]
       goals_home = @params[:data][:goals_home].count
@@ -140,17 +142,10 @@ class AppServices::Games::Update < ApplicationService
 
     if @game.mresult
 
-      ####
-      ### MISSING 
+      return handle_error(@game, ".game_confirm_earning_error") unless AppServices::Games::Earning.new(@game).pay()
+      return handle_error(@game, ".game_confirm_standing_error") unless AppServices::Championship::Standing.new(@game).update()
+      return handle_error(@game, ".game_confirm_ranking_error") unless AppServices::Ranking.new(game: @game).update()
 
-      manager_result = true
-      game_status = Game.translate_status(@game.status)
-
-      ## Update Club Earnings
-      ClubFinance.updateEarnings(@game, "confirm")
-
-      ## Update Global Ranking
-      Ranking.updateRanking(@game, "confirm")
     else
       season = @game.championship.season
       confirmation_time = Time.zone.now + season.preferences["time_game_confirmation"].hour

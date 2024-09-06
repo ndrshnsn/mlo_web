@@ -65,6 +65,7 @@
               div id="game_actions_#{game.championship.id}_#{game.id}_home"
               - if game.status == 0
                 - if game.home.user_season.user.id == current_user_id
+                  
                   - if game.hsaccepted
                     = render "games/status/ready"
                   - else

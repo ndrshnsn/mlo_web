@@ -99,11 +99,15 @@ class GamesController < ApplicationController
   end
 
   def update_card(resolution, success_message)
+    if @game.mresult
+      @pagy, @games = pagy(Game.includes([home: :def_team], [visitor: :def_team]).where(championship_id: @game.championship_id).order(gsequence: :asc))
+    end
+
     respond_to do |format|
       if resolution.success?
         GameCardJob.perform_later(@game, session[:pdbprefix], session[:season], current_user)
         flash.now["success"] = success_message
-        format.turbo_stream { render "games/actions/update_game" }
+        format.turbo_stream { render "games/actions/update_game", locals: { game: @game, pagy: @pagy, games: @games } }
         format.html { redirect_to manager_championships_path, notice: success_message }
       else
         flash.now["error"] = I18n.t("defaults.errors.games.#{resolution.error}")
