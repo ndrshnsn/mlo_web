@@ -1,0 +1,75 @@
+= render "layouts/modal/main", modal_name: 'ranking_history', modal_size: "lg"
+  .modal-header
+    h5.modal-title.d-flex.align-items-center
+      i.ri-survey-line.me-1
+      = t('ranking.history')
+    button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+  .modal-body
+    .table-responsive.table-card
+      table.table.table-striped.table-nowrap.align-middle
+        thead.table-light
+          tr
+            th.text-center scope="col" = t(".date")
+            th.text-center scope="col" = t(".origin")
+            th.text-center scope="col" = t(".result")
+            th.text-center scope="col" = t(".points")
+        tbody
+          - history_info.each do |info|
+            tr
+            - if info.operation == "game"
+              td.text-center = info.created_at.strftime("%d/%m")
+              td.text-center
+                i.ri-stack-line.ml-2.mr-2 data-toggle="tooltip" title="#{info.source.championship.season.name}"
+                i.ri-calendar-line.ml-2.mr-2 data-toggle="tooltip" data-html="true" title="#{info.source.championship.name} :: #{Championship.translate_phase(info.source.phase)[0]}"
+                i.ri-gamepad-line.ml-2.mr-2 data-toggle="tooltip" data-html="true" title="#{info.source.home.def_team.details['teamAbbr']} #{info.source.hscore} X #{info.source.vscore} #{info.source.visitor.def_team.details['teamAbbr']}"
+
+              td.text-center
+                - if info.points == info.source.championship.preferences['match_draw_ranking']
+                  - pClass = "secondary"
+                  span class="badge text-capitalize badge-light-#{pClass} badge-pill" Empate
+                - elsif info.points == info.source.championship.preferences['match_winning_ranking']
+                  - pClass = "primary"
+                  span class="badge text-capitalize badge-light-#{pClass} badge-pill" Vitória
+                - elsif -(info.points) == info.source.championship.preferences['match_lost_ranking']
+                  - pClass = "danger"
+                  span class="badge text-capitalize badge-light-#{pClass} badge-pill" Derrota
+
+              td.text-center
+                span class="text-#{pClass} text-darken-1"
+                  -if pClass == "danger"
+                    | #{info.points}
+                  - else
+                    = info.points
+
+            - if info.operation == "award"
+              td.text-center = info.created_at.strftime("%d/%m")
+              td.text-center
+                - award_term = AppServices::Award.new(type = info.source.award_type).translate
+                i.ri-stack-line.mr-50 data-toggle="tooltip" title="#{info.season.name}"
+                i.ri-trophy-line.mr-50 data-toggle="tooltip" html="true" title="#{info.source.championship.name}"
+                i.ri-medal-line.mr-50 data-toggle="tooltip" title="#{I18n.t(award_term[:i18n])}"
+
+              td.text-center
+                - aDesc = ["goaler", "assister", "bestplayer"]
+                - if aDesc.include?(info.source.award_type)
+                  / - ## if cPlayer = ClubPlayer.where(id: descInfo[0]).first
+                  /   // span.badge.text-capitalize.badge-light-warning.badge-pill.popover-dismiss
+                  /     img src="#{session[:pdbprefix]}/players/#{cPlayer.player.platform}/#{cPlayer.player.platformid}.png' style='width: 32px; height: 32px;' class='avatar avatar-sm mr-1'> #{cPlayer.player.name}"
+                  / - else
+                  /   | -
+                - else
+                  | -
+
+              td.text-center
+                span class="text-#{pClass} text-darken-1"
+                  -if pClass == "danger"
+                    | (#{history_info.first.points})
+                  - else
+                    = history_info.first.points
+
+        tfoot.table-light
+          tr
+            th.text-center scope="col" = t(".date")
+            th.text-center scope="col" = t(".origin")
+            th.text-center scope="col" = t(".result")
+            th.text-center scope="col" = t(".points")

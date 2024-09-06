@@ -18,6 +18,11 @@ class AppServices::Trades::Fire < ApplicationService
     club_players = Club.get_players(@club.id, @season.preferences["raffle_platform"])
     club_funds = Club.getFunds(@club.id)
     fire_tax = Season.get_player_fire_tax(@season.id, player.id)
+    result_funds = club_funds - fire_tax
+
+    return handle_error(@club, ".fire_not_permitted") unless @season.preferences["allow_fire_player"] == "on"
+
+    return handle_error(@club, ".negative_funds") if result_funds < 0 && @season.preferences["allow_negative_funds"] != "on"
 
     return handle_error(@club, ".min_player_limit") unless club_players.size > @season.preferences["min_players"]
 

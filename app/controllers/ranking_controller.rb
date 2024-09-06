@@ -4,6 +4,16 @@ class RankingController < ApplicationController
   breadcrumb "ranking.main", :ranking_path, match: :exact, frame: "main_frame"
 
   def index
+    ## List of Seasons for Select
+    @seasons = Season.joins(:user_seasons).where(user_seasons: { user_id: current_user.id })
+
+    if @season
+      @ranking = Season.getRanking(@season)
+    end
+  end
+
+  def history
+    @history_info = Ranking.includes(:source).where(season_id: @season.id, club_id: params[:club]).order(updated_at: :desc).limit(15)
   end
 
   def set_controller_vars

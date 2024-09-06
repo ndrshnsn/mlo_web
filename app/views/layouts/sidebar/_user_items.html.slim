@@ -46,6 +46,8 @@ li.nav-item
     ul.nav.nav-sm.flex-column
       li.nav-item
         = link_to t('.finance.contracts'), finance_contracts_path, class: "nav-link #{'active' if current_page?('/finance/contracts/', check_parameters: false)}", id: "sidebar_finance_contracts" , data: { controller: "sidebar managedt", "turbo-frame": "main_frame", "turbo-target": "_top", "turbo-action": "advance", action: "click->sidebar#toggle click->managedt#clear_state", "sidebar-father-value": "sidebar_finance", "sidebar-child-value": "sidebar_finance_contracts" }
+      li.nav-item
+        = link_to t('.finance.statement'), finance_statement_path, class: "nav-link #{'active' if current_page?('/finance/statement/', check_parameters: false)}", id: "sidebar_finance_statement" , data: { controller: "sidebar managedt", "turbo-frame": "main_frame", "turbo-target": "_top", "turbo-action": "advance", action: "click->sidebar#toggle click->managedt#clear_state", "sidebar-father-value": "sidebar_finance", "sidebar-child-value": "sidebar_finance_statement" }
 
 li.nav-item
   a.nav-link.menu-link id="sidebar_market" href="#sidebar_market_collapse" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar_market_collapse"

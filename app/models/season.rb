@@ -82,7 +82,7 @@ class Season < ApplicationRecord
   end
 
   def self.getBalance(season)
-    ClubFinance.where(club_id: Season.getClubs(season.id).select(:id)).order(club_id: :desc, created_at: :desc).sum(:value) || 0
+    ClubFinance.where(club_id: Season.getClubs(season.id).select(:id)).order(club_id: :desc, created_at: :desc).sum(:value_cents) || 0
   end
 
   def self.get_player_fire_tax(season_id, player_season_id)
@@ -98,4 +98,93 @@ class Season < ApplicationRecord
     end
     tax
   end
+
+  def self.getRanking(season, club_id = nil, position = nil, date_start=nil, date_finish=nil)
+		ranking = []
+
+		## Get All Sesons for This League
+		lSeasons = Season.where(league_id: season.league.id).pluck(:id)
+
+		## Get All League Users
+		lUsers = season.league.user_leagues.pluck(:user_id)
+
+		lUsers.each_with_index do |user,i|
+			uClubs = UserSeason.joins(:season, :clubs).where(seasons: { id:  season.id}, user_seasons: { user_id: user }).order(created_at: :desc).pluck('clubs.id')
+			rPoints = Ranking.where(club_id: uClubs).order(created_at: :desc)
+			if rPoints.first.nil?
+				cPoints = 0
+			else
+				cPoints = rPoints.first.balance.nil? ? 0 : rPoints.first.balance
+			end
+
+			ranking << {
+				user_id: user,
+				club_id: uClubs[0],
+				points: cPoints
+			}
+		end
+
+		if ranking.size > 0
+    		ranking.sort_by!{ |el| el[:points] }.reverse!
+    	end
+
+    	if club_id
+    		rPosition = []
+    		rPosition.push(ranking.index{|club| club[:club_id] == club_id} + 1)
+    		rPosition.push(ranking.select{|club| club[:club_id] == club_id})
+    		return rPosition
+    	else
+			return ranking
+		end
+
+
+		# if date_start || date_finish
+		# 	query = "select id, club_id, points, operation, source_id, source_type, created_at, updated_at,(
+		# 	        select greatest(sum(points),0)
+		# 	        from rankings
+		# 	        where season_id = #{season.id}
+		# 	        and (created_at >= '#{date_start}' and created_at <= '#{date_finish}')
+		# 	        and club_id = rank.club_id
+		# 	    ) as total
+		# 	    from rankings as rank 
+		# 	    where season_id = #{season.id}
+			    
+		# 	    and (club_id = #{club_id})
+		# 	    and id in (
+		# 	        select id from (
+		# 	            select distinct on (club_id) club_id, id
+		# 	            from rankings
+		# 	            where season_id = #{season.id}
+		# 	        ) as ids2
+		# 	    ) order by total desc"
+		# else
+		# 	query = "select id, club_id, points, operation, source_id, source_type, created_at, updated_at,(
+		# 	        select greatest(sum(points),0)
+		# 	        from rankings
+		# 	        where season_id = #{season.id}
+		# 	        and club_id = rank.club_id
+		# 	    ) as total
+		# 	    from rankings as rank 
+		# 	    where season_id = #{season.id}
+		# 	    and id in (
+		# 	        select id from (
+		# 	            select distinct on (club_id) club_id, id
+		# 	            from rankings
+		# 	            where season_id = #{season.id}
+		# 	        ) as ids2
+		# 	    ) order by total desc"
+		# end
+
+		# ranking = Ranking.select("*").from(Arel.sql("(#{query}) as t"))
+
+		# if ranking.size > 0
+		# 	if position == true
+		#   		position = ranking.index(ranking.find { |l| l.club_id == club_id }) + 1
+		#   		return position
+		#   	else
+		#   		return ranking
+		#   	end
+		# end
+	end
+
 end

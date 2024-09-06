@@ -67,9 +67,9 @@ MoneyRails.configure do |config|
     symbol_first: true,
     subunit: 'Cent',
     subunit_to_unit: 100,
-    thousands_separator: '.',
-    decimal_mark: ',',
-    no_cents_if_whole: false
+    thousands_separator: ',',
+    decimal_mark: '.',
+    no_cents_if_whole: true
   }
 
   # Specify a rounding mode

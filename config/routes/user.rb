@@ -88,6 +88,7 @@ as :user do
   post "games/:id/confirm", to: "games#confirm", as: :game_confirm
 
   get "ranking", to: "ranking#index"
+  get 'ranking/history/:club', to: 'ranking#history', as: :ranking_history
 
   get "players/:platform/:id", to: "players#details", as: :player_details
 
@@ -111,5 +112,7 @@ as :user do
 
   get "finance/contracts", to: "finance/contracts#index"
   delete "finance/contracts/:id/fire", to: "finance/contracts#fire", as: :finance_contract_fire_player
+  get "finance/statement", to: "finance/statement#index"
+  get "finance/statement/:id", to: "finance/statement#detail", as: :finance_statement_detail
   
 end

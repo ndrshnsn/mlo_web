@@ -1,0 +1,64 @@
+.row
+  .col-xl-4.col-md-6
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            span.fs-6.fw-medium.text-muted.mb-0 = t('.statement_period')
+            = select_tag "statement_age", options_for_select([["Últimos 15 Dias", "last_15_days"], ["Últimos 30 Dias", "last_30_days"], ["Últimos 60 dias", "last_60_days"], ["Últimos 90 dias", "last_90_days"], ["Toda Temporada", "all_season"]], @statement_age), {include_blank: true,  class: "select2 form-control", id: 'statement_age' }
+            
+
+  .col-xl-4.col-md-6
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            span.fs-6.fw-medium.text-muted.mb-0 = t('.statement_operation')
+            = select_tag "statement_operation", options_for_select(translate_statement_operation(nil,true).map{|so|[so[1][0], so[0]]}, @statement_operation), {include_blank: true,  class: "select2 form-control", id: 'statement_operation' }
+
+  .col-xl-4.col-md-6
+    .card.card-animate
+      .card-body
+        .d-flex.align-items-center
+          .flex-grow-1
+            - cashClass = club_cash >= 0 ? "primary" : "danger"
+            h5.fw-semibold = club_cash.to_money.format
+            span.fs-6.fw-medium.text-muted.mb-0 = t('.club_wage_limit')
+          .flex-shrink-0
+            .avatar-sm
+              span.avatar-title.bg-warning-subtle.rounded-circle.fs-3
+                i.ri-refund-line
+
+.row
+  .col-12
+    .card
+      .card-body
+        div
+          .table-responsive.table-card
+            table.table.table-striped.table-nowrap.dt-responsive.align-middle.mb-0
+              thead.table-light
+                tr
+                  th.text-center = t('.date')
+                  th = t('.operation')
+                  th = t('.credit')
+                  th = t('.debit')
+                  th = t('.result')
+              tbody
+                - @statements.each do |statement|
+                  tr
+                    td.text-center = statement.created_at.strftime("%d/%m/%Y")
+                    td.justify-content-center.d-flex
+                      = translate_statement_operation(statement.operation)[0]
+                      = link_to finance_statement_detail_path(id: statement.id), class: "ms-2 dropdown-item", data: { turbo_stream: true } do
+                        i.ri-information-line.me-1.align-bottom
+                      
+                    td 
+                      - if statement.value > 0
+                        = statement.value.to_money.format
+                    td
+                      - if statement.value < 0
+                        span.text-danger
+                          | (#{statement.value.to_money.format})
+                    td = statement.value.to_money.format
+
+= turbo_frame_tag "modal_card_statement", target: "_top"

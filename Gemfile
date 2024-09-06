@@ -69,7 +69,6 @@ gem "pagy"
 gem "redis-actionpack", "~> 5.3"
 gem "time_difference", "~> 0.5.0"
 gem "kaminari", "~> 1.2"
-gem "kamal", "~> 1.0"
 gem "aws-sdk-s3", "~> 1.156"
 gem "fog-aws", "~> 3.24"
 

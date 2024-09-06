@@ -1,0 +1,22 @@
+= render "layouts/modal/main", modal_size: "md"
+  .modal-header
+    h5.modal-title.d-flex.align-items-center
+      i.ri-survey-line.me-1
+      = t('details')
+    button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+  .modal-body
+    table.table.table-striped.mt-0
+      thead
+        th.text-center Origem
+        th.text-center Resultado
+      tbody
+        - detail = translate_statement_source(statement.source_type, statement.source_id, statement)
+        - detail.each do |dInfo| 
+          tr
+            td = dInfo[0]
+            td.text-center = dInfo[1]
+      tfoot
+        th.text-right Total
+        th.text-center
+          - signal = statement.value > 0 ? "+" : "-"
+          = statement.value

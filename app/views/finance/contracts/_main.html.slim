@@ -61,7 +61,7 @@
                           span.font-weight-bold.d-block.text-nowrap = club_player.def_player.name
                           small.d-flex.text-muted.mb-0
                             .d-flex.align-items-center
-                              .flex-shrink-0 = vite_image_tag(countryFlag(club_player.def_player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{club_player.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
+                              .flex-shrink-0 = image_tag(countryFlag(club_player.def_player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{club_player.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
                               .flex-grow-1.ms-1.text-start #{t('.age')} #{club_player.def_player.age} / #{t('.height')} #{club_player.def_player.height}
 
                     td.text-center
@@ -73,7 +73,7 @@
                     td.text-center = toCurrency(club_player.player_season.details["salary"])
                     td.text-center = toCurrency(PlayerSeason.getPlayerPass(club_player.player_season, @season))
                     td.text-center
-                      = link_to player_details_path(id: club_player.def_player.friendly_id, platform: club_player.def_player.platform), type: "button", class: "btn btn-secondary btn-icon btn-sm", title: "#{t('.player_information')}", data: { "turbo-frame": "modal", toggle: "tooltip", placement: "top" } do
+                      = link_to player_details_path(platform: club_player.def_player.platform, id: club_player.def_player.id), type: "button", class: "btn btn-secondary btn-icon btn-sm", title: "#{t('.player_information')}", data: { "turbo-frame": "modal", toggle: "tooltip", placement: "top" } do
                         .ri-information-line
 
                       - fire_tax = Season.get_player_fire_tax(@season.id, club_player.player_season.id)

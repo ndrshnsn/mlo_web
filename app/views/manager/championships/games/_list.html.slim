@@ -14,6 +14,9 @@
           - games.each.with_index(@pagy.offset+1) do |game, i|
               - phase = Championship.translate_phase(game.phase)
               - status = Game.translate_status(game.status)
+              = turbo_frame_tag "modal_goal_#{game.id}", target: "_top"
+              = turbo_frame_tag "modal_card_#{game.id}", target: "_top"
+
               tr
                 th.text-center scope="row"
                   span class="badge bg-#{phase[1]} text-dark" = phase[0]
@@ -53,10 +56,16 @@
                       i.ri-more-2-fill
                     ul.dropdown-menu aria-labelledby="dropdown_#{i}"
                       li
-                        a.dropdown-item href="#" = t('.add_result')
+                        = button_to game_results_path(game), class: "dropdown-item", data: { "turbo-frame": 'modal' } do
+                          i.ri-flag-line.me-1.align-bottom
+                          span = t('.add_result')
+                        
+
                         a.dropdown-item href="#" = t('.wo_home')
                         a.dropdown-item href="#" = t('.wo_visitor')
                         a.dropdown-item href="#" = t('.cancel_game')
 
       .row.mt-3
         = render 'layouts/pagy/main', pagy: @pagy, frame: "manager_championship_games"
+
+        

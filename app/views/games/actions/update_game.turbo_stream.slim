@@ -1,1 +1,4 @@
+- if game.mresult
+  = turbo_stream.update 'manager_championship_games' do
+    = render 'manager/championships/games/list', game: game, pagy: pagy, games: games
 = render_turbo_stream_flash_messages
