@@ -5,6 +5,7 @@ class Finance::StatementController < ApplicationController
   breadcrumb "finance.statement.main", :finance_statement_path, match: :exact, frame: "main_frame"
 
   def index
+    
     @club_cash = Club.getFunds(@club.id)
 
     @statement_age = !params[:statement_age].nil? ? params[:statement_age] : "last_15_days"
