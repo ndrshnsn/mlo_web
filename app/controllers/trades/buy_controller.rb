@@ -26,13 +26,13 @@ class Trades::BuyController < ApplicationController
     	}
     end
 
-    higher_transfer_fee = PlayerSeason.where(player_seasons: { season_id: @season.id } ).order(Arel.sql("player_seasons.details->'salary' DESC")).first.details['salary']
+    higher_transfer_fee = PlayerSeason.where(player_seasons: { season_id: @season.id } ).order(player_seasons: { salary_cents: :desc} ).first.salary
     higher_transfer_fee = higher_over_initial_salary if higher_over_initial_salary > higher_transfer_fee
-    lower_transfer_fee =  PlayerSeason.where(player_seasons: { season_id: @season.id } ).order(Arel.sql("player_seasons.details->'salary' ASC")).first.details['salary']
+    lower_transfer_fee =  PlayerSeason.where(player_seasons: { season_id: @season.id } ).order(player_seasons: { salary_cents: :asc} ).first.salary
     lower_transfer_fee = lower_over_initial_salary if lower_over_initial_salary < lower_transfer_fee
     
     @pValue = []
-    for i in (lower_transfer_fee..higher_transfer_fee).step(@season.preferences["default_mininum_operation"])
+    for i in (lower_transfer_fee.cents..higher_transfer_fee.cents).step(@season.default_mininum_operation_cents)
     	@pValue << {
     		value: i*@season.preferences["player_value_earning_relation"],
     		reference: i

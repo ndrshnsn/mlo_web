@@ -63,7 +63,7 @@ MoneyRails.configure do |config|
     priority: 1,
     iso_code: 'BRL',
     name: 'Real',
-    symbol: 'R$',
+    symbol: 'R$ ',
     symbol_first: true,
     subunit: 'Cent',
     subunit_to_unit: 100,

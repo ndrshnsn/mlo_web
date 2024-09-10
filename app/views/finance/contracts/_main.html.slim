@@ -4,7 +4,7 @@
       .card-body
         .d-flex.align-items-center
           .flex-grow-1
-            h5.fw-semibold = toCurrency(Club.getFunds(@club.id))
+            h5.fw-semibold = Club.getFunds(@club.id).format
             span.fs-6.fw-medium.text-muted.mb-0 = t('.club_funds')
           .flex-shrink-0
             .avatar-sm
@@ -16,7 +16,7 @@
       .card-body
         .d-flex.align-items-center
           .flex-grow-1
-            h5.fw-semibold = toCurrency(Club.getTeamTotalWage(@club.id))
+            h5.fw-semibold = Club.getTeamTotalWage(@club.id).format
             span.fs-6.fw-medium.text-muted.mb-0 = t('.club_wage')
           .flex-shrink-0
             .avatar-sm
@@ -28,7 +28,7 @@
       .card-body
         .d-flex.align-items-center
           .flex-grow-1
-            h5.fw-semibold = toCurrency(@season.preferences["club_max_total_wage"] - Club.getTeamTotalWage(@club.id))
+            h5.fw-semibold = (@season.club_max_total_wage - Club.getTeamTotalWage(@club.id)).to_money.format
             span.fs-6.fw-medium.text-muted.mb-0 = t('.club_wage_limit')
           .flex-shrink-0
             .avatar-sm
@@ -62,7 +62,7 @@
                           small.d-flex.text-muted.mb-0
                             .d-flex.align-items-center
                               .flex-shrink-0 = image_tag(countryFlag(club_player.def_player.def_country.name), height: "12", width: "18", title: stringHuman(t("defaults.countries.#{club_player.def_player.def_country.name}")), data: {toggle: "tooltip", placement: "top"})
-                              .flex-grow-1.ms-1.text-start #{t('.age')} #{club_player.def_player.age} / #{t('.height')} #{club_player.def_player.height}
+                              .flex-grow-1.ms-1.text-start.d-flex #{t('.age')} #{club_player.def_player.age} <span class='d-none d-sm-block flex'> / #{t('.height')} #{club_player.def_player.height}</span>
 
                     td.text-center
                       - rpPOS = translate_pkeys(club_player.def_player_position.name, club_player.def_player.platform)
@@ -70,8 +70,8 @@
                     td.text-center
                       - translated_class = translate_pscore(club_player.def_player.attrs["overallRating"])
                       span class="stat #{translated_class}" = club_player.def_player.attrs["overallRating"]
-                    td.text-center = toCurrency(club_player.player_season.details["salary"])
-                    td.text-center = toCurrency(PlayerSeason.getPlayerPass(club_player.player_season, @season))
+                    td.text-center = club_player.player_season.salary.format
+                    td.text-center = PlayerSeason.getPlayerPass(club_player.player_season, @season).format
                     td.text-center
                       = link_to player_details_path(platform: club_player.def_player.platform, id: club_player.def_player.id), type: "button", class: "btn btn-secondary btn-icon btn-sm", title: "#{t('.player_information')}", data: { "turbo-frame": "modal", toggle: "tooltip", placement: "top" } do
                         .ri-information-line

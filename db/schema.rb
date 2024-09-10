@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_06_130404) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_10_123737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -119,6 +119,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_06_130404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "match_winning_earning_cents", default: 0, null: false
+    t.integer "match_draw_earning_cents", default: 0, null: false
+    t.integer "match_lost_earning_cents", default: 0, null: false
+    t.integer "match_goal_earning_cents", default: 0, null: false
+    t.integer "match_goal_lost_cents", default: 0, null: false
+    t.integer "match_yellow_card_loss_cents", default: 0, null: false
+    t.integer "match_red_card_loss_cents", default: 0, null: false
+    t.integer "hattrick_earning_cents", default: 0, null: false
     t.index ["preferences"], name: "index_championships_on_preferences", using: :gin
     t.index ["season_id"], name: "index_championships_on_season_id"
   end
@@ -153,17 +161,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_06_130404) do
   end
 
   create_table "club_exchanges", force: :cascade do |t|
-    t.bigint "from_id", null: false
-    t.bigint "to_club", null: false
+    t.integer "from_club_id", null: false
+    t.integer "to_club_id", null: false
     t.jsonb "from_details", default: {}
     t.jsonb "to_details", default: {}
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reason"
+    t.index ["from_club_id"], name: "index_club_exchanges_on_from_club_id"
     t.index ["from_details"], name: "index_club_exchanges_on_from_details", using: :gin
-    t.index ["from_id"], name: "index_club_exchanges_on_from_id"
-    t.index ["to_club"], name: "index_club_exchanges_on_to_club"
+    t.index ["to_club_id"], name: "index_club_exchanges_on_to_club_id"
     t.index ["to_details"], name: "index_club_exchanges_on_to_details", using: :gin
   end
 
@@ -171,12 +179,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_06_130404) do
     t.bigint "club_id", null: false
     t.string "operation"
     t.integer "value_cents"
-    t.integer "balance"
     t.string "source_type"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "source_id"
+    t.integer "balance_cents", default: 0, null: false
     t.index ["club_id"], name: "index_club_finances_on_club_id"
   end
 
@@ -379,6 +387,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_06_130404) do
     t.jsonb "details", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "salary_cents", default: 0, null: false
     t.index ["def_player_id"], name: "index_player_seasons_on_def_player_id"
     t.index ["details"], name: "index_player_seasons_on_details", using: :gin
     t.index ["season_id"], name: "index_player_seasons_on_season_id"
@@ -432,6 +441,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_06_130404) do
     t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "club_default_earning_cents", default: 0, null: false
+    t.integer "club_max_total_wage_cents", default: 0, null: false
+    t.integer "default_mininum_operation_cents", default: 0, null: false
+    t.integer "fire_tax_fixed_cents", default: 0, null: false
+    t.integer "default_player_earnings_fixed_cents", default: 0, null: false
     t.index ["league_id"], name: "index_seasons_on_league_id"
     t.index ["preferences"], name: "index_seasons_on_preferences", using: :gin
   end
@@ -541,8 +555,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_06_130404) do
   add_foreign_key "club_awards", "clubs"
   add_foreign_key "club_championships", "championships"
   add_foreign_key "club_championships", "clubs"
-  add_foreign_key "club_exchanges", "clubs", column: "from_id"
-  add_foreign_key "club_exchanges", "clubs", column: "to_club"
+  add_foreign_key "club_exchanges", "clubs", column: "from_club_id"
+  add_foreign_key "club_exchanges", "clubs", column: "to_club_id"
   add_foreign_key "club_finances", "clubs"
   add_foreign_key "club_games", "clubs"
   add_foreign_key "club_games", "games"

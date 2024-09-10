@@ -27,19 +27,20 @@ class Championship < ApplicationRecord
     cup_switching: :string,
     cup_criterion: :string,
     bracket_two_rounds: :boolean,
-    hattrick_earning: :integer,
     cards_suspension: :boolean,
     match_best_player: :boolean,
-    match_winning_earning: :integer,
-    match_draw_earning: :integer,
-    match_lost_earning: :integer,
-    match_goal_earning: :integer,
-    match_goal_lost: :integer,
-    match_yellow_card_loss: :integer,
-    match_red_card_loss: :integer,
     match_winning_ranking: :integer,
     match_lost_ranking: :integer,
     match_draw_ranking: :integer
+
+  monetize :match_winning_earning_cents, as: :match_winning_earning
+  monetize :match_draw_earning_cents, as: :match_draw_earning
+  monetize :match_lost_earning_cents, as: :match_lost_earning
+  monetize :match_goal_earning_cents, as: :match_goal_earning
+  monetize :match_goal_lost_cents, as: :match_goal_lost
+  monetize :match_yellow_card_loss_cents, as: :match_yellow_card_loss
+  monetize :match_red_card_loss_cents, as: :match_red_card_loss
+  monetize :hattrick_earning_cents, as: :hattrick_earning
 
   def self.types(type = nil)
     championship_types = [

@@ -12,7 +12,7 @@ class SeasonNotification < Noticed::Base
   end
 
   def message
-    t(".message.#{params[:type]}", season: params[:season].name)
+    t(".message.#{params[:type]}", season: params[:season])
   end
 
   def url

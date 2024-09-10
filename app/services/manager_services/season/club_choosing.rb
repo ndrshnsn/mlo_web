@@ -82,7 +82,7 @@ class ManagerServices::Season::ClubChoosing < ApplicationService
         }
         club.save!
 
-        ClubFinance.create!(club_id: club.id, operation: "initial_funds", value: season.preferences["club_default_earning"].to_i, balance: season.preferences["club_default_earning"].to_i, source: season)
+        ClubFinance.create!(club_id: club.id, operation: "initial_funds", value: season.club_default_earning, balance: season.club_default_earning, source: season)
 
         SeasonNotification.with(
           season: season,

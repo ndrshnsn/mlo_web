@@ -18,7 +18,7 @@
                       i.ri-search-line
                   .col-md-6.col-sm-12
                     = label_tag("#{t '.club'}", nil, class: "control-label")
-                    input type="text" style="display: none;" id="generic-club-path" value="#{image_path('generic-team.png')}"
+                    input type="text" style="display: none;" id="generic-club-path" value="#{vite_asset_path('generic-team.png')}"
 
                     = select_tag "club_filter", options_for_select([[t('.free_players'), '-']] + @clubs.collect { |club| [stringHuman(DefTeam.getTranslation(club.def_team.name)[0]) , club.id, {'data-img': "#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", 'data-user': club.user_season.user.nickname}] }), {required: true, include_blank: true, class: "text-center form-control select2", "data-controller": "select", "data-select-search-value": true, "data-select-icon-value": true, id: 'club_filter', 'data-column': "3", 'data-column-index': "3" }
 

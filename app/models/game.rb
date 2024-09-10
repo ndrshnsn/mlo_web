@@ -31,7 +31,7 @@ class Game < ApplicationRecord
   end
 
   def self.get_running(season_id)
-    Game.joins(:championship).where("championships.season_id = ? AND ( games.status > ? OR games.status < ?)", season_id, 0, 3)
+    Game.joins(:championship).where("championships.season_id = ? AND ( games.status = ? OR games.status = ?)", season_id, 1, 2)
   end
 
   def self.start_permission(game)

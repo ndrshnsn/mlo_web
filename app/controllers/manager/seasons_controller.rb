@@ -112,6 +112,11 @@ class Manager::SeasonsController < ApplicationController
       @season.league_id = current_user.preferences["active_league"]
       @season.advertisement = season_params[:advertisement]
       @season.status = 0
+      @season.default_mininum_operation = season_params[:default_mininum_operation].to_money
+      @season.fire_tax_fixed = season_params[:fire_tax_fixed].to_money
+      @season.club_max_total_wage = season_params[:club_max_total_wage].to_money
+      @season.club_default_earning = season_params[:club_default_earning].to_money
+      @season.club_max_total_wage = season_params[:club_max_total_wage].to_money
       @season.preferences = {
         min_players: season_params[:min_players].to_i,
         max_players: season_params[:max_players].to_i,
@@ -128,17 +133,12 @@ class Manager::SeasonsController < ApplicationController
         add_value_after_steal: season_params[:add_value_after_steal].to_i,
         allow_money_transfer: season_params[:allow_money_transfer],
         default_player_earnings: season_params[:default_player_earnings],
-        default_player_earnings_fixed: season_params[:default_player_earnings_fixed].to_i,
         allow_increase_earnings: season_params[:allow_increase_earnings],
         allow_decrease_earnings: season_params[:allow_decrease_earnings],
         allow_negative_funds: season_params[:allow_negative_funds],
-        club_default_earning: season_params[:club_default_earning].to_i,
-        club_max_total_wage: season_params[:club_max_total_wage].to_i,
         operation_tax: season_params[:operation_tax].to_i,
         player_value_earning_relation: season_params[:player_value_earning_relation].to_i,
         fire_tax: season_params[:fire_tax],
-        fire_tax_fixed: season_params[:fire_tax_fixed].to_i,
-        default_mininum_operation: season_params[:default_mininum_operation].to_i,
         time_game_confirmation: season_params[:time_game_confirmation].to_i,
         raffle_platform: season_params[:raffle_platform],
         raffle_low_over: season_params[:raffle_low_over].to_i,
@@ -191,6 +191,11 @@ class Manager::SeasonsController < ApplicationController
     @season.duration = season_params[:time]
     @season.league_id = current_user.preferences["active_league"]
     @season.advertisement = season_params[:advertisement]
+    @season.default_mininum_operation = season_params[:default_mininum_operation].to_money
+    @season.fire_tax_fixed = season_params[:fire_tax_fixed].to_money
+    @season.club_max_total_wage = season_params[:club_max_total_wage].to_money
+    @season.club_default_earning = season_params[:club_default_earning].to_money
+    @season.club_max_total_wage = season_params[:club_max_total_wage].to_money
     @season.preferences = {
       min_players: season_params[:min_players].to_i,
       max_players: season_params[:max_players].to_i,
@@ -211,13 +216,9 @@ class Manager::SeasonsController < ApplicationController
       allow_increase_earnings: season_params[:allow_increase_earnings],
       allow_decrease_earnings: season_params[:allow_decrease_earnings],
       allow_negative_funds: season_params[:allow_negative_funds],
-      club_default_earning: season_params[:club_default_earning].to_i,
-      club_max_total_wage: season_params[:club_max_total_wage].to_i,
       operation_tax: season_params[:operation_tax].to_i,
       player_value_earning_relation: season_params[:player_value_earning_relation].to_i,
       fire_tax: season_params[:fire_tax],
-      fire_tax_fixed: season_params[:fire_tax_fixed].to_i,
-      default_mininum_operation: season_params[:default_mininum_operation].to_i,
       time_game_confirmation: season_params[:time_game_confirmation].to_i,
       raffle_platform: season_params[:raffle_platform],
       raffle_low_over: season_params[:raffle_low_over].to_i,

@@ -68,6 +68,15 @@ class Manager::ChampionshipsController < ApplicationController
     @championship.advertisement = championship_params[:advertisement]
     case championship_params[:ctype]
     when "league"
+      @championship.match_winning_earning = championship_params[:match_winning_earning].to_money
+      @championship.match_draw_earning = championship_params[:match_draw_earning].to_money
+      @championship.match_lost_earning = championship_params[:match_lost_earning].to_money
+      @championship.match_goal_earning = championship_params[:match_goal_earning].to_money
+      @championship.match_goal_lost = championship_params[:match_goal_lost].to_money
+      @championship.match_yellow_card_loss = championship_params[:match_yellow_card_loss].to_money
+      @championship.match_red_card_loss = championship_params[:match_red_card_loss].to_money
+      @championship.hattrick_earning = championship_params[:hattrick_earning].to_money
+      
       @championship.preferences = {
         time_start: time_start,
         time_end: time_end,
@@ -75,16 +84,8 @@ class Manager::ChampionshipsController < ApplicationController
         league_two_rounds: championship_params[:league_two_rounds],
         league_finals: championship_params[:league_finals],
         league_criterion: championship_params[:league_criterion],
-        hattrick_earning: championship_params[:hattrick_earning].to_i,
         cards_suspension: championship_params[:cards_suspension],
         match_best_player: championship_params[:match_best_player],
-        match_winning_earning: championship_params[:match_winning_earning].to_i,
-        match_draw_earning: championship_params[:match_draw_earning].to_i,
-        match_lost_earning: championship_params[:match_lost_earning].to_i,
-        match_goal_earning: championship_params[:match_goal_earning].to_i,
-        match_goal_lost: championship_params[:match_goal_lost].to_i,
-        match_yellow_card_loss: championship_params[:match_yellow_card_loss].to_i,
-        match_red_card_loss: championship_params[:match_red_card_loss].to_i,
         match_winning_ranking: championship_params[:match_winning_ranking].to_i,
         match_draw_ranking: championship_params[:match_draw_ranking].to_i,
         match_lost_ranking: championship_params[:match_lost_ranking].to_i
@@ -118,6 +119,16 @@ class Manager::ChampionshipsController < ApplicationController
     @championship.advertisement = championship_params[:advertisement]
     case championship_params[:ctype]
     when "league"
+
+      @championship.match_winning_earning = championship_params[:match_winning_earning].to_money
+      @championship.match_draw_earning = championship_params[:match_draw_earning].to_money
+      @championship.match_lost_earning = championship_params[:match_lost_earning].to_money
+      @championship.match_goal_earning = championship_params[:match_goal_earning].to_money
+      @championship.match_goal_lost = championship_params[:match_goal_lost].to_money
+      @championship.match_yellow_card_loss = championship_params[:match_yellow_card_loss].to_money
+      @championship.match_red_card_loss = championship_params[:match_red_card_loss].to_money
+      @championship.hattrick_earning = championship_params[:hattrick_earning].to_money
+
       @championship.preferences = {
         time_start: time_start,
         time_end: time_end,
@@ -125,16 +136,8 @@ class Manager::ChampionshipsController < ApplicationController
         league_two_rounds: championship_params[:league_two_rounds],
         league_finals: championship_params[:league_finals],
         league_criterion: championship_params[:league_criterion],
-        hattrick_earning: championship_params[:hattrick_earning].to_i,
         cards_suspension: championship_params[:cards_suspension],
         match_best_player: championship_params[:match_best_player],
-        match_winning_earning: championship_params[:match_winning_earning].to_i,
-        match_draw_earning: championship_params[:match_draw_earning].to_i,
-        match_lost_earning: championship_params[:match_lost_earning].to_i,
-        match_goal_earning: championship_params[:match_goal_earning].to_i,
-        match_goal_lost: championship_params[:match_goal_lost].to_i,
-        match_yellow_card_loss: championship_params[:match_yellow_card_loss].to_i,
-        match_red_card_loss: championship_params[:match_red_card_loss].to_i,
         match_winning_ranking: championship_params[:match_winning_ranking].to_i,
         match_draw_ranking: championship_params[:match_draw_ranking].to_i,
         match_lost_ranking: championship_params[:match_lost_ranking].to_i
