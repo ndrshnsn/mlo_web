@@ -12,4 +12,4 @@
           .input-group
             .input-group-prepend
               span.input-group-text = t('money_sign')
-            = text_field_tag("season[fire_tax_fixed]", fire_tax_fixed, maxlength: 6, readonly: @sStarted, class: "form-control fire_tax_fixed-mask")
+            = text_field_tag("season[fire_tax_fixed]", fire_tax_fixed, readonly: @sStarted, class: "form-control fire_tax_fixed-mask",  data: { controller: "cleave", "cleave-ctype-value": "price"})

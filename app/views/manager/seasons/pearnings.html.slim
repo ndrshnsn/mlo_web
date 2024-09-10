@@ -5,7 +5,7 @@
         = t('.value.earnings_fixed')
         i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.earnings_fixed_desc')}"
       span style="width: 130px!important;"
-        - default_player_earnings_fixed = AppConfig.season_default_player_earnings_fixed
+        - default_player_earnings_fixed = AppConfig.season_default_player_earnings_fixed.to_money
         - if @season.present?
           - default_player_earnings_fixed = @season.default_player_earnings_fixed
         .form-group

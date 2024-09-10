@@ -53,9 +53,7 @@ class ManagerServices::Season::PlayerRaffle < ApplicationService
         end
         player_salary = DefPlayer.getSeasonInitialSalary(season, raffled_player)
         season_player = PlayerSeason.where(def_player_id: raffled_player.id, season_id: season.id).first_or_create do |sP|
-          sP.details = {
-            salary: player_salary
-          }
+          sP.salary = player_salary
         end
 
         new_hired_player = ClubPlayer.new

@@ -199,7 +199,7 @@
             = t('.value.club_default_earning')
             i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.club_default_earning_desc')}"
           span style="width: 130px!important;"
-            - club_default_earning = @season.club_default_earning || AppConfig.season_club_default_earning
+            - club_default_earning = @season.new_record? ? AppConfig.season_club_default_earning : @season.club_default_earning
             .form-group
               .input-group
                 .input-group-prepend
@@ -211,7 +211,7 @@
             = t('.value.club_max_total_wage')
             i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.club_max_total_wage_desc')}"
           span style="width: 130px!important;"
-            - club_max_total_wage = @season.club_max_total_wage || AppConfig.season_club_max_total_wage
+            - club_max_total_wage = @season.new_record? ? AppConfig.season_club_max_total_wage : @season.club_max_total_wage
             .form-group
               .input-group
                 .input-group-prepend
@@ -297,12 +297,12 @@
             = t('.value.default_mininum_operation')
             i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.value.default_mininum_operation_desc')}"
           span style="width: 130px!important;"
-            - default_mininum_operation = @season.default_mininum_operation || AppConfig.season_default_mininum_operation
+            - default_mininum_operation = @season.new_record? ? AppConfig.season_default_mininum_operation : @season.default_mininum_operation
             .form-group
               .input-group
                 .input-group-prepend
                   span.input-group-text = t('money_sign')
-                = text_field_tag("season[default_mininum_operation]", default_mininum_operation, maxlength: 6, class: "form-control", readonly: sStarted,  data: { controller: "cleave", "cleave-ctype-value": "price"})
+                = text_field_tag("season[default_mininum_operation]", default_mininum_operation, class: "form-control", readonly: sStarted,  data: { controller: "cleave", "cleave-ctype-value": "price"})
         li.list-group-item.d-flex.justify-content-between.align-items-center style="line-height: 35px!important;"
           span.li-col
             = t('.value.allow_fire_player')

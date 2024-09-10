@@ -10,7 +10,7 @@ class Season < ApplicationRecord
   has_many :player_seasons, dependent: :destroy
   has_many :season_awards, dependent: :destroy
   has_many :rankings, dependent: :destroy
-  has_many :clubs, through: :user_seasons
+  has_many :clubs, through: :user_seasons, dependent: :destroy
   has_rich_text :advertisement
 
   jsonb_accessor :preferences,
@@ -29,17 +29,12 @@ class Season < ApplicationRecord
     add_value_after_steal: :integer,
     allow_money_transfer: :string,
     default_player_earnings: :string,
-    default_player_earnings_fixed: :integer,
     allow_increase_earnings: :string,
     allow_decrease_earnings: :string,
     allow_negative_funds: :boolean,
     operation_tax: :integer,
     player_value_earning_relation: :integer,
-    club_default_earning: :integer,
-    club_max_total_wage: :integer,
     fire_tax: :string,
-    fire_tax_fixed: :integer,
-    default_mininum_operation: :integer,
     time_game_confirmation: :integer,
     raffle_platform: :string,
     raffle_low_over: :integer,
@@ -50,6 +45,12 @@ class Season < ApplicationRecord
     saction_transfer_window: :integer,
     saction_player_steal: :integer,
     saction_change_wage: :integer
+
+  monetize :club_default_earning_cents, as: :club_default_earning
+  monetize :club_max_total_wage_cents, as: :club_max_total_wage
+  monetize :default_mininum_operation_cents, as: :default_mininum_operation
+  monetize :fire_tax_fixed_cents, as: :fire_tax_fixed
+  monetize :default_player_earnings_fixed_cents, as: :default_player_earnings_fixed
 
   def self.getActive(user)
     getUser = User.find(user)

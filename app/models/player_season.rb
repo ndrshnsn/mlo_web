@@ -1,7 +1,6 @@
 class PlayerSeason < ApplicationRecord
   ## Details
   jsonb_accessor :details,
-    salary: :integer,
     stealed_times: :integer,
     ycard: :integer,
     rcard: :integer
@@ -19,12 +18,14 @@ class PlayerSeason < ApplicationRecord
   has_many :game_cards
   has_many :game_best_players
 
+  monetize :salary_cents, as: :salary
+
   attribute :goals, type: :integer, default: 0
   attribute :assists, type: :integer, default: 0
   attribute :fairplay, type: :integer, default: 0
   attribute :bestplayer, type: :integer, default: 0
 
   def self.getPlayerPass(player_season, season)
-    player_season.details["salary"] * season.preferences["player_value_earning_relation"]
+    player_season.salary * season.preferences["player_value_earning_relation"]
   end
 end

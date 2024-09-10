@@ -32,13 +32,11 @@ class DefPlayer < ApplicationRecord
 
   def self.getSeasonInitialSalary(season = nil, player = nil, coalesce_string = nil)
     if season
-      if season.preferences["default_player_earnings"] == "fixed"
-        return season.preferences["default_player_earnings"].gsub(/[^\d.]/, "").to_i
-      end
-
+      return season.default_player_earnings_fixed if season.preferences["default_player_earnings"] == "fixed"
+        
       if season.preferences["default_player_earnings"] == "proportional"
         sMultiplier = "1.0#{player.details["attrs"]["overallRating"]}".to_f
-        return ((player.details["attrs"]["overallRating"] * sMultiplier) * 100).round(0)
+        return ((player.details["attrs"]["overallRating"] * sMultiplier) * 100).round(0).to_money
       end
     end
 

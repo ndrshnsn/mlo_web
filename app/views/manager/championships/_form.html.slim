@@ -88,7 +88,7 @@
               = t('.match.winning_prize')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.winning_prize_desc')}"
             span style="width: 130px!important;"
-              - match_winning_earning = @championship.match_winning_earning || AppConfig.match_winning_earning
+              - match_winning_earning = @championship.new_record? ? AppConfig.match_winning_earning.to_money : @championship.match_winning_earning
               .form-group
                 .input-group
                   .input-group-prepend
@@ -99,7 +99,7 @@
               = t('.match.draw_prize')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.draw_prize_desc')}"
             span style="width: 130px!important;"
-              - match_draw_earning = @championship.match_winning_earning || AppConfig.match_draw_earning
+              - match_draw_earning = @championship.new_record? ? AppConfig.match_draw_earning.to_money : @championship.match_winning_earning
               .form-group
                 .input-group
                   .input-group-prepend
@@ -110,7 +110,7 @@
               = t('.match.loss_prize')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.loss_prize_desc')}"
             span style="width: 130px!important;"
-              - match_lost_earning = @championship.match_lost_earning || AppConfig.match_lost_earning
+              - match_lost_earning = @championship.new_record? ? AppConfig.match_lost_earning.to_money : @championship.match_lost_earning
               .form-group
                 .input-group
                   .input-group-prepend
@@ -121,7 +121,7 @@
               = t('.match.goal_prize')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.goal_prize_desc')}"
             span style="width: 130px!important;"
-              - match_goal_earning = @championship.match_goal_earning || AppConfig.match_goal_earning
+              - match_goal_earning = @championship.new_record? ? AppConfig.match_goal_earning : @championship.match_goal_earning
               .form-group
                 .input-group
                   .input-group-prepend
@@ -132,7 +132,7 @@
               = t('.match.conceded_goal')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.conceded_goal_desc')}"
             span style="width: 130px!important;"
-              - match_goal_lost = @championship.match_goal_lost || AppConfig.match_goal_loss
+              - match_goal_lost = @championship.new_record? ? AppConfig.match_goal_loss : @championship.match_goal_lost
               .form-group
                 .input-group
                   .input-group-prepend
@@ -143,7 +143,7 @@
               = t('.match.yellow_card_loss')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.yellow_card_loss_desc')}"
             span style="width: 130px!important;"
-              - match_yellow_card_loss = @championship.match_yellow_card_loss || AppConfig.match_yellow_card_loss
+              - match_yellow_card_loss = @championship.new_record? ? AppConfig.match_yellow_card_loss : @championship.match_yellow_card_loss
               .form-group
                 .input-group
                   .input-group-prepend
@@ -154,7 +154,7 @@
               = t('.match.red_card_loss')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.red_card_loss_desc')}"
             span style="width: 130px!important;"
-              - match_red_card_loss = @championship.match_red_card_loss || AppConfig.match_red_card_loss
+              - match_red_card_loss = @championship.new_record? ? AppConfig.match_red_card_loss : @championship.match_red_card_loss
               .form-group
                 .input-group
                   .input-group-prepend
@@ -165,7 +165,7 @@
               = t('.match.hattrick_earning')
               i.ri-question-fill.font-medium-4.ms-1.text-warning.text-opacity-50 data-toggle="tooltip" data-placement="top" title="#{t('.match.hattrick_earning_desc')}"
             span style="width: 130px!important;"
-              - hattrick_earning = @championship.hattrick_earning || AppConfig.match_hattrick_earning
+              - hattrick_earning = @championship.new_record? ? AppConfig.match_hattrick_earning : @championship.hattrick_earning
               .form-group
                 .input-group
                   .input-group-prepend
