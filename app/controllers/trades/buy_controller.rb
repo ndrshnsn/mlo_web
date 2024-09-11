@@ -34,13 +34,13 @@ class Trades::BuyController < ApplicationController
     @pValue = []
     for i in (lower_transfer_fee.cents..higher_transfer_fee.cents).step(@season.default_mininum_operation_cents)
     	@pValue << {
-    		value: i*@season.preferences["player_value_earning_relation"],
+    		value: Money.from_cents(i*@season.preferences["player_value_earning_relation"]),
     		reference: i
     	}
     end
     @pValue << {
-      value: higher_transfer_fee*@season.preferences["player_value_earning_relation"],
-      reference: higher_transfer_fee
+      value: Money.from_cents(higher_transfer_fee*@season.preferences["player_value_earning_relation"]),
+      reference: higher_transfer_fee.cents
     }
 
   end

@@ -59,7 +59,7 @@
 
                       .col-12.col-md-4
                         = label_tag("#{t '.min_transfer_fee'}", nil, class: "control-label")
-                        = select_tag "player_value_min", options_for_select(@pValue.collect { |i| [toCurrency(i[:value]), -(i[:reference])]}, -(@pValue.first[:reference])), {include_blank: true,  class: "form-control select2 other", "data-controller": "select", "data-select-icon-value": false, "data-select-clear-value": false, 'data-name': "player_value_min", id: 'player_value_min' }
+                        = select_tag "player_value_min", options_for_select(@pValue.collect { |i| [i[:value].format, -(i[:reference])]}, -(@pValue.first[:reference])), {include_blank: true,  class: "form-control select2 other", "data-controller": "select", "data-select-icon-value": false, "data-select-clear-value": false, 'data-name': "player_value_min", id: 'player_value_min' }
 
                       .col-12.col-md-4
                         = label_tag("#{t '.max_transfer_fee'}", nil, class: "control-label")

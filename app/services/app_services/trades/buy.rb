@@ -19,14 +19,12 @@ class AppServices::Trades::Buy < ApplicationService
 
     return handle_error(@club, ".max_player_limit") unless club_players.size < @season.preferences["max_players"]
     season_player = PlayerSeason.where(def_player_id: @player.id, season_id: @season.id).first_or_create! do |sp|
-      sp.details = {
-        salary: DefPlayer.getSeasonInitialSalary(@season, @player)
-      }
+      sp.salary = DefPlayer.getSeasonInitialSalary(@season, @player)
     end
     season_player_pass = PlayerSeason.getPlayerPass(season_player, @season)
 
-    club_max_wage = @season.preferences["club_max_total_wage"] - Club.getTeamTotalWage(@club.id)
-    return handle_error(@club, ".max_wage_limit") unless season_player.details["salary"] < club_max_wage
+    club_max_wage = @season.club_max_total_wage - Club.getTeamTotalWage(@club.id)
+    return handle_error(@club, ".max_wage_limit") unless season_player.salary < club_max_wage
 
     available_funds = (club_funds >= season_player_pass || @season.preferences["allow_negative_funds"] == "on")
     return handle_error(@club, ".no_club_funds") unless available_funds
@@ -42,13 +40,15 @@ class AppServices::Trades::Buy < ApplicationService
       PlayerSeasonFinance.create!(
         operation: "player_hire",
         value: player_season_finance.first.value,
-        source: @club
+        source: @club,
+        player_season_id: season_player.id
       )
     else
       PlayerSeasonFinance.create!(
         operation: "initial_salary",
-        value: season_player.details["salary"],
-        source: @club
+        value: season_player.salary,
+        source: @club,
+        player_season_id: season_player.id
       )
     end
     ClubFinance.create!(club_id: @club.id, operation: "player_hire", value: season_player_pass, source: season_player)
