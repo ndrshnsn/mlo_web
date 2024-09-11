@@ -91,9 +91,9 @@ class Season < ApplicationRecord
     player = PlayerSeason.find(player_season_id)
     case season.preferences["fire_tax"]
     when "wage"
-      tax = player.details["salary"]
+      tax = player.salary
     when "fixed"
-      tax = season.preferences["fire_tax_fixed"]
+      tax = season.fire_tax_fixed
     when "none"
       tax = 0
     end
