@@ -42,7 +42,7 @@ class DefPlayer < ApplicationRecord
 
     if coalesce_string
       ## make sure to reflect any above changes
-      return "( (def_players.details->'attrs'->>'overallRating')::Integer * ( cast( cast('1.0' as text)||cast(def_players.details->'attrs'->>'overallRating' as text) as numeric) ) * 100 )"
+      "((def_players.details->'attrs'->>'overallRating')::Integer * (cast(cast('1.0' as text)||cast(def_players.details->'attrs'->>'overallRating' as text) as numeric)) * 100)"
     end
   end
 

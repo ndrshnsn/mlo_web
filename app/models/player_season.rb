@@ -25,6 +25,7 @@ class PlayerSeason < ApplicationRecord
   attribute :fairplay, type: :integer, default: 0
   attribute :bestplayer, type: :integer, default: 0
 
+
   def self.getPlayerPass(player_season, season)
     player_season.salary * season.preferences["player_value_earning_relation"]
   end
