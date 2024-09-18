@@ -46,6 +46,7 @@ namespace :manager do
   post "seasons/actions/stop_transfer_window/:id", to: "seasons#stop_transfer_window", as: :season_stop_transfer_window
   post "seasons/actions/steal_window/:id", to: "seasons#steal_window", as: :season_steal_window
   match "seasons/actions/end/:id", to: "seasons#end", as: :season_end, via: [:get, :patch]
+  post "seasons/actions/ranking_recount/:id", to: "seasons#ranking_recount", as: :season_ranking_recount
 
   get "awards", controller: "awards", action: "index", as: :awards
   get "awards/get_proc_dt", to: "awards#get_proc_dt"

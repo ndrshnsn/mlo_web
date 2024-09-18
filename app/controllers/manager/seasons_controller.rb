@@ -1,7 +1,7 @@
 class Manager::SeasonsController < ApplicationController
   authorize_resource class: false
   before_action :set_local_vars
-  before_action :set_season, only: [:update, :users, :details, :destroy, :start, :start_club_choosing, :stop_club_choosing, :start_players_raffle, :start_change_wage, :stop_change_wage, :start_transfer_window, :stop_transfer_window, :steal_window, :end]
+  before_action :set_season, only: [:update, :users, :details, :ranking_recount, :destroy, :start, :start_club_choosing, :stop_club_choosing, :start_players_raffle, :start_change_wage, :stop_change_wage, :start_transfer_window, :stop_transfer_window, :steal_window, :end]
   breadcrumb "dashboard", :root_path, match: :exact, turbo: "false"
   breadcrumb "manager.seasons.main", :manager_seasons_path, match: :exact, frame: "main_frame"
 
@@ -306,6 +306,10 @@ class Manager::SeasonsController < ApplicationController
 
   def end
     show_step(ManagerServices::Season::End.call(@season, current_user, params), t(".end.success")) if request.patch?
+  end
+
+  def ranking_recount
+    show_step(ManagerServices::Season::RankingRecount.call(@season, current_user), t(".ranking_recount.success"))
   end
 
   def show_step(resolution, success_message)

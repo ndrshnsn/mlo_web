@@ -49,6 +49,11 @@ pt-BR:
         end_season: "Finalizar Temporada"
         end_season_question: "Finalizar Temporada?"
         end_season_text: "Caso haja algum campeonato em andamento, finalize-o primeiro para então encerrar a Temporada!"
+        extra_actions: "Extra"
+        ranking_recount: "Recalcular Ranking"
+        ranking_recount_question: "Recalcular Ranking?"
+        ranking_recount_text: "Todos os pontos serão zerados e recalculados desde o início da Temporada até o momento atual"
+
       sactions:
         end_season:
           confirm: "Encerrar a Temporada?"
