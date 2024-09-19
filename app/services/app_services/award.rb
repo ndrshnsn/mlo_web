@@ -84,10 +84,10 @@ class AppServices::Award < ApplicationService
           end
           cCards = cCards.sort.sort_by{|e| e[1]}
           if cCards[0][1] < cCards[1][1]
-            club = cCards[0][0]
+            club = Club.find(cCards[0][0])
             award_transactions(club, championship_award)
           end
-1        when "lessown"
+        when "lessown"
           ownGoals = []
           ClubChampionship.where(championship_id: @championship.id ).each do |club|
             club_own_goals = Game.where(games: { championship_id: @championship.id, home_id: club.club_id }).sum(:vscore) + Game.where(games: { championship_id: @championship.id, visitor_id: club.club_id }).sum(:hscore)
