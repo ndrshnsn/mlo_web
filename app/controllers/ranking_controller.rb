@@ -13,7 +13,7 @@ class RankingController < ApplicationController
   end
 
   def history
-    @history_info = Ranking.includes(:source).where(season_id: @season.id, club_id: params[:club]).order(updated_at: :desc).limit(15)
+    @history_info = Ranking.eager_load(:championship_award, :season_award, :game).where(season_id: @season.id, club_id: params[:club]).order(id: :desc).limit(30)
   end
 
   def set_controller_vars

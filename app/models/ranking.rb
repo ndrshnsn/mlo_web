@@ -2,6 +2,10 @@ class Ranking < ApplicationRecord
   belongs_to :season
   belongs_to :club
   belongs_to :source, polymorphic: true
+  belongs_to :championship_award, ->{ where(rankings: { source_type: 'ChampionshipAward' })}, foreign_key: 'source_id', optional: true
+  belongs_to :game, ->{ where(rankings: { source_type: 'Game' })}, foreign_key: 'source_id', optional: true
+  belongs_to :season_award, ->{ where(rankings: { source_type: 'SeasonAward' })}, foreign_key: 'source_id', optional: true
+
   after_create :update_ranking_balance
 
   private
