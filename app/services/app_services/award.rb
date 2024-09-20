@@ -84,7 +84,7 @@ class AppServices::Award < ApplicationService
           end
           cCards = cCards.sort.sort_by{|e| e[1]}
           if cCards[0][1] < cCards[1][1]
-            club = Club.find(cCards[0][0])
+            club = cCards[0][0]
             award_transactions(club, championship_award)
           end
         when "lessown"
