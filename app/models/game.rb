@@ -9,7 +9,7 @@ class Game < ApplicationRecord
   has_many :game_cards, dependent: :destroy
   has_many :club_finances, foreign_key: :source_id, dependent: :destroy
   has_many :notifications, as: :recipient, dependent: :destroy
-  has_many :rankings, foreign_key: :source_id, dependent: :destroy
+  has_many :rankings, as: :source, dependent: :destroy
 
   def self.translate_status(code)
     status = {

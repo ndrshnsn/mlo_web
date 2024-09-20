@@ -63,9 +63,9 @@
               td.text-center
                 span class="text-#{pClass} text-darken-1"
                   -if pClass == "danger"
-                    | (#{history_info.first.points})
+                    | (#{info.points})
                   - else
-                    = history_info.first.points
+                    = info.points
 
         tfoot.table-light
           tr

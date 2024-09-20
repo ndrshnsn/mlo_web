@@ -101,14 +101,15 @@ class Season < ApplicationRecord
   end
 
   def self.getRanking(season, club_id = nil, position = nil, date_start=nil, date_finish=nil)
-		ranking = []
+		
 
-		## Get All Sesons for This League
+		## Get All Seasons for This League
 		lSeasons = Season.where(league_id: season.league.id).pluck(:id)
 
 		## Get All League Users
 		lUsers = season.league.user_leagues.pluck(:user_id)
 
+    ranking = []
 		lUsers.each_with_index do |user,i|
 			uClubs = UserSeason.joins(:season, :clubs).where(seasons: { id:  season.id}, user_seasons: { user_id: user }).order(created_at: :desc).pluck('clubs.id')
 			rPoints = Ranking.where(club_id: uClubs).order(created_at: :desc)
