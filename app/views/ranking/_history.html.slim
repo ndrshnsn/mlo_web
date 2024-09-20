@@ -52,11 +52,12 @@
               td.text-center
                 - aDesc = ["goaler", "assister", "bestplayer"]
                 - if aDesc.include?(info.source.award_type)
-                  / - ## if cPlayer = ClubPlayer.where(id: descInfo[0]).first
-                  /   // span.badge.text-capitalize.badge-light-warning.badge-pill.popover-dismiss
-                  /     img src="#{session[:pdbprefix]}/players/#{cPlayer.player.platform}/#{cPlayer.player.platformid}.png' style='width: 32px; height: 32px;' class='avatar avatar-sm mr-1'> #{cPlayer.player.name}"
-                  / - else
-                  /   | -
+                  - if cPlayer = ClubPlayer.where(id: info.description).first
+                    span.badge.rounded-pill.border.border-light.bg-dark.text-body
+                      = image_tag "#{session[:pdbprefix]}/players/#{get_platforms(platform: cPlayer.def_player.platform, dna: true)}/#{cPlayer.def_player.details["platformid"]}.png", class: 'rounded-circle avatar-xxs mr-1'
+                      = cPlayer.def_player.name
+                  - else
+                    | -
                 - else
                   | -
 
