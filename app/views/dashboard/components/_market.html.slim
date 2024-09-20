@@ -1,0 +1,65 @@
+.row
+  .col-12
+    .card
+      .card-body.table-responsive
+        h4.card-title.mb-2
+          i.ri-shopping-cart-line.me-1
+          | Mercado da Bola
+        h6.card-subtitle.text-muted.font-14 Últimas 10 Negociações
+
+        table.table.table-striped.table-sm.mt-75
+          tbody
+            - if last_transfers.blank?
+              tr
+                td.text-center colspan="5" -
+            - else
+              - last_transfers.each do |transfer|
+                - fromClub = transfer.from_club_id.nil? ? "Mercado" : Club.find(transfer.from_club_id)
+                - toClub = transfer.to_club_id.nil? ? "Mercado" : Club.find(transfer.to_club_id)
+                - rpPOS = translate_pkeys(transfer.player_season.def_player.def_player_position.name, transfer.player_season.def_player.platform)
+                tr.align-middle
+                  td.text-center = transfer.updated_at.strftime("%d/%m")
+                  td
+                    .d-flex.align-items-center
+                      .flex-shrink-0.me-3.mb-3.ms-1 style="position:relative; padding-top: 5px;"
+                        = image_tag "#{session[:pdbprefix]}/players/#{get_platforms(platform: transfer.player_season.def_player.platform, dna: true)}/#{transfer.player_season.def_player.details["platformid"]}.png", class: 'avatar-md img-thumbnail rounded-circle', style: 'width: 36px; height: 36px'
+                        span class="player-avatar-position badge badge-#{rpPOS[1]}" = rpPOS[0]
+
+                      .flex-grow-1.ms-2.text-start
+                        span.font-weight-bold.d-block.text-nowrap = transfer.player_season.def_player.name
+
+                  td
+                    - if fromClub != "Mercado"
+                      .d-flex.align-items-center
+                        .flex-shrink-0
+                          = image_tag("#{session[:pdbprefix]}/teams/#{fromClub.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-team.png")}';")
+                        .flex-grow-1.ms-2.text-start               
+                          span.font-weight-bold.d-block.text-nowrap #{(fromClub.def_team.details['teamAbbr']).upcase}
+                          small.text-muted ##{fromClub.user_season.user.nickname}
+                    - else
+                      | MERCADO
+                  td.text-center
+                    i.font-medium-4.me-1.ri-arrow-right-line
+                  td
+                    - if toClub != "Mercado"
+                      .d-flex.align-items-center
+                        .flex-shrink-0
+                          = image_tag("#{session[:pdbprefix]}/teams/#{toClub.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-team.png")}';")
+                        .flex-grow-1.ms-2.text-start               
+                          span.font-weight-bold.d-block.text-nowrap #{(toClub.def_team.details['teamAbbr']).upcase}
+                          small.text-muted ##{toClub.user_season.user.nickname}
+                    - else
+                      | MERCADO
+
+                  td
+                    - transferDetails = translateTM(transfer.transfer_mode)
+                    i class="me-1 #{transferDetails[0]}" data-toggle="tooltip" title="#{transferDetails[1]}"
+                    = transfer.transfer_rate.format
+          tfoot
+            - if !last_transfers.blank?
+              - transferDetailsExplain = translateTM(nil, true)
+              th.text-end.align-middle colspan="6"
+                - transferDetailsExplain.each do |tD|
+                  small.text-muted.me-2
+                    i class="me-1 #{tD[1][0]}"
+                    span.align-middle = tD[1][1]
