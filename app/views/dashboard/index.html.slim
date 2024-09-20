@@ -1,7 +1,8 @@
 = turbo_frame_tag "main_frame" do
-
   = turbo_frame_tag "flash_local" do
     = render partial: 'layouts/flash/main'
 
+  = render "layouts/header/page_frame"
   = turbo_frame_tag "dashboard" do
+    = render "layouts/header/page_title", title: t('.dashboard')
     = render "main"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_10_123737) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_20_190723) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -398,9 +398,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_10_123737) do
     t.integer "from_club_id"
     t.integer "to_club_id"
     t.string "transfer_mode"
-    t.integer "transfer_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "transfer_rate_cents", default: 0, null: false
     t.index ["from_club_id"], name: "index_player_transactions_on_from_club_id"
     t.index ["player_season_id"], name: "index_player_transactions_on_player_season_id"
     t.index ["to_club_id"], name: "index_player_transactions_on_to_club_id"

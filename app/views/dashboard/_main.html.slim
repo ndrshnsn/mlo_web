@@ -7,3 +7,5 @@
           .card-body
             h6.cart-title.text-warning.fs-18 = t('.disabled_league')
             p.cart-text = t('.disabled_league_obs_html', admin: AppConfig.mail_admin)
+  - else
+    = render 'dashboard/components/market', last_transfers: @last_transfers
