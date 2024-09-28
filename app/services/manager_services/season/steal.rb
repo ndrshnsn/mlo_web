@@ -34,8 +34,7 @@ class ManagerServices::Season::Steal < ApplicationService
     end
 
     time_of = Time.now + (season.preferences['steal_window_start'].to_i*60 + rand(0..season.preferences['steal_window_end'].to_i*60)).minutes
-    job = Sidekiq::Cron::Job.new(name: "steal_window_#{season.id}", cron: "#{time_of.min} #{time_of.hour} * * *", class: 'StealWindowWorker', date_as_argument: true, args: [season.id, @user.id])
-
+    job = Sidekiq::Cron::Job.new(name: "steal_window_#{season.id}", cron: "#{time_of.min} #{time_of.hour} * * *", class: 'StealWindowWorker', args: [season.id, @user.id, Time.zone.now])
     return handle_error(season, season&.error) unless job.save
 
     SeasonNotification.with(

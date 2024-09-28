@@ -18,6 +18,8 @@ pt-BR:
           main: "Contratos"
       squad:
         main: "Equipe"
+      steals:
+        main: "Roubos"
       trades:
         main: "Negociações"
         buy:

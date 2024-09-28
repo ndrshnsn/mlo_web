@@ -36,8 +36,9 @@ class DashboardController < ApplicationController
   end
 
   def index
-
-    @last_transfers = PlayerTransaction.includes(player_season: [def_player: :def_player_position]).where(player_seasons: { season_id: @season.id } ).order(created_at: :desc).limit(10)
+    if !current_user.admin?
+      @last_transfers = PlayerTransaction.includes(player_season: [def_player: :def_player_position]).where(player_seasons: { season_id: @season.id } ).order(created_at: :desc).limit(10)
+    end
   end
 
   def change_league

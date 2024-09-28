@@ -1,0 +1,2 @@
+module StealsHelper
+end

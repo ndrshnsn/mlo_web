@@ -1,0 +1,6 @@
+= link_to player_details_path(id: player.friendly_id, platform: player.platform), type: "button", class: "btn btn-secondary btn-icon btn-sm", title: "#{t('.player_information')}", data: { "turbo-frame": "modal", toggle: "tooltip", placement: "top" } do
+  .ri-information-line
+
+- disabled = player_season.club_players.first.club.user_season.user.id != owner.id ? 'btn-danger' : 'btn-dark disabled'
+= link_to "javascript:;", type: "button", class: "btn  btn-outline btn-icon btn-sm ms-1 #{disabled}", title: "#{t('.player_steal')}", data: { toggle: "tooltip", placement: "top", action: "click->confirm#dialog", controller: "confirm", "confirm-title-value": "#{t('.player_steal_question', player_name: player.name)}", "confirm-text-value": "#{t('.player_steal_text', fee_value: player_value)}", "confirm-icon-value": "question", "confirm-link-value": steal_player_path(id: player.friendly_id), "confirm-action-value": "post", "turbo-disabled": true } do
+  i.ri-flashlight-fill

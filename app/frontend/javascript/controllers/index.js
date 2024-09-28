@@ -12,6 +12,3 @@ application.consumer = consumer
 StimulusControllerResolver.install(application, createViteGlobResolver(
   import.meta.glob('../controllers/**/*_controller.js')
 ))
-
-
-
