@@ -1,0 +1,13 @@
+= turbo_stream.update "playerTeam_#{player.id}" do
+  = render "trades/cells/player_team", pSeason: player_season, session_pdbprefix: session_pdbprefix
+
+= turbo_stream.update "playerValue_#{player.id}" do
+  = render "trades/cells/player_value", playerValue: player_value
+
+= turbo_stream.update "previous_steals_#{season.id}" do
+  - prev_steals = PlayerTransaction.joins(:player_season).where(player_transactions: {transfer_mode: 'steal'}, player_seasons: {season_id: season.id}).limit(15).order(created_at: :desc)
+  = render "steals/previous_steals", prev_steals: prev_steals, season: season, session_pdbprefix: session_pdbprefix
+
+= turbo_stream.update "pActions_#{player.id}" do
+  - user = User.find(user)
+  = render "steals/cells/actions", player: player, season: season, player_season: player_season, owner: user, player_value: player_value

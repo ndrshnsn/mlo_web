@@ -1,0 +1,25 @@
+.player-card-steal
+  .player-card-steal-ovr = player.player_season.def_player.attrs["overallRating"]
+  - rpPOS = translate_pkeys(player.player_season.def_player.def_player_position.name, player.player_season.def_player.platform)
+  div[class="player-card-position player-card-#{rpPOS[1]}"]
+    = rpPOS[0]
+
+  .player-card-steal-position
+  .player-card-steal-name = player.player_season.def_player.name
+  .player-card-steal-image.d-flex
+    = image_tag("#{session_pdbprefix}/players/#{get_platforms(platform: player.player_season.def_player.platform, dna: true)}/#{player.player_season.def_player.details["platformid"]}.png")
+    
+  .player-card-steal-col.w-full
+    .d-flex.justify-content-between.py-2.px-3
+      a href="javascript:void(0)" id="button_userinfo_#{player.from_club.user_season.user.id}_#{i}" data-controller="popover" data-popover-id-value="#{player.from_club.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{player.from_club.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(player.from_club.user_season.user)}"      
+        = image_tag("#{session_pdbprefix}/teams/#{player.from_club.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-team.png")}';")
+
+      span
+        i.ri-arrow-right-line.align-middle.pt-1
+
+      a href="javascript:void(0)" id="button_userinfo_#{player.to_club.user_season.user.id}_#{i}" data-controller="popover" data-popover-id-value="#{player.to_club.user_season.user.id}" data-popover-turbo-value="true" data-popover-frame-value="basic_user_info_#{player.to_club.user_season.user.id}" data-popover-source-value="#{user_get_basic_info_path(player.to_club.user_season.user)}"      
+        = image_tag("#{session_pdbprefix}/teams/#{player.to_club.def_team.name.upcase.delete(" ")}.png", style: "width: 32px; height: 32px", onerror: "this.error=null;this.src='#{vite_asset_url("images/generic-team.png")}';")
+
+    .d-flex.text-center.fw-bold.justify-content-center = player.transfer_rate.format
+
+  .player-card-steal-col-bg

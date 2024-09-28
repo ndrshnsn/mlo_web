@@ -1,0 +1,33 @@
+pt-BR:
+  steals:
+    index:
+      steals: "Roubos"
+    main:
+      steal_not_active_title: "Janela de Roubo"
+      steal_not_active_text: "A Janela não está ativa, aguarde o anúncio do Manager ou o ícone superior esquerdo do Roubo ficar Ativo."
+      name: "Nome"
+      club: "Clube"
+      advanced_filter: "Filtro Avançado"
+      position: "Posição"
+      overall: "Over"
+      transfer_fee: "Multa"
+      hired: "Contrato"
+      actions: "Ações"
+      last_steals_monitoring: "Últimos Roubos"
+      players_available_for_steal: "Disponíveis para Roubo"
+      steal_timing: "Tempo Restante de Janela"
+    cells:
+      actions:
+        player_information: "Informações do Jogador"
+        player_steal: "Roubar Jogador"
+        player_steal_question: "Roubar %{player_name}?"
+        player_steal_text: "Você pagará o valor de %{fee_value} da multa correspondente"
+    errors:
+      no_slots_available: "Você não possui mais vagas no seu time!"
+      max_wage_limit: "Você atingiu ou irá ultrapassar o limite de Salário do Clube!"
+      no_club_funds: "Seu Clube não possui Saldo para este roubo!"
+      max_stealed_players: "Seu Clube já efetuou o limite de roubos por Janela!"
+      max_steals_same_player: "Este jogador já foi roubado o limite permitido de vezes por janela!"
+      max_steals_per_user: "Este clube já teve o limite de jogadores roubados nesta janela!"
+    previous_steals:
+      last_steals_monitoring: "Últimos Roubos"

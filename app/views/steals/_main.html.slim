@@ -1,0 +1,58 @@
+- if @season.preferences['saction_player_steal'] != 1
+  .row
+    .col-12
+      .blockquote.blockquote.custom-blockquote.blockquote-info.rounded
+        p.text-body.mb-2.fw-bold = t('.steal_not_active_title')
+        p.text-body = t('.steal_not_active_text')
+- else
+  = turbo_stream_from "steal_window_#{@season.id}"
+
+  = render 'steals/info', season: @season, club: @club
+
+  .row
+    .col-12
+      h6 = t('.steal_timing')
+      .d-flex.align-items-center
+        .blockquote.blockquote.custom-blockquote.blockquote-outline.blockquote-danger.rounded.fs-3.fw-bold.w-100.text-center id='timeLeft' data-controller="countdown" data-countdown-ignition-value="#{countdown_timer(@next_enqueue)}"
+
+  = render 'steals/previous_steals', prev_steals: @prev_steals, season: @season, session_pdbprefix: session[:pdbprefix]
+        
+  .row
+    .col-12
+      .card
+        .card-body
+          h3.card-title = t('.players_available_for_steal')
+          .row
+            .col-12.mb-1
+              .row
+                .col-md-6.col-sm-12
+                  = label_tag("#{t '.name'}", nil, class: "control-label")
+                  .form-icon.right
+                    input type="text" id="player_name" name="player_name" class="form-control form-control-icon" data-column="0" data-column-index="1"
+                    i.ri-search-line
+                .col-md-6.col-sm-12
+                  = label_tag("#{t '.club'}", nil, class: "control-label")
+                  input type="text" style="display: none;" id="generic-club-path" value="#{vite_asset_path('images/generic-team.png')}"
+
+                  = select_tag "club_filter", options_for_select(@clubs.collect { |club| [stringHuman(DefTeam.getTranslation(club.def_team.name)[0]) , club.id, {'data-img': "#{session[:pdbprefix]}/teams/#{(club.def_team.name.upcase.delete(' '))}.png", 'data-user': club.user_season.user.nickname}] }), {required: true, include_blank: true, class: "text-center form-control select2", "data-controller": "select", "data-select-search-value": true, "data-select-icon-value": true, id: 'club_filter', 'data-column': "3", 'data-column-index': "3" }
+
+          = turbo_stream_from "steals_#{session[:season]}"
+          div data-controller="dt--user-steals"
+            #tableDom.table-responsive.table-card.mb-1.mt-3
+              table.table.table-striped.table-nowrap.dt-responsive.align-middle.mb-0 id="dt-user-steals" style="width: 100%;"
+                thead.table-light
+                  tr
+                    th = t('.name')
+                    th.text-center = t('.position')
+                    th.text-center = t('.overall')
+                    th = t('.hired')
+                    th.text-center = t('.transfer_fee')
+                    th.text-center = t('.actions')
+                tfoot.table-light
+                  tr
+                    th = t('.name')
+                    th.text-center = t('.position')
+                    th.text-center = t('.overall')
+                    th = t('.hired')
+                    th.text-center = t('.transfer_fee')
+                    th.text-center = t('.actions')

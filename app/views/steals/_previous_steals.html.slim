@@ -1,0 +1,13 @@
+= turbo_frame_tag "previous_steals_#{season.id}"
+  .row
+    .col-12
+      .card
+        .card-body
+          h3.card-title.align-middle
+            = t('.last_steals_monitoring')
+            i.ri-arrow-right-line.ms-1
+          .container data-controller='simplebar' data-simplebar-el-value='steals_list'
+            #steals_list
+              .d-flex.nowrap.gap-3.py-2
+                - prev_steals.each_with_index do |prev_steal, i|
+                  = render 'players/card_steal', player: prev_steal, i: i, session_pdbprefix: session_pdbprefix

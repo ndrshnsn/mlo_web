@@ -1,0 +1,37 @@
+= turbo_frame_tag "info_#{club.id}" do
+  .row
+    .col-xl-4.col-md-6
+      .card.card-animate
+        .card-body
+          .d-flex.align-items-center
+            .flex-grow-1
+              h5.fw-semibold = Club.getFunds(club.id).format
+              span.fs-6.fw-medium.text-muted.mb-0 = t('.club_funds')
+            .flex-shrink-0
+              .avatar-sm
+                span.avatar-title.bg-secondary-subtle.rounded-circle.fs-3
+                  i.ri-bank-line
+
+    .col-xl-4.col-md-6
+      .card.card-animate
+        .card-body
+          .d-flex.align-items-center
+            .flex-grow-1
+              h5.fw-semibold = Club.getTeamTotalWage(club.id).format
+              span.fs-6.fw-medium.text-muted.mb-0 = t('.club_wage')
+            .flex-shrink-0
+              .avatar-sm
+                span.avatar-title.bg-secondary-subtle.rounded-circle.fs-3
+                  i.ri-group-line
+
+    .col-xl-4.col-md-6
+      .card.card-animate
+        .card-body
+          .d-flex.align-items-center
+            .flex-grow-1
+              h5.fw-semibold = (season.club_max_total_wage - Club.getTeamTotalWage(club.id)).to_money.format
+              span.fs-6.fw-medium.text-muted.mb-0 = t('.club_wage_limit')
+            .flex-shrink-0
+              .avatar-sm
+                span.avatar-title.bg-warning-subtle.rounded-circle.fs-3
+                  i.ri-refund-line

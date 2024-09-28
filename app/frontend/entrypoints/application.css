@@ -6,7 +6,7 @@
 @import url('@css/remixicon/remixicon.css');
 @import url('@css/icons.css');
 @import url('@css/app.css');
-@import url('@css/custom.css'); 
+@import url('@css/custom.css');
 @import url('@css/playerdb.css');
 @import url('@css/datatables/dataTables.bootstrap5.min.css');
 @import url('@css/datatables/responsive.bootstrap.min.css');
@@ -17,3 +17,4 @@
 @import url('@css/actiontext.css');
 @import url('@css/gameplan.css');
 @import url('@css/playerstrip.css');
+@import url('@css/playercard.css');

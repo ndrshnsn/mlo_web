@@ -110,6 +110,10 @@ as :user do
   post "trades/exchange/proposal/:id/deny", to: "trades/exchange#deny_proposal", as: :trades_exchange_deny_proposal
   post "trades/exchange/proposal/:id/cancel", to: "trades/exchange#cancel_proposal", as: :trades_exchange_cancel_proposal
 
+  get "steals", to: "steals#index"
+  post "steals/get_proc_dt", to: "steals#get_proc_dt"
+  post "steals/confirm/:id", to: "steals#steal_player", as: :steal_player
+
   get "finance/contracts", to: "finance/contracts#index"
   delete "finance/contracts/:id/fire", to: "finance/contracts#fire", as: :finance_contract_fire_player
   get "finance/statement", to: "finance/statement#index"

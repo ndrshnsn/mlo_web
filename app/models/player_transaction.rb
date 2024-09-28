@@ -9,12 +9,12 @@ class PlayerTransaction < ApplicationRecord
     from_club_id = from_club.nil? ? nil : from_club.id
     to_club_id = to_club.nil? ? nil : to_club.id
 
-    PlayerTransaction.new(
+    PlayerTransaction.create!(
       player_season_id: player_season.id,
       from_club_id: from_club_id,
       to_club_id: to_club_id,
       transfer_mode: transfer_mode,
       transfer_rate: transfer_rate
-    ).save!
+    )
   end
 end
