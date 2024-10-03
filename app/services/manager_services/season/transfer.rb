@@ -7,13 +7,13 @@ class ManagerServices::Season::Transfer < ApplicationService
 
   def call
     ActiveRecord::Base.transaction do
-      wage_action
+      transfer_window
     end
   end
 
   private
 
-  def wage_action
+  def transfer_window
     season = @season
     if @step == "start"
       step = 1
