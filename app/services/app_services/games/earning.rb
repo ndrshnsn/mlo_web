@@ -47,7 +47,7 @@ class AppServices::Games::Earning < ApplicationService
       homeGoals = ClubGame.where(game_id: @game.id, club_id: @game.home_id).group(:player_season_id).size
       homeGoals.each do |hGoals|
         if hGoals[1] >= 3
-          homeEarnings += @game.championship.hattrick_earning_cents
+          homeEarnings += @game.championship.hattrick_earning
           homeDescription.push("HatTrick[#{hGoals[0]}]")
         end
       end
