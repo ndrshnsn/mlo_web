@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import SimpleBar from "simplebar"
+import "@js/base/simplebar"
 
 export default class extends Controller {
   static values = { el: String }
