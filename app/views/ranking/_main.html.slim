@@ -9,6 +9,7 @@
             th.text-center = t(".points")
         tbody
         - @ranking.each.with_index do |position, i|
+          - unless position[:club_id].nil?
           - club = Club.find(position[:club_id])
           tr
             td.text-center ##{i+1}
