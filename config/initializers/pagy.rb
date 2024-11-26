@@ -7,7 +7,7 @@
 Pagy::DEFAULT[:page]   = 1                                  # default
 Pagy::DEFAULT[:items]  = 15                                 # default
 Pagy::DEFAULT[:outset] = 0                                  # default
-Pagy::DEFAULT[:size]       = [1,4,4,1]                       # default
+Pagy::DEFAULT[:size] = 20                 # default
 Pagy::DEFAULT[:page_param] = :page                           # default
 
 # The :params can be also set as a lambda e.g ->(params){ params.exclude('useless').merge!('custom' => 'useful') }
