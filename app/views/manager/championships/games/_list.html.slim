@@ -63,7 +63,9 @@
 
                         a.dropdown-item href="#" = t('.wo_home')
                         a.dropdown-item href="#" = t('.wo_visitor')
-                        a.dropdown-item href="#" = t('.cancel_game')
+                        = link_to "javascript:void(0)", class: "dropdown-item", data: { action: 'click->confirm#dialog', controller: 'confirm', "confirm-action-value": "post", "confirm-title-value": t('.remove'), "confirm-text-value": t('.remove_text'), "confirm-icon-value": 'warning', "confirm-origin-value": "/manager/championships", "confirm-link-value": manager_championship_game_cancel_path(id: game.championship.friendly_id, game_id: game.id) } do
+                          i.ri-close-line.me-1.align-bottom
+                          span = t('.cancel_game')
 
       .row.mt-3
         = render 'layouts/pagy/main', pagy: @pagy, frame: "manager_championship_games"

@@ -12,16 +12,17 @@ class AppServices::Games::Revoke < ApplicationService
   private
 
   def revoke_game
-    if @game.status > 0 && @game.status < 100 && @game.mdescription != "revoked"
-      return handle_error(@game, @game&.error) unless GameCard.where(game_id: @game.id).destroy_all
-      return handle_error(@game, @game&.error) unless ClubGame.where(game_id: @game.id).destroy_all
-      Sidekiq::Cron::Job.find("result_confirmation_#{@game.championship.season.id}_#{@game.championship.id}_#{@game.id}").destroy!
-    elsif @game.status == 100
-      return handle_error(@game, @game&.error) unless AppServices::Games::Earning.new(@game).reversal
-      return handle_error(@game, @game&.error) unless AppServices::Ranking.new(game: @game).reversal
+    if @game.status > 0 && @game.status < 3 && @game.mdescription != "revoked"
+      job = Sidekiq::Cron::Job.find("result_confirmation_#{@game.championship.season.id}_#{@game.championship.id}_#{@game.id}")
+      job.destroy! if job
     end
 
-    @game.status = 3
+    return handle_error(@game, @game&.error) unless GameCard.where(game_id: @game.id).destroy_all
+    return handle_error(@game, @game&.error) unless ClubGame.where(game_id: @game.id).destroy_all
+    return handle_error(@game, @game&.error) unless AppServices::Games::Earning.new(@game).reversal
+    return handle_error(@game, @game&.error) unless AppServices::Ranking.new(game: @game).reversal
+
+    @game.status = 0
     @game.subtype = 2
     @game.hscore = nil
     @game.vscore = nil

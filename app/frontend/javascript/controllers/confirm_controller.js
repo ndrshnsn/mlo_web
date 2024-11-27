@@ -4,7 +4,7 @@ import "@js/base/sweetalert2"
 import i18n from "@js/base/i18n"
 
 export default class ConfirmController extends Controller {
-  static values = { title: String, text: String, icon: String, link: String, action: { type: String, default: 'delete' }, turbo: { type: String, default: 'true'}, origin: { type: String, default: "false" } }
+  static values = { title: String, text: String, icon: String, link: String, action: { type: String, default: 'delete' }, turbo: { type: String, default: 'true' }, origin: { type: String, default: "false" } }
 
   dialog() {
     const title = this.titleValue
@@ -32,24 +32,24 @@ export default class ConfirmController extends Controller {
       buttonsStyling: !1,
       showCloseButton: !0
     }).then((result) => {
-        if (result.value) {
-          turboform.setAttribute("action", link)
-          turboform.setAttribute("method", action)
-          if ( turbo === 'false' ) {
-            turboform.setAttribute("data-turbo", "false")
-          }
-          if ( origin !== "false" ) {
-            const url = new URL(window.location.href.split("?")[0])
-            let newURL = url.origin + origin
-            history.pushState({}, null, newURL)
-            Turbo.navigator.history.replace(url.toString())
-          }
-          $('.modal').modal('hide')
-          $('.modal-backdrop').remove()
-          turboform.requestSubmit()
-        } else {
-          return false;
+      if (result.value) {
+        turboform.setAttribute("action", link)
+        turboform.setAttribute("method", action)
+        if (turbo === 'false') {
+          turboform.setAttribute("data-turbo", "false")
         }
+        if (origin !== "false") {
+          const url = new URL(window.location.href.split("?")[0])
+          let newURL = url.origin + origin
+          history.pushState({}, null, newURL)
+          Turbo.navigator.history.replace(url.toString())
+        }
+        $('.modal').modal('hide')
+        $('.modal-backdrop').remove()
+        turboform.requestSubmit()
+      } else {
+        return false;
+      }
     })
   }
 }

@@ -48,6 +48,11 @@ class Manager::ChampionshipsController < ApplicationController
     @pagy, @games = pagy(Game.includes([home: :def_team], [visitor: :def_team]).where(championship_id: @championship.id).order(gsequence: :asc))
   end
 
+  def game_cancel
+    game = Game.find(game_cancel_params[:game_id])
+    AppServices::Games::Revoke.call(game)
+  end
+
   def create
     time_course = championship_params[:time_course].split(" ")
     time_start = time_course[0]
@@ -267,6 +272,13 @@ class Manager::ChampionshipsController < ApplicationController
 
   def define_clubs_params
     params.permit(championship_clubs: [])
+  end
+
+  def game_cancel_params
+    params.permit(
+      :id,
+      :game_id
+    )
   end
 
   def championship_params
