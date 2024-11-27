@@ -66,6 +66,7 @@ namespace :manager do
   patch "championships/:id/update", to: "championships#update", as: :championship_update
   get "championships/get_ctype_options", to: "championships#get_ctype_options"
   get "championships/:id/games", to: "championships#games", as: :championship_games
+  post "championships/:id/:game_id/cancel", to: "championships#game_cancel", as: :championship_game_cancel
   match "championships/:id/actions/define_clubs", to: "championships#define_clubs", as: :championship_define_clubs, via: [:get, :patch]
   post "championships/:id/actions/start", to: "championships#start", as: :championship_start
   post "championships/:id/actions/league/round", to: "championships#start_league_round", as: :championship_start_league_round
